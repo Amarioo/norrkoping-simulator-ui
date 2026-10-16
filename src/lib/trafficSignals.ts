@@ -39,7 +39,7 @@ export function createTrafficSignals() {
       p: [signal.position[0] - (dz / len) * side, signal.position[1] + (dx / len) * side] as Point,
       y: nearest.yA,
       heading: Math.atan2(dx, dz),
-      horizontal: Math.abs(dx) > Math.abs(dz),
+      horizontal: signal.horizontal ?? Math.abs(dx) > Math.abs(dz),
     };
   });
   const poles = own(

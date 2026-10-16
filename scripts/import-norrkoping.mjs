@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import osmtogeojson from 'osmtogeojson';
 import pc from 'polygon-clipping';
+import { buildTransit } from './import-transit.mjs';
 const bbox = [58.555, 16.065, 58.65, 16.295],
   origin = [58.58981, 16.18747],
   scale = 25;
@@ -19,6 +20,21 @@ else {
   raw = await res.json();
 }
 if (!raw.elements?.length || raw.remark) throw new Error('Incomplete map: ' + raw.remark);
+const extra = JSON.parse(
+  fs.readFileSync(new URL('./data/norrkoping-transit-source.json', import.meta.url), 'utf8'),
+);
+const existingWays = new Set(raw.elements.filter((e) => e.type === 'way').map((e) => e.id));
+for (const rel of extra.elements.filter((e) => e.type === 'relation'))
+  for (const m of rel.members)
+    if (m.type === 'way' && !m.role && m.geometry && !existingWays.has(m.ref)) {
+      raw.elements.push({
+        type: 'way',
+        id: m.ref,
+        tags: { railway: 'tram' },
+        geometry: m.geometry,
+      });
+      existingWays.add(m.ref);
+    }
 const round = (n) => Math.round(n * 1000) / 1000;
 const project = ([lon, lat]) => [
   round(((lon - origin[1]) * 58010) / scale),
@@ -113,11 +129,7 @@ for (const e of raw.elements) {
       historic: !!(p['disused:aeroway'] || p['abandoned:aeroway']),
     });
   if (!p.highway && !p.railway && !p.waterway) continue;
-  if (
-    p.area === 'yes' ||
-    p.tunnel === 'yes' ||
-    ['proposed', 'construction', 'abandoned', 'disused'].includes(p.highway)
-  )
+  if (p.area === 'yes' || ['proposed', 'construction', 'abandoned', 'disused'].includes(p.highway))
     continue;
   if (air) continue;
   const kind = p.railway
@@ -180,6 +192,8 @@ for (const e of raw.elements) {
       lanes,
       oneway,
       bridge: elevation > 0,
+      tunnel: p.tunnel === 'yes',
+      way: e.id,
       yA: 0.071 + elevation,
       yB: 0.071 + elevation,
     };
@@ -192,6 +206,8 @@ for (const e of raw.elements) {
         speed: round(speed),
         width: round(width),
         truck,
+        bus:
+          truck || ['tertiary', 'tertiary_link', 'unclassified', 'residential'].includes(p.highway),
         name: p.name ?? p.ref ?? '',
         way: e.id,
         oneway: oneway !== 0,
@@ -211,6 +227,61 @@ for (const r of roads) {
     delete r.nodeB;
   }
 }
+// Use one signal orientation on the server and renderer, including curved approaches.
+for (const signal of signals) {
+  const n = nodeIndex.get(signal.id),
+    near = roads
+      .filter((r) => r.kind === 'road')
+      .reduce(
+        (best, r) => {
+          const d = dist(signal.position, r.a, r.b);
+          return d < best.d ? { r, d } : best;
+        },
+        { r: null, d: Infinity },
+      ).r;
+  signal.horizontal = near
+    ? Math.abs(near.b[0] - near.a[0]) > Math.abs(near.b[1] - near.a[1])
+    : true;
+  if (n !== undefined) nodes[n].signalHorizontal = signal.horizontal;
+}
+for (const stop of extra.elements.filter(
+  (e) => e.type === 'node' && e.tags?.highway === 'bus_stop',
+)) {
+  const p = project([stop.lon, stop.lat]);
+  let best = -1,
+    d = 0.6;
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i],
+      gap = Math.hypot(n.x - p[0], n.z - p[1]);
+    if (gap < d) {
+      d = gap;
+      best = i;
+    }
+  }
+  if (best >= 0) nodes[best].busStop = stop.tags.name ?? 'Hållplats';
+}
+// Flat terrain represents underpasses with a raised rail deck and smooth track ramps.
+const underpasses = roads.filter((r) => r.kind === 'road' && r.tunnel);
+const railBridges = roads.filter((r) => (r.kind === 'rail' || r.kind === 'tram') && r.bridge);
+function railHeight(p) {
+  let rise = 0;
+  for (const r of underpasses) {
+    const d = dist(p, r.a, r.b);
+    if (d < 2) rise = Math.max(rise, 0.28 * Math.min(1, (2 - d) / 1.2));
+  }
+  for (const r of railBridges) {
+    const d = dist(p, r.a, r.b);
+    if (d < 1.5) rise = Math.max(rise, (r.yA - 0.071) * Math.min(1, (1.5 - d) / 0.8));
+  }
+  return 0.071 + rise;
+}
+for (const r of roads)
+  if (r.kind === 'rail' || r.kind === 'tram') {
+    r.yA = railHeight(r.a);
+    r.yB = railHeight(r.b);
+    r.bridge = r.yA > 0.1 || r.yB > 0.1;
+  }
+const transitRoutes = buildTransit(raw, extra, project, railHeight);
 const geo = osmtogeojson(raw, { flatProperties: true });
 for (const f of geo.features) {
   const p = f.properties,
@@ -390,12 +461,22 @@ const meta = {
   query,
   note: 'Mapped footprints, roads, runways and signal locations. Building heights and architectural details may be estimated. F13 flights are fictional.',
 };
-const result = { meta, buildings, areas, roads, trees: correctedTrees, signals, airways, airports };
+const result = {
+  meta,
+  buildings,
+  areas,
+  roads,
+  trees: correctedTrees,
+  signals,
+  airways,
+  airports,
+  transitRoutes,
+};
 fs.writeFileSync(
   new URL('../src/lib/data/norrkoping-map.json', import.meta.url),
   JSON.stringify(result),
 );
-const network = { meta, nodes, edges, airports, airways };
+const network = { meta, nodes, edges, airports, airways, transitRoutes };
 if (process.argv[3]) fs.writeFileSync(process.argv[3], JSON.stringify(network));
 fs.writeFileSync(
   new URL('../src/lib/data/transport-network.json', import.meta.url),

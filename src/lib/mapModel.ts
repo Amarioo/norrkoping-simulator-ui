@@ -39,6 +39,8 @@ export interface MapRoad {
   yB: number;
   width: number;
   bridge?: boolean;
+  tunnel?: boolean;
+  way?: number;
   name?: string;
 }
 export interface MapData {
@@ -49,11 +51,18 @@ export interface MapData {
     origin: number[];
     bounds: number[];
   };
+  transitRoutes: {
+    id: string;
+    kind: string;
+    name: string;
+    points: number[][];
+    stops: { name: string; distance: number }[];
+  }[];
   buildings: MapBuilding[];
   areas: MapArea[];
   roads: MapRoad[];
   trees: Point[];
-  signals: { id: number; position: Point }[];
+  signals: { id: number; position: Point; horizontal?: boolean }[];
   airways: {
     id: number;
     kind: string;
@@ -203,6 +212,13 @@ export const LANDMARKS: Landmark[] = [
   landmark('Gamla vattentornet', 'Gamla vattentornet', 'architecture', 'Landmärke vid Parken', 3),
   landmark('S:t Johannes kyrka', 'S:t Johannes kyrka', 'architecture', 'Söderstaden', 2.7),
   {
+    name: 'Bollspelaren',
+    position: project(58.6006, 16.1778),
+    height: 0.5,
+    category: 'stadium',
+    description: 'Ingelstagatan · fotbollsplaner, läktare och isbana',
+  },
+  {
     name: 'Ljura',
     position: project(58.5794, 16.1995),
     height: 0.3,
@@ -229,6 +245,11 @@ export const CITY_VIEWS: Record<string, CityFocus> = {
     85,
   ),
   f13: focus('Bråvalla F13', [-195, -92], 95),
+  policeEmblem: {
+    label: 'Polishusets emblem',
+    target: [-28.38, 1.55, -25.37],
+    position: [-27.68, 1.82, -22.97],
+  },
   police: focus('Polishuset', centerOf(named('Polishuset')), 10),
   kungsgatan: focus('Kungsgatan', [-22, -14], 14),
   soderleden: focus('Söderleden', [14, 66], 20),
@@ -236,5 +257,33 @@ export const CITY_VIEWS: Record<string, CityFocus> = {
   industry: focus('Industrilandskapet', [-17, 3], 22),
   centrum: focus('Centrum', [2, -5], 30),
   ljura: focus('Ljura / Ljuraparken', centerOf(named('Ljuraparken')), 32),
-  station: focus('Stationen / Carl Johans park', [-8, -25], 25),
+  station: focus('Resecentrum / Norrköping C', centerOf(named('Norrköpings centralstation')), 9),
+  ljuraStop: focus('Hållplats Ljura centrum', project(58.58016, 16.19743), 3),
+  bollspelaren: focus('Bollspelaren / Ingelstagatan', project(58.6006, 16.1778), 13),
+  terminal: focus(
+    'Flygplatsterminalen',
+    centerOf(cityMap.buildings.find((b) => b.id === 'way/101513457')!),
+    13,
+  ),
+  norraPromenaden: {
+    label: 'Norra Promenaden · allén',
+    target: [-8, 0.21, -27.2],
+    position: [-1, 0.21, -29.07],
+  },
+  sodraPromenaden: {
+    label: 'Södra Promenaden · allén',
+    target: [-6, 0.21, 22.85],
+    position: [1, 0.21, 24],
+  },
+  bergsbron: { label: 'Bergsbron', target: [-21.3, 0.24, 0.4], position: [-17.5, 1.55, 3.9] },
+  laxholmsbron: focus('Laxholmsbron', [-17.36, 4.23], 2.8),
+  laxtrappan: focus('Spången / laxtrappan', [-9.9, -8.9], 4.5),
+  gamlebro: focus('Gamlebro / Järnbron', [-8.4, 1.87], 2.8),
+  saltangsbron: {
+    label: 'Saltängsbron',
+    target: [-4.7, 0.24, -17.3],
+    position: [-0.5, 1.4, -15.8],
+  },
+  hamnbron: { label: 'Hamnbron', target: [15.6, 0.24, -19.4], position: [19, 1.3, -17] },
+  underpass: focus('Ståthögavägen / järnvägsbron', [8, -37], 12),
 };

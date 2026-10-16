@@ -3,17 +3,22 @@ export interface TrafficSettings {
   compact: number;
   estate: number;
   trucks: number;
+  buses: number;
+  trams: number;
+  trains: number;
   flights: boolean;
   timeScale: number;
 }
 export interface Vehicle {
   id: number;
-  kind: 'compact' | 'estate' | 'truck';
+  kind: 'compact' | 'estate' | 'truck' | 'bus' | 'tram' | 'train';
   pos: Vec3;
   heading: number;
   speed: number;
   road: string;
   stopped: boolean;
+  sections?: { pos: Vec3; heading: number }[];
+  stop?: string;
 }
 export interface Aircraft {
   id: string;
@@ -42,7 +47,16 @@ class CityStore {
     sequence: 0,
     simulationTime: 0,
     paused: false,
-    settings: { compact: 100, estate: 60, trucks: 20, flights: true, timeScale: 3 },
+    settings: {
+      compact: 100,
+      estate: 60,
+      trucks: 20,
+      buses: 12,
+      trams: 8,
+      trains: 2,
+      flights: true,
+      timeScale: 3,
+    },
     vehicles: [],
     aircraft: [],
     completedFlights: 0,
@@ -124,4 +138,13 @@ export const FLIGHT_PHASE: Record<string, string> = {
   APPROACH: 'Inflygning',
   LANDING: 'Landar',
   TAXI_IN: 'Taxar till uppställning',
+};
+
+export const VEHICLE_NAMES: Record<Vehicle['kind'], string> = {
+  compact: 'Personbil',
+  estate: 'Kombibil',
+  truck: 'Lastbil',
+  bus: 'Buss',
+  tram: 'Spårvagn',
+  train: 'Pendeltåg',
 };

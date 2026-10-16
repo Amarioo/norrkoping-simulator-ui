@@ -12,6 +12,7 @@ import {
   SpriteMaterial,
   InstancedMesh,
   Matrix4,
+  TextureLoader,
 } from 'three';
 import { cityMap, LANDMARKS, stadiumCenter, pointInRing, type Point } from './mapModel';
 
@@ -323,34 +324,20 @@ export function createLandmarkDetails() {
     slabMat,
     mat('#b3b8b6'),
     mat('#b3b8b6'),
-    mat('#a3aaa8'),
-    mat('#a3aaa8'),
+    mat('#40515a'),
+    mat('#40515a'),
   ];
   box(towerPolice, 0, 1.92, 0, 0.55, 0.06, 2.71, '#e2e1d7');
   for (let i = 0; i < 6; i++)
     box(towerPolice, 0, 1.98, -1.05 + i * 0.4, 0.22, 0.09, 0.2, '#7c8586');
-  const crest = texture(256, 256, (c) => {
-    c.fillStyle = '#28475c';
-    c.fillRect(0, 0, 256, 256);
-    c.fillStyle = '#d1b86c';
-    c.beginPath();
-    c.moveTo(70, 35);
-    c.lineTo(186, 35);
-    c.lineTo(176, 132);
-    c.lineTo(128, 165);
-    c.lineTo(80, 132);
-    c.closePath();
-    c.fill();
-    c.fillStyle = '#fff';
-    c.font = 'bold 42px sans-serif';
-    c.textAlign = 'center';
-    c.fillText('POLIS', 128, 219);
-  });
+  // Official vector artwork with an emblem-only viewBox and explicit rasterization dimensions.
+  const crest = track(new TextureLoader().load('/assets/polis-emblem.svg'));
+  crest.colorSpace = SRGBColorSpace;
   const badge = new Mesh(
     track(new PlaneGeometry(0.25, 0.3)),
-    track(new MeshBasicMaterial({ map: crest })),
+    track(new MeshBasicMaterial({ map: crest, transparent: true, alphaTest: 0.02, side: 2 })),
   );
-  badge.position.set(0, 1.55, 1.332);
+  badge.position.set(0, 1.55, 1.37);
   towerPolice.add(badge);
   const panelPositions: Point[] = [];
   for (let x = -31.3; x < -27.3; x += 0.22)

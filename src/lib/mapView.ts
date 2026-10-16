@@ -18,8 +18,11 @@ import {
   Vector3,
 } from 'three';
 import { cityMap, type MapPolygon, type MapBuilding, type Point } from './mapModel';
+import { createCityBridges } from './cityBridges';
+import { treeProfile } from './treeProfile';
 import { createParkTrees } from './mapVegetation';
 import { createLandmarkDetails } from './mapLandmarks';
+import { createCityPlaces, DETAILED_BUILDING_IDS, isDetailPlantingClear } from './cityPlaces';
 
 export class Batch {
   positions: number[] = [];
@@ -214,20 +217,49 @@ export function createMappedCity() {
       strip(roads, r.a, r.b, r.width + 0.1, y, new Color('#b1b0a8'), r.yB);
       strip(roads, r.a, r.b, r.width, y + 0.006, new Color('#41494e'), r.yB + 0.006);
     } else if (r.kind === 'path')
-      strip(roads, r.a, r.b, Math.max(r.width, 0.06), 0.078, new Color('#cbbfa4'));
+      strip(
+        roads,
+        r.a,
+        r.b,
+        Math.max(r.width, 0.06),
+        y + 0.007,
+        new Color('#cbbfa4'),
+        r.yB + 0.007,
+      );
     else if (r.kind === 'stream') strip(water, r.a, r.b, r.width, 0.042, new Color('#4b848c'));
     else {
       const dx = r.b[0] - r.a[0],
         dz = r.b[1] - r.a[1],
         len = Math.hypot(dx, dz);
+      if (r.kind === 'rail')
+        strip(
+          roads,
+          r.a,
+          r.b,
+          0.15,
+          y - 0.008,
+          new Color(r.bridge ? '#777d78' : '#8c8778'),
+          r.yB - 0.008,
+        );
+      if (r.bridge)
+        strip(
+          roads,
+          r.a,
+          r.b,
+          r.kind === 'rail' ? 0.24 : 0.16,
+          y - 0.018,
+          new Color('#92978d'),
+          r.yB - 0.018,
+        );
       for (const offset of [-0.028, 0.028])
         strip(
           roads,
           [r.a[0] - (dz / len) * offset, r.a[1] + (dx / len) * offset],
           [r.b[0] - (dz / len) * offset, r.b[1] + (dx / len) * offset],
           0.012,
-          0.087,
+          y + 0.016,
           new Color('#b2a484'),
+          r.yB + 0.016,
         );
     }
   }
@@ -320,7 +352,21 @@ export function createMappedCity() {
     false,
   );
   const cornices = new Batch();
-  for (const b of cityMap.buildings) {
+  for (const source of cityMap.buildings) {
+    const point = source.rings[0][0];
+    const airport = point[0] > 96 && point[0] < 123 && point[1] > 24 && point[1] < 40;
+    const clubhouse = ['way/1059584509', 'way/1059584510', 'way/1059584511'].includes(source.id);
+    const b =
+      airport || clubhouse
+        ? {
+            ...source,
+            height: airport ? 0.24 : 0.12,
+            roofShape: 'flat',
+            wall: airport ? '#a9b6b7' : '#d0c9ad',
+            roof: '#515d62',
+          }
+        : source;
+    if (DETAILED_BUILDING_IDS.has(b.id)) continue;
     const y = 0.045 + b.height,
       bottom = 0.045 + b.minHeight,
       color = new Color(b.wall),
@@ -370,10 +416,10 @@ export function createMappedCity() {
     own(new MeshStandardMaterial({ vertexColors: true, roughness: 0.9, side: 2 })),
     false,
   );
-  const positions = [...cityMap.trees, ...createParkTrees()];
+  const positions = [...cityMap.trees, ...createParkTrees()].filter(isDetailPlantingClear);
   const trunks = own(
     new InstancedMesh(
-      own(new CylinderGeometry(0.025, 0.04, 0.26, 5)),
+      own(new CylinderGeometry(0.7, 1, 1, 7)),
       own(new MeshStandardMaterial({ color: '#766048' })),
       positions.length,
     ),
@@ -382,7 +428,7 @@ export function createMappedCity() {
     new InstancedMesh(
       own(new IcosahedronGeometry(1, 1)),
       own(new MeshStandardMaterial({ vertexColors: false, color: '#ffffff', roughness: 1 })),
-      positions.length * 2,
+      positions.length * 4,
     ),
   );
   const mat = new Matrix4(),
@@ -390,22 +436,46 @@ export function createMappedCity() {
     v = new Vector3(),
     s = new Vector3();
   positions.forEach(([x, z], i) => {
-    const size = 0.23 + ((i * 37) % 11) * 0.013;
-    mat.compose(v.set(x, 0.17, z), q, s.set(1, 1, 1));
+    const profile = treeProfile([x, z], i),
+      { radius, crownY, crownHeight, trunkRadius } = profile;
+    const trunkHeight = crownY - 0.025;
+    mat.compose(
+      v.set(x, 0.025 + trunkHeight / 2, z),
+      q,
+      s.set(trunkRadius, trunkHeight, trunkRadius),
+    );
     trunks.setMatrixAt(i, mat);
-    for (let j = 0; j < 2; j++) {
+    // Four smaller lobes leave a scalloped outline and visible gaps between neighbouring trees.
+    for (let j = 0; j < 4; j++) {
+      const angle = (j * Math.PI * 2) / 3 + (i % 7) * 0.4;
+      const outer = j < 3;
       mat.compose(
-        v.set(x + (j ? size * 0.24 : 0), 0.39 + j * 0.09, z),
+        v.set(
+          x + (outer ? Math.cos(angle) * radius * 0.38 : 0),
+          crownY + (outer ? -0.012 : crownHeight * 0.45),
+          z + (outer ? Math.sin(angle) * radius * 0.38 : 0),
+        ),
         q,
-        s.set(size, size * 1.15, size),
+        s.set(
+          radius * (outer ? 0.65 : 0.62),
+          crownHeight * (outer ? 0.78 : 0.65),
+          radius * (outer ? 0.65 : 0.62),
+        ),
       );
-      leaves.setMatrixAt(i * 2 + j, mat);
-      leaves.setColorAt(i * 2 + j, new Color(['#4f793b', '#628c46', '#71934c', '#547c47'][i % 4]));
+      leaves.setMatrixAt(i * 4 + j, mat);
+      leaves.setColorAt(
+        i * 4 + j,
+        new Color(['#527b3b', '#648849', '#719452', '#5b8044'][(i + j) % 4]),
+      );
     }
   });
   trunks.castShadow = leaves.castShadow = true;
   trunks.receiveShadow = leaves.receiveShadow = true;
   group.add(trunks, leaves);
+  const bridges = createCityBridges();
+  group.add(bridges.group);
+  const places = createCityPlaces();
+  group.add(places.group);
   const details = createLandmarkDetails();
   group.add(details.group);
   return {
@@ -413,6 +483,8 @@ export function createMappedCity() {
     labels: details.labels,
     dispose() {
       details.dispose();
+      places.dispose();
+      bridges.dispose();
       resources.forEach((r) => r.dispose());
       group.clear();
     },

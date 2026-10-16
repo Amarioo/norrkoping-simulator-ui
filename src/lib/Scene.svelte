@@ -9,6 +9,7 @@
   import { createTransportModels } from './transportModels';
   import { createTrafficSignals } from './trafficSignals';
   import FreeCamera from './FreeCamera.svelte';
+  import { createPublicTransport } from './publicTransport';
   let {
     focus = 'overview',
     showLabels = true,
@@ -16,12 +17,14 @@
     travel = $bindable(0),
   }: { focus?: string; showLabels?: boolean; follow?: string; travel?: number } = $props();
   interactivity();
+  const transit = createPublicTransport();
   const view = createMappedCity(),
     transport = createTransportModels(),
     signals = createTrafficSignals();
   onDestroy(() => {
     view.dispose();
     transport.dispose();
+    transit.dispose();
     signals.dispose();
   });
   $effect(() => {
@@ -37,6 +40,7 @@
       city.snapshot.simulationTime,
     );
     signals.update(city.snapshot.simulationTime);
+    transit.update(city.snapshot.vehicles, dt);
   });
   const sun = new DirectionalLight('#fff3de', 2.1);
   sun.position.set(-150, 260, 120);
@@ -80,4 +84,7 @@
     roughness={1}
   /></T.Mesh
 >
-<T is={view.group} /><T is={transport.group} onclick={pick} /><T is={signals.group} />
+<T is={view.group} /><T is={transport.group} onclick={pick} /><T is={signals.group} /><T
+  is={transit.group}
+  onclick={pick}
+/>

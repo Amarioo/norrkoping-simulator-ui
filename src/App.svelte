@@ -4,7 +4,7 @@
   import { PCFShadowMap } from 'three';
   import Scene from './lib/Scene.svelte';
   import { CITY_VIEWS, cityMap } from './lib/mapModel';
-  import { city, FLIGHT_PHASE } from './lib/city.svelte';
+  import { city, FLIGHT_PHASE, VEHICLE_NAMES } from './lib/city.svelte';
   let focus = $state('city'),
     labels = $state(true),
     follow = $state(''),
@@ -13,10 +13,13 @@
   let compact = $state(100),
     estate = $state(60),
     trucks = $state(20),
+    buses = $state(12),
+    trams = $state(8),
+    trains = $state(2),
     flights = $state(true),
     timeScale = $state(3),
     initialized = $state(false);
-  const total = $derived(compact + estate + trucks),
+  const total = $derived(compact + estate + trucks + buses),
     moving = $derived(city.snapshot.vehicles.filter((v) => !v.stopped).length),
     plane = $derived(city.snapshot.aircraft[0]);
   const clock = $derived(new Date(city.snapshot.simulationTime * 1000).toISOString().slice(11, 19));
@@ -26,6 +29,9 @@
       compact = s.compact;
       estate = s.estate;
       trucks = s.trucks;
+      buses = s.buses ?? 0;
+      trams = s.trams ?? 0;
+      trains = s.trains ?? 0;
       flights = s.flights;
       timeScale = s.timeScale;
       initialized = true;
@@ -41,7 +47,16 @@
     focus = value;
   }
   async function apply() {
-    await city.command('settings', { compact, estate, trucks, flights, timeScale });
+    await city.command('settings', {
+      compact,
+      estate,
+      trucks,
+      buses,
+      trams,
+      trains,
+      flights,
+      timeScale,
+    });
   }
 </script>
 
@@ -88,6 +103,19 @@
         <p class="control-note">
           Personbilar följer körbara gator. Drottninggatan är undantagen. Lastbilar håller sig till
           större vägar, bland annat E4 och Söderleden.
+        </p>
+        <h3 class="transit-heading">Kollektivtrafik</h3>
+        <label class="slider-label" for="buses"><span>Bussar</span><output>{buses}</output></label
+        ><input id="buses" type="range" min="0" max="80" step="1" bind:value={buses} />
+        <label class="slider-label" for="trams"
+          ><span>Spårvagnar · linje 2 & 3</span><output>{trams}</output></label
+        ><input id="trams" type="range" min="0" max="40" step="1" bind:value={trams} />
+        <label class="slider-label" for="trains"
+          ><span>Östgötapendeln</span><output>{trains}</output></label
+        ><input id="trains" type="range" min="0" max="12" step="1" bind:value={trains} />
+        <p class="control-note">
+          Spårvagnar och pendeltåg följer kartlagda spår. Bussar delar vägtrafikens köer och
+          trafikljus. Hållplatsuppehåll och avgångar är simulerade.
         </p>
         <label class="slider-label" for="time-scale"
           ><span>Simuleringshastighet</span><output>{timeScale}×</output></label
@@ -168,7 +196,7 @@
       </div>
       <div class="sim-metrics">
         <div>
-          <span>FORDON PÅ VÄGARNA</span><strong
+          <span>FORDON I STADEN</span><strong
             >{city.snapshot.vehicles.length}<small> / {moving} i rörelse</small></strong
           >
         </div>
@@ -224,13 +252,10 @@
               onclick={() => (city.selectedId = null)}>×</button
             ><span class="eyebrow">FORDON {city.selected.id}</span>
             <h3>
-              {city.selected.kind === 'truck'
-                ? 'Lastbil'
-                : city.selected.kind === 'estate'
-                  ? 'Kombibil'
-                  : 'Personbil'}
+              {VEHICLE_NAMES[city.selected.kind]}
             </h3>
             <p>{city.selected.road || 'Lokalgata'} · {city.selected.speed.toFixed(0)} km/h</p>
+            {#if city.selected.stop}<p>Hållplats: {city.selected.stop}</p>{/if}
             <button class="secondary-button" onclick={() => (follow = String(city.selected!.id))}
               >Följ fordonet ↗</button
             >
@@ -264,19 +289,14 @@
         </div>
         <div class="vehicle-select">
           <h2>Hitta ett fordon</h2>
-          <label for="vehicle-select">Välj bil eller lastbil</label><select
+          <label for="vehicle-select">Välj bil, buss, spårvagn eller tåg</label><select
             id="vehicle-select"
             value={city.selectedId ?? ''}
             onchange={(e) => {
               city.selectedId = Number(e.currentTarget.value) || null;
             }}
             ><option value="">Välj fordon…</option>{#each city.snapshot.vehicles as v (v.id)}<option
-                value={v.id}
-                >#{v.id} · {v.kind === 'truck'
-                  ? 'Lastbil'
-                  : v.kind === 'estate'
-                    ? 'Kombi'
-                    : 'Personbil'} · {v.road || 'Lokalgata'}</option
+                value={v.id}>#{v.id} · {VEHICLE_NAMES[v.kind]} · {v.road || 'Lokalgata'}</option
               >{/each}</select
           >
           <p class="micro-note">

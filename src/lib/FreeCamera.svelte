@@ -84,8 +84,25 @@
           ? city.snapshot.aircraft[0]
           : city.snapshot.vehicles.find((v) => String(v.id) === follow);
       if (item) {
-        const distance = follow === 'plane' ? 3.8 : 0.85,
-          height = follow === 'plane' ? 1.5 : 0.42;
+        const kind = 'kind' in item ? item.kind : 'plane';
+        const distance =
+            kind === 'plane'
+              ? 3.8
+              : kind === 'train'
+                ? 5
+                : kind === 'tram'
+                  ? 2.8
+                  : kind === 'bus'
+                    ? 1.4
+                    : 0.85,
+          height =
+            kind === 'plane' || kind === 'train'
+              ? 1.5
+              : kind === 'tram'
+                ? 1
+                : kind === 'bus'
+                  ? 0.65
+                  : 0.42;
         const wanted = new Vector3(
           item.pos[0] - Math.sin(item.heading) * distance,
           item.pos[1] + height,
