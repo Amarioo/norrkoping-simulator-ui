@@ -1,7 +1,7 @@
 {
-  "name": "drone-swarm-ui",
+  "name": "norrkoping-simulator-ui",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
@@ -10,7 +10,8 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "map:import": "node scripts/import-norrkoping.mjs"
   },
   "dependencies": {
     "@threlte/core": "8.6.1",
@@ -23,6 +24,8 @@
     "@sveltejs/vite-plugin-svelte": "7.3.1",
     "@types/node": "^24.0.0",
     "@types/three": "^0.186.0",
+    "osmtogeojson": "^3.0.0-beta.5",
+    "polygon-clipping": "^0.15.7",
     "prettier": "^3.9.10",
     "prettier-plugin-svelte": "^4.1.1",
     "svelte-check": "^4.0.0",
@@ -34,5 +37,8 @@
     "npm": ">=11.10.1",
     "node": ">=22.12.0"
   },
-  "packageManager": "npm@11.10.1"
+  "packageManager": "npm@11.10.1",
+  "overrides": {
+    "@xmldom/xmldom": "0.9.12"
+  }
 }

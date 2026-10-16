@@ -8,6 +8,8 @@ export interface Drone {
   state: DroneState;
   weightKg: number;
   route: Vec3[];
+  /** Named Norrköping delivery place, e.g. "Arbetets museum". */
+  destination?: string;
 }
 export interface Zone {
   id: string;

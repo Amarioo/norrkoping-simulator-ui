@@ -1,26 +1,20 @@
 import { describe, expect, it } from 'vitest';
 import {
-  BLOCK_CENTERS,
-  buildingExtents,
   buildingTip,
-  CORE,
   generateCity,
   HUBS,
   HUB_PAD,
   HUB_TREE_CLEARANCE,
   LANE_FLOOR,
-  LANES,
+  PLINTH_SIZE,
   PLINTH_TOP,
 } from './city';
+import { circleRectOverlap, clearOfWater, waterRect } from './cityGeometry';
+import { buildingExtents } from './city';
 
 const model = generateCity();
 
-/** Nearest street-grid block centre for any coordinate. */
-function nearestBlock(v: number): number {
-  return BLOCK_CENTERS.reduce((best, c) => (Math.abs(v - c) < Math.abs(v - best) ? c : best));
-}
-
-describe('procedural city', () => {
+describe('the Norrköping miniature', () => {
   it('is deterministic', () => {
     expect(generateCity()).toEqual(model);
   });
@@ -40,16 +34,6 @@ describe('procedural city', () => {
     }
   });
 
-  it('keeps every footprint inside its block and off the street strips', () => {
-    for (const b of model.buildings) {
-      const [ex, ez] = buildingExtents(b);
-      const bx = nearestBlock(b.x);
-      const bz = nearestBlock(b.z);
-      expect(Math.abs(b.x - bx) + ex).toBeLessThanOrEqual(CORE + 1e-9);
-      expect(Math.abs(b.z - bz) + ez).toBeLessThanOrEqual(CORE + 1e-9);
-    }
-  });
-
   it('stacks tiers bottom-up without gaps or overhangs', () => {
     for (const b of model.buildings) {
       let y = 0;
@@ -66,6 +50,55 @@ describe('procedural city', () => {
     }
   });
 
+  it('keeps every building out of Motala ström and its rapids', () => {
+    for (const w of model.water) {
+      const rect = waterRect(w);
+      for (const b of model.buildings) {
+        expect(clearOfWater(b, rect), `${b.name ?? 'building ' + b.id} at (${b.x}, ${b.z}) vs water at (${w.x}, ${w.z})`).toBe(true);
+      }
+    }
+  });
+
+  it('keeps the Kaktusplanteringen cacti inside Carl Johans park and out of the water', () => {
+    const park = model.plinths.find((p) => p.kind === 'grass' && Math.abs(p.x - -9.5) < 0.01);
+    expect(park).toBeDefined();
+    const half = ((park?.size ?? 1) * PLINTH_SIZE) / 2;
+    expect(model.cacti.length).toBeGreaterThanOrEqual(8);
+    for (const c of model.cacti) {
+      expect(Math.abs(c.x - (park?.x ?? 0))).toBeLessThanOrEqual(half - 0.15);
+      expect(Math.abs(c.z - (park?.z ?? 0))).toBeLessThanOrEqual(half - 0.15);
+      for (const w of model.water) {
+        expect(circleRectOverlap(c.x, c.z, 0.35 * c.s, waterRect(w)), `cactus at (${c.x}, ${c.z}) vs water at (${w.x}, ${w.z})`).toBe(false);
+      }
+    }
+  });
+
+  it('names the real landmarks', () => {
+    const names = new Set(model.buildings.flatMap((b) => (b.name ? [b.name] : [])));
+    for (const expected of [
+      'Sankt Olai kyrka',
+      'Norrköpings rådhus',
+      'Stora hotellet',
+      'Holmentornet',
+      'Holmens skorsten',
+      'Strykjärnet',
+      'Strykbrädan',
+      'Tryckeriet',
+      'Visualiseringscenter C',
+      'Louis De Geer-hallen',
+      'Drags kraftstation',
+      'Norrköpings centralstation',
+      'Hamnens silo',
+      'Holmen Paper',
+      'Vrinnevisjukhuset',
+      'Sankt Johannes kyrka',
+      'Himmelstalund',
+      'Nya Parken',
+    ]) {
+      expect(names.has(expected)).toBe(true);
+    }
+  });
+
   it('plants trees and lamps on valid ground away from hubs', () => {
     for (const t of model.trees) {
       expect(Math.abs(t.x)).toBeLessThanOrEqual(79);
@@ -75,23 +108,30 @@ describe('procedural city', () => {
         expect(Math.hypot(t.x - hx, t.z - hz)).toBeGreaterThanOrEqual(HUB_TREE_CLEARANCE);
     }
     for (const l of model.lamps) {
-      const onLaneX = LANES.some((lane) => Math.abs(l.x - 0.8 - lane) < 0.01);
-      const onLaneZ = LANES.some((lane) => Math.abs(l.z - 0.8 - lane) < 0.01);
-      expect(onLaneX && onLaneZ).toBe(true);
+      expect(Math.abs(l.x)).toBeLessThanOrEqual(79);
+      expect(Math.abs(l.z)).toBeLessThanOrEqual(79);
       for (const [hx, hz] of HUBS) expect(Math.hypot(l.x - hx, l.z - hz)).toBeGreaterThanOrEqual(8.5);
     }
   });
 
-  it('gives the skyline size and character', () => {
-    expect(model.buildings.length).toBeGreaterThan(35);
+  it('gives the city size and Norrköping character', () => {
+    expect(model.buildings.length).toBeGreaterThanOrEqual(55);
     const kinds = new Set(model.buildings.map((b) => b.kind));
-    expect(kinds.size).toBeGreaterThanOrEqual(4);
-    const heights = new Set(model.buildings.map((b) => b.tiers[0].h.toFixed(1)));
-    expect(heights.size).toBeGreaterThanOrEqual(12);
-    expect(model.trees.length).toBeGreaterThan(30);
+    expect(kinds.has('iron')).toBe(true);
+    expect(model.buildings.filter((b) => b.kind === 'cylinder').length).toBeGreaterThanOrEqual(6);
+    const roofs = new Set(model.buildings.map((b) => b.roof));
+    expect(roofs.has('spire')).toBe(true);
+    expect(roofs.has('dome')).toBe(true);
+    expect(roofs.has('pyramid')).toBe(true);
+    expect(model.trees.length).toBeGreaterThan(40);
     expect(model.lamps.length).toBeGreaterThan(20);
-    expect(model.plinths.filter((p) => p.kind === 'grass').length).toBeGreaterThan(3);
-    expect(model.plinths.filter((p) => p.kind === 'stone').length).toBeGreaterThan(3);
-    expect(model.buildings.filter((b) => b.antenna > 0).length).toBeGreaterThan(2);
+    expect(model.cacti.length).toBeGreaterThanOrEqual(8);
+    expect(model.water.length).toBeGreaterThan(30);
+    expect(model.water.filter((w) => w.rapids).length).toBeGreaterThanOrEqual(4);
+    expect(model.streets.filter((s) => s.kind === 'tram').length).toBeGreaterThanOrEqual(6);
+    expect(model.bridges.length).toBeGreaterThanOrEqual(5);
+    expect(model.plinths.filter((p) => p.kind === 'grass').length).toBeGreaterThanOrEqual(4);
+    expect(model.plinths.filter((p) => p.kind === 'stone').length).toBeGreaterThanOrEqual(4);
+    expect(model.buildings.filter((b) => b.antenna > 0).length).toBeGreaterThanOrEqual(3);
   });
 });

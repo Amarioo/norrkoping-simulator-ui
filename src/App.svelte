@@ -1,269 +1,290 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { Canvas } from '@threlte/core';
+  import { PCFShadowMap } from 'three';
   import Scene from './lib/Scene.svelte';
-  import { world } from './lib/world.svelte';
-  let count = $state(5);
-  let hub = $state('HUB_NORTH');
-  let webgl = $state(true);
-  const disabled = $derived(world.pending || !world.connected);
-  const elapsed = $derived(
-    new Date(world.snapshot.simulationTime * 1000).toISOString().slice(11, 19),
-  );
-  onMount(() => {
-    const test = document.createElement('canvas');
-    webgl = !!test.getContext('webgl2');
-    return world.connect();
-  });
-  async function reset() {
-    if (await world.command('reset')) {
-      world.selectedId = null;
-      world.placingZone = false;
+  import { CITY_VIEWS, cityMap } from './lib/mapModel';
+  import { city, FLIGHT_PHASE } from './lib/city.svelte';
+  let focus = $state('city'),
+    labels = $state(true),
+    follow = $state(''),
+    travel = $state(0),
+    webgl = $state(true);
+  let compact = $state(100),
+    estate = $state(60),
+    trucks = $state(20),
+    flights = $state(true),
+    timeScale = $state(3),
+    initialized = $state(false);
+  const total = $derived(compact + estate + trucks),
+    moving = $derived(city.snapshot.vehicles.filter((v) => !v.stopped).length),
+    plane = $derived(city.snapshot.aircraft[0]);
+  const clock = $derived(new Date(city.snapshot.simulationTime * 1000).toISOString().slice(11, 19));
+  $effect(() => {
+    if (city.connected && !initialized) {
+      const s = city.snapshot.settings;
+      compact = s.compact;
+      estate = s.estate;
+      trucks = s.trucks;
+      flights = s.flights;
+      timeScale = s.timeScale;
+      initialized = true;
     }
+  });
+  onMount(() => {
+    const c = document.createElement('canvas');
+    webgl = !!c.getContext('webgl2');
+    return city.connect();
+  });
+  function jump(value: string) {
+    follow = '';
+    focus = value;
+  }
+  async function apply() {
+    await city.command('settings', { compact, estate, trucks, flights, timeScale });
   }
 </script>
 
-<svelte:head><title>Swarm · Airspace Control</title></svelte:head>
-<div class="app-shell">
-  <header>
-    <a class="brand" href="/" aria-label="Swarm home"
-      ><span class="brand-icon">⌘</span><strong>swarm<span> / </span></strong><span
-        class="brand-sub">AIRSPACE CONTROL</span
+<svelte:head
+  ><title>Norrköping Simulator</title><meta
+    name="description"
+    content="Utforska Norrköping i 3D med simulerad vägtrafik och flyg mellan Kungsängen och Bråvalla F13."
+  /></svelte:head
+>
+<div class="sim-shell">
+  <header class="sim-header">
+    <a href="/" class="sim-brand"
+      ><span class="brand-mark">N<span>↗</span></span><span
+        ><strong>NORRKÖPING</strong><small>SIMULATOR</small></span
       ></a
     >
-    <div class="header-meta">
-      <span class="environment">LOCAL SIMULATION</span><span
-        class:online={world.connected}
-        class="connection"><i></i>{world.connected ? 'Live connection' : 'Reconnecting…'}</span
-      >
+    <div class="sim-live">
+      <i class:online={city.connected}></i>{city.connected
+        ? 'Simulatorn är ansluten'
+        : 'Ansluter till simulatorn…'}<span class="local-badge">LOKAL SIMULERING</span>
     </div>
   </header>
-  <div class="workspace">
-    <aside class="controls">
-      <div class="section-top">
-        <span class="eyebrow">MISSION CONTROL</span><span class="tag">01</span>
+  <div class="sim-layout">
+    <aside class="sim-sidebar">
+      <div class="sidebar-title">
+        <span class="eyebrow">STADEN I RÖRELSE</span>
+        <h1>Ditt Norrköping.<br />På väg och i luften.</h1>
+        <p>Följ trafiken genom staden eller lyft mot Bråvalla.</p>
       </div>
-      <h1>A little airspace.<br />A lot in motion.</h1>
-      <p class="intro">
-        Dispatch your fleet. Shape the sky.<br />Watch the city move in real time.
-      </p>
-      <section class="dispatch card">
-        <div class="section-top">
-          <h2>Dispatch fleet</h2>
-          <span class="mini-icon">↗</span>
+      <section class="sim-card">
+        <div class="card-heading">
+          <h2>Vägtrafik</h2>
+          <span class="count-tag">{total} fordon</span>
         </div>
-        <label for="hub">Departure hub</label>
-        <select id="hub" bind:value={hub}
-          ><option value="HUB_NORTH">North hub · N-01</option><option value="HUB_SOUTH"
-            >South hub · S-02</option
+        <label class="slider-label" for="compact"
+          ><span>Små personbilar</span><output>{compact}</output></label
+        ><input id="compact" type="range" min="0" max="600" step="10" bind:value={compact} />
+        <label class="slider-label" for="estate"
+          ><span>Större bilar & kombi</span><output>{estate}</output></label
+        ><input id="estate" type="range" min="0" max="600" step="10" bind:value={estate} />
+        <label class="slider-label" for="trucks"
+          ><span>Lastbilar</span><output>{trucks}</output></label
+        ><input id="trucks" type="range" min="0" max="150" step="5" bind:value={trucks} />
+        <p class="control-note">
+          Personbilar följer körbara gator. Drottninggatan är undantagen. Lastbilar håller sig till
+          större vägar, bland annat E4 och Söderleden.
+        </p>
+        <label class="slider-label" for="time-scale"
+          ><span>Simuleringshastighet</span><output>{timeScale}×</output></label
+        ><select id="time-scale" bind:value={timeScale}
+          ><option value={1}>Realtid · 1×</option><option value={3}>Stadspuls · 3×</option><option
+            value={5}>Snabbare · 5×</option
+          ><option value={10}>Överblick · 10×</option><option value={20}>Snabbspola · 20×</option
           ></select
         >
-        <div class="range-label">
-          <label for="count">Drones</label><strong>{count.toString().padStart(2, '0')}</strong>
+        <label class="check-row"
+          ><input type="checkbox" bind:checked={flights} /> Flygtrafik mellan flygplatserna</label
+        >
+        <button
+          class="apply-button"
+          disabled={!city.connected || city.pending || total > 1000}
+          onclick={apply}
+          >{city.pending ? 'Uppdaterar…' : 'Uppdatera trafiken'}<span>↗</span></button
+        >
+        {#if total > 1000}<p class="error-text">Välj högst 1 000 fordon totalt.</p>{/if}
+      </section>
+      <section class="sim-card flight-card">
+        <div class="card-heading">
+          <h2>Regionalflyg</h2>
+          <span class="flight-code">NK-01</span>
         </div>
-        <input id="count" type="range" min="1" max="20" bind:value={count} />
-        <div class="range-end"><span>01</span><span>20</span></div>
+        <div class="airport-route">
+          <span>NRK<small>Kungsängen</small></span><b>⇄</b><span>F13<small>Bråvalla</small></span>
+        </div>
+        <p class="flight-phase">{plane ? FLIGHT_PHASE[plane.phase] : 'Flygtrafiken är avstängd'}</p>
+        {#if plane}<p class="control-note">{plane.origin} → {plane.destination}</p>{/if}
         <button
-          class="primary"
-          {disabled}
-          onclick={() =>
-            world.command('dispatch-drone', { count: Number(count), originHub: hub, weightKg: 2 })}
-          >Dispatch {count} drone{count > 1 ? 's' : ''}<span>↗</span></button
+          class="secondary-button"
+          disabled={!plane}
+          onclick={() => {
+            follow = follow === 'plane' ? '' : 'plane';
+          }}
+          >{follow === 'plane' ? 'Sluta följa flygplanet' : 'Följ flygplanet'}
+          <span>✈</span></button
         >
-        <p class="fineprint">2 kg payload · autonomous return</p>
+        <p class="micro-note">
+          Fiktiv flygpendel till den tidigare F13-basen. Banornas lägen och riktningar följer
+          kartan.
+        </p>
       </section>
-      <section class="tools">
-        <h2>Airspace tools</h2>
-        <button
-          class:armed={world.placingZone}
-          {disabled}
-          onclick={() => (world.placingZone = !world.placingZone)}
-          ><span class="tool-icon coral">⊘</span><span
-            ><strong>{world.placingZone ? 'Cancel placement' : 'Add no-fly zone'}</strong><small
-              >{world.placingZone
-                ? 'Click an open area on the map'
-                : 'Reroute around a 12 m exclusion'}</small
-            ></span
-          ><span>+</span></button
-        >
-        <button
-          {disabled}
-          onclick={() =>
-            world.command('wind', {
-              x: world.snapshot.wind[0] === 0 ? 8 : 0,
-              z: world.snapshot.wind[0] === 0 ? 4 : 0,
-            })}
-          ><span class="tool-icon blue">≋</span><span
-            ><strong>{world.snapshot.wind[0] === 0 ? 'Introduce wind' : 'Clear wind'}</strong><small
-              >{world.snapshot.wind[0] === 0
-                ? 'Test the fleet in a crosswind'
-                : 'Wind active · 8 / 4 m/s'}</small
-            ></span
-          ><span>↗</span></button
-        >
-        <button {disabled} onclick={() => world.command('recall')}
-          ><span class="tool-icon mint">↙</span><span
-            ><strong>Recall fleet</strong><small>Bring active drones home</small></span
-          ><span>↗</span></button
-        >
+      <section class="camera-help">
+        <h2>Fri kamera</h2>
+        <p>
+          Klicka i kartan och använd <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> för att förflytta
+          dig.
+        </p>
+        <p>
+          <kbd>Q</kbd>/<kbd>E</kbd> höjd · <kbd>Shift</kbd> snabbare<br />Dra: rotera · högerdra:
+          förflytta · scrolla: zooma
+        </p>
       </section>
-      {#if world.snapshot.noFlyZones.length > 0}<section class="zone-list">
-          <h2>Restricted zones <span>{world.snapshot.noFlyZones.length}</span></h2>
-          {#each world.snapshot.noFlyZones as zone}<div>
-              <span><i></i>{zone.id} <small>r {zone.radius} m</small></span><button
-                {disabled}
-                aria-label={`Remove zone ${zone.id}`}
-                onclick={() => world.command('remove-no-fly-zone', { id: zone.id })}
-                >Remove ×</button
-              >
-            </div>{/each}
-        </section>{/if}
-      <div class="sidebar-footer"><span class="tiny-dot"></span>KOTLIN × SVELTE × THREE.JS</div>
+      <footer class="sidebar-footer">
+        KARTDATA + SIMULERAD TRAFIK<br /><span>Kotlin / Ktor · CQRS · SSE · Three.js</span>
+      </footer>
     </aside>
-    <main>
-      <div class="view-heading">
+    <main class="sim-main">
+      <div class="sim-title">
         <div>
-          <span class="eyebrow">OPERATIONS OVERVIEW</span>
-          <h2>City airspace <span>/ sandbox</span></h2>
+          <span class="eyebrow">ÖSTERGÖTLAND · SVERIGE</span>
+          <h2>Norrköping i rörelse</h2>
         </div>
-        <div class="simulation-control">
-          <span class="clock">{elapsed}</span><button
-            class="square"
-            {disabled}
-            aria-label={world.snapshot.paused ? 'Resume simulation' : 'Pause simulation'}
-            onclick={() => world.command('pause', { paused: !world.snapshot.paused })}
-            >{world.snapshot.paused ? '▶' : 'Ⅱ'}</button
-          ><button class="square" {disabled} aria-label="Reset simulation" onclick={reset}>↺</button
+        <div class="sim-clock">
+          <span>{clock}</span><button
+            aria-label={city.snapshot.paused ? 'Fortsätt simuleringen' : 'Pausa simuleringen'}
+            disabled={!city.connected || city.pending}
+            onclick={() => city.command('pause', { paused: !city.snapshot.paused })}
+            >{city.snapshot.paused ? '▶' : 'Ⅱ'}</button
+          ><button
+            aria-label="Återställ simuleringen"
+            disabled={!city.connected || city.pending}
+            onclick={() => city.command('reset')}>↺</button
           >
         </div>
       </div>
-      <div class="metrics">
+      <div class="sim-metrics">
         <div>
-          <span>ACTIVE DRONES</span><strong
-            >{world.telemetry.active.toString().padStart(2, '0')}<small>
-              / {world.snapshot.drones.length}</small
-            ></strong
-          ><i class="metric-mark mint-bg"></i>
-        </div>
-        <div>
-          <span>DELIVERIES</span><strong
-            >{world.telemetry.deliveries.toString().padStart(2, '0')}<small>
-              completed</small
-            ></strong
-          ><i class="metric-mark blue-bg"></i>
-        </div>
-        <div>
-          <span>FLEET BATTERY</span><strong
-            >{Math.round(world.telemetry.averageBattery)}<small> % average</small></strong
-          ><i class="metric-mark yellow-bg"></i>
-        </div>
-        <div>
-          <span>DISTANCE FLOWN</span><strong
-            >{(world.telemetry.distanceMetres / 1000).toFixed(2)}<small> km</small></strong
-          ><i class="metric-mark coral-bg"></i>
-        </div>
-      </div>
-      <div class:placing={world.placingZone} class="map-panel">
-        <div class="map-top">
-          <span class="map-badge"
-            ><i class:paused={world.snapshot.paused}></i>{world.snapshot.paused
-              ? 'PAUSED'
-              : 'LIVE AIRSPACE'}</span
-          ><label class="route-switch"
-            ><input type="checkbox" bind:checked={world.showRoutes} /> Flight paths</label
+          <span>FORDON PÅ VÄGARNA</span><strong
+            >{city.snapshot.vehicles.length}<small> / {moving} i rörelse</small></strong
           >
         </div>
-        {#if webgl}<Canvas><Scene /></Canvas>{:else}<div class="map-fallback">
-            This view needs WebGL 2. Enable hardware acceleration in your browser.
-          </div>{/if}
-        {#if !world.connected}<div class="offline-banner" role="status">
-            Connecting to the simulator… Start the backend with <code>.\dev.ps1</code>.
-          </div>{/if}
-        {#if world.placingZone}<div class="placement-banner">
-            Click open ground to place a no-fly zone <button
-              onclick={() => (world.placingZone = false)}>Cancel</button
-            >
-          </div>{/if}
-        {#if world.selected}
-          <div class="drone-detail">
-            <button aria-label="Close drone details" onclick={() => (world.selectedId = null)}
-              >×</button
-            ><span class="eyebrow">DRONE INSPECTOR</span>
-            <h3>{world.selected.id}</h3>
-            <span class="state-pill">{world.selected.state}</span>
-            <dl>
-              <div>
-                <dt>Battery</dt>
-                <dd>{world.selected.battery.toFixed(1)}%</dd>
-              </div>
-              <div>
-                <dt>Altitude</dt>
-                <dd>{world.selected.pos[1].toFixed(0)} m</dd>
-              </div>
-              <div>
-                <dt>Payload</dt>
-                <dd>{world.selected.weightKg} kg</dd>
-              </div>
-            </dl>
-          </div>
-        {/if}
-        <div class="map-bottom">
-          <div class="legend">
-            <span><i class="mint-bg"></i>Delivering</span><span
-              ><i class="blue-bg"></i>Returning</span
-            ><span><i class="coral-bg"></i>Restricted</span>
-          </div>
-          <span class="map-hint">Drag to orbit · Scroll to zoom · Click a drone</span>
+        <div>
+          <span>LASTBILAR</span><strong
+            >{city.snapshot.vehicles.filter((v) => v.kind === 'truck').length}<small>
+              på huvudleder</small
+            ></strong
+          >
         </div>
-        <div class="compass">N<span>↑</span></div>
+        <div>
+          <span>FLYGTRAFIK</span><strong
+            >{plane ? '01' : '00'}<small>
+              {plane ? FLIGHT_PHASE[plane.phase] : 'avstängd'}</small
+            ></strong
+          >
+        </div>
+        <div>
+          <span>GENOMFÖRDA LANDNINGAR</span><strong
+            >{city.snapshot.completedFlights}<small> NRK ⇄ F13</small></strong
+          >
+        </div>
       </div>
-      <div class="feedback" aria-live="polite">
-        {#if world.error}<span class="error" role="alert">{world.error}</span
-          >{:else if world.pending}<span>Sending command…</span>{:else}<span
-            >{world.notice || 'Airspace ready. Your next move starts here.'}</span
-          >{/if}<span class="stream-meta">20 Hz simulation / 10 Hz world stream</span>
+      <div class="map-panel simulator-map" data-camera-travel={travel.toFixed(2)}>
+        {#if webgl}<Canvas shadows={PCFShadowMap}
+            ><Scene {focus} showLabels={labels} bind:follow bind:travel /></Canvas
+          >{:else}<div class="map-fallback">
+            Din webbläsare behöver WebGL 2 för att visa 3D-kartan.
+          </div>{/if}
+        <div class="explorer-toolbar">
+          <label for="city-focus">Utforska</label><select
+            id="city-focus"
+            value={focus}
+            onchange={(e) => jump(e.currentTarget.value)}
+            >{#each Object.entries(CITY_VIEWS) as [key, value]}<option value={key}
+                >{value.label}</option
+              >{/each}</select
+          ><label class="label-toggle"
+            ><input type="checkbox" bind:checked={labels} /> Landmärken</label
+          >
+        </div>
+        <div class="map-status">
+          {follow ? 'FÖLJER ' + (follow === 'plane' ? 'NK-01' : 'FORDON ' + follow) : 'FRI KAMERA'}
+          <i></i>
+        </div>
+        {#if !city.connected}<div class="connection-banner">
+            Ansluter till Ktor… Starta om backend om du nyss uppdaterade projektet.
+          </div>{/if}
+        {#if city.selected}<div class="vehicle-inspector">
+            <button
+              class="close-inspector"
+              aria-label="Stäng fordonsdetaljer"
+              onclick={() => (city.selectedId = null)}>×</button
+            ><span class="eyebrow">FORDON {city.selected.id}</span>
+            <h3>
+              {city.selected.kind === 'truck'
+                ? 'Lastbil'
+                : city.selected.kind === 'estate'
+                  ? 'Kombibil'
+                  : 'Personbil'}
+            </h3>
+            <p>{city.selected.road || 'Lokalgata'} · {city.selected.speed.toFixed(0)} km/h</p>
+            <button class="secondary-button" onclick={() => (follow = String(city.selected!.id))}
+              >Följ fordonet ↗</button
+            >
+          </div>{/if}
+        <div class="map-key">
+          <span><i style="background:#a2c48a"></i> Grönområden</span><span
+            ><i style="background:#668c9d"></i> Vatten</span
+          ><span><i style="background:#d3be83"></i> Simulerad trafik</span>
+        </div>
+        <div class="map-attribution">
+          © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer"
+            >OpenStreetMap contributors · ODbL</a
+          >
+        </div>
       </div>
-      <div class="bottom-panels">
-        <section class="activity-panel">
-          <div class="section-top">
-            <h2>Activity stream <span class="tiny-dot"></span></h2>
-            <span class="eyebrow">LIVE EVENTS</span>
-          </div>
-          <div class="event-list">
-            {#each world.telemetry.events.slice(0, 5) as event (event.id)}<div class="event">
-                <span
-                  class:coral={event.kind === 'zone' || event.kind === 'alert'}
-                  class="event-symbol"
-                  >{event.kind === 'delivery' ? '✓' : event.kind === 'zone' ? '⊘' : '↗'}</span
-                ><span>{event.message}</span><time
-                  >{new Date(event.time * 1000).toISOString().slice(14, 19)}</time
-                >
-              </div>{:else}<p class="empty">Waiting for the first flight event.</p>{/each}
-          </div>
-        </section>
-        <section class="fleet-panel">
-          <h2>Fleet status</h2>
-          <div class="status-row">
-            <span><i class="mint-bg"></i>Delivering</span><strong
-              >{world.telemetry.delivering}</strong
-            >
-          </div>
-          <div class="status-row">
-            <span><i class="blue-bg"></i>Returning</span><strong>{world.telemetry.returning}</strong
-            >
-          </div>
-          <div class="status-row">
-            <span><i class="coral-bg"></i>Holding / alert</span><strong
-              >{world.telemetry.holding}</strong
-            >
-          </div>
-          <div class="status-row">
-            <span><i class="grey-bg"></i>At hub</span><strong
-              >{world.snapshot.drones.filter((d) => d.state === 'IDLE').length}</strong
-            >
-          </div>
-        </section>
+      <div class="sim-feedback" aria-live="polite" class:has-error={!!city.error}>
+        {city.error ||
+          city.notice ||
+          'Välj en stadsdel eller förflytta dig fritt över kartan.'}<span
+          >{cityMap.buildings.length.toLocaleString('sv-SE')} byggnader · {cityMap.signals.length} signalpunkter</span
+        >
       </div>
+      <section class="sim-bottom">
+        <div>
+          <h2>Senaste händelser</h2>
+          {#each city.snapshot.events.slice(0, 4) as event (event.id)}<p class="event-row">
+              <span>{event.kind === 'landing' ? '↘' : '•'}</span>{event.message}<time
+                >{new Date(event.time * 1000).toISOString().slice(14, 19)}</time
+              >
+            </p>{/each}
+        </div>
+        <div class="vehicle-select">
+          <h2>Hitta ett fordon</h2>
+          <label for="vehicle-select">Välj bil eller lastbil</label><select
+            id="vehicle-select"
+            value={city.selectedId ?? ''}
+            onchange={(e) => {
+              city.selectedId = Number(e.currentTarget.value) || null;
+            }}
+            ><option value="">Välj fordon…</option>{#each city.snapshot.vehicles as v (v.id)}<option
+                value={v.id}
+                >#{v.id} · {v.kind === 'truck'
+                  ? 'Lastbil'
+                  : v.kind === 'estate'
+                    ? 'Kombi'
+                    : 'Personbil'} · {v.road || 'Lokalgata'}</option
+              >{/each}</select
+          >
+          <p class="micro-note">
+            Signaler och flygturer är simulerade. Kartlagda former kompletteras med uppskattade
+            höjder och byggnadsdetaljer.
+          </p>
+        </div>
+      </section>
     </main>
   </div>
 </div>

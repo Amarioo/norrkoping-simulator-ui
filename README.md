@@ -1,90 +1,75 @@
-# Swarm / airspace control
+# Norrköping Simulator
 
-An interactive 3D drone control room built with Svelte 5, TypeScript, Threlte 8 and Three.js. Its companion repository, `../drone-swarm-backend`, runs the authoritative Kotlin/Ktor simulation.
+En lokal 3D-simulator för Norrköping med vägtrafik och en fiktiv flygpendel mellan Norrköpings flygplats (Kungsängen) och Bråvalla F13. Svelte 5, TypeScript, Threlte och Three.js visar kartan; Kotlin/Ktor beräknar trafiken och skickar kompletta lägesbilder med SSE.
 
-## Start
+## Starta från VS Code
 
-Requires Node.js 22.12+ (tested with Node 24), npm 11.10.1+, and WebGL 2 in your browser.
-
-Terminal 1:
+Backend, i en egen terminal:
 
 ```powershell
 cd C:\Users\amarg\dev\drone-swarm-backend
 .\dev.ps1
 ```
 
-Terminal 2:
+Frontend, i en annan terminal:
 
 ```powershell
 cd C:\Users\amarg\dev\drone-swarm-ui
-npm ci
 npm run dev
 ```
 
-Open **http://127.0.0.1:5173**. Both repositories are already installed on the development machine. The API is proxied to `127.0.0.1:8080`. No cloud account, credentials, assets or database are required.
+Öppna http://127.0.0.1:5173. Ktor använder port 8080. Starta om båda processerna efter uppdateringen. Projektnamnen är nu `norrkoping-simulator-ui` och `norrkoping-simulator-backend`; de befintliga mappnamnen behålls för dina startkommandon och editorinställningar.
 
-If your global npm is the older **11.1.0**, it can fail in dependency resolution with `Cannot read properties of null (reading 'edgesOut')`. Use `npx --yes npm@11.10.1 ci` instead; this does not replace your global npm. `npm run dev` works with the existing installation.
+Kräver Node 22.12+ (testat med Node 24), npm 11.10.1+, JDK 21/25 och WebGL 2. Vid en ny installation: `npm ci`. Om global npm 11.1.0 ger `edgesOut`-fel, använd `npx --yes npm@11.10.1 ci`. Inga externa konton eller kartanrop behövs under körning.
 
-## Explore
+## Använd simulatorn
 
-- **Dispatch:** choose north/south hub, set 1–20 drones, then dispatch. Fleet cap: 100.
-- **No-fly zone:** arm placement, then click open ground. A translucent sphere appears and the backend replans routes. Choose another location if a drone or hub would be inside it. Remove zones from the sidebar.
-- **Wind:** toggle an 8/4 m/s wind vector. Ground speed varies with route heading.
-- **Recall:** return all drones and disable automatic redispatch, including drones already recharging.
-- **Pause / reset:** controls beside the simulation clock. Reset replaces the entire world.
-- **Inspect:** click a drone to see its battery, altitude, payload and state. Its route is highlighted.
-- **Camera:** left drag to orbit, right drag to pan, scroll to zoom. Touch orbit/pinch are supported.
-- **Flight paths:** toggle route lines above the map.
-- **Skyline:** the city is procedurally generated (deterministic on every load): glass towers with setbacks, midrise blocks, pitched-roof houses, parks and street lamps — all under the 18–26 m flight lanes, with lit windows baked per building.
+- Välj antal små bilar, kombibilar och lastbilar. Tryck **Uppdatera trafiken**. Högst 1 000 fordon totalt, högst 150 lastbilar.
+- Bilar följer ett riktat vägnät med verkliga OSM-noder, enkelriktningar och körbara anslutningar. Drottninggatan, gångvägar och privata/förbjudna vägar är undantagna. Lastbilar använder större vägklasser, inklusive E4 och Söderleden.
+- Tidsfaktorn 1–20× påverkar både vägtrafik och flyg. Paus fryser rörelsen. Återställ börjar om med valda trafikinställningar.
+- Flyget taxar ut, startar, stiger, flyger mellan flygplatserna, gör inflygning, landar och taxar till uppställning. Därefter återvänder det. F13-trafiken är fiktiv.
+- Klicka i kartan: **WASD/piltangenter** flyttar kameran, **Q/E** sänker/höjer, **Shift** ökar hastigheten. Dra för att rotera, högerdra för att förflytta och scrolla för att zooma.
+- **Utforska** hoppar till centrum, flygplatserna, Polishuset, Kungsgatan, Söderleden, Parken och andra stadsdelar. Kameran kan sedan flyttas fritt.
+- Klicka på ett fordon eller välj det i listan och välj **Följ fordonet**. Flyget har en separat följknapp. Manuell kamerarörelse avbryter följningen.
 
-The eight initial drones autonomously deliver, return, recharge and repeat. The UI is responsive; on narrow screens the controls sit below the map.
+## Kartan och modellerna
 
-## Data flow
+Snapshot från OpenStreetMap, geografisk ruta 58.555–58.650 N / 16.065–16.295 E, cirka 13,3 × 10,6 km. Den innehåller 12 499 byggnadsformer, 2 881 mark-/vattenytor, 84 539 linjesegment och 116 kartlagda signalpunkter. Vägnätet innehåller 38 294 noder och 73 315 riktade länkar. En scenenhet motsvarar 25 meter.
 
-`src/lib/world.svelte.ts` owns two EventSource subscriptions. Named `world` events arrive around 10 Hz; `telemetry` events around 2 Hz. Commands are JSON HTTP POST requests. The dashboard only changes from server projections, so multiple browser tabs observe the same world.
+Byggnadsformer, gator, grönområden, vatten, banor och taxibanor kommer från kartdata. Parken har plan och läktare. Polishuset på Stockholmsvägen har låga flyglar, gårdar, högdel och solpaneler baserade på referensen. Träden längs den utpekade delen av Kungsgatan är borttagna. Markfärger skiljer gräs, skog, åker, bostäder, verksamhetsmark och vatten.
 
-`DroneMesh.svelte` initializes a Three.js group once. A per-frame `useTask` smoothly approaches each server position with `1 - exp(-rate * delta)`, and turns using the shortest yaw angle. **The incoming position is not also bound to the group**, which would snap it to server coordinates before interpolation. Full snapshots recover naturally after reconnect; offline/online events close and recreate both subscriptions. Command failures are shown in the feedback strip and are never automatically retried.
+Bilarna har kaross, glas, speglar, hjul och lyktor; lastbilen har hytt, lastskåp och flera axlar. Turbopropplanet har kropp, vingar, stjärt, motorer, roterande propellrar och infällbart landställ. Dimensionerna följer samma skala som kartan. Modellerna är procedurbyggda och byggnadsdetaljer/höjder är delvis uppskattade. Detta är en kartbaserad 3D-modell, inte fotogrammetri eller en exakt digital tvilling.
 
-This is a local simulation with in-memory CQRS. It does not control real drones. See the backend README for route planning, battery behaviour and simulation limits.
+Trafiken har avståndshållning, signalstopp och förenklade korsningsreservationer. Signalernas platser är kartlagda men deras program är simulerade. Fullständiga svängförbud, körfältsbyten, terränghöjder, fordonsfysik och flygdynamik ingår inte. Kartdata kan sakna lokala trafikregler. Flyget följer geometriska banor och taxibanor, inte verkliga flygprocedurer.
 
-## Development
+## Arkitektur
 
-```powershell
-npm run check       # Svelte + strict TypeScript
-npm test            # frame-rate independence and turning tests
-npm run build       # production files in dist/
-npm run preview     # local preview with the same API proxy
-npm run format      # Prettier + Svelte formatting
-npm run test:e2e    # both dev servers must already be running
-```
+`POST /api/simulator/*` → validerat kommando → låst skrivmodell → oföränderlig lägesbild → `StateFlow` → SSE-event `city` → instansierade 3D-fordon.
 
-The E2E test uses installed Microsoft Edge on Windows, Chromium elsewhere (`npx playwright install chromium` on Linux/macOS). It resets the local world, checks real 3D rendering and map clicks, dispatch, wind, pause, zone removal, recall, offline recovery and mobile layout. Screenshots and failure artifacts go under ignored `test-results/`.
+Frontend interpolerar positioner mellan lägesbilder. Ktor är auktoritativ för antal, rörelse, paus, flygfaser och trafiksignaler. SSE återansluter med senaste kompletta lägesbilden; ingen historisk replay. Tillståndet är lokalt i minnet. De äldre drönarfilerna och API-rutterna finns kvar för kompatibilitet men används inte av det nya gränssnittet.
 
-CI runs type checking, unit tests and the production build. Browser tests are local because they need the sibling backend. Vite can report a large bundle warning for the Three.js renderer; the production build still succeeds.
-
-## Configuration and deployment
-
-Set `API_TARGET` before starting Vite if the API runs elsewhere:
+## Importera kartdata igen
 
 ```powershell
-$env:API_TARGET = 'http://127.0.0.1:8081'
-npm run dev
+npm run map:import
+# Eller från ett sparat komplett Overpass-svar:
+npm run map:import -- C:\path\norrkoping-region.json
+# Ange också backendens resource-fil om den ska uppdateras:
+npm run map:import -- C:\path\norrkoping-region.json ..\drone-swarm-backend\src\main\resources\transport-network.json
 ```
 
-The UI always uses relative `/api` URLs. A production web server must proxy `/api` to Ktor and leave SSE unbuffered. `dist/` alone does not contain a backend. If changing the UI origin, set backend `ALLOWED_ORIGIN` accordingly. The local backend has no authentication and binds to loopback by default.
+Importören skriver kartan och transportnätet under `src/lib/data/`. Det andra argumentet kopierar samma transportnät till backend. Starta om Ktor efter byte av data. Fråga, tid, ursprung och gränser finns i JSON-filernas `meta`. Se DATA-LICENSE.md för ODbL och attribution.
 
-## Source map
+## Verifiering
 
-| File                       | Responsibility                            |
-| -------------------------- | ----------------------------------------- |
-| `src/App.svelte`           | Controls, metrics, activity and inspector |
-| `src/lib/Scene.svelte`     | City, camera, lights and zone placement   |
-| `src/lib/city.ts`          | Deterministic procedural city model       |
-| `src/lib/cityView.ts`      | Facade textures and instanced city props  |
-| `src/lib/DroneMesh.svelte` | Animated drone and picking                |
-| `src/lib/RouteLine.svelte` | Disposable route geometry                 |
-| `src/lib/world.svelte.ts`  | SSE lifecycle and command client          |
-| `src/lib/types.ts`         | Backend read-model contract               |
-| `src/lib/motion.ts`        | Frame-independent smoothing and heading   |
+```powershell
+npm run check
+npm test
+npm run build
+# Med frontend och backend igång:
+npm run test:e2e
+```
 
-Reference APIs: [Threlte useTask](https://threlte.xyz/docs/reference/core/use-task/), [Threlte interactivity](https://threlte.xyz/docs/reference/extras/interactivity/), [Ktor SSE](https://ktor.io/docs/server-server-sent-events.html).
+E2E kontrollerar kommandon, två SSE-klienter, antal fordon, fri kamera, följning, paus, återanslutning, flygavstängning, återställning och mobilbredd. Backendtester kontrollerar bland annat rött ljus, vägbegränsningar och en full flygresa åt båda hållen.
+
+För egna testportar: starta Ktor med `PORT=8081` och `ALLOWED_ORIGIN=http://127.0.0.1:5174`; starta Vite med `API_TARGET=http://127.0.0.1:8081` och `npm run dev -- --port 5174`; kör E2E med `E2E_BASE_URL=http://127.0.0.1:5174`.

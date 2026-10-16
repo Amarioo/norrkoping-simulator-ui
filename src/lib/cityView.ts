@@ -1,8 +1,9 @@
 /**
- * Three.js resources for the procedural city: per-building facade textures
- * with lit windows (baked to small canvases), shared roof/prop materials and
- * instanced street furniture (block plinths, trees, lamps). Everything is
- * created once per scene mount and freed by CityView.dispose().
+ * Three.js resources for the Norrköping miniature: per-building facade
+ * textures with lit windows (baked to small canvases), shared roof/prop
+ * materials and instanced streets, water, bridges, plinths, trees, lamps and
+ * cacti. Everything is created once per scene mount and freed by
+ * CityView.dispose().
  */
 import {
   BoxGeometry,
@@ -15,6 +16,7 @@ import {
   Matrix4,
   MeshBasicMaterial,
   MeshStandardMaterial,
+  PlaneGeometry,
   Quaternion,
   RepeatWrapping,
   SRGBColorSpace,
@@ -29,6 +31,8 @@ import {
   type CityModel,
   type PlinthKind,
   type RoofPropKind,
+  type Strip,
+  type WaterSegment,
 } from './city';
 
 /** Rooftop unit sizes in metres. */
@@ -45,6 +49,7 @@ const FACADE_CELL: Record<Building['kind'], { w: number; h: number }> = {
   midrise: { w: 1.7, h: 1.6 },
   lowrise: { w: 1.85, h: 1.6 },
   house: { w: 2.1, h: 1.8 },
+  iron: { w: 1.8, h: 1.7 },
 };
 
 const WARM_LIGHTS = ['#ffd9a3', '#ffcf8f', '#ffe3b3'];
@@ -54,19 +59,25 @@ const CELL_PX = 16;
 const WINDOW_PX = 10;
 const STOREFRONT_ROW_PX = 22;
 
+/** Ground heights so water, streets and bridge decks layer without z-fighting. */
+const WATER_Y = 0.04;
+const STREET_Y = 0.07;
+const BRIDGE_H = 0.32;
+
 interface Disposable {
   dispose(): void;
 }
 
-function paintFacade(b: Building): { map: HTMLCanvasElement; emissive: HTMLCanvasElement } {
-  const rand = mulberry32(0x9e37 + b.id * 7919);
-  const base = b.tiers[0];
+/** Paints the facade of a single tier; windows keep their real-world size. */
+function paintFacade(b: Building, tier: Building['tiers'][number], tierIndex: number) {
+  const rand = mulberry32(0x9e37 + b.id * 7919 + tierIndex * 131);
   const cell = FACADE_CELL[b.kind];
-  // Cylinders wrap the texture around their circumference.
-  const faceW = b.kind === 'cylinder' ? Math.PI * base.w : base.w;
+  // Cylinders and the triangular Strykjärnet wrap the texture around.
+  const wrap = b.kind === 'cylinder' || b.kind === 'iron';
+  const faceW = wrap ? Math.PI * tier.w : tier.w;
   const cols = Math.max(2, Math.min(12, Math.round(faceW / cell.w)));
-  const rows = Math.max(1, Math.min(12, Math.round(base.h / cell.h)));
-  const storefront = b.kind === 'tower' || b.kind === 'midrise' || b.kind === 'cylinder';
+  const rows = Math.max(1, Math.min(12, Math.round(tier.h / cell.h)));
+  const storefront = tierIndex === 0 && (b.kind === 'tower' || b.kind === 'midrise' || b.kind === 'cylinder');
   const pad = 3;
   const rowHeight = (row: number) => (row === 0 && storefront ? STOREFRONT_ROW_PX : CELL_PX);
   let contentH = 0;
@@ -125,15 +136,15 @@ function facadeTexture(canvas: HTMLCanvasElement, wrap: boolean): CanvasTexture 
 }
 
 export interface CityView {
-  /** Instanced plinths, trees and lamps; mount with `<T is={view.group} />`. */
+  /** Instanced streets, water, bridges, plinths, trees, lamps and cacti; mount with `<T is={view.group} />`. */
   group: Group;
-  /** Facade material per building id. */
-  walls: MeshStandardMaterial[];
+  /** Facade material per building id, one per tier. */
+  walls: MeshStandardMaterial[][];
   slab: MeshStandardMaterial;
   mast: MeshStandardMaterial;
   beacon: MeshBasicMaterial;
   props: Record<RoofPropKind, MeshStandardMaterial>;
-  /** Flat-shaded pitched roof material per building id (houses only). */
+  /** Flat-shaded pitched-roof material per building id (pyramid, spire and dome). */
   houseRoof(b: Building): MeshStandardMaterial;
   dispose(): void;
 }
@@ -145,18 +156,25 @@ export function createCityView(model: CityModel): CityView {
     return resource;
   };
 
-  const walls = model.buildings.map((b) => {
-    const { map, emissive } = paintFacade(b);
-    const material = new MeshStandardMaterial({
-      map: track(facadeTexture(map, b.kind === 'cylinder')),
-      emissiveMap: track(facadeTexture(emissive, b.kind === 'cylinder')),
-      emissive: new Color('#ffffff'),
-      emissiveIntensity: b.emissive,
-      roughness: b.roughness,
-      metalness: b.metalness,
+  // Indexed by building id (ids start at 1) so Scene.svelte can look materials
+  // up directly: view.walls[b.id][tierIndex].
+  const walls: MeshStandardMaterial[][] = [];
+  for (const b of model.buildings) {
+    walls[b.id] = b.tiers.map((tier, tierIndex) => {
+      const { map, emissive } = paintFacade(b, tier, tierIndex);
+      const wrap = b.kind === 'cylinder' || b.kind === 'iron';
+      return track(
+        new MeshStandardMaterial({
+          map: track(facadeTexture(map, wrap)),
+          emissiveMap: track(facadeTexture(emissive, wrap)),
+          emissive: new Color('#ffffff'),
+          emissiveIntensity: b.emissive,
+          roughness: b.roughness,
+          metalness: b.metalness,
+        }),
+      );
     });
-    return track(material);
-  });
+  }
 
   const slab = track(new MeshStandardMaterial({ color: '#293a40', roughness: 0.9 }));
   const mast = track(new MeshStandardMaterial({ color: '#5d6c73', roughness: 0.5, metalness: 0.6 }));
@@ -169,7 +187,7 @@ export function createCityView(model: CityModel): CityView {
 
   const houseRoofs = new Map<number, MeshStandardMaterial>();
   for (const b of model.buildings) {
-    if (b.roof === 'pyramid')
+    if (b.roof === 'pyramid' || b.roof === 'spire' || b.roof === 'dome')
       houseRoofs.set(
         b.id,
         track(new MeshStandardMaterial({ color: b.roofColor, roughness: 0.95, flatShading: true })),
@@ -179,6 +197,82 @@ export function createCityView(model: CityModel): CityView {
 
   const group = new Group();
 
+  // Reusable helpers for instanced flat strips (streets and water) and decks.
+  const stripGeo = track(new PlaneGeometry(1, 1));
+  const flat = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), -Math.PI / 2);
+  const up = new Vector3(0, 1, 0);
+  const spin = new Quaternion();
+  const position = new Vector3();
+  const rotation = new Quaternion();
+  const scale = new Vector3();
+  const matrix = new Matrix4();
+  const layFlat = (q: WaterSegment | Strip) => {
+    spin.setFromAxisAngle(up, q.angle);
+    return rotation.multiplyQuaternions(spin, flat);
+  };
+
+  // Motala ström: still water and paler rapids.
+  const riverMats: Record<'still' | 'rapids', MeshStandardMaterial> = {
+    still: track(new MeshStandardMaterial({ color: '#1d4a56', roughness: 0.25, metalness: 0.15 })),
+    rapids: track(new MeshStandardMaterial({ color: '#3f7d94', roughness: 0.15, metalness: 0.1 })),
+  };
+  for (const key of ['still', 'rapids'] as const) {
+    const items = model.water.filter((w) => (key === 'rapids' ? w.rapids : !w.rapids));
+    if (items.length === 0) continue;
+    const mesh = new InstancedMesh(stripGeo, riverMats[key], items.length);
+    items.forEach((w, i) => {
+      position.set(w.x, WATER_Y, w.z);
+      scale.set(w.len, w.width, 1);
+      matrix.compose(position, layFlat(w), scale);
+      mesh.setMatrixAt(i, matrix);
+    });
+    mesh.receiveShadow = true;
+    mesh.frustumCulled = false;
+    group.add(mesh);
+  }
+
+  // Streets and walking avenues.
+  const streetMats: Record<Strip['kind'], MeshStandardMaterial> = {
+    street: track(new MeshStandardMaterial({ color: '#20272d', roughness: 0.95 })),
+    tram: track(new MeshStandardMaterial({ color: '#262e34', roughness: 0.9 })),
+    walk: track(new MeshStandardMaterial({ color: '#333f46', roughness: 0.98 })),
+  };
+  for (const kind of Object.keys(streetMats) as Strip['kind'][]) {
+    const items = model.streets.filter((s) => s.kind === kind);
+    if (items.length === 0) continue;
+    const mesh = new InstancedMesh(stripGeo, streetMats[kind], items.length);
+    items.forEach((s, i) => {
+      position.set(s.x, STREET_Y, s.z);
+      scale.set(s.len, s.width, 1);
+      matrix.compose(position, layFlat(s), scale);
+      mesh.setMatrixAt(i, matrix);
+    });
+    mesh.receiveShadow = true;
+    mesh.frustumCulled = false;
+    group.add(mesh);
+  }
+
+  // Bridge decks crossing the ström.
+  if (model.bridges.length > 0) {
+    const deckGeo = track(new BoxGeometry(1, BRIDGE_H, 1));
+    const decks = new InstancedMesh(
+      deckGeo,
+      track(new MeshStandardMaterial({ color: '#5d6c73', roughness: 0.85 })),
+      model.bridges.length,
+    );
+    model.bridges.forEach((br, i) => {
+      position.set(br.x, BRIDGE_H / 2, br.z);
+      spin.setFromAxisAngle(up, br.angle);
+      rotation.copy(spin);
+      scale.set(br.len, 1, br.width);
+      matrix.compose(position, rotation, scale);
+      decks.setMatrixAt(i, matrix);
+    });
+    decks.castShadow = decks.receiveShadow = true;
+    decks.frustumCulled = false;
+    group.add(decks);
+  }
+
   // Block plinths: one instanced mesh per surface kind.
   const plinthGeo = track(new BoxGeometry(PLINTH_SIZE, PLINTH_TOP, PLINTH_SIZE));
   const plinthMats: Record<PlinthKind, MeshStandardMaterial> = {
@@ -186,13 +280,16 @@ export function createCityView(model: CityModel): CityView {
     grass: track(new MeshStandardMaterial({ color: '#2c4636', roughness: 1 })),
     stone: track(new MeshStandardMaterial({ color: '#3d4d50', roughness: 0.9 })),
   };
-  const matrix = new Matrix4();
   for (const kind of Object.keys(plinthMats) as PlinthKind[]) {
     const items = model.plinths.filter((p) => p.kind === kind);
     if (items.length === 0) continue;
     const mesh = new InstancedMesh(plinthGeo, plinthMats[kind], items.length);
     items.forEach((p, i) => {
-      matrix.makeTranslation(p.x, PLINTH_TOP / 2, p.z);
+      const s = p.size ?? 1;
+      position.set(p.x, (PLINTH_TOP * s) / 2, p.z);
+      rotation.identity();
+      scale.set(s, s, s);
+      matrix.compose(position, rotation, scale);
       mesh.setMatrixAt(i, matrix);
     });
     mesh.castShadow = mesh.receiveShadow = true;
@@ -214,10 +311,6 @@ export function createCityView(model: CityModel): CityView {
       track(new MeshStandardMaterial({ color: '#ffffff', roughness: 0.95, flatShading: true })),
       model.trees.length,
     );
-    const position = new Vector3();
-    const rotation = new Quaternion();
-    const scale = new Vector3();
-    const up = new Vector3(0, 1, 0);
     const tone = new Color();
     model.trees.forEach((tree, i) => {
       scale.setScalar(tree.s);
@@ -238,6 +331,35 @@ export function createCityView(model: CityModel): CityView {
       mesh.frustumCulled = false;
       group.add(mesh);
     }
+  }
+
+  // Kaktusplanteringen: instanced cactus trunks with rounded heads.
+  if (model.cacti.length > 0) {
+    const cactusGeo = track(new CylinderGeometry(0.22, 0.3, 1.5, 7));
+    const headGeo = track(new SphereGeometry(0.34, 10, 8));
+    const cacti = new InstancedMesh(
+      cactusGeo,
+      track(new MeshStandardMaterial({ color: '#3f7d4a', roughness: 0.9 })),
+      model.cacti.length,
+    );
+    const heads = new InstancedMesh(
+      headGeo,
+      track(new MeshStandardMaterial({ color: '#4e9a5e', roughness: 0.9 })),
+      model.cacti.length,
+    );
+    model.cacti.forEach((c, i) => {
+      position.set(c.x, 0.75 * c.s + PLINTH_TOP, c.z);
+      rotation.identity();
+      scale.setScalar(c.s);
+      matrix.compose(position, rotation, scale);
+      cacti.setMatrixAt(i, matrix);
+      position.set(c.x, (1.55 + 0.14) * c.s + PLINTH_TOP, c.z);
+      matrix.compose(position, rotation, scale);
+      heads.setMatrixAt(i, matrix);
+    });
+    cacti.castShadow = true;
+    cacti.frustumCulled = heads.frustumCulled = false;
+    group.add(cacti, heads);
   }
 
   // Street lamps: instanced poles with always-lit heads.
