@@ -148,8 +148,8 @@ export function createRiverfrontDetails() {
     }
   }
   // River-facing facade of the mapped office block, facing Saltängsbron.
-  const ha = ring[1],
-    hc = ring[2],
+  const ha = ring[5],
+    hc = ring[6],
     len = Math.hypot(hc[0] - ha[0], hc[1] - ha[1]);
   const sign = b.local(
     [(ha[0] + hc[0]) / 2, (ha[1] + hc[1]) / 2],
