@@ -1,6 +1,7 @@
 import { ExtrudeGeometry, Shape, TorusGeometry, PlaneGeometry, RepeatWrapping } from 'three';
 import type { Group } from 'three';
 import { PlaceBuilder } from './placeBuilder';
+import { cityMap } from './mapModel';
 import data from './data/city-bridges.json';
 import ingelsta from './data/ingelsta-bridge.json';
 import levels from './data/terrain-levels.json';
@@ -244,6 +245,60 @@ export function createCityBridges() {
           for (const z of [-0.1, 0.1]) b.box(g, x, y + 0.458, z, 0.026, 0.012, 0.045, '#bfc3b4');
         }
       }
+    }
+  }
+  // Elevated road, rail and tram segments ride real bridges over streets and
+  // hollows: kerbs, pier pairs and head beams down to the riverbed, instead of
+  // letting the mapped strips and their traffic float unsupported. Bridge flags
+  // are not required: approach segments that share a raised junction node ramp.
+  const surface = b.local([0, 0]);
+  for (const seg of cityMap.roads.filter(
+    (s) => ['road', 'rail', 'tram'].includes(s.kind) && Math.max(s.yA, s.yB) > 0.14,
+  )) {
+    const dx = seg.b[0] - seg.a[0],
+      dz = seg.b[1] - seg.a[1],
+      len = Math.hypot(dx, dz);
+    if (len < 0.06) continue;
+    const nx = -dz / len,
+      nz = dx / len,
+      track = seg.kind !== 'road',
+      yA = Math.max(seg.yA, levels.ground),
+      yB = Math.max(seg.yB, levels.ground),
+      kerb = track ? 0.13 : seg.width / 2 + 0.02;
+    for (const side of [-1, 1])
+      b.beam(
+        surface,
+        [seg.a[0] + nx * side * kerb, yA - 0.013, seg.a[1] + nz * side * kerb],
+        [seg.b[0] + nx * side * kerb, yB - 0.013, seg.b[1] + nz * side * kerb],
+        0.005,
+        track ? '#a4a8a0' : '#b5b1a6',
+      );
+    const piers = Math.max(1, Math.ceil(len / 0.36));
+    for (let k = 0; k <= piers; k++) {
+      const t = k / piers,
+        x = seg.a[0] + dx * t,
+        z = seg.a[1] + dz * t,
+        y = yA + (yB - yA) * t;
+      if (y - 0.03 - levels.ground < 0.06) continue;
+      const inr = track ? 0.08 : (seg.width / 2) * 0.62,
+        h = y - 0.03 - levels.waterbed;
+      for (const side of [-1, 1])
+        b.pole(
+          surface,
+          x + nx * side * inr,
+          levels.waterbed + h / 2,
+          z + nz * side * inr,
+          0.015,
+          h,
+          '#8b9189',
+        );
+      b.beam(
+        surface,
+        [x + nx * -inr, y - 0.03, z + nz * -inr],
+        [x + nx * inr, y - 0.03, z + nz * inr],
+        0.004,
+        '#989c94',
+      );
     }
   }
   const { a, c } = { a: ingelsta.a, c: ingelsta.b };
