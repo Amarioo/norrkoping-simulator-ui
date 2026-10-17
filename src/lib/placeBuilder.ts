@@ -1,3 +1,4 @@
+import { terrain } from './terrain';
 import {
   Group,
   Mesh,
@@ -14,6 +15,8 @@ import {
   Shape,
   ExtrudeGeometry,
   DoubleSide,
+  Matrix4,
+  Object3D,
 } from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
@@ -93,7 +96,8 @@ export class PlaceBuilder {
   }
   local(center: number[], heading = 0, y = 0) {
     const g = new Group();
-    g.position.set(center[0], y, center[1]);
+    g.position.set(center[0], terrain.relativeHeight(center[0], center[1], y), center[1]);
+    g.userData.groundOffset = terrain.offset(center[0], center[1]);
     g.rotation.y = heading;
     this.group.add(g);
     return g;
@@ -143,7 +147,20 @@ export class PlaceBuilder {
     const shape = new Shape(ring.map((p) => new Vector2(p[0], -p[1])));
     const geometry = new ExtrudeGeometry(shape, { depth: thickness, bevelEnabled: false });
     geometry.rotateX(-Math.PI / 2);
-    return this.mesh(this.group, geometry, this.mat(color), 0, y, 0);
+    const center = ring.reduce(
+      (p, q) => [p[0] + q[0] / ring.length, p[1] + q[1] / ring.length],
+      [0, 0],
+    );
+    const mesh = this.mesh(
+      this.group,
+      geometry,
+      this.mat(color),
+      0,
+      terrain.relativeHeight(center[0], center[1], y),
+      0,
+    );
+    mesh.userData.groundOffset = terrain.offset(center[0], center[1]);
+    return mesh;
   }
   roof(
     parent: Group,
@@ -169,6 +186,29 @@ export class PlaceBuilder {
     geometry.computeVertexNormals();
     return this.mesh(parent, geometry, this.mat(color), x, y, z);
   }
+  /** Rebase a detailed structure to its roadway profile, once, in world coordinates. */
+  reprojectTerrain(roots: Object3D[], heightAt: (x: number, z: number, legacyY: number) => number) {
+    this.group.updateMatrixWorld(true);
+    const point = new Vector3();
+    for (const root of roots) {
+      const offset = root.userData.groundOffset as number | undefined;
+      if (offset === undefined) continue;
+      root.traverse((o) => {
+        if (!(o instanceof Mesh)) return;
+        const inverse = new Matrix4().copy(o.matrixWorld).invert();
+        const positions = o.geometry.getAttribute('position');
+        for (let i = 0; i < positions.count; i++) {
+          point.fromBufferAttribute(positions, i).applyMatrix4(o.matrixWorld);
+          point.y = heightAt(point.x, point.z, point.y - offset);
+          point.applyMatrix4(inverse);
+          positions.setXYZ(i, point.x, point.y, point.z);
+        }
+        positions.needsUpdate = true;
+        o.geometry.computeVertexNormals();
+        o.geometry.computeBoundingSphere();
+      });
+    }
+  }
   finish() {
     this.group.updateMatrixWorld(true);
     const batches = new Map<MeshStandardMaterial, BufferGeometry[]>();
@@ -185,6 +225,13 @@ export class PlaceBuilder {
           );
         geo.applyMatrix4(o.matrixWorld);
         batches.get(material)!.push(geo);
+      }
+    });
+    // Merged meshes own their buffers; release the original per-detail geometries.
+    this.group.traverse((o) => {
+      if (o instanceof Mesh) {
+        o.geometry.dispose();
+        this.owned.delete(o.geometry);
       }
     });
     this.group.clear();

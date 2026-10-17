@@ -5,6 +5,7 @@
   import type { OrbitControls as Controls } from 'three/addons/controls/OrbitControls.js';
   import { PerspectiveCamera, Vector3 } from 'three';
   import { CITY_VIEWS } from './mapModel';
+  import { terrain } from './terrain';
   import { city } from './city.svelte';
   let {
     focus = 'overview',
@@ -23,6 +24,8 @@
     const preset = CITY_VIEWS[focus] ?? CITY_VIEWS.overview;
     camera.position.fromArray(preset.position);
     controls.target.fromArray(preset.target);
+    camera.position.y += terrain.offset(camera.position.x, camera.position.z);
+    controls.target.y += terrain.offset(controls.target.x, controls.target.z);
     controls.update();
   });
   $effect(() => {
@@ -129,7 +132,12 @@
       Math.max(1.4, camera.position.distanceTo(controls.target) * 0.65) *
       (keys.has('shift') ? 3 : 1);
     move.normalize().multiplyScalar(Math.min(dt, 0.05) * speed);
-    if (camera.position.y + move.y < 0.18) move.y = 0;
+    const floor = terrain.relativeHeight(
+      camera.position.x + move.x,
+      camera.position.z + move.z,
+      0.18,
+    );
+    move.y = Math.max(move.y, floor - camera.position.y);
     camera.position.add(move);
     controls.target.add(move);
     travel += move.length();

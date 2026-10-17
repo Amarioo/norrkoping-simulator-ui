@@ -1,3 +1,4 @@
+import { terrain } from './terrain';
 import type { Vec3, Activity } from './types';
 export interface TrafficSettings {
   compact: number;
@@ -34,6 +35,7 @@ export interface Aircraft {
   gear: boolean;
 }
 export interface CitySnapshot {
+  terrainRevision?: string;
   sequence: number;
   simulationTime: number;
   paused: boolean;
@@ -83,6 +85,11 @@ class CityStore {
           const value = JSON.parse(e.data) as CitySnapshot;
           if (!Array.isArray(value.vehicles) || !Array.isArray(value.aircraft))
             throw new Error('Felaktigt simulatorformat');
+          if ((value.terrainRevision ?? 'unavailable') !== terrain.data.revision) {
+            this.error = 'Kartans och serverns höjddata skiljer sig. Uppdatera och starta om båda.';
+            this.connected = false;
+            return;
+          }
           this.snapshot = value;
           this.connected = true;
         } catch {

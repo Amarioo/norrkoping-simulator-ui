@@ -1,0 +1,7 @@
+# Used only for offline LAS/LAZ inspection and coordinate validation.
+laspy==2.7.0
+lazrs==0.8.2
+pyproj==3.8.0
+numpy>=2.0,<3
+scipy==1.18.1
+rasterio==1.5.2

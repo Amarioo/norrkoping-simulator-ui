@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
-  import { T, useTask } from '@threlte/core';
+  import { T, useTask, useThrelte } from '@threlte/core';
   import { interactivity, type IntersectionEvent } from '@threlte/extras';
   import { DirectionalLight } from 'three';
   import { createMappedCity } from './mapView';
@@ -16,10 +16,13 @@
     travel = $bindable(0),
   }: { focus?: string; showLabels?: boolean; follow?: string; travel?: number } = $props();
   interactivity();
+  const { renderer } = useThrelte();
+  const buildStarted = performance.now();
   const transit = createPublicTransport();
   const view = createMappedCity(),
     transport = createTransportModels(),
     signals = createTrafficSignals();
+  const buildMs = performance.now() - buildStarted;
   onDestroy(() => {
     view.dispose();
     transport.dispose();
@@ -32,6 +35,15 @@
       child.visible = focus !== 'overview' || child.userData.primary;
   });
   useTask((dt) => {
+    if (import.meta.env.DEV) {
+      (globalThis as unknown as { __cityPerformance: unknown }).__cityPerformance = {
+        buildMs,
+        triangles: renderer.info.render.triangles,
+        calls: renderer.info.render.calls,
+        geometries: renderer.info.memory.geometries,
+        frameMs: dt * 1000,
+      };
+    }
     transport.update(
       city.snapshot.vehicles,
       city.snapshot.aircraft,
@@ -43,7 +55,7 @@
   });
   const sun = new DirectionalLight('#fff3de', 2.1);
   sun.position.set(-150, 260, 120);
-  sun.castShadow = true;
+  sun.castShadow = false;
   sun.shadow.mapSize.set(2048, 2048);
   sun.shadow.bias = -0.0001;
   sun.shadow.normalBias = 0.012;

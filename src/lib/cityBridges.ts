@@ -1,5 +1,7 @@
 import { ExtrudeGeometry, Shape, TorusGeometry, PlaneGeometry, RepeatWrapping } from 'three';
-import type { Group } from 'three';
+import { Group } from 'three';
+import { terrain } from './terrain';
+import { genericBridgeSegments, deckProfile } from './bridgeOwnership';
 import { PlaceBuilder } from './placeBuilder';
 import { cityMap } from './mapModel';
 import data from './data/city-bridges.json';
@@ -63,6 +65,7 @@ export function createCityBridges() {
     }
   }
   for (const bridge of data.bridges) {
+    const firstRoot = b.group.children.length;
     const { length: L, width: W, deckY: y, style } = bridge;
     const g = b.local(bridge.center, bridge.rotation);
     const cr = Math.cos(bridge.rotation),
@@ -246,24 +249,26 @@ export function createCityBridges() {
         }
       }
     }
+    const profile = deckProfile(bridge.ring, (x, z) => terrain.relativeHeight(x, z, y));
+    b.reprojectTerrain(
+      b.group.children.slice(firstRoot),
+      (x, z, legacyY) => profile(x, z) + legacyY - y,
+    );
   }
-  // Elevated road, rail and tram segments ride real bridges over streets and
-  // hollows: kerbs, pier pairs and head beams down to the riverbed, instead of
-  // letting the mapped strips and their traffic float unsupported. Bridge flags
-  // are not required: approach segments that share a raised junction node ramp.
-  const surface = b.local([0, 0]);
-  for (const seg of cityMap.roads.filter(
-    (s) => ['road', 'rail', 'tram'].includes(s.kind) && Math.max(s.yA, s.yB) > 0.14,
-  )) {
+  // This group receives absolute scene heights, so no second ground offset.
+  // Only explicitly mapped bridges without a detailed model get generic supports.
+  const surface = new Group();
+  b.group.add(surface);
+  for (const seg of genericBridgeSegments) {
     const dx = seg.b[0] - seg.a[0],
       dz = seg.b[1] - seg.a[1],
       len = Math.hypot(dx, dz);
     if (len < 0.06) continue;
     const nx = -dz / len,
       nz = dx / len,
-      track = seg.kind !== 'road',
-      yA = Math.max(seg.yA, levels.ground),
-      yB = Math.max(seg.yB, levels.ground),
+      track = seg.kind === 'rail' || seg.kind === 'tram',
+      yA = seg.yA,
+      yB = seg.yB,
       kerb = track ? 0.13 : seg.width / 2 + 0.02;
     for (const side of [-1, 1])
       b.beam(
@@ -273,20 +278,42 @@ export function createCityBridges() {
         0.005,
         track ? '#a4a8a0' : '#b5b1a6',
       );
+    if (seg.kind === 'path') {
+      // A pedestrian bridge needs a deck and railings, not just a painted path.
+      const deck = b.box(surface, (seg.a[0] + seg.b[0]) / 2, (yA + yB) / 2 - 0.012,
+        (seg.a[1] + seg.b[1]) / 2, len, 0.025, seg.width + 0.025, '#92978d');
+      deck.rotation.order = 'YXZ';
+      deck.rotation.y = -Math.atan2(dz, dx);
+      deck.rotation.z = Math.atan2(yB - yA, len);
+      for (const side of [-1, 1]) {
+        const offset = side * (seg.width / 2 + 0.008);
+        for (const height of [0.027, 0.052])
+          b.beam(surface, [seg.a[0] + nx * offset, yA + height, seg.a[1] + nz * offset],
+            [seg.b[0] + nx * offset, yB + height, seg.b[1] + nz * offset], 0.002, '#586363');
+        const posts = Math.max(1, Math.ceil(len / 0.08));
+        for (let k = 0; k <= posts; k++) {
+          const t = k / posts;
+          b.pole(surface, seg.a[0] + dx * t + nx * offset, yA + (yB-yA)*t + 0.026,
+            seg.a[1] + dz * t + nz * offset, 0.002, 0.052, '#586363');
+        }
+      }
+      continue; // Do not invent rows of piers for unmapped pedestrian structures.
+    }
     const piers = Math.max(1, Math.ceil(len / 0.36));
     for (let k = 0; k <= piers; k++) {
       const t = k / piers,
         x = seg.a[0] + dx * t,
         z = seg.a[1] + dz * t,
         y = yA + (yB - yA) * t;
-      if (y - 0.03 - levels.ground < 0.06) continue;
+      const ground = terrain.groundHeight(x, z);
+      if (y - 0.03 - ground < 0.06) continue;
       const inr = track ? 0.08 : (seg.width / 2) * 0.62,
-        h = y - 0.03 - levels.waterbed;
+        h = y - 0.03 - ground;
       for (const side of [-1, 1])
         b.pole(
           surface,
           x + nx * side * inr,
-          levels.waterbed + h / 2,
+          ground + h / 2,
           z + nz * side * inr,
           0.015,
           h,
@@ -345,6 +372,18 @@ export function createCityBridges() {
         0.34,
         '#8b9289',
       );
+  }
+  const road = cityMap.roads.find((r) => r.way === 536359154);
+  if (road) {
+    const dx = road.b[0] - road.a[0],
+      dz = road.b[1] - road.a[1];
+    b.reprojectTerrain([viaduct], (x, z, legacyY) => {
+      const t = Math.max(
+        0,
+        Math.min(1, ((x - road.a[0]) * dx + (z - road.a[1]) * dz) / (dx * dx + dz * dz)),
+      );
+      return road.yA + (road.yB - road.yA) * t + legacyY - deck;
+    });
   }
   return b.finish();
 }

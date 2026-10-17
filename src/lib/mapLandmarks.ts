@@ -1,3 +1,4 @@
+import { terrain } from './terrain';
 import {
   Group,
   Mesh,
@@ -163,28 +164,37 @@ export function createLandmarkDetails() {
       backPost.rotation.x = side * -0.32;
     }
     // Net backing
-    const netTop = box(arena, 0, 0.165, side * (l / 2 + 0.07), 0.30, 0.006, 0.006, '#c5cfc8');
-    const netBack = box(arena, 0, 0.105, side * (l / 2 + 0.06), 0.30, 0.11, 0.004, '#cad6ce');
+    const netTop = box(arena, 0, 0.165, side * (l / 2 + 0.07), 0.3, 0.006, 0.006, '#c5cfc8');
+    const netBack = box(arena, 0, 0.105, side * (l / 2 + 0.06), 0.3, 0.11, 0.004, '#cad6ce');
     netBack.rotation.x = side * -0.22;
     // Corner flags on flexible posts
     for (const x of [-w / 2, w / 2]) {
       cylinder(arena, x, 0.08, (side * l) / 2, 0.003, 0.06, '#ffffff');
-      box(arena, x + (x > 0 ? -0.015 : 0.015), 0.105, (side * l) / 2, 0.025, 0.018, 0.002, '#e03030');
+      box(
+        arena,
+        x + (x > 0 ? -0.015 : 0.015),
+        0.105,
+        (side * l) / 2,
+        0.025,
+        0.018,
+        0.002,
+        '#e03030',
+      );
     }
   }
 
   // Substitutes' dugouts & player tunnel on the VM-läktaren side (+X touchline)
   for (const z of [-0.48, 0.48]) {
     // Acrylic shelter
-    box(arena, 1.44, 0.10, z, 0.08, 0.085, 0.28, '#262a2d');
-    box(arena, 1.44, 0.10, z, 0.076, 0.08, 0.27, '#455869');
+    box(arena, 1.44, 0.1, z, 0.08, 0.085, 0.28, '#262a2d');
+    box(arena, 1.44, 0.1, z, 0.076, 0.08, 0.27, '#455869');
     // Blue bucket seats
     for (let s = 0; s < 5; s++) {
       box(arena, 1.45, 0.08, z - 0.09 + s * 0.045, 0.03, 0.035, 0.03, '#194b8e');
     }
   }
   // Central player tunnel canopy
-  box(arena, 1.46, 0.10, 0, 0.12, 0.09, 0.16, '#143c72');
+  box(arena, 1.46, 0.1, 0, 0.12, 0.09, 0.16, '#143c72');
   box(arena, 1.46, 0.148, 0, 0.124, 0.01, 0.164, '#ffffff');
 
   // --- 1. VÄSTRA LÄKTAREN (VM-läktaren, +X side) ---
@@ -193,40 +203,49 @@ export function createLandmarkDetails() {
     const rx = 1.52 + row * 0.065;
     const ry = 0.08 + row * 0.033;
     const isAccent = (row === 5 || row === 6) && row % 2 === 0;
-    box(arena, rx, ry, 0.1, 0.065, 0.038, 4.45, isAccent ? '#e9eff4' : row % 4 === 0 ? '#15427d' : '#1b549f');
+    box(
+      arena,
+      rx,
+      ry,
+      0.1,
+      0.065,
+      0.038,
+      4.45,
+      isAccent ? '#e9eff4' : row % 4 === 0 ? '#15427d' : '#1b549f',
+    );
   }
   // Front safety glass balustrade along the touchline
   box(arena, 1.48, 0.085, 0.1, 0.008, 0.045, 4.45, '#567280');
   // Mid-tier concourse walkway vomitories (vomitorier / in- och utgångar)
   for (const z of [-1.3, -0.05, 1.2]) {
-    box(arena, 2.15, 0.20, z, 0.20, 0.14, 0.16, '#181b1e');
+    box(arena, 2.15, 0.2, z, 0.2, 0.14, 0.16, '#181b1e');
   }
 
   // VM-läktaren Building (Multi-story office, VIP suites & restaurant facade)
   // Main exterior facade wall facing Ektorpsgatan - continuous along the entire west flank
-  box(arena, 3.20, 0.44, 0.05, 0.12, 0.86, 6.90, '#383e44');
+  box(arena, 3.2, 0.44, 0.05, 0.12, 0.86, 6.9, '#383e44');
   // Upper ribbon windows: Restaurang Zamora, VIP lounges, media suites
-  box(arena, 3.26, 0.68, 0.05, 0.02, 0.18, 5.60, '#1e2d39');
+  box(arena, 3.26, 0.68, 0.05, 0.02, 0.18, 5.6, '#1e2d39');
   // Window sill trims
-  box(arena, 3.27, 0.775, 0.05, 0.03, 0.02, 5.70, '#747f87');
-  box(arena, 3.27, 0.585, 0.05, 0.03, 0.02, 5.70, '#747f87');
+  box(arena, 3.27, 0.775, 0.05, 0.03, 0.02, 5.7, '#747f87');
+  box(arena, 3.27, 0.585, 0.05, 0.03, 0.02, 5.7, '#747f87');
   // Vertical architectural pilasters along the exterior
   for (let i = 0; i < 13; i++) {
-    const pz = -3.10 + (i * 6.3) / 12;
+    const pz = -3.1 + (i * 6.3) / 12;
     box(arena, 3.26, 0.44, pz, 0.04, 0.86, 0.05, '#2b3035');
   }
 
   // North return facade wall of west wing connecting VM-läktaren directly to Teknikhallen (closing NW hole)
   box(arena, 2.375, 0.44, 3.48, 1.65, 0.86, 0.12, '#383e44');
   // Entrance & clinic windows on the north return facade (LS Pilates Place / Rehabklinik from aerial view)
-  box(arena, 2.375, 0.18, 3.55, 1.50, 0.22, 0.02, '#1e2d39');
-  box(arena, 2.375, 0.30, 3.56, 1.55, 0.02, 0.04, '#747f87');
+  box(arena, 2.375, 0.18, 3.55, 1.5, 0.22, 0.02, '#1e2d39');
+  box(arena, 2.375, 0.3, 3.56, 1.55, 0.02, 0.04, '#747f87');
 
   // Cantilevered dark slate roof over VM-läktaren spanning the entire length
-  const vmRoof = box(arena, 2.32, 0.83, 0.05, 1.84, 0.055, 6.90, '#282c30');
+  const vmRoof = box(arena, 2.32, 0.83, 0.05, 1.84, 0.055, 6.9, '#282c30');
   vmRoof.rotation.z = -0.06;
   // White/silver fascia trim along the front cantilever edge (no obstruction pillars!)
-  box(arena, 1.41, 0.78, 0.05, 0.02, 0.045, 6.90, '#768189');
+  box(arena, 1.41, 0.78, 0.05, 0.02, 0.045, 6.9, '#768189');
 
   // --- 2. NORRA LÄKTAREN (Curva Nordahl, +Z side) ---
   // Home supporter standing terrace (IFK-klacken) with blue rows & silver safety wave-breakers
@@ -241,22 +260,22 @@ export function createLandmarkDetails() {
   }
   // Enclosed corner grandstands connecting Curva Nordahl with VM-läktaren and Östra läktaren
   for (let c = 0; c < 8; c++) {
-    const cy = 0.10 + c * 0.04;
+    const cy = 0.1 + c * 0.04;
     // NW corner wedge
-    const nw = box(arena, 1.65 - c * 0.03, cy, 2.40 + c * 0.06, 0.55, 0.04, 0.55, '#1b549f');
+    const nw = box(arena, 1.65 - c * 0.03, cy, 2.4 + c * 0.06, 0.55, 0.04, 0.55, '#1b549f');
     nw.rotation.y = 0.78;
     // NE corner wedge (Kröken / Sektion K)
-    const ne = box(arena, -1.65 + c * 0.03, cy, 2.40 + c * 0.06, 0.55, 0.04, 0.55, '#1b549f');
+    const ne = box(arena, -1.65 + c * 0.03, cy, 2.4 + c * 0.06, 0.55, 0.04, 0.55, '#1b549f');
     ne.rotation.y = -0.78;
   }
 
   // Solid interior back and corner walls enclosing the bowl behind Curva Nordahl
-  box(arena, 0, 0.48, 3.25, 3.10, 0.76, 0.10, '#383e44');
+  box(arena, 0, 0.48, 3.25, 3.1, 0.76, 0.1, '#383e44');
   // NW interior corner backing wall
-  const nwWall = box(arena, 1.95, 0.46, 2.80, 1.15, 0.80, 0.10, '#383e44');
+  const nwWall = box(arena, 1.95, 0.46, 2.8, 1.15, 0.8, 0.1, '#383e44');
   nwWall.rotation.y = 0.78;
   // NE interior corner backing wall
-  const neWall = box(arena, -1.95, 0.46, 2.80, 1.15, 0.80, 0.10, '#383e44');
+  const neWall = box(arena, -1.95, 0.46, 2.8, 1.15, 0.8, 0.1, '#383e44');
   neWall.rotation.y = -0.78;
 
   // Curva Nordahl tribute sign on interior wall
@@ -275,17 +294,17 @@ export function createLandmarkDetails() {
     track(new PlaneGeometry(1.6, 0.3)),
     track(new MeshBasicMaterial({ map: curvaSign, side: 2 })),
   );
-  curvaSignMesh.position.set(0, 0.65, 3.20);
+  curvaSignMesh.position.set(0, 0.65, 3.2);
   arena.add(curvaSignMesh);
 
   // Cantilevered dark roof over Curva Nordahl, forming continuous L-canopy with VM-läktaren
-  const curvaRoof = box(arena, 0, 0.82, 2.78, 3.10, 0.055, 1.25, '#282c30');
+  const curvaRoof = box(arena, 0, 0.82, 2.78, 3.1, 0.055, 1.25, '#282c30');
   curvaRoof.rotation.x = 0.06;
-  box(arena, 0, 0.78, 2.18, 3.10, 0.045, 0.02, '#768189');
+  box(arena, 0, 0.78, 2.18, 3.1, 0.045, 0.02, '#768189');
   // East end gable trim on Curva Nordahl roof (where roof terminates above eastern corner)
-  box(arena, -1.55, 0.80, 2.78, 0.03, 0.065, 1.25, '#768189');
+  box(arena, -1.55, 0.8, 2.78, 0.03, 0.065, 1.25, '#768189');
   // Continuous solid NW corner roof connecting Curva Nordahl to VM-läktaren (L-shaped canopy)
-  box(arena, 2.25, 0.825, 2.80, 1.80, 0.065, 1.35, '#282c30');
+  box(arena, 2.25, 0.825, 2.8, 1.8, 0.065, 1.35, '#282c30');
   // Roof bridge filling the seam between Curva Nordahl and Teknikhallen
   box(arena, 0.02, 0.625, 3.48, 3.05, 0.04, 0.35, '#292d31');
 
@@ -299,16 +318,16 @@ export function createLandmarkDetails() {
   // Front safety barrier
   box(arena, -1.48, 0.085, 0.1, 0.008, 0.045, 4.45, '#567280');
   // Solid modern rear facade wall facing Matchgatan (terminating at z = -2.20 before open SE corner)
-  box(arena, -2.50, 0.44, 0.64, 0.10, 0.86, 5.68, '#3a4046');
+  box(arena, -2.5, 0.44, 0.64, 0.1, 0.86, 5.68, '#3a4046');
   // South gable end facade wall of Östra läktaren terminating the building at z = -2.20
-  box(arena, -1.95, 0.44, -2.20, 1.10, 0.86, 0.08, '#3a4046');
+  box(arena, -1.95, 0.44, -2.2, 1.1, 0.86, 0.08, '#3a4046');
   // Vertical architectural pilasters along Matchgatan exterior
   for (let i = 0; i < 9; i++) {
     const pz = -1.9 + (i * 4.9) / 8;
     box(arena, -2.55, 0.44, pz, 0.04, 0.86, 0.05, '#2b3035');
   }
   // North return facade wall connecting Östra läktaren directly to Teknikhallen (closing NE hole)
-  box(arena, -2.00, 0.44, 3.48, 1.00, 0.86, 0.10, '#3a4046');
+  box(arena, -2.0, 0.44, 3.48, 1.0, 0.86, 0.1, '#3a4046');
 
   // Cantilevered dark roof over Östra läktaren - stopping BEFORE the open NE corner!
   // In real life (Google Maps), Östra läktaren has a full roof along the pitch, but the NE corner (Kröken) is uncovered!
@@ -320,7 +339,7 @@ export function createLandmarkDetails() {
   // North gable (at z = +2.05, terminating cleanly before the open NE corner)
   box(arena, -1.94, 0.79, 2.05, 1.15, 0.055, 0.02, '#768189');
   // South gable (at z = -2.20, terminating before the open South terrace)
-  box(arena, -1.94, 0.79, -2.20, 1.15, 0.055, 0.02, '#768189');
+  box(arena, -1.94, 0.79, -2.2, 1.15, 0.055, 0.02, '#768189');
 
   // --- 4. SÖDRA LÄKTAREN (South Stand / Bortastå / Berget, -Z side) ---
   // KEY ARCHITECTURAL FEATURE: UNCOVERED (NO ROOF)! Exposed stepped concrete terrace.
@@ -337,7 +356,7 @@ export function createLandmarkDetails() {
 
   // SW corner stepped concrete & seating transition connecting to VM-läktaren
   box(arena, 1.95, 0.28, -2.75, 1.05, 0.48, 1.15, '#929795');
-  box(arena, 1.85, 0.35, -2.60, 0.70, 0.30, 0.80, '#1b549f');
+  box(arena, 1.85, 0.35, -2.6, 0.7, 0.3, 0.8, '#1b549f');
 
   // Solid concrete foundation under Södra läktaren's east cheek (supporting steps, completely flush, no wall sticking up)
   for (let row = 0; row < 14; row++) {
@@ -347,25 +366,25 @@ export function createLandmarkDetails() {
   }
 
   // Rear concourse open-air walkway at top of terrace (stops at east cheek)
-  box(arena, 0.75, 0.52, -3.32, 4.50, 0.03, 0.22, '#9ba09e');
+  box(arena, 0.75, 0.52, -3.32, 4.5, 0.03, 0.22, '#9ba09e');
   // Rear perimeter enclosure wall behind Södra läktaren (terminating at x = -1.50 before open SE corner)
-  box(arena, 0.85, 0.35, -3.44, 4.70, 0.68, 0.12, '#3e444a');
+  box(arena, 0.85, 0.35, -3.44, 4.7, 0.68, 0.12, '#3e444a');
   // Turnstile entrances on south wall
-  box(arena, 0, 0.14, -3.51, 1.20, 0.24, 0.04, '#1e242a');
-  box(arena, 0, 0.27, -3.52, 1.30, 0.03, 0.10, '#12396b');
+  box(arena, 0, 0.14, -3.51, 1.2, 0.24, 0.04, '#1e242a');
+  box(arena, 0, 0.27, -3.52, 1.3, 0.03, 0.1, '#12396b');
 
   // --- SE CORNER: COMPLETELY OPEN AT GROUND LEVEL (Direct open access to Matchgatan, NO walls, NO grandstand) ---
   // Ground-level dark asphalt apron connecting pitch corner directly to Matchgatan
-  box(arena, -2.00, 0.02, -2.80, 1.10, 0.02, 1.25, '#585e64');
+  box(arena, -2.0, 0.02, -2.8, 1.1, 0.02, 1.25, '#585e64');
 
   // --- 5. IFK PERFORMANCE CENTER / TEKNIKHALLEN (Integrated behind Curva Nordahl) ---
   // Large indoor training hall connected directly to the northern stand
   box(arena, 0.02, 0.31, 4.58, 3.05, 0.62, 2.06, '#3d4349');
   // Dark flat roof with parapet trims
-  box(arena, 0.02, 0.625, 4.58, 3.09, 0.03, 2.10, '#292d31');
+  box(arena, 0.02, 0.625, 4.58, 3.09, 0.03, 2.1, '#292d31');
   // Training hall glazing & gym windows
   box(arena, 1.54, 0.38, 4.58, 0.02, 0.22, 1.6, '#233442');
-  box(arena, 0.02, 0.40, 5.62, 2.4, 0.20, 0.02, '#233442');
+  box(arena, 0.02, 0.4, 5.62, 2.4, 0.2, 0.02, '#233442');
 
   // Performance center exterior sign
   const hallSign = texture(512, 64, (c) => {
@@ -385,12 +404,12 @@ export function createLandmarkDetails() {
   arena.add(hallSignMesh);
 
   // --- 6. GAMLA TENNISHALLEN (Iconic arched barrel-vault hangar roof) ---
-  box(arena, 2.95, 0.20, 4.68, 0.72, 0.40, 1.70, '#887c6e');
+  box(arena, 2.95, 0.2, 4.68, 0.72, 0.4, 1.7, '#887c6e');
   const tennisRoof = new Mesh(
     track(new CylinderGeometry(0.38, 0.38, 1.72, 16, 1, false, 0, Math.PI)),
     mat('#282c30'),
   );
-  tennisRoof.position.set(2.95, 0.40, 4.68);
+  tennisRoof.position.set(2.95, 0.4, 4.68);
   tennisRoof.rotation.z = Math.PI / 2;
   tennisRoof.rotation.y = Math.PI / 2;
   arena.add(tennisRoof);
@@ -508,17 +527,17 @@ export function createLandmarkDetails() {
   // 4 iconic masts in exact real-life positions:
   createLatticeMast(2.85, 2.85); // NW mast at Entré 1 / entrance plaza (Image 3)
   createLatticeMast(-2.35, 2.85); // NE mast behind Kröken
-  createLatticeMast(-2.30, -3.30); // SE mast behind open south terrace
-  createLatticeMast(2.30, -3.30); // SW mast behind open south terrace
+  createLatticeMast(-2.3, -3.3); // SE mast behind open south terrace
+  createLatticeMast(2.3, -3.3); // SW mast behind open south terrace
 
   // --- 8. ENTRANCE PLAZA, ENTRÉ 1 & CLUB BRANDING (Image 3) ---
   // Paved entrance courtyard (Läktarplatsen / Ektorpsgatan corner)
-  box(arena, 3.10, 0.05, 3.05, 1.4, 0.02, 1.4, '#b3afa4');
+  box(arena, 3.1, 0.05, 3.05, 1.4, 0.02, 1.4, '#b3afa4');
 
   // ENTRÉ 1 Portal canopy with IFK star emblem
-  box(arena, 3.25, 0.20, 3.05, 0.16, 0.28, 0.65, '#12437b');
+  box(arena, 3.25, 0.2, 3.05, 0.16, 0.28, 0.65, '#12437b');
   // Glass entrance doors
-  box(arena, 3.34, 0.12, 3.05, 0.02, 0.16, 0.50, '#1c2f3d');
+  box(arena, 3.34, 0.12, 3.05, 0.02, 0.16, 0.5, '#1c2f3d');
 
   const entre1Sign = texture(512, 128, (c) => {
     c.fillStyle = '#12437b';
@@ -574,7 +593,7 @@ export function createLandmarkDetails() {
 
   const flags = [swedishFlag, ifkFlag, clubBanner];
   for (let f = 0; f < 3; f++) {
-    const fz = 3.20 + f * 0.18;
+    const fz = 3.2 + f * 0.18;
     // White flagpole
     cylinder(arena, 3.52, 0.25, fz, 0.005, 0.45, '#eef2f5');
     // Gold finial ball
@@ -589,8 +608,8 @@ export function createLandmarkDetails() {
   }
 
   // Gunnar Nordahl statue on granite plinth outside Curva Nordahl
-  box(arena, 3.35, 0.075, 2.60, 0.06, 0.05, 0.06, '#3a3937');
-  box(arena, 3.35, 0.14, 2.60, 0.03, 0.08, 0.03, '#544632');
+  box(arena, 3.35, 0.075, 2.6, 0.06, 0.05, 0.06, '#3a3937');
+  box(arena, 3.35, 0.14, 2.6, 0.03, 0.08, 0.03, '#544632');
 
   // Main stadium exterior sign: IDROTTSPARKEN / IFK NORRKÖPING
   const stadiumBanner = texture(768, 128, (c) => {
@@ -605,7 +624,7 @@ export function createLandmarkDetails() {
     c.fillText('IFK NORRKÖPING', 384, 102);
   });
   const stadiumBannerMesh = new Mesh(
-    track(new PlaneGeometry(2.4, 0.40)),
+    track(new PlaneGeometry(2.4, 0.4)),
     track(new MeshBasicMaterial({ map: stadiumBanner, side: 2 })),
   );
   stadiumBannerMesh.position.set(3.27, 0.72, 0.1);
@@ -923,6 +942,23 @@ export function createLandmarkDetails() {
     };
     labels.add(m);
   }
+  for (const child of group.children) {
+    if (child instanceof InstancedMesh) {
+      const transform = new Matrix4();
+      for (let i = 0; i < child.count; i++) {
+        child.getMatrixAt(i, transform);
+        transform.elements[13] += terrain.offset(
+          transform.elements[12] + child.position.x,
+          transform.elements[14] + child.position.z,
+        );
+        child.setMatrixAt(i, transform);
+      }
+      child.instanceMatrix.needsUpdate = true;
+      child.computeBoundingSphere();
+    } else child.position.y += terrain.offset(child.position.x, child.position.z);
+  }
+  for (const label of labels.children)
+    label.position.y += terrain.offset(label.position.x, label.position.z);
   group.add(labels);
   return {
     group,

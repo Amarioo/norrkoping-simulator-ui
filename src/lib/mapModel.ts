@@ -1,3 +1,4 @@
+import { terrain } from './terrain';
 import source from './data/norrkoping-map.json' with { type: 'json' };
 export type Point = [number, number];
 export interface MapPolygon {
@@ -35,6 +36,7 @@ export interface MapRoad {
   ref: string;
   lanes: number;
   oneway: number;
+  linearProfile?: boolean;
   yA: number;
   yB: number;
   width: number;
@@ -84,13 +86,21 @@ export interface MapData {
     historic: boolean;
   }[];
 }
-export const cityMap = source as unknown as MapData;
-export const METRES_PER_UNIT = 25;
+export const cityMap = {
+  ...source,
+  roads: source.roads.map((r) => ({
+    ...r,
+    linearProfile:
+      !!r.bridge ||
+      terrain.bridgeHeight(r.a[0], r.a[1], r.yA) !== undefined ||
+      terrain.bridgeHeight(r.b[0], r.b[1], r.yB) !== undefined,
+    yA: terrain.roadHeight(r.a[0], r.a[1], r.yA),
+    yB: terrain.roadHeight(r.b[0], r.b[1], r.yB),
+  })),
+} as unknown as MapData;
+export const METRES_PER_UNIT = terrain.data.reference.metresPerUnit;
 export function project(lat: number, lon: number): Point {
-  return [
-    ((lon - 16.18747) * 58010) / METRES_PER_UNIT,
-    ((58.58981 - lat) * 111133) / METRES_PER_UNIT,
-  ];
+  return terrain.project(lat, lon);
 }
 export function centerOf(p: MapPolygon): Point {
   const xs = p.rings[0].map((p) => p[0]),
@@ -291,6 +301,7 @@ export const CITY_VIEWS: Record<string, CityFocus> = {
     target: [-6, 0.21, 22.85],
     position: [1, 0.21, 24],
   },
+  campus: { label: 'Campus / Industrilandskapet', target: [-24.5, 0.24, 2.2], position: [-18.5, 4.5, -5.5] },
   bergsbron: { label: 'Bergsbron', target: [-21.3, 0.24, 0.4], position: [-17.5, 1.55, 3.9] },
   laxholmsbron: focus('Laxholmsbron', [-17.36, 4.23], 2.8),
   laxtrappan: focus('Spången / laxtrappan', [-9.9, -8.9], 4.5),

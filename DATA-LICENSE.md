@@ -31,3 +31,11 @@ Visual reference pages (photographs were inspected, not embedded or redistribute
 - Strömparken context: https://visit.norrkoping.se/se-och-gora/temasidor/vinterkoping/historisk-promenad/strommen
 
 The supplied allée photo guides the slimmer crowns and exposed trunks. No Street View image is used as a scene texture.
+
+## Markhöjdmodell för hela kartan
+
+Aktiv källa: Markhöjdmodell Nedladdning ©Lantmäteriet, bearbetad.
+Licens: https://creativecommons.org/licenses/by/4.0/deed.sv
+Villkor: https://www.lantmateriet.se/globalassets/geodata/geodataprodukter/anvandningsvillkor_for_vardefulla_datamangder.pdf
+
+Bearbetning: mosaik av fyra GeoTIFF-leveranser med 1 m upplösning i SWEREF 99 TM / RH 2000, bilinjär omsampling till simulatorns lokala rutnät med 5 m provavstånd. Ingen höjdöverdrift. Samma bearbetade höjddata distribueras i klient och backend. Råfilerna ligger lokalt under work/geodata/lantmateriet/dtm/ och ingår inte i Git.

@@ -1,7 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { Canvas } from '@threlte/core';
-  import { PCFShadowMap } from 'three';
   import Scene from './lib/Scene.svelte';
   import { CITY_VIEWS, cityMap } from './lib/mapModel';
   import { city, FLIGHT_PHASE, VEHICLE_NAMES } from './lib/city.svelte';
@@ -101,8 +100,8 @@
           ><span>Lastbilar</span><output>{trucks}</output></label
         ><input id="trucks" type="range" min="0" max="150" step="5" bind:value={trucks} />
         <p class="control-note">
-          Personbilar följer körbara gator. Drottninggatan är undantagen. Lastbilar håller sig till
-          större vägar, bland annat E4 och Söderleden.
+          Personbilar följer körbara gator. Drottninggatan är undantagen. Lastbilar håller sig
+          till större vägar, bland annat E4 och Söderleden.
         </p>
         <h3 class="transit-heading">Kollektivtrafik</h3>
         <label class="slider-label" for="buses"><span>Bussar</span><output>{buses}</output></label
@@ -120,10 +119,9 @@
         <label class="slider-label" for="time-scale"
           ><span>Simuleringshastighet</span><output>{timeScale}×</output></label
         ><select id="time-scale" bind:value={timeScale}
-          ><option value={1}>Realtid · 1×</option><option value={3}>Stadspuls · 3×</option><option
-            value={5}>Snabbare · 5×</option
-          ><option value={10}>Överblick · 10×</option><option value={20}>Snabbspola · 20×</option
-          ></select
+          ><option value={1}>Realtid · 1×</option><option value={3}>Stadspuls · 3×</option
+          ><option value={5}>Snabbare · 5×</option><option value={10}>Överblick · 10×</option
+          ><option value={20}>Snabbspola · 20×</option></select
         >
         <label class="check-row"
           ><input type="checkbox" bind:checked={flights} /> Flygtrafik mellan flygplatserna</label
@@ -142,9 +140,13 @@
           <span class="flight-code">NK-01</span>
         </div>
         <div class="airport-route">
-          <span>NRK<small>Kungsängen</small></span><b>⇄</b><span>F13<small>Bråvalla</small></span>
+          <span>NRK<small>Kungsängen</small></span><b>⇄</b><span
+            >F13<small>Bråvalla</small></span
+          >
         </div>
-        <p class="flight-phase">{plane ? FLIGHT_PHASE[plane.phase] : 'Flygtrafiken är avstängd'}</p>
+        <p class="flight-phase">
+          {plane ? FLIGHT_PHASE[plane.phase] : 'Flygtrafiken är avstängd'}
+        </p>
         {#if plane}<p class="control-note">{plane.origin} → {plane.destination}</p>{/if}
         <button
           class="secondary-button"
@@ -167,8 +169,8 @@
           dig.
         </p>
         <p>
-          <kbd>Q</kbd>/<kbd>E</kbd> höjd · <kbd>Shift</kbd> snabbare<br />Dra: rotera · högerdra:
-          förflytta · scrolla: zooma
+          <kbd>Q</kbd>/<kbd>E</kbd> höjd · <kbd>Shift</kbd> snabbare<br />Dra: rotera ·
+          högerdra: förflytta · scrolla: zooma
         </p>
       </section>
       <footer class="sidebar-footer">
@@ -221,7 +223,7 @@
         </div>
       </div>
       <div class="map-panel simulator-map" data-camera-travel={travel.toFixed(2)}>
-        {#if webgl}<Canvas shadows={PCFShadowMap}
+        {#if webgl}<Canvas shadows={false} dpr={1}
             ><Scene {focus} showLabels={labels} bind:follow bind:travel /></Canvas
           >{:else}<div class="map-fallback">
             Din webbläsare behöver WebGL 2 för att visa 3D-kartan.
@@ -273,6 +275,12 @@
           © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer"
             >OpenStreetMap contributors · ODbL</a
           >
+          · Markhöjdmodell Nedladdning ©Lantmäteriet, bearbetad ·
+          <a
+            href="https://creativecommons.org/licenses/by/4.0/deed.sv"
+            target="_blank"
+            rel="noreferrer">CC BY 4.0</a
+          >
         </div>
       </div>
       <div class="sim-feedback" aria-live="polite" class:has-error={!!city.error}>
@@ -299,8 +307,8 @@
             onchange={(e) => {
               city.selectedId = Number(e.currentTarget.value) || null;
             }}
-            ><option value="">Välj fordon…</option>{#each city.snapshot.vehicles as v (v.id)}<option
-                value={v.id}
+            ><option value="">Välj fordon…</option
+            >{#each city.snapshot.vehicles as v (v.id)}<option value={v.id}
                 >#{v.id} · {VEHICLE_NAMES[v.kind]} · {v.road || 'Lokalgata'}{v.destination
                   ? ' → ' + v.destination
                   : ''}</option

@@ -113,3 +113,7 @@ Utforska-listan har egna vyer för broarna samt Norra och Södra Promenaden i ga
 Ingelstagatans bro vid polishuset har brodäck, räcken och landfästen. Gatan ansluter i marknivå och järnvägen går i en utskuren skärning. Importör och rendering använder samma höjdprofil i `src/lib/ingelstaTerrain.js`; profilen är uppskattad, inte inmätt terräng. Grand Hotel och Holmens kontorshus har egna referensbaserade fasader och återskapade ordskyltar. Välj de tre nya vyerna i Utforska-menyn.
 
 Spårvagnarnas destinationsskyltar följer den aktiva sträckan i OSM-rutten: 2 Kvarnberget/Fridvalla och 3 Vidablick/Klockaretorpet. Backend skickar destination i SSE och byter den när nästa riktning börjar. Det är simulerad trafik, inte aktuella tidtabellsavgångar. Starta om Ktor när transportnätet uppdaterats.
+
+## Terräng och 3D-data
+
+Se [ELEVATION.md](ELEVATION.md) för källjämförelse, gemensamt RH2000-kontrakt, import och återstående datakrav. Inga uppmätta höjdrutor eller LOD2-byggnader är ännu inlästa.
