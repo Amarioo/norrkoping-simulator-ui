@@ -8,6 +8,8 @@ export const DETAILED_BUILDING_IDS = new Set([
   ...RIVERFRONT_IDS,
   'way/102030313',
   'way/101513457',
+  'way/91908192', // Teknikhallen (IFK Performance Center)
+  'way/91908705', // Gamla tennishallen
   ...data.roofs.map((r) => 'way/' + r.id),
 ]);
 
