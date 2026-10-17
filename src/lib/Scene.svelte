@@ -4,7 +4,6 @@
   import { interactivity, type IntersectionEvent } from '@threlte/extras';
   import { DirectionalLight } from 'three';
   import { createMappedCity } from './mapView';
-  import { cityMap } from './mapModel';
   import { city } from './city.svelte';
   import { createTransportModels } from './transportModels';
   import { createTrafficSignals } from './trafficSignals';
@@ -57,7 +56,6 @@
     far: 700,
   });
   sun.shadow.camera.updateProjectionMatrix();
-  const bounds = cityMap.meta.bounds;
   function pick(e: IntersectionEvent<MouseEvent>) {
     const ids = e.object.userData.ids;
     if (ids && e.instanceId !== undefined) {
@@ -75,15 +73,7 @@
 <T.AmbientLight color="#f3f1e7" intensity={0.75} /><T.HemisphereLight
   args={['#d9efff', '#8b9575', 1.1]}
 /><T is={sun} />
-<T.Mesh
-  rotation.x={-Math.PI / 2}
-  position={[(bounds[0] + bounds[2]) / 2, -0.02, (bounds[1] + bounds[3]) / 2]}
-  receiveShadow
-  ><T.PlaneGeometry args={[bounds[2] - bounds[0], bounds[3] - bounds[1]]} /><T.MeshStandardMaterial
-    color="#a7ac80"
-    roughness={1}
-  /></T.Mesh
->
+<!-- Ground and river cutouts are rendered together by mapView. -->
 <T is={view.group} /><T is={transport.group} onclick={pick} /><T is={signals.group} /><T
   is={transit.group}
   onclick={pick}

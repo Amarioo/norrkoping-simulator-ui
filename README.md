@@ -44,7 +44,7 @@ Färgreferenser: [Norrköpings spårväg](https://norrkoping.se/boende-trafik-oc
 
 ## Kartan och modellerna
 
-Snapshot från OpenStreetMap, geografisk ruta 58.555–58.650 N / 16.065–16.295 E, cirka 13,3 × 10,6 km. Den innehåller 12 499 byggnadsformer, 2 881 mark-/vattenytor, 84 622 linjesegment och 116 kartlagda signalpunkter. Vägnätet innehåller 38 294 noder och 73 332 riktade länkar. En scenenhet motsvarar 25 meter.
+Snapshot från OpenStreetMap, geografisk ruta 58.555–58.650 N / 16.065–16.295 E, cirka 13,3 × 10,6 km. Den innehåller 12 499 byggnadsformer, 2 881 ursprungliga mark-/vattenytor (delas och sammanfogas vid terrängimport), 84 622 linjesegment och 116 kartlagda signalpunkter. Vägnätet innehåller 38 294 noder och 73 332 riktade länkar. En scenenhet motsvarar 25 meter.
 
 Byggnadsformer, gator, grönområden, vatten, banor och taxibanor kommer från kartdata. Parken har plan och läktare. Polishuset på Stockholmsvägen har låga flyglar, gårdar, högdel och solpaneler baserade på referensen. Träden längs den utpekade delen av Kungsgatan är borttagna. Markfärger skiljer gräs, skog, åker, bostäder, verksamhetsmark och vatten.
 
@@ -92,7 +92,7 @@ Pendeltåget har fyra vagnsdelar, avsmalnande vit förarhytt, stor vindruta och 
 
 88 spårvagnsplattformar och 9 järnvägsplattformar får kartlagda konturer, kantmarkeringar och skyltning. Väderskydd utelämnas där OSM uttryckligen anger shelter=no; saknad uppgift kompletteras med ett uppskattat skydd. detaljformen är modellerad efter Ljura-referensen, inte individuellt uppmätt vid varje hållplats. Inga liveavgångar visas.
 
-Resecentrum har en särskild stationsmodell med fönsterbågar, skiffertak, mittpaviljong/klocka och kartlagda perrongtak. Flygplatsen har en blåglasad låg terminal, entrétak, driftstorn, parkeringsrader och markeringar på plattan. Bollspelaren har två fotbollsplaner från kartan, en mindre träningsplan passad mellan dem från bildreferensen, isbana, mål, stängsel, belysning och en läktare på ena sidan. Läktarens detaljmått och träningsplanen är uppskattade från referensen.
+Resecentrum har en särskild stationsmodell med fönsterbågar, skiffertak, mittpaviljong/klocka och kartlagda perrongtak. Flygplatsen har en blåglasad låg terminal, entrétak, driftstorn, parkeringsrader och markeringar på plattan. Bollspelaren har två fotbollsplaner från kartan, en mindre träningsplan passad mellan dem från bildreferensen, isbana, mål, stängsel, belysning och en läktare längs norra långsidan, mot Malmbergs/Linnégatan, med sittplatserna vända mot planen. Läktarens detaljmått och träningsplanen är uppskattade från referensen.
 
 Polisemblemet är Polisens egen vektorgrafik, beskuren till vapnet och placerad på byggnaden. Källor finns i DATA-LICENSE.md.
 
@@ -104,6 +104,12 @@ Platsunderlaget finns i `scripts/data/norrkoping-places-source.json`. Återskapa
 
 Promenadernas träd har 4,6–5,7 meter breda kronor, smala stammar och fri sikt under kronorna. Trädpositionerna kommer fortsatt från kartan; den kompletterande parkplanteringen och trädformerna är illustrativa. Träden instansieras, och broarnas statiska geometri slås samman per material.
 
-Bergsbron har tre stenvalv, fogad sten, smidesräcken och dubbla lyktor. Laxholmsbron har ljusa räcken med kryss och cirklar. Saltängsbron och Hamnbron använder kartlagda brokonturer med stöd, kantbalkar och räcken; Saltängsbron har även flaggstänger och kontaktledningar. Spången och tre små gångbroar kring laxtrappan i Strömparken har trädetaljer. Gamlebro/Järnbron är också kompletterad. Brodetaljer, stödlägen och höjder är uppskattade efter fotoreferenser, inte konstruktionsritningar. Väg- och spårtrafiken behåller nätets befintliga höjder.
+Bergsbron har tre stenvalv, fogad sten, smidesräcken och dubbla lyktor. Laxholmsbron har ljusa räcken med kryss och cirklar. Saltängsbron och Hamnbron använder kartlagda brokonturer med stöd, kantbalkar och räcken; Saltängsbron har även flaggstänger och kontaktledningar. Spången och tre små gångbroar kring laxtrappan i Strömparken har trädetaljer. Gamlebro/Järnbron är också kompletterad. Brodetaljer, stödlägen och höjder är uppskattade efter fotoreferenser, inte konstruktionsritningar. Broar över vatten möter anslutande gator och gångvägar på samma nivå. Vattenytan har sänkts sex meter i modellens koordinatsystem; utskurna markytor, strandkanter och landfästen ersätter de tidigare upphöjda ramperna. Nivåerna är visuella approximationer i `src/lib/data/terrain-levels.json`. Importören synkroniserar väg- och spårtrafikens höjder med brobanorna; broar över land och järnvägens underfarter behåller sin höjdseparation. Starta om både UI och Ktor efter uppdateringen.
 
 Utforska-listan har egna vyer för broarna samt Norra och Södra Promenaden i gatuperspektiv. Brokonturerna ligger i `scripts/data/norrkoping-bridges-source.json`, gånglinjerna i `scripts/data/norrkoping-bridge-paths-source.json`; kör `node scripts/import-city-bridges.mjs` för att återskapa `src/lib/data/city-bridges.json` utan nätåtkomst.
+
+## Ingelstagatan, fasader och destinationsskyltar
+
+Ingelstagatans bro vid polishuset har brodäck, räcken och landfästen. Gatan ansluter i marknivå och järnvägen går i en utskuren skärning. Importör och rendering använder samma höjdprofil i `src/lib/ingelstaTerrain.js`; profilen är uppskattad, inte inmätt terräng. Grand Hotel och Holmens kontorshus har egna referensbaserade fasader och återskapade ordskyltar. Välj de tre nya vyerna i Utforska-menyn.
+
+Spårvagnarnas destinationsskyltar följer den aktiva sträckan i OSM-rutten: 2 Kvarnberget/Fridvalla och 3 Vidablick/Klockaretorpet. Backend skickar destination i SSE och byter den när nästa riktning börjar. Det är simulerad trafik, inte aktuella tidtabellsavgångar. Starta om Ktor när transportnätet uppdaterats.

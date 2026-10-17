@@ -2,6 +2,8 @@ import { ExtrudeGeometry, Shape, TorusGeometry, PlaneGeometry, RepeatWrapping } 
 import type { Group } from 'three';
 import { PlaceBuilder } from './placeBuilder';
 import data from './data/city-bridges.json';
+import ingelsta from './data/ingelsta-bridge.json';
+import levels from './data/terrain-levels.json';
 
 /** Footprints are OSM; construction details and heights are visual approximations. */
 export function createCityBridges() {
@@ -82,23 +84,39 @@ export function createCityBridges() {
     const shaped = style === 'city' || style === 'concrete';
     // Keep the existing road/spoor surfaces and traffic heights above this structural deck.
     b.polygon(bridge.ring, y - 0.035, style === 'wood' ? '#8d8470' : '#a4a49a', 0.028);
+    // Solid land abutments connect each end to the bank instead of leaving an open gap.
+    for (const side of [-1, 1]) {
+      const x = side * (L / 2 - 0.025),
+        [left, right] = edgesAt(x);
+      b.box(
+        g,
+        x,
+        (levels.waterbed + y - 0.01) / 2,
+        (left + right) / 2,
+        0.075,
+        y - 0.01 - levels.waterbed,
+        right - left,
+        style === 'stone' ? stone : '#96978b',
+      );
+    }
     if (style === 'stone') {
+      const spring = levels.water - 0.008;
       const count = 3,
         span = L / count,
         opening = span - 0.11;
       for (let i = 0; i < count; i++) {
         const x = -L / 2 + span * (i + 0.5),
           s = new Shape();
-        s.moveTo(-span / 2, 0.035);
+        s.moveTo(-span / 2, spring);
         s.lineTo(-span / 2, y - 0.035);
         s.lineTo(span / 2, y - 0.035);
-        s.lineTo(span / 2, 0.035);
-        s.lineTo(opening / 2, 0.035);
+        s.lineTo(span / 2, spring);
+        s.lineTo(opening / 2, spring);
         for (let k = 0; k <= 32; k++) {
           const t = (k / 32) * Math.PI;
-          s.lineTo((Math.cos(t) * opening) / 2, 0.035 + Math.sin(t) * 0.205);
+          s.lineTo((Math.cos(t) * opening) / 2, spring + Math.sin(t) * 0.205);
         }
-        s.lineTo(-span / 2, 0.035);
+        s.lineTo(-span / 2, spring);
         b.mesh(
           g,
           new ExtrudeGeometry(s, { depth: W, bevelEnabled: false, curveSegments: 24 }),
@@ -113,10 +131,10 @@ export function createCityBridges() {
             const a = (k / 28) * Math.PI,
               c = ((k + 1) / 28) * Math.PI,
               shape = new Shape();
-            shape.moveTo(x + (Math.cos(a) * opening) / 2, 0.035 + Math.sin(a) * 0.205);
-            shape.lineTo(x + (Math.cos(c) * opening) / 2, 0.035 + Math.sin(c) * 0.205);
-            shape.lineTo(x + Math.cos(c) * (opening / 2 + 0.018), 0.035 + Math.sin(c) * 0.235);
-            shape.lineTo(x + Math.cos(a) * (opening / 2 + 0.018), 0.035 + Math.sin(a) * 0.235);
+            shape.moveTo(x + (Math.cos(a) * opening) / 2, spring + Math.sin(a) * 0.205);
+            shape.lineTo(x + (Math.cos(c) * opening) / 2, spring + Math.sin(c) * 0.205);
+            shape.lineTo(x + Math.cos(c) * (opening / 2 + 0.018), spring + Math.sin(c) * 0.235);
+            shape.lineTo(x + Math.cos(a) * (opening / 2 + 0.018), spring + Math.sin(a) * 0.235);
             shape.closePath();
             b.mesh(
               g,
@@ -155,10 +173,10 @@ export function createCityBridges() {
           b.pole(
             g,
             x,
-            (y - 0.05 + 0.015) / 2,
+            (y - 0.05 + levels.waterbed) / 2,
             z,
             style === 'concrete' ? 0.045 : 0.028,
-            y - 0.065,
+            y - 0.05 - levels.waterbed,
             '#90938b',
           );
           b.box(g, x, y - 0.054, z, 0.09, 0.045, Math.min(W, 0.46), '#989b91');
@@ -227,6 +245,51 @@ export function createCityBridges() {
         }
       }
     }
+  }
+  const { a, c } = { a: ingelsta.a, c: ingelsta.b };
+  const length = Math.hypot(c[0] - a[0], c[1] - a[1]),
+    deck = ingelsta.deck,
+    width = ingelsta.width;
+  const viaduct = b.local(
+    [(a[0] + c[0]) / 2, (a[1] + c[1]) / 2],
+    Math.atan2(c[0] - a[0], c[1] - a[1]),
+  );
+  b.box(viaduct, 0, deck - 0.025, 0, width, 0.05, length, '#92988f');
+  for (const side of [-1, 1]) {
+    const x = side * (width / 2 - 0.022);
+    b.box(viaduct, x, deck + 0.008, 0, 0.055, 0.016, length, '#b7b9ac');
+    b.beam(viaduct, [x, deck + 0.06, -length / 2], [x, deck + 0.06, length / 2], 0.0025, '#63716b');
+    b.beam(
+      viaduct,
+      [x, deck + 0.021, -length / 2],
+      [x, deck + 0.021, length / 2],
+      0.002,
+      '#63716b',
+    );
+    for (let z = -length / 2; z <= length / 2; z += 0.07)
+      b.pole(viaduct, x, deck + 0.04, z, 0.0015, 0.052, '#63716b');
+    // Solid abutments outside the rail corridor, with wing walls retaining the approaches.
+    b.box(
+      viaduct,
+      0,
+      (deck - 0.05 - 0.24) / 2,
+      side * (length / 2 - 0.04),
+      width,
+      deck - 0.05 + 0.24,
+      0.09,
+      '#8b9289',
+    );
+    for (const x of [-width / 2, width / 2])
+      b.box(
+        viaduct,
+        x,
+        (deck - 0.24) / 2,
+        side * (length / 2 + 0.13),
+        0.025,
+        deck + 0.24,
+        0.34,
+        '#8b9289',
+      );
   }
   return b.finish();
 }

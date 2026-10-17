@@ -2,8 +2,10 @@ import { Group, PlaneGeometry } from 'three';
 import { PlaceBuilder } from './placeBuilder';
 import data from './data/city-places.json';
 import training from './data/training-pitch.json';
+import { RIVERFRONT_IDS } from './riverfrontDetails';
 import { cityMap } from './mapModel';
 export const DETAILED_BUILDING_IDS = new Set([
+  ...RIVERFRONT_IDS,
   'way/102030313',
   'way/101513457',
   ...data.roofs.map((r) => 'way/' + r.id),
@@ -305,11 +307,12 @@ export function createCityPlaces() {
     if (p.sport === 'soccer') {
       const g = football(p.center, p.heading, p.width, p.length);
       if (p.id === 91854396) {
-        const x = -p.width / 2 - 0.16;
+        // North long side beside Malmbergs: higher rows face back away from the pitch.
+        const x = p.width / 2 + 0.16;
         for (let row = 0; row < 7; row++)
           b.box(
             g,
-            x - row * 0.026,
+            x + row * 0.026,
             0.022 + row * 0.018,
             -0.7,
             0.034,
@@ -317,9 +320,9 @@ export function createCityPlaces() {
             1.7,
             row % 2 ? '#697e76' : '#b4b7ac',
           );
-        b.box(g, x - 0.08, 0.22, -0.7, 0.32, 0.014, 1.8, '#4b5558');
-        for (const z of [-1.5, -0.7, 0.1]) b.pole(g, x - 0.23, 0.11, z, 0.004, 0.22, '#596265');
-        b.sign(g, 'BOLLSPELAREN', x - 0.08, 0.2, -1.61, 0.3, 0.05, Math.PI, '#294b3c', '#fff4d6');
+        b.box(g, x + 0.08, 0.22, -0.7, 0.32, 0.014, 1.8, '#4b5558');
+        for (const z of [-1.5, -0.7, 0.1]) b.pole(g, x + 0.23, 0.11, z, 0.004, 0.22, '#596265');
+        b.sign(g, 'BOLLSPELAREN', x + 0.08, 0.2, -1.61, 0.3, 0.05, Math.PI, '#294b3c', '#fff4d6');
       }
     } else {
       const g = b.local(p.center, p.heading, 0.075);

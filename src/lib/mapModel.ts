@@ -58,6 +58,7 @@ export interface MapData {
     points: number[][];
     stops: { name: string; distance: number }[];
   }[];
+  ground: MapPolygon[];
   buildings: MapBuilding[];
   areas: MapArea[];
   roads: MapRoad[];
@@ -249,6 +250,21 @@ export const CITY_VIEWS: Record<string, CityFocus> = {
     label: 'Polishusets emblem',
     target: [-28.38, 1.55, -25.37],
     position: [-27.68, 1.82, -22.97],
+  },
+  ingelstaBridge: {
+    label: 'Ingelstagatans järnvägsbro',
+    target: [-25.2, 0.18, -28.4] as [number, number, number],
+    position: [-21.8, 1.7, -25.8] as [number, number, number],
+  },
+  grandHotel: {
+    label: 'Grand Hotel',
+    target: [-2.4, 0.42, -14.3] as [number, number, number],
+    position: [-5.0, 1.1, -17.5] as [number, number, number],
+  },
+  holmen: {
+    label: 'Holmen',
+    target: [-11.7, 0.52, -15] as [number, number, number],
+    position: [-8.4, 1.1, -18.4] as [number, number, number],
   },
   police: focus('Polishuset', centerOf(named('Polishuset')), 10),
   kungsgatan: focus('Kungsgatan', [-22, -14], 14),

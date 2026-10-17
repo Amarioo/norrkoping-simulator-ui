@@ -1,3 +1,4 @@
+import levels from '../src/lib/data/terrain-levels.json' with { type: 'json' };
 import fs from 'node:fs';
 const source = JSON.parse(fs.readFileSync('scripts/data/norrkoping-bridges-source.json'));
 const paths = JSON.parse(fs.readFileSync('scripts/data/norrkoping-bridge-paths-source.json'));
@@ -48,7 +49,7 @@ const bridges = source.elements
     style: styles[e.tags.name],
     ring: e.geometry.map(project),
     ...fit(e.geometry.map(project)),
-    deckY: 0.311,
+    deckY: levels.road,
   }));
 for (const e of paths.elements) {
   if (e.id === 26154766) continue; // Spången has a surveyed footprint above.
@@ -76,7 +77,7 @@ for (const e of paths.elements) {
     rotation: -Math.atan2(dz, dx),
     length,
     width,
-    deckY: 0.311,
+    deckY: levels.road,
   });
 }
 fs.writeFileSync(

@@ -22,6 +22,7 @@ type Prototype = {
   section: number;
   count: number;
   route?: string;
+  destination?: string;
 };
 /** Metre-sized articulated vehicles, placed section by section on the mapped track. */
 export function createPublicTransport() {
@@ -112,21 +113,21 @@ export function createPublicTransport() {
     tram: [texture('tram')],
     train: Array.from({ length: 4 }, (_, i) => texture('train', i)),
   };
-  function destination(line: string) {
+  function destination(line: string, name: string) {
     const c = document.createElement('canvas');
     c.width = 512;
     c.height = 96;
     const g = c.getContext('2d')!;
     g.fillStyle = '#171e1b';
     g.fillRect(0, 0, 512, 96);
-    g.fillStyle = '#d2323e';
+    g.fillStyle = line === '3' ? '#2b9364' : '#d2323e';
     g.fillRect(8, 8, 65, 80);
     g.fillStyle = '#ffedbe';
     g.font = 'bold 64px monospace';
     g.fillText(line, 18, 72);
     g.fillStyle = '#ffbe35';
     g.font = '52px monospace';
-    g.fillText('Norrköping', 84, 68);
+    g.fillText(name, 84, 68, 418);
     const t = own(new CanvasTexture(c));
     t.colorSpace = SRGBColorSpace;
     return own(
@@ -138,11 +139,18 @@ export function createPublicTransport() {
       }),
     );
   }
-  const destinations = { '2': destination('2'), '3': destination('3') };
-  const models = ['bus', 'tram2', 'tram3', 'train'];
+  const destinations: Record<string, string> = {
+    tram2Kvarnberget: 'Kvarnberget',
+    tram2Fridvalla: 'Fridvalla',
+    tram3Vidablick: 'Vidablick',
+    tram3Klockaretorpet: 'Klockaretorpet',
+  };
+  const models = ['bus', ...Object.keys(destinations), 'train'];
   for (const model of models) {
     const kind = model.startsWith('tram') ? 'tram' : model;
-    const route = kind === 'tram' ? model.at(-1)! : undefined;
+    const route = kind === 'tram' ? model[4] : undefined;
+    const destinationName = destinations[model];
+    const signMaterial = kind === 'tram' ? destination(route!, destinationName) : undefined;
     for (let section = 0; section < (kind === 'train' ? 4 : kind === 'tram' ? 5 : 1); section++) {
       const isTrain = kind === 'train',
         isTram = kind === 'tram',
@@ -299,7 +307,7 @@ export function createPublicTransport() {
         if (isTram) {
           add(
             new PlaneGeometry(width * 0.77, 0.29),
-            destinations[route as '2' | '3'],
+            signMaterial!,
             0,
             3.12,
             end * (length / 2 - (3.12 - 1.05) * slope + 0.08),
@@ -402,7 +410,7 @@ export function createPublicTransport() {
         group.add(mesh);
         meshes.push(mesh);
       }
-      prototypes.push({ meshes, kind, section, count: 0, route });
+      prototypes.push({ meshes, kind, section, count: 0, route, destination: destinationName });
     }
   }
   const matrix = new Matrix4(),
@@ -417,7 +425,11 @@ export function createPublicTransport() {
       for (const prototype of prototypes) {
         const list = vehicles.filter(
             (v) =>
-              v.kind === prototype.kind && (!prototype.route || v.road.endsWith(prototype.route)),
+              v.kind === prototype.kind &&
+              (!prototype.route ||
+                (v.road.endsWith(prototype.route) &&
+                  (v.destination ?? (prototype.route === '2' ? 'Kvarnberget' : 'Vidablick')) ===
+                    prototype.destination)),
           ),
           ids = list.map((v) => v.id);
         for (const mesh of prototype.meshes) {

@@ -19,6 +19,7 @@ export interface Vehicle {
   stopped: boolean;
   sections?: { pos: Vec3; heading: number }[];
   stop?: string;
+  destination?: string;
 }
 export interface Aircraft {
   id: string;

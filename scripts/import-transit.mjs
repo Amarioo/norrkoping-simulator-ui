@@ -86,8 +86,13 @@ export function buildTransit(raw, extra, project, railHeight) {
       (e) => e.type === 'relation' && e.tags?.route === 'tram' && e.tags.ref === ref,
     );
     const path = [],
-      stops = [];
+      stops = [],
+      destinations = [];
     for (const rel of relations) {
+      destinations.push({
+        pointIndex: Math.max(0, path.length - 1),
+        name: rel.tags.to.replace('Klockaretorpets vändplats', 'Klockaretorpet'),
+      });
       const members = rel.members.filter((m) => m.type === 'way' && !m.role && m.geometry);
       for (let i = 0; i < members.length; i++) {
         let ps = members[i].geometry.map((p) => project([p.lon, p.lat]));
@@ -123,7 +128,7 @@ export function buildTransit(raw, extra, project, railHeight) {
             .slice(1)
             .map((i) => tram.points[i]),
         );
-      routes.push(make('tram-' + ref, 'tram', 'Spårvagn ' + ref, path, stops, true));
+      routes.push(make('tram-' + ref, 'tram', 'Spårvagn ' + ref, path, stops, true, destinations));
     }
   }
   const rail = graph('rail'),
@@ -164,7 +169,7 @@ export function buildTransit(raw, extra, project, railHeight) {
       true,
     ),
   );
-  function make(id, kind, name, path, stops, loop) {
+  function make(id, kind, name, path, stops, loop, destinations = []) {
     const cumulative = [0];
     for (let i = 1; i < path.length; i++)
       cumulative.push(cumulative.at(-1) + distance(path[i - 1], path[i]));
@@ -196,6 +201,7 @@ export function buildTransit(raw, extra, project, railHeight) {
       kind,
       name,
       loop,
+      destinations: destinations.map((d) => ({ distance: cumulative[d.pointIndex], name: d.name })),
       points: path.map((p) => [p[0], railHeight(p) + 0.018, p[1]]),
       stops: mappedStops.sort((a, b) => a.distance - b.distance),
     };

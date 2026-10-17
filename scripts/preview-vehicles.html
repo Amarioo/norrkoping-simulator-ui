@@ -43,7 +43,8 @@
             pos: [0, 0, 0],
             heading: 0,
             speed: 0,
-            road: 'Spårvagn 2',
+            road: 'Spårvagn ' + (new URLSearchParams(location.search).get('line') || '2'),
+            destination: new URLSearchParams(location.search).get('destination') || 'Kvarnberget',
             stopped: true,
             sections,
           },
@@ -57,6 +58,10 @@
         kind === 'train' ? 2.1 : 1.1,
       );
       camera.lookAt(0, 0.07, (-(count - 1) * spacing) / 2);
+      if (new URLSearchParams(location.search).has('front')) {
+        camera.position.set(0.12, 0.15, 0.65);
+        camera.lookAt(0, 0.1, 0);
+      }
       renderer.render(scene, camera);
       window.previewReady = true;
     </script>

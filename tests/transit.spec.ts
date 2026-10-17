@@ -49,11 +49,17 @@ test('collective transport counts, articulated vehicles and following reach the 
     ] as const) {
       const vehicle = before.vehicles.find((v: { kind: string }) => v.kind === kind);
       expect(vehicle.sections?.length ?? 0).toBe(sections);
+      if (kind === 'tram')
+        expect(['Kvarnberget', 'Fridvalla', 'Vidablick', 'Klockaretorpet']).toContain(
+          vehicle.destination,
+        );
       await expect(page.locator('#vehicle-select option[value="' + vehicle.id + '"]')).toHaveCount(
         1,
       );
       await page.selectOption('#vehicle-select', String(vehicle.id));
       await expect(page.locator('.vehicle-inspector')).toContainText(label);
+      if (kind === 'tram')
+        await expect(page.locator('.vehicle-inspector')).toContainText(vehicle.destination);
       await page.getByRole('button', { name: /Följ fordonet/ }).click();
       await expect(page.locator('.map-status')).toContainText('FÖLJER FORDON');
     }

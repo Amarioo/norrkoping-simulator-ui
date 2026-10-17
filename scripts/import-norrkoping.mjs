@@ -2,6 +2,9 @@ import fs from 'node:fs';
 import osmtogeojson from 'osmtogeojson';
 import pc from 'polygon-clipping';
 import { buildTransit } from './import-transit.mjs';
+import { waterFootprints, crossesWater, carveTerrain } from './water-terrain.mjs';
+import { trenchDepth, trenchRing } from '../src/lib/ingelstaTerrain.js';
+import levels from '../src/lib/data/terrain-levels.json' with { type: 'json' };
 const bbox = [58.555, 16.065, 58.65, 16.295],
   origin = [58.58981, 16.18747],
   scale = 25;
@@ -106,6 +109,8 @@ function networkNode(id, pt, y) {
   nodes[i].y = Math.max(nodes[i].y, y);
   return i;
 }
+const geo = osmtogeojson(raw, { flatProperties: true });
+const waterMask = waterFootprints(geo, raw, project, clip);
 for (const e of raw.elements) {
   const p = e.tags ?? {};
   if (e.type === 'node') {
@@ -159,7 +164,17 @@ for (const e of raw.elements) {
           : kind === 'stream'
             ? 3
             : 1.5)) / scale;
-  const elevation = p.bridge && p.bridge !== 'no' ? Math.max(1, Number(p.layer) || 1) * 0.24 : 0;
+  const bridge = !!p.bridge && p.bridge !== 'no';
+  const waterBridge =
+    bridge &&
+    crossesWater(
+      e.geometry.map((q) => project([q.lon, q.lat])),
+      waterMask,
+    );
+  const elevation =
+    bridge && !waterBridge && ![536359154, 93304103, 94010853].includes(e.id)
+      ? Math.max(1, Number(p.layer) || 1) * 0.24
+      : 0;
   const drivable =
     kind === 'road' &&
     !['no', 'private'].includes(p.motorcar ?? p.motor_vehicle ?? p.access) &&
@@ -191,16 +206,16 @@ for (const e of raw.elements) {
       class: p.highway ?? '',
       lanes,
       oneway,
-      bridge: elevation > 0,
+      bridge,
       tunnel: p.tunnel === 'yes',
       way: e.id,
-      yA: 0.071 + elevation,
-      yB: 0.071 + elevation,
+      yA: levels.road + elevation,
+      yB: levels.road + elevation,
     };
     roads.push(road);
     if (drivable) {
-      const from = networkNode(e.nodes[i - 1], a, 0.071 + elevation),
-        to = networkNode(e.nodes[i], b, 0.071 + elevation);
+      const from = networkNode(e.nodes[i - 1], a, levels.road + elevation),
+        to = networkNode(e.nodes[i], b, levels.road + elevation);
       const props = {
         length: round(length),
         speed: round(speed),
@@ -273,16 +288,15 @@ function railHeight(p) {
     const d = dist(p, r.a, r.b);
     if (d < 1.5) rise = Math.max(rise, (r.yA - 0.071) * Math.min(1, (1.5 - d) / 0.8));
   }
-  return 0.071 + rise;
+  return 0.071 + rise - trenchDepth(p);
 }
 for (const r of roads)
   if (r.kind === 'rail' || r.kind === 'tram') {
     r.yA = railHeight(r.a);
     r.yB = railHeight(r.b);
-    r.bridge = r.yA > 0.1 || r.yB > 0.1;
+    r.bridge ||= r.yA > 0.1 || r.yB > 0.1;
   }
 const transitRoutes = buildTransit(raw, extra, project, railHeight);
-const geo = osmtogeojson(raw, { flatProperties: true });
 for (const f of geo.features) {
   const p = f.properties,
     g = f.geometry;
@@ -461,10 +475,18 @@ const meta = {
   query,
   note: 'Mapped footprints, roads, runways and signal locations. Building heights and architectural details may be estimated. F13 flights are fictional.',
 };
+const terrain = carveTerrain(areas, waterMask, clip);
+terrain.ground = terrain.ground.flatMap((a) =>
+  pc.difference(a.rings, [trenchRing]).map((rings) => ({ ...a, rings })),
+);
+terrain.surfaces = terrain.surfaces.flatMap((a) =>
+  a.kind === 'water' ? [a] : pc.difference(a.rings, [trenchRing]).map((rings) => ({ ...a, rings })),
+);
 const result = {
   meta,
   buildings,
-  areas,
+  ground: terrain.ground,
+  areas: terrain.surfaces,
   roads,
   trees: correctedTrees,
   signals,

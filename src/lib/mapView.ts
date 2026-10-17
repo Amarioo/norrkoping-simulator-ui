@@ -18,6 +18,9 @@ import {
   Vector3,
 } from 'three';
 import { cityMap, type MapPolygon, type MapBuilding, type Point } from './mapModel';
+import { trenchPoint, trenchDepth } from './ingelstaTerrain';
+import terrainLevels from './data/terrain-levels.json';
+import { createRiverfrontDetails } from './riverfrontDetails';
 import { createCityBridges } from './cityBridges';
 import { treeProfile } from './treeProfile';
 import { createParkTrees } from './mapVegetation';
@@ -177,6 +180,7 @@ export function createMappedCity() {
   };
   const land = new Batch(),
     water = new Batch(),
+    banks = new Batch(),
     roads = new Batch(),
     walls = new Batch(),
     roofs = new Batch();
@@ -202,8 +206,54 @@ export function createMappedCity() {
     cemetery: 0.022,
     wood: 0.023,
     pitch: 0.035,
-    water: 0.043,
+    water: terrainLevels.water,
   };
+  // A dry rail cutting under Ingelstagatan. Only the mapped road bridge crosses its open centre.
+  for (let u = -6.5; u < 6.49; u += 0.25)
+    for (const [v1, v2] of [
+      [-1.05, -0.73],
+      [-0.73, 0.73],
+      [0.73, 1.05],
+    ]) {
+      const points = [
+        trenchPoint(u, v1),
+        trenchPoint(u + 0.25, v1),
+        trenchPoint(u + 0.25, v2),
+        trenchPoint(u, v2),
+      ];
+      const q = points.map((p) => [p[0], terrainLevels.ground - trenchDepth(p), p[1]]);
+      banks.quad(q[0], q[1], q[2], q[3], new Color(v1 === -0.73 ? '#8b887b' : '#7e8b69'));
+    }
+  for (const poly of cityMap.ground) fill(land, poly, terrainLevels.ground, new Color('#a7ac80'));
+  // Actual cut banks down to the lower water; no opaque ground plane beneath the river.
+  for (const area of cityMap.areas.filter((a) => a.kind === 'water'))
+    for (const ring of area.rings)
+      for (let i = 1; i < ring.length; i++) {
+        const a = ring[i - 1],
+          b = ring[i];
+        const central =
+          (a[0] + b[0]) / 2 > -28 &&
+          (a[0] + b[0]) / 2 < 23 &&
+          (a[1] + b[1]) / 2 > -25 &&
+          (a[1] + b[1]) / 2 < 10;
+        const color = new Color(central ? '#89877c' : '#7d8462');
+        const bottom = terrainLevels.waterbed,
+          top = terrainLevels.bankTop;
+        banks.quad(
+          [a[0], bottom, a[1]],
+          [b[0], bottom, b[1]],
+          [b[0], top, b[1]],
+          [a[0], top, a[1]],
+          color,
+        );
+        banks.quad(
+          [a[0], top, a[1]],
+          [b[0], top, b[1]],
+          [b[0], bottom, b[1]],
+          [a[0], bottom, a[1]],
+          color,
+        );
+      }
   for (const area of [...cityMap.areas].sort((a, b) => levels[a.kind] - levels[b.kind]))
     fill(
       area.kind === 'water' ? water : land,
@@ -216,17 +266,29 @@ export function createMappedCity() {
     if (r.kind === 'road') {
       strip(roads, r.a, r.b, r.width + 0.1, y, new Color('#b1b0a8'), r.yB);
       strip(roads, r.a, r.b, r.width, y + 0.006, new Color('#41494e'), r.yB + 0.006);
-    } else if (r.kind === 'path')
-      strip(
-        roads,
-        r.a,
-        r.b,
-        Math.max(r.width, 0.06),
-        y + 0.007,
-        new Color('#cbbfa4'),
-        r.yB + 0.007,
-      );
-    else if (r.kind === 'stream') strip(water, r.a, r.b, r.width, 0.042, new Color('#4b848c'));
+    } else if (r.kind === 'path') {
+      const mid = [(r.a[0] + r.b[0]) / 2, (r.a[1] + r.b[1]) / 2];
+      const inCut = trenchDepth(r.a) > 0 || trenchDepth(r.b) > 0 || trenchDepth(mid) > 0;
+      const count = inCut ? Math.ceil(Math.hypot(r.b[0] - r.a[0], r.b[1] - r.a[1]) / 0.08) : 1;
+      for (let i = 0; i < count; i++) {
+        const point = (t: number): Point => [
+          r.a[0] + (r.b[0] - r.a[0]) * t,
+          r.a[1] + (r.b[1] - r.a[1]) * t,
+        ];
+        const a = point(i / count),
+          b = point((i + 1) / count);
+        strip(
+          roads,
+          a,
+          b,
+          Math.max(r.width, 0.06),
+          y + ((r.yB - y) * i) / count + 0.007 - (r.bridge ? 0 : trenchDepth(a)),
+          new Color('#cbbfa4'),
+          y + ((r.yB - y) * (i + 1)) / count + 0.007 - (r.bridge ? 0 : trenchDepth(b)),
+        );
+      }
+    } else if (r.kind === 'stream')
+      continue; // Open waterways are part of the carved water mask.
     else {
       const dx = r.b[0] - r.a[0],
         dz = r.b[1] - r.a[1],
@@ -392,6 +454,7 @@ export function createMappedCity() {
       }
     roof(roofs, b, y + 0.015, roofColor);
   }
+  add(banks, own(new MeshStandardMaterial({ vertexColors: true, roughness: 1, side: 2 })));
   add(land, own(new MeshStandardMaterial({ vertexColors: true, roughness: 1, side: 2 })), false);
   add(
     water,
@@ -472,6 +535,8 @@ export function createMappedCity() {
   trunks.castShadow = leaves.castShadow = true;
   trunks.receiveShadow = leaves.receiveShadow = true;
   group.add(trunks, leaves);
+  const riverfront = createRiverfrontDetails();
+  group.add(riverfront.group);
   const bridges = createCityBridges();
   group.add(bridges.group);
   const places = createCityPlaces();
@@ -485,6 +550,7 @@ export function createMappedCity() {
       details.dispose();
       places.dispose();
       bridges.dispose();
+      riverfront.dispose();
       resources.forEach((r) => r.dispose());
       group.clear();
     },

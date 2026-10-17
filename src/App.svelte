@@ -254,7 +254,11 @@
             <h3>
               {VEHICLE_NAMES[city.selected.kind]}
             </h3>
-            <p>{city.selected.road || 'Lokalgata'} · {city.selected.speed.toFixed(0)} km/h</p>
+            <p>
+              {city.selected.road || 'Lokalgata'}{city.selected.destination
+                ? ' → ' + city.selected.destination
+                : ''} · {city.selected.speed.toFixed(0)} km/h
+            </p>
             {#if city.selected.stop}<p>Hållplats: {city.selected.stop}</p>{/if}
             <button class="secondary-button" onclick={() => (follow = String(city.selected!.id))}
               >Följ fordonet ↗</button
@@ -296,7 +300,10 @@
               city.selectedId = Number(e.currentTarget.value) || null;
             }}
             ><option value="">Välj fordon…</option>{#each city.snapshot.vehicles as v (v.id)}<option
-                value={v.id}>#{v.id} · {VEHICLE_NAMES[v.kind]} · {v.road || 'Lokalgata'}</option
+                value={v.id}
+                >#{v.id} · {VEHICLE_NAMES[v.kind]} · {v.road || 'Lokalgata'}{v.destination
+                  ? ' → ' + v.destination
+                  : ''}</option
               >{/each}</select
           >
           <p class="micro-note">
