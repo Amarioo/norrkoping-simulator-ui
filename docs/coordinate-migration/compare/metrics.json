@@ -1,0 +1,92 @@
+[
+ {
+  "view": "airport",
+  "meanAbsDiff": 5.42,
+  "pixelsChangedOver32": 4.72
+ },
+ {
+  "view": "bergsbron",
+  "meanAbsDiff": 5.2,
+  "pixelsChangedOver32": 5.17
+ },
+ {
+  "view": "campus",
+  "meanAbsDiff": 8.59,
+  "pixelsChangedOver32": 9.36
+ },
+ {
+  "view": "f13",
+  "meanAbsDiff": 3.75,
+  "pixelsChangedOver32": 3.3
+ },
+ {
+  "view": "gamlebro",
+  "meanAbsDiff": 7.23,
+  "pixelsChangedOver32": 7.31
+ },
+ {
+  "view": "hamnbron",
+  "meanAbsDiff": 3.35,
+  "pixelsChangedOver32": 3.06
+ },
+ {
+  "view": "industry",
+  "meanAbsDiff": 6.48,
+  "pixelsChangedOver32": 5.63
+ },
+ {
+  "view": "ingelstaBridge",
+  "meanAbsDiff": 7.04,
+  "pixelsChangedOver32": 7.23
+ },
+ {
+  "view": "laxholmsbron",
+  "meanAbsDiff": 4.37,
+  "pixelsChangedOver32": 4.82
+ },
+ {
+  "view": "laxtrappan",
+  "meanAbsDiff": 3.9,
+  "pixelsChangedOver32": 3.83
+ },
+ {
+  "view": "ljura",
+  "meanAbsDiff": 6.06,
+  "pixelsChangedOver32": 5.52
+ },
+ {
+  "view": "overview",
+  "meanAbsDiff": 5.16,
+  "pixelsChangedOver32": 4.06
+ },
+ {
+  "view": "parken",
+  "meanAbsDiff": 2.93,
+  "pixelsChangedOver32": 2.12
+ },
+ {
+  "view": "police",
+  "meanAbsDiff": 4.22,
+  "pixelsChangedOver32": 3.65
+ },
+ {
+  "view": "policeEmblem",
+  "meanAbsDiff": 5.64,
+  "pixelsChangedOver32": 5.81
+ },
+ {
+  "view": "saltangsbron",
+  "meanAbsDiff": 3.36,
+  "pixelsChangedOver32": 2.6
+ },
+ {
+  "view": "station",
+  "meanAbsDiff": 4.07,
+  "pixelsChangedOver32": 2.96
+ },
+ {
+  "view": "underpass",
+  "meanAbsDiff": 4.38,
+  "pixelsChangedOver32": 3.87
+ }
+]

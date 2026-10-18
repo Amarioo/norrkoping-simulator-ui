@@ -1,5 +1,5 @@
-import { terrain } from './terrain';
-import source from './data/norrkoping-map.json' with { type: 'json' };
+import { terrain, type SpanPiece } from './terrain';
+import { cityJson } from './cityData';
 export type Point = [number, number];
 export interface MapPolygon {
   id: string;
@@ -37,6 +37,8 @@ export interface MapRoad {
   lanes: number;
   oneway: number;
   linearProfile?: boolean;
+  /** Engineered spans over underpasses/culverts (terrain.spans), reference heights. */
+  spans?: SpanPiece[];
   yA: number;
   yB: number;
   width: number;
@@ -86,14 +88,18 @@ export interface MapData {
     historic: boolean;
   }[];
 }
+const source = await cityJson<MapData>('map');
 export const cityMap = {
   ...source,
   roads: source.roads.map((r) => ({
     ...r,
-    linearProfile:
-      !!r.bridge ||
-      terrain.bridgeHeight(r.a[0], r.a[1], r.yA) !== undefined ||
-      terrain.bridgeHeight(r.b[0], r.b[1], r.yB) !== undefined,
+    // DTM: linear decks only between two profiled ends; approaches follow the terrain (terrain.ts).
+    linearProfile: terrain.measured
+      ? terrain.linearBetween([r.a[0], r.yA, r.a[1]], [r.b[0], r.yB, r.b[1]])
+      : !!r.bridge ||
+        terrain.bridgeHeight(r.a[0], r.a[1], r.yA) !== undefined ||
+        terrain.bridgeHeight(r.b[0], r.b[1], r.yB) !== undefined,
+    spans: terrain.spans(r.a, r.b),
     yA: terrain.roadHeight(r.a[0], r.a[1], r.yA),
     yB: terrain.roadHeight(r.b[0], r.b[1], r.yB),
   })),
@@ -242,46 +248,57 @@ export interface CityFocus {
   target: [number, number, number];
   position: [number, number, number];
 }
+// Scene axes follow the SWEREF 99 TM grid; overview cameras keep their geographic orientation:
+// 0.28·range towards true east and 0.75·range towards true south of the target.
+const [northX, northZ] = terrain.trueNorth;
 const focus = (label: string, p: Point, range: number): CityFocus => ({
   label,
   target: [p[0], 0, p[1]],
-  position: [p[0] + range * 0.28, range * 0.95, p[1] + range * 0.75],
+  position: [
+    p[0] + range * (0.28 * -northZ - 0.75 * northX),
+    range * 0.95,
+    p[1] + range * (0.28 * northX - 0.75 * northZ),
+  ],
 });
+/**
+ * Camera presets in the SWEREF 99 TM scene frame. Hand-placed values were migrated from the legacy
+ * frame with scripts/geo/legacy-frame.mjs (same geographic target and camera position).
+ */
 export const CITY_VIEWS: Record<string, CityFocus> = {
-  overview: focus('Hela Norrköping', [-18, -55], 420),
-  city: focus('Innerstaden', [-4, 8], 120),
+  overview: focus('Hela Norrköping', [-19, -54.8], 420),
+  city: focus('Innerstaden', [-3.86, 8.08], 120),
   airport: focus(
     'Norrköpings flygplats',
-    [(cityMap.airports[0].start[0] + cityMap.airports[0].end[0]) / 2, 17],
+    [(cityMap.airports[0].start[0] + cityMap.airports[0].end[0]) / 2, 14.36],
     85,
   ),
-  f13: focus('Bråvalla F13', [-195, -92], 95),
+  f13: focus('Bråvalla F13', [-196.97, -88.87], 95),
   policeEmblem: {
     label: 'Polishusets emblem',
-    target: [-28.38, 1.55, -25.37],
-    position: [-27.68, 1.82, -22.97],
+    target: [-28.88, 1.55, -24.93],
+    position: [-28.14, 1.82, -22.54],
   },
   ingelstaBridge: {
     label: 'Ingelstagatans järnvägsbro',
-    target: [-25.2, 0.18, -28.4] as [number, number, number],
-    position: [-21.8, 1.7, -25.8] as [number, number, number],
+    target: [-25.75, 0.18, -28.02] as [number, number, number],
+    position: [-22.29, 1.7, -25.48] as [number, number, number],
   },
   grandHotel: {
     label: 'Grand Hotel',
-    target: [-2.4, 0.42, -14.3] as [number, number, number],
-    position: [-5.0, 1.1, -17.5] as [number, number, number],
+    target: [-2.65, 0.42, -14.29] as [number, number, number],
+    position: [-5.31, 1.1, -17.45] as [number, number, number],
   },
   holmen: {
     label: 'Holmen',
-    target: [-11.7, 0.52, -15] as [number, number, number],
-    position: [-8.4, 1.1, -18.4] as [number, number, number],
+    target: [-11.98, 0.52, -14.83] as [number, number, number],
+    position: [-8.73, 1.1, -18.3] as [number, number, number],
   },
   police: focus('Polishuset', centerOf(named('Polishuset')), 10),
-  kungsgatan: focus('Kungsgatan', [-22, -14], 14),
-  soderleden: focus('Söderleden', [14, 66], 20),
+  kungsgatan: focus('Kungsgatan', [-22.29, -13.65], 14),
+  soderleden: focus('Söderleden', [15.22, 65.89], 20),
   parken: focus('Parken', stadiumCenter, 11),
-  industry: focus('Industrilandskapet', [-17, 3], 22),
-  centrum: focus('Centrum', [2, -5], 30),
+  industry: focus('Industrilandskapet', [-16.98, 3.3], 22),
+  centrum: focus('Centrum', [1.93, -5.05], 30),
   ljura: focus('Ljura / Ljuraparken', centerOf(named('Ljuraparken')), 32),
   station: focus('Resecentrum / Norrköping C', centerOf(named('Norrköpings centralstation')), 9),
   ljuraStop: focus('Hållplats Ljura centrum', project(58.58016, 16.19743), 3),
@@ -293,24 +310,24 @@ export const CITY_VIEWS: Record<string, CityFocus> = {
   ),
   norraPromenaden: {
     label: 'Norra Promenaden · allén',
-    target: [-8, 0.21, -27.2],
-    position: [-1, 0.21, -29.07],
+    target: [-8.49, 0.21, -27.12],
+    position: [-1.51, 0.21, -29.12],
   },
   sodraPromenaden: {
     label: 'Södra Promenaden · allén',
-    target: [-6, 0.21, 22.85],
-    position: [1, 0.21, 24],
+    target: [-5.6, 0.21, 23],
+    position: [1.44, 0.21, 24.03],
   },
-  campus: { label: 'Campus / Industrilandskapet', target: [-24.5, 0.24, 2.2], position: [-18.5, 4.5, -5.5] },
-  bergsbron: { label: 'Bergsbron', target: [-21.3, 0.24, 0.4], position: [-17.5, 1.55, 3.9] },
-  laxholmsbron: focus('Laxholmsbron', [-17.36, 4.23], 2.8),
-  laxtrappan: focus('Spången / laxtrappan', [-9.9, -8.9], 4.5),
-  gamlebro: focus('Gamlebro / Järnbron', [-8.4, 1.87], 2.8),
+  campus: { label: 'Campus / Industrilandskapet', target: [-24.51, 0.24, 2.63], position: [-18.63, 4.5, -5.19] },
+  bergsbron: { label: 'Bergsbron', target: [-21.33, 0.24, 0.77], position: [-17.46, 1.55, 4.21] },
+  laxholmsbron: focus('Laxholmsbron', [-17.32, 4.54], 2.8),
+  laxtrappan: focus('Spången / laxtrappan', [-10.07, -8.75], 4.5),
+  gamlebro: focus('Gamlebro / Järnbron', [-8.38, 2.02], 2.8),
   saltangsbron: {
     label: 'Saltängsbron',
-    target: [-4.7, 0.24, -17.3],
-    position: [-0.5, 1.4, -15.8],
+    target: [-5.01, 0.24, -17.26],
+    position: [-0.77, 1.4, -15.83],
   },
-  hamnbron: { label: 'Hamnbron', target: [15.6, 0.24, -19.4], position: [19, 1.3, -17] },
-  underpass: focus('Ståthögavägen / järnvägsbron', [8, -37], 12),
+  hamnbron: { label: 'Hamnbron', target: [15.3, 0.24, -19.72], position: [18.75, 1.3, -17.38] },
+  underpass: focus('Ståthögavägen / järnvägsbron', [7.37, -37.23], 12),
 };

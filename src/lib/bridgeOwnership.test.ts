@@ -37,7 +37,8 @@ describe('pedestrian bridge network', () => {
     }
   });
   it('keeps connected bridge and approach endpoints at one height despite old layer offsets', () => {
-    for (const point of [[-25.037, .89], [-25.107, 2.312], [-23.102, .131]]) {
+    // SWEREF 99 TM scene frame (legacy [-25.037, .89], [-25.107, 2.312], [-23.102, .131]).
+    for (const point of [[-25.07, 1.329], [-25.115, 2.755], [-23.144, .534]]) {
       const heights = cityMap.roads.filter(r => r.kind === 'path').flatMap(r =>
         [[r.a, r.yA], [r.b, r.yB]].filter(([p]) => (p as number[])[0] === point[0] && (p as number[])[1] === point[1]).map(([,y]) => y as number));
       expect(heights.length).toBeGreaterThan(1);

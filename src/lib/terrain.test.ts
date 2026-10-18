@@ -71,12 +71,27 @@ describe('shared elevation reference', () => {
     expect(lon).toBeCloseTo(16.2, 10);
   });
   it('ships identical elevation input in backend and UI', () => {
-    const backend = JSON.parse(
-      fs
-        .readFileSync('../norrkoping-simulator-backend/src/main/resources/terrain.json', 'utf8')
-        .replace(/^\uFEFF/, ''),
-    );
-    expect(terrain.data).toEqual(backend);
+    const read = (file: string): TerrainDataset =>
+      JSON.parse(fs.readFileSync(file, 'utf8').replace(/^\uFEFF/, ''));
+    const backend = read('../norrkoping-simulator-backend/src/main/resources/terrain.json'),
+      ui = read('src/lib/data/terrain.json');
+    expect(ui).toEqual(backend);
+    // The service keeps all of it except the base64 grids and mesh bits, which it holds decoded.
+    const { activeBase64, ...mesh } = ui.mesh!;
+    expect(terrain.data).toEqual({
+      ...ui,
+      tiles: ui.tiles.map(({ heightsBase64, ...tile }) => (void heightsBase64, tile)),
+      mesh,
+    });
+    const bits = Buffer.from(activeBase64!, 'base64');
+    for (const k of [0, 12345, 777777, 2_000_000, ui.mesh!.columns * ui.mesh!.rows - 1])
+      expect(terrain.surface!.active(k % ui.mesh!.columns, Math.floor(k / ui.mesh!.columns))).toBe(
+        ((bits[k >> 3] >> (k & 7)) & 1) === 1,
+      );
+    const encoded = ui.tiles.find((t) => t.heightsBase64)!,
+      decoded = terrain.tiles.find((t) => t.id === encoded.id)!;
+    const grid = Buffer.from((decoded.heights as Float32Array).buffer);
+    expect(grid.equals(Buffer.from(encoded.heightsBase64!, 'base64'))).toBe(true);
   });
   it('rejects building meshes using another terrain revision', () => {
     expect(() =>

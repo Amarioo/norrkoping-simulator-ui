@@ -7,5 +7,26 @@ dist/
 test-results/
 playwright-report/
 
+# Python bytecode
+__pycache__/
+*.pyc
+
+# Processing workspace (work/).
+# Hand-written study scripts and notes stay in Git; everything they generate
+# (rasters, arrays, study reports, screenshots) stays local. Curated evidence
+# belongs in docs/, runtime data in src/lib/data/. See docs/claude-progress.md
+# ("Git recovery") for the data workflow.
+work/**
+!work/**/
+!work/**/*.py
+!work/**/*.mjs
+!work/**/*.md
+!work/**/*.txt
+# Full app snapshots taken before each step (local before/after reference only).
+work/*/before-app/
+work/*/optionB-app/
+work/*/before-snapshot/
+work/coordinate-migration-backup/
+
 # Raw survey deliveries; preserve metadata locally, publish only with verified licence.
 work/geodata/

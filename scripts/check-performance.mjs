@@ -7,6 +7,8 @@ try {
  const started=Date.now();
  await page.goto(process.env.E2E_BASE_URL||'http://127.0.0.1:5174/',{waitUntil:'domcontentloaded',timeout:120000});
  await page.locator('#city-focus').waitFor({timeout:120000});
+ // Ground, roads and buildings are built in workers; wait until they are in the scene.
+ await page.locator('[data-map-ready="true"]').waitFor({timeout:120000});
  const readyMs=Date.now()-started;
  const results=[];
  for (const view of ['city','parken']) {

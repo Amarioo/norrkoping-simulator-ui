@@ -1,0 +1,79 @@
+{
+ "dtmCrs": {
+  "name": "SWEREF99 TM + RH2000 height",
+  "horizontal": 3006,
+  "vertical": "RH2000 height",
+  "ellipsoid": "GRS 1980",
+  "params": {
+   "Latitude of natural origin": 0.0,
+   "Longitude of natural origin": 15.0,
+   "Scale factor at natural origin": 0.9996,
+   "False easting": 500000.0,
+   "False northing": 0.0
+  },
+  "pixel": [
+   1.0,
+   1.0
+  ],
+  "transform": [
+   1.0,
+   0.0,
+   560000.0,
+   0.0,
+   -1.0,
+   6500000.0
+  ]
+ },
+ "lidarCrs": "ETRS89-SWE [SWEREF 99] TM + RH2000 height",
+ "currentSceneReference": {
+  "crs": "EPSG:3006",
+  "originEasting": 569030,
+  "originNorthing": 6494989,
+  "gridScaleFactor": 0.9996584126,
+  "gridConvergenceDegrees": -1.0134914515,
+  "metresPerUnit": 25,
+  "verticalDatum": "RH2000",
+  "verticalOriginMetres": 0
+ },
+ "osm": {
+  "bbox": [
+   58.555,
+   16.065,
+   58.65,
+   16.295
+  ],
+  "metresPerUnit": 25,
+  "source": "OpenStreetMap contributors",
+  "timestamp": "2026-10-16T13:35:36Z"
+ },
+ "referencePoints": {
+  "count": 54,
+  "worstImplementationErrorMetres": {
+   "published": 0.0005440676503374555,
+   "stac": 3.7679951840907787e-06,
+   "proj": 4.578148006282286e-06
+  },
+  "worstInverseErrorMetres": 0.0005411234727103331
+ },
+ "oldSceneScaleVsGeodesic": {
+  "pairs": 1944,
+  "min": 0.996164780414897,
+  "max": 1.0013352793327581
+ },
+ "newContract": {
+  "crs": "EPSG:3006",
+  "originEasting": 569030.0,
+  "originNorthing": 6494989.0,
+  "originLatitude": 58.58980887139201,
+  "originLongitude": 16.187465218413905,
+  "gridScaleFactor": 0.9996584126756004,
+  "gridConvergenceDegrees": -1.0134914515947502,
+  "projScale": 0.9996584126427868,
+  "projConvergence": 1.0134914514514892
+ },
+ "newSceneScaleVsGeodesic": {
+  "pairs": 2756,
+  "min": 0.9999857113915619,
+  "max": 1.0000200477491261
+ }
+}

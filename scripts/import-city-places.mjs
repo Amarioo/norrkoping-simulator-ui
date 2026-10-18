@@ -2,7 +2,9 @@ import fs from 'node:fs';
 const raw = JSON.parse(fs.readFileSync('scripts/data/norrkoping-places-source.json'));
 const extra = JSON.parse(fs.readFileSync('scripts/data/norrkoping-transit-source.json'));
 const map = JSON.parse(fs.readFileSync('src/lib/data/norrkoping-map.json'));
-const project = (p) => [((p.lon - 16.18747) * 58010) / 25, ((58.58981 - p.lat) * 111133) / 25];
+import { SCENE_REFERENCE, geodeticToScene } from '../src/lib/geo/sweref99tm.js';
+// OSM WGS84 coordinates → SWEREF 99 TM scene frame (see src/lib/geo/sweref99tm.js).
+const project = (p) => geodeticToScene(SCENE_REFERENCE, p.lat, p.lon);
 function frame(ring) {
   let a = ring[0],
     b = ring[1],

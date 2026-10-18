@@ -1,0 +1,514 @@
+{
+ "dev-before": [
+  {
+   "run": 1,
+   "readyMs": 3591,
+   "buildMs": 743,
+   "mapReadyMs": 1829,
+   "triangles": 4860553,
+   "calls": 3390,
+   "geometries": 3675,
+   "heapMB": 160.0,
+   "errors": 0
+  },
+  {
+   "run": 2,
+   "readyMs": 3518,
+   "buildMs": 727,
+   "mapReadyMs": 1819,
+   "triangles": 4860553,
+   "calls": 3390,
+   "geometries": 3675,
+   "heapMB": 160.0,
+   "errors": 0
+  },
+  {
+   "run": 3,
+   "readyMs": 3486,
+   "buildMs": 739,
+   "mapReadyMs": 1829,
+   "triangles": 4860553,
+   "calls": 3390,
+   "geometries": 3675,
+   "heapMB": 135.5,
+   "errors": 0
+  },
+  {
+   "run": 4,
+   "readyMs": 3521,
+   "buildMs": 772,
+   "mapReadyMs": 1856,
+   "triangles": 4860553,
+   "calls": 3390,
+   "geometries": 3675,
+   "heapMB": 152.9,
+   "errors": 0
+  },
+  {
+   "run": 5,
+   "readyMs": 3522,
+   "buildMs": 736,
+   "mapReadyMs": 1807,
+   "triangles": 4860553,
+   "calls": 3390,
+   "geometries": 3675,
+   "heapMB": 136.0,
+   "errors": 0
+  }
+ ],
+ "dev-after": [
+  {
+   "run": 1,
+   "readyMs": 3877,
+   "buildMs": 866,
+   "mapReadyMs": 1964,
+   "triangles": 5086121,
+   "calls": 3473,
+   "geometries": 3758,
+   "heapMB": 134.3,
+   "errors": 0
+  },
+  {
+   "run": 2,
+   "readyMs": 3816,
+   "buildMs": 817,
+   "mapReadyMs": 1908,
+   "triangles": 5086121,
+   "calls": 3473,
+   "geometries": 3758,
+   "heapMB": 166.3,
+   "errors": 0
+  },
+  {
+   "run": 3,
+   "readyMs": 3809,
+   "buildMs": 819,
+   "mapReadyMs": 1918,
+   "triangles": 5086121,
+   "calls": 3473,
+   "geometries": 3758,
+   "heapMB": 159.5,
+   "errors": 0
+  },
+  {
+   "run": 4,
+   "readyMs": 3804,
+   "buildMs": 832,
+   "mapReadyMs": 1925,
+   "triangles": 5086121,
+   "calls": 3473,
+   "geometries": 3758,
+   "heapMB": 131.1,
+   "errors": 0
+  },
+  {
+   "run": 5,
+   "readyMs": 3780,
+   "buildMs": 797,
+   "mapReadyMs": 2034,
+   "triangles": 5086121,
+   "calls": 3473,
+   "geometries": 3758,
+   "heapMB": 163.5,
+   "errors": 0
+  }
+ ],
+ "prod-before": [
+  {
+   "run": 1,
+   "readyMs": 3796,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 118.3,
+   "errors": 0
+  },
+  {
+   "run": 2,
+   "readyMs": 3805,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 115.3,
+   "errors": 0
+  },
+  {
+   "run": 3,
+   "readyMs": 3986,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 109.6,
+   "errors": 0
+  },
+  {
+   "run": 4,
+   "readyMs": 3950,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 113.6,
+   "errors": 0
+  },
+  {
+   "run": 5,
+   "readyMs": 3929,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 115.3,
+   "errors": 0
+  }
+ ],
+ "prod-after": [
+  {
+   "run": 1,
+   "readyMs": 4175,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 116.0,
+   "errors": 0
+  },
+  {
+   "run": 2,
+   "readyMs": 4156,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 116.8,
+   "errors": 0
+  },
+  {
+   "run": 3,
+   "readyMs": 4063,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 115.2,
+   "errors": 0
+  },
+  {
+   "run": 4,
+   "readyMs": 4027,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 116.2,
+   "errors": 0
+  },
+  {
+   "run": 5,
+   "readyMs": 4149,
+   "buildMs": null,
+   "mapReadyMs": null,
+   "triangles": null,
+   "calls": null,
+   "geometries": null,
+   "heapMB": 113.9,
+   "errors": 0
+  }
+ ],
+ "frames": [
+  {
+   "label": "before",
+   "views": {
+    "overview": {
+     "median": 10.6,
+     "p90": 11.4,
+     "mean": 10.75,
+     "triangles": 7330445,
+     "calls": 7444
+    },
+    "city": {
+     "median": 6.1,
+     "p90": 6.9,
+     "mean": 6.2,
+     "triangles": 4860553,
+     "calls": 3390
+    },
+    "campus": {
+     "median": 6,
+     "p90": 6.5,
+     "mean": 6.07,
+     "triangles": 2194431,
+     "calls": 1847
+    },
+    "industry": {
+     "median": 6,
+     "p90": 6.4,
+     "mean": 6.06,
+     "triangles": 1811077,
+     "calls": 625
+    },
+    "parken": {
+     "median": 6.1,
+     "p90": 6.4,
+     "mean": 6.07,
+     "triangles": 1102954,
+     "calls": 988
+    },
+    "kungsgatan": {
+     "median": 6.1,
+     "p90": 6.5,
+     "mean": 6.07,
+     "triangles": 1213980,
+     "calls": 351
+    }
+   }
+  },
+  {
+   "label": "after",
+   "views": {
+    "overview": {
+     "median": 10.6,
+     "p90": 12.8,
+     "mean": 11.07,
+     "triangles": 7630997,
+     "calls": 7548
+    },
+    "city": {
+     "median": 6,
+     "p90": 6.7,
+     "mean": 6.06,
+     "triangles": 5086121,
+     "calls": 3473
+    },
+    "campus": {
+     "median": 6.1,
+     "p90": 6.5,
+     "mean": 6.06,
+     "triangles": 2258072,
+     "calls": 1874
+    },
+    "industry": {
+     "median": 6,
+     "p90": 6.5,
+     "mean": 6.06,
+     "triangles": 1861234,
+     "calls": 654
+    },
+    "parken": {
+     "median": 6,
+     "p90": 6.4,
+     "mean": 6.05,
+     "triangles": 1121925,
+     "calls": 1005
+    },
+    "kungsgatan": {
+     "median": 6,
+     "p90": 6.5,
+     "mean": 6.06,
+     "triangles": 1240863,
+     "calls": 371
+    }
+   }
+  },
+  {
+   "label": "before",
+   "views": {
+    "overview": {
+     "median": 11.9,
+     "p90": 14,
+     "mean": 12.25,
+     "triangles": 7330445,
+     "calls": 7444
+    },
+    "city": {
+     "median": 6,
+     "p90": 6.8,
+     "mean": 6.21,
+     "triangles": 4860553,
+     "calls": 3390
+    },
+    "campus": {
+     "median": 6,
+     "p90": 6.6,
+     "mean": 6.07,
+     "triangles": 2194431,
+     "calls": 1847
+    },
+    "industry": {
+     "median": 6,
+     "p90": 6.4,
+     "mean": 6.04,
+     "triangles": 1811077,
+     "calls": 625
+    },
+    "parken": {
+     "median": 6.1,
+     "p90": 6.4,
+     "mean": 6.06,
+     "triangles": 1102954,
+     "calls": 988
+    },
+    "kungsgatan": {
+     "median": 6,
+     "p90": 6.5,
+     "mean": 6.04,
+     "triangles": 1213980,
+     "calls": 351
+    }
+   }
+  },
+  {
+   "label": "after",
+   "views": {
+    "overview": {
+     "median": 10.7,
+     "p90": 12.1,
+     "mean": 11.02,
+     "triangles": 7630997,
+     "calls": 7548
+    },
+    "city": {
+     "median": 6.1,
+     "p90": 6.9,
+     "mean": 6.17,
+     "triangles": 5086121,
+     "calls": 3473
+    },
+    "campus": {
+     "median": 6.1,
+     "p90": 6.5,
+     "mean": 6.07,
+     "triangles": 2258072,
+     "calls": 1874
+    },
+    "industry": {
+     "median": 6,
+     "p90": 6.4,
+     "mean": 6.06,
+     "triangles": 1861234,
+     "calls": 654
+    },
+    "parken": {
+     "median": 6.1,
+     "p90": 6.4,
+     "mean": 6.04,
+     "triangles": 1121925,
+     "calls": 1005
+    },
+    "kungsgatan": {
+     "median": 6,
+     "p90": 6.4,
+     "mean": 6.07,
+     "triangles": 1240863,
+     "calls": 371
+    }
+   }
+  },
+  {
+   "label": "before",
+   "views": {
+    "overview": {
+     "median": 11.1,
+     "p90": 12.7,
+     "mean": 11.47,
+     "triangles": 7330445,
+     "calls": 7444
+    },
+    "city": {
+     "median": 6.1,
+     "p90": 6.6,
+     "mean": 6.07,
+     "triangles": 4860553,
+     "calls": 3390
+    },
+    "campus": {
+     "median": 6,
+     "p90": 6.5,
+     "mean": 6.06,
+     "triangles": 2194431,
+     "calls": 1847
+    },
+    "industry": {
+     "median": 6.1,
+     "p90": 6.5,
+     "mean": 6.06,
+     "triangles": 1811077,
+     "calls": 625
+    },
+    "parken": {
+     "median": 6,
+     "p90": 6.4,
+     "mean": 6.06,
+     "triangles": 1102954,
+     "calls": 988
+    },
+    "kungsgatan": {
+     "median": 6,
+     "p90": 6.5,
+     "mean": 6.07,
+     "triangles": 1213980,
+     "calls": 351
+    }
+   }
+  },
+  {
+   "label": "after",
+   "views": {
+    "overview": {
+     "median": 11.2,
+     "p90": 12.6,
+     "mean": 11.55,
+     "triangles": 7630997,
+     "calls": 7548
+    },
+    "city": {
+     "median": 6,
+     "p90": 6.6,
+     "mean": 6.06,
+     "triangles": 5086121,
+     "calls": 3473
+    },
+    "campus": {
+     "median": 6,
+     "p90": 6.5,
+     "mean": 6.06,
+     "triangles": 2258072,
+     "calls": 1874
+    },
+    "industry": {
+     "median": 6,
+     "p90": 6.4,
+     "mean": 6.05,
+     "triangles": 1861234,
+     "calls": 654
+    },
+    "parken": {
+     "median": 6.1,
+     "p90": 6.4,
+     "mean": 6.07,
+     "triangles": 1121925,
+     "calls": 1005
+    },
+    "kungsgatan": {
+     "median": 6,
+     "p90": 6.6,
+     "mean": 6.07,
+     "triangles": 1240863,
+     "calls": 371
+    }
+   }
+  }
+ ]
+}

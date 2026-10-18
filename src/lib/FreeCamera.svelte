@@ -5,7 +5,7 @@
   import type { OrbitControls as Controls } from 'three/addons/controls/OrbitControls.js';
   import { PerspectiveCamera, Vector3 } from 'three';
   import { CITY_VIEWS } from './mapModel';
-  import { terrain } from './terrain';
+  import { LEGACY_LEVELS, terrain } from './terrain';
   import { city } from './city.svelte';
   let {
     focus = 'overview',
@@ -15,6 +15,15 @@
   const camera = new PerspectiveCamera(48, 1, 0.015, 2400);
   camera.position.fromArray(CITY_VIEWS.overview.position);
   let controls = $state.raw<Controls>();
+  // Dev only: lets scripts/capture-reference-views.mjs pin absolute camera positions, so before/after
+  // screenshots share the exact camera even where the ground under a preset has changed.
+  if (import.meta.env.DEV)
+    (globalThis as unknown as { __cityCamera: unknown }).__cityCamera = {
+      camera,
+      get controls() {
+        return controls;
+      },
+    };
   const keys = new Set<string>(),
     forward = new Vector3(),
     right = new Vector3(),
@@ -81,6 +90,20 @@
   });
   useTask((dt) => {
     if (!controls) return;
+    // Ground layers are no longer separated by metres of artificial lift, so depth precision matters:
+    // the near plane grows with the camera's height above the terrain (2 % of it), which keeps
+    // overview depth steps at centimetres while street-level views keep the 0.015 near plane.
+    const near = Math.min(
+      10,
+      Math.max(
+        0.015,
+        (camera.position.y - terrain.groundHeight(camera.position.x, camera.position.z)) * 0.02,
+      ),
+    );
+    if (Math.abs(near - camera.near) > camera.near * 0.05) {
+      camera.near = near;
+      camera.updateProjectionMatrix();
+    }
     if (follow) {
       const item =
         follow === 'plane'
@@ -132,10 +155,12 @@
       Math.max(1.4, camera.position.distanceTo(controls.target) * 0.65) *
       (keys.has('shift') ? 3 : 1);
     move.normalize().multiplyScalar(Math.min(dt, 0.05) * speed);
-    const floor = terrain.relativeHeight(
+    // Minimum eye height: 0.103 units (2.6 m) above the street surface, as before the DTM fix.
+    const floor = terrain.placeLegacy(
       camera.position.x + move.x,
       camera.position.z + move.z,
       0.18,
+      LEGACY_LEVELS.street,
     );
     move.y = Math.max(move.y, floor - camera.position.y);
     camera.position.add(move);

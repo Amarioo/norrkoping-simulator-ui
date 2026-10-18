@@ -1,0 +1,122 @@
+[
+ {
+  "view": "airport",
+  "meanAbsDiff": 0.84,
+  "pixelsChangedOver32": 0.12
+ },
+ {
+  "view": "bergsbron",
+  "meanAbsDiff": 3.13,
+  "pixelsChangedOver32": 3.07
+ },
+ {
+  "view": "bollspelaren",
+  "meanAbsDiff": 1.04,
+  "pixelsChangedOver32": 0.24
+ },
+ {
+  "view": "campus",
+  "meanAbsDiff": 2.93,
+  "pixelsChangedOver32": 2.05
+ },
+ {
+  "view": "centrum",
+  "meanAbsDiff": 1.29,
+  "pixelsChangedOver32": 0.32
+ },
+ {
+  "view": "city",
+  "meanAbsDiff": 1.07,
+  "pixelsChangedOver32": 0.12
+ },
+ {
+  "view": "gamlebro",
+  "meanAbsDiff": 5.7,
+  "pixelsChangedOver32": 6.01
+ },
+ {
+  "view": "grandHotel",
+  "meanAbsDiff": 2.67,
+  "pixelsChangedOver32": 2.06
+ },
+ {
+  "view": "hamnbron",
+  "meanAbsDiff": 2.08,
+  "pixelsChangedOver32": 1.47
+ },
+ {
+  "view": "holmen",
+  "meanAbsDiff": 2.49,
+  "pixelsChangedOver32": 2.36
+ },
+ {
+  "view": "industry",
+  "meanAbsDiff": 1.53,
+  "pixelsChangedOver32": 0.49
+ },
+ {
+  "view": "ingelstaBridge",
+  "meanAbsDiff": 1.82,
+  "pixelsChangedOver32": 0.88
+ },
+ {
+  "view": "kungsgatan",
+  "meanAbsDiff": 1.43,
+  "pixelsChangedOver32": 0.48
+ },
+ {
+  "view": "ljura",
+  "meanAbsDiff": 1.05,
+  "pixelsChangedOver32": 0.14
+ },
+ {
+  "view": "ljuraStop",
+  "meanAbsDiff": 1.75,
+  "pixelsChangedOver32": 1.37
+ },
+ {
+  "view": "norraPromenaden",
+  "meanAbsDiff": 1.83,
+  "pixelsChangedOver32": 1.42
+ },
+ {
+  "view": "overview",
+  "meanAbsDiff": 0.44,
+  "pixelsChangedOver32": 0.02
+ },
+ {
+  "view": "parken",
+  "meanAbsDiff": 1.43,
+  "pixelsChangedOver32": 0.71
+ },
+ {
+  "view": "police",
+  "meanAbsDiff": 1.56,
+  "pixelsChangedOver32": 0.75
+ },
+ {
+  "view": "saltangsbron",
+  "meanAbsDiff": 1.72,
+  "pixelsChangedOver32": 1.04
+ },
+ {
+  "view": "sodraPromenaden",
+  "meanAbsDiff": 2.34,
+  "pixelsChangedOver32": 2.32
+ },
+ {
+  "view": "station",
+  "meanAbsDiff": 1.48,
+  "pixelsChangedOver32": 0.33
+ },
+ {
+  "view": "terminal",
+  "meanAbsDiff": 0.72,
+  "pixelsChangedOver32": 0.48
+ },
+ {
+  "view": "underpass",
+  "meanAbsDiff": 1.02,
+  "pixelsChangedOver32": 0.22
+ }
+]

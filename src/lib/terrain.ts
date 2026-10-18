@@ -1,15 +1,64 @@
 import bridgeProfiles from './data/bridge-profiles.json';
-import source from './data/terrain.json';
+import { ShapeUtils, Vector2 } from 'three';
+import { cityJson } from './cityData';
+import { Plane, SurfaceMesh, decodeBits, type Point, type SurfaceMeshData } from './surfaceMesh';
+import {
+  geodeticToScene,
+  sceneToGeodetic,
+  sceneToSweref,
+  swerefToScene,
+  trueNorth,
+} from './geo/sweref99tm.js';
 
+/**
+ * Horizontal scene contract (dataset version 2, shared with TerrainService.kt):
+ * scene = (SWEREF 99 TM − origin) / (metresPerUnit · gridScaleFactor); x east, z south.
+ * See src/lib/geo/sweref99tm.js.
+ */
 export interface GeoReference {
-  originLatitude: number;
-  originLongitude: number;
-  metresPerDegreeLongitude: number;
-  metresPerDegreeLatitude: number;
+  crs: 'EPSG:3006';
+  originEasting: number;
+  originNorthing: number;
+  /** SWEREF 99 TM point scale factor at the origin; makes one unit `metresPerUnit` ground metres. */
+  gridScaleFactor: number;
+  /** True north relative to grid north at the origin, degrees, positive east. */
+  gridConvergenceDegrees: number;
   metresPerUnit: number;
   verticalDatum: 'RH2000';
   verticalOriginMetres: number;
 }
+export const TERRAIN_DATASET_VERSION = 2;
+/** Part [t0, t1] of a network segment that bridges a trench linearly (reference heights y0 → y1). */
+export interface SpanPiece {
+  t0: number;
+  t1: number;
+  y0: number;
+  y1: number;
+}
+/** Reference height of a segment at t inside one of its spans, else undefined. */
+export function spanHeight(spans: SpanPiece[] | undefined, t: number) {
+  if (!spans) return undefined;
+  for (const s of spans)
+    if (t >= s.t0 - 1e-9 && t <= s.t1 + 1e-9)
+      return s.t1 - s.t0 < 1e-12 ? s.y0 : s.y0 + ((s.y1 - s.y0) * (t - s.t0)) / (s.t1 - s.t0);
+  return undefined;
+}
+/**
+ * Levels of the pre-DTM flat scene, in scene units (src/lib/data/terrain-levels.json and the
+ * hand-made models). That scene stacked its layers above a ground plane at −0.02: land cover
+ * 0.003–0.04, building bases 0.045, roads 0.071 with asphalt on top (+0.006). On the DTM those
+ * stacks were 0.5–2.4 m of artificial lift. With the measured terrain every layer at or below the
+ * legacy street surface rests on the DTM; see ELEVATION.md.
+ */
+export const LEGACY_LEVELS = {
+  ground: -0.02,
+  buildingBase: 0.045,
+  road: 0.071,
+  /** Top of the legacy asphalt (road + 0.006): the street surface the city was modelled on. */
+  street: 0.077,
+} as const;
+/** Height of the drawn road surface above a network reference height (yA/yB). */
+export const ROAD_SURFACE = LEGACY_LEVELS.street - LEGACY_LEVELS.road;
 export interface TerrainTile {
   id: string;
   source: string;
@@ -36,6 +85,8 @@ export interface TerrainDataset {
   revision: string;
   reference: GeoReference;
   tiles: TerrainTile[];
+  /** Rendered ground surface of a DTM revision (scripts/prepare-terrain-mesh.py). */
+  mesh?: SurfaceMeshData;
 }
 export interface GroundSample {
   sceneY: number;
@@ -48,17 +99,21 @@ const finite = (n: unknown): n is number => typeof n === 'number' && Number.isFi
 export function validateTerrain(data: TerrainDataset) {
   const r = data.reference;
   if (
-    data.version !== 1 ||
+    data.version !== TERRAIN_DATASET_VERSION ||
     !data.revision ||
     !r ||
+    r.crs !== 'EPSG:3006' ||
     r.verticalDatum !== 'RH2000' ||
     !Object.values(r)
       .filter((v) => typeof v === 'number')
       .every(finite) ||
-    ![r.originLatitude, r.originLongitude, r.verticalOriginMetres].every(finite) ||
-    ![r.metresPerUnit, r.metresPerDegreeLatitude, r.metresPerDegreeLongitude].every(
-      (v) => finite(v) && v > 0,
-    )
+    ![r.originEasting, r.originNorthing, r.gridConvergenceDegrees, r.verticalOriginMetres].every(
+      finite,
+    ) ||
+    ![r.metresPerUnit, r.gridScaleFactor].every((v) => finite(v) && v > 0) ||
+    // SWEREF 99 TM point scale factors lie between 0.9996 and ~1.0012 within Sweden.
+    r.gridScaleFactor < 0.9995 ||
+    r.gridScaleFactor > 1.002
   )
     throw new Error('Invalid terrain coordinate/height reference');
   const ids = new Set<string>();
@@ -94,11 +149,53 @@ export function validateTerrain(data: TerrainDataset) {
       throw new Error(`Invalid terrain tile: ${t.id}`);
     ids.add(t.id);
   }
+  if (!data.revision.startsWith('lm-dtm-')) return;
+  const m = data.mesh,
+    tile = data.tiles.find((t) => t.id === m?.tile);
+  if (
+    !m ||
+    m.kind !== 'rtin' ||
+    !tile ||
+    tile.kind !== 'DTM' ||
+    Math.abs(m.step - tile.step) > 1e-12 ||
+    ![m.x, m.z, ...Object.values(m.tolerancesMetres ?? {})].every(finite) ||
+    !Object.keys(m.tolerancesMetres ?? {}).length ||
+    !Number.isInteger(m.depth) ||
+    m.depth < 1 ||
+    m.depth > 12 ||
+    !Number.isInteger(m.columns) ||
+    !Number.isInteger(m.rows) ||
+    (m.columns - 1) % 2 ** m.depth !== 0 ||
+    (m.rows - 1) % 2 ** m.depth !== 0 ||
+    m.columns < 2 ||
+    m.rows < 2 ||
+    // Mesh nodes are tile nodes: whole-node offset, covering the tile.
+    Math.abs(Math.round((tile.x - m.x) / m.step) - (tile.x - m.x) / m.step) > 1e-6 ||
+    Math.abs(Math.round((tile.z - m.z) / m.step) - (tile.z - m.z) / m.step) > 1e-6 ||
+    m.x > tile.x + 1e-9 ||
+    m.z > tile.z + 1e-9 ||
+    m.x + (m.columns - 1) * m.step < tile.x + (tile.columns - 1) * tile.step - 1e-9 ||
+    m.z + (m.rows - 1) * m.step < tile.z + (tile.rows - 1) * tile.step - 1e-9
+  )
+    throw new Error('Invalid terrain surface mesh');
 }
 /** Shared contract with TerrainService.kt. No vertical exaggeration or procedural terrain. */
+/** A tile without its base64 source grid, once that has been decoded into `heights`. */
+function withoutSourceGrid(t: TerrainTile): TerrainTile {
+  if (t.heightsBase64 === undefined) return t;
+  const tile = { ...t };
+  delete tile.heightsBase64;
+  return tile;
+}
 export class TerrainService {
   readonly tiles: TerrainTile[];
-  constructor(readonly data: TerrainDataset) {
+  /** The dataset as loaded, except for base64 grids, which `tiles` hold decoded. */
+  readonly data: TerrainDataset;
+  private readonly dtm: boolean;
+  /** The rendered ground of a DTM revision; null for the legacy preview data. */
+  readonly surface: SurfaceMesh | null = null;
+  constructor(data: TerrainDataset) {
+    this.dtm = data.revision.startsWith('lm-dtm-');
     const hydrated = data.tiles.map((t) => {
       if (!t.heightsBase64) return t;
       const raw = atob(t.heightsBase64);
@@ -108,9 +205,25 @@ export class TerrainService {
       const view = new DataView(bytes.buffer),
         heights = new Float32Array(t.rows * t.columns);
       for (let i = 0; i < heights.length; i++) heights[i] = view.getFloat32(i * 4, true);
-      return { ...t, heights };
+      return withoutSourceGrid({ ...t, heights });
     });
+    // Keeping the base64 strings as well would hold every grid twice (30 MB for the DTM).
+    this.data = { ...data, tiles: data.tiles.map(withoutSourceGrid) };
+    if (data.mesh) {
+      const mesh = { ...data.mesh };
+      delete mesh.activeBase64;
+      this.data.mesh = mesh;
+    }
     validateTerrain({ ...data, tiles: hydrated });
+    if (this.dtm) {
+      const mesh = data.mesh!;
+      this.surface = new SurfaceMesh(
+        mesh,
+        decodeBits(mesh),
+        hydrated.find((t) => t.id === mesh.tile)!,
+        (metres) => this.toSceneHeight(metres),
+      );
+    }
     this.tiles = hydrated.sort(
       (a, b) =>
         Number(a.kind !== 'DTM') - Number(b.kind !== 'DTM') ||
@@ -119,25 +232,40 @@ export class TerrainService {
         (a.id < b.id ? -1 : a.id > b.id ? 1 : 0),
     );
   }
+  /** Geodetic SWEREF 99 / WGS84 degrees → scene [x, z]. */
   project(lat: number, lon: number): [number, number] {
-    const r = this.data.reference;
-    return [
-      ((lon - r.originLongitude) * r.metresPerDegreeLongitude) / r.metresPerUnit,
-      ((r.originLatitude - lat) * r.metresPerDegreeLatitude) / r.metresPerUnit,
-    ];
+    return geodeticToScene(this.data.reference, lat, lon);
   }
+  /** Scene [x, z] → geodetic [lat, lon] degrees. */
   unproject(x: number, z: number): [number, number] {
-    const r = this.data.reference;
-    return [
-      r.originLatitude - (z * r.metresPerUnit) / r.metresPerDegreeLatitude,
-      r.originLongitude + (x * r.metresPerUnit) / r.metresPerDegreeLongitude,
-    ];
+    return sceneToGeodetic(this.data.reference, x, z);
+  }
+  /** SWEREF 99 TM [easting, northing] → scene [x, z]. */
+  fromSweref(easting: number, northing: number): [number, number] {
+    return swerefToScene(this.data.reference, easting, northing);
+  }
+  /** Scene [x, z] → SWEREF 99 TM [easting, northing]. */
+  toSweref(x: number, z: number): [number, number] {
+    return sceneToSweref(this.data.reference, x, z);
+  }
+  /** True for the measured Lantmäteriet DTM; false for the legacy flat preview data. */
+  get measured() {
+    return this.dtm;
+  }
+  /** Unit vector of true north in scene (x, z); grid north is (0, −1). */
+  get trueNorth(): [number, number] {
+    return trueNorth(this.data.reference);
   }
   toSceneHeight(metres: number) {
     return (metres - this.data.reference.verticalOriginMetres) / this.data.reference.metresPerUnit;
   }
-  sample(x: number, z: number, water = false): GroundSample | null {
-    if (!finite(x) || !finite(z)) throw new Error('Non-finite ground coordinates');
+  /** Tile that produced the latest successful sampleMetres() call. */
+  private lastTile: TerrainTile | null = null;
+  /**
+   * Allocation-free bilinear sample in RH2000 metres, NaN when no tile covers the point.
+   * Called millions of times while the city mesh is built, so it avoids temporary arrays.
+   */
+  private sampleMetres(x: number, z: number, water: boolean) {
     for (const tile of this.tiles) {
       if ((tile.kind === 'water') !== water) continue;
       const u = (x - tile.x) / tile.step,
@@ -147,79 +275,87 @@ export class TerrainService {
         row = Math.min(Math.floor(v), tile.rows - 2);
       const tx = u - col,
         tz = v - row;
-      const indices = [
-        row * tile.columns + col,
-        row * tile.columns + col + 1,
-        (row + 1) * tile.columns + col,
-        (row + 1) * tile.columns + col + 1,
-      ];
-      const weights = [(1 - tx) * (1 - tz), tx * (1 - tz), (1 - tx) * tz, tx * tz];
+      const i0 = row * tile.columns + col,
+        i2 = (row + 1) * tile.columns + col,
+        heights = tile.heights;
+      const h0 = heights[i0],
+        h1 = heights[i0 + 1],
+        h2 = heights[i2],
+        h3 = heights[i2 + 1];
+      const w0 = (1 - tx) * (1 - tz),
+        w1 = tx * (1 - tz),
+        w2 = (1 - tx) * tz,
+        w3 = tx * tz;
+      const f0 = finite(h0),
+        f1 = finite(h1),
+        f2 = finite(h2),
+        f3 = finite(h3);
       // A hole never becomes a zero-height peak or borrows an unrelated edge value.
-      if (indices.some((i, n) => weights[n] > 0 && !finite(tile.heights[i]))) continue;
-      const metresRH2000 = indices.reduce(
-        (h, i, n) => h + (finite(tile.heights[i]) ? tile.heights[i]! : 0) * weights[n],
-        0,
+      if ((w0 > 0 && !f0) || (w1 > 0 && !f1) || (w2 > 0 && !f2) || (w3 > 0 && !f3)) continue;
+      this.lastTile = tile;
+      return (
+        0 +
+        (f0 ? (h0 as number) : 0) * w0 +
+        (f1 ? (h1 as number) : 0) * w1 +
+        (f2 ? (h2 as number) : 0) * w2 +
+        (f3 ? (h3 as number) : 0) * w3
       );
-      return {
-        metresRH2000,
-        sceneY: this.toSceneHeight(metresRH2000),
-        sourceId: tile.id,
-        resolutionMetres: tile.resolutionMetres,
-        quality: tile.kind === 'DTM' ? 'measured-ground' : 'surface-fallback',
-      };
     }
-    return null;
+    return NaN;
+  }
+  sample(x: number, z: number, water = false): GroundSample | null {
+    if (!finite(x) || !finite(z)) throw new Error('Non-finite ground coordinates');
+    const metresRH2000 = this.sampleMetres(x, z, water);
+    if (Number.isNaN(metresRH2000)) return null;
+    const tile = this.lastTile!;
+    return {
+      metresRH2000,
+      sceneY: this.toSceneHeight(metresRH2000),
+      sourceId: tile.id,
+      resolutionMetres: tile.resolutionMetres,
+      quality: tile.kind === 'DTM' ? 'measured-ground' : 'surface-fallback',
+    };
   }
   /** Explicit legacy preview plane; this is NOT an RH2000 observation. */
   waterHeight(x: number, z: number) {
-    return (
-      this.sample(x, z, true)?.sceneY ?? (this.sample(x, z) ? this.groundHeight(x, z) : -0.197)
-    );
+    if (!finite(x) || !finite(z)) throw new Error('Non-finite ground coordinates');
+    const water = this.sampleMetres(x, z, true);
+    if (!Number.isNaN(water)) return this.toSceneHeight(water);
+    return Number.isNaN(this.sampleMetres(x, z, false)) ? -0.197 : this.groundHeight(x, z);
   }
-  get surfaceStep() {
-    return 40 / this.data.reference.metresPerUnit;
-  }
-  private surfaceNodes = new Map<string, number>();
-  private surfaceNode(x: number, z: number) {
-    const key = x + ',' + z;
-    let y = this.surfaceNodes.get(key);
-    if (y === undefined) {
-      const coarse = this.surfaceStep;
-      if (Math.abs(Math.abs(x) - 64) < 1e-8 && Math.abs(z) <= 64) {
-        const z0 = Math.floor(z / coarse) * coarse,
-          t = (z - z0) / coarse;
-        y =
-          (this.sample(x, z0)?.sceneY ?? -0.02) * (1 - t) +
-          (this.sample(x, z0 + coarse)?.sceneY ?? -0.02) * t;
-      } else if (Math.abs(Math.abs(z) - 64) < 1e-8 && Math.abs(x) <= 64) {
-        const x0 = Math.floor(x / coarse) * coarse,
-          t = (x - x0) / coarse;
-        y =
-          (this.sample(x0, z)?.sceneY ?? -0.02) * (1 - t) +
-          (this.sample(x0 + coarse, z)?.sceneY ?? -0.02) * t;
-      } else y = this.sample(x, z)?.sceneY ?? -0.02;
-      this.surfaceNodes.set(key, y);
-    }
-    return y;
-  }
-  /** The same piecewise planar surface used by terrain and ground-bound geometry. */
+  /**
+   * The rendered ground: the adaptive mesh shared by terrain, land cover, roads and ground-level
+   * models (surfaceMesh.ts). Planar within each mesh triangle.
+   */
   surfaceHeight(x: number, z: number) {
-    const step = Math.abs(x) < 64 && Math.abs(z) < 64 ? this.surfaceStep / 4 : this.surfaceStep;
-    const x0 = Math.floor(x / step) * step,
-      z0 = Math.floor(z / step) * step;
-    const u = (x - x0) / step,
-      v = (z - z0) / step;
-    const b = this.surfaceNode(x0 + step, z0),
-      c = this.surfaceNode(x0, z0 + step);
-    return u + v <= 1
-      ? this.surfaceNode(x0, z0) * (1 - u - v) + b * u + c * v
-      : this.surfaceNode(x0 + step, z0 + step) * (u + v - 1) + b * (1 - v) + c * (1 - u);
+    return this.surface ? this.surface.height(x, z) : (this.sample(x, z)?.sceneY ?? -0.02);
+  }
+  /**
+   * Clips a ground-bound triangle (scene x, z) to the surface mesh. Each piece comes with the plane
+   * of the mesh triangle under it, so draped layers are coplanar with the terrain.
+   */
+  drape(a: Point, b: Point, c: Point, emit: (a: Point, b: Point, c: Point, ground: Plane) => void) {
+    if (this.surface) return this.surface.triangles(a, b, c, emit);
+    emit(
+      a,
+      b,
+      c,
+      Plane.through(
+        a,
+        this.groundHeight(...a),
+        b,
+        this.groundHeight(...b),
+        c,
+        this.groundHeight(...c),
+      ),
+    );
   }
   private groundCache = new Map<string, number>();
   groundHeight(x: number, z: number) {
-    const observed = this.sample(x, z);
-    if (observed)
-      return this.data.revision.startsWith('lm-dtm-') ? this.surfaceHeight(x, z) : observed.sceneY;
+    if (!finite(x) || !finite(z)) throw new Error('Non-finite ground coordinates');
+    const observed = this.sampleMetres(x, z, false);
+    if (!Number.isNaN(observed))
+      return this.dtm ? this.surfaceHeight(x, z) : this.toSceneHeight(observed);
     const key = `${x},${z}`;
     const cached = this.groundCache.get(key);
     if (cached !== undefined) return cached;
@@ -261,12 +397,25 @@ export class TerrainService {
     }
     return -0.02;
   }
-  /** Lift legacy local geometry without confusing artistic offsets with surveyed elevations. */
+  /**
+   * Legacy flat-scene conversion: ground + 0.02 maps the legacy ground plane (−0.02) onto the
+   * terrain. Used for camera presets and the non-DTM preview; DTM geometry uses placeLegacy().
+   */
   offset(x: number, z: number) {
     return this.groundHeight(x, z) + 0.02;
   }
   relativeHeight(x: number, z: number, legacyY: number) {
     return legacyY + this.offset(x, z);
+  }
+  /**
+   * Height of a hand-made legacy model point. `standsOn` is the legacy level of the surface the
+   * model was built on (e.g. LEGACY_LEVELS.street for platforms); with the DTM that surface is the
+   * terrain at `base` (default: the ground at x, z), so the model keeps its own vertical design
+   * relative to its support and loses only the old layer lift.
+   */
+  placeLegacy(x: number, z: number, legacyY: number, standsOn: number, base?: number) {
+    if (!this.dtm) return this.relativeHeight(x, z, legacyY);
+    return (base ?? this.groundHeight(x, z)) + legacyY - standsOn;
   }
   bridgeHeight(x: number, z: number, legacyY: number): number | undefined {
     if (!this.data.revision.startsWith('lm-dtm-')) return undefined;
@@ -274,32 +423,107 @@ export class TerrainService {
       [x, z, legacyY].map((v) => v.toFixed(3)).join(',')
     ];
   }
-  roadHeight(x: number, z: number, legacyY: number) {
+  /**
+   * Engineered spans of the segment a→b (bridge-profiles.json `spans`, rules v4): parameter ranges where
+   * an at-grade way crosses an underpass or culvert and its surface bridges the open DTM trench
+   * linearly. Reference heights; oriented a→b whichever way the data stores the segment.
+   */
+  spans(a: Point, b: Point): SpanPiece[] | undefined {
+    if (!this.dtm) return undefined;
+    const key = (p: Point) => `${p[0].toFixed(3)},${p[1].toFixed(3)}`;
+    const data = bridgeProfiles.spans as Record<string, number[][]>;
+    const forward = data[key(a) + '|' + key(b)];
+    if (forward) return forward.map(([t0, t1, y0, y1]) => ({ t0, t1, y0, y1 }));
+    const reverse = data[key(b) + '|' + key(a)];
+    return reverse?.map(([t0, t1, y0, y1]) => ({ t0: 1 - t1, t1: 1 - t0, y0: y1, y1: y0 })).reverse();
+  }
+  /**
+   * Network reference heights follow a straight line only between two profiled ends (a bridge deck);
+   * a segment with one profiled end (an approach) follows the terrain with its end offsets tapered.
+   * Identical to TerrainService.kt.
+   */
+  linearBetween(a: number[], b: number[]) {
+    if (!this.dtm) return true;
     return (
-      this.bridgeHeight(x, z, legacyY) ??
-      this.relativeHeight(
-        x,
-        z,
-        this.data.revision.startsWith('lm-dtm-') ? Math.max(0.071, legacyY) : legacyY,
-      )
+      this.bridgeHeight(a[0], a[2], a[1]) !== undefined &&
+      this.bridgeHeight(b[0], b[2], b[1]) !== undefined
     );
   }
-  /** Infrastructure profiles are distinct from terrain. A surveyed deck wins over ground. */
+  /**
+   * Reference height of the road/rail network at an endpoint; the drawn surface is ROAD_SURFACE
+   * above it. With the DTM the legacy street surface (0.077 above the −0.02 ground, 2.43 m) is
+   * removed from every network height, including the estimated bridge deck profiles, which are
+   * anchored to the same approach-road heights. Legacy rises above the road level (layer lifts of
+   * land bridges, rail ramps at underpasses) are kept: they are elevated structures (Step 4).
+   * Legacy dips below it (the flat-scene Ingelsta cut) are dropped because the DTM has the cut.
+   */
+  roadHeight(x: number, z: number, legacyY: number) {
+    if (!this.dtm) return this.bridgeHeight(x, z, legacyY) ?? this.relativeHeight(x, z, legacyY);
+    return (
+      (this.bridgeHeight(x, z, legacyY) ??
+        this.relativeHeight(x, z, Math.max(LEGACY_LEVELS.road, legacyY))) -
+      (LEGACY_LEVELS.street - LEGACY_LEVELS.ground)
+    );
+  }
+  /**
+   * Lowest rendered ground under a footprint (outer ring), exact for the piecewise-planar surface:
+   * the footprint is triangulated and clipped to the mesh, and the minimum of a plane over each piece
+   * lies at one of its vertices. OSM/Simple 3D Buildings heights are measured from this lowest ground
+   * contact.
+   */
+  footprintGround(rings: number[][][]) {
+    const ring = rings[0].slice();
+    if (ring.length > 1 && ring[0][0] === ring.at(-1)![0] && ring[0][1] === ring.at(-1)![1])
+      ring.pop();
+    let min = Infinity;
+    for (const [x, z] of ring) min = Math.min(min, this.groundHeight(x, z));
+    if (!this.surface || ring.length < 3) return min;
+    const contour = ring.map(([x, z]) => new Vector2(x, z));
+    for (const [i, j, k] of ShapeUtils.triangulateShape(contour, []))
+      this.surface.pieces(
+        [ring[i], ring[j], ring[k]].map(([x, z]) => [x, z] as Point),
+        (piece, plane) => {
+          for (const [x, z] of piece) min = Math.min(min, plane.at(x, z));
+        },
+      );
+    return min;
+  }
+  /**
+   * Network reference height between two network points [x, legacyY, z] (vehicles, rails). A surveyed
+   * deck wins; then engineered spans; then a linear deck between two profiled ends; otherwise the
+   * terrain with the end offsets tapered (rules v4, shared with TerrainService.kt).
+   */
   profileHeight(a: number[], b: number[], t: number, absoluteRH2000?: [number, number]) {
     const u = Math.max(0, Math.min(1, t));
     if (absoluteRH2000)
       return this.toSceneHeight(absoluteRH2000[0] * (1 - u) + absoluteRH2000[1] * u);
-    if (
-      !this.data.revision.startsWith('lm-dtm-') ||
-      this.bridgeHeight(a[0], a[2], a[1]) !== undefined ||
-      this.bridgeHeight(b[0], b[2], b[1]) !== undefined
-    )
-      return this.roadHeight(a[0], a[2], a[1]) * (1 - u) + this.roadHeight(b[0], b[2], b[1]) * u;
-    return this.roadHeight(
-      a[0] * (1 - u) + b[0] * u,
-      a[2] * (1 - u) + b[2] * u,
-      a[1] * (1 - u) + b[1] * u,
+    if (!this.dtm)
+      return this.bridgeHeight(a[0], a[2], a[1]) !== undefined ||
+        this.bridgeHeight(b[0], b[2], b[1]) !== undefined
+        ? this.roadHeight(a[0], a[2], a[1]) * (1 - u) + this.roadHeight(b[0], b[2], b[1]) * u
+        : this.roadHeight(a[0] * (1 - u) + b[0] * u, a[2] * (1 - u) + b[2] * u, a[1] * (1 - u) + b[1] * u);
+    // A span carries the network reference; points above it (rail routes, +0.018) keep their offset.
+    const span = spanHeight(this.spans([a[0], a[2]], [b[0], b[2]]), u);
+    if (span !== undefined)
+      return (
+        span +
+        Math.max(LEGACY_LEVELS.road, a[1]) * (1 - u) +
+        Math.max(LEGACY_LEVELS.road, b[1]) * u -
+        LEGACY_LEVELS.road
+      );
+    const ya = this.roadHeight(a[0], a[2], a[1]),
+      yb = this.roadHeight(b[0], b[2], b[1]);
+    if (this.linearBetween(a, b)) return ya * (1 - u) + yb * u;
+    const x = a[0] * (1 - u) + b[0] * u,
+      z = a[2] * (1 - u) + b[2] * u;
+    return (
+      this.groundHeight(x, z) +
+      (ya - this.groundHeight(a[0], a[2])) * (1 - u) +
+      (yb - this.groundHeight(b[0], b[2])) * u
     );
   }
 }
-export const terrain = new TerrainService(source as TerrainDataset);
+const source = await cityJson<TerrainDataset>('terrain'),
+  hydrationStarted = performance.now();
+export const terrain = new TerrainService(source);
+performance.measure?.('city-data:hydrate-terrain', { start: hydrationStarted });

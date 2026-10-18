@@ -143,8 +143,8 @@ export const PLINTH_SIZE = 13.4;
 export const PLINTH_TOP = 0.14;
 /** Backend hub positions (HUB_HAMNEN / HUB_VRINNEVI). */
 export const HUBS: [number, number][] = [
-  [60, -56],
-  [-18, 62],
+  [59.139, -57.2],
+  [-16.94, 62.445],
 ];
 /** Hub landing pads have radius 7; no structure may stand closer than this. */
 export const HUB_PAD = 7.5;

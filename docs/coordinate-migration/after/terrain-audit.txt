@@ -1,0 +1,31 @@
+active grid == staged prepare-dtm grid: True
+revision hash matches grid: True
+NaN cells: 0 | range m: -20.23 119.11
+lowest cell at scene -238.6 55.8 TM [563067, 6493594]
+
+== whole map
+  5 m grid vs native 1 m, land : n=351770 mean=-0.00 MAE=0.05 RMSE=0.09 p95|e|=0.18 max|e|=4.80 m
+  rendered vs native 1 m, land : n=351770 mean=-0.01 MAE=0.35 RMSE=0.70 p95|e|=1.41 max|e|=31.90 m
+  rendered vs native 1 m, water: n=48097 mean=+0.03 MAE=0.04 RMSE=0.21 p95|e|=0.23 max|e|=4.72 m
+    land slope 0.00-0.05: n=238254 mean=+0.03 MAE=0.19 RMSE=0.39 p95|e|=0.73 max|e|=24.99 m
+    land slope 0.05-0.15: n=80268 mean=-0.03 MAE=0.52 RMSE=0.81 p95|e|=1.68 max|e|=15.27 m
+    land slope 0.15-0.30: n=25115 mean=-0.16 MAE=0.91 RMSE=1.30 p95|e|=2.59 max|e|=31.30 m
+    land slope 0.30-9.00: n=8133 mean=-0.34 MAE=1.53 RMSE=2.27 p95|e|=4.29 max|e|=31.90 m
+
+== fine zone |x|,|z|<64 (10 m mesh)
+  5 m grid vs native 1 m, land : n=288598 mean=-0.00 MAE=0.04 RMSE=0.09 p95|e|=0.16 max|e|=3.99 m
+  rendered vs native 1 m, land : n=288598 mean=-0.00 MAE=0.10 RMSE=0.19 p95|e|=0.36 max|e|=6.17 m
+  rendered vs native 1 m, water: n=11213 mean=+0.04 MAE=0.07 RMSE=0.25 p95|e|=0.45 max|e|=4.56 m
+    land slope 0.00-0.05: n=212219 mean=+0.00 MAE=0.06 RMSE=0.10 p95|e|=0.19 max|e|=3.23 m
+    land slope 0.05-0.15: n=58807 mean=-0.01 MAE=0.15 RMSE=0.23 p95|e|=0.48 max|e|=3.08 m
+    land slope 0.15-0.30: n=12831 mean=-0.02 MAE=0.31 RMSE=0.45 p95|e|=0.92 max|e|=3.83 m
+    land slope 0.30-9.00: n=4741 mean=-0.05 MAE=0.55 RMSE=0.80 p95|e|=1.65 max|e|=6.17 m
+
+== Industrilandskapet + Campus test area
+  5 m grid vs native 1 m, land : n=261616 mean=-0.00 MAE=0.05 RMSE=0.12 p95|e|=0.19 max|e|=3.54 m
+  rendered vs native 1 m, land : n=261616 mean=-0.01 MAE=0.11 RMSE=0.23 p95|e|=0.43 max|e|=5.10 m
+  rendered vs native 1 m, water: n=38384 mean=+0.07 MAE=0.14 RMSE=0.38 p95|e|=0.74 max|e|=5.06 m
+    land slope 0.00-0.05: n=150181 mean=-0.00 MAE=0.07 RMSE=0.11 p95|e|=0.21 max|e|=2.65 m
+    land slope 0.05-0.15: n=84186 mean=-0.01 MAE=0.13 RMSE=0.21 p95|e|=0.43 max|e|=3.72 m
+    land slope 0.15-0.30: n=20041 mean=-0.05 MAE=0.29 RMSE=0.43 p95|e|=0.91 max|e|=3.22 m
+    land slope 0.30-9.00: n=7208 mean=+0.01 MAE=0.48 RMSE=0.74 p95|e|=1.60 max|e|=5.10 m

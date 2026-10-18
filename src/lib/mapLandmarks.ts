@@ -1,4 +1,6 @@
-import { terrain } from './terrain';
+import { LEGACY_LEVELS, terrain } from './terrain';
+import { LAYER_RANK, layeredSurface } from './groundLayers';
+import { groundRectangle } from './placeBuilder';
 import {
   Group,
   Mesh,
@@ -14,6 +16,7 @@ import {
   InstancedMesh,
   Matrix4,
   TextureLoader,
+  type Object3D,
 } from 'three';
 import { cityMap, LANDMARKS, stadiumCenter, pointInRing, type Point } from './mapModel';
 
@@ -89,6 +92,63 @@ export function createLandmarkDetails() {
     return t;
   };
   const at = (name: string) => LANDMARKS.find((p) => p.name === name)!;
+  /**
+   * Vertical support of the top-level objects added since `start`: the legacy level they were
+   * modelled on, and the ground that level now is (default: the ground under each object). Objects
+   * attached to a mapped building use its footprint minimum, like the OSM walls (cityMesh).
+   */
+  const supported = (start: number, standsOn: number, base?: number) => {
+    for (const child of group.children.slice(start))
+      if (child.userData.standsOn === undefined) Object.assign(child.userData, { standsOn, base });
+  };
+  /** A pavement laid exactly on the terrain grid (see groundRectangle), ordered by depth rank. */
+  const pavement = (
+    geometry: ReturnType<typeof groundRectangle>,
+    material: MeshStandardMaterial,
+  ) => {
+    const m = new Mesh(track(geometry), material);
+    m.receiveShadow = true;
+    m.userData.placed = true;
+    group.add(m);
+    return m;
+  };
+  /**
+   * Small fittings along kilometre-long pavements (runway edge lights): instead of one height per
+   * group, every vertex is laid on the terrain (legacy level `standsOn` = the ground). Bakes the
+   * objects added since `start` into world space; the placement loop below leaves them alone.
+   */
+  const drape = (start: number, standsOn: number) => {
+    for (const root of group.children.slice(start)) {
+      if (root.userData.placed) continue;
+      root.updateMatrixWorld(true);
+      const meshes: Mesh[] = [];
+      root.traverse((o: Object3D) => {
+        if (o instanceof Mesh) meshes.push(o);
+      });
+      for (const m of meshes) {
+        const geometry = track(m.geometry.clone().applyMatrix4(m.matrixWorld));
+        const position = geometry.getAttribute('position');
+        for (let i = 0; i < position.count; i++)
+          position.setY(
+            i,
+            terrain.placeLegacy(position.getX(i), position.getZ(i), position.getY(i), standsOn),
+          );
+        geometry.computeBoundingSphere();
+        const baked = new Mesh(geometry, m.material);
+        baked.receiveShadow = true;
+        baked.userData.placed = true;
+        group.add(baked);
+      }
+      root.userData.removed = true;
+    }
+    for (const root of group.children.filter((c) => c.userData.removed)) group.remove(root);
+  };
+  const onBuilding = (start: number, name: string) =>
+    supported(
+      start,
+      LEGACY_LEVELS.buildingBase,
+      terrain.footprintGround(cityMap.buildings.find((b) => b.name === name)!.rings),
+    );
 
   // Idrottsparken: orientation and centre follow the actual OSM pitch.
   const arena = new Group();
@@ -640,6 +700,7 @@ export function createLandmarkDetails() {
   arena.add(northBannerMesh);
 
   // Rådhusets clock tower and copper spire, anchored within the mapped building.
+  let start = group.children.length;
   const hall = at('Rådhuset').position,
     tower = new Group();
   tower.position.set(hall[0], 0, hall[1]);
@@ -684,6 +745,7 @@ export function createLandmarkDetails() {
     tower.add(m);
   }
 
+  onBuilding(start, 'Rådhuset');
   // The churches receive recognisable towers/spires rather than generic cylinders.
   for (const [name, color, height] of [
     ['Matteus kyrka', '#985c47', 3.4],
@@ -692,33 +754,44 @@ export function createLandmarkDetails() {
     ['Gamla vattentornet', '#a96c4e', 2.8],
   ] as const) {
     const p = at(name).position;
+    start = group.children.length;
     if (name === 'Gamla vattentornet') {
       cylinder(group, p[0], 1.4, p[1], 0.53, 2.7, color);
       cylinder(group, p[0], 2.7, p[1], 0.74, 0.5, color);
       cylinder(group, p[0], 3.07, p[1], 0.75, 0.35, '#556468', 0.04);
+      onBuilding(start, name);
       continue;
     }
     const z = p[1] + 0.4;
     box(group, p[0], height * 0.36, z, 0.5, height * 0.72, 0.5, color);
     box(group, p[0], height * 0.72, z, 0.6, 0.08, 0.6, '#b1b1a2');
     cylinder(group, p[0], height * 0.86, z, 0.33, height * 0.28, '#5f7d70', 0, 8);
+    onBuilding(start, name);
   }
+  start = group.children.length;
   const heat = at('Värmekyrkan').position;
   for (const offset of [-0.75, 0.65]) {
     cylinder(group, heat[0] + offset, 1.3, heat[1] - 0.3, 0.11, 2.6, '#9e6651', 0.07);
     cylinder(group, heat[0] + offset, 2.63, heat[1] - 0.3, 0.1, 0.06, '#674b42');
   }
 
+  onBuilding(start, 'Värmekyrkan');
   // Konstmuseet: light portico. Centralbadet: blue outdoor basins in its grounds.
+  start = group.children.length;
   const museum = at('Konstmuseet').position;
   for (let i = 0; i < 6; i++)
     cylinder(group, museum[0] - 0.55 + i * 0.22, 0.34, museum[1] + 0.75, 0.045, 0.6, '#d4cdb6');
   box(group, museum[0], 0.67, museum[1] + 0.75, 1.4, 0.1, 0.3, '#b9ae92');
+  onBuilding(start, 'Norrköpings konstmuseum');
+  start = group.children.length;
   const bath = at('Centralbadet').position;
   box(group, bath[0] + 1.8, 0.07, bath[1] + 1.5, 1, 0.06, 2, '#bad4ce');
   box(group, bath[0] + 1.8, 0.11, bath[1] + 1.5, 0.84, 0.025, 1.85, '#73bac2');
 
+  // Pools and planting beds were modelled from 0.04, on the flat-scene grass: now the ground.
+  supported(start, 0.04);
   // Cactus beds are low planting beds rather than oversized desert cacti.
+  start = group.children.length;
   const park = at('Carl Johans park').position;
   for (let i = 0; i < 6; i++) {
     const x = park[0] - 0.7 + (i % 3) * 0.7,
@@ -736,12 +809,15 @@ export function createLandmarkDetails() {
       );
   }
 
+  supported(start, 0.04);
+  start = group.children.length;
   // Police complex: mapped low wings/courtyards with a taller narrow slab,
   // vertical concrete fins, rooftop plant and solar arrays from the reference.
   const police = cityMap.buildings.find((b) => b.name === 'Polishuset')!;
   const towerPolice = new Group();
-  towerPolice.position.set(-28.72, 0, -26.66);
-  towerPolice.rotation.y = 0.26;
+  // SWEREF 99 TM scene frame (migrated from legacy -28.72, -26.66 / 0.26 rad).
+  towerPolice.position.set(-29.25, 0, -26.22);
+  towerPolice.rotation.y = 0.2775;
   group.add(towerPolice);
   const facade = texture(512, 1024, (c) => {
     c.fillStyle = '#b9c0be';
@@ -777,13 +853,13 @@ export function createLandmarkDetails() {
   badge.position.set(0, 1.55, 1.37);
   towerPolice.add(badge);
   const panelPositions: Point[] = [];
-  for (let x = -31.3; x < -27.3; x += 0.22)
-    for (let z = -27.9; z < -25.15; z += 0.19) {
+  for (let x = -31.85; x < -27.8; x += 0.22)
+    for (let z = -27.48; z < -24.66; z += 0.19) {
       const p: Point = [x, z];
       if (
         pointInRing(p, police.rings[0]) &&
         !police.rings.slice(1).some((r) => pointInRing(p, r)) &&
-        Math.abs(x + 28.72) > 0.5
+        Math.abs(x + 29.25) > 0.5
       )
         panelPositions.push(p);
     }
@@ -796,43 +872,30 @@ export function createLandmarkDetails() {
   );
   const panelMatrix = new Matrix4();
   panelPositions.forEach(([x, z], i) => {
-    panelMatrix.makeRotationY(0.26);
+    panelMatrix.makeRotationY(0.2775);
     panelMatrix.setPosition(x, 0.35, z);
     panels.setMatrixAt(i, panelMatrix);
   });
   group.add(panels);
 
-  // Runways and taxiways use their real mapped orientation and widths.
+  onBuilding(start, 'Polishuset');
+  // Runways and taxiways use their real mapped orientation and widths. Their pavement (taxiway top
+  // 0.0725, runway surface 0.09 in the legacy scene) is the measured ground.
+  start = group.children.length;
   for (const taxi of cityMap.airways.filter((a) => a.kind === 'taxiway'))
     for (let i = 1; i < taxi.points.length; i++) {
       const a = taxi.points[i - 1],
         b = taxi.points[i],
         length = Math.hypot(b[0] - a[0], b[1] - a[1]);
       if (length < 0.005) continue;
-      const angle = Math.atan2(b[0] - a[0], b[1] - a[1]);
-      box(
-        group,
-        (a[0] + b[0]) / 2,
-        0.06,
-        (a[1] + b[1]) / 2,
-        taxi.width,
-        0.025,
-        length,
-        '#545a5a',
-        angle,
-      );
-      box(
-        group,
-        (a[0] + b[0]) / 2,
-        0.076,
-        (a[1] + b[1]) / 2,
-        0.009,
-        0.003,
-        length,
-        '#bca85a',
-        angle,
-      );
+      const angle = Math.atan2(b[0] - a[0], b[1] - a[1]),
+        [cx, cz] = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+      pavement(groundRectangle(cx, cz, angle, taxi.width, length), mat('#545a5a'));
+      pavement(groundRectangle(cx, cz, angle, 0.009, length), mat('#bca85a'));
     }
+  // Taxiway pavement, centre lines and runway surface lie on the DTM, above the apron land cover.
+  layeredSurface(mat('#545a5a'), LAYER_RANK.asphalt);
+  layeredSurface(mat('#bca85a'), LAYER_RANK.marking);
   const taxiJoins = new Map<string, { point: Point; width: number }>();
   for (const taxi of cityMap.airways.filter((a) => a.kind === 'taxiway'))
     for (const point of taxi.points) {
@@ -856,6 +919,8 @@ export function createLandmarkDetails() {
   }
   taxiCaps.receiveShadow = true;
   group.add(taxiCaps);
+  supported(start, 0.0725);
+  start = group.children.length;
   for (const runway of cityMap.airways.filter((a) => a.kind === 'runway')) {
     const a = runway.points[0],
       b = runway.points.at(-1)!,
@@ -864,7 +929,7 @@ export function createLandmarkDetails() {
     air.position.set((a[0] + b[0]) / 2, 0.08, (a[1] + b[1]) / 2);
     air.rotation.y = Math.atan2(b[0] - a[0], b[1] - a[1]);
     group.add(air);
-    const pavement = texture(512, 4096, (c) => {
+    const markings = texture(512, 4096, (c) => {
       c.fillStyle = runway.surface === 'grass' ? '#6f8650' : '#444c50';
       c.fillRect(0, 0, 512, 4096);
       c.strokeStyle = '#dadbd1';
@@ -891,12 +956,17 @@ export function createLandmarkDetails() {
         c.restore();
       }
     });
-    plane(air, runway.width, length, pavement, 0.01);
+    const surface = pavement(
+      groundRectangle(air.position.x, air.position.z, air.rotation.y, runway.width, length),
+      track(new MeshStandardMaterial({ map: markings, roughness: 1 })),
+    );
+    layeredSurface(surface.material as MeshStandardMaterial, LAYER_RANK.asphalt);
     for (const side of [-1, 1])
       for (let d = -length / 2 + 0.5; d < length / 2; d += 2.4)
         box(air, side * (runway.width / 2 + 0.08), 0.03, d, 0.035, 0.035, 0.035, '#e5e6ca');
   }
 
+  drape(start, 0.09);
   // Landmark names float above the real anchors. Non-primary labels appear on closer views.
   const primary = new Set([
     'Idrottsparken',
@@ -942,20 +1012,34 @@ export function createLandmarkDetails() {
     };
     labels.add(m);
   }
+  // Untagged objects (the stadium) were modelled on the legacy street surface.
   for (const child of group.children) {
+    if (child.userData.placed) continue;
+    const standsOn: number = child.userData.standsOn ?? LEGACY_LEVELS.street,
+      base: number | undefined = child.userData.base;
     if (child instanceof InstancedMesh) {
       const transform = new Matrix4();
       for (let i = 0; i < child.count; i++) {
         child.getMatrixAt(i, transform);
-        transform.elements[13] += terrain.offset(
+        transform.elements[13] += terrain.placeLegacy(
           transform.elements[12] + child.position.x,
           transform.elements[14] + child.position.z,
+          0,
+          standsOn,
+          base,
         );
         child.setMatrixAt(i, transform);
       }
       child.instanceMatrix.needsUpdate = true;
       child.computeBoundingSphere();
-    } else child.position.y += terrain.offset(child.position.x, child.position.z);
+    } else
+      child.position.y += terrain.placeLegacy(
+        child.position.x,
+        child.position.z,
+        0,
+        standsOn,
+        base,
+      );
   }
   for (const label of labels.children)
     label.position.y += terrain.offset(label.position.x, label.position.z);

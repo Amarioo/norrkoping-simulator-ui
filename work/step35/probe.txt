@@ -1,0 +1,24 @@
+ALL current n 677 mean 0.66 rmse 3.18 | ground-anchored n 677 mean -0.30 rmse 0.61
+way 27637671 path  n 20 len 25 m | current mean -3.21 rmse 3.23 | ground-anchored mean -0.25 rmse 0.26
+way 59434119 road Gamla Övägen n 48 len 40 m | current mean 4.14 rmse 4.14 | ground-anchored mean 0.06 rmse 0.09
+way 59434120 road Gamla Övägen n 47 len 39 m | current mean 3.55 rmse 3.55 | ground-anchored mean -0.06 rmse 0.07
+way 89643845 rail Södra stambanan n 35 len 135 m | current mean 0.18 rmse 0.19 | ground-anchored mean -0.03 rmse 0.05
+way 89746083 rail  n 7 len 58 m | current mean -0.07 rmse 0.09 | ground-anchored mean -4.68 rmse 4.69
+way 89750177 rail  n 33 len 134 m | current mean -0.22 rmse 0.22 | ground-anchored mean -0.19 rmse 0.19
+way 91517494 path  n 20 len 27 m | current mean -4.83 rmse 4.84 | ground-anchored mean -0.43 rmse 0.44
+way 93304103 path  n 44 len 65 m | current mean -1.16 rmse 1.16 | ground-anchored mean -0.48 rmse 0.50
+way 93356007 road Holmbrogränd n 28 len 22 m | current mean -0.04 rmse 0.22 | ground-anchored mean 0.00 rmse 0.12
+way 94010853 path  n 48 len 63 m | current mean -1.32 rmse 1.32 | ground-anchored mean -0.60 rmse 0.62
+way 95596069 path  n 22 len 36 m | current mean -3.77 rmse 3.77 | ground-anchored mean -0.13 rmse 0.13
+way 95877188 tram  n 22 len 24 m | current mean 2.84 rmse 3.34 | ground-anchored mean -0.11 rmse 0.12
+way 173087128 road  n 13 len 6 m | current mean -0.14 rmse 0.16 | ground-anchored mean -0.10 rmse 0.10
+way 182081653 path Universitetsbron n 24 len 36 m | current mean -1.54 rmse 1.55 | ground-anchored mean -0.70 rmse 0.71
+way 182081883 path  n 7 len 50 m | current mean -1.13 rmse 1.14 | ground-anchored mean -0.84 rmse 0.85
+way 194613410 path Tullhusbron n 60 len 68 m | current mean -1.30 rmse 1.32 | ground-anchored mean -0.72 rmse 0.75
+way 287005987 tram  n 21 len 23 m | current mean 5.80 rmse 5.80 | ground-anchored mean -0.11 rmse 0.12
+way 287145926 rail Södra stambanan n 37 len 135 m | current mean -0.15 rmse 0.15 | ground-anchored mean -0.16 rmse 0.16
+way 287437670 road Hagebygatan n 58 len 37 m | current mean 5.89 rmse 5.89 | ground-anchored mean -0.04 rmse 0.10
+way 288275696 path  n 23 len 24 m | current mean -3.63 rmse 3.65 | ground-anchored mean -0.13 rmse 0.13
+way 336123511 rail Södra stambanan n 29 len 75 m | current mean 5.23 rmse 5.30 | ground-anchored mean -0.11 rmse 0.11
+way 350376441 path  n 6 len 12 m | current mean -2.07 rmse 2.09 | ground-anchored mean -0.99 rmse 1.06
+way 369595744 path  n 25 len 43 m | current mean -0.26 rmse 0.26 | ground-anchored mean -0.11 rmse 0.13

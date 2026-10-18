@@ -1,0 +1,40 @@
+{
+  "readyMs": 3804,
+  "results": [
+    {
+      "view": "city",
+      "last": {
+        "buildMs": 831.6000000238419,
+        "mapReadyMs": 1925.300000011921,
+        "triangles": 5086121,
+        "calls": 3473,
+        "geometries": 3758,
+        "frameMs": 6.100000000000364
+      },
+      "meanFrameMs": 6.080000000000018
+    },
+    {
+      "view": "parken",
+      "last": {
+        "buildMs": 831.6000000238419,
+        "mapReadyMs": 1925.300000011921,
+        "triangles": 1121925,
+        "calls": 1005,
+        "geometries": 3758,
+        "frameMs": 6.100000000000364
+      },
+      "meanFrameMs": 6.060000000000036
+    }
+  ],
+  "metrics": [
+    {
+      "name": "JSHeapUsedSize",
+      "value": 131129288
+    },
+    {
+      "name": "JSHeapTotalSize",
+      "value": 183422976
+    }
+  ],
+  "errors": []
+}

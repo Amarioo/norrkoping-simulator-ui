@@ -1,1 +1,10 @@
-{"center":[-21.088307640001997,-49.34000000000001],"width":1.2400000000000007,"length":3.7,"heading":1.68771767444365,"source":"Estimated from user reference, fitted between OSM pitch footprints"}
+{
+  "center": [
+    -21.995644357545693,
+    -49.07828895310012
+  ],
+  "width": 1.2428009451594193,
+  "length": 3.708357658943427,
+  "heading": 1.705281625215503,
+  "source": "Estimated from user reference, fitted between OSM pitch footprints"
+}

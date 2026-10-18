@@ -1,6 +1,7 @@
 import { PlaneGeometry } from 'three';
 import { PlaceBuilder } from './placeBuilder';
 import { cityMap } from './mapModel';
+import { terrain } from './terrain';
 
 export const RIVERFRONT_IDS = ['way/92413289', 'way/93313347'];
 /** Surveyed footprints with facade proportions interpreted from the user's street photographs. */
@@ -34,10 +35,14 @@ export function createRiverfrontDetails() {
   const [a, c, d] = hotel.rings[0];
   const width = Math.hypot(c[0] - a[0], c[1] - a[1]),
     depth = Math.hypot(d[0] - c[0], d[1] - c[1]);
+  // Both buildings stand on the lowest ground under their mapped footprints (legacy bases 0.075 / 0.025).
+  const hotelBase = terrain.footprintGround(hotel.rings);
   const g = b.local(
     [(a[0] + d[0]) / 2, (a[1] + d[1]) / 2],
     -Math.atan2(c[1] - a[1], c[0] - a[0]),
     0.075,
+    0.075,
+    hotelBase,
   );
   b.box(g, 0, 0.39, 0, width, 0.78, depth, '#cb9668');
   b.box(g, 0, 0.805, 0, width + 0.025, 0.04, depth + 0.025, '#68645a');
@@ -75,7 +80,13 @@ export function createRiverfrontDetails() {
     [Math.PI / 2, depth, width / 2],
     [-Math.PI / 2, depth, width / 2],
   ]) {
-    const face = b.local([g.position.x, g.position.z], g.rotation.y + rotation, 0.075);
+    const face = b.local(
+      [g.position.x, g.position.z],
+      g.rotation.y + rotation,
+      0.075,
+      0.075,
+      hotelBase,
+    );
     const n = Math.max(5, Math.round(length / 0.2));
     for (const y of [0.035, 0.19, 0.69, 0.755, 0.79])
       b.box(face, 0, y, z + 0.006, length + 0.02, 0.012, 0.022, '#a5a08b');
@@ -130,7 +141,8 @@ export function createRiverfrontDetails() {
   const holmen = cityMap.buildings.find((b) => b.id === RIVERFRONT_IDS[1])!;
   const ring = holmen.rings[0],
     h = holmen.height;
-  b.polygon(ring, 0.025, '#d3d0c4', h);
+  const holmenBase = terrain.footprintGround(holmen.rings);
+  b.polygon(ring, 0.025, '#d3d0c4', h, 0.025, holmenBase);
   for (let i = 1; i < ring.length; i++) {
     const a = ring[i - 1],
       c = ring[i],
@@ -138,6 +150,9 @@ export function createRiverfrontDetails() {
     const face = b.local(
       [(a[0] + c[0]) / 2, (a[1] + c[1]) / 2],
       -Math.atan2(c[1] - a[1], c[0] - a[0]),
+      0,
+      0.025,
+      holmenBase,
     );
     for (let floor = 0; floor < 8; floor++) {
       const y = 0.105 + floor * 0.105;
@@ -154,14 +169,20 @@ export function createRiverfrontDetails() {
   const sign = b.local(
     [(ha[0] + hc[0]) / 2, (ha[1] + hc[1]) / 2],
     -Math.atan2(hc[1] - ha[1], hc[0] - ha[0]),
+    0,
+    0.025,
+    holmenBase,
   );
   letters(sign, 'HOLMEN', 0, 0.944, -0.014, len * 0.9, 0.09, Math.PI, '#17487b');
   const xs = ring.map((p) => p[0]),
     zs = ring.map((p) => p[1]);
-  const roof = b.local([
-    (Math.min(...xs) + Math.max(...xs)) / 2,
-    (Math.min(...zs) + Math.max(...zs)) / 2,
-  ]);
+  const roof = b.local(
+    [(Math.min(...xs) + Math.max(...xs)) / 2, (Math.min(...zs) + Math.max(...zs)) / 2],
+    0,
+    0,
+    0.025,
+    holmenBase,
+  );
   b.box(roof, 0, h + 0.06, 0, 0.34, 0.07, 0.25, '#616865');
   return b.finish();
 }

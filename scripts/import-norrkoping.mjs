@@ -5,9 +5,9 @@ import { buildTransit } from './import-transit.mjs';
 import { waterFootprints, crossesWater, carveTerrain } from './water-terrain.mjs';
 import { trenchDepth, trenchRing } from '../src/lib/ingelstaTerrain.js';
 import levels from '../src/lib/data/terrain-levels.json' with { type: 'json' };
+import { SCENE_REFERENCE, geodeticToScene } from '../src/lib/geo/sweref99tm.js';
 const bbox = [58.555, 16.065, 58.65, 16.295],
-  origin = [58.58981, 16.18747],
-  scale = 25;
+  scale = SCENE_REFERENCE.metresPerUnit;
 const query = `[out:json][timeout:180][bbox:${bbox}];(way[building];relation[building];way["building:part"];way[highway];way[railway];way[landuse];relation[landuse];way[leisure];relation[leisure];way[natural=water];relation[natural=water];way[natural=wood];way[natural=coastline];way[waterway];way[aeroway];way["disused:aeroway"];way["abandoned:aeroway"];node[natural=tree];node[highway=traffic_signals];node[aeroway];nwr[amenity=police];);out geom;`;
 let raw;
 if (process.argv[2]) raw = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
@@ -39,23 +39,28 @@ for (const rel of extra.elements.filter((e) => e.type === 'relation'))
       existingWays.add(m.ref);
     }
 const round = (n) => Math.round(n * 1000) / 1000;
-const project = ([lon, lat]) => [
-  round(((lon - origin[1]) * 58010) / scale),
-  round(((origin[0] - lat) * 111133) / scale),
+// WGS84/SWEREF 99 geodetic → SWEREF 99 TM scene frame (src/lib/geo/sweref99tm.js).
+const project = ([lon, lat]) => geodeticToScene(SCENE_REFERENCE, lat, lon).map(round);
+// The geographic bbox is a slightly rotated quadrilateral in the grid-aligned scene frame.
+const corners = [
+  project([bbox[1], bbox[2]]),
+  project([bbox[3], bbox[2]]),
+  project([bbox[3], bbox[0]]),
+  project([bbox[1], bbox[0]]),
 ];
-const nw = project([bbox[1], bbox[2]]),
-  se = project([bbox[3], bbox[0]]),
-  bounds = [nw[0], nw[1], se[0], se[1]];
-const clip = [
-  [
-    [nw[0], nw[1]],
-    [se[0], nw[1]],
-    [se[0], se[1]],
-    [nw[0], se[1]],
-    [nw[0], nw[1]],
-  ],
+const bounds = [
+  Math.min(...corners.map((p) => p[0])),
+  Math.min(...corners.map((p) => p[1])),
+  Math.max(...corners.map((p) => p[0])),
+  Math.max(...corners.map((p) => p[1])),
 ];
-const inside = (p) => p[0] >= nw[0] && p[0] <= se[0] && p[1] >= nw[1] && p[1] <= se[1];
+const clip = [[...corners, corners[0]]];
+// Convex quadrilateral test (corners are clockwise on screen: x east, z south).
+const inside = (p) =>
+  corners.every((a, i) => {
+    const b = corners[(i + 1) % 4];
+    return (b[0] - a[0]) * (p[1] - a[1]) - (b[1] - a[1]) * (p[0] - a[0]) >= 0;
+  });
 const positive = (v) => {
   const n = parseFloat(v);
   return Number.isFinite(n) && n > 0 ? n : undefined;
@@ -316,10 +321,11 @@ for (const f of geo.features) {
       const common = { id: f.id, ...(p.name ? { name: p.name } : {}), rings };
       if (p.building && p.building !== 'no') {
         if (
-          x > -39 &&
-          x < -29 &&
-          z > 20 &&
-          z < 29 &&
+          // Idrottsparken roof footprints (SWEREF 99 TM scene frame).
+          x > -38.7 &&
+          x < -28.5 &&
+          z > 20.5 &&
+          z < 29.7 &&
           (p.building === 'roof' || p.leisure === 'stadium')
         )
           continue;
@@ -331,7 +337,7 @@ for (const f of geo.features) {
               : /industrial|warehouse|retail/.test(p.building)
                 ? 8
                 : 13;
-        const industrial = x < -10 && x > -30 && z > -12 && z < 8,
+        const industrial = x < -9.9 && x > -30.3 && z > -11.9 && z < 8.5,
           police = f.id === 'relation/1356564';
         const h = police
           ? 7
@@ -437,7 +443,7 @@ for (const rings of sea)
     rings: rings.map((r) => r.map((p) => p.map(round))),
   });
 // User-verified correction: no tree avenue on Kungsgatan towards the police complex.
-const kungsgatan = roads.filter((r) => r.name === 'Kungsgatan' && r.a[1] < 2 && r.a[1] > -34);
+const kungsgatan = roads.filter((r) => r.name === 'Kungsgatan' && r.a[1] < 2.39 && r.a[1] > -33.69);
 function dist(p, a, b) {
   const dx = b[0] - a[0],
     dz = b[1] - a[1],
@@ -470,7 +476,10 @@ const meta = {
   timestamp: raw.osm3s?.timestamp_osm_base,
   bbox,
   bounds,
-  origin,
+  clip: clip[0],
+  reference: { ...SCENE_REFERENCE },
+  projection:
+    'Scene = (SWEREF 99 TM − origin) / (metresPerUnit · gridScaleFactor); x east, z south.',
   metresPerUnit: scale,
   query,
   note: 'Mapped footprints, roads, runways and signal locations. Building heights and architectural details may be estimated. F13 flights are fictional.',

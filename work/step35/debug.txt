@@ -1,0 +1,3 @@
+tri y 21.973 at -172.708,8.804 area 0.0 m2; containing: water/1/r36@22.016 holes 0, water/1/r19@21.973 holes 5
+tri y 15.688 at -34.846,7.423 area 0.0 m2; containing: water/1/r32@18.66 holes 0, water/1/r28@15.688 holes 0
+bad 2

@@ -44,7 +44,7 @@ Färgreferenser: [Norrköpings spårväg](https://norrkoping.se/boende-trafik-oc
 
 ## Kartan och modellerna
 
-Snapshot från OpenStreetMap, geografisk ruta 58.555–58.650 N / 16.065–16.295 E, cirka 13,3 × 10,6 km. Den innehåller 12 499 byggnadsformer, 2 881 ursprungliga mark-/vattenytor (delas och sammanfogas vid terrängimport), 84 622 linjesegment och 116 kartlagda signalpunkter. Vägnätet innehåller 38 294 noder och 73 332 riktade länkar. En scenenhet motsvarar 25 meter.
+Snapshot från OpenStreetMap, geografisk ruta 58.555–58.650 N / 16.065–16.295 E, cirka 13,3 × 10,6 km. Den innehåller 12 499 byggnadsformer, 2 881 ursprungliga mark-/vattenytor (delas och sammanfogas vid terrängimport), 84 622 linjesegment och 116 kartlagda signalpunkter. Vägnätet innehåller 38 294 noder och 73 332 riktade länkar. En scenenhet motsvarar 25 meter på marken. Scenen är ett lokalt SWEREF 99 TM-system (EPSG:3006); se avsnittet Koordinatsystem.
 
 Byggnadsformer, gator, grönområden, vatten, banor och taxibanor kommer från kartdata. Parken har plan och läktare. Polishuset på Stockholmsvägen har låga flyglar, gårdar, högdel och solpaneler baserade på referensen. Träden längs den utpekade delen av Kungsgatan är borttagna. Markfärger skiljer gräs, skog, åker, bostäder, verksamhetsmark och vatten.
 
@@ -113,6 +113,21 @@ Utforska-listan har egna vyer för broarna samt Norra och Södra Promenaden i ga
 Ingelstagatans bro vid polishuset har brodäck, räcken och landfästen. Gatan ansluter i marknivå och järnvägen går i en utskuren skärning. Importör och rendering använder samma höjdprofil i `src/lib/ingelstaTerrain.js`; profilen är uppskattad, inte inmätt terräng. Grand Hotel och Holmens kontorshus har egna referensbaserade fasader och återskapade ordskyltar. Välj de tre nya vyerna i Utforska-menyn.
 
 Spårvagnarnas destinationsskyltar följer den aktiva sträckan i OSM-rutten: 2 Kvarnberget/Fridvalla och 3 Vidablick/Klockaretorpet. Backend skickar destination i SSE och byter den när nästa riktning börjar. Det är simulerad trafik, inte aktuella tidtabellsavgångar. Starta om Ktor när transportnätet uppdaterats.
+
+## Koordinatsystem
+
+Kanonisk horisontell referens är SWEREF 99 TM (EPSG:3006). Scenen är ett lokalt system med fast origo i
+E 569 030, N 6 494 989:
+
+    x = (E − 569030)  / (25 · 0.9996584126)   öster
+    z = (6494989 − N) / (25 · 0.9996584126)   söder
+
+0.9996584126 är SWEREF 99 TM:s skalfaktor i origo, så en enhet är 25 meter på marken (±2·10⁻⁵ över kartan).
+Scenens axlar följer SWEREF-rutnätet; sann nord ligger 1,0135° väster om rutnätsnord (`terrain.trueNorth`).
+RH2000-höjder är oförändrade. Gauss–Krüger-implementationen finns i `src/lib/geo/sweref99tm.js` (klient,
+workers, importörer) och `Sweref99Tm.kt` (backend) och är verifierad mot Lantmäteriets publicerade punkter
+(`scripts/geo/verify_projection.py`). Data migrerades 2026-10-18 från den tidigare ekvirektangulära ramen med
+`scripts/geo/migrate-to-sweref.mjs`; se `docs/claude-progress.md`.
 
 ## Terräng och 3D-data
 

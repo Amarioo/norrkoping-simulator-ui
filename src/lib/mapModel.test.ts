@@ -24,15 +24,18 @@ describe('mapped Norrköping', () => {
   it('continues the water through the inner harbour while preserving coastline islands', () => {
     const water = cityMap.areas.filter((a) => a.kind === 'water');
     expect(water.some((a) => insidePolygon(project(58.5955, 16.205), a))).toBe(true);
-    expect(water.some((a) => insidePolygon([67, -57], a))).toBe(false);
+    expect(water.some((a) => insidePolygon([66.135, -58.329], a))).toBe(false);
   });
   it('places Parken southwest of the centre and Ljura southeast at a uniform scale', () => {
-    expect(project(58.58981, 16.18747)).toEqual([0, 0]);
-    expect(stadiumCenter[0]).toBeCloseTo(-33.65, 1);
-    expect(stadiumCenter[1]).toBeCloseTo(24.7, 1);
+    // The scene origin is SWEREF 99 TM E 569030 N 6494989 (geodetic 58.589808871 N, 16.187465218 E).
+    const origin = project(58.58980887139201, 16.187465218413905);
+    expect(origin[0]).toBeCloseTo(0, 6);
+    expect(origin[1]).toBeCloseTo(0, 6);
+    expect(stadiumCenter[0]).toBeCloseTo(-33.29, 1);
+    expect(stadiumCenter[1]).toBeCloseTo(25.34, 1);
     const park = LANDMARKS.find((p) => p.name === 'Ljuraparken')!;
-    expect(park.position[0]).toBeCloseTo(34.88, 1);
-    expect(park.position[1]).toBeCloseTo(40.294, 2);
+    expect(park.position[0]).toBeCloseTo(35.7, 1);
+    expect(park.position[1]).toBeCloseTo(39.752, 2);
     expect(cityMap.meta.metresPerUnit).toBe(25);
   });
   it('retains closed footprints, courtyard holes and finite heights within the map', () => {

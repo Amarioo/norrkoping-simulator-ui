@@ -1,0 +1,26 @@
+{
+  "readyMs": 3805,
+  "results": [
+    {
+      "view": "city",
+      "last": {},
+      "meanFrameMs": null
+    },
+    {
+      "view": "parken",
+      "last": {},
+      "meanFrameMs": null
+    }
+  ],
+  "metrics": [
+    {
+      "name": "JSHeapUsedSize",
+      "value": 115278516
+    },
+    {
+      "name": "JSHeapTotalSize",
+      "value": 165556224
+    }
+  ],
+  "errors": []
+}

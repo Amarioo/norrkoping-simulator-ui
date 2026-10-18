@@ -249,7 +249,8 @@ export function createCityBridges() {
         }
       }
     }
-    const profile = deckProfile(bridge.ring, (x, z) => terrain.relativeHeight(x, z, y));
+    // Fallback without mapped deck segments: the same network rule as the roads (roadHeight).
+    const profile = deckProfile(bridge.ring, (x, z) => terrain.roadHeight(x, z, y));
     b.reprojectTerrain(
       b.group.children.slice(firstRoot),
       (x, z, legacyY) => profile(x, z) + legacyY - y,
@@ -259,6 +260,51 @@ export function createCityBridges() {
   // Only explicitly mapped bridges without a detailed model get generic supports.
   const surface = new Group();
   b.group.add(surface);
+  // Engineered spans (terrain.spans: an at-grade way over an underpass or culvert) get edge fascias,
+  // never piers: the structure below (tunnel roof, culvert, abutments) is not mapped.
+  for (const r of cityMap.roads)
+    for (const s of r.spans ?? []) {
+      const dx = r.b[0] - r.a[0],
+        dz = r.b[1] - r.a[1],
+        len = Math.hypot(dx, dz);
+      if ((s.t1 - s.t0) * len < 0.02) continue;
+      const nx = -dz / len,
+        nz = dx / len,
+        kerb = r.kind === 'road' ? r.width / 2 + 0.02 : Math.max(r.width, 0.06) / 2 + 0.01;
+      for (const side of [-1, 1])
+        b.beam(
+          surface,
+          [r.a[0] + dx * s.t0 + nx * side * kerb, s.y0 - 0.013, r.a[1] + dz * s.t0 + nz * side * kerb],
+          [r.a[0] + dx * s.t1 + nx * side * kerb, s.y1 - 0.013, r.a[1] + dz * s.t1 + nz * side * kerb],
+          0.005,
+          '#b5b1a6',
+        );
+    }
+  // Generic piers are an estimate (Step 4 reconstructs bridges from LiDAR): none for a bridge way of at
+  // most 30 m (a single span between abutments), otherwise about every 20 m, and never on another
+  // way's corridor (they would stand on the road, track or path passing below).
+  const wayLength = new Map<number | undefined, number>();
+  for (const seg of genericBridgeSegments)
+    wayLength.set(seg.way, (wayLength.get(seg.way) ?? 0) + Math.hypot(seg.b[0] - seg.a[0], seg.b[1] - seg.a[1]));
+  const corridors = new Map<number, typeof cityMap.roads>();
+  for (const r of cityMap.roads) {
+    if (r.bridge || r.kind === 'stream') continue;
+    for (let i = Math.floor(Math.min(r.a[0], r.b[0])); i <= Math.floor(Math.max(r.a[0], r.b[0])); i++)
+      for (let j = Math.floor(Math.min(r.a[1], r.b[1])); j <= Math.floor(Math.max(r.a[1], r.b[1])); j++) {
+        const k = i * 100003 + j;
+        if (!corridors.has(k)) corridors.set(k, []);
+        corridors.get(k)!.push(r);
+      }
+  }
+  const onCorridor = (x: number, z: number, way: number | undefined) =>
+    (corridors.get(Math.floor(x) * 100003 + Math.floor(z)) ?? []).some((r) => {
+      if (r.way === way) return false;
+      const dx = r.b[0] - r.a[0],
+        dz = r.b[1] - r.a[1],
+        l2 = dx * dx + dz * dz || 1;
+      const t = Math.max(0, Math.min(1, ((x - r.a[0]) * dx + (z - r.a[1]) * dz) / l2));
+      return Math.hypot(x - r.a[0] - dx * t, z - r.a[1] - dz * t) < Math.max(r.width, 0.06) / 2 + 0.04;
+    });
   for (const seg of genericBridgeSegments) {
     const dx = seg.b[0] - seg.a[0],
       dz = seg.b[1] - seg.a[1],
@@ -299,14 +345,15 @@ export function createCityBridges() {
       }
       continue; // Do not invent rows of piers for unmapped pedestrian structures.
     }
-    const piers = Math.max(1, Math.ceil(len / 0.36));
+    if ((wayLength.get(seg.way) ?? 0) <= 1.2) continue;
+    const piers = Math.max(1, Math.ceil(len / 0.8));
     for (let k = 0; k <= piers; k++) {
       const t = k / piers,
         x = seg.a[0] + dx * t,
         z = seg.a[1] + dz * t,
         y = yA + (yB - yA) * t;
       const ground = terrain.groundHeight(x, z);
-      if (y - 0.03 - ground < 0.06) continue;
+      if (y - 0.03 - ground < 0.06 || onCorridor(x, z, seg.way)) continue;
       const inr = track ? 0.08 : (seg.width / 2) * 0.62,
         h = y - 0.03 - ground;
       for (const side of [-1, 1])

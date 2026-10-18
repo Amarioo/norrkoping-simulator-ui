@@ -14,7 +14,14 @@
     showLabels = true,
     follow = $bindable(''),
     travel = $bindable(0),
-  }: { focus?: string; showLabels?: boolean; follow?: string; travel?: number } = $props();
+    mapReady = $bindable(false),
+  }: {
+    focus?: string;
+    showLabels?: boolean;
+    follow?: string;
+    travel?: number;
+    mapReady?: boolean;
+  } = $props();
   interactivity();
   const { renderer } = useThrelte();
   const buildStarted = performance.now();
@@ -23,7 +30,25 @@
     transport = createTransportModels(),
     signals = createTrafficSignals();
   const buildMs = performance.now() - buildStarted;
+  // Ground, roads and buildings are built in workers and arrive after the first frames.
+  let mapReadyMs: number | null = null;
+  view.ready.then(
+    () => {
+      mapReadyMs = performance.now() - buildStarted;
+      mapReady = true;
+    },
+    (error) => console.error('[city] map geometry failed', error),
+  );
+  // Development only: `?inspect=infra` marks terrain/infrastructure defects (inspectInfra.ts).
+  let inspector: { group: import('three').Group; dispose(): void } | null = $state(null);
+  if (import.meta.env.DEV && new URLSearchParams(location.search).get('inspect') === 'infra')
+    view.ready.then(() =>
+      import('./inspectInfra').then((m) => {
+        inspector = m.createInfraInspector();
+      }),
+    );
   onDestroy(() => {
+    inspector?.dispose();
     view.dispose();
     transport.dispose();
     transit.dispose();
@@ -38,6 +63,7 @@
     if (import.meta.env.DEV) {
       (globalThis as unknown as { __cityPerformance: unknown }).__cityPerformance = {
         buildMs,
+        mapReadyMs,
         triangles: renderer.info.render.triangles,
         calls: renderer.info.render.calls,
         geometries: renderer.info.memory.geometries,
@@ -86,7 +112,7 @@
   args={['#d9efff', '#8b9575', 1.1]}
 /><T is={sun} />
 <!-- Ground and river cutouts are rendered together by mapView. -->
-<T is={view.group} /><T is={transport.group} onclick={pick} /><T is={signals.group} /><T
+<T is={view.group} />{#if inspector}<T is={inspector.group} />{/if}<T is={transport.group} onclick={pick} /><T is={signals.group} /><T
   is={transit.group}
   onclick={pick}
 />

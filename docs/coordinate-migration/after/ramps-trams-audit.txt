@@ -1,0 +1,38 @@
+== Non-bridge segments whose rendered grade departs from the DTM grade
+  road  segs=39419 excess grade >2%: 8180  >5%: 2045  >10%: 451  >20%: 110
+  path  segs=34438 excess grade >2%: 11357  >5%: 3887  >10%: 1070  >20%: 164
+  tram  segs=2156 excess grade >2%: 120  >5%: 11  >10%: 1  >20%: 0
+  rail  segs=2590 excess grade >2%: 430  >5%: 94  >10%: 18  >20%: 1
+  worst 20:
+    road  way  270848408                    L=  4.4 m rendered +140.0% DTM   -0.4% | offset above DTM A +2.36 B +8.50 | legacyY 0.071/0.311 | 58.58853,16.19134
+    road  way   95275162 Hagebygatan        L=  5.6 m rendered +108.4% DTM   -0.1% | offset above DTM A +2.28 B +8.34 | legacyY 0.071/0.311 | 58.57642,16.19890
+    road  way   91247987 Bravikenvägen      L=  8.5 m rendered  -80.5% DTM   -1.1% | offset above DTM A +5.62 B -1.16 | legacyY 0.311/0.071 | 58.64737,16.17239
+    road  way  257600150                    L= 24.6 m rendered  +81.7% DTM   +7.1% | offset above DTM A -16.27 B +2.03 | legacyY 0.071/0.071 | 58.57945,16.08368
+    road  way  984598458 Badvägen           L=  8.7 m rendered  -74.1% DTM   -0.4% | offset above DTM A +8.73 B +2.30 | legacyY 0.311/0.071 | 58.59459,16.07627
+    road  way  257600150                    L= 39.1 m rendered  -52.3% DTM   +4.3% | offset above DTM A +2.03 B -20.11 | legacyY 0.071/0.071 | 58.57928,16.08396
+    road  way  257600150                    L= 15.7 m rendered  -41.1% DTM   +8.3% | offset above DTM A -8.51 B -16.27 | legacyY 0.071/0.071 | 58.57951,16.08343
+    road  way   27201820 Marieborgsvägen    L= 13.7 m rendered  +34.2% DTM  -12.2% | offset above DTM A +0.54 B +6.89 | legacyY 0.071/0.311 | 58.62020,16.17547
+    road  way   93320320                    L=  8.7 m rendered  +45.6% DTM   -0.4% | offset above DTM A +0.86 B +4.85 | legacyY 0.071/0.311 | 58.62282,16.22149
+    path  way   96856934                    L=  5.9 m rendered  +39.2% DTM   -2.5% | offset above DTM A -2.29 B +0.16 | legacyY 0.071/0.071 | 58.62666,16.15610
+    road  way  257600150                    L= 35.3 m rendered  +44.0% DTM   +2.8% | offset above DTM A -20.11 B -5.55 | legacyY 0.071/0.071 | 58.57900,16.08435
+    road  way    4370336                    L= 13.0 m rendered  -41.1% DTM   -1.7% | offset above DTM A +5.69 B +0.59 | legacyY 0.311/0.071 | 58.64464,16.16358
+    road  way    8299583 Rydsätersvägen     L= 16.8 m rendered  +38.3% DTM   +4.0% | offset above DTM A -1.43 B +4.33 | legacyY 0.071/0.311 | 58.58976,16.08108
+    road  way   96437142                    L= 17.8 m rendered  -20.7% DTM  +13.2% | offset above DTM A +8.19 B +2.16 | legacyY 0.311/0.071 | 58.57446,16.21379
+    path  way  278634777                    L=  3.3 m rendered   -6.3% DTM  -40.1% | offset above DTM A +2.47 B +3.60 | legacyY 0.071/0.071 | 58.61076,16.15222
+    path  way   27637477                    L=  9.8 m rendered  +14.3% DTM  +45.9% | offset above DTM A +5.45 B +2.36 | legacyY 0.071/0.071 | 58.57478,16.18510
+    path  way  278634777                    L=  3.4 m rendered   -6.5% DTM  -37.6% | offset above DTM A +4.94 B +6.01 | legacyY 0.071/0.071 | 58.61079,16.15234
+    road  way   26546928                    L= 27.3 m rendered  -29.9% DTM   +1.1% | offset above DTM A +8.10 B -0.37 | legacyY 0.311/0.071 | 58.62660,16.15700
+    path  way  278634777                    L=  4.5 m rendered   -5.7% DTM  -35.7% | offset above DTM A +3.60 B +4.94 | legacyY 0.071/0.071 | 58.61078,16.15227
+    path  way   97724695                    L=  9.2 m rendered   +1.5% DTM  -28.1% | offset above DTM A +0.70 B +3.42 | legacyY 0.071/0.071 | 58.58781,16.21001
+  segments carrying legacy elevation >0.1 (layer x 6 m / rail ramps) while not tagged bridge: 127; excess grade >5%: 115
+
+== Rail vehicles: backend vehicle origin minus rendered rail top (nearest track segment), metres
+  tram  tram-2                       off-bridge: n=5423 mean=+0.05 MAE=0.05 RMSE=0.06 p95|e|=0.05 max|e|=1.52 m
+                                      on-bridge: n=180 mean=+0.12 MAE=2.25 RMSE=2.62 p95|e|=5.04 max|e|=6.06 m
+                                      max height change between 4 m samples: 3.54 m
+  tram  tram-3                       off-bridge: n=4298 mean=+0.05 MAE=0.05 RMSE=0.06 p95|e|=0.05 max|e|=1.52 m
+                                      on-bridge: n=109 mean=+0.40 MAE=1.62 RMSE=1.73 p95|e|=2.29 max|e|=2.54 m
+                                      max height change between 4 m samples: 1.48 m
+  train pendeln                      off-bridge: n=4006 mean=+0.02 MAE=0.09 RMSE=0.25 p95|e|=0.40 max|e|=3.73 m
+                                      on-bridge: n=305 mean=-0.93 MAE=2.51 RMSE=3.16 p95|e|=6.93 max|e|=7.13 m
+                                      max height change between 4 m samples: 2.64 m

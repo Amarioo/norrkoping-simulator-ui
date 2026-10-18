@@ -4,6 +4,11 @@ import data from './data/city-places.json';
 import training from './data/training-pitch.json';
 import { RIVERFRONT_IDS } from './riverfrontDetails';
 import { cityMap } from './mapModel';
+import { terrain } from './terrain';
+
+/** Lowest ground under a mapped building (detailed models replace its OSM walls). */
+const footprint = (id: string) =>
+  terrain.footprintGround(cityMap.buildings.find((b) => b.id === id)!.rings);
 export const DETAILED_BUILDING_IDS = new Set([
   ...RIVERFRONT_IDS,
   'way/102030313',
@@ -31,7 +36,7 @@ export function createCityPlaces() {
       w = Math.max(0.075, p.width),
       l = p.length;
     const g = b.local(p.center, p.heading, 0.083);
-    if (p.polygon) b.polygon(p.ring, 0.077, '#b9b7ab', rail ? 0.022 : 0.014);
+    if (p.polygon) b.drape(b.polygon(p.ring, 0.077, '#b9b7ab', rail ? 0.022 : 0.014));
     else b.box(g, 0, 0, 0, w, 0.02, l, '#b9b7ab');
     for (const side of [-1, 1]) {
       b.box(g, side * (w / 2 - 0.015), 0.018, 0, 0.012, 0.003, l * 0.94, '#eee9d0');
@@ -102,10 +107,18 @@ export function createCityPlaces() {
         '#525653',
       );
     }
+    // Platforms follow the street or track gradient under them.
+    b.drape(g);
   }
   // Norrköping Central: pale masonry, rusticated base, arched windows, slate roofs and central clock pavilion.
   const station = data.buildings.find((x) => x.id === 102030313)!;
-  const sg = b.local(station.center, station.heading - Math.PI / 2, 0.06),
+  const sg = b.local(
+      station.center,
+      station.heading - Math.PI / 2,
+      0.06,
+      0.06,
+      footprint('way/102030313'),
+    ),
     sw = station.length;
   const facade = b.canvas(1536, 512, (c) => {
     c.fillStyle = '#e9dfc8';
@@ -190,7 +203,13 @@ export function createCityPlaces() {
   }
   // Airport terminal, blue glazed entrance, low wings, apron parking guidance and landside parking.
   const terminal = data.buildings.find((x) => x.id === 101513457)!;
-  const ag = b.local(terminal.center, terminal.heading + Math.PI / 2, 0.065),
+  const ag = b.local(
+      terminal.center,
+      terminal.heading + Math.PI / 2,
+      0.065,
+      0.065,
+      footprint('way/101513457'),
+    ),
     aw = terminal.length;
   b.box(ag, 0, 0.135, 0, aw, 0.27, 1.05, '#aebfc1');
   b.box(ag, 0, 0.285, 0, aw + 0.04, 0.035, 1.1, '#3d484d');
@@ -251,7 +270,8 @@ export function createCityPlaces() {
     }
   // Bollspelaren: two mapped football pitches, a small training pitch from the reference and the ice rink.
   function football(center: number[], heading: number, w: number, l: number, training = false) {
-    const g = b.local(center, heading, 0.075);
+    // The playing surface (0.006 above the frame) lies on the measured ground.
+    const g = b.local(center, heading, 0.075, 0.081);
     const pitch = b.canvas(680, 1050, (c) => {
       for (let i = 0; i < 14; i++) {
         c.fillStyle = training ? (i % 2 ? '#496448' : '#536c4b') : i % 2 ? '#3e7c4d' : '#478751';
@@ -326,8 +346,9 @@ export function createCityPlaces() {
         for (const z of [-1.5, -0.7, 0.1]) b.pole(g, x + 0.23, 0.11, z, 0.004, 0.22, '#596265');
         b.sign(g, 'BOLLSPELAREN', x + 0.08, 0.2, -1.61, 0.3, 0.05, Math.PI, '#294b3c', '#fff4d6');
       }
+      b.drape(g);
     } else {
-      const g = b.local(p.center, p.heading, 0.075);
+      const g = b.local(p.center, p.heading, 0.075, 0.08);
       const ice = b.canvas(1024, 512, (c) => {
         c.fillStyle = '#d6ded7';
         c.fillRect(0, 0, 1024, 512);
@@ -352,8 +373,9 @@ export function createCityPlaces() {
       b.surface(g, p.width, p.length, 0.005, ice);
       for (const side of [-1, 1])
         b.box(g, (side * p.width) / 2, 0.03, 0, 0.012, 0.06, p.length, '#dfded4');
+      b.drape(g);
     }
   }
-  football(training.center, training.heading, training.width, training.length, true);
+  b.drape(football(training.center, training.heading, training.width, training.length, true));
   return b.finish();
 }

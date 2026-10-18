@@ -8,7 +8,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'work/geodata/python'))
 import laspy
 import numpy as np
-from pyproj import CRS, Transformer
+from pyproj import CRS
 from scipy.ndimage import distance_transform_edt, map_coordinates
 
 NATIVE_STEP = 2.0
@@ -97,24 +97,23 @@ def main():
     columns,rows = math.ceil((x1-x0)/step)+1,math.ceil((z1-z0)/step)+1
     scene_ground = np.full((rows,columns),np.nan,dtype=np.float32)
     scene_water = np.full_like(scene_ground,np.nan)
-    to_geo = Transformer.from_crs(3006,4326,always_xy=True)
-    to_native = Transformer.from_crs(4326,3006,always_xy=True)
+    if ref.get('crs') != 'EPSG:3006':
+        raise ValueError('terrain.json is not in the SWEREF 99 TM scene frame')
+    # Scene contract (src/lib/geo/sweref99tm.js): E = E0 + x*unit, N = N0 - z*unit.
+    unit = ref['metresPerUnit']*ref['gridScaleFactor']
     reports = []
     for feature in catalog['features']:
         ground,water,stats = native_grids(feature)
         reports.append(stats)
         xmin,ymin,xmax,ymax = stats['bounds']
-        lon,lat = to_geo.transform([xmin,xmin,xmax,xmax],[ymin,ymax,ymin,ymax])
-        local_x = (np.asarray(lon)-ref['originLongitude'])*ref['metresPerDegreeLongitude']/ref['metresPerUnit']
-        local_z = (ref['originLatitude']-np.asarray(lat))*ref['metresPerDegreeLatitude']/ref['metresPerUnit']
+        local_x = (np.asarray([xmin,xmax])-ref['originEasting'])/unit
+        local_z = (ref['originNorthing']-np.asarray([ymin,ymax]))/unit
         c0,c1 = max(0,math.floor((local_x.min()-x0)/step)),min(columns,math.ceil((local_x.max()-x0)/step)+1)
         r0,r1 = max(0,math.floor((local_z.min()-z0)/step)),min(rows,math.ceil((local_z.max()-z0)/step)+1)
         if c0>=c1 or r0>=r1:
             continue
         xs,zs = np.meshgrid(x0+np.arange(c0,c1)*step,z0+np.arange(r0,r1)*step)
-        lons = ref['originLongitude']+xs*ref['metresPerUnit']/ref['metresPerDegreeLongitude']
-        lats = ref['originLatitude']-zs*ref['metresPerUnit']/ref['metresPerDegreeLatitude']
-        east,north = to_native.transform(lons,lats)
+        east,north = ref['originEasting']+xs*unit, ref['originNorthing']-zs*unit
         coords = [(north-ymin)/NATIVE_STEP-.5,(east-xmin)/NATIVE_STEP-.5]
         for native,target in ((ground,scene_ground),(water,scene_water)):
             sampled = map_coordinates(native,coords,order=1,mode='constant',cval=np.nan,prefilter=False)

@@ -3,7 +3,7 @@ import { Mesh } from 'three';
 import { PlaceBuilder } from './placeBuilder';
 import { treeProfile } from './treeProfile';
 import terrain from './data/terrain-levels.json';
-import { terrain as heights } from './terrain';
+import { ROAD_SURFACE, terrain as heights } from './terrain';
 import network from './data/transport-network.json';
 import { cityMap, pointInRing } from './mapModel';
 import { trenchDepth, trenchPoint } from './ingelstaTerrain';
@@ -104,7 +104,9 @@ describe('city structures', () => {
     expect(bridge.yB).toBeCloseTo(heights.roadHeight(...bridge.b, ingelsta.deck), 6);
     const rails = cityMap.roads.filter((r) => r.kind === 'rail' && trenchDepth(r.a) > 0.3);
     expect(rails.length).toBeGreaterThan(0);
-    for (const r of rails) expect(r.yA).toBeGreaterThan(heights.groundHeight(...r.a));
+    // The measured cut is in the DTM: track in it runs on the cut floor, never below it.
+    for (const r of rails)
+      expect(r.yA + ROAD_SURFACE).toBeGreaterThanOrEqual(heights.groundHeight(...r.a) - 1e-9);
     expect(trenchDepth(trenchPoint(7, 0))).toBe(0);
     expect(trenchDepth(trenchPoint(0, 2))).toBe(0);
     const p = trenchPoint(0, 0) as [number, number];

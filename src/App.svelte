@@ -8,6 +8,7 @@
     labels = $state(true),
     follow = $state(''),
     travel = $state(0),
+    mapReady = $state(false),
     webgl = $state(true);
   let compact = $state(100),
     estate = $state(60),
@@ -222,10 +223,16 @@
           >
         </div>
       </div>
-      <div class="map-panel simulator-map" data-camera-travel={travel.toFixed(2)}>
+      <div
+        class="map-panel simulator-map"
+        data-camera-travel={travel.toFixed(2)}
+        data-map-ready={mapReady}
+      >
         {#if webgl}<Canvas shadows={false} dpr={1}
-            ><Scene {focus} showLabels={labels} bind:follow bind:travel /></Canvas
-          >{:else}<div class="map-fallback">
+            ><Scene {focus} showLabels={labels} bind:follow bind:travel bind:mapReady /></Canvas
+          >{#if !mapReady}<div class="map-loading" role="status">
+              <i></i>Bygger kartan…
+            </div>{/if}{:else}<div class="map-fallback">
             Din webbläsare behöver WebGL 2 för att visa 3D-kartan.
           </div>{/if}
         <div class="explorer-toolbar">

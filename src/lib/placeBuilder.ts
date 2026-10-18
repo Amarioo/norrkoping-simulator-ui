@@ -1,4 +1,5 @@
-import { terrain } from './terrain';
+import { LEGACY_LEVELS, terrain } from './terrain';
+import { LAYER_RANK, layeredSurface } from './groundLayers';
 import {
   Group,
   Mesh,
@@ -20,6 +21,57 @@ import {
 } from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
+/**
+ * A w × l rectangle (local x across, z along; rotation `heading` like Object3D.rotation.y) laid
+ * exactly on the rendered terrain: clipped to the same surface mesh triangles as the land cover, so
+ * the two are coplanar in every triangle and only depth rank orders them. UVs match a PlaneGeometry(w, l)
+ * rotated flat (rotation.x = −π/2). `lift` raises it (scene units) above the ground.
+ */
+export function groundRectangle(
+  cx: number,
+  cz: number,
+  heading: number,
+  w: number,
+  l: number,
+  lift = 0,
+) {
+  const cos = Math.cos(heading),
+    sin = Math.sin(heading);
+  const world = (u: number, v: number): [number, number] => [
+    cx + u * cos + v * sin,
+    cz - u * sin + v * cos,
+  ];
+  const corners = [
+    world(-w / 2, -l / 2),
+    world(w / 2, -l / 2),
+    world(w / 2, l / 2),
+    world(-w / 2, l / 2),
+  ];
+  const position: number[] = [],
+    uv: number[] = [];
+  const vertex = ([x, z]: [number, number], ground: { at(x: number, z: number): number }) => {
+    const dx = x - cx,
+      dz = z - cz;
+    position.push(x, ground.at(x, z) + lift, z);
+    uv.push((dx * cos - dz * sin) / w + 0.5, -(dx * sin + dz * cos) / l + 0.5);
+  };
+  for (const [a, b, c] of [
+    [0, 1, 2],
+    [0, 2, 3],
+  ])
+    terrain.drape(corners[a], corners[b], corners[c], (p, q, r, ground) => {
+      // Counter-clockwise seen from above, so single-sided materials face up.
+      const up = (q[1] - p[1]) * (r[0] - p[0]) - (q[0] - p[0]) * (r[1] - p[1]) > 0;
+      vertex(p, ground);
+      vertex(up ? q : r, ground);
+      vertex(up ? r : q, ground);
+    });
+  const geometry = new BufferGeometry();
+  geometry.setAttribute('position', new Float32BufferAttribute(position, 3));
+  geometry.setAttribute('uv', new Float32BufferAttribute(uv, 2));
+  geometry.computeVertexNormals();
+  return geometry;
+}
 /** Build in local coordinates, then merge static geometry by material to keep draw calls bounded. */
 export class PlaceBuilder {
   group = new Group();
@@ -94,10 +146,23 @@ export class PlaceBuilder {
     m.quaternion.setFromUnitVectors(new Vector3(0, 1, 0), v.normalize());
     return m;
   }
-  local(center: number[], heading = 0, y = 0) {
+  /**
+   * A local frame for a hand-made model. `y` is its legacy height and `standsOn` the legacy level
+   * of the surface it was built on (default: the legacy street); with the DTM that surface is the
+   * ground at the centre, or `base` (e.g. a building's footprint minimum). See placeLegacy().
+   */
+  local(
+    center: number[],
+    heading = 0,
+    y = 0,
+    standsOn: number = LEGACY_LEVELS.street,
+    base?: number,
+  ) {
     const g = new Group();
-    g.position.set(center[0], terrain.relativeHeight(center[0], center[1], y), center[1]);
-    g.userData.groundOffset = terrain.offset(center[0], center[1]);
+    const offset = terrain.placeLegacy(center[0], center[1], 0, standsOn, base);
+    g.position.set(center[0], y + offset, center[1]);
+    g.userData.groundOffset = offset;
+    g.userData.groundAt = base ?? terrain.groundHeight(center[0], center[1]);
     g.rotation.y = heading;
     this.group.add(g);
     return g;
@@ -137,13 +202,32 @@ export class PlaceBuilder {
     m.rotation.y = rotation;
     return m;
   }
+  /** A playing surface on the ground: drawn over the mapped land cover by depth rank, not height. */
   surface(parent: Group, w: number, l: number, y: number, mat: MeshStandardMaterial) {
     mat.userData.ground = true;
+    layeredSurface(mat, LAYER_RANK.kerb);
+    if (terrain.measured) {
+      // On the DTM the playing surface is the measured ground itself, built in world space.
+      const m = this.mesh(
+        this.group,
+        groundRectangle(parent.position.x, parent.position.z, parent.rotation.y, w, l),
+        mat,
+      );
+      m.castShadow = false;
+      return m;
+    }
     const m = this.mesh(parent, new PlaneGeometry(w, l), mat, 0, y, 0);
     m.rotation.x = -Math.PI / 2;
     return m;
   }
-  polygon(ring: number[][], y: number, color: string, thickness = 0.012) {
+  polygon(
+    ring: number[][],
+    y: number,
+    color: string,
+    thickness = 0.012,
+    standsOn: number = LEGACY_LEVELS.street,
+    base?: number,
+  ) {
     const shape = new Shape(ring.map((p) => new Vector2(p[0], -p[1])));
     const geometry = new ExtrudeGeometry(shape, { depth: thickness, bevelEnabled: false });
     geometry.rotateX(-Math.PI / 2);
@@ -151,15 +235,10 @@ export class PlaceBuilder {
       (p, q) => [p[0] + q[0] / ring.length, p[1] + q[1] / ring.length],
       [0, 0],
     );
-    const mesh = this.mesh(
-      this.group,
-      geometry,
-      this.mat(color),
-      0,
-      terrain.relativeHeight(center[0], center[1], y),
-      0,
-    );
-    mesh.userData.groundOffset = terrain.offset(center[0], center[1]);
+    const offset = terrain.placeLegacy(center[0], center[1], 0, standsOn, base);
+    const mesh = this.mesh(this.group, geometry, this.mat(color), 0, y + offset, 0);
+    mesh.userData.groundOffset = offset;
+    mesh.userData.groundAt = base ?? terrain.groundHeight(center[0], center[1]);
     return mesh;
   }
   roof(
@@ -185,6 +264,31 @@ export class PlaceBuilder {
     );
     geometry.computeVertexNormals();
     return this.mesh(parent, geometry, this.mat(color), x, y, z);
+  }
+  /**
+   * Lay a ground-level model (pitch, platform) on the measured terrain: each vertex moves by the
+   * ground change between the model's anchor and its own position, so vertical parts move as a
+   * unit and long surfaces follow the DTM instead of cutting into it. No effect without the DTM.
+   */
+  drape(root: Object3D) {
+    if (!terrain.measured) return;
+    root.updateMatrixWorld(true);
+    const at = root.userData.groundAt as number;
+    const point = new Vector3();
+    root.traverse((o) => {
+      if (!(o instanceof Mesh)) return;
+      const inverse = new Matrix4().copy(o.matrixWorld).invert();
+      const positions = o.geometry.getAttribute('position');
+      for (let i = 0; i < positions.count; i++) {
+        point.fromBufferAttribute(positions, i).applyMatrix4(o.matrixWorld);
+        point.y += terrain.groundHeight(point.x, point.z) - at;
+        point.applyMatrix4(inverse);
+        positions.setXYZ(i, point.x, point.y, point.z);
+      }
+      positions.needsUpdate = true;
+      o.geometry.computeVertexNormals();
+      o.geometry.computeBoundingSphere();
+    });
   }
   /** Rebase a detailed structure to its roadway profile, once, in world coordinates. */
   reprojectTerrain(roots: Object3D[], heightAt: (x: number, z: number, legacyY: number) => number) {

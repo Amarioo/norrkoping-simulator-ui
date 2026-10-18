@@ -10,6 +10,8 @@ const proxy = {
 };
 export default defineConfig({
   plugins: [svelte()],
+  // The city geometry workers are ES modules (new Worker(..., { type: 'module' })).
+  worker: { format: 'es' },
   server: { port: 5173, strictPort: true, proxy },
   preview: { port: 5173, strictPort: true, proxy },
 });

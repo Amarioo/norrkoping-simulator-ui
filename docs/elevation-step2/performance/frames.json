@@ -1,0 +1,284 @@
+[
+ {
+  "label": "before",
+  "views": {
+   "overview": {
+    "median": 10.6,
+    "p90": 11.4,
+    "mean": 10.75,
+    "triangles": 7330445,
+    "calls": 7444
+   },
+   "city": {
+    "median": 6.1,
+    "p90": 6.9,
+    "mean": 6.2,
+    "triangles": 4860553,
+    "calls": 3390
+   },
+   "campus": {
+    "median": 6,
+    "p90": 6.5,
+    "mean": 6.07,
+    "triangles": 2194431,
+    "calls": 1847
+   },
+   "industry": {
+    "median": 6,
+    "p90": 6.4,
+    "mean": 6.06,
+    "triangles": 1811077,
+    "calls": 625
+   },
+   "parken": {
+    "median": 6.1,
+    "p90": 6.4,
+    "mean": 6.07,
+    "triangles": 1102954,
+    "calls": 988
+   },
+   "kungsgatan": {
+    "median": 6.1,
+    "p90": 6.5,
+    "mean": 6.07,
+    "triangles": 1213980,
+    "calls": 351
+   }
+  }
+ },
+ {
+  "label": "after",
+  "views": {
+   "overview": {
+    "median": 10.6,
+    "p90": 12.8,
+    "mean": 11.07,
+    "triangles": 7630997,
+    "calls": 7548
+   },
+   "city": {
+    "median": 6,
+    "p90": 6.7,
+    "mean": 6.06,
+    "triangles": 5086121,
+    "calls": 3473
+   },
+   "campus": {
+    "median": 6.1,
+    "p90": 6.5,
+    "mean": 6.06,
+    "triangles": 2258072,
+    "calls": 1874
+   },
+   "industry": {
+    "median": 6,
+    "p90": 6.5,
+    "mean": 6.06,
+    "triangles": 1861234,
+    "calls": 654
+   },
+   "parken": {
+    "median": 6,
+    "p90": 6.4,
+    "mean": 6.05,
+    "triangles": 1121925,
+    "calls": 1005
+   },
+   "kungsgatan": {
+    "median": 6,
+    "p90": 6.5,
+    "mean": 6.06,
+    "triangles": 1240863,
+    "calls": 371
+   }
+  }
+ },
+ {
+  "label": "before",
+  "views": {
+   "overview": {
+    "median": 11.9,
+    "p90": 14,
+    "mean": 12.25,
+    "triangles": 7330445,
+    "calls": 7444
+   },
+   "city": {
+    "median": 6,
+    "p90": 6.8,
+    "mean": 6.21,
+    "triangles": 4860553,
+    "calls": 3390
+   },
+   "campus": {
+    "median": 6,
+    "p90": 6.6,
+    "mean": 6.07,
+    "triangles": 2194431,
+    "calls": 1847
+   },
+   "industry": {
+    "median": 6,
+    "p90": 6.4,
+    "mean": 6.04,
+    "triangles": 1811077,
+    "calls": 625
+   },
+   "parken": {
+    "median": 6.1,
+    "p90": 6.4,
+    "mean": 6.06,
+    "triangles": 1102954,
+    "calls": 988
+   },
+   "kungsgatan": {
+    "median": 6,
+    "p90": 6.5,
+    "mean": 6.04,
+    "triangles": 1213980,
+    "calls": 351
+   }
+  }
+ },
+ {
+  "label": "after",
+  "views": {
+   "overview": {
+    "median": 10.7,
+    "p90": 12.1,
+    "mean": 11.02,
+    "triangles": 7630997,
+    "calls": 7548
+   },
+   "city": {
+    "median": 6.1,
+    "p90": 6.9,
+    "mean": 6.17,
+    "triangles": 5086121,
+    "calls": 3473
+   },
+   "campus": {
+    "median": 6.1,
+    "p90": 6.5,
+    "mean": 6.07,
+    "triangles": 2258072,
+    "calls": 1874
+   },
+   "industry": {
+    "median": 6,
+    "p90": 6.4,
+    "mean": 6.06,
+    "triangles": 1861234,
+    "calls": 654
+   },
+   "parken": {
+    "median": 6.1,
+    "p90": 6.4,
+    "mean": 6.04,
+    "triangles": 1121925,
+    "calls": 1005
+   },
+   "kungsgatan": {
+    "median": 6,
+    "p90": 6.4,
+    "mean": 6.07,
+    "triangles": 1240863,
+    "calls": 371
+   }
+  }
+ },
+ {
+  "label": "before",
+  "views": {
+   "overview": {
+    "median": 11.1,
+    "p90": 12.7,
+    "mean": 11.47,
+    "triangles": 7330445,
+    "calls": 7444
+   },
+   "city": {
+    "median": 6.1,
+    "p90": 6.6,
+    "mean": 6.07,
+    "triangles": 4860553,
+    "calls": 3390
+   },
+   "campus": {
+    "median": 6,
+    "p90": 6.5,
+    "mean": 6.06,
+    "triangles": 2194431,
+    "calls": 1847
+   },
+   "industry": {
+    "median": 6.1,
+    "p90": 6.5,
+    "mean": 6.06,
+    "triangles": 1811077,
+    "calls": 625
+   },
+   "parken": {
+    "median": 6,
+    "p90": 6.4,
+    "mean": 6.06,
+    "triangles": 1102954,
+    "calls": 988
+   },
+   "kungsgatan": {
+    "median": 6,
+    "p90": 6.5,
+    "mean": 6.07,
+    "triangles": 1213980,
+    "calls": 351
+   }
+  }
+ },
+ {
+  "label": "after",
+  "views": {
+   "overview": {
+    "median": 11.2,
+    "p90": 12.6,
+    "mean": 11.55,
+    "triangles": 7630997,
+    "calls": 7548
+   },
+   "city": {
+    "median": 6,
+    "p90": 6.6,
+    "mean": 6.06,
+    "triangles": 5086121,
+    "calls": 3473
+   },
+   "campus": {
+    "median": 6,
+    "p90": 6.5,
+    "mean": 6.06,
+    "triangles": 2258072,
+    "calls": 1874
+   },
+   "industry": {
+    "median": 6,
+    "p90": 6.4,
+    "mean": 6.05,
+    "triangles": 1861234,
+    "calls": 654
+   },
+   "parken": {
+    "median": 6.1,
+    "p90": 6.4,
+    "mean": 6.07,
+    "triangles": 1121925,
+    "calls": 1005
+   },
+   "kungsgatan": {
+    "median": 6,
+    "p90": 6.6,
+    "mean": 6.07,
+    "triangles": 1240863,
+    "calls": 371
+   }
+  }
+ }
+]
