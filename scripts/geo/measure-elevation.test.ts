@@ -12,6 +12,8 @@ import { cityMap, type MapBuilding } from '../../src/lib/mapModel';
 import { terrain } from '../../src/lib/terrain';
 import * as cityMesh from '../../src/lib/cityMesh';
 import transport from '../../src/lib/data/transport-network.json';
+import { surfaceAt } from '../../src/lib/cityMesh';
+import { wheelHeight, railLift, trackKindOf } from '../../src/lib/trackProfile';
 
 const M = terrain.data.reference.metresPerUnit;
 const metres = (sceneY: number) => sceneY * M + terrain.data.reference.verticalOriginMetres;
@@ -253,7 +255,8 @@ it('measures rendered elevations against the native DTM', { timeout: 600_000 }, 
     for (let i = 1; i < pts.length; i++) {
       const a = pts[i - 1],
         b = pts[i];
-      const y = terrain.profileHeight(a, b, 0.5);
+      // Batch A contract (trackProfile.ts): wheel contact = rail top of the same drawn track.
+      const y = wheelHeight(pts, i - 1, 0.5, trackKindOf(route.kind));
       const x = (a[0] + b[0]) / 2,
         z = (a[2] + b[2]) / 2;
       let best = track[0],
@@ -274,7 +277,7 @@ it('measures rendered elevations against the native DTM', { timeout: 600_000 }, 
         0,
         Math.min(1, ((x - best.a[0]) * dx + (z - best.a[1]) * dz) / (dx * dx + dz * dz || 1)),
       );
-      const railTop = best.yA + (best.yB - best.yA) * t + 0.016;
+      const railTop = surfaceAt(best, t, [best.a[0] + dx * t, best.a[1] + dz * t], railLift(best.kind === 'rail' ? 'rail' : 'tram'));
       (tramGap[`${route.id}/${best.bridge ? 'bridge' : 'ground'}`] ??= []).push((y - railTop) * M);
     }
   }

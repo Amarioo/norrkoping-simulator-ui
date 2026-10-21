@@ -25,7 +25,11 @@ DEPTH = 6                      # root cells 2^6 x 5 m = 320 m
 BAND_ROWS = 128
 # Industrilandskapet + Campus validation area (same box as the 2026-10-18 audit), SWEREF 99 TM.
 TEST_BOX = (568150, 6494800, 569300, 6495500)
-BITS = dict(water=1, road=2, path=4, rail=8, tram=16, building=32, bank=64, urban=128, builtUp=256)
+BITS = dict(water=1, road=2, path=4, rail=8, tram=16, building=32, bank=64, urban=128, builtUp=256, track=512)
+# Step 5: the track bed of at-grade railways (±TRACK_HALF m around each rail segment) is its own error class
+# with a tight tolerance. In the 15 m rail corridor ('feature', 0.75 m) a triangle reaching onto a bank beside a
+# level track bed lifted the drawn track 0.75 m (Pendeln, E 565 795 N 6 497 442: 4.1 % for the train).
+TRACK_HALF = 2.5
 BUILT_UP_METRES = 30   # built-up area: within this distance of a mapped building footprint
 URBAN = ('residential', 'industrial', 'square', 'pitch', 'apron', 'grass', 'cemetery')
 # Error classes of the split criterion (each propagated separately; a node splits if any class
@@ -33,7 +37,14 @@ URBAN = ('residential', 'industrial', 'square', 'pitch', 'apron', 'grass', 'ceme
 # 10 m either side of every shoreline; built-up = within BUILT_UP_METRES of a building footprint;
 # landBuiltUp = other land in the built-up area; urban = built-up land cover elsewhere; open = other
 # land; water = open water.
-CLASSES = ('featureBuiltUp', 'feature', 'landBuiltUp', 'urban', 'open', 'water')
+CLASSES = ('featureBuiltUp', 'feature', 'landBuiltUp', 'urban', 'open', 'water', 'track')
+# Batch B study (MESH_NETWORK_CLASS=1, inherited by the worker processes): road and tram running
+# surfaces get their own class 'network' (they leave featureBuiltUp/feature), so their split error can
+# be bounded separately. Outputs go to work/batchB/mesh; the Step 3 caches are not touched.
+NETWORK_CLASS = __import__('os').environ.get('MESH_NETWORK_CLASS') == '1'
+if NETWORK_CLASS:
+    OUT = ROOT / 'work/batchB/mesh'
+    CLASSES = ('network',) + CLASSES
 
 
 def error_class(cats):
@@ -42,12 +53,54 @@ def error_class(cats):
     built = (cats & BITS['builtUp']) > 0
     water = ((cats & BITS['water']) > 0) & ~feature
     urban = ((cats & BITS['urban']) > 0) & ~feature & ~water
-    return np.select([feature & built, feature, water, built, urban], [0, 1, 5, 2, 3], 4)
+    track = ((cats & BITS['track']) > 0) & ((cats & BITS['water']) == 0)
+    if NETWORK_CLASS:
+        network = (cats & (BITS['road'] | BITS['tram'])) > 0
+        return np.select([track, network, feature & built, feature, water, built, urban], [7, 0, 1, 2, 6, 3, 4], 5)
+    return np.select([track, feature & built, feature, water, built, urban], [6, 0, 1, 5, 2, 3], 4)
+
+
+def map_hash():
+    import hashlib
+    return hashlib.sha256((ROOT / 'src/lib/data/norrkoping-map.json').read_bytes()).hexdigest()[:12]
+
+
+def running_lines():
+    """OSM ways of running lines: railway=rail without a service tag (siding, spur, yard, crossover), from
+    scripts/data/norrkoping-railway-tags-source.json. Sidings and yards carry no simulated vehicle."""
+    tags = json.loads((ROOT / 'scripts/data/norrkoping-railway-tags-source.json').read_text(encoding='utf8'))
+    return {e['id'] for e in tags['elements'] if not (e.get('tags') or {}).get('service')}
+
+
+def track_mask(ref, info, city):
+    """Bool mask of the at-grade running-line track bed (TRACK_HALF either side of each rail), cached."""
+    path = CACHE / f'track-running-{TRACK_HALF}-{map_hash()}.npy'
+    lines = running_lines()
+    if path.exists():
+        return np.load(path, mmap_mode='r')
+    from rasterio.features import rasterize
+    from rasterio.transform import from_origin
+    unit = ref['metresPerUnit'] * ref['gridScaleFactor']
+    tm = lambda p: (ref['originEasting'] + p[0] * unit, ref['originNorthing'] - p[1] * unit)
+    shapes = []
+    for r in city['roads']:
+        if r['kind'] != 'rail' or r.get('bridge') or r.get('tunnel') or r.get('way') not in lines:
+            continue
+        (ax, az), (bx, bz) = r['a'], r['b']
+        L = math.hypot(bx - ax, bz - az)
+        if L < 1e-6:
+            continue
+        w = TRACK_HALF / unit
+        nx, nz = -(bz - az) / L * w, (bx - ax) / L * w
+        shapes.append(({'type': 'Polygon', 'coordinates': [[tm(p) for p in ((ax + nx, az + nz), (bx + nx, bz + nz), (bx - nx, bz - nz), (ax - nx, az - nz), (ax + nx, az + nz))]]}, 1))
+    mask = rasterize(shapes, out_shape=tuple(info['shape']), transform=from_origin(info['left'], info['top'], 1, 1), fill=0, dtype='uint8')
+    np.save(path, mask)
+    return np.load(path, mmap_mode='r')
 
 
 def built_up(cats):
     """Bool mask of the built-up area (cached): building pixels dilated by BUILT_UP_METRES."""
-    path = CACHE / f'built-up-{BUILT_UP_METRES}.npy'
+    path = CACHE / f'built-up-{BUILT_UP_METRES}-{map_hash()}.npy'
     if path.exists():
         return np.load(path, mmap_mode='r')
     from scipy.ndimage import maximum_filter
@@ -59,6 +112,20 @@ def built_up(cats):
 
 def with_built_up(cats, built):
     return np.asarray(cats).astype(np.uint16) | (np.asarray(built).astype(np.uint16) << 8)
+
+
+def inputs_key():
+    """Hash of everything the split errors depend on besides the grid: the map (classes are burned from
+    it) and the DTM corrections (scripts/geo/dtm_corrections.py). Step 5: the class cache was keyed by a
+    fixed name, so 112 rail segments unflagged as invented bridges in the geometry pass kept the coarse
+    land tolerance and the Pendeln embankment at E 567 423 N 6 497 104 stayed 1.5 m low in the mesh."""
+    import hashlib
+    h = hashlib.sha256((ROOT / 'src/lib/data/norrkoping-map.json').read_bytes())
+    h.update((ROOT / 'scripts/data/dtm-retained-decks.json').read_bytes())
+    h.update((ROOT / 'scripts/geo/dtm_corrections.py').read_bytes())
+    h.update(Path(__file__).read_bytes())          # error classes
+    h.update((ROOT / 'scripts/data/norrkoping-railway-tags-source.json').read_bytes())   # running lines
+    return h.hexdigest()[:16]
 
 
 def setup():
@@ -90,7 +157,8 @@ def mosaic(ref, bounds):
 
 def categories(ref, info, city):
     """uint8 bit mask per native pixel (BITS); cached."""
-    path = CACHE / 'categories-v2.npy'
+    import hashlib
+    path = CACHE / f"categories-v3-{hashlib.sha256((ROOT / 'src/lib/data/norrkoping-map.json').read_bytes()).hexdigest()[:12]}.npy"
     if path.exists():
         return np.load(path, mmap_mode='r')
     from rasterio.features import rasterize
@@ -180,6 +248,9 @@ def init():
     W.update(tile=tile, g=g, ref=ref, native=native, info=info, layout=layout, hn=layout.node_heights(g),
              bounds=city['meta']['bounds'], cats=categories(ref, info, city))
     W['built'] = built_up(W['cats'])
+    W['track'] = track_mask(ref, info, city)
+    import dtm_corrections
+    W['corrections'] = dtm_corrections.corrected_pixels()
     if all((OUT / f'node-error-{c}.npy').exists() for c in CLASSES):
         W['err'] = {c: np.load(OUT / f'node-error-{c}.npy') for c in CLASSES}
 
@@ -189,7 +260,9 @@ def pixels(r0, r1):
     ref, info, native = W['ref'], W['info'], W['native']
     unit = ref['metresPerUnit'] * ref['gridScaleFactor']
     a0 = max(0, r0 - 1); a1 = min(native.shape[0], r1 + 1)
-    block = np.asarray(native[a0:a1], np.float64)
+    import dtm_corrections
+    # Native pixels as the runtime grid sees them: retained bridge decks removed (Step 5).
+    block = dtm_corrections.apply_to_block(native[a0:a1], a0, 0, W.get('corrections'))
     gy, gx = np.gradient(block)
     slope = np.hypot(gx, gy)[r0 - a0:r0 - a0 + (r1 - r0)]
     h = block[r0 - a0:r0 - a0 + (r1 - r0)]
@@ -200,7 +273,7 @@ def pixels(r0, r1):
     x = (EE - ref['originEasting']) / unit; z = (ref['originNorthing'] - NN) / unit
     b = W['bounds']
     ok = np.isfinite(h) & (x >= b[0]) & (x <= b[2]) & (z >= b[1]) & (z <= b[3])
-    cats = with_built_up(W['cats'][r0:r1], W['built'][r0:r1])
+    cats = with_built_up(W['cats'][r0:r1], W['built'][r0:r1]) | (np.asarray(W['track'][r0:r1]).astype(np.uint16) << 9)
     test = (EE >= TEST_BOX[0]) & (EE <= TEST_BOX[2]) & (NN >= TEST_BOX[1]) & (NN <= TEST_BOX[3])
     sel = ok.ravel()
     return (x.ravel()[sel], z.ravel()[sel], h.ravel()[sel], cats.ravel()[sel], slope.ravel()[sel] > .3,

@@ -1,4 +1,4 @@
-import { terrain, type SpanPiece } from './terrain';
+import { terrain, ROAD_SURFACE, type SpanPiece } from './terrain';
 import { cityJson } from './cityData';
 export type Point = [number, number];
 export interface MapPolygon {
@@ -91,18 +91,29 @@ export interface MapData {
 const source = await cityJson<MapData>('map');
 export const cityMap = {
   ...source,
-  roads: source.roads.map((r) => ({
-    ...r,
-    // DTM: linear decks only between two profiled ends; approaches follow the terrain (terrain.ts).
-    linearProfile: terrain.measured
-      ? terrain.linearBetween([r.a[0], r.yA, r.a[1]], [r.b[0], r.yB, r.b[1]])
-      : !!r.bridge ||
-        terrain.bridgeHeight(r.a[0], r.a[1], r.yA) !== undefined ||
-        terrain.bridgeHeight(r.b[0], r.b[1], r.yB) !== undefined,
-    spans: terrain.spans(r.a, r.b),
-    yA: terrain.roadHeight(r.a[0], r.a[1], r.yA),
-    yB: terrain.roadHeight(r.b[0], r.b[1], r.yB),
-  })),
+  roads: source.roads.map((r) =>
+    // Step 5: absorbed into a road breakline patch: an ordinary draped segment on the surface it shaped.
+    terrain.integrated(r.a, r.b)
+      ? {
+          ...r,
+          linearProfile: false,
+          spans: undefined,
+          yA: terrain.groundHeight(...r.a) - ROAD_SURFACE,
+          yB: terrain.groundHeight(...r.b) - ROAD_SURFACE,
+        }
+      : {
+          ...r,
+          // DTM: linear decks only between two profiled ends; approaches follow the terrain (terrain.ts).
+          linearProfile: terrain.measured
+            ? terrain.linearBetween([r.a[0], r.yA, r.a[1]], [r.b[0], r.yB, r.b[1]])
+            : !!r.bridge ||
+              terrain.bridgeHeight(r.a[0], r.a[1], r.yA) !== undefined ||
+              terrain.bridgeHeight(r.b[0], r.b[1], r.yB) !== undefined,
+          spans: terrain.spans(r.a, r.b),
+          yA: terrain.roadHeight(r.a[0], r.a[1], r.yA),
+          yB: terrain.roadHeight(r.b[0], r.b[1], r.yB),
+        },
+  ),
 } as unknown as MapData;
 export const METRES_PER_UNIT = terrain.data.reference.metresPerUnit;
 export function project(lat: number, lon: number): Point {

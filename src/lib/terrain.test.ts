@@ -76,8 +76,14 @@ describe('shared elevation reference', () => {
     const backend = read('../norrkoping-simulator-backend/src/main/resources/terrain.json'),
       ui = read('src/lib/data/terrain.json');
     expect(ui).toEqual(backend);
-    // The service keeps all of it except the base64 grids and mesh bits, which it holds decoded.
+    // The service keeps all of it except the base64 grids, mesh bits and patch arrays, which it holds
+    // decoded.
     const { activeBase64, ...mesh } = ui.mesh!;
+    if (mesh.patches) {
+      const { leavesBase64, verticesBase64, trianglesBase64, ...patches } = mesh.patches;
+      void [leavesBase64, verticesBase64, trianglesBase64];
+      mesh.patches = patches;
+    }
     expect(terrain.data).toEqual({
       ...ui,
       tiles: ui.tiles.map(({ heightsBase64, ...tile }) => (void heightsBase64, tile)),

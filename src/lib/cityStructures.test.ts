@@ -78,7 +78,8 @@ describe('city structures', () => {
       .flatMap((r) => r.points)
       .filter((p) => p[0] > -6 && p[0] < -3 && p[2] > -18.5 && p[2] < -15.5);
     expect(salt.length).toBeGreaterThan(0);
-    for (const p of salt) expect(p[1]).toBeCloseTo(terrain.road + 0.018, 6);
+    // Route points carry their track node's own reference level (Batch A); the rail head is a vehicle offset.
+    for (const p of salt) expect(p[1]).toBeCloseTo(terrain.road, 6);
   });
   it('cuts the river out of ground and land coverings instead of hiding lowered water', () => {
     const contains = (p: [number, number], rings: [number, number][][]) =>

@@ -26,7 +26,7 @@ import rtin
 
 # Metres per error class (see docs/terrain-step3.md for the trade-off study).
 TOLERANCES = {'featureBuiltUp': 0.4, 'feature': 0.75, 'landBuiltUp': 0.75, 'urban': 1.125, 'open': 2.25,
-              'water': 2.25}
+              'water': 2.25, 'track': 0.25}   # track (Step 5): 0.25 m over a 10 m triangle is the 2.5 % mainline limit
 DEPTH = 6                 # 320 m root cells
 TARGETS = [ROOT / 'src/lib/data/terrain.json',
            ROOT.parent / 'norrkoping-simulator-backend/src/main/resources/terrain.json']
@@ -38,10 +38,10 @@ def node_errors(dataset, recompute=False):
     caches = {c: study.OUT / f'node-error-{c}.npy' for c in study.CLASSES}
     grid = dataset['revision'].split('-surface-')[0]
     if not recompute and all(p.exists() for p in caches.values()) and stamp.exists() \
-            and rtin.read(stamp).get('grid') == grid and rtin.read(stamp).get('depth') == DEPTH:
+            and rtin.read(stamp).get('grid') == grid and rtin.read(stamp).get('depth') == DEPTH             and rtin.read(stamp).get('inputs') == study.inputs_key():
         return {c: np.load(p) for c, p in caches.items()}
     err = study.compute_node_errors()
-    stamp.write_text(json.dumps({'grid': grid, 'depth': DEPTH}), encoding='utf8')
+    stamp.write_text(json.dumps({'grid': grid, 'depth': DEPTH, 'inputs': study.inputs_key()}), encoding='utf8')
     return err
 
 
@@ -63,7 +63,9 @@ def build(dataset, recompute=False):
         'depth': DEPTH, 'columns': layout.columns, 'rows': layout.rows, 'tolerancesMetres': TOLERANCES,
         'errorReference': 'Max |plane - DTM| over the native Lantmäteriet 1 m DTM pixel centres (EPSG:5845) '
                           'of each class in each triangle. feature = road/path/tram surfaces, rail '
-                          'corridors (15 m), building footprints, 10 m either side of shorelines; built-up '
+                          'corridors (15 m), building footprints, 10 m either side of shorelines; track = the '
+                          'at-grade running-line track bed (2.5 m either side of the rail; no sidings or '
+                          'yards; Step 5); built-up '
                           '= within 30 m of a mapped building footprint (featureBuiltUp, landBuiltUp); '
                           'urban = built-up land cover elsewhere; open = other land; water = open water. '
                           'Vertices are the 5 m grid nodes (no new heights).',

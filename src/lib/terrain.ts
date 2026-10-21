@@ -212,6 +212,14 @@ export class TerrainService {
     if (data.mesh) {
       const mesh = { ...data.mesh };
       delete mesh.activeBase64;
+      if (mesh.patches) {
+        // Decoded by SurfaceMesh; the strings are not kept twice.
+        const patches = { ...mesh.patches };
+        delete patches.leavesBase64;
+        delete patches.verticesBase64;
+        delete patches.trianglesBase64;
+        mesh.patches = patches;
+      }
       this.data.mesh = mesh;
     }
     validateTerrain({ ...data, tiles: hydrated });
@@ -350,6 +358,13 @@ export class TerrainService {
       ),
     );
   }
+  /**
+   * Parameters 0 = t0 < … < tn = 1 along a→b between which the rendered ground is linear (the mesh
+   * edge crossings of the line). A centreline profile built from these breaks is exact.
+   */
+  lineBreaks(a: Point, b: Point): number[] {
+    return [0, ...(this.surface?.crossings(a, b) ?? []), 1];
+  }
   private groundCache = new Map<string, number>();
   groundHeight(x: number, z: number) {
     if (!finite(x) || !finite(z)) throw new Error('Non-finite ground coordinates');
@@ -437,6 +452,18 @@ export class TerrainService {
     const reverse = data[key(b) + '|' + key(a)];
     return reverse?.map(([t0, t1, y0, y1]) => ({ t0: 1 - t1, t1: 1 - t0, y0: y1, y1: y0 })).reverse();
   }
+  private integratedKeys: Set<string> | null = null;
+  /**
+   * True for a grounded linear road segment absorbed into a road breakline patch (Step 5): it is then an
+   * ordinary draped segment on the patch surface, which was built from its profile (road_patches.py).
+   */
+  integrated(a: Point, b: Point) {
+    const list = this.data.mesh?.patches?.integrated;
+    if (!this.dtm || !list?.length) return false;
+    this.integratedKeys ??= new Set(list);
+    const key = (p: Point) => `${p[0].toFixed(3)},${p[1].toFixed(3)}`;
+    return this.integratedKeys.has(key(a) + '|' + key(b)) || this.integratedKeys.has(key(b) + '|' + key(a));
+  }
   /**
    * Network reference heights follow a straight line only between two profiled ends (a bridge deck);
    * a segment with one profiled end (an approach) follows the terrain with its end offsets tapered.
@@ -502,15 +529,13 @@ export class TerrainService {
         this.bridgeHeight(b[0], b[2], b[1]) !== undefined
         ? this.roadHeight(a[0], a[2], a[1]) * (1 - u) + this.roadHeight(b[0], b[2], b[1]) * u
         : this.roadHeight(a[0] * (1 - u) + b[0] * u, a[2] * (1 - u) + b[2] * u, a[1] * (1 - u) + b[1] * u);
-    // A span carries the network reference; points above it (rail routes, +0.018) keep their offset.
+    // Absorbed into a breakline patch: draped on the surface it shaped, zero offset (Step 5).
+    if (this.integrated([a[0], a[2]], [b[0], b[2]]))
+      return this.groundHeight(a[0] * (1 - u) + b[0] * u, a[2] * (1 - u) + b[2] * u) - ROAD_SURFACE;
+    // A span carries the network reference itself, exactly as drawn (cityMesh surfaceAt). Vehicle
+    // offsets above it (rail head, ride height) belong to the vehicle contracts, not to the points.
     const span = spanHeight(this.spans([a[0], a[2]], [b[0], b[2]]), u);
-    if (span !== undefined)
-      return (
-        span +
-        Math.max(LEGACY_LEVELS.road, a[1]) * (1 - u) +
-        Math.max(LEGACY_LEVELS.road, b[1]) * u -
-        LEGACY_LEVELS.road
-      );
+    if (span !== undefined) return span;
     const ya = this.roadHeight(a[0], a[2], a[1]),
       yb = this.roadHeight(b[0], b[2], b[1]);
     if (this.linearBetween(a, b)) return ya * (1 - u) + yb * u;

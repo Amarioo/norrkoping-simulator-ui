@@ -202,7 +202,10 @@ export function buildTransit(raw, extra, project, railHeight) {
       name,
       loop,
       destinations: destinations.map((d) => ({ distance: cumulative[d.pointIndex], name: d.name })),
-      points: path.map((p) => [p[0], railHeight(p) + 0.018, p[1]]),
+      // The network reference (legacy level) of the track node itself, so vehicles find the same deck
+      // profiles and spans as the drawn rails. Rail-head and wheel offsets belong to the vehicle
+      // contract (src/lib/trackProfile.ts), not to the data. Was railHeight(p) + 0.018 before Batch A.
+      points: path.map((p) => [p[0], railHeight(p), p[1]]),
       stops: mappedStops.sort((a, b) => a.distance - b.distance),
     };
   }

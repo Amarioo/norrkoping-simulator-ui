@@ -18,7 +18,10 @@ export interface Vehicle {
   speed: number;
   road: string;
   stopped: boolean;
-  sections?: { pos: Vec3; heading: number }[];
+  /** Rail vehicles: one pose per section, resting on its two bogies (RailTraffic.kt, trackProfile.ts). */
+  sections?: { pos: Vec3; heading: number; pitch?: number }[];
+  /** Nose-up pitch in radians (rail vehicles). */
+  pitch?: number;
   stop?: string;
   destination?: string;
 }

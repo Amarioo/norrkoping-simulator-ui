@@ -160,8 +160,14 @@ for (const e of raw.elements) {
         ? 1
         : 0;
   const lanes = positive(p.lanes) ?? (oneway ? 1 : 2);
+  // Untagged two-way service roads are not two 3.3 m lanes (scripts/geo/service-road-widths.mjs).
+  const serviceWidth =
+    p.highway === 'service' && !positive(p.lanes) && !oneway && p.service !== 'parking_aisle'
+      ? ({ driveway: 3, alley: 3.5, 'drive-through': 3.5 }[p.service] ?? 4.5)
+      : undefined;
   const width =
     (positive(p.width) ??
+      serviceWidth ??
       (kind === 'road'
         ? Math.max(p.highway === 'service' ? 4 : 5.5, lanes * 3.3)
         : kind === 'path'

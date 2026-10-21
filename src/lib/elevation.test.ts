@@ -14,6 +14,8 @@ import { cityMap, type MapRoad } from './mapModel';
 import { LEGACY_LEVELS, ROAD_SURFACE, terrain } from './terrain';
 import transport from './data/transport-network.json';
 import { cityJson } from './cityData';
+import { railLift } from './trackProfile';
+import { railAlignment } from './infraDiagnostics';
 
 const M = terrain.data.reference.metresPerUnit;
 const metres = (y: number) => y * M + terrain.data.reference.verticalOriginMetres;
@@ -93,10 +95,11 @@ describe('ground-level surfaces on the measured terrain', () => {
     let checked = 0;
     points.forEach((p, i) => {
       const ground = terrain.groundHeight(p.x, p.z);
-      // Every drawn running surface at an ordinary point is the terrain itself; only rails rise above it.
+      // Every drawn running surface at an ordinary point is the terrain itself; only rails rise above it:
+      // by the rail head (trackProfile.ts), level across the gauge, so within 0.25 m of a creased mesh.
       for (const h of hits[i]) {
         expect(h).toBeGreaterThan(ground - 1e-4);
-        if (h > ground + 1e-4) expect(h - ground).toBeCloseTo(0.016 - ROAD_SURFACE, 4);
+        if (h > ground + 1e-4) expect(h - ground).toBeLessThan(railLift('rail') - ROAD_SURFACE + 0.01);
       }
       if (hits[i].length) checked++;
     });
@@ -238,41 +241,10 @@ describe('ground-level surfaces on the measured terrain', () => {
         expect((car - terrain.groundHeight(x, z)) * M).toBeCloseTo(0.05, 6);
       }
     }
-    // Trams and trains (RailTraffic.kt) off bridges: ~5 cm above the rail top, as before Step 2.
-    const gaps: number[] = [];
-    const track = cityMap.roads.filter(
-      (r) => (r.kind === 'rail' || r.kind === 'tram') && !r.bridge,
-    );
-    for (const route of cityMap.transitRoutes)
-      for (let i = 1; i < route.points.length; i += 3) {
-        const a = route.points[i - 1],
-          b = route.points[i];
-        const x = (a[0] + b[0]) / 2,
-          z = (a[2] + b[2]) / 2;
-        let best: MapRoad | undefined,
-          d = 0.02;
-        for (const r of track) {
-          const dx = r.b[0] - r.a[0],
-            dz = r.b[1] - r.a[1];
-          const t = Math.max(
-            0,
-            Math.min(1, ((x - r.a[0]) * dx + (z - r.a[1]) * dz) / (dx * dx + dz * dz)),
-          );
-          const dd = Math.hypot(r.a[0] + dx * t - x, r.a[1] + dz * t - z);
-          if (dd < d) [d, best] = [dd, r];
-        }
-        if (!best || best.linearProfile) continue;
-        const t =
-          Math.hypot(x - best.a[0], z - best.a[1]) /
-          Math.hypot(best.b[0] - best.a[0], best.b[1] - best.a[1]);
-        const rail = best.yA + (best.yB - best.yA) * t + 0.016;
-        gaps.push((terrain.profileHeight(a, b, 0.5) - rail) * M);
-      }
-    const sorted = gaps.map(Math.abs).sort((p, q) => p - q);
-    expect(gaps.length).toBeGreaterThan(500);
-    expect(summary(gaps).mean).toBeGreaterThan(0.02);
-    expect(summary(gaps).mean).toBeLessThan(0.08);
-    expect(sorted[Math.floor(sorted.length * 0.9)]).toBeLessThan(0.25);
+    // Trams and trains (RailTraffic.kt, trackProfile.ts): wheel contact on the drawn rail top everywhere,
+    // on decks, spans and ground alike (Batch A; before: deck RMSE 3–4 m, max 7 m).
+    const { routes } = railAlignment();
+    for (const row of routes as { n: number; max: number }[]) if (row.n) expect(row.max).toBeLessThan(1e-6);
   });
 
   it('places hand-made models on the surface they were modelled on', () => {

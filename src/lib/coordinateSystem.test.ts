@@ -221,7 +221,10 @@ describe('network topology after migration', () => {
         : [],
     );
     const profileKeys = Object.keys(bridgeProfiles.points);
-    expect(profileKeys.length).toBe(810);
+    // Batch C: 112 rail/tram 'decks' built from flat-scene ramps (not bridges in OSM) are gone.
+    // Step 5: +2 deck-end notch nodes at Saltängsbron's south end (prepare-bridge-profiles.py 1c).
+    // Step 5.1: +1 track notch on Södra stambanan, E 567 452 N 6 497 087 (1c, track depth 0.3 m).
+    expect(profileKeys.length).toBe(698);
     expect(profileKeys.filter((k) => !keys.has(k))).toEqual([]);
   });
   it('keeps detailed bridges over the same mapped bridge segments', () => {

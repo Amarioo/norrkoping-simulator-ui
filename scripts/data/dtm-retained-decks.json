@@ -1,0 +1,198 @@
+{
+ "method": "A crossing of an at-grade way W under an OSM bridge segment B is a retained deck when, along W through\nthe crossing (native 1 m DTM, median across ±1 m):\n  * the DTM at the crossing forms a plateau (within PLATEAU_TOLERANCE of the crossing level) no longer than\n    PLATEAU_MAX, with walls at least WALL_DROP high on both sides (W's own level on both sides);\n  * at most DECK17_MAX LiDAR class 17 (bridge) returns lie within DECK17_RADIUS of the crossing, i.e. the\n    deck was not classified as a bridge.\nThe correction (scripts/geo/dtm_corrections.py) replaces the plateau inside the deck footprint by W's level,\nlinear between the two rims along W: the open trench the DTM shows at every other underpass.",
+ "source": "Lantmäteriet Markhöjdmodell 1 m (native mosaic), Laserdata NH 2020 class 17; OSM bridge/at-grade ways",
+ "thresholds": {
+  "plateauToleranceMetres": 1.0,
+  "plateauMaxMetres": 60.0,
+  "wallDropMetres": 2.5,
+  "deck17Radius": 6.0,
+  "deck17Max": 5
+ },
+ "crossings": [
+  {
+   "bridgeWay": 4384899,
+   "bridgeName": "Stockholmsvägen",
+   "bridgeKind": "road",
+   "underWay": 94447268,
+   "underName": "",
+   "underKind": "path",
+   "underClass": "path",
+   "crossing": [
+    567363.07,
+    6498040.79
+   ],
+   "axis": [
+    -0.995762,
+    -0.091968
+   ],
+   "plateau": [
+    -5.0,
+    20.0
+   ],
+   "deckLevel": 14.88,
+   "rims": [
+    [
+     -9.0,
+     9.55
+    ],
+    [
+     24.0,
+     9.49
+    ]
+   ],
+   "across": [
+    -2.83,
+    11.55
+   ],
+   "deck17Returns": 0
+  },
+  {
+   "bridgeWay": 4384899,
+   "bridgeName": "Stockholmsvägen",
+   "bridgeKind": "road",
+   "underWay": 1239608192,
+   "underName": "Järngatan",
+   "underKind": "road",
+   "underClass": "tertiary",
+   "crossing": [
+    567363.44,
+    6498035.62
+   ],
+   "axis": [
+    0.997102,
+    0.076082
+   ],
+   "plateau": [
+    -19.0,
+    5.0
+   ],
+   "deckLevel": 14.98,
+   "rims": [
+    [
+     -23.0,
+     9.36
+    ],
+    [
+     9.0,
+     9.39
+    ]
+   ],
+   "across": [
+    -6.38,
+    8.01
+   ],
+   "deck17Returns": 0
+  },
+  {
+   "bridgeWay": 4384901,
+   "bridgeName": "Stockholmsvägen",
+   "bridgeKind": "road",
+   "underWay": 94447268,
+   "underName": "",
+   "underKind": "path",
+   "underClass": "path",
+   "crossing": [
+    567349.51,
+    6498039.53
+   ],
+   "axis": [
+    -0.995762,
+    -0.091968
+   ],
+   "plateau": [
+    -19.0,
+    6.0
+   ],
+   "deckLevel": 14.9,
+   "rims": [
+    [
+     -23.0,
+     9.55
+    ],
+    [
+     10.0,
+     9.49
+    ]
+   ],
+   "across": [
+    -2.91,
+    11.03
+   ],
+   "deck17Returns": 0
+  },
+  {
+   "bridgeWay": 4384901,
+   "bridgeName": "Stockholmsvägen",
+   "bridgeKind": "road",
+   "underWay": 1239608192,
+   "underName": "Järngatan",
+   "underKind": "road",
+   "underClass": "tertiary",
+   "crossing": [
+    567349.88,
+    6498034.59
+   ],
+   "axis": [
+    0.997102,
+    0.076082
+   ],
+   "plateau": [
+    -5.0,
+    19.0
+   ],
+   "deckLevel": 14.98,
+   "rims": [
+    [
+     -9.0,
+     9.36
+    ],
+    [
+     23.0,
+     9.39
+    ]
+   ],
+   "across": [
+    -6.07,
+    7.87
+   ],
+   "deck17Returns": 0
+  },
+  {
+   "bridgeWay": 1051570519,
+   "bridgeName": "",
+   "bridgeKind": "path",
+   "underWay": 145121960,
+   "underName": "",
+   "underKind": "path",
+   "underClass": "path",
+   "crossing": [
+    571216.04,
+    6491462.42
+   ],
+   "axis": [
+    0.761771,
+    0.647847
+   ],
+   "plateau": [
+    -4.0,
+    2.0
+   ],
+   "deckLevel": 20.75,
+   "rims": [
+    [
+     -8.0,
+     17.53
+    ],
+    [
+     6.0,
+     17.53
+    ]
+   ],
+   "across": [
+    -86.05,
+    28.86
+   ],
+   "deck17Returns": 0
+  }
+ ]
+}

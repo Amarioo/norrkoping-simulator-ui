@@ -7,17 +7,23 @@
  *   yellow  steep grade / grade break               magenta sag (dip into a trench)
  *   blue    deck too close to the water             cyan    land lower than the water at a shoreline
  *   purple  building standing in the water          white   missing terrain / duplicate bridge owner
+ *   pink    twisted road cross-section              green   rail vehicle off its drawn track
+ *   brown   isolated DTM spike or pit                teal    junction fan off its strips
+ * Documented exceptions (EXCEPTIONS: real structures, stairs) are not drawn.
+ * Step 5.1: refinement sites (refinementCandidates) whose ground is already a breakline patch get a flat
+ * white halo; `globalThis.__refinementSites` lists every site with E/N and the `patched` flag.
  *
  * The issue list is also available as `globalThis.__infraIssues` and printed as a console table.
  * Production builds never load this module (Scene.svelte imports it behind import.meta.env.DEV).
  */
 import { Color, CylinderGeometry, Group, InstancedMesh, Matrix4, MeshBasicMaterial, Quaternion, Vector3 } from 'three';
-import { diagnoseInfrastructure, type InfraIssue, type IssueKind } from './infraDiagnostics';
+import { diagnoseInfrastructure, refinementCandidates, type InfraIssue, type IssueKind } from './infraDiagnostics';
 import { terrain } from './terrain';
 
 const COLORS: Record<IssueKind, string> = {
   'below-terrain': '#ff2d2d',
   'junction-step': '#ff9a1f',
+  'junction-fan': '#00897b',
   'steep-grade': '#ffe11f',
   'grade-break': '#d6c21a',
   sag: '#ff3df2',
@@ -26,12 +32,15 @@ const COLORS: Record<IssueKind, string> = {
   'building-in-water': '#9b4dff',
   'missing-terrain': '#ffffff',
   'duplicate-bridge': '#ffffff',
+  'cross-section': '#ff6f91',
+  'vehicle-off-track': '#00ff6a',
+  'terrain-spike': '#8a5a2b',
 };
 const M = terrain.data.reference.metresPerUnit;
 
 export function createInfraInspector(): { group: Group; issues: InfraIssue[]; dispose(): void } {
   const started = performance.now();
-  const { issues } = diagnoseInfrastructure();
+  const issues = diagnoseInfrastructure().issues.filter((i) => !i.exception);
   const group = new Group();
   group.name = 'infra-inspector';
   const geometry = new CylinderGeometry(1, 1, 1, 6);
@@ -43,7 +52,7 @@ export function createInfraInspector(): { group: Group; issues: InfraIssue[]; di
     scale = new Vector3(),
     rotation = new Quaternion();
   for (const [kind, list] of byKind) {
-    const material = new MeshBasicMaterial({ color: new Color(COLORS[kind]), depthTest: false, transparent: true, opacity: 0.85 });
+    const material = new MeshBasicMaterial({ color: new Color(COLORS[kind]), depthTest: false, transparent: true, opacity: 0.8 });
     materials.push(material);
     const mesh = new InstancedMesh(geometry, material, list.length);
     mesh.renderOrder = 10;
@@ -60,7 +69,27 @@ export function createInfraInspector(): { group: Group; issues: InfraIssue[]; di
     mesh.name = `infra-${kind}`;
     group.add(mesh);
   }
-  const g = globalThis as unknown as { __infraIssues: unknown };
+  const sites = refinementCandidates(issues),
+    patched = sites.filter((s) => s.patched);
+  if (patched.length) {
+    const material = new MeshBasicMaterial({ color: new Color('#ffffff'), depthTest: false, transparent: true, opacity: 0.45 });
+    materials.push(material);
+    const halo = new InstancedMesh(geometry, material, patched.length);
+    halo.renderOrder = 9;
+    halo.frustumCulled = false;
+    patched.forEach((site, n) => {
+      position.set(site.x, terrain.groundHeight(site.x, site.z) + 0.5 / M, site.z);
+      scale.set(9 / M, 1 / M, 9 / M);
+      halo.setMatrixAt(n, matrix.compose(position, rotation, scale));
+    });
+    halo.name = 'infra-refinement-patched';
+    group.add(halo);
+  }
+  const g = globalThis as unknown as { __infraIssues: unknown; __refinementSites: unknown };
+  g.__refinementSites = sites.map((i) => {
+    const [E, N] = terrain.toSweref(i.x, i.z);
+    return { kind: i.kind, value: +i.value.toFixed(3), way: i.way, rail: i.rail, patched: i.patched, E: Math.round(E), N: Math.round(N) };
+  });
   g.__infraIssues = issues.map((i) => {
     const [E, N] = terrain.toSweref(i.x, i.z);
     return { ...i, E: Math.round(E), N: Math.round(N) };

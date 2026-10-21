@@ -55,6 +55,10 @@ try {
     };
   });
   const perf = await page.evaluate(() => globalThis.__cityPerformance ?? null);
+  // Step 5.1: data parse/hydration measures (cityData.ts, terrain.ts), to split loading from geometry building.
+  const measures = await page.evaluate(() =>
+    Object.fromEntries(performance.getEntriesByType('measure').filter((m) => m.name.startsWith('city-data:')).map((m) => [m.name, m.duration])),
+  );
   const results = {};
   for (const view of views) {
     await page.selectOption('#city-focus', view);
@@ -85,7 +89,7 @@ try {
       .filter((m) => ['JSHeapUsedSize', 'JSHeapTotalSize'].includes(m.name))
       .map((m) => [m.name, m.value]),
   );
-  const report = { readyMs, upload, perf, views: results, metrics, errors };
+  const report = { readyMs, upload, perf, measures, views: results, metrics, errors };
   fs.mkdirSync(out.replace(/[\\/][^\\/]*$/, '') || '.', { recursive: true });
   fs.writeFileSync(out, JSON.stringify(report, null, 1));
   console.log(

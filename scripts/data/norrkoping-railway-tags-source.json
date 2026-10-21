@@ -1,0 +1,5124 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-10-18T16:46:18Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "way",
+  "id": 4674066,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "80",
+    "maxspeed:sign": "65",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 23281740,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "110",
+    "maxspeed:sign": "90",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 24384920,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 26735473,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 27496912,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 27643809,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 40090294,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "name": "Kardonbanan",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 47895339,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "80",
+    "maxspeed:sign": "65",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 89513311,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tracks": "1",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 89623919,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643845,
+  "tags": {
+    "gauge": "1435",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "usage": "main"
+  }
+},
+{
+  "type": "way",
+  "id": 89643846,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643848,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643851,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643854,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding"
+  }
+},
+{
+  "type": "way",
+  "id": 89643856,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643860,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643865,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643869,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643874,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643879,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643880,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89643883,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89645523,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89645527,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89645532,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89646192,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 89646193,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 89646194,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89646195,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 89646196,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 89651139,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 89651146,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89651147,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89651157,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89651162,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89651164,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 89655337,
+  "tags": {
+    "gauge": "1435",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "usage": "main"
+  }
+},
+{
+  "type": "way",
+  "id": 89655339,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89655343,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89655344,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89655350,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89656051,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89656052,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89656053,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89656054,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89656055,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89656056,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89656057,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89656058,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89656059,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89656060,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89743032,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "crossover"
+  }
+},
+{
+  "type": "way",
+  "id": 89743033,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746079,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746082,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746083,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746084,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "crossover",
+    "tracks": "1",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746087,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746089,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746092,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746095,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746098,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746102,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89746105,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89750177,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding"
+  }
+},
+{
+  "type": "way",
+  "id": 89750179,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89750180,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89750186,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding"
+  }
+},
+{
+  "type": "way",
+  "id": 89750187,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89750190,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89750191,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89750192,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89751706,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89754858,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 89754861,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 89754862,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 89754863,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 89754865,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tunnel": "yes",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 89754867,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 89754868,
+  "tags": {
+    "gauge": "1435",
+    "name": "Händelöspåret",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 89894643,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89894644,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89894646,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 89894649,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 90930624,
+  "tags": {
+    "electrified": "contact_line",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "crossover",
+    "usage": "main"
+  }
+},
+{
+  "type": "way",
+  "id": 90930627,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 91106621,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "180",
+    "maxspeed:sign": "140",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 91106637,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "180",
+    "maxspeed:sign": "140",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 92385197,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92385205,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92385211,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92416250,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92416267,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "operator": "Norrköpings kommun",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468469,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468476,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468478,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468479,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468480,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468485,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468486,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468487,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468489,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468490,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468493,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92468496,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469421,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469425,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469426,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469427,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469428,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469430,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469432,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469433,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469434,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469436,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469713,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92469715,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92484784,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 92485838,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 92485839,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 92485845,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 92485847,
+  "tags": {
+    "electrified": "yes",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "crossover",
+    "usage": "main"
+  }
+},
+{
+  "type": "way",
+  "id": 92485850,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 92487050,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "110",
+    "maxspeed:sign": "90",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 92487052,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 92487054,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 92547077,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92547080,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92547081,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92547088,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 92973200,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "spur",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 93431559,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 94014660,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014661,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014662,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014664,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014665,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014667,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014668,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014669,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014670,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014671,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014672,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014673,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014674,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014675,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014676,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94014677,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 94364267,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 94364274,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 94364277,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 94364280,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 94364281,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 94364283,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 94364286,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 94364291,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 94462473,
+  "tags": {
+    "electrified": "contact_line",
+    "gauge": "1435",
+    "name": "Klingsbergsspåret",
+    "note": "Ej i bruk, linje 2 gar nu via Ljura mot Hageby",
+    "note2": "Trackwork all in tact and usable.  Sign at entrance to contact traffic controller before entering the loop.  Likely used by museum trams/emergency diversion",
+    "oneway": "-1",
+    "operator": "Svenska Spårvägssällskapet",
+    "railway": "tram",
+    "service": "siding",
+    "survey:date": "2024-07-11",
+    "usage": "branch"
+  }
+},
+{
+  "type": "way",
+  "id": 94462481,
+  "tags": {
+    "electrified": "contact_line",
+    "gauge": "1435",
+    "note2": "Trackwork all in tact and usable.  Sign at entrance to contact traffic controller before entering the loop.  Likely used by museum trams/emergency diversion",
+    "oneway": "-1",
+    "railway": "tram",
+    "service": "siding",
+    "survey:date": "2024-07-11"
+  }
+},
+{
+  "type": "way",
+  "id": 94462483,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 94519183,
+  "tags": {
+    "gauge": "1435",
+    "name": "Södra hamnspåret",
+    "railway": "rail",
+    "service": "spur",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 94821364,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 95557960,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "viaduct",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "180",
+    "maxspeed:sign": "140",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 95557962,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "viaduct",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "180",
+    "maxspeed:sign": "140",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 95557980,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "130",
+    "maxspeed:sign": "100",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 95591846,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 95642168,
+  "tags": {
+    "electrified": "contact_line",
+    "gauge": "1435",
+    "note": "Ej i bruk, linje 2 gar nu via Ljura mot Hageby",
+    "note2": "Trackwork all in tact and usable.  Sign at entrance to contact traffic controller before entering the loop.  Likely used by museum trams/emergency diversion",
+    "oneway": "-1",
+    "railway": "tram",
+    "service": "siding",
+    "surface": "asphalt",
+    "survey:date": "2024-07-11"
+  }
+},
+{
+  "type": "way",
+  "id": 95877188,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 95877196,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 95974919,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 95975026,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 96321384,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tracks": "1",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 96321385,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tracks": "1",
+    "tunnel": "yes",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 96321386,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "tracks": "1",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 96322366,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 96322367,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "name": "Händelöspåret",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 96322369,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 97537219,
+  "tags": {
+    "bridge": "movable",
+    "bridge:movable": "bascule",
+    "gauge": "1435",
+    "layer": "1",
+    "name": "Händelöspåret",
+    "railway": "rail",
+    "service": "spur",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 97537220,
+  "tags": {
+    "gauge": "1435",
+    "name": "Händelöspåret",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 97538951,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 97538964,
+  "tags": {
+    "axle_load": "22.5",
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 97538966,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 102028249,
+  "tags": {
+    "bridge": "yes",
+    "gauge": "1435",
+    "layer": "1",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 105275034,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 105275035,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 152325315,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 172419676,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "name": "Bravikenspåret",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 177890641,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "180",
+    "maxspeed:sign": "140",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890652,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "125",
+    "maxspeed:sign": "100",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890658,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "180",
+    "maxspeed:sign": "140",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890699,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "140",
+    "maxspeed:sign": "110",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890703,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "140",
+    "maxspeed:sign": "110",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890710,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "75",
+    "maxspeed:sign": "60",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890714,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "50",
+    "maxspeed:sign": "40",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890718,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "130",
+    "maxspeed:sign": "100",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890721,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "75",
+    "maxspeed:sign": "60",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890726,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890741,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "75",
+    "maxspeed:sign": "60",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890745,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "110",
+    "maxspeed:sign": "90",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890761,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890768,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "50",
+    "maxspeed:sign": "40",
+    "metre_load": "6.4",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890772,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "110",
+    "maxspeed:sign": "90",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890789,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "110",
+    "maxspeed:sign": "90",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890792,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "125",
+    "maxspeed:sign": "100",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 177890796,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "110",
+    "maxspeed:sign": "90",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 225436071,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 238559666,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "siding",
+    "tracks": "1",
+    "usage": "tourism",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270593962,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270593969,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270593978,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270597087,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270597088,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270597089,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270597090,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270597091,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270597686,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270608831,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270608832,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270608833,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270610800,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270613741,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270620942,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270620943,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270620945,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270620946,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270620947,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270623304,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270628471,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270632144,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270632145,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270632146,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270632147,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270634563,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270636938,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270845754,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270845755,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270851160,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "motor_vehicle": "no",
+    "oneway": "yes",
+    "psv": "designated",
+    "railway": "tram",
+    "smoothness": "intermediate",
+    "surface": "sett",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270851161,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270851162,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "motor_vehicle": "no",
+    "oneway": "yes",
+    "psv": "designated",
+    "railway": "tram",
+    "smoothness": "intermediate",
+    "surface": "sett",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 270851163,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 286445704,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 286505036,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 286505037,
+  "tags": {
+    "access": "no",
+    "bus": "yes",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 286505039,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "operator": "Norrköpings kommun",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 287005983,
+  "tags": {
+    "access": "no",
+    "bus": "yes",
+    "busway": "lane",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 287005984,
+  "tags": {
+    "access": "no",
+    "bus": "yes",
+    "busway": "lane",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 287005985,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 287005986,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 287005987,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 287145926,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "50",
+    "maxspeed:sign": "40",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 287622730,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 287622732,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 288275707,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 288275708,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 297690892,
+  "tags": {
+    "access": "no",
+    "bus": "yes",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 297690893,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 311156041,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "railway": "rail",
+    "service": "crossover",
+    "track_detail": "yes",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 311156042,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "150",
+    "maxspeed:sign": "120",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 313563001,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 313565894,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 313565896,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 313565899,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 313565901,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 313565906,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 313654585,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 313654586,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 315785357,
+  "tags": {
+    "gauge": "1435",
+    "name": "Händelöspåret",
+    "railway": "rail",
+    "service": "spur",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 315785360,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 336123509,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "75",
+    "maxspeed:sign": "60",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 336123511,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "50",
+    "maxspeed:sign": "40",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 336123512,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "50",
+    "maxspeed:sign": "40",
+    "metre_load": "6.4",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 336123520,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 336123521,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 336123535,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 344150112,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 392451093,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 405807419,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 405807420,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 415363810,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877018,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877019,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877021,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877022,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877024,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877026,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877027,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877029,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877030,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877032,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 415877034,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 431583267,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "yard",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 498664531,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "80",
+    "maxspeed:sign": "65",
+    "metre_load": "6.4",
+    "name": "Södra stambanan",
+    "operator": "Trafikverket",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 498664536,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 498664539,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 569347058,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 645586614,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 687987228,
+  "tags": {
+    "access": "no",
+    "bus": "designated",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 687987229,
+  "tags": {
+    "access": "no",
+    "bus": "designated",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 687987232,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 687987235,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 880938174,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "name": "Kardonbanan",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 881908494,
+  "tags": {
+    "description": "Uppställningsspår på Räddningstjänstens utbildningsanläggning",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "test"
+  }
+},
+{
+  "type": "way",
+  "id": 881908495,
+  "tags": {
+    "description": "Uppställningsspår på Räddningstjänstens utbildningsanläggning",
+    "electrified": "contact_line",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "test"
+  }
+},
+{
+  "type": "way",
+  "id": 884076583,
+  "tags": {
+    "electric": "no",
+    "electrified": "no",
+    "gauge": "1435",
+    "name": "Bravikenspåret",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 884321021,
+  "tags": {
+    "electrified": "rail",
+    "gauge": "1435",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "service": "spur",
+    "tracks": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 884321022,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 921364660,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "name": "Kardonbanan",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 921364662,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "name": "Kardonbanan",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 921364663,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 954905145,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 954918062,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "crossover",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 954918063,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 965193288,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "name": "Kardonbanan",
+    "railway": "rail",
+    "service": "siding",
+    "usage": "industrial",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 993089390,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur",
+    "tracks": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 993089397,
+  "tags": {
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "layer": "1",
+    "name": "Kardonbanan",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 993089398,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "name": "Kardonbanan",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 993089427,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "name": "Bravikenspåret",
+    "railway": "rail",
+    "service": "spur",
+    "usage": "industrial",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 993089433,
+  "tags": {
+    "electrified": "rail",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "operator": "Trafikverket",
+    "railway": "rail",
+    "service": "crossover",
+    "usage": "industrial",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 1005673550,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 1005673551,
+  "tags": {
+    "electrified": "contact_line",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "crossover",
+    "usage": "main"
+  }
+},
+{
+  "type": "way",
+  "id": 1005689070,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard",
+    "usage": "industrial"
+  }
+},
+{
+  "type": "way",
+  "id": 1005925409,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 1005925412,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "service": "crossover",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 1005925413,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 1006924501,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "metre_load": "6.4",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "both",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "service": "crossover",
+    "tracks": "1",
+    "usage": "main",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 1050773508,
+  "tags": {
+    "access": "no",
+    "bus": "yes",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1050773513,
+  "tags": {
+    "access": "no",
+    "bus": "yes",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1050810157,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 1087746848,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1087746851,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1087746854,
+  "tags": {
+    "access": "no",
+    "bus": "designated",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1087746857,
+  "tags": {
+    "access": "no",
+    "bus": "designated",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "layer": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1087746858,
+  "tags": {
+    "access": "no",
+    "bus": "designated",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1087746862,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1087746877,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1087780575,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1116564775,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 1116571300,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 1116571301,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 1313592333,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1314370445,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "80",
+    "maxspeed:sign": "65",
+    "metre_load": "6.4",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 1314370446,
+  "tags": {
+    "axle_load": "22.5",
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "loading_gauge": "TSI_GB",
+    "maxspeed": "75",
+    "maxspeed:sign": "60",
+    "metre_load": "6.4",
+    "passenger_lines": "2",
+    "railway": "rail",
+    "railway:atc": "yes",
+    "railway:bidirectional": "regular",
+    "railway:ctc": "yes",
+    "railway:etcs": "no",
+    "railway:preferred_direction": "forward",
+    "railway:radio": "gsm-r",
+    "railway:rail": "continuous",
+    "railway:traffic_mode": "mixed",
+    "service": "siding",
+    "tracks": "1",
+    "voltage": "15000",
+    "workrules": "SE:H"
+  }
+},
+{
+  "type": "way",
+  "id": 1315014941,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "yard"
+  }
+},
+{
+  "type": "way",
+  "id": 1324846106,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1324846113,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1343574753,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1354253317,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "name": "Händelöspåret",
+    "railway": "rail",
+    "service": "spur",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 1382345737,
+  "tags": {
+    "electrified": "no",
+    "gauge": "1435",
+    "name": "Bravikenspåret",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 1473606424,
+  "tags": {
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "spur"
+  }
+},
+{
+  "type": "way",
+  "id": 1527957962,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "0",
+    "gauge": "1435",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "voltage": "750"
+  }
+},
+{
+  "type": "way",
+  "id": 1564811713,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 1564811714,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+},
+{
+  "type": "way",
+  "id": 1564811716,
+  "tags": {
+    "electrified": "contact_line",
+    "frequency": "16.67",
+    "gauge": "1435",
+    "railway": "rail",
+    "service": "siding",
+    "voltage": "15000"
+  }
+}
+
+  ]
+}

@@ -56,8 +56,10 @@ describe('ground-level infrastructure on the terrain', () => {
 
   it('keeps decks and spans above the terrain (before: 523 pieces, worst 5.27 m)', () => {
     const issues = belowTerrain();
-    // What remains are deck edges beside quay walls the 5 m terrain grid cannot represent.
-    expect(issues.length).toBeLessThanOrEqual(115);
+    // What remains are deck edges beside quay walls the 5 m terrain grid cannot represent and, since
+    // Batch C, the uphill edge of bridged approaches on side slopes (level cross-section, median 0.1 m).
+    expect(issues.length).toBeLessThanOrEqual(380);
+    expect(issues.filter((i) => i.value > 0.3).length).toBeLessThanOrEqual(30);
     expect(Math.max(...issues.map((i) => i.value))).toBeLessThan(1.3);
     const vehicles = issues.filter((i) => !i.detail.startsWith('path'));
     expect(Math.max(0, ...vehicles.map((i) => i.value))).toBeLessThan(0.6);
@@ -84,31 +86,42 @@ describe('ground-level infrastructure on the terrain', () => {
     expect(p99(grades.road)).toBeLessThan(9.5); // before: 9.9 %
   });
 
-  it('places engineered spans only on at-grade ways and never across a junction', () => {
+  it('places engineered spans only on at-grade ways, and ways meeting inside a span meet it at its level', () => {
     const info = bridgeProfiles.spanInfo;
     expect(info.length).toBeGreaterThan(60);
-    const ways = new Map<string, Set<number | undefined>>();
+    const ends = new Map<string, { r: (typeof cityMap.roads)[number]; t: number }[]>();
     for (const r of cityMap.roads)
-      for (const p of [r.a, r.b]) {
+      for (const [p, t] of [
+        [r.a, 0],
+        [r.b, 1],
+      ] as const) {
         const k = `${p[0]},${p[1]}`;
-        if (!ways.has(k)) ways.set(k, new Set());
-        ways.get(k)!.add(r.way);
+        if (!ends.has(k)) ends.set(k, []);
+        ends.get(k)!.push({ r, t });
       }
-    let pieces = 0;
+    let pieces = 0,
+      inner = 0;
     for (const r of cityMap.roads) {
       if (!r.spans) continue;
       expect(r.bridge || r.tunnel || r.linearProfile).toBeFalsy();
       for (const s of r.spans) {
         pieces++;
         expect(s.t1).toBeGreaterThan(s.t0);
-        // A node strictly inside a span (the span continues into the next segment) has no other way.
+        // Batch C: a junction inside a span is allowed; every way there is drawn at the span's level.
         if (s.t1 >= 1 - 1e-9) {
-          const next = cityMap.roads.find((o) => o.way === r.way && o.a[0] === r.b[0] && o.a[1] === r.b[1]);
-          if (next?.spans?.some((q) => q.t0 <= 1e-9)) expect(ways.get(`${r.b[0]},${r.b[1]}`)!.size).toBe(1);
+          const here = ends.get(`${r.b[0]},${r.b[1]}`)!.filter((e) => ['road', 'path', 'rail', 'tram'].includes(e.r.kind) && !e.r.bridge);
+          // Documented two-level nodes (lifted land bridges over a way below; see the junction test).
+          const twoLevel = [287129602, 59432617, 954899965, 4384861, 24507534];
+          if (here.length > 2 && !here.some((e) => twoLevel.includes(e.r.way ?? 0))) {
+            inner++;
+            const h = here.map((e) => surfaceAt(e.r, e.t, e.t ? e.r.b : e.r.a, 0) * M);
+            expect(Math.max(...h) - Math.min(...h), `${r.b} ways ${here.map((e) => e.r.way)}`).toBeLessThan(0.05);
+          }
         }
       }
     }
     expect(pieces).toBeGreaterThan(100);
+    expect(inner).toBeGreaterThan(0);
   });
 });
 
@@ -119,7 +132,9 @@ describe('vehicles on decks, approaches and spans', () => {
     segments.get(`${a.x},${a.z}|${b.x},${b.z}`) ??
     (() => {
       const r = segments.get(`${b.x},${b.z}|${a.x},${a.z}`);
-      return r && { ...r, a: r.b, b: r.a, yA: r.yB, yB: r.yA, spans: terrain.spans(r.b, r.a) };
+      // A segment absorbed into a breakline patch has no spans in the map model (mapModel.ts), so its reversed
+      // copy must not regain them from the profiles (Step 5.1: integrated approaches traversed backwards).
+      return r && { ...r, a: r.b, b: r.a, yA: r.yB, yB: r.yA, spans: r.spans && terrain.spans(r.b, r.a) };
     })();
 
   it('drive cars 5 cm above the drawn surface where the profile is not the plain terrain', () => {
@@ -145,7 +160,7 @@ describe('vehicles on decks, approaches and spans', () => {
     expect(checked).toBeGreaterThan(500);
   });
 
-  it('keep trams and trains at their usual height above the rails on spans', () => {
+  it('keep trams and trains on the span surface itself (rail head added by the vehicle contract)', () => {
     let checked = 0;
     for (const route of cityMap.transitRoutes)
       for (let i = 1; i < route.points.length; i++) {
@@ -154,9 +169,7 @@ describe('vehicles on decks, approaches and spans', () => {
         if (!r?.spans) continue;
         for (const t of [0.2, 0.5, 0.8]) {
           const at: [number, number] = [p[0] + (q[0] - p[0]) * t, p[2] + (q[2] - p[2]) * t];
-          // Elsewhere route points ride 0.018 units above the network reference (0.002 above the rails).
-          const off = Math.max(0.071, p[1]) * (1 - t) + Math.max(0.071, q[1]) * t - 0.071;
-          expect(terrain.profileHeight(p, q, t) - surfaceAt(r, t, at, 0)).toBeCloseTo(off, 9);
+          expect(terrain.profileHeight(p, q, t) - surfaceAt(r, t, at, 0)).toBeCloseTo(0, 9);
           checked++;
         }
       }
@@ -232,7 +245,7 @@ describe('water at measured levels', () => {
   it('keeps buildings out of the water, apart from structures standing in the river', () => {
     const allowed = ['way/1355629338'];
     for (const b of buildingsInWater()) expect(allowed.some((id) => b.detail.startsWith(id))).toBe(true);
-  });
+  }, 30_000); // samples every building footprint every 2 m: about 5 s
 });
 
 describe('data integrity', () => {

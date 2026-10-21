@@ -14,7 +14,7 @@ const q = (v: number[], f: number) => {
 };
 it('diagnoses the infrastructure', () => {
   const started = performance.now();
-  const { issues, grades, shoreGaps } = diagnoseInfrastructure();
+  const { issues, grades, shoreGaps, railRoutes, railGrades } = diagnoseInfrastructure();
   const byKind: Record<string, InfraIssue[]> = {};
   for (const i of issues) (byKind[i.kind] ??= []).push(i);
   const geo = (i: InfraIssue) => {
@@ -25,6 +25,18 @@ it('diagnoses the infrastructure', () => {
     revision: terrain.data.revision,
     seconds: (performance.now() - started) / 1000,
     counts: Object.fromEntries(Object.entries(byKind).map(([k, v]) => [k, v.length])),
+    bySeverity: Object.fromEntries(
+      Object.entries(byKind).map(([k, v]) => [
+        k,
+        {
+          error: v.filter((i) => i.severity === 'error' && !i.exception).length,
+          warning: v.filter((i) => i.severity === 'warning' && !i.exception).length,
+          exception: v.filter((i) => i.exception).length,
+        },
+      ]),
+    ),
+    /** Every issue, machine-readable: SWEREF 99 TM E/N, kind, value (m or %), severity, exception. */
+    issues: issues.map(geo),
     worst: Object.fromEntries(
       // Smaller is worse for clearances.
       Object.entries(byKind).map(([k, v]) => [
@@ -32,6 +44,8 @@ it('diagnoses the infrastructure', () => {
         [...v].sort((a, b) => (k === 'deck-near-water' ? a.value - b.value : b.value - a.value)).slice(0, 15).map(geo),
       ]),
     ),
+    railAlignment: railRoutes,
+    railGrades,
     grades: Object.fromEntries(
       Object.entries(grades).map(([k, v]) => [k, { n: v.length, p50: q(v, 0.5), p95: q(v, 0.95), p99: q(v, 0.99), max: q(v, 1) }]),
     ),

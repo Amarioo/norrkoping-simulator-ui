@@ -15,6 +15,7 @@ import {
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { Vehicle } from './city.svelte';
+import { TRACK_GAUGE_METRES, VEHICLE_GEOMETRY } from './trackProfile';
 
 type Prototype = {
   meshes: InstancedMesh[];
@@ -354,19 +355,23 @@ export function createPublicTransport() {
             steel,
           );
       }
-      for (const z of isTrain
-        ? [-length * 0.32, length * 0.32]
+      // Bogie centres are the rail vehicle contract (trackProfile.ts VEHICLE_GEOMETRY): the backend puts
+      // exactly these two points on the rail top. Rail wheels run at standard gauge on the drawn rails.
+      const bogie = isTrain
+        ? VEHICLE_GEOMETRY.train.bogieHalf
         : isTram
-          ? [-1.8, 1.8]
-          : [-3.6, 3.7]) {
+          ? VEHICLE_GEOMETRY.tram.bogieHalf
+          : 0;
+      const wheelX = isTrain || isTram ? TRACK_GAUGE_METRES / 2 + 0.035 : width / 2 - 0.12;
+      for (const z of isTrain || isTram ? [-bogie, bogie] : [-3.6, 3.7]) {
         if (isTrain || isTram) box(width * 0.75, 0.4, 1.7, 0, 0.48, z, dark);
         for (const axle of isTrain ? [-0.65, 0.65] : [0])
           for (const side of [-1, 1]) {
             const r = isTram ? 0.32 : 0.46;
             add(
-              new CylinderGeometry(r, r, 0.2, 12),
+              new CylinderGeometry(r, r, isTrain || isTram ? 0.135 : 0.2, 12),
               rubber,
-              side * (width / 2 - 0.12),
+              side * wheelX,
               r,
               z + axle,
               0,
@@ -376,7 +381,7 @@ export function createPublicTransport() {
             add(
               new CylinderGeometry(r * 0.58, r * 0.58, 0.025, 10),
               steel,
-              side * (width / 2 - 0.005),
+              side * (isTrain || isTram ? wheelX + 0.075 : width / 2 - 0.005),
               r,
               z + axle,
               0,
@@ -415,9 +420,11 @@ export function createPublicTransport() {
   }
   const matrix = new Matrix4(),
     q = new Quaternion(),
+    tilt = new Quaternion(),
     axis = new Vector3(0, 1, 0),
+    across = new Vector3(1, 0, 0),
     scale = new Vector3(0.04, 0.04, 0.04);
-  const states = new Map<string, { pos: Vector3; heading: number }>();
+  const states = new Map<string, { pos: Vector3; heading: number; pitch: number }>();
   return {
     group,
     update(vehicles: Vehicle[], dt: number) {
@@ -441,8 +448,9 @@ export function createPublicTransport() {
             key = vehicle.id + ':' + prototype.section;
           live.add(key);
           let state = states.get(key);
+          const pitch = ('pitch' in pose ? pose.pitch : undefined) ?? 0;
           if (!state) {
-            state = { pos: new Vector3(...pose.pos), heading: pose.heading };
+            state = { pos: new Vector3(...pose.pos), heading: pose.heading, pitch };
             states.set(key, state);
           }
           const target = new Vector3(...pose.pos);
@@ -454,7 +462,10 @@ export function createPublicTransport() {
               Math.cos(pose.heading - state.heading),
             ) *
             (1 - Math.exp(-dt * 14));
-          matrix.compose(state.pos, q.setFromAxisAngle(axis, state.heading), scale);
+          state.pitch += (pitch - state.pitch) * (1 - Math.exp(-dt * 14));
+          // Model origin = wheel contact at the section centre; +z is forward, so nose-up is −x rotation.
+          q.setFromAxisAngle(axis, state.heading).multiply(tilt.setFromAxisAngle(across, -state.pitch));
+          matrix.compose(state.pos, q, scale);
           for (const mesh of prototype.meshes) mesh.setMatrixAt(i, matrix);
         });
         for (const mesh of prototype.meshes) {

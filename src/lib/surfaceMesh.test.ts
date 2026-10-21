@@ -52,7 +52,9 @@ describe('adaptive terrain mesh structure', () => {
 
   it('has the triangle count recorded by the mesh preparation', () => {
     expect(all.length).toBe(terrain.data.mesh!.triangles);
-    expect(mesh.countTriangles()).toBe(all.length);
+    // Step 5: re-triangulated leaves (road breakline patches) count with their patch triangles.
+    const patches = terrain.data.mesh!.patches;
+    expect(mesh.countTriangles()).toBe(all.length - (patches?.leaves ?? 0) + (patches?.triangles ?? 0));
   });
 
   it('is conforming: every interior edge is shared by two triangles, no T-junctions', () => {
@@ -130,6 +132,8 @@ describe('adaptive terrain mesh structure', () => {
       if (col < 0 || row < 0 || col >= tile.columns || row >= tile.rows) continue;
       const x = mesh.x + rx * mesh.step,
         z = mesh.z + rz * mesh.step;
+      // Nodes on asphalt inside a road breakline patch carry the road surface (Step 5, step5.test.ts).
+      if (mesh.patchedAt(x, z)) continue;
       expect(metres(terrain.surfaceHeight(x, z))).toBeCloseTo(
         tile.heights[row * tile.columns + col] as number,
         6,
@@ -195,14 +199,21 @@ describe('ground layers on the mesh', () => {
 });
 
 describe('terrain mesh accuracy (independent native 1 m DTM samples)', () => {
-  it('reproduces the reference implementation (scripts/geo/rtin.py) exactly', () => {
-    for (const [x, z, h] of control.mesh)
+  it('reproduces the reference implementation (scripts/geo/rtin.py) exactly outside road patches', () => {
+    // Step 5: inside the breakline prototype boxes the road leaves are re-triangulated (road_patches.py).
+    let checked = 0;
+    for (const [x, z, h] of control.mesh) {
+      if (mesh.patchedAt(x, z)) continue;
       expect(metres(terrain.surfaceHeight(x, z))).toBeCloseTo(h, 6);
+      checked++;
+    }
+    expect(checked).toBeGreaterThan(control.mesh.length * 0.98);
   });
 
   for (const [name, limit] of Object.entries(control.limits))
     it(`stays within the measured accuracy for ${name}`, () => {
-      const samples = control.native.filter((s) => s.group === name);
+      // The RTIN bound; road breakline patches (Step 5) are engineered surfaces checked in step5.test.ts.
+      const samples = control.native.filter((s) => s.group === name && !mesh.patchedAt(s.x, s.z));
       const errors = samples.map((s) => metres(terrain.surfaceHeight(s.x, s.z)) - s.dtm);
       expect(errors.length).toBeGreaterThan(200);
       const mean = errors.reduce((s, e) => s + e, 0) / errors.length,
