@@ -30,3 +30,9 @@ work/coordinate-migration-backup/
 
 # Raw survey deliveries; preserve metadata locally, publish only with verified licence.
 work/geodata/
+
+# Step 5 / 5.1 measurement scratch (app snapshots, benchmark runs, captures, probe output,
+# backups). Curated evidence is in docs/step5*/; the reusable tools are in scripts/geo/.
+/work/step5/
+/work/step51/
+/work/step51opt/
