@@ -1,0 +1,9 @@
+{
+  "stathoga-close": { "position": [9.4, 0.55, -35.4], "target": [6.0, 0.2, -38.9] },
+  "stathoga-low": { "position": [3.0, 0.45, -33.0], "target": [6.5, 0.2, -39.0] },
+  "linkopingsvagen-culvert": { "position": [-101.2, 1.8, 35.2], "target": [-103.6, 1.32, 31.77] },
+  "tram2-bridge-approach": { "position": [36.2, 1.1, 58.0], "target": [33.61, 0.66, 55.14] },
+  "gamlebro": { "position": [-6.9, 1.25, 6.2], "target": [-8.38, 0.3, 2.02] },
+  "kvarngatan": { "position": [-15.4, 1.35, 9.6], "target": [-17.55, 0.62, 7.26] },
+  "industry-service-roads": { "position": [-14.0, 3.0, 12.0], "target": [-17.0, 0.5, 6.0] }
+}

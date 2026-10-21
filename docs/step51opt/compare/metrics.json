@@ -1,0 +1,117 @@
+[
+ {
+  "view": "boundary-eksundsvagen",
+  "meanAbsDiff": 0.09,
+  "pixelsChangedOver32": 0.03
+ },
+ {
+  "view": "boundary-gamla-ovagen",
+  "meanAbsDiff": 0.42,
+  "pixelsChangedOver32": 0.23
+ },
+ {
+  "view": "boundary-sandbyhovsgatan",
+  "meanAbsDiff": 0.81,
+  "pixelsChangedOver32": 0.53
+ },
+ {
+  "view": "crease-brannerigatan",
+  "meanAbsDiff": 0.08,
+  "pixelsChangedOver32": 0.05
+ },
+ {
+  "view": "crease-lundatorp",
+  "meanAbsDiff": 0.14,
+  "pixelsChangedOver32": 0.05
+ },
+ {
+  "view": "crease-motorway-562963",
+  "meanAbsDiff": 0.08,
+  "pixelsChangedOver32": 0.06
+ },
+ {
+  "view": "crease-motorway-565281",
+  "meanAbsDiff": 0.07,
+  "pixelsChangedOver32": 0.04
+ },
+ {
+  "view": "fan-570420",
+  "meanAbsDiff": 0.2,
+  "pixelsChangedOver32": 0.14
+ },
+ {
+  "view": "hamngatan-a-top",
+  "meanAbsDiff": 0.25,
+  "pixelsChangedOver32": 0.12
+ },
+ {
+  "view": "hamngatan-b-from-river",
+  "meanAbsDiff": 0.34,
+  "pixelsChangedOver32": 0.2
+ },
+ {
+  "view": "hamngatan-c-low-east",
+  "meanAbsDiff": 0.36,
+  "pixelsChangedOver32": 0.24
+ },
+ {
+  "view": "hamngatan-d-from-se",
+  "meanAbsDiff": 0.11,
+  "pixelsChangedOver32": 0.07
+ },
+ {
+  "view": "jarngatan-e4-side",
+  "meanAbsDiff": 0.12,
+  "pixelsChangedOver32": 0.04
+ },
+ {
+  "view": "jarngatan-underpass",
+  "meanAbsDiff": 0.13,
+  "pixelsChangedOver32": 0.03
+ },
+ {
+  "view": "microwall-570589",
+  "meanAbsDiff": 0.14,
+  "pixelsChangedOver32": 0.09
+ },
+ {
+  "view": "ownership-closeup",
+  "meanAbsDiff": 0.02,
+  "pixelsChangedOver32": 0.0
+ },
+ {
+  "view": "ownership-ektorpsgatan",
+  "meanAbsDiff": 0.06,
+  "pixelsChangedOver32": 0.04
+ },
+ {
+  "view": "pendeln-564464",
+  "meanAbsDiff": 0.08,
+  "pixelsChangedOver32": 0.0
+ },
+ {
+  "view": "pendeln-564926",
+  "meanAbsDiff": 0.05,
+  "pixelsChangedOver32": 0.02
+ },
+ {
+  "view": "pendeln-567524",
+  "meanAbsDiff": 0.0,
+  "pixelsChangedOver32": 0.0
+ },
+ {
+  "view": "pendeln-567768",
+  "meanAbsDiff": 0.01,
+  "pixelsChangedOver32": 0.0
+ },
+ {
+  "view": "saltangsbron-corner",
+  "meanAbsDiff": 0.24,
+  "pixelsChangedOver32": 0.12
+ },
+ {
+  "view": "tvastugubacken",
+  "meanAbsDiff": 0.06,
+  "pixelsChangedOver32": 0.02
+ }
+]

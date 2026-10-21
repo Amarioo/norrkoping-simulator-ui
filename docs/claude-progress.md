@@ -1,6 +1,1059 @@
 # Claude progress report — Norrköping geospatial reconstruction
 
-This file is the recovery checkpoint. Newest status first. **Nothing has been committed or pushed.**
+This file is the recovery checkpoint. Newest status first.
+
+**Git checkpoint (2026-10-21), geometry phase approved:** committed on `main` in both repositories with the
+user's authorisation:
+- Backend: `e143535`.
+- UI: `85fd462` (scratch ignore rules), `05a3505` (code, tests, scripts and runtime data), then the documentation commit.
+
+Both repositories carry identical runtime data: `terrain.json` surface revision
+`lm-dtm-b976b87a19446d3d-surface-70559be0073d`, `bridge-profiles.json` and `transport-network.json`.
+Measurement scratch (`work/step5/`, `work/step51/`, `work/step51opt/`) stays local and is ignored.
+
+---
+
+## Step 5.1 geometry cost optimisation (2026-10-20) — COMPLETE, trade-off for review
+
+**Action for the user:** restart the Ktor backend (:8080). `terrain.json` changed in both repositories (identical
+files); new surface revision `lm-dtm-b976b87a19446d3d-surface-70559be0073d`. The DTM grid is unchanged.
+`TerrainService.kt` has three optional patch fields (`groups`, `members`, `classesBase64`). Nothing committed or pushed.
+
+### Trade-off (measured)
+
+| | Step 5 | Step 5.1 | **Optimised** | Optimised vs Step 5 |
+|---|---|---|---|---|
+| Static triangles | 8 412 094 | 8 711 319 (+3.56 %) | **8 563 150** | **+1.80 %** |
+| Vertex buffers | 1 110.4 MB | 1 149.9 MB | **1 130.3 MB** | +19.9 MB (Step 5.1: +39.5) |
+| Geometries | 5 488 | 5 592 | **5 537** | +49 (Step 5.1: +104) |
+| Patch triangles | 23 341 | 86 577 | **65 461** | (−24 % vs Step 5.1) |
+| Map ready, prod., median of 3 | 3 186 ms | 3 462 ms | **3 387 ms** | **+0.20 s** (Step 5.1: +0.28) |
+| Page ready | 4 149 ms | 4 320 ms | 4 285 ms | +0.14 s |
+| JS heap | 140.8 MB | 148.8 MB | 145.6 MB | +4.8 MB |
+| GPU upload: excess / longest frame | 925 / 901 ms | 928 / 905 ms | **869 / 885 ms** | better than both |
+| Frame time overview / city | 12.5 / 5.0 ms | 13.3 / 5.1 ms | 12.6 / 4.9 ms | = |
+| Draw calls overview / city | 8 205 / 3 450 | 8 307 / 3 507 | 8 253 / 3 479 | +48 / +29 (Step 5.1: +102 / +57) |
+| Rendered triangles, overview | 9.49 M | 9.78 M | 9.63 M | +1.55 % |
+
+Production builds served by `vite preview`, uncapped, 3 alternating rounds (`measure-startup.mjs`). Draw calls
+and rendered triangles were measured on dev servers (30 frames per view). Builder times (Node harness, 5 runs): network
+2 191 / 2 380 / 2 302 ms, terrain 1 753 / 1 859 / 1 764 ms.
+
+**Targets.** Geometry is at +1.80 %, within the 1–2 % target. **Map ready (+0.20 s) misses the 0.1 s target.**
+Data parsing and hydration of the larger `terrain.json` cost only 10–15 ms (`city-data:*` measures). The rest is
+the network worker (the critical path), which is +111 ms in the harness. That time scales with the triangles it
+emits: draped non-member strips and kerb margins cut by the finer patch triangles. To go lower, fewer patch sites
+would be needed. That would reverse verified corrections, so I stopped here. **All 88 selected sites (91 groups) are kept.**
+
+### What changed
+
+1. **Asphalt ownership (priority 1).** Every patch triangle carries a class: 0 terrain, 1 road asphalt, 2 track bed
+   (`classesBase64`). Road members of a patch are listed in `members`.
+   - The network worker draws class-1 triangles once, as the asphalt layer (`surface.patchTriangles(1, …)`).
+   - It skips the member's asphalt strip and owned junction fans.
+   - It draws the member's kerb only as its two visible margins, with the inner edge exactly on the outline
+     (`strip(…, hole)`/`band`). There is no overlap and no double layer.
+   - Members drawn with a narrowed outline (negative pad), linear (profiled) pieces and mixed fans keep their
+     own strips.
+   - Result: −148 k static triangles vs Step 5.1.
+2. **Steiner point removal** (`scripts/geo/cdt.py remove_steiner`).
+   - The conforming Delaunay added Steiner points on constraints (37 % of vertices).
+   - Each is removed by re-triangulating its star, but only if:
+     - no T-junction results;
+     - every leaf is still tiled exactly;
+     - no new triangle is narrower than 2 cm (`STEINER_MIN_WIDTH`).
+   - Rail-bed Steiner points are kept, because Pendeln at E 567 972 rose from 1.71 % to 2.01 % without them.
+   - Result: 84 groups are "reduced" (13 767 points removed). 7 groups keep the conforming triangulation, as in Step 5.1.
+3. **Patch boundary continuity (priority 2), general.**
+   - *Axial feathering:* where a member road meets a road kept on the RTIN, member asphalt blends into the RTIN
+     over 8 m along the road. Fan wedges there are set to the RTIN (266 feathered nodes).
+   - *Ghost outlines:* the footprints of non-member roads, rails, trams, paths, linear pieces and bridges crossing
+     patched leaves become constraints at RTIN height. The terrain under them stays what it was.
+   - *Ghost clearance (new in this round):* ghost outlines keep `GHOST_CLEAR` = 0.5 m from member asphalt.
+     Without it, 41 vertical micro-walls appeared where a ghost vertex sat 1 cm beside a lifted outline vertex
+     (worst E 570 589 N 6 493 307: 2.5 m).
+   - No offsets are hardcoded.
+
+### Results
+
+| Check | Step 5.1 | Optimised |
+|---|---|---|
+| Gamla Övägen boundary crease | −0.35 m | **−0.07 m** |
+| Eksundsvägen boundary crease | −0.36 m | **−0.28 m** |
+| Sandbyhovsgatan boundary crease | +0.58 m | **+0.26 m** |
+| Micro-walls (< 2 cm wide, slope > 5), map-wide | 81 (16 with > 0.2 m step) | **11 (3)** |
+| Steep facets (slope > 0.6) in patches | 3 844 | 2 803 |
+| Pendeln max / p99 (1 m sampling) | 2.46 / 1.85 % | **2.46 / 1.85 %** |
+| Former Pendeln peaks (14) | < 2.0 % | < 2.0 % |
+| Wheel − rail top | 0 | 0 (< 1 mm, 20 000+ samples) |
+| Terrain outside patches vs RTIN | exact | exact (4 000 samples) |
+| Cross-section errors / warnings (Step 5: 11 / 806) | 9 / 732 | **8 / 733** |
+| Steep-grade errors / warnings (Step 5: 80 / 275) | 78 / 257 | **77 / 257** |
+| Grade-break errors / warnings (Step 5: 86 / 356) | 79 / 353 | 79 / 354 |
+| Below-terrain errors / warnings (Step 5: 4 / 333) | 4 / 313 | 4 / 312 |
+| Junction-fan warnings / junction-step errors (Step 5: 20 / 4) | 0 / 3 | 0 / 3 |
+| Creases on patched leaves: new or worse than Step 5 | 8 of 20 | **4 of 21** |
+
+Screenshots: `docs/step51opt/{before,after,compare}` contain 23 identical camera poses
+(`docs/step51opt/poses.json`). "Before" is Step 5.1 and "after" is the optimised build.
+- Mean absolute pixel difference is ≤ 0.81 per view.
+- Sandbyhovsgatan visibly improves: the Step 5.1 twist and depression at the T-junction is gone.
+- Elsewhere: marking and kerb positions shift by a few pixels. No missing asphalt, z-fighting or seams were seen.
+- `microwall-570589` is new: there is no wall in either build. The kerb line across the slip road is the same as in Step 5.1.
+
+### Tests
+
+`src/lib/step51opt.test.ts` (11 tests) checks:
+- the patch is watertight in 3D;
+- no new micro-walls;
+- no missing asphalt, and asphalt lies exactly at the vehicles' surface;
+- ownership: one asphalt layer and no kerb under it;
+- kerb margins have exactly the strip's area, so nothing is drawn twice;
+- visible kerb margins are present;
+- no added twist at any group-boundary node;
+- the three boundary sites;
+- train-to-rail alignment;
+- the Pendeln grades and former peaks;
+- terrain outside the corridors is exactly the RTIN.
+
+Suite results:
+- **Vitest:** 165/165 tests in 18 files.
+- **`npm run check`:** 0 errors.
+- **`npm run build`:** OK. The chunk-size warning already existed.
+- **Backend `dev.ps1 test`:** OK.
+- **Playwright E2E:** 2/2, against a backend on :8091 serving the new revision.
+
+### Remaining issues
+
+- Map ready is +0.20 s vs Step 5 (above).
+- Four creases on patches are still worse than in Step 5 (Step 5.1: 8). Rule: drawn > Step 5 + 0.1 m, or newly > 0.3 m.
+  - E 567 535 N 6 496 850, way 996110633: 0.49 m (Step 5: 0.31 m);
+  - E 567 535 N 6 496 877, way 26417564: −0.32 m (Step 5: 0.13 m);
+  - E 563 854 N 6 500 639, ways 972886811 / 980881391: 0.35 / 0.44 m (Step 5: 0.18 / 0.19 m). Step 5.1 classified way
+    972886811 as measured relief (native 0.20 m).
+- The two known ~5 cm seams (E 574 108 N 6 491 910, E 565 181 N 6 494 359) remain. Each is closed by a sliver, so there is no gap.
+- 3 micro-walls with a step > 0.2 m remain, all at retained deck edges and DTM cliffs, where the step is real.
+
+### Final visual check (2026-10-21, approved scope; no code or data changed)
+
+Method:
+- Drawn cross-sections were compared with the native 1 m DTM on three lines, 1 m apart, every 0.5 m.
+- Centreline profiles were sampled every 1 m.
+- Close-up captures at driver height were taken in Step 5, Step 5.1 and the optimised build.
+
+**The four creases**
+
+| Site | Drawn crease | Native 1 m DTM | Verdict |
+|---|---|---|---|
+| Ekhöjdsgatan, E 567 535 N 6 496 850 | +0.43–0.49 m | +0.23–0.67 m (noisy) | **Measured relief and horizontal error, pre-existing.** A 2.2 m wall crosses the OSM centreline (native 20.36 → 22.58 m within 2 m). Step 5 already draws the same ~1 m dip before it (20.49 m; now 20.50 m). |
+| Sandbyhovsgatan, E 567 535 N 6 496 877 | −0.33 m | −0.51 m | **Measured.** The left 3 m of the drawn strip lies on a 1.3 m embankment slope; the OSM centreline is ~3 m beside the carriageway (horizontal). The drawn surface is closer to the DTM than in Step 5. |
+| Way 972886811, E 563 854 N 6 500 639 | +0.33 m | +0.22–0.30 m | **Measured.** The junction is dished, and the drawn surface is within ~0.1 m of the DTM. |
+| Ringstadmovägen, same node | +0.41 m | +0.39–0.40 m | **Measured,** at the native value. |
+
+- None is visibly disruptive at driver height. Sandbyhovsgatan and Ekhöjdsgatan look cleaner than in Step 5, which shows kerb fragments on the carriageway there.
+- No small general fix applies. Ekhöjdsgatan would need a horizontal realignment of the OSM centreline. **Known issue, not changed.**
+
+**The two seams**
+- All 4 T-junction vertices are closed by sliver triangles in the patch data: 3 at E 574 108–574 118 (≤ 4.9 cm) and 1 at E 565 181 (5.1 cm).
+- The land drape drops those zero-area slivers, so each seam is a ≤ 5 cm vertical step along a 28–42 m leaf edge.
+- Eight low captures (camera height 0.6 m, azimuths every 45–90°) show no see-through line and no hole.
+
+**Found during the check: street-level fan flicker, pre-existing.**
+- At E 574 112 N 6 491 904, a large junction fan's kerb wedge (rank 10) and asphalt wedge (rank 11) are exactly coplanar.
+- When the camera is ~0.6 m above them, both wedges cross the near plane. The one-rank depth bias then does not hold, so the foreground flips between asphalt and kerb.
+- The geometry is identical in Step 5, Step 5.1 and the optimised build, and nudging the camera by a few cm shows the same flip in all three.
+- Fixing it means changing the layered-ground depth scheme (e.g. a larger bias at street level). That is outside this phase. **Known issue.**
+
+### Reproduce
+
+    python scripts/geo/road_patches.py --apply            # codex-runtimes Python 3.12; ~6 min
+    pwsh -File scripts/geo/step51-after.ps1                # diagnostics, rail evidence, patch sites
+    npx vitest run src/lib/step51opt.test.ts               # PowerShell, C:\ path
+    BOX=560000,6488000,576000,6504000 OUT=… npx vitest run -c scripts/geo/vitest.infra.config.ts scripts/geo/infra-steep-facets.test.ts
+    GEOMETRY_OUT=… RUNS=5 npx vitest run -c scripts/geo/vitest.geometry.config.ts
+    UNCAPPED=1 E2E_BASE_URL=http://127.0.0.1:<port>/ node scripts/measure-startup.mjs <out.json>
+    POSES=docs/step51opt/poses.json node scripts/capture-reference-views.mjs <dir>
+
+---
+
+## Step 5.1 (2026-10-19): targeted infrastructure geometry corrections — COMPLETE, waiting for approval
+
+**Action for the user:** restart the Ktor backend (:8080). Data and `TerrainService.kt` (two new optional patch
+fields) changed. The new surface revision is `lm-dtm-b976b87a19446d3d-surface-cb8af1f00f7c`; the DTM grid itself
+is unchanged. Nothing committed or pushed.
+
+**Decision needed:** the corrections cost **+3.6 % static triangles and +0.27 s map ready**. I stopped at
+"priority A" and did not expand further (see *Performance* and *Trade-off*).
+
+**Reference screenshots:** the three Hamngatan × Drottninggatan screenshots again did not arrive. The junction
+was verified against the Step 5 poses and from above (below).
+
+### Summary
+
+| Item | Root cause (measured) | Result |
+|---|---|---|
+| **Pendeln peaks** | The diagnostic sampled every 5 m and missed the worst chord: the real max was **4.80 %**, not 3.79 %. All 14 peaks are on Södra stambanan (Trafikverket mainline, mixed traffic, 110–150 km/h). In 12 of them the rendered bed departed 0.2–1.1 m from a measured bed (native DTM and LiDAR class 2 agree) that is at most 1.6 % steep: 5 m grid nodes lie on cutting/embankment slopes 2–3 m from the double track. In the 2 peaks next to the underpass bridges, rail deck ends were anchored on the 0.1–0.45 m wrong rendered mesh, and the first node past a deck end lay 0.65 m low in the removed-bridge gap. | Rail-bed breakline patches over 14 stretches; rail deck ends anchored on the measured bed; 1 track deck-end notch. Pendeln **max 4.80 → 2.46 %, p99 2.15 → 1.85 %**: within the 25 ‰ that is the steepest gradient anywhere on Södra stambanan. Every former peak now ≤ 1.98 %. Wheel − rail top is still 0. |
+| **Road twists (817)** | Checked against the native 1 m DTM across each strip. **532: the mesh adds > 0.3 m** to the measured crease. **241 are horizontal**: 209 OSM centrelines beside the carriageway, 32 drawn widths over verges/walls. **44 are measured relief.** Every crease > 1 m that the mesh does not explain is horizontal. | Patches where the mesh adds > 0.5 m (priority A, 88 sites): 68 within limit, 3 improved, 3 at the measured value, 4 unchanged, 10 kept on the RTIN because the measured footprint is not planar. Horizontal and measured cases are reported, not "corrected". |
+| **Prototype boxes' four twists** | Tvåstugubacken (3 left): native crease 0.54–0.80 m inside the drawn strip. The OSM centreline cuts the inside of a hairpin (LiDAR view `docs/step51/lidar/tvastugubacken-bend.png`), or the strip spans a wall. | Horizontal, kept and documented. |
+| **Junction fans (20)** | A wedge between a linear and a draped strip was either a plane or a lifted drape, so it was exact on only one of its two edges. | Blend rule in `fanWedge`, exact on both edges by construction: **20 → 0**. |
+| **Hamngatan × Drottninggatan** | – | All Step 5 C.1 checks still pass. Viewed from above: continuous asphalt, level tram tracks, no depressed triangles. The deck-corner facet is a kerb/quay-path wedge between OSM's bridge end and the quay 4–5 m further on: network geometry, unchanged (see remaining issues). |
+| **Järngatan / E4** | LiDAR under the E4 footprint (s = −4…+20 m along Järngatan): every return is **class 2 at 14.8–15.0 m**, 0 class 17, 0 returns below 11 m. Järngatan class 2 is 9.39 m (west) / 9.35 m (east). The deck was classified as ground. | Confirmed. The E4 deck is drawn at its surveyed 14.4–15.5 m; Järngatan at 9.1–9.8 m in the corrected trench; > 4.5 m apart; the ground under the deck is the trench floor (< 10 m). Regression test added. |
+| **Brännerigatan** (E 569 776) | A road leaving a bridge took a measured fit that included the DTM's stream gap: a 1.1 m "tent". | Deck-end rule (level cross-section at the abutment): gone. |
+| Lidaleden (E 571 559) | An engineered span over a path underpass, not a grounded piece. | Classified as abutment (reported). |
+
+### A — Pendeln (Södra stambanan) grade peaks
+
+Evidence: `scripts/geo/rail_grade_evidence.py`, `work/step51/rail-grade-evidence*.json`. LiDAR is the local Laserdata
+NH 2020 COPC tiles (`scripts/geo/lidar_window.py`).
+
+Line facts:
+- OSM tags on every peak way: `operator=Trafikverket`, `usage=main`, `railway:traffic_mode=mixed`,
+  `maxspeed` 110–150, `axle_load=22.5`, single track per way (double-track line).
+- Swedish Wikipedia gives **25 ‰** as Södra stambanan's steepest gradient. The Trafikverket capacity plans
+  (Norrköping–Fiskeby, Linköping–Norrköping) returned 404, and no local Trafikverket profile was available.
+- The relevant reference is therefore the measured bed (DTM/LiDAR ≤ 1.6 % over 20 m), with 25 ‰ as an upper
+  bound. RAIL_GRADE_LIMIT stays 2.5 %.
+
+Peaks, 20 m chord, ridden; LiDAR is class 2 within 1 m of the track centre:
+
+| E | N | Way | Before % | Native DTM max % | LiDAR % | Rendered − native max m | Under it | After % |
+|---|---|---|---|---|---|---|---|---|
+| 567 444 | 6 497 092 | 94364274 | 4.24 | (bridge gap) | 0.75 | 0.57 | deck/ground/span | 1.98 |
+| 565 361 | 6 496 830 | 97538951 | 2.68 | 1.33 | 0.98 | 0.44 | ground | 1.92 |
+| 564 926 | 6 494 770 | 177890699 | 3.48 | 0.66 | 0.40 | 0.68 | ground | 0.61 |
+| 564 464 | 6 494 524 | 177890703 | **4.80** | 0.81 | 0.09–0.23 | 1.09 | ground | 0.82 |
+| 565 160 | 6 494 925 | 177890745 | 2.63 | 0.61 | 0.0 | 0.36 | ground | 0.69 |
+| 565 449 | 6 497 064 | 97538966 | 2.70 | 1.26 | 0.87 | 0.42 | ground | 1.42 |
+| 567 189 | 6 497 198 | 94364267 | 3.14 | 1.26 | 1.0 | 0.36 | ground | 1.69 |
+| 567 390 | 6 497 125 | 94364267 | 2.66 | (bridge gap) | 1.2 | 0.83 | deck/ground/span | 1.89 |
+| 567 524 | 6 497 045 | 177890726 | 3.29 | 1.53 | 1.0 | 0.48 | ground | 1.65 |
+| 567 768 | 6 496 730 | 177890726 | 3.79 | 1.62 | 1.1 | 0.43 | ground | 1.44 |
+| 567 804 | 6 496 616 | 177890726 | 2.88 | 1.47 | 0.92 | 0.44 | ground | 1.39 |
+| 567 835 | 6 496 445 | 177890726 | 2.83 | 1.56 | 1.05 | 0.41 | ground | 1.45 |
+| 567 972 | 6 496 027 | 95557980 | 2.50 | 1.32 | 0.93 | 0.20 | ground | 1.71 |
+
+Corrections (all general rules, none keyed to coordinates):
+1. **Rail-bed patches**: stretches where the measured bed is within the limit but the rendered one departs by more
+   than 0.1 m, extended while it departs by more than 5 cm. The 5 m bed of every parallel track within 6 m is
+   integrated as a measured surface.
+2. **Rail deck anchors on the measured bed** (`prepare-bridge-profiles.py` rule 1): the median of the native DTM
+   along the track 4–12 m out, instead of the rendered mesh. This moved 36 rail/tram deck ends (median 0.07 m,
+   max 0.45 m), and each checked one now matches LiDAR class 2 along the track. Händelöspåret: 5.77 / 5.77 m and
+   4.88 / 4.89 m (native / LiDAR); before, the rendered anchor was 0.45 m low. The second underpass deck now
+   lies within ±0.08 m of its class 17 returns (was +0.11 m at the west end).
+3. **Track deck-end notch** (rule 1c): the depth threshold is 0.3 m along track (1 m for roads, where valleys
+   and stairs must never be lifted). One node map-wide: E 567 452 N 6 497 087, 21.63 → 22.50 m.
+4. **Deck-end dip on long track approaches** (rule 2b, ≥ 0.15 m within 15 m of a deck end): 2 rail approaches.
+5. **Diagnostics:** ridden grade sampled every 1 m (was 5 m) and measured along the track (20 m), not over the
+   straight chord. At the route's reversal the chord counted the same 10 m twice: 3.4 % on 1 % track.
+
+Visual check (`docs/step51/compare/pendeln-*.png`): the tracks are level and straight. Beside a cutting the
+slope now rises from the bed edge in visible facets (the measured cutting shape) instead of from bumps in the
+track.
+
+### B — Selective road refinement (priority A only)
+
+**Selection** (`scripts/geo/refinement_targets.py` → `scripts/data/geometry-refinement-targets.json`, 1 322
+candidates). Every diagnostic issue is tested against the native 1 m DTM (median of three lines ±1 m):
+
+- **Cross-sections:**
+  - *mesh*: measured strip planar and uncreased, or the mesh adds > 0.3 m to the measured crease;
+  - *alignment*: the measured strip has a step, but shifted ≤ 3 m sideways it is planar;
+  - *width*: planar at 60 % of the drawn width;
+  - otherwise *measured*.
+- **Grades:** corrected only if the measured grade is within the road limit, much flatter than drawn, and the
+  measured strip is planar. A genuinely steep road is not "corrected" towards a still-steep measurement.
+- **Below-terrain:** non-bridge linear pieces are integrated. Bridges and ways with an underpass span are
+  *abutment* (reported).
+- **Rail:** from the evidence above.
+
+Priority A (patched): rail stretches, below-terrain pieces, grade errors (> 1.5 × limit), and twists where the
+mesh adds > 0.5 m. Priority B (reported, `--priority=B` would add them): the rest.
+
+**Builder** (`scripts/geo/road_patches.py`; additions to the Step 5 algorithm, all general):
+
+- **Groups:**
+  - targets → touched RTIN leaves → closure (depth 1) over every road/track entering them;
+  - groups sharing a leaf or leaf edge are merged;
+  - the 5 prototype boxes are kept and merged with targets that touch them.
+- **Lean density for targets:** outline vertices at 10 m, no free centreline points. Study on 25 targets:
+  −21 % triangles, asphalt RMSE 0.056 → 0.064 m.
+- **Draped parts:** segments partly covered by spans, and tapered approaches, take part with their draped
+  intervals. Their ends are pinned to the span/deck level with a level cross-section.
+- **Ghost outlines:** a road, track or tram that is not a member but crosses a patched leaf keeps the RTIN
+  under its footprint. Its edges are constraints with RTIN heights, so no new creases appear beside a patch.
+- **Planarity guard:** no measured surface where the measured footprint is not planar (wall, terrace; strip
+  residual > 0.5 m at three stations or at a classified site of the way). Such a road stays on the RTIN.
+- **Deck ends:** a road leaving a bridge meets the abutment level across, never lowered.
+- **Terrain detail:** native pixels where the patch itself made the terrain > 0.25 m and 0.1 m worse than the
+  RTIN, ≥ 1.5 m from asphalt, become vertices. No general refinement.
+- **Robustness:** retries with ±3/8 cm outline pads; drops sub-mm or stalled ghost constraints; a group that
+  still cannot be tiled exactly is skipped and reported (1 of 91).
+- **Data:** `terrain.json mesh.patches` gains `groups` (name → box) and `members` (segments drawn on the
+  measured surface); backend `SurfacePatches` and `surfaceMesh.ts` read both.
+
+**Result**: 91 groups, 818 segments, 9 940 leaves → 86 577 patch triangles (Step 5: 2 123 → 23 341). In the
+patched leaves, asphalt vs native DTM RMSE **0.183 → 0.061 m** and terrain 0.381 → 0.334 m. Saltängsbron box
+terrain 0.185 (Step 5) → 0.156 m.
+
+Full per-location table: `docs/step51/refinement-report.md` (+ `.json`): coordinates, category, magnitude,
+correction, before/after re-measured with the diagnostics' own rules, uncertainty.
+
+### C — Map-wide diagnostics (identical code on the Step 5 baseline copy and on this tree)
+
+| Check (error / warning) | Step 5 | Step 5.1 |
+|---|---|---|
+| cross-section | 11 / 806 | **9 / 732** |
+| steep-grade | 80 / 275 | **78 / 257** |
+| grade-break | 86 / 356 | **79 / 353** |
+| below-terrain | 4 / 333 | 4 / **313** |
+| junction-fan | 0 / 20 | **0 / 0** |
+| junction-step | 4 / 0 | **3** / 0 |
+| sag, shore, building, spikes | – | unchanged (sag 7 / 60) |
+| Pendeln p99 / max (1 m, along track) | 2.15 / 4.80 % | **1.85 / 2.46 %** |
+| Tram 2 / tram 3 max | 6.49 / 6.23 % | unchanged (tram limit 8 %) |
+
+Creases now on patched leaves: 20, of which 12 are unchanged or better than Step 5. Of the other 8:
+
+- **5 are measured relief**, kept honestly: the native crease is as large or larger.
+  - Ringstadmovägen: 0.44 m (measured 0.41 m).
+  - Ekhöjdsgatan: 0.90 m (measured 1.13 m).
+  - Way 996110624: −1.12 m (measured −1.46 m).
+  - Way 1089721868: −0.40 m (measured −0.72 m).
+  - Way 972886811: 0.34 m (measured 0.20 m).
+- **3 are patch artefacts:**
+  - Sandbyhovsgatan, E 567 549 N 6 496 858: 0.58 m against a measured 0.54 m (Step 5: 0.24 m).
+  - Gamla Övägen, E 568 588 N 6 493 273: −0.35 m (Step 5: −0.24 m). In the Ektorpsgatan box, where a
+    non-member road starts at a member's end line and the measured edge blends into the RTIN.
+  - Eksundsvägen, E 563 423 N 6 493 362: −0.36 m (Step 5: −0.28 m).
+
+### D — Performance (production builds side by side, same machine, 3 alternating runs, medians)
+
+| | Step 5 | Step 5.1 |
+|---|---|---|
+| Patch triangles / leaves | 23 341 / 2 123 | 86 577 / 9 940 |
+| Static triangles | 8 412 094 | 8 711 319 (**+3.56 %**: land +88 k, roads +187 k, markings +25 k) |
+| Vertex buffers | 1 110 MB | 1 150 MB (+3.6 %) |
+| Geometries (≈ draw calls) | 5 488 | 5 592 (+1.9 %) |
+| `terrain.json` | 33.2 MB | 35.4 MB |
+| Worker build terrain / network / markings (Node) | 1 734 / 2 206 / 493 ms | 1 927 / 2 388 / 545 ms |
+| Map ready | 3 261 ms | **3 529 ms (+0.27 s)** |
+| Upload excess / longest upload frame | 877 / 910 ms | 985 / 971 ms |
+| JS heap | 129 MB | 151 MB (consistent +20 MB in every run) |
+| Frame time, uncapped: overview / city / campus / industry / parken / kungsgatan | 13.3 / 5.2 / 3.4 / 1.8 / 2.2 / 1.6 ms | 13.8 / 5.4 / 3.4 / 1.8 / 2.2 / 1.7 ms |
+
+**Trade-off:**
+- *Where the cost goes:* most of the static increase is roads draping over the denser patch triangulation
+  (+187 k), not the patches themselves (+88 k).
+- *Cost of expanding:* all candidates incl. priority B would add ≈ +430 k patch triangles. Dry run: 435 groups,
+  14.7 MB, roughly +1.4 M static triangles. Not done.
+- *Options to trim the current cost,* if +0.27 s / +3.6 % is too much:
+  - draw road strips on patches straight from the patch's asphalt triangles (removes most of the +187 k);
+  - drop ghost outlines where no non-member road actually creases;
+  - raise the priority-A crease threshold from 0.5 to 0.6 m (37 instead of 88 twist sites).
+
+### E — Tests and verification
+
+| Check | Result |
+|---|---|
+| `npm run check` | 0 errors, 0 warnings |
+| `npm test` | **154 / 154** (17 files; new `step51.test.ts` 10 tests) |
+| `npm run build` | OK; dev overlay absent from `dist` |
+| Backend `dev.ps1 test` | **43 / 43** (fixtures regenerated) |
+| `npx playwright test` | **2 / 2** (dev server + backend on :8091 at the new revision) |
+| Browser captures | 18 identical-camera views before/after, no page errors (`docs/step51/{before,after,compare}`, poses `docs/step51/poses.json`) |
+| `?inspect=infra` | Loads in the browser: 1 489 refinement sites, 70 on patches (white halo), 0 rail peaks; `globalThis.__refinementSites` |
+
+New tests (`src/lib/step51.test.ts`):
+- **Pendeln:** max within 25 ‰; the measured bed at the former 4.8 % site; the deck-end notch.
+- **Junction fans:** no fan > 5 cm map-wide; every mixed wedge exact on both edges.
+- **Road selection:** priority-A selection from evidence only; horizontal cases never seeded; patched twists at
+  the measured shape; overlay sites; grounded pieces above terrain.
+- **Järngatan/E4:** two separate levels.
+
+Test adaptations:
+- `coordinateSystem` 697 → 698 profile keys (track notch).
+- `step5` box test limited to the prototype boxes, with the Gamla Övägen residual pinned (< 0.4 m).
+- `infrastructure` reversed-edge helper no longer re-adds spans to integrated segments (a helper bug that the
+  new integrated approaches exposed).
+- Rail grade metric along the track.
+
+### F — Visual evidence
+
+- `docs/step51/compare/`: before | after | difference for every pose.
+  - Pendeln ×4: level track.
+  - `crease-brannerigatan`: tent gone.
+  - `fan-570420`: deck end level.
+  - Motorway/Lundatorp twists.
+  - Hamngatan ×4 and `saltangsbron-corner`: unchanged apart from the moving tram.
+  - Järngatan ×2 and Tvåstugubacken.
+- `docs/step51/lidar/`: LiDAR intensity | LiDAR classes | native-DTM hillshade with the OSM strips. Real
+  imagery stand-in: no orthophoto is available offline; Lantmäteriet's needs an API account.
+  - `jarngatan-e4`: the deck is ground class, the trench is continuous after correction.
+  - `tvastugubacken-bend`, `hattingsgatan`: hairpin/inside cut.
+  - `kvarngatan-alignment`: carriageway on the upper half of the OSM strip, wall below.
+  - `way794772996-width`.
+  - `saltangsbron-south`: class 17 ends at the diagonal quay, 4–5 m past OSM's bridge end.
+- `docs/step51/inspect-infra.png`: the overlay.
+
+### Files
+
+**UI, modified:**
+- `src/lib/infraDiagnostics.ts` (1 m along-track rail grades, `refinementCandidates`), `cityMesh.ts`
+  (`fanWedge` blend), `surfaceMesh.ts` (`groups`, `members`), `inspectInfra.ts` (patched halos, sites).
+- Tests: `step5.test.ts`, `coordinateSystem.test.ts`, `infrastructure.test.ts`.
+- Scripts:
+  - `prepare-bridge-profiles.py` (native track anchors, track notch, deck-end dips);
+  - `geo/road_patches.py` (targets, groups, closure, parts, ghosts, planarity, deck ends, detail, robustness);
+  - `geo/infra-step5-fans.test.ts` (OUT).
+- Data: `terrain.json`, `bridge-profiles.json`, `buildings-3d.json` (revision); `geo/network-profile-control.json`,
+  `geo/rail-track-control.json`, `geo/terrain-mesh-control.json`.
+- Docs: `ELEVATION.md`, `DATA-LICENSE.md`.
+
+**UI, new:**
+- `src/lib/step51.test.ts`.
+- `scripts/data/geometry-refinement-targets.json`.
+- `scripts/geo/{refinement_targets,rail_grade_evidence,refinement_report,lidar_window,lidar_topview}.py`.
+- `scripts/geo/infra-step51-{railprofile,measure,patchsites,patchtri,cars,poses}.test.ts`.
+- `scripts/geo/step51-after.ps1`.
+- `docs/step51/`.
+
+**Backend:**
+- `TerrainService.kt` (`SurfacePatches.groups`, `.members`, both optional).
+- Resources `terrain.json`, `bridge-profiles.json`; test fixtures regenerated.
+
+**Reproduce** (geodata Python; order matters; also in `ELEVATION.md`):
+```
+INFRA_OUT=work/step51/diagnose-before.json npx vitest run -c scripts/geo/vitest.infra.config.ts scripts/geo/infra-diagnose.test.ts   # on the Step 5 surface
+npx vitest run -c scripts/geo/vitest.infra.config.ts scripts/geo/infra-step51-railprofile.test.ts
+python scripts/geo/rail_grade_evidence.py && python scripts/geo/refinement_targets.py
+python scripts/prepare-bridge-profiles.py && python scripts/geo/road_patches.py --apply
+pwsh -File scripts/geo/step51-after.ps1      # fixtures, diagnostics, evidence, report
+```
+
+**Rollback:** `work/step51/orig/` holds tarballs of every uncommitted file of both repositories before Step 5.1
+(`pre-step51-backup.tgz`, `pre-step51-backend-backup.tgz`, file lists alongside). `work/step51/before-app/` is a
+runnable Step 5 copy (its `node_modules` is a junction: remove it with `rmdir` before deleting). Its
+`src/lib/infraDiagnostics.ts` was replaced by the Step 5.1 one to measure the baseline with identical code; the
+original is `work/step51/before-app-infraDiagnostics.step5.ts`.
+
+### Remaining issues
+
+1. **Cost decision** (D): +3.6 % geometry, +0.27 s map ready, +20 MB heap. Options are listed above.
+2. **Three patch artefacts:** Gamla Övägen −0.35 m, Eksundsvägen −0.36 m, Sandbyhovsgatan 0.58 m. All are
+   group-boundary blends; the fix is to draw roads on patches from the patch's own asphalt triangles.
+3. **One group not tiled** (grade-break-414, service road E 567 158 N 6 494 469): skipped, unchanged from
+   Step 5.
+4. **Horizontal problems, not corrected by heights:** 209 OSM centrelines beside the carriageway, 32 widths over
+   verges/walls, incl. Kvarngatan 1.8 m and the Tvåstugubacken hairpins. These need OSM geometry/width review.
+5. **Priority B:** 444 twists where the mesh adds 0.3–0.5 m, 99 grade breaks and 27 steep grades. Reported, not
+   patched (budget).
+6. **Saltängsbron deck corner:** a kerb/quay-path wedge between OSM's bridge end and the quay (class 17 shows the
+   deck reaches the quay 4–5 m further). Needs the bridge end or a quay breakline, not terrain.
+7. **Beside level track in cuttings** the slope now shows its measured facets. Physically right, visibly more
+   faceted.
+8. Unchanged from Step 5: P-hus Spiralen ramps, three DTM pits, footbridge 1051570519, tram terminus track,
+   two-level junction nodes.
+
+### Git status
+
+- UI: `main` = `d85f6ec letsgo`; all geometry-pass, Step 5 and Step 5.1 work uncommitted.
+- Backend: all Step 1–5.1 changes uncommitted.
+- Nothing committed or pushed.
+
+---
+
+## Step 5 (2026-10-19): road surface integration and remaining grades — COMPLETE, waiting for review
+
+**Action for the user:** restart the Ktor backend (:8080). Data and `TerrainService.kt` changed; the new
+revision is `lm-dtm-b976b87a19446d3d-surface-ead9e05ccfd3` (the DTM grid itself changed: retained bridge
+decks removed). A backend on an older revision is rejected by the client. Nothing committed or pushed.
+
+**Note on C.1:** the three screenshots of the Hamngatan × Drottninggatan defect did not arrive with the
+message. The site was located from the data (below); please send the camera positions if what you saw
+differs from the views in `docs/step5/`.
+
+### Summary
+
+| Item | Root cause (measured) | Result |
+|---|---|---|
+| **A** Pendeln 8.5 %, E 567 423 N 6 497 104 | Not the bridge clearance. The embankment between two underpass bridges was 1.2–1.5 m too low in the rendered mesh (native DTM 22.4–23.1 m, mesh 21.1–21.8 m). The mesh's class cache had a fixed name; when it was built, 112 track segments still carried the legacy invented `bridge` flag, so the rail corridor was skipped and only the coarse land tolerance applied. The flags were removed in the geometry pass, but the mesh was never rebuilt. | Caches keyed on the map content; mesh rebuilt; new **track-bed** class (running lines ±2.5 m, tolerance 0.25 m). Pendeln max **8.46 → 3.79 %**, p99 **3.02 → 2.12 %** (below the 2.5 % mainline limit), grade issues 41 → 13. Trains still follow the rails (wheel − rail top 0.000 m). |
+| **B** Järngatan 47.7 %, E 567 340 N 6 498 034 (way 1239608192) | The DTM **kept the E4 bridge deck as ground**: LiDAR class 2 at 14.8–15.1 m, 0 class-17 returns, a 27 m plateau with vertical walls. Järngatan was draped over the deck (+5.6 m). The generic 4.5 m clearance rule then lifted the E4 deck to 19.6 m on top of the draped Järngatan (15–19 % ramps on the E4). | Retained-deck detector + DTM correction (deck removed the way the DTM removes bridges, linear between the real ground on both sides). 2 retained decks in the whole map. Järngatan runs through the underpass at 9.3–9.7 m (≈1 %). The E4 deck sits at 14.7–15.2 m (its LiDAR surface); its steep-grade errors are gone. |
+| **C.1** Hamngatan × Drottninggatan, Saltängsbron south end, E 568 912 N 6 495 374 | Two at-grade Drottninggatan nodes lay 1–4 m inside the DTM's removed-bridge gap (river surface 0.92 / 1.64 m) between the deck (3.71 m) and the street (3.3 m): a **2.5 m hole** of draped asphalt, approach ramps and junction fans. Contributing: junction fans drawn flat at node level next to sloping strips, and two independent engineered profiles (tram and road approach hulls). | Deck-end notch rule (2 nodes map-wide: 3.51 / 3.55 m), new junction-fan rule, and the breakline patch with grounded pieces and level tram corridors. **0 diagnostics issues remain** in the box; the hole, steps and triangles are gone (`docs/step5/compare/hamngatan-*`). Cars ride exactly on the asphalt and trams on the rails. |
+| Similar triangles elsewhere | The **flat-fan rule** is map-wide: 54 junctions had fan steps > 5 cm, 20 > 0.3 m, max 1.73 m (E 569 780 N 6 495 653). The notch case exists only at Saltängsbron. | Fans now meet their strips: **0 > 0.3 m**, max 0.27 m, 20 > 5 cm (residual mid-edge creases). |
+| **C** Road/terrain integration | The 5 m mesh crosses walls, kerbs and verges under the road (the 829 crease warnings). | Prototype **breakline patches** in 5 bounded boxes: asphalt against native DTM RMSE 0.10–0.22 → 0.014–0.094 m; creases in the boxes 17 → 4 (the 4 are Tvåstugubacken switchbacks where OSM cuts the bend). Terrain outside the touched leaves is unchanged by construction. |
+| Cost | | Static triangles +2.13 %, map ready +0.23 s, frame time no regression. City-wide at the prototype density: not recommended (≈ +13 M triangles); see next steps. |
+
+### A — Pendeln (railway grade)
+
+- Exact location: track segment way 94364274 / 94364280, s = −20…+10 m around E 567 432 N 6 497 098, between
+  Södra stambanan's two underpass bridges (ways 94364277/94364281 and 94364283/94364291).
+- Native 1 m DTM along the track centre (median across ±1 m): 22.44 → 22.56 → 22.71 → 22.85 → 23.02 m over
+  55 m, **0.8 %**. Rendered mesh before: 21.15–21.8 m on 14–20 m triangles with vertices on the embankment
+  slopes (19.0, 18.4 m). Bridge decks and clearances were not involved: decks 22.0–23.3 m, consistent with the
+  track on both sides.
+- Trafikverket/Lantmäteriet comparison: Södra stambanan here is a level mainline; the measured embankment
+  (0.8 %) is the reference. No online Trafikverket profile was consulted (none available offline); the native
+  DTM is the authoritative measurement used.
+- Fixes: `terrain_mesh_study.py` caches keyed by the map hash (categories, built-up area) and the split-error
+  stamp by map + corrections + class definitions (`inputs_key`); new `track` class: running lines only
+  (`service` untagged in `scripts/data/norrkoping-railway-tags-source.json`: 33 of 89 km; sidings and yards
+  carry no vehicle), tolerance 0.25 m (≤ 2.5 % over a 10 m triangle).
+- Remaining Pendeln peaks are cuttings where a 5 m grid node 2–3 m from the track lies on the cut slope
+  (e.g. E 567 769 N 6 496 729, 3.8 %); the RTIN is already at 5 m there. The rail breakline prototype
+  (`rail-pendeln-cutting`, E 565 795 N 6 497 442) removed that site's 4.1 % (track bed vs DTM RMSE
+  0.22 → 0.09 m).
+
+| Vehicle grade, 20 m chord | Before (geometry pass) | After |
+|---|---|---|
+| Pendeln p99 / max | 3.02 / 8.46 % | **2.12 / 3.79 %** |
+| Tram 2 p99 / max | 4.81 / 6.49 % | 4.81 / 6.49 % |
+| Tram 3 p99 / max | 5.05 / 5.79 % | 5.05 / 6.23 % (E 567 512 N 6 494 220: a real ≈5.5 % street; track within 0.12 m of the DTM; tram limit 8 %) |
+
+### B — Järngatan under the E4
+
+- Exact coordinates: Järngatan way 1239608192 (one 87 m segment) crosses under Stockholmsvägen bridge ways
+  4384899 and 4384901 at E 567 350–567 363, N 6 498 035. The OSM geometry is consistent: E4 `bridge=yes`,
+  Järngatan at grade; the classification is an underpass.
+- Evidence: native DTM plateau 14.8–15.1 m from s = 33 to 58 m with walls of 5.5 m; LiDAR: 1 733 class 2
+  returns, plateau returns class 2 at 14.8–15.1 m, **no class 17**; Järngatan rims 9.37 / 9.38 m (class 2).
+  Clearance 15.0 − 9.4 m = 5.6 m surface to surface (≈4.6 m free height under a ≈1 m deck: a normal value).
+- Fix (data, not an offset): `scripts/geo/retained_decks.py` lists every OSM bridge crossing an at-grade way
+  whose deck the DTM kept (plateau, walls ≥ 2.5 m both sides, ≤ 5 class 17 returns): **2 bridges in the whole
+  map**: the E4 over Järngatan and its footpath, and footbridge way 1051570519 over path 145121960 (E 571 216
+  N 6 491 462, 6 m ridge at 20.7 m, ground 17.5 m, 0 class 17). `scripts/geo/dtm_corrections.py` removes the
+  deck as the DTM removes bridges: per station across the bridge axis, plateau and wall pixels are replaced by
+  the ground beyond the walls, linearly (854 native pixels, 45 grid nodes, −0.01 to −5.76 m); native files
+  unchanged; the 5 m nodes are resampled with `prepare-dtm.py`'s bilinear rule; new grid revision. Footbridge:
+  71 of 231 stations qualify (the rest have an embankment, not a wall, on one side: left as measured).
+- Then the existing rules do the rest: the deck anchors on the E4 at 14.7–15.2 m, no clearance lift is needed,
+  and Järngatan is draped through the open underpass.
+
+### C.1 — Hamngatan × Drottninggatan (Saltängsbron south)
+
+- Contributors inspected (`scripts/geo/infra-step5-probe.test.ts`, native DTM grid, mesh triangles):
+  - Hamngatan (ways 8236738, 285599454, 297690886, 475524194);
+  - Drottninggatan (92459627, 92459645, 312486749, 501428820/822, decks 47460598/501428826);
+  - tram 92385211, 270608831/832 and Saltängsbron's deck profile (LiDAR 3.71 m);
+  - adaptive terrain triangles; junction fans.
+- No duplicate geometry or winding error was found. The depression was **conflicting elevation**: nodes in
+  the DTM's bridge gap (0.92 m) and fans flat at node level beside sloping strips.
+- Real layout: the native DTM quay edge runs diagonally from E 568 898 N 6 495 369 to E 568 938
+  N 6 495 383. The street south of it is 3.1–3.5 m, the deck 3.7 m; OSM's bridge end stops 4–5 m short of
+  the quay.
+- Fixes:
+  1. `prepare-bridge-profiles.py` 1c "deck-end notches": walking ≤ 25 m from a deck end along road/tram/rail,
+     a node whose ground is ≥ 1 m below both the deck end and the land rim (rim within 1.5 m of the deck)
+     takes the upper-hull level. 2 nodes map-wide.
+  2. Junction fans (`cityMesh.ts fanWedge`): corners from the strips' own surfaces, node at its level,
+     planar between linear pieces, draped otherwise; the choice is shared with the diagnostics.
+  3. The breakline patch integrates the street, the grounded notch/approach pieces (drawn and driven draped
+     on the surface they shaped: `patches.integrated`, same rule in `TerrainService.kt`) and level tram
+     corridors.
+- Verified: drawn surface ≥ 2.9 m within 15 m of both notch nodes (before 1.06 m); no junction step, no fan
+  > 0.15 m, nothing below the terrain; grades within limits; cars at exactly 5 cm on every transport edge;
+  tram wheel − rail 0 (`src/lib/step5.test.ts`). Screenshots: `docs/step5/compare/hamngatan-{a-top,
+  b-from-river,c-low-east,d-from-se}.png`.
+- Residual: a small sloped kerb/fan facet at the east deck corner (≈E 568 922 N 6 495 383) seen from the
+  river. Terrain RMSE in that box 0.128 → 0.185 m: the abutment fill ends at the DTM's river edge, so the
+  slope down to the water is on the water side of the quay (under the bridge end).
+
+### C — Road/terrain integration prototype (breaklines)
+
+**Design** (`scripts/geo/road_patches.py`; runtime `surfaceMesh.ts`, `TerrainService.kt`):
+- Only RTIN leaves touched by the drawn asphalt are re-triangulated (conforming Delaunay on scipy, every
+  constraint recovered, each leaf tiled exactly; no new dependency).
+- Every leaf edge is a constraint, so each patch triangle lies in one leaf: runtime lookup = leaf, then its
+  triangles (root-cell flags skip it elsewhere).
+- Constraint edges: the asphalt outline (union of the strips and draped fans exactly as `cityMesh.ts` draws
+  them), tram corridor edges and leaf edges. Patch boundary points are linear on the RTIN edge (no cracks:
+  worst step 0.16 mm over 70 023 edges).
+- Asphalt heights = measured road surface: a robust local plane of native 1 m DTM pixels inside the asphalt
+  (2.5 m, trimmed at 0.12 m; 5 m where steeper than 25 %). Long profile, crown and crossfall are the DTM's;
+  kerbs and walls beside the road no longer tilt it.
+- Terrain vertices keep their DTM node heights; walls and verges become slopes between the road edge and the
+  leaf corner; terrain cannot pass through the asphalt.
+- Contract nodes are exact vertices: network nodes, span/deck ends (any kind) and grounded linear pieces (data
+  profile, then draped). Tram corridors are level across the gauge at the tram's height. Bridges, spans over
+  underpasses and culverts are never filled.
+
+| Box (SWEREF) | Leaves → triangles | Asphalt vs native DTM RMSE / p95 / max (m), RTIN → patch | Terrain in touched leaves RMSE |
+|---|---|---|---|
+| Saltängsbron south 568 800–569 100 / 6 495 250–450 | 326 → 4 987 | 0.103/0.211/0.49 → **0.023/0.044/0.18** | 0.128 → 0.185 (abutment fill, see C.1) |
+| Ektorpsgatan 568 500–568 800 / 6 493 200–500 | 700 → 8 968 | 0.171/0.383/1.91 → **0.022/0.041/0.61** | 0.391 → 0.348 |
+| Tvåstugubacken 571 200–571 500 / 6 493 200–500 | 703 → 5 665 | 0.167/0.332/1.10 → **0.078/0.138/0.99** | 0.187 → 0.179 |
+| Järngatan / E4 567 280–567 440 / 6 497 990–8 080 | 175 → 1 838 | 0.129/0.223/1.07 → **0.014/0.028/0.08** | 0.475 → 0.406 |
+| Pendeln cutting (track bed) 565 740–565 870 / 6 497 400–495 | 219 → 1 883 | 0.222/0.430/1.64 → **0.094/0.114/1.24** | 0.338 → 0.292 |
+
+- Sample spacing study: 2.5 / 5 / 10 m → 28 881 / 20 718 / 17 023 patch triangles for the same accuracy
+  (p95 0.055/0.056/0.062 m at Saltängsbron). 5 m was chosen.
+- Things tried and rejected while building it (render check, `docs/step5`):
+  - averaging overlapping tram and road hulls (pale ground poked through between the tracks);
+  - a measured street surface under embedded tram rails (rails dipped under the asphalt);
+  - outline vertices snapped onto terrain points (a 2 m slope at the quay).
+  All three are fixed by the rules above.
+- **Not recommended city-wide at this density**: ≈320 extra static triangles per road segment → ≈ +13 M for
+  the 41 162 at-grade road segments. Recommended: targeted patches where a check fails (the remaining 817
+  creases, 333 below-terrain, fan creases, notch-like sites) plus adaptive vertex density.
+
+### D — Tests and diagnostics
+
+New `src/lib/step5.test.ts` (14 tests):
+- Hamngatan site: no hole, notch levels, no steps/fans/sinking, grades, cars on the asphalt and trams on
+  the rails;
+- Järngatan profile and E4 deck level;
+- Pendeln against the native embankment and the vehicle grade limits;
+- patch continuity and location, no creases on integrated asphalt, junction fans map-wide, span pieces
+  untouched.
+
+New diagnostic `junctionFans` (overlay colour `#00897b`). New checks/tools:
+- `scripts/geo/infra-step5-{probe,tri,patchcheck,fans,railgrade,perf}.test.ts`;
+- `infra-mesh-control.test.ts` (backend fixture incl. 2 000 patch points);
+- `grade_evidence.py`.
+
+Backend:
+- `NetworkProfileTest` gains the `integrated` group;
+- `TerrainMeshTest` checks 5 000 points (2 000 in patches) against the UI surface within 2 µm.
+
+Map-wide diagnostics (same diagnostics code on the pre-Step-5 tree and now; `work/step5/diagnose-*.json`):
+
+| Check (error / warning) | Before | After |
+|---|---|---|
+| steep-grade | 92 / 312 | **80 / 273** |
+| grade-break | 101 / 358 | **86 / 356** |
+| junction-fan (new) | 20 / 34 | **0 / 20** |
+| cross-section | 13 / 816 | 11 / 806 (in the prototype boxes 17 → 4) |
+| below-terrain | 4 / 358 | 4 / 333 |
+| junction-step | 4 / 0 | 4 / 0 (documented two-level nodes) |
+| sag, shore, spikes | unchanged | unchanged |
+
+Remaining steep grades, top 30 against the native DTM (`scripts/geo/grade_evidence.py`,
+`work/step5/grade-evidence.json`): 22 are as steep in the DTM (e.g. Storbacken 19.4 % measured; driveways,
+car-park ramps, sidings on unmodelled structures). 8 come from our profiles/mesh:
+- P-hus Spiralen ramps 270848683 / 270848407 (E 569 234 / 569 265 N 6 494 8xx);
+- way 794772996 (E 562 774 N 6 493 492);
+- 1214636004 (E 563 787 N 6 491 506);
+- 257600153 (E 562 503 N 6 493 541);
+- the motorway 317703365 (E 565 579 N 6 495 454);
+- Spiggvägen 984598452;
+- 1527957988 (E 565 752 N 6 497 837).
+
+### E — Performance (same machine; production builds side by side; 3 alternating runs, medians)
+
+| | Before | After |
+|---|---|---|
+| Terrain mesh triangles | 925 494 | 930 790 (+0.6 %) |
+| Patch triangles (replacing 2 123 leaves) | – | 23 341 (0.80 MB base64 in `terrain.json`, 33.2 MB) |
+| Static triangles | 8 236 554 | 8 412 094 (+2.13 %; road patches ≈ +84 k, track class and rail box the rest) |
+| Vertex buffers | 1 087 MB | 1 110 MB |
+| Geometries | 5 437 | 5 488 |
+| Worker build terrain / network / markings / buildings (Node, ms) | 1 708 / 2 084 / 474 / 319 | 1 725 / 2 220 / 508 / 319 |
+| Network build with vs without patches (same data) | – | ≈2 200 vs ≈2 080 ms |
+| Map ready / page ready | 3 007 / 3 969 ms | 3 234 / 4 172 ms |
+| Longest upload frame / upload excess | 961 / 968 ms | 929 / 932 ms |
+| JS heap | 162 MB | 142 MB (noise ±15 MB) |
+| Frame time overview / city / campus / industry / parken / kungsgatan | 15.2 / 6.0 / 4.1 / 2.4 / 2.8 / 2.2 ms | 12.9 / 5.1 / 3.4 / 1.9 / 2.3 / 1.6 ms (lower in every run; run order is a likely factor: no regression) |
+
+Web Workers, SWEREF 99 TM, RH2000, the adaptive mesh and the simulation are unchanged in design; patches
+are an additive mesh layer read identically by client and backend.
+
+### Tests
+
+| Check | Result |
+|---|---|
+| `npm run check` | 0 errors, 0 warnings |
+| `npm test` | **144 / 144** (16 files; 14 new in `step5.test.ts`) |
+| `npm run build` | OK; dev overlay absent from `dist` |
+| Backend `dev.ps1 test` | **43 / 43** |
+| `npx playwright test` | **2 / 2** (dev server + backend on :8091 with the new revision, `ALLOWED_ORIGIN` set) |
+| Browser captures | 11 identical-camera views before/after, no page errors (`docs/step5/{before,after,compare}`, poses `docs/step5/poses.json`) |
+
+Test adaptations:
+- `surfaceMesh.test.ts`: the triangle count includes patches; the rtin.py reference, accuracy bounds and
+  vertex values apply to the RTIN outside patches; the reference heights were refreshed for the rebuilt
+  mesh at the same positions, and the old limits were kept;
+- `terrain.test.ts`: patch strings are held decoded;
+- `coordinateSystem.test.ts`: 697 profile keys (+2 notch nodes).
+
+### Files
+
+**UI, modified:**
+- runtime: `src/lib/surfaceMesh.ts` (patches, `leafKey`, `patchedAt`), `terrain.ts` (`integrated`),
+  `mapModel.ts`, `cityMesh.ts` (`fanWedge`), `infraDiagnostics.ts` (`junctionFans`), `inspectInfra.ts`;
+- tests: `surfaceMesh.test.ts`, `terrain.test.ts`, `coordinateSystem.test.ts`;
+- scripts: `prepare-bridge-profiles.py` (1c notches), `prepare-terrain-mesh.py` (track tolerance, stamp),
+  `geo/terrain_mesh_study.py` (cache keys, track class, corrected native pixels);
+- data: `terrain.json` (grid corrected, mesh, patches, revision), `bridge-profiles.json`, `buildings-3d.json`
+  (revision), `geo/network-profile-control.json`, `geo/rail-track-control.json`,
+  `geo/terrain-mesh-control.json` (mesh heights only);
+- docs: `ELEVATION.md`, `DATA-LICENSE.md`.
+
+**UI, new:**
+- `src/lib/step5.test.ts`;
+- `scripts/geo/{retained_decks,dtm_corrections,road_patches,grade_evidence}.py`;
+- `scripts/geo/infra-step5-*.test.ts`, `scripts/geo/infra-mesh-control.test.ts`;
+- `scripts/data/dtm-retained-decks.json`;
+- `docs/step5/`.
+
+**Backend:**
+- `TerrainService.kt` (patch surface, `integrated`), `NetworkProfileTest.kt`;
+- resources `terrain.json`, `bridge-profiles.json`;
+- test resources `network-profile-control.json`, `rail-track-control.json`, `terrain-mesh-control.json`.
+
+**Reproduce** (order matters; also in `ELEVATION.md`):
+```
+python scripts/geo/retained_decks.py && python scripts/geo/dtm_corrections.py --apply
+python scripts/prepare-terrain-mesh.py --activate --recompute
+python scripts/prepare-bridge-profiles.py
+python scripts/geo/road_patches.py --apply
+npx vitest run -c scripts/geo/vitest.infra.config.ts scripts/geo/infra-profile-control.test.ts scripts/geo/infra-mesh-control.test.ts
+```
+
+**Rollback:** `work/step5/orig/` holds pre-Step-5 `terrain.json`, `bridge-profiles.json`, `buildings-3d.json`
+(UI and backend) and tarballs of every uncommitted file of both repositories (`pre-step5-backup.tgz`,
+`pre-step5-backend-backup.tgz`, file lists alongside). `work/step5/before-app/` is a runnable pre-Step-5 copy
+(remove its `node_modules` junction with `rmdir` before deleting).
+
+### Remaining issues and next steps
+
+1. **Targeted breakline patches** instead of a city-wide rollout: generate patches only around failing checks
+   (817 creases, 333 below-terrain, 20 fan creases), with adaptive vertex density; estimate first, then
+   expand.
+2. **Rail breaklines along running lines** for the remaining Pendeln cutting peaks (3.5–3.8 % at
+   E 567 769 N 6 496 729, E 564 485 N 6 494 530, E 564 983 N 6 494 806); proven in the prototype box.
+3. Eight pipeline steep grades (listed in D), incl. P-hus Spiralen ramps outside the documented exception.
+4. Saltängsbron: the small east-corner fan facet; quay walls as vertical faces instead of slopes (needs
+   breaklines along quay edges).
+5. Tvåstugubacken switchbacks: the OSM centreline cuts hairpins; road geometry, not elevation.
+6. Footbridge 1051570519: the retained deck remains where one side is an embankment (160 of 231 stations).
+7. Earlier open items unchanged: three DTM pits, measured rail decks (class 17 parapet separation), tram-2
+   terminus track, two-level junction nodes.
+
+### Git status
+
+- UI: `main` = `d85f6ec letsgo` (1 ahead of `origin/main`); all geometry-pass and Step 5 work uncommitted.
+- Backend: all Step 1–5 changes uncommitted.
+- Nothing committed or pushed.
+
+---
+
+## Geometry pass (2026-10-18, evening): COMPLETE — waiting for review
+
+**Action for the user:** restart the Ktor backend (:8080). Data, `RailTraffic.kt`, `TerrainService.kt` and
+`CityTransport.kt` changed; the new revision is `lm-dtm-8eccbc3691700b78-surface-5a5ae7528bd2`. A backend
+on the old revision is rejected by the client ("Kartans och serverns höjddata skiljer sig").
+
+### Summary
+
+| Area | Result |
+|---|---|
+| Git | `letsgo` rebuilt without 560 generated files (push 550 MiB → ≈153 MiB, largest file 32 MB), 24.37 GiB temp garbage quarantined, backup verified. Ready for a normal fast-forward push of `d85f6ec`. Not pushed. |
+| Trains/trams on rails | Wheel contact − drawn rail top: deck RMSE 3.0–4.0 m (max 7.0 m) → **0.000 m** on all 31 247 route samples; pitch on two bogies; wheels at gauge. |
+| Rail profiles | 112 invented rail/tram "decks" (flat-scene ramps, no OSM bridge) removed; Ståthögavägen 14.7 % → level track over the underpass. Vehicle grade max: Pendeln 14.7 → 8.5 %, tram 2 11.9 → 6.5 %, tram 3 9.9 → 5.8 %. Rail grade p99 (10 m) 4.66 → 4.41 %, max 35.5 → 25.5 %. |
+| Roads | Untagged service roads 6.6 m → 3–4.5 m (12 100 segments); twisted cross-sections 1 060 → 829 (> 1 m: 23 → 13); road steep-grade errors 101 → 78, grade-break errors 119 → 95 (non-path); Linköpingsvägen, Folkborgsvägen, Söderköpingsvägen fixed. |
+| Bridges | Spans now cross OSM way splits and junctions; approaches no longer hump over the DTM's removed-bridge gap; 240 road/path deck nodes measured from LiDAR class 17 (estimates were off by RMSE 0.59 m, max 4.7 m). Hamnbron deck RMSE vs LiDAR 0.20 → 0.11 m, Saltängsbron 0.33 → 0.22 m, Gamlebro 0.93 → 0.84 m. |
+| Terrain | Gamlebro/Industrilandskapet faceting is real relief at the 5 m mesh limit (documented, not smoothed). 3 isolated DTM pits listed for orthophoto checks. Road-surface mesh refinement tested and rejected (+15 % triangles, no crease gain). |
+| Performance | Static triangles 9.07 M → **8.24 M (−9 %)**, vertex buffers 1 198 → 1 087 MB; startup and frame times equal or slightly better. |
+| Tests | UI 130/130 (13 new), backend 43/43 (3 new), svelte-check 0/0, build OK, Playwright 2/2, browser captures with live vehicles. |
+
+### Priority 0 — Git recovery (done)
+
+**Diagnosis**
+- `main` at `40531ae letsgo`, one commit ahead of `origin/main` (`b04d9aa`, confirmed with
+  `git ls-remote`). Working tree clean. No pack files: all 2 320 objects were loose (1.26 GiB).
+- Published history (`origin/main`, 224 objects) never contained anything under `work/`; its largest blob
+  is a 30 MB `terrain.json`. All 566 tracked `work/` files and all four blobs > 100 MiB
+  (`work/step35/water/{labels,reach,dtm2}.npy` 218.75 MB each, `cells.npz` 153 MB) came from `letsgo` only
+  (709 new blobs, 1.47 GB uncompressed, 550 MiB packed).
+- Push failure was a combination: GitHub failed server-side while storing the 550 MiB pack
+  (`unable to rename temporary '*.pack' file` → `index-pack failed`), and the four files exceed GitHub's
+  100 MiB hard limit, so the push would have been rejected anyway.
+- The 313 "garbage" files (24.37 GiB) were all in `.git/objects/09/`, all truncated zlib streams of the
+  same 218 750 128-byte blob `09eb8c31…` (`dtm2.npy`), written 14:44–17:42 today (repeated interrupted
+  writes). The complete object exists. No Git process was running.
+
+**Backup** (verified before any change): `C:\Users\amarg\dev\backups\norrkoping-ui-git-recovery-20261018\`
+- `history-all-refs.bundle` (`git bundle --all`, verified: complete history incl. original `40531ae`);
+- `tree/`: robocopy of the whole repo incl. `.git` (13 672 files, 0 failures; `git fsck --full` clean
+  inside it; sample SHA-1s of datasets identical; every source file present);
+- `quarantine-tmp_obj/`: the 313 temp files, moved (not deleted). Safe to delete when you are satisfied.
+- `README.txt` explains each item.
+
+**Tracking policy** (`.gitignore`): `work/**` is ignored except hand-written `*.py`, `*.mjs`, `*.md`,
+`*.txt`; the app snapshots (`before-app/`, `optionB-app/`, `before-snapshot/`,
+`coordinate-migration-backup/`) and `work/geodata/` stay ignored; `__pycache__/`, `*.pyc` ignored.
+Runtime data in `src/lib/data/` (largest 32 MB, below GitHub's 50 MB warning) stays in Git: it is
+already in published history, the app needs it to build, and Git LFS would require rewriting published
+history and adds bandwidth quotas — not justified now. Raw survey data stays outside Git
+(`work/geodata/`, documented download scripts).
+
+**Unpublished commit rebuilt**: 560 generated files untracked (`git rm --cached`; all still on disk),
+`.gitignore` added, `letsgo` amended → `d85f6ec`. Outgoing push: 475 blobs, 206 MB uncompressed,
+≈153 MiB packed, largest blob 32 MB, fast-forward of `origin/main`. `git fsck --full` clean, garbage 0.
+Published history unchanged. Not pushed.
+
+### Batch A — rail vehicles on their tracks (done)
+
+**Root cause (measured).** Two height paths for one track:
+1. The renderer draws rails from the map's rail segments, whose deck profiles and spans are keyed by the
+   node's legacy level `(x, z, legacyY)` (`bridge-profiles.json`).
+2. The backend (`RailTraffic.kt`) moved vehicles along `transitRoutes`, whose points were stored at
+   `railHeight(p) + 0.018` (`scripts/import-transit.mjs`): a baked-in "vehicle above rail" lift. The key
+   therefore never matched: **0 of 2 535 route points** hit a deck key (351 drawn rail ends do). On every
+   deck the vehicles fell back to "ground + legacy flat-scene lift", e.g. the 7 m rail ramps that
+   `import-norrkoping.mjs railHeight()` builds within 50 m of road tunnels.
+   Horizontally the route polylines coincide with the drawn track (2 528 of 2 532 segments; the other 4
+   are a ~30 m reversing move at a tram terminus without drawn track).
+3. Secondary: rails were draped individually at ±0.7 m, so on creased terrain the two rails differed by up
+   to 0.5 m while the vehicle used the centreline; vehicles had no pitch; wheels were drawn at ±1.33 m
+   (outside the rails).
+
+**Fix — one canonical track** (`src/lib/trackProfile.ts`, mirrored by `RailTraffic.kt`):
+- Route points carry the track node's own reference level (data migrated by
+  `scripts/geo/transit-reference.mjs`, idempotent; `import-transit.mjs` fixed), so vehicles get exactly
+  the drawn rails' rules (deck profiles, spans, approaches, terrain).
+- `terrain.profileHeight` span branch returns the span itself (as drawn); vehicle offsets are not data.
+- Rail head above the running surface per kind: ballasted rail 0.18 m (60E1 rail + pad), embedded tram
+  rail 0 m (flush with the street). Was 0.25 m for both. Standard gauge 1 435 mm; rails drawn at
+  ±0.754 m.
+- Rails are drawn level across the gauge at the centreline profile (`cityMesh.profileStrip`, breaks at
+  the exact mesh-edge crossings `SurfaceMesh.crossings`).
+- Each section rests on its two bogies (X61 ±6.24 m, tram module ±1.8 m): position on the chord, heading,
+  **pitch** (new `pitch` field on `VehicleSection`/`VehicleView`; client applies it).
+- Wheels modelled at the gauge.
+- Shared fixture `src/lib/geo/rail-track-control.json` (1 700+ poses incl. every deck node): Kotlin
+  reproduces the UI within 1e-7 units (`RailTrackTest.kt`).
+
+**Vehicle wheel contact − drawn rail top** (`railAlignment()`, every 2 m of every route,
+`scripts/geo/infra-rail.test.ts`; reports `work/batchA/rail-alignment*.json`):
+
+| Route | Before: ground RMSE / max | Before: decks RMSE / max | After (all) |
+|---|---|---|---|
+| Östgötapendeln (9 566 samples) | 0.139 / 2.21 m | **3.96 / 7.01 m** | 0.000 / 0.000 m |
+| Tram 2 (12 117) | 0.088 / 2.67 m | **3.23 / 6.05 m** | 0.000 / 0.000 m |
+| Tram 3 (9 564) | 0.097 / 2.67 m | **2.98 / 5.71 m** | 0.000 / 0.000 m |
+
+Worst before: Pendeln E 565 246 N 6 495 468 (bridge over the river, train 7.0 m *below* the deck, in the
+water); Ståthögavägen E 569 194 N 6 495 989 (+7.0 m floating) and E 569 129 N 6 495 919 (−2.4 m); tram 2
+E 565 895 N 6 497 283 (+6.1 m, modules in a staircase).
+
+**Browser evidence** (live backend, vehicle in frame, simulation paused; `scripts/capture-vehicle-views.mjs`
+with `docs/batchA/vehicle-poses.json`): `docs/batchA/before/`, `after/`, `compare/` (8 views).
+
+With vehicles on the decks, their pitch exposed that the estimated rail deck profiles at Ståthögavägen
+were far steeper than any mainline: that went to Batch C.
+
+### Batch B — road geometry (done, with documented limits)
+
+**Diagnosis (measured, `scripts/geo/infra-xsection.test.ts`).** Draped roads follow the 5 m adaptive mesh
+exactly. Mesh triangles are larger than the road (tolerance 0.4 m built-up / 0.75 m elsewhere), so the
+asphalt shows creases: centre − mean of edges > 5 cm at 16.8 % of narrow-road and 32.3 % of wide-road
+stations, p99 0.30 m, max 4.35 m. The broken look is these creases plus flat shading.
+
+**Options tested and rejected (with numbers):**
+1. *Separate engineered road plane* (centreline profile + least-squares crossfall): terrain would poke
+   through the asphalt > 5 cm at 11.4 % of stations and > 15 cm at 3.2 %. Rejected (visible regression;
+   the road is part of the DTM it was measured from).
+2. *Tighter mesh on road/tram surfaces* (new `network` class; `scripts/geo/network_mesh_budget.py`,
+   `MESH_NETWORK_CLASS=1` in `terrain_mesh_study.py`): 0.25 m costs +28 % terrain triangles and +14.8 %
+   static triangles (10.41 M) and did **not** reduce creases (> 5 cm: 16.8 → 25.4 %): the 1 m DTM has real
+   crowns (≈2.5 %), gutters and kerbs. Activated, measured, and the original mesh restored (hash checked).
+3. *Kerbs as edge strips* instead of a full strip under the asphalt: +0.44 M triangles (thin draped strips
+   cross as many mesh edges). Reverted.
+
+**Root causes fixed:**
+- **Service road widths** (data defect): `import-norrkoping.mjs` used `max(4, lanes × 3.3)` with lanes
+  defaulting to 2, so 11 730 untagged two-way service segments (plus 358 driveways, 8 alleys) were 6.6 m.
+  Tags fetched (Overpass, tags only, `scripts/data/norrkoping-service-roads-source.json`); untagged:
+  driveway 3.0 m, alley/drive-through 3.5 m, other two-way 4.5 m, parking aisles and one-way unchanged.
+  `scripts/geo/service-road-widths.mjs` (12 100 map segments, 23 410 network edges, UI + backend);
+  importer fixed. Twisted cross-sections 1 060 → 872 at this step.
+- **Cornices draped on the terrain** (geometry bug): the roof-edge cornice strip copied the relief 10–30 m
+  below the roof and was cut at every mesh triangle. Now linear at wall top: 902 k → 163 k triangles.
+- Long-profile peaks/dips on roads were mostly removed-structure trenches → fixed by the span work in
+  Batch C (Linköpingsvägen, Folkborgsvägen, Söderköpingsvägen).
+
+**Limit (documented):** 816 crease warnings (0.3–1 m) and 13 errors (> 1 m) remain where the 5 m mesh
+crosses walls, terraces and steep verges (worst: way 794772996 E 562 631 N 6 493 509, Vattenverksvägen
+E 565 295 N 6 495 353, Kvarngatan E 568 591 N 6 494 808). They are the terrain's own facets, not a road rule.
+A real fix needs breaklines (road edges as constrained mesh edges) — a mesh-format change shared with
+the backend.
+
+**Junction screenshot (dark triangles, 17:39):** its location could not be identified from the image.
+Junction fans were checked analytically (no reflex fans possible: offsets are centrally symmetric) and
+map-wide: junction steps 5 → 4, all documented two-level nodes. Please send the camera position (the
+`?inspect=infra` console prints SWEREF coordinates) if it persists.
+
+### Batch C — rail decks, spans, approaches, junction levels (done)
+
+**Root causes and fixes** (`scripts/prepare-bridge-profiles.py`, data regenerated for UI and backend):
+1. **Invented rail decks.** `import-norrkoping.mjs railHeight()` raised track within 50 m of road tunnels
+   by up to 7 m and flagged it `bridge`. Only 33 of 145 flagged rail/tram segments are bridges in OSM
+   (tags fetched: `scripts/data/norrkoping-railway-tags-source.json`); none at Ståthögavägen (the road is
+   `tunnel=yes`). `scripts/geo/rail-legacy-ramps.mjs`: 112 segments unflagged, 151 node levels back to
+   network level (real bridge levels kept at shared nodes), 47 route points follow. Importer fixed.
+2. **Span rims on uniform grades.** The hull edge ran to the window ends, so trenches in graded roads
+   were never bridged. Rims now move inwards while the profile stays on the edge (1 cm).
+3. **Spans per OSM way.** Södra stambanan changes way *inside* the Ståthögavägen trench; the chain started
+   on the trench floor. Span detection now follows **strokes** (straightest same-kind continuation, < 45°)
+   across way splits.
+4. **Junctions inside spans** were rejected; now the joining segment gets a linear join piece at the
+   span's level (13), and a final pass gives every node one level (1 node reconciled).
+5. **Approach humps.** An approach (one end on a deck) added the deck end's offset measured against the
+   ground in the DTM's removed-bridge gap: on a level embankment that built a hump (tram 2 E 569 870
+   N 6 493 611: +3.1 m). Now: terrain with the far end's offset, pinned to the deck, upper hull (280
+   approaches changed where it differs > 0.1 m); long approaches (> 80 m) only bridge removed-bridge
+   notches (Linköpingsvägen).
+6. **Measured decks.** LiDAR class 17 (Laserdata NH 2020, all 41 local tiles, 145 106 returns,
+   `scripts/geo/lidar_deck_points.py`): per node, densest 1 m band within 2.5 m, ≥ 8 returns. 240 of 598
+   deck nodes measured (estimate − measurement: mean −0.12, RMSE 0.59, max 4.66 m). Road/path decks only:
+   on rail bridges class 17 is dominated by parapets/troughs ≈1 m above the ballast, so rail/tram decks are
+   anchored to the **track** on the embankment (median ground 4–12 m along the connected track).
+
+**Vehicle-perceived grades (20 m chord, every 5 m; `railGrades()`):**
+
+| Route | Before (after Batch A) p99 / max | After p99 / max |
+|---|---|---|
+| Östgötapendeln | 4.67 / 14.7 % (Ståthögavägen) | 3.02 / 8.5 % |
+| Tram 2 | 5.12 / 11.9 % | 4.81 / 6.5 % |
+| Tram 3 | 5.24 / 9.9 % | 5.05 / 5.8 % |
+
+**Decks vs LiDAR class 17** (rendered surface, `scripts/geo/measure-elevation.test.ts`, mean / RMSE m):
+Hamnbron −0.15/0.20 → −0.06/0.11; Saltängsbron −0.30/0.33 → −0.17/0.22; Gamlebro −0.24/0.93 → −0.14/0.84;
+Bergsbron 0.23/0.30 (same); Laxholmsbron −0.18/0.20 (same); Spången 0.01/0.07 → −0.06/0.07. The
+"other" row (−1.15/2.53 → −1.38/2.70) compares class 17 returns with whatever drawn surface a vertical ray
+hits; it worsened because rays that hit the invented 6 m-wide rail slabs at Ståthögavägen now hit the
+road in the underpass beside the at-grade track (coverage, not deck error).
+
+### Batch D — diagnostics and regression tests (done)
+
+- `src/lib/infraDiagnostics.ts`: every issue has severity (`warning`/`error`) from physical limits and an
+  optional documented `exception` (`EXCEPTIONS`: P-hus Spiralen ramps; `highway=steps`). New checks:
+  `cross-section` (crease > 0.3 m), `vehicle-off-track` (> 5 cm), `terrain-spike` (5 m node > 3 m above/below
+  all neighbours), vehicle grades per route (`railGrades`, limits 2.5 % train / 8 % tram), `railAlignment`.
+- Report: `npx vitest run -c scripts/geo/vitest.infra.config.ts scripts/geo/infra-diagnose.test.ts`
+  (`INFRA_OUT=…`, 5 s): every issue with SWEREF E/N, kind, value, severity, exception, plus counts.
+  `infra-rail.test.ts` writes the vehicle report. Final: `work/batchC/diagnose-final.json`.
+- `?inspect=infra` overlay: new kinds coloured (pink cross-section, green vehicle off track, brown spike),
+  exceptions hidden; checked in the browser (no page errors).
+
+| Check (count error / warning) | Before Batch B–C | Final |
+|---|---|---|
+| below-terrain | 6 / 99 | 4 / 358 (new: uphill edges of bridged approaches, level cross-section, median 0.10 m) |
+| junction-step | 4 / 1 | 4 / 0 (documented two-level nodes) |
+| grade-break (all kinds) | 126 / 387 | 101 / 358 |
+| steep-grade (all kinds) | 116 / 351 | 92 / 312 |
+| sag | 8 / 65 | 7 / 60 |
+| cross-section | 23 / 1 037 | 13 / 816 |
+| vehicle-off-track | (not measured; 360 > 5 cm at Batch A start) | 0 |
+| terrain-spike | 3 / 0 | 3 / 0 |
+
+Tests added: `src/lib/geometryRegression.test.ts` (13: route levels = drawn levels, wheel contact on rails,
+bogie poses, rail heads, vehicle grades, no non-OSM rail decks, Ståthögavägen level within 0.5 m over
+120 m, one level per junction, service widths, cross-section counts, severity/exception classification,
+no vehicle off track, flat cornices); `elevation.test.ts` vehicle test is now exact; backend
+`RailTrackTest.kt` (fixture `rail-track-control.json`, 1 700+ poses within 1e-7).
+
+### Priority D — terrain
+
+- North of Gamlebro (your screenshots 17:40–17:41): native 1 m DTM shows real relief — the east bank falls
+  from 8–9 m to 3–5 m within 60 m, the west bank has a ≈4 m terrace between 9–10 m ground and the channel.
+  The grey facets are this relief at the 5 m mesh (Step 3 limit), not an artefact. Not smoothed.
+- Isolated DTM pits (`terrain-spike`, all need an orthophoto check; not edited): E 563 067 N 6 493 594
+  (≈137 m², down to −20.7 m in 32 m ground), E 572 344 N 6 500 117 (7 m², −6.9 m), E 564 482 N 6 491 375
+  (21 m², 7.7 m deep). Possibly shafts/pits/docks or LiDAR artefacts.
+- Quay walls, retaining walls and terraces remain 5 m-wide slopes; modelling them needs breaklines.
+
+### Performance (same machine; production builds side by side, no backend, 3 alternating runs)
+
+| | Before | After |
+|---|---|---|
+| Static triangles | 9 073 356 | **8 236 554 (−9.2 %)** |
+| Vertex buffers | 1 198 MB | **1 087 MB** |
+| Geometries | 5 645 | 5 437 |
+| Worker build terrain / network / markings / buildings | 1 871 / 2 315 / 442 / 772 ms | 1 859 / 2 258 / 507 / 356 ms |
+| Map ready (median) | 3 109 ms | 3 047 ms |
+| Longest upload frame (median) | 1 056 ms | 1 044 ms |
+| JS heap | ≈145 MB | ≈142 MB |
+| Uncapped frame time overview / city / campus / industry / parken / kungsgatan | 18.1 / 7.2 / 4.6 / 2.3 / 2.8 / 1.9 ms | 17.3 / 6.7 / 4.3 / 2.1 / 2.8 / 1.8 ms |
+
+Terrain mesh unchanged (925 494 triangles); Web Worker build, SWEREF 99 TM and RH2000 untouched.
+
+### Tests
+
+| Check | Result |
+|---|---|
+| `npm run check` | 0 errors, 0 warnings |
+| `npm test` | **130 / 130** (15 files) |
+| `npm run build` | OK; overlay absent from `dist` |
+| Backend `dev.ps1 test` | **43 / 43** (new `RailTrackTest`) |
+| `npx playwright test` | 2 / 2 (dev server + backend on :8091 with the new revision) |
+| Browser | live vehicles captured paused on decks/bridges; `?inspect=infra` loads |
+
+### Screenshots (identical cameras)
+
+- Vehicles: `docs/batchA/before/`, `docs/batchA/after/` (Batch A only), `docs/geometry-pass/vehicles-after/`
+  (final), composites `docs/geometry-pass/vehicles-compare/`; poses `docs/batchA/vehicle-poses.json`.
+- Static: `docs/geometry-pass/before/` (original tree), `after/`, `compare/`; poses
+  `docs/batchA/static-poses.json` (Ståthögavägen ×2, Linköpingsvägen culvert, tram 2 bridge approach,
+  Gamlebro, Kvarngatan, Industrilandskapet service roads). Overlay: `docs/geometry-pass/inspect-infra-underpass.png`.
+
+### Files
+
+**UI, modified:** `.gitignore`, `DATA-LICENSE.md`, `ELEVATION.md`, `src/lib/terrain.ts` (span rule,
+`lineBreaks`), `src/lib/surfaceMesh.ts` (`crossings`), `src/lib/cityMesh.ts` (`profileStrip`, rails from the
+track contract, cornices), `src/lib/publicTransport.ts` (pitch, bogies, gauge), `src/lib/city.svelte.ts`,
+`src/lib/infraDiagnostics.ts`, `src/lib/inspectInfra.ts`, tests `elevation`, `infrastructure`,
+`cityStructures`, `coordinateSystem`; scripts `import-norrkoping.mjs`, `import-transit.mjs`,
+`prepare-bridge-profiles.py`, `geo/terrain_mesh_study.py`, `geo/infra-diagnose.test.ts`,
+`geo/infra-profile-control.test.ts`, `geo/measure-elevation.test.ts`; data `norrkoping-map.json`,
+`transport-network.json`, `bridge-profiles.json`, `terrain.json` (revision only), `buildings-3d.json`
+(revision), `geo/network-profile-control.json`.
+
+**UI, new:** `src/lib/trackProfile.ts`, `src/lib/geometryRegression.test.ts`, `src/lib/geo/rail-track-control.json`,
+`scripts/capture-vehicle-views.mjs`, `scripts/geo/{transit-reference,service-road-widths,rail-legacy-ramps}.mjs`,
+`scripts/geo/{lidar_deck_points,network_mesh_budget,road_profile_probe}.py`,
+`scripts/geo/infra-{rail,xsection,offsets,probe-route,probe-seg,probe-node}.test.ts`,
+`scripts/data/norrkoping-{railway-tags,service-roads}-source.json`, `docs/batchA/`, `docs/geometry-pass/`.
+
+**Backend:** `RailTraffic.kt` (`RailContract`, `RailTrack`, bogie poses), `CityTransport.kt` (`pitch`),
+`TerrainService.kt` (span rule), resources `transport-network.json`, `bridge-profiles.json`, `terrain.json`;
+new `RailTrackTest.kt`, test resources `rail-track-control.json`, `network-profile-control.json`.
+
+**Reproduce** (geodata Python; order matters):
+```
+node scripts/geo/transit-reference.mjs && node scripts/geo/service-road-widths.mjs && node scripts/geo/rail-legacy-ramps.mjs
+python scripts/geo/lidar_deck_points.py
+python scripts/prepare-bridge-profiles.py            # profiles, spans, revision (UI + backend)
+npx vitest run -c scripts/geo/vitest.infra.config.ts scripts/geo/infra-profile-control.test.ts   # fixtures
+npx vitest run -c scripts/geo/vitest.infra.config.ts scripts/geo/infra-diagnose.test.ts         # report
+```
+Rollback: originals in the backup `tree/` (`C:\Users\amarg\dev\backups\norrkoping-ui-git-recovery-20261018`)
+and `work/batchB/orig/` (terrain, profiles, map before ramps).
+
+### Remaining defects and next steps
+
+1. Twisted road cross-sections at walls/terraces (816 warnings, 13 > 1 m): needs road-edge breaklines in
+   the terrain mesh (format change shared with `TerrainService.kt`).
+2. One rail deck lifted by an *estimated* clearance (Pendeln E 567 423 N 6 497 104, 8.5 %): needs the
+   real clearance or a lower-band LiDAR deck model for rail bridges (parapet separation).
+3. Rail bridges are anchored to the track, not measured; separating ballast from parapet returns in
+   class 17 would allow measured rail decks.
+4. Below-terrain warnings at uphill edges of bridged approaches (median 0.10 m): span pieces have a level
+   cross-section; a terrain-following cross-section for approach pieces would remove them.
+5. Järngatan (E 567 340 N 6 498 034, 47.7 %) and the steep unclassified/service ways near
+   E 571 9xx N 6 500 3xx: not trenches by the DTM test; need imagery (ramps, car-park entries?).
+6. Three DTM pits (above) need orthophoto verification.
+7. The ~30 m tram-2 terminus reversing move has no drawn track (OSM ways missing from the extract).
+8. The junction defect of screenshot 17:39 is unlocated.
+
+### Git status at the end of this pass
+
+- UI: `main` = `d85f6ec letsgo` (rebuilt), 1 ahead of `origin/main`, **ready for a normal fast-forward
+  push** (≈153 MiB pack, largest blob 32 MB, no file > 50 MB; `git fsck` clean). The geometry-pass work
+  above is **uncommitted** in the working tree (no file > 33 MB; generated data under `work/` is ignored).
+- Backend: unchanged branch state; all Step 1–3.5 and geometry-pass changes uncommitted.
+- Nothing committed or pushed beyond the `letsgo` rebuild.
 
 ---
 

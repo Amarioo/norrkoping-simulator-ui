@@ -1,0 +1,37 @@
+[
+ {
+  "view": "gamlebro",
+  "meanAbsDiff": 0.79,
+  "pixelsChangedOver32": 0.86
+ },
+ {
+  "view": "industry-service-roads",
+  "meanAbsDiff": 1.08,
+  "pixelsChangedOver32": 1.23
+ },
+ {
+  "view": "kvarngatan",
+  "meanAbsDiff": 1.45,
+  "pixelsChangedOver32": 1.8
+ },
+ {
+  "view": "linkopingsvagen-culvert",
+  "meanAbsDiff": 1.09,
+  "pixelsChangedOver32": 1.19
+ },
+ {
+  "view": "stathoga-close",
+  "meanAbsDiff": 3.13,
+  "pixelsChangedOver32": 2.71
+ },
+ {
+  "view": "stathoga-low",
+  "meanAbsDiff": 0.49,
+  "pixelsChangedOver32": 0.16
+ },
+ {
+  "view": "tram2-bridge-approach",
+  "meanAbsDiff": 0.03,
+  "pixelsChangedOver32": 0.02
+ }
+]

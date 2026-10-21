@@ -1,0 +1,42 @@
+[
+ {
+  "view": "pendeln-north",
+  "meanAbsDiff": 1.7,
+  "pixelsChangedOver32": 1.97
+ },
+ {
+  "view": "pendeln-west",
+  "meanAbsDiff": 4.19,
+  "pixelsChangedOver32": 4.74
+ },
+ {
+  "view": "saltangsbron-tram",
+  "meanAbsDiff": 1.88,
+  "pixelsChangedOver32": 2.23
+ },
+ {
+  "view": "stathoga-close",
+  "meanAbsDiff": 5.95,
+  "pixelsChangedOver32": 5.55
+ },
+ {
+  "view": "stathoga-wide",
+  "meanAbsDiff": 0.68,
+  "pixelsChangedOver32": 0.59
+ },
+ {
+  "view": "tram2-southeast",
+  "meanAbsDiff": 0.23,
+  "pixelsChangedOver32": 0.12
+ },
+ {
+  "view": "tram2-west",
+  "meanAbsDiff": 2.43,
+  "pixelsChangedOver32": 2.38
+ },
+ {
+  "view": "tram3-south",
+  "meanAbsDiff": 0.89,
+  "pixelsChangedOver32": 0.91
+ }
+]

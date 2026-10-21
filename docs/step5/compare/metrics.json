@@ -1,0 +1,57 @@
+[
+ {
+  "view": "ektorpsgatan",
+  "meanAbsDiff": 1.4,
+  "pixelsChangedOver32": 1.38
+ },
+ {
+  "view": "fan-569780-6495653",
+  "meanAbsDiff": 0.02,
+  "pixelsChangedOver32": 0.02
+ },
+ {
+  "view": "hamngatan-a-top",
+  "meanAbsDiff": 1.06,
+  "pixelsChangedOver32": 0.9
+ },
+ {
+  "view": "hamngatan-b-from-river",
+  "meanAbsDiff": 1.58,
+  "pixelsChangedOver32": 1.55
+ },
+ {
+  "view": "hamngatan-c-low-east",
+  "meanAbsDiff": 2.09,
+  "pixelsChangedOver32": 2.73
+ },
+ {
+  "view": "hamngatan-d-from-se",
+  "meanAbsDiff": 0.52,
+  "pixelsChangedOver32": 0.53
+ },
+ {
+  "view": "jarngatan-e4-side",
+  "meanAbsDiff": 3.39,
+  "pixelsChangedOver32": 3.81
+ },
+ {
+  "view": "jarngatan-underpass",
+  "meanAbsDiff": 7.0,
+  "pixelsChangedOver32": 8.07
+ },
+ {
+  "view": "pendeln-cutting",
+  "meanAbsDiff": 0.85,
+  "pixelsChangedOver32": 0.26
+ },
+ {
+  "view": "pendeln-embankment",
+  "meanAbsDiff": 1.36,
+  "pixelsChangedOver32": 0.81
+ },
+ {
+  "view": "tvastugubacken",
+  "meanAbsDiff": 0.64,
+  "pixelsChangedOver32": 0.62
+ }
+]

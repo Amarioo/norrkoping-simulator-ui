@@ -1,0 +1,10 @@
+{
+  "stathoga-wide": { "position": [6.2, 1.25, -29.5], "target": [5.4, 0.15, -38.6], "kind": "train", "near": [5.4, -38.6], "radius": 2.2 },
+  "stathoga-close": { "position": [9.4, 0.55, -35.4], "target": [6.0, 0.2, -38.9], "kind": "train", "near": [6.2, -39.4], "radius": 1.2 },
+  "pendeln-west": { "position": [-148.6, 1.35, -15.6], "target": [-151.4, 0.85, -19.2], "kind": "train", "near": [-151.4, -19.2], "radius": 1.3 },
+  "pendeln-north": { "position": [-59.3, 1.45, -79.6], "target": [-62.1, 0.95, -83.3], "kind": "train", "near": [-62.1, -83.3], "radius": 1.3 },
+  "saltangsbron-tram": { "position": [-0.77, 1.4, -15.83], "target": [-5.01, 0.24, -17.26], "kind": "tram", "near": [-5.3, -17.8], "radius": 1.2 },
+  "tram2-west": { "position": [-122.9, 2.25, -88.6], "target": [-125.4, 1.75, -91.8], "kind": "tram", "near": [-125.4, -91.8], "radius": 0.8 },
+  "tram3-south": { "position": [-71.0, 2.15, 48.6], "target": [-73.6, 1.65, 45.6], "kind": "tram", "near": [-73.6, 45.6], "radius": 0.8 },
+  "tram2-southeast": { "position": [37.4, 1.2, 59.8], "target": [34.8, 0.7, 56.8], "kind": "tram", "near": [34.8, 56.8], "radius": 0.8 }
+}

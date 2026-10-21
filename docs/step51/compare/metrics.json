@@ -1,0 +1,87 @@
+[
+ {
+  "view": "crease-brannerigatan",
+  "meanAbsDiff": 0.69,
+  "pixelsChangedOver32": 0.66
+ },
+ {
+  "view": "crease-lundatorp",
+  "meanAbsDiff": 1.18,
+  "pixelsChangedOver32": 0.99
+ },
+ {
+  "view": "crease-motorway-562963",
+  "meanAbsDiff": 1.12,
+  "pixelsChangedOver32": 1.23
+ },
+ {
+  "view": "crease-motorway-565281",
+  "meanAbsDiff": 0.82,
+  "pixelsChangedOver32": 0.54
+ },
+ {
+  "view": "fan-570420",
+  "meanAbsDiff": 4.96,
+  "pixelsChangedOver32": 4.38
+ },
+ {
+  "view": "hamngatan-a-top",
+  "meanAbsDiff": 0.16,
+  "pixelsChangedOver32": 0.12
+ },
+ {
+  "view": "hamngatan-b-from-river",
+  "meanAbsDiff": 1.14,
+  "pixelsChangedOver32": 1.42
+ },
+ {
+  "view": "hamngatan-c-low-east",
+  "meanAbsDiff": 0.27,
+  "pixelsChangedOver32": 0.33
+ },
+ {
+  "view": "hamngatan-d-from-se",
+  "meanAbsDiff": 0.01,
+  "pixelsChangedOver32": 0.0
+ },
+ {
+  "view": "jarngatan-e4-side",
+  "meanAbsDiff": 0.37,
+  "pixelsChangedOver32": 0.46
+ },
+ {
+  "view": "jarngatan-underpass",
+  "meanAbsDiff": 0.1,
+  "pixelsChangedOver32": 0.11
+ },
+ {
+  "view": "pendeln-564464",
+  "meanAbsDiff": 0.91,
+  "pixelsChangedOver32": 0.15
+ },
+ {
+  "view": "pendeln-564926",
+  "meanAbsDiff": 0.4,
+  "pixelsChangedOver32": 0.03
+ },
+ {
+  "view": "pendeln-567524",
+  "meanAbsDiff": 0.8,
+  "pixelsChangedOver32": 0.5
+ },
+ {
+  "view": "pendeln-567768",
+  "meanAbsDiff": 0.54,
+  "pixelsChangedOver32": 0.0
+ },
+ {
+  "view": "saltangsbron-corner",
+  "meanAbsDiff": 0.79,
+  "pixelsChangedOver32": 0.9
+ },
+ {
+  "view": "tvastugubacken",
+  "meanAbsDiff": 0.2,
+  "pixelsChangedOver32": 0.16
+ }
+]
