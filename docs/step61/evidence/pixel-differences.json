@@ -1,0 +1,86 @@
+{
+  "kungsgatan-street-day": {
+    "meanAbsoluteChannelDifference": 0.0
+  },
+  "kungsgatan-street-sunset": {
+    "meanAbsoluteChannelDifference": 1.4797405445431762
+  },
+  "kungsgatan-street-twilight": {
+    "meanAbsoluteChannelDifference": 2.6559457355509988
+  },
+  "kungsgatan-street-night": {
+    "meanAbsoluteChannelDifference": 3.7429316662869296
+  },
+  "kungsgatan-elevated-day": {
+    "meanAbsoluteChannelDifference": 0.0
+  },
+  "kungsgatan-elevated-sunset": {
+    "meanAbsoluteChannelDifference": 0.1907889990126832
+  },
+  "kungsgatan-elevated-twilight": {
+    "meanAbsoluteChannelDifference": 0.36647774739880007
+  },
+  "kungsgatan-elevated-night": {
+    "meanAbsoluteChannelDifference": 0.5427911635148477
+  },
+  "stromparken-path-day": {
+    "meanAbsoluteChannelDifference": 0.0
+  },
+  "stromparken-path-sunset": {
+    "meanAbsoluteChannelDifference": 0.7854299574694311
+  },
+  "stromparken-path-twilight": {
+    "meanAbsoluteChannelDifference": 1.606960583276373
+  },
+  "stromparken-path-night": {
+    "meanAbsoluteChannelDifference": 2.354530265056581
+  },
+  "stromparken-elevated-day": {
+    "meanAbsoluteChannelDifference": 5.696058327637274e-06
+  },
+  "stromparken-elevated-sunset": {
+    "meanAbsoluteChannelDifference": 0.11807881446039341
+  },
+  "stromparken-elevated-twilight": {
+    "meanAbsoluteChannelDifference": 0.25585697197539303
+  },
+  "stromparken-elevated-night": {
+    "meanAbsoluteChannelDifference": 0.37164264828738514
+  },
+  "stadium-pitch-north-day": {
+    "meanAbsoluteChannelDifference": 0.0
+  },
+  "stadium-pitch-north-sunset": {
+    "meanAbsoluteChannelDifference": 0.0
+  },
+  "stadium-pitch-north-twilight": {
+    "meanAbsoluteChannelDifference": 0.0
+  },
+  "stadium-pitch-north-night": {
+    "meanAbsoluteChannelDifference": 0.0
+  },
+  "stadium-elevated-se-day": {
+    "meanAbsoluteChannelDifference": 0.0
+  },
+  "stadium-elevated-se-sunset": {
+    "meanAbsoluteChannelDifference": 0.16684799119009644
+  },
+  "stadium-elevated-se-twilight": {
+    "meanAbsoluteChannelDifference": 0.3232285258601048
+  },
+  "stadium-elevated-se-night": {
+    "meanAbsoluteChannelDifference": 0.4863982873851294
+  },
+  "bergsbron-north-end-day": {
+    "meanAbsoluteChannelDifference": 0.0
+  },
+  "bergsbron-north-end-sunset": {
+    "meanAbsoluteChannelDifference": 0.30744854560644036
+  },
+  "bergsbron-north-end-twilight": {
+    "meanAbsoluteChannelDifference": 0.517321713374345
+  },
+  "bergsbron-north-end-night": {
+    "meanAbsoluteChannelDifference": 0.6921057378294221
+  }
+}

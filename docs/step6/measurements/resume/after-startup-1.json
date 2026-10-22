@@ -1,0 +1,36 @@
+{
+ "readyMs": 4975,
+ "upload": {
+  "mapReadyAt": 3879.100000023842,
+  "maxFrameMs": 1084.9999999999995,
+  "excessMs": 1148,
+  "frames": 258
+ },
+ "perf": null,
+ "measures": {
+  "city-data:parse-terrain": 21.900000035762787,
+  "city-data:hydrate-terrain": 130.69999998807907,
+  "city-data:parse-map": 77.5
+ },
+ "views": {
+  "overview": {
+   "median": 54.30000000000109,
+   "p90": 68.39999999999964,
+   "mean": 52.67916666666667,
+   "triangles": null,
+   "calls": null
+  },
+  "parken": {
+   "median": 3,
+   "p90": 4.299999999999272,
+   "mean": 3.292500000000018,
+   "triangles": null,
+   "calls": null
+  }
+ },
+ "metrics": {
+  "JSHeapUsedSize": 139218856,
+  "JSHeapTotalSize": 201682944
+ },
+ "errors": []
+}

@@ -1,0 +1,64 @@
+{
+ "readyMs": 3883,
+ "upload": {
+  "mapReadyAt": 3095.899999976158,
+  "maxFrameMs": 801.0999999999999,
+  "excessMs": 930.4999999999995,
+  "frames": 405
+ },
+ "perf": {
+  "buildMs": 799.3000000119209,
+  "mapReadyMs": 2152.399999976158,
+  "triangles": 4918821,
+  "calls": 3479,
+  "geometries": 3764,
+  "frameMs": 5.5
+ },
+ "measures": {
+  "city-data:parse-terrain": 20.80000001192093,
+  "city-data:hydrate-terrain": 134.79999995231628,
+  "city-data:parse-map": 77.20000004768372
+ },
+ "views": {
+  "overview": {
+   "median": 12.300000000001091,
+   "p90": 13.799999999999272,
+   "mean": 12.490000000000009,
+   "triangles": 9633611,
+   "calls": 8253
+  },
+  "city": {
+   "median": 5.100000000000364,
+   "p90": 5.5,
+   "mean": 5.148333333333327,
+   "triangles": 4918821,
+   "calls": 3479
+  },
+  "parken": {
+   "median": 2.2000000000007276,
+   "p90": 2.400000000001455,
+   "mean": 2.2441666666666604,
+   "triangles": 853326,
+   "calls": 939
+  },
+  "kungsgatan": {
+   "median": 1.5,
+   "p90": 1.7000000000007276,
+   "mean": 1.5533333333333152,
+   "triangles": 910385,
+   "calls": 281
+  },
+  "laxtrappan": {
+   "median": 1.4000000000014552,
+   "p90": 1.5,
+   "mean": 1.4050000000000182,
+   "triangles": 723953,
+   "calls": 165
+  }
+ },
+ "metrics": {
+  "JSHeapUsedSize": 147123172,
+  "JSHeapTotalSize": 213499904
+ },
+ "errors": []
+}

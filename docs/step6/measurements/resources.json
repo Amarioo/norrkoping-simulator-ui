@@ -1,0 +1,78 @@
+{
+  "stadium": {
+    "meshes": 10,
+    "geometries": 10,
+    "triangles": 55822,
+    "bufferBytes": 5777716
+  },
+  "lighting": {
+    "meshes": 20,
+    "geometries": 20,
+    "triangles": 11544,
+    "bufferBytes": 91932
+  },
+  "lampTextureBytes": 13440,
+  "gridTextureBytes": 115200,
+  "turfTextureEstimatedBytes": 4976960,
+  "turfTextureNote": "Browser canvas excluded from Node buffers; RGBA8 including estimated mipmaps, not driver allocation.",
+  "stadiumReport": {
+    "raisedRows": 37,
+    "maxRaise": 2.964186642606502,
+    "foundationDepth": -0.7272025713130564,
+    "raised": {
+      "north-west": [
+        3,
+        0.69
+      ],
+      "south": [
+        18,
+        1.52
+      ],
+      "south-west": [
+        16,
+        2.96
+      ]
+    },
+    "triangles": 55822,
+    "projectors": 181,
+    "emitters": 14
+  },
+  "lightingState": {
+    "date": "2026-06-21",
+    "minutes": 720,
+    "local": {
+      "date": "2026-06-21",
+      "minutes": 720
+    },
+    "utc": "2026-06-21T10:00:00.000Z",
+    "legacySun": false,
+    "elevation": 53.41885946412852,
+    "azimuth": 157.71484658317172,
+    "phase": "day",
+    "artificial": 0,
+    "exposure": 1,
+    "stadium": "off",
+    "floodlights": {
+      "masts": 0,
+      "roofs": 0
+    },
+    "fixtures": 105,
+    "grid": {
+      "columns": 36,
+      "rows": 50,
+      "overflow": 0,
+      "maxPerCell": 8
+    },
+    "patchedMaterials": 10,
+    "programs": null,
+    "realtimeLights": {
+      "directional": 1,
+      "hemisphere": 1,
+      "ambient": 1,
+      "point": 0,
+      "spot": 0,
+      "shadowMaps": 0
+    },
+    "stadiumEmitters": 14
+  }
+}

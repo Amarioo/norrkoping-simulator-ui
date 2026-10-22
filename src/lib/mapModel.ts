@@ -178,7 +178,7 @@ export const LANDMARKS: Landmark[] = [
     position: stadiumCenter,
     height: 1.95,
     category: 'stadium',
-    description: 'Idrottsparken (Nya Parken) · IFK Norrköpings hemmaarena',
+    description: 'Norrköpings Idrottspark · IFK Norrköpings hemmaarena',
   },
   landmark('Strykjärnet', 'Strykjärnet', 'architecture', 'Arbetets museum · Laxholmen', 1.8),
   landmark('Rådhuset', 'Rådhuset', 'architecture', 'Rådhustorget · klocktornet', 3.4),
@@ -308,6 +308,17 @@ export const CITY_VIEWS: Record<string, CityFocus> = {
   kungsgatan: focus('Kungsgatan', [-22.29, -13.65], 14),
   soderleden: focus('Söderleden', [15.22, 65.89], 20),
   parken: focus('Parken', stadiumCenter, 11),
+  // Step 6 pilot views (docs/step6/poses.json; y relative to the ground, see FreeCamera).
+  idrottsparkenPitch: {
+    label: 'Idrottsparken · planen',
+    target: [-33.0555, 0.06, 23.7613],
+    position: [-33.7268, 0.5, 28.3525],
+  },
+  stromparken: {
+    label: 'Strömparken · gångstråket',
+    target: [-7.25, 0.028, -5.7],
+    position: [-6.62, 0.06, -3.7],
+  },
   industry: focus('Industrilandskapet', [-16.98, 3.3], 22),
   centrum: focus('Centrum', [1.93, -5.05], 30),
   ljura: focus('Ljura / Ljuraparken', centerOf(named('Ljuraparken')), 32),

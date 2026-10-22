@@ -114,6 +114,31 @@ Ingelstagatans bro vid polishuset har brodäck, räcken och landfästen. Gatan a
 
 Spårvagnarnas destinationsskyltar följer den aktiva sträckan i OSM-rutten: 2 Kvarnberget/Fridvalla och 3 Vidablick/Klockaretorpet. Backend skickar destination i SSE och byter den när nästa riktning börjar. Det är simulerad trafik, inte aktuella tidtabellsavgångar. Starta om Ktor när transportnätet uppdaterats.
 
+## Tid, ljus och Idrottsparken (steg 6)
+
+Kortet **Tid och ljus** styr simulerat datum och lokal tid i Europe/Stockholm (sommartid hanteras). Solens höjd och riktning räknas för Norrköping och styr sol, himmel, dimma, exponering och gatubelysning, så årstiderna följer automatiskt.
+
+- Förvalen (soluppgång, sann middag, solnedgång, skymning −3°, natt) räknas fram för valt datum. En midsommarnatt märks som ljus natt, eftersom solen aldrig går under −8°.
+- **Tidsförlopp** spelar upp dygnet i 1 eller 10 minuter per sekund och fortsätter över midnatt.
+- **Idrottsparkens strålkastare** (Av/Träning/Match) styrs separat från tiden; ingen match antas.
+
+Gatubelysning finns i tre pilotområden: Kungsgatan med Kungsbron, Strömparken och kring Idrottsparken.
+
+- Kartlagda OSM-lyktor används där de finns (bland annat nio i Strömparken).
+- Övriga lyktor är uppskattade längs vägar märkta `lit=yes`; omärkta vägar lämnas mörka.
+- Belysningen räknas per bildpunkt i shadern med avståndsavtagande, armaturfördelning och skuggning bakom husfasader. Inga extra realtidsljus eller skuggkartor används.
+- Källor, regler och osäkerheter: `docs/step6/lighting-data.md` och `docs/step6/lighting-architecture.md`.
+
+Idrottsparken (Norrköpings Idrottspark) är ombyggd efter OSM:s arenakontur och mätningar ur Lantmäteriets laserdata 2020: taknivåer, sydläktarens slänt och fyra strålkastarmaster på 58 m.
+
+- Västra huvudläktaren har logeband och glas, östra läktarens tak bärs av pelare och norra läktaren är ståplats.
+- Sydvästra hörnet har tak; sydöstra hörnet är öppet.
+- Detaljer som radantal och färger är uppskattade. Referenser och avvikelselista: `docs/step6/stadium-references.md`.
+
+URL-parametrar för återskapbara vyer: `?date=2026-10-21&time=21:30&stadium=event&play=0`. Utforska-listan har vyerna "Strömparken · gångstråket" och "Idrottsparken · planen".
+
+[Steg 6: rapport, före/efter-bilder, testresultat och prestanda](docs/step6/README.md).
+
 ## Koordinatsystem
 
 Kanonisk horisontell referens är SWEREF 99 TM (EPSG:3006). Scenen är ett lokalt system med fast origo i

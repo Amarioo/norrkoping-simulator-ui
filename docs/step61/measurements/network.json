@@ -1,0 +1,865 @@
+{
+  "nodes": [
+    {
+      "index": 4902,
+      "id": 286409009,
+      "x": -21.971,
+      "z": 2.796,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568480.9126254191,
+        6494919.123876959
+      ],
+      "out": [
+        {
+          "index": 8175,
+          "from": 4902,
+          "to": 4903,
+          "length": 4.258,
+          "speed": 0.444,
+          "width": 0.264,
+          "truck": true,
+          "bus": true,
+          "name": "Kungsgatan",
+          "way": 26154805,
+          "oneway": false,
+          "toId": 286409016
+        },
+        {
+          "index": 35986,
+          "from": 4902,
+          "to": 19797,
+          "length": 1.217,
+          "speed": 0.667,
+          "width": 0.264,
+          "truck": true,
+          "bus": true,
+          "name": "Kungsgatan",
+          "way": 239468394,
+          "oneway": false,
+          "toId": 2472445930
+        }
+      ]
+    },
+    {
+      "index": 4903,
+      "id": 286409016,
+      "x": -20.692,
+      "z": -1.265,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568512.876703162,
+        6495020.614197299
+      ],
+      "out": [
+        {
+          "index": 8176,
+          "from": 4903,
+          "to": 4902,
+          "length": 4.258,
+          "speed": 0.444,
+          "width": 0.264,
+          "truck": true,
+          "bus": true,
+          "name": "Kungsgatan",
+          "way": 26154805,
+          "oneway": false,
+          "toId": 286409009
+        },
+        {
+          "index": 8177,
+          "from": 4903,
+          "to": 4904,
+          "length": 0.252,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 26154806,
+          "oneway": false,
+          "toId": 120452
+        }
+      ]
+    },
+    {
+      "index": 4904,
+      "id": 120452,
+      "x": -20.652,
+      "z": -1.514,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568513.8763615746,
+        6495026.837070917
+      ],
+      "out": [
+        {
+          "index": 8178,
+          "from": 4904,
+          "to": 4903,
+          "length": 0.252,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 26154806,
+          "oneway": false,
+          "toId": 286409016
+        },
+        {
+          "index": 8179,
+          "from": 4904,
+          "to": 4905,
+          "length": 0.207,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 26154806,
+          "oneway": false,
+          "toId": 3286754732
+        }
+      ]
+    },
+    {
+      "index": 4905,
+      "id": 3286754732,
+      "x": -20.591,
+      "z": -1.712,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568515.4008406538,
+        6495031.785380059
+      ],
+      "out": [
+        {
+          "index": 8180,
+          "from": 4905,
+          "to": 4904,
+          "length": 0.207,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 26154806,
+          "oneway": false,
+          "toId": 120452
+        },
+        {
+          "index": 62028,
+          "from": 4905,
+          "to": 33039,
+          "length": 0.184,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1050773509,
+          "oneway": false,
+          "toId": 3015112537
+        }
+      ]
+    },
+    {
+      "index": 33039,
+      "id": 3015112537,
+      "x": -20.592,
+      "z": -1.896,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568515.3758491935,
+        6495036.383808757
+      ],
+      "out": [
+        {
+          "index": 62029,
+          "from": 33039,
+          "to": 4905,
+          "length": 0.184,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1050773509,
+          "oneway": false,
+          "toId": 3286754732
+        },
+        {
+          "index": 62030,
+          "from": 33039,
+          "to": 27944,
+          "length": 0.352,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1050773509,
+          "oneway": false,
+          "toId": 1108233121
+        }
+      ]
+    },
+    {
+      "index": 27944,
+      "id": 1108233121,
+      "x": -20.621,
+      "z": -2.247,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568514.6510968443,
+        6495045.1558113275
+      ],
+      "out": [
+        {
+          "index": 51718,
+          "from": 27944,
+          "to": 18724,
+          "length": 0.285,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Bredgatan",
+          "way": 444474474,
+          "oneway": false,
+          "toId": 12533815722
+        },
+        {
+          "index": 51719,
+          "from": 27944,
+          "to": 21724,
+          "length": 0.417,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Bredgatan",
+          "way": 444474474,
+          "oneway": false,
+          "toId": 1108395530
+        },
+        {
+          "index": 51757,
+          "from": 27944,
+          "to": 27956,
+          "length": 0.703,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 444474485,
+          "oneway": false,
+          "toId": 298337070
+        },
+        {
+          "index": 62031,
+          "from": 27944,
+          "to": 33039,
+          "length": 0.352,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1050773509,
+          "oneway": false,
+          "toId": 3015112537
+        }
+      ]
+    },
+    {
+      "index": 27956,
+      "id": 298337070,
+      "x": -20.824,
+      "z": -2.92,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568509.5778304004,
+        6495061.97506412
+      ],
+      "out": [
+        {
+          "index": 51758,
+          "from": 27956,
+          "to": 27944,
+          "length": 0.703,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 444474485,
+          "oneway": false,
+          "toId": 1108233121
+        },
+        {
+          "index": 68412,
+          "from": 27956,
+          "to": 35953,
+          "length": 0.104,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1212234765,
+          "oneway": false,
+          "toId": 12533815721
+        }
+      ]
+    },
+    {
+      "index": 35953,
+      "id": 12533815721,
+      "x": -20.854,
+      "z": -3.02,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568508.828086591,
+        6495064.4742101515
+      ],
+      "out": [
+        {
+          "index": 68413,
+          "from": 35953,
+          "to": 27956,
+          "length": 0.104,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1212234765,
+          "oneway": false,
+          "toId": 298337070
+        },
+        {
+          "index": 68414,
+          "from": 35953,
+          "to": 35954,
+          "length": 0.042,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1212234765,
+          "oneway": false,
+          "toId": 11634055968
+        }
+      ]
+    },
+    {
+      "index": 35954,
+      "id": 11634055968,
+      "x": -20.867,
+      "z": -3.06,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568508.5031976069,
+        6495065.473868564
+      ],
+      "out": [
+        {
+          "index": 68415,
+          "from": 35954,
+          "to": 35953,
+          "length": 0.042,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1212234765,
+          "oneway": false,
+          "toId": 12533815721
+        },
+        {
+          "index": 68416,
+          "from": 35954,
+          "to": 35955,
+          "length": 0.037,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1212234765,
+          "oneway": false,
+          "toId": 12533823572
+        }
+      ]
+    },
+    {
+      "index": 35955,
+      "id": 12533823572,
+      "x": -20.877,
+      "z": -3.096,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568508.2532830037,
+        6495066.3735611355
+      ],
+      "out": [
+        {
+          "index": 68417,
+          "from": 35955,
+          "to": 35954,
+          "length": 0.037,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1212234765,
+          "oneway": false,
+          "toId": 11634055968
+        },
+        {
+          "index": 68418,
+          "from": 35955,
+          "to": 17471,
+          "length": 0.076,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1212234765,
+          "oneway": false,
+          "toId": 11231112376
+        }
+      ]
+    },
+    {
+      "index": 17471,
+      "id": 11231112376,
+      "x": -20.9,
+      "z": -3.168,
+      "y": 0.071,
+      "signal": false,
+      "sweref": [
+        568507.6784794165,
+        6495068.172946278
+      ],
+      "out": [
+        {
+          "index": 31448,
+          "from": 17471,
+          "to": 17472,
+          "length": 0.128,
+          "speed": 0.444,
+          "width": 0.264,
+          "truck": true,
+          "bus": true,
+          "name": "Kungsgatan",
+          "way": 118180748,
+          "oneway": false,
+          "toId": 3183225928
+        },
+        {
+          "index": 68419,
+          "from": 17471,
+          "to": 35955,
+          "length": 0.076,
+          "speed": 0.333,
+          "width": 0.264,
+          "truck": false,
+          "bus": false,
+          "name": "Kungsgatan",
+          "way": 1212234765,
+          "oneway": false,
+          "toId": 12533823572
+        }
+      ]
+    }
+  ],
+  "render": [
+    {
+      "a": [
+        -21.971,
+        2.796
+      ],
+      "b": [
+        -20.692,
+        -1.265
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "secondary",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": true,
+      "tunnel": false,
+      "way": 26154805,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.692,
+        -1.265
+      ],
+      "b": [
+        -20.652,
+        -1.514
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 26154806,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.652,
+        -1.514
+      ],
+      "b": [
+        -20.591,
+        -1.712
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 26154806,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.9,
+        -3.168
+      ],
+      "b": [
+        -20.937,
+        -3.291
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "secondary",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 118180748,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.937,
+        -3.291
+      ],
+      "b": [
+        -21.09,
+        -3.829
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "secondary",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 118180748,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -22.576,
+        4.707
+      ],
+      "b": [
+        -22.329,
+        3.959
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "secondary",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 239468394,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -22.329,
+        3.959
+      ],
+      "b": [
+        -21.971,
+        2.796
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "secondary",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 239468394,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.338,
+        -2.278
+      ],
+      "b": [
+        -20.621,
+        -2.247
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Bredgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 444474474,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.621,
+        -2.247
+      ],
+      "b": [
+        -21.014,
+        -2.108
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Bredgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 444474474,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.621,
+        -2.247
+      ],
+      "b": [
+        -20.824,
+        -2.92
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 444474485,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.591,
+        -1.712
+      ],
+      "b": [
+        -20.592,
+        -1.896
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 1050773509,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.592,
+        -1.896
+      ],
+      "b": [
+        -20.621,
+        -2.247
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 1050773509,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.824,
+        -2.92
+      ],
+      "b": [
+        -20.854,
+        -3.02
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 1212234765,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.854,
+        -3.02
+      ],
+      "b": [
+        -20.867,
+        -3.06
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 1212234765,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.867,
+        -3.06
+      ],
+      "b": [
+        -20.877,
+        -3.096
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 1212234765,
+      "yA": 0.071,
+      "yB": 0.071
+    },
+    {
+      "a": [
+        -20.877,
+        -3.096
+      ],
+      "b": [
+        -20.9,
+        -3.168
+      ],
+      "kind": "road",
+      "width": 0.264,
+      "name": "Kungsgatan",
+      "ref": "",
+      "class": "living_street",
+      "lanes": 2,
+      "oneway": 0,
+      "bridge": false,
+      "tunnel": false,
+      "way": 1212234765,
+      "yA": 0.071,
+      "yB": 0.071
+    }
+  ],
+  "hashes": {
+    "terrain": {
+      "ui": "819369455be48b8f958faad294d7190886d05050af698e84287d778b8f2222b5",
+      "backend": "819369455be48b8f958faad294d7190886d05050af698e84287d778b8f2222b5",
+      "step6": "819369455be48b8f958faad294d7190886d05050af698e84287d778b8f2222b5"
+    },
+    "bridge-profiles": {
+      "ui": "fe877f8a53ef4e06c80371769fed5ee1e1bb8381f107abea4f4d6bc251846218",
+      "backend": "fe877f8a53ef4e06c80371769fed5ee1e1bb8381f107abea4f4d6bc251846218",
+      "step6": "fe877f8a53ef4e06c80371769fed5ee1e1bb8381f107abea4f4d6bc251846218"
+    },
+    "transport-network": {
+      "ui": "faf6c04cdecdcc9294bd4e3daafe518365044854c82a02a4b317a5c667f0927b",
+      "backend": "faf6c04cdecdcc9294bd4e3daafe518365044854c82a02a4b317a5c667f0927b",
+      "step6": "faf6c04cdecdcc9294bd4e3daafe518365044854c82a02a4b317a5c667f0927b"
+    }
+  }
+}

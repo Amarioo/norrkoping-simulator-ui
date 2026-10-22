@@ -1,0 +1,661 @@
+{
+  "before": {
+    "base": "http://127.0.0.1:5182/",
+    "query": "",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:24:54.472Z",
+    "lighting": null,
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west",
+      "kungsgatan-street",
+      "kungsgatan-elevated",
+      "stromparken-path",
+      "stromparken-elevated"
+    ]
+  },
+  "legacy": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "sun=legacy",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:25:32.319Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 750,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 750
+      },
+      "utc": "2026-10-21T10:30:00.000Z",
+      "legacySun": true,
+      "elevation": 53.6,
+      "azimuth": null,
+      "phase": "day",
+      "artificial": 0,
+      "exposure": 1,
+      "stadium": "off",
+      "floodlights": {
+        "masts": 0,
+        "roofs": 0
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west",
+      "kungsgatan-street",
+      "kungsgatan-elevated",
+      "stromparken-path",
+      "stromparken-elevated"
+    ]
+  },
+  "t0715": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "date=2026-10-21&time=07:15&stadium=off",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:31:13.814Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 435,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 435
+      },
+      "utc": "2026-10-21T05:15:00.000Z",
+      "legacySun": false,
+      "elevation": -4.534528692382655,
+      "azimuth": 103.03134476648603,
+      "phase": "civil-twilight",
+      "artificial": 1,
+      "exposure": 1.1162082907792115,
+      "stadium": "off",
+      "floodlights": {
+        "masts": 0,
+        "roofs": 0
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west",
+      "kungsgatan-street",
+      "kungsgatan-elevated",
+      "stromparken-path",
+      "stromparken-elevated"
+    ]
+  },
+  "t0743": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "date=2026-10-21&time=07:43&stadium=off",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:31:49.588Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 463,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 463
+      },
+      "utc": "2026-10-21T05:43:00.000Z",
+      "legacySun": false,
+      "elevation": -0.8075243429674956,
+      "azimuth": 108.961628468112,
+      "phase": "golden",
+      "artificial": 0.5917919756460754,
+      "exposure": 1.0399903544396452,
+      "stadium": "off",
+      "floodlights": {
+        "masts": 0,
+        "roofs": 0
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west",
+      "kungsgatan-street",
+      "kungsgatan-elevated",
+      "stromparken-path",
+      "stromparken-elevated"
+    ]
+  },
+  "t0815": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "date=2026-10-21&time=08:15&stadium=off",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:32:26.888Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 495,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 495
+      },
+      "utc": "2026-10-21T06:15:00.000Z",
+      "legacySun": false,
+      "elevation": 2.9813489258447814,
+      "azimuth": 115.81960937569727,
+      "phase": "golden",
+      "artificial": 0,
+      "exposure": 1,
+      "stadium": "off",
+      "floodlights": {
+        "masts": 0,
+        "roofs": 0
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west",
+      "kungsgatan-street",
+      "kungsgatan-elevated",
+      "stromparken-path",
+      "stromparken-elevated"
+    ]
+  },
+  "t1239": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "date=2026-10-21&time=12:39&stadium=off",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:33:05.144Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 759,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 759
+      },
+      "utc": "2026-10-21T10:39:00.000Z",
+      "legacySun": false,
+      "elevation": 20.67216023154112,
+      "azimuth": 179.77758182336947,
+      "phase": "day",
+      "artificial": 0,
+      "exposure": 1,
+      "stadium": "off",
+      "floodlights": {
+        "masts": 0,
+        "roofs": 0
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west",
+      "kungsgatan-street",
+      "kungsgatan-elevated",
+      "stromparken-path",
+      "stromparken-elevated"
+    ]
+  },
+  "t1736": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "date=2026-10-21&time=17:36&stadium=off",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:33:43.364Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 1056,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 1056
+      },
+      "utc": "2026-10-21T15:36:00.000Z",
+      "legacySun": false,
+      "elevation": -0.859157303951019,
+      "azimuth": 250.81716860619315,
+      "phase": "civil-twilight",
+      "artificial": 0.607005925167301,
+      "exposure": 1.0400173436461804,
+      "stadium": "off",
+      "floodlights": {
+        "masts": 0,
+        "roofs": 0
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west",
+      "kungsgatan-street",
+      "kungsgatan-elevated",
+      "stromparken-path",
+      "stromparken-elevated"
+    ]
+  },
+  "t1752": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "date=2026-10-21&time=17:52&stadium=off",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:34:19.831Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 1072,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 1072
+      },
+      "utc": "2026-10-21T15:52:00.000Z",
+      "legacySun": false,
+      "elevation": -3.0337112200175387,
+      "azimuth": 254.2063180615596,
+      "phase": "civil-twilight",
+      "artificial": 1,
+      "exposure": 1.0800263184320245,
+      "stadium": "off",
+      "floodlights": {
+        "masts": 0,
+        "roofs": 0
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west",
+      "kungsgatan-street",
+      "kungsgatan-elevated",
+      "stromparken-path",
+      "stromparken-elevated"
+    ]
+  },
+  "t2130": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "date=2026-10-21&time=21:30&stadium=off",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:34:56.259Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 1290,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 1290
+      },
+      "utc": "2026-10-21T19:30:00.000Z",
+      "legacySun": false,
+      "elevation": -30.4958652120994,
+      "azimuth": 302.90779073019417,
+      "phase": "night",
+      "artificial": 1,
+      "exposure": 1.25,
+      "stadium": "off",
+      "floodlights": {
+        "masts": 0,
+        "roofs": 0
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west",
+      "kungsgatan-street",
+      "kungsgatan-elevated",
+      "stromparken-path",
+      "stromparken-elevated"
+    ]
+  },
+  "t2130-event": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "date=2026-10-21&time=21:30&stadium=event",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:35:22.817Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 1290,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 1290
+      },
+      "utc": "2026-10-21T19:30:00.000Z",
+      "legacySun": false,
+      "elevation": -30.4958652120994,
+      "azimuth": 302.90779073019417,
+      "phase": "night",
+      "artificial": 1,
+      "exposure": 1.25,
+      "stadium": "event",
+      "floodlights": {
+        "masts": 1,
+        "roofs": 1
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west"
+    ]
+  },
+  "t2130-training": {
+    "base": "http://127.0.0.1:5183/",
+    "query": "date=2026-10-21&time=21:30&stadium=training",
+    "viewport": {
+      "width": 1400,
+      "height": 1000
+    },
+    "deviceScaleFactor": 1,
+    "canvasDpr": 1,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "msedge headless (Playwright channel), --enable-unsafe-swiftshader",
+    "captured": "2026-10-21T18:35:50.075Z",
+    "lighting": {
+      "date": "2026-10-21",
+      "minutes": 1290,
+      "local": {
+        "date": "2026-10-21",
+        "minutes": 1290
+      },
+      "utc": "2026-10-21T19:30:00.000Z",
+      "legacySun": false,
+      "elevation": -30.4958652120994,
+      "azimuth": 302.90779073019417,
+      "phase": "night",
+      "artificial": 1,
+      "exposure": 1.25,
+      "stadium": "training",
+      "floodlights": {
+        "masts": 0.45,
+        "roofs": 0
+      },
+      "fixtures": 105,
+      "grid": {
+        "columns": 36,
+        "rows": 50,
+        "overflow": 0,
+        "maxPerCell": 8
+      },
+      "patchedMaterials": 1228,
+      "programs": 20,
+      "realtimeLights": {
+        "directional": 1,
+        "hemisphere": 1,
+        "ambient": 1,
+        "point": 0,
+        "spot": 0,
+        "shadowMaps": 0
+      },
+      "stadiumEmitters": 14
+    },
+    "poses": [
+      "stadium-elevated-se",
+      "stadium-elevated-nw",
+      "stadium-exterior-west",
+      "stadium-exterior-ne",
+      "stadium-exterior-se",
+      "stadium-pitch-north",
+      "stadium-pitch-west"
+    ]
+  }
+}

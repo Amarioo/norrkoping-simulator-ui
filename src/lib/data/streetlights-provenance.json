@@ -1,0 +1,2972 @@
+{
+ "meta": {
+  "generated": "2026-10-21",
+  "generator": "scripts/step6/import-streetlights.mjs",
+  "sources": [
+   {
+    "id": "osm-lighting-snapshot",
+    "file": "scripts/data/norrkoping-lighting-source.json",
+    "dataset": "OpenStreetMap (Overpass API)",
+    "license": "ODbL-1.0 © OpenStreetMap contributors",
+    "osmBase": {
+     "kungsgatan": "2026-10-21T15:53:24Z",
+     "stromparken": "2026-10-21T15:54:26Z",
+     "idrottsparken": "2026-10-21T15:54:26Z"
+    },
+    "accessed": "2026-10-21T15:56:07.593Z"
+   },
+   {
+    "id": "osm-map",
+    "file": "src/lib/data/norrkoping-map.json",
+    "dataset": "OpenStreetMap map snapshot",
+    "osmBase": "2026-10-16T13:35:36Z",
+    "license": "ODbL-1.0"
+   }
+  ],
+  "unavailable": [
+   "Norrköpings kommun: no street-lighting (gatubelysning/belysningspunkter) dataset found on dataportal.se (organisation store 215, 2026-10-21) or norrkoping.se/oppna-data (HTTP 404).",
+   "National: dataportal.se lists lamp datasets only for Stockholm (Belysningsmontage) and Huddinge (Belysningsstolpe); none covers Norrköping."
+  ],
+  "types": {
+   "street-bracket-8m": {
+    "heightM": 8,
+    "armM": 1.4,
+    "cct": 3000,
+    "candela": 1600,
+    "rangeM": 30,
+    "profile": 0,
+    "spacingM": 30,
+    "suppressM": 14
+   },
+   "street-bracket-6m": {
+    "heightM": 6,
+    "armM": 0.9,
+    "cct": 3000,
+    "candela": 900,
+    "rangeM": 24,
+    "profile": 0,
+    "spacingM": 27,
+    "suppressM": 12
+   },
+   "park-lantern-4m": {
+    "heightM": 4.2,
+    "armM": 0,
+    "cct": 2700,
+    "candela": 380,
+    "rangeM": 16,
+    "profile": 1,
+    "spacingM": 22,
+    "suppressM": 9
+   },
+   "entrance-post-4m": {
+    "heightM": 4,
+    "armM": 0,
+    "cct": 4000,
+    "candela": 450,
+    "rangeM": 15,
+    "profile": 1,
+    "spacingM": 0,
+    "suppressM": 6
+   }
+  },
+  "sectors": 16,
+  "units": "x, z: scene units (1 = 25 m, SWEREF 99 TM scene frame); heights, ranges, offsets, occlusion: metres",
+  "pilots": [
+   {
+    "id": "kungsgatan",
+    "name": "Kungsgatan (Kungsbron – Skvallertorget – Vattengatan)",
+    "kind": "street",
+    "bounds": {
+     "x0": -25,
+     "x1": -19.6,
+     "z0": -14.6,
+     "z1": 3.1
+    }
+   },
+   {
+    "id": "stromparken",
+    "name": "Strömparken (footways 92429395 / 243821537 along Motala ström)",
+    "kind": "park",
+    "bounds": {
+     "x0": -10.2,
+     "x1": -5.8,
+     "z0": -9.3,
+     "z1": 0.6
+    }
+   },
+   {
+    "id": "idrottsparken",
+    "name": "Idrottsparken (Norrköpings Idrottspark) and Ektorpsgatan / Matchgatan",
+    "kind": "stadium",
+    "bounds": {
+     "x0": -39.6,
+     "x1": -27,
+     "z0": 18.4,
+     "z1": 32.4
+    }
+   }
+  ],
+  "coverage": {
+   "kungsgatan": {
+    "litYes": 47,
+    "litNo": 1,
+    "litUnknown": 66,
+    "lengthLitYesM": 3559,
+    "estimatedWays": [
+     8189367,
+     8189380,
+     8236742,
+     26154805,
+     26154806,
+     35669333,
+     94463450,
+     118180748,
+     175718814,
+     175718900,
+     283456849,
+     283456850,
+     283456852,
+     283456853,
+     283456854,
+     283456855,
+     297613947,
+     297613950,
+     297613952,
+     297615552,
+     297693803,
+     302445255,
+     444474474,
+     444474476,
+     444474479,
+     444474484,
+     444474485,
+     444474488,
+     444474491,
+     444474510,
+     444474516,
+     444474525,
+     444474538,
+     444474544,
+     450114919,
+     1050773509,
+     1101316696,
+     1212234765,
+     1212234769,
+     1353086228,
+     1354231657
+    ],
+    "sidewalksCoveredByRoad": 2,
+    "mapped": 1,
+    "estimated": 41,
+    "rejected": {
+     "building": 2,
+     "carriageway": 1,
+     "tram": 0,
+     "entrance": 0,
+     "mappedCoverage": 1,
+     "duplicate": 7
+    }
+   },
+   "stromparken": {
+    "litYes": 32,
+    "litNo": 0,
+    "litUnknown": 64,
+    "lengthLitYesM": 2477,
+    "estimatedWays": [
+     1823966,
+     8178076,
+     26154679,
+     26154688,
+     26154766,
+     26154767,
+     27690602,
+     89631466,
+     92429395,
+     92459641,
+     131644805,
+     243821537,
+     285597751,
+     285597752,
+     285633910,
+     302445259,
+     302445260,
+     315670211,
+     341704317,
+     350376442,
+     350376447,
+     350376448,
+     760535013,
+     760535014,
+     760535015,
+     760535017,
+     760535018,
+     969561480
+    ],
+    "sidewalksCoveredByRoad": 2,
+    "mapped": 9,
+    "estimated": 16,
+    "rejected": {
+     "building": 0,
+     "carriageway": 0,
+     "tram": 0,
+     "entrance": 0,
+     "mappedCoverage": 8,
+     "duplicate": 0
+    }
+   },
+   "idrottsparken": {
+    "litYes": 41,
+    "litNo": 0,
+    "litUnknown": 94,
+    "lengthLitYesM": 5743,
+    "estimatedWays": [
+     4390719,
+     4438273,
+     4438276,
+     8189370,
+     27122238,
+     91339421,
+     91339446,
+     91339451,
+     91339452,
+     91645471,
+     175718867,
+     175718900,
+     285084138,
+     285084145,
+     285827316,
+     285827323,
+     285827324,
+     286469460,
+     286469468,
+     286469470,
+     286469488,
+     286471811,
+     286471812,
+     286471813,
+     287129559,
+     287129560,
+     287129561,
+     297695957,
+     297695958,
+     308417790,
+     310728615,
+     415773604,
+     449067051,
+     450114925,
+     1246956893,
+     1354231657
+    ],
+    "sidewalksCoveredByRoad": 3,
+    "mapped": 0,
+    "estimated": 38,
+    "rejected": {
+     "building": 0,
+     "carriageway": 0,
+     "tram": 0,
+     "entrance": 0,
+     "mappedCoverage": 0,
+     "duplicate": 5
+    }
+   }
+  }
+ },
+ "fixtures": [
+  {
+   "id": "kungsgatan:osm-node-11231112374",
+   "method": "OSM node position; type from nearest way 1354383175 (highway=path, 1.0 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11231112374",
+    "version": 1,
+    "timestamp": "2023-10-01T14:29:24Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-26154805-0",
+   "method": "lit=yes on way/26154805 (highway=secondary, bridge); staggered both sides, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/26154805",
+    "version": 16,
+    "timestamp": "2025-08-21T10:39:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-26154805-1",
+   "method": "lit=yes on way/26154805 (highway=secondary, bridge); staggered both sides, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/26154805",
+    "version": 16,
+    "timestamp": "2025-08-21T10:39:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-26154805-2",
+   "method": "lit=yes on way/26154805 (highway=secondary, bridge); staggered both sides, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/26154805",
+    "version": 16,
+    "timestamp": "2025-08-21T10:39:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-26154805-3",
+   "method": "lit=yes on way/26154805 (highway=secondary, bridge); staggered both sides, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/26154805",
+    "version": 16,
+    "timestamp": "2025-08-21T10:39:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-26154805-4",
+   "method": "lit=yes on way/26154805 (highway=secondary, bridge); staggered both sides, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/26154805",
+    "version": 16,
+    "timestamp": "2025-08-21T10:39:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-26154805-5",
+   "method": "lit=yes on way/26154805 (highway=secondary, bridge); staggered both sides, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/26154805",
+    "version": 16,
+    "timestamp": "2025-08-21T10:39:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-26154805-6",
+   "method": "lit=yes on way/26154805 (highway=secondary, bridge); staggered both sides, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/26154805",
+    "version": 16,
+    "timestamp": "2025-08-21T10:39:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-7",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-8",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-9",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-10",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-11",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-12",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-13",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-14",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-15",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-16",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-17",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-18",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-19",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-94463450-20",
+   "method": "lit=yes on way/94463450 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/94463450",
+    "version": 12,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-118180748-0",
+   "method": "lit=yes on way/118180748 (highway=secondary); one side, spacing 30 m, 4.1 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/118180748",
+    "version": 12,
+    "timestamp": "2025-08-21T10:39:37Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-283456849-1",
+   "method": "lit=yes on way/283456849 (highway=living_street); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/283456849",
+    "version": 7,
+    "timestamp": "2025-01-21T06:39:36Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "living_street"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-283456849-2",
+   "method": "lit=yes on way/283456849 (highway=living_street); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/283456849",
+    "version": 7,
+    "timestamp": "2025-01-21T06:39:36Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "living_street"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-283456852-0",
+   "method": "lit=yes on way/283456852 (highway=living_street); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/283456852",
+    "version": 6,
+    "timestamp": "2023-10-01T14:29:24Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "living_street"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-283456853-3",
+   "method": "lit=yes on way/283456853 (highway=living_street); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/283456853",
+    "version": 7,
+    "timestamp": "2024-02-17T09:02:39Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "living_street"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-283456855-0",
+   "method": "lit=yes on way/283456855 (highway=living_street); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/283456855",
+    "version": 5,
+    "timestamp": "2023-10-01T14:29:24Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "living_street"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-297613950-1",
+   "method": "lit=yes on way/297613950 (highway=secondary); staggered both sides, spacing 30 m, 5.8 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/297613950",
+    "version": 6,
+    "timestamp": "2024-08-17T16:20:06Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-297613950-3",
+   "method": "lit=yes on way/297613950 (highway=secondary); staggered both sides, spacing 30 m, 5.8 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/297613950",
+    "version": 6,
+    "timestamp": "2024-08-17T16:20:06Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-297613952-0",
+   "method": "lit=yes on way/297613952 (highway=secondary); one side, spacing 30 m, 4.1 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/297613952",
+    "version": 8,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-297613952-1",
+   "method": "lit=yes on way/297613952 (highway=secondary); one side, spacing 30 m, 4.1 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/297613952",
+    "version": 8,
+    "timestamp": "2024-08-17T16:20:11Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-297615552-1",
+   "method": "lit=yes on way/297615552 (highway=secondary); staggered both sides, spacing 30 m, 5.8 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/297615552",
+    "version": 5,
+    "timestamp": "2024-08-17T16:20:06Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-297615552-3",
+   "method": "lit=yes on way/297615552 (highway=secondary); staggered both sides, spacing 30 m, 5.8 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/297615552",
+    "version": 5,
+    "timestamp": "2024-08-17T16:20:06Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-444474476-0",
+   "method": "lit=yes on way/444474476 (highway=living_street); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/444474476",
+    "version": 4,
+    "timestamp": "2023-10-01T14:29:24Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "living_street"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-444474484-1",
+   "method": "lit=yes on way/444474484 (highway=secondary); one side, spacing 30 m, 4.1 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/444474484",
+    "version": 4,
+    "timestamp": "2023-10-01T14:29:24Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-444474488-0",
+   "method": "lit=yes on way/444474488 (highway=secondary); one side, spacing 30 m, 4.1 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/444474488",
+    "version": 5,
+    "timestamp": "2023-10-01T14:29:24Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-444474544-1",
+   "method": "lit=yes on way/444474544 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/444474544",
+    "version": 5,
+    "timestamp": "2023-10-01T14:29:24Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-444474544-2",
+   "method": "lit=yes on way/444474544 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/444474544",
+    "version": 5,
+    "timestamp": "2023-10-01T14:29:24Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-1353086228-0",
+   "method": "lit=yes on way/1353086228 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/1353086228",
+    "version": 3,
+    "timestamp": "2025-06-04T22:46:03Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-1353086228-1",
+   "method": "lit=yes on way/1353086228 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/1353086228",
+    "version": 3,
+    "timestamp": "2025-06-04T22:46:03Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "kungsgatan:est-way-1353086228-2",
+   "method": "lit=yes on way/1353086228 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/1353086228",
+    "version": 3,
+    "timestamp": "2025-06-04T22:46:03Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:osm-node-11097913749",
+   "method": "OSM node position; type from nearest way 243821537 (highway=footway, 3.1 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11097913749",
+    "version": 2,
+    "timestamp": "2023-08-08T03:27:09Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "stromparken:osm-node-11097919659",
+   "method": "OSM node position; type from nearest way 243821537 (highway=footway, 2.9 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11097919659",
+    "version": 2,
+    "timestamp": "2023-08-08T03:27:09Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "stromparken:osm-node-11098661608",
+   "method": "OSM node position; type from nearest way 243821537 (highway=footway, 1.9 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11098661608",
+    "version": 1,
+    "timestamp": "2023-08-08T03:35:15Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "stromparken:osm-node-11098661612",
+   "method": "OSM node position; type from nearest way 243821537 (highway=footway, 2.5 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11098661612",
+    "version": 1,
+    "timestamp": "2023-08-08T03:35:15Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "stromparken:osm-node-11098661613",
+   "method": "OSM node position; type from nearest way 969561480 (highway=steps, 2.9 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11098661613",
+    "version": 1,
+    "timestamp": "2023-08-08T03:35:15Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "stromparken:osm-node-11098661614",
+   "method": "OSM node position; type from nearest way 243821537 (highway=footway, 2.8 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11098661614",
+    "version": 1,
+    "timestamp": "2023-08-08T03:35:15Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "stromparken:osm-node-11098661615",
+   "method": "OSM node position; type from nearest way 243821537 (highway=footway, 3.1 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11098661615",
+    "version": 1,
+    "timestamp": "2023-08-08T03:35:15Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "stromparken:osm-node-11098661616",
+   "method": "OSM node position; type from nearest way 243821537 (highway=footway, 3.7 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11098661616",
+    "version": 1,
+    "timestamp": "2023-08-08T03:35:15Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "stromparken:osm-node-11098661617",
+   "method": "OSM node position; type from nearest way 243821537 (highway=footway, 4.8 m)",
+   "uncertaintyM": 3,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11098661617",
+    "version": 1,
+    "timestamp": "2023-08-08T03:35:15Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-26154767-0",
+   "method": "lit=yes on way/26154767 (highway=path); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/26154767",
+    "version": 7,
+    "timestamp": "2025-08-15T11:41:01Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "path"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-0",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-1",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-2",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-3",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-4",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-5",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-6",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-7",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-8",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-92429395-9",
+   "method": "lit=yes on way/92429395 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/92429395",
+    "version": 12,
+    "timestamp": "2025-08-12T13:22:12Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-243821537-6",
+   "method": "lit=yes on way/243821537 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/243821537",
+    "version": 7,
+    "timestamp": "2025-01-26T09:07:16Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-243821537-9",
+   "method": "lit=yes on way/243821537 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/243821537",
+    "version": 7,
+    "timestamp": "2025-01-26T09:07:16Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-243821537-10",
+   "method": "lit=yes on way/243821537 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/243821537",
+    "version": 7,
+    "timestamp": "2025-01-26T09:07:16Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-243821537-11",
+   "method": "lit=yes on way/243821537 (highway=footway); one side, spacing 22 m, 1.2 m from the centreline",
+   "uncertaintyM": 11,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/243821537",
+    "version": 7,
+    "timestamp": "2025-01-26T09:07:16Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "footway"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "stromparken:est-way-350376447-0",
+   "method": "lit=yes on way/350376447 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/350376447",
+    "version": 5,
+    "timestamp": "2023-01-22T20:46:20Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-4390719-0",
+   "method": "lit=yes on way/4390719 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/4390719",
+    "version": 15,
+    "timestamp": "2024-07-01T13:04:56Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-4438273-1",
+   "method": "lit=yes on way/4438273 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/4438273",
+    "version": 30,
+    "timestamp": "2020-10-12T21:03:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-4438273-2",
+   "method": "lit=yes on way/4438273 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/4438273",
+    "version": 30,
+    "timestamp": "2020-10-12T21:03:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-4438273-3",
+   "method": "lit=yes on way/4438273 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/4438273",
+    "version": 30,
+    "timestamp": "2020-10-12T21:03:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-4438273-4",
+   "method": "lit=yes on way/4438273 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/4438273",
+    "version": 30,
+    "timestamp": "2020-10-12T21:03:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-4438273-5",
+   "method": "lit=yes on way/4438273 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/4438273",
+    "version": 30,
+    "timestamp": "2020-10-12T21:03:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285084138-0",
+   "method": "lit=yes on way/285084138 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285084138",
+    "version": 7,
+    "timestamp": "2025-06-03T19:35:48Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285084138-1",
+   "method": "lit=yes on way/285084138 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285084138",
+    "version": 7,
+    "timestamp": "2025-06-03T19:35:48Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285084138-2",
+   "method": "lit=yes on way/285084138 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285084138",
+    "version": 7,
+    "timestamp": "2025-06-03T19:35:48Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285084138-3",
+   "method": "lit=yes on way/285084138 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285084138",
+    "version": 7,
+    "timestamp": "2025-06-03T19:35:48Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285084145-0",
+   "method": "lit=yes on way/285084145 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285084145",
+    "version": 6,
+    "timestamp": "2025-06-03T19:35:49Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285084145-1",
+   "method": "lit=yes on way/285084145 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285084145",
+    "version": 6,
+    "timestamp": "2025-06-03T19:35:49Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285084145-2",
+   "method": "lit=yes on way/285084145 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285084145",
+    "version": 6,
+    "timestamp": "2025-06-03T19:35:49Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285084145-3",
+   "method": "lit=yes on way/285084145 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285084145",
+    "version": 6,
+    "timestamp": "2025-06-03T19:35:49Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285827323-2",
+   "method": "lit=yes on way/285827323 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285827323",
+    "version": 8,
+    "timestamp": "2024-11-24T08:22:53Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285827323-3",
+   "method": "lit=yes on way/285827323 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285827323",
+    "version": 8,
+    "timestamp": "2024-11-24T08:22:53Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285827323-4",
+   "method": "lit=yes on way/285827323 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285827323",
+    "version": 8,
+    "timestamp": "2024-11-24T08:22:53Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285827323-5",
+   "method": "lit=yes on way/285827323 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285827323",
+    "version": 8,
+    "timestamp": "2024-11-24T08:22:53Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285827323-6",
+   "method": "lit=yes on way/285827323 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285827323",
+    "version": 8,
+    "timestamp": "2024-11-24T08:22:53Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-285827323-7",
+   "method": "lit=yes on way/285827323 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/285827323",
+    "version": 8,
+    "timestamp": "2024-11-24T08:22:53Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-286469468-0",
+   "method": "lit=yes on way/286469468 (highway=secondary); one side, spacing 30 m, 4.1 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/286469468",
+    "version": 6,
+    "timestamp": "2022-04-09T18:19:10Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-286471811-1",
+   "method": "lit=yes on way/286471811 (highway=secondary); staggered both sides, spacing 30 m, 7.4 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/286471811",
+    "version": 4,
+    "timestamp": "2022-04-10T17:04:20Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-286471811-3",
+   "method": "lit=yes on way/286471811 (highway=secondary); staggered both sides, spacing 30 m, 7.4 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/286471811",
+    "version": 4,
+    "timestamp": "2022-04-10T17:04:20Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-286471813-1",
+   "method": "lit=yes on way/286471813 (highway=secondary); staggered both sides, spacing 30 m, 7.4 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/286471813",
+    "version": 4,
+    "timestamp": "2026-07-05T11:39:50Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-286471813-2",
+   "method": "lit=yes on way/286471813 (highway=secondary); staggered both sides, spacing 30 m, 7.4 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/286471813",
+    "version": 4,
+    "timestamp": "2026-07-05T11:39:50Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-286471813-3",
+   "method": "lit=yes on way/286471813 (highway=secondary); staggered both sides, spacing 30 m, 7.4 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/286471813",
+    "version": 4,
+    "timestamp": "2026-07-05T11:39:50Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-286471813-4",
+   "method": "lit=yes on way/286471813 (highway=secondary); staggered both sides, spacing 30 m, 7.4 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/286471813",
+    "version": 4,
+    "timestamp": "2026-07-05T11:39:50Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-286471813-5",
+   "method": "lit=yes on way/286471813 (highway=secondary); staggered both sides, spacing 30 m, 7.4 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/286471813",
+    "version": 4,
+    "timestamp": "2026-07-05T11:39:50Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-415773604-0",
+   "method": "lit=yes on way/415773604 (highway=secondary); one side, spacing 30 m, 3.6 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/415773604",
+    "version": 2,
+    "timestamp": "2025-12-27T18:43:57Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-449067051-0",
+   "method": "lit=yes on way/449067051 (highway=secondary); one side, spacing 30 m, 4.1 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/449067051",
+    "version": 3,
+    "timestamp": "2020-10-12T21:03:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-449067051-1",
+   "method": "lit=yes on way/449067051 (highway=secondary); one side, spacing 30 m, 4.1 m from the centreline",
+   "uncertaintyM": 15,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/449067051",
+    "version": 3,
+    "timestamp": "2020-10-12T21:03:27Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "secondary"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-1246956893-6",
+   "method": "lit=yes on way/1246956893 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/1246956893",
+    "version": 3,
+    "timestamp": "2025-12-27T18:44:32Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-1246956893-7",
+   "method": "lit=yes on way/1246956893 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/1246956893",
+    "version": 3,
+    "timestamp": "2025-12-27T18:44:32Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-1246956893-8",
+   "method": "lit=yes on way/1246956893 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/1246956893",
+    "version": 3,
+    "timestamp": "2025-12-27T18:44:32Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-way-1246956893-9",
+   "method": "lit=yes on way/1246956893 (highway=residential); one side, spacing 27 m, 4.1 m from the centreline",
+   "uncertaintyM": 13.5,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "way/1246956893",
+    "version": 3,
+    "timestamp": "2025-12-27T18:44:32Z",
+    "tags": {
+     "lit": "yes",
+     "highway": "residential"
+    }
+   },
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-entrance-0",
+   "method": "entrance lighting beside mapped gate node/11098649479 (Entre 3, bortastå)",
+   "uncertaintyM": 6,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "node/11098649479"
+   },
+   "observed": [
+    "entrance location"
+   ],
+   "inferred": [
+    "presence of entrance lighting",
+    "position",
+    "type",
+    "output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-entrance-1",
+   "method": "entrance lighting flanking the west-stand main entrance plaza (arena x 80 m)",
+   "uncertaintyM": 6,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "relation/1440621"
+   },
+   "observed": [
+    "entrance location"
+   ],
+   "inferred": [
+    "presence of entrance lighting",
+    "position",
+    "type",
+    "output"
+   ]
+  },
+  {
+   "id": "idrottsparken:est-entrance-2",
+   "method": "entrance lighting flanking the west-stand main entrance plaza (arena x 80 m)",
+   "uncertaintyM": 6,
+   "source": {
+    "dataset": "osm-lighting-snapshot",
+    "element": "relation/1440621"
+   },
+   "observed": [
+    "entrance location"
+   ],
+   "inferred": [
+    "presence of entrance lighting",
+    "position",
+    "type",
+    "output"
+   ]
+  }
+ ]
+}

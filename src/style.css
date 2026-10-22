@@ -781,3 +781,34 @@ input[type='range'] {
     font-size: 17px;
   }
 }
+
+/* Step 6: time of day and floodlights. */
+.lighting-card input[type='date'] {
+  color: #e0e8e8;
+  background: #1c303a;
+  border: 1px solid #43545a;
+  border-radius: 5px;
+  padding: 8px 10px;
+  width: 100%;
+  margin-top: 8px;
+  color-scheme: dark;
+}
+.lighting-card select {
+  margin-top: 8px;
+}
+.preset-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 4px 0 6px;
+}
+.preset-button {
+  border: 1px solid #546360;
+  background: #263d45;
+  border-radius: 4px;
+  padding: 6px 8px;
+  font-size: 10px;
+}
+.preset-button:hover {
+  background: #31505a;
+}

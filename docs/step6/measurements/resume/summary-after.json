@@ -1,0 +1,25 @@
+{
+ "runs": 3,
+ "readyMs": 4433,
+ "mapReadyAt": 3504.7000000476837,
+ "uploadExcessMs": 952.9000000000001,
+ "uploadMaxFrameMs": 921.2000000000003,
+ "heapMB": 150.753776,
+ "geometries": null,
+ "views": {
+  "overview": {
+   "median": 14.299999999999272,
+   "p90": 16.399999999999636,
+   "mean": 14.539999999999994,
+   "calls": null,
+   "triangles": null
+  },
+  "parken": {
+   "median": 2.1999999999989086,
+   "p90": 2.399999999999636,
+   "mean": 2.225,
+   "calls": null,
+   "triangles": null
+  }
+ }
+}

@@ -4,6 +4,9 @@
   import Scene from './lib/Scene.svelte';
   import { CITY_VIEWS, cityMap } from './lib/mapModel';
   import { city, FLIGHT_PHASE, VEHICLE_NAMES } from './lib/city.svelte';
+  import { terrain } from './lib/terrain';
+  import { formatClock, lightingState, setClock } from './lib/lighting/state.svelte';
+  import { dayPhase, localToUtc, presets, solarPosition } from './lib/lighting/solar';
   let focus = $state('city'),
     labels = $state(true),
     follow = $state(''),
@@ -22,6 +25,20 @@
   const total = $derived(compact + estate + trucks + buses),
     moving = $derived(city.snapshot.vehicles.filter((v) => !v.stopped).length),
     plane = $derived(city.snapshot.aircraft[0]);
+  // Step 6: simulated time of day (Europe/Stockholm) and stadium floodlights.
+  const [siteLat, siteLon] = terrain.unproject(0, 0);
+  const dayPresets = $derived(presets(lightingState.date, siteLat, siteLon));
+  const sun = $derived(
+    solarPosition(localToUtc(lightingState.date, lightingState.minutes), siteLat, siteLon),
+  );
+  const PHASE_NAMES: Record<string, string> = {
+    day: 'Dag',
+    golden: 'Låg sol',
+    'civil-twilight': 'Borgerlig skymning/gryning',
+    'nautical-twilight': 'Nautisk skymning/gryning',
+    'astronomical-twilight': 'Astronomisk skymning/gryning',
+    night: 'Natt',
+  };
   const clock = $derived(new Date(city.snapshot.simulationTime * 1000).toISOString().slice(11, 19));
   $effect(() => {
     if (city.connected && !initialized) {
@@ -134,6 +151,61 @@
           >{city.pending ? 'Uppdaterar…' : 'Uppdatera trafiken'}<span>↗</span></button
         >
         {#if total > 1000}<p class="error-text">Välj högst 1 000 fordon totalt.</p>{/if}
+      </section>
+      <section class="sim-card lighting-card">
+        <div class="card-heading">
+          <h2>Tid och ljus</h2>
+          <span class="count-tag">{formatClock(lightingState.minutes)}</span>
+        </div>
+        <label class="slider-label" for="light-date"><span>Datum (Europe/Stockholm)</span></label
+        ><input
+          id="light-date"
+          type="date"
+          value={lightingState.date}
+          onchange={(e) => {
+            if (e.currentTarget.value) lightingState.date = e.currentTarget.value;
+          }}
+        />
+        <label class="slider-label" for="light-time"
+          ><span>Lokal tid</span><output>{formatClock(lightingState.minutes)}</output></label
+        ><input
+          id="light-time"
+          type="range"
+          min="0"
+          max="1439"
+          step="1"
+          value={Math.floor(lightingState.minutes)}
+          oninput={(e) => (lightingState.minutes = Number(e.currentTarget.value))}
+        />
+        <div class="preset-row" role="group" aria-label="Ljusförval">
+          {#each dayPresets as p (p.id)}<button
+              class="preset-button"
+              data-preset={p.id}
+              title={p.label + ' · ' + formatClock(p.minutes) + ' · ' + p.elevation.toFixed(1) + '°'}
+              onclick={() => setClock(lightingState.date, p.minutes)}>{p.label}</button
+            >{/each}
+        </div>
+        <p class="control-note" data-sun-elevation={sun.elevation.toFixed(2)}>
+          Solhöjd {sun.elevation.toFixed(1).replace('.', ',')}° · {PHASE_NAMES[dayPhase(sun.elevation)]}.
+          Gatubelysning i tre pilotområden: Kungsgatan, Strömparken och kring Idrottsparken.
+        </p>
+        <label class="slider-label" for="light-play"><span>Tidsförlopp</span></label><select
+          id="light-play"
+          bind:value={lightingState.rate}
+          ><option value={0}>Stoppad</option><option value={60}>1 min per sekund</option><option
+            value={600}>10 min per sekund</option
+          ></select
+        >
+        <label class="slider-label" for="stadium-lights"><span>Idrottsparkens strålkastare</span></label
+        ><select id="stadium-lights" bind:value={lightingState.stadium}
+          ><option value="off">Av</option><option value="training">Träning</option><option
+            value="event">Match</option
+          ></select
+        >
+        <p class="micro-note">
+          Strålkastarna styrs separat från tiden; ingen match antas. Lyktplaceringar är kartlagda
+          (OSM) eller uppskattade från lit=yes.
+        </p>
       </section>
       <section class="sim-card flight-card">
         <div class="card-heading">

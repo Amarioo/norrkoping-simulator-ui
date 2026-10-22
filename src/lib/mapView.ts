@@ -24,6 +24,7 @@ import { createCityPlaces, isDetailPlantingClear } from './cityPlaces';
 import { CITY_LAYERS, type CityLayer } from './cityMesh';
 import { requestCityLayers } from './cityMeshClient';
 import { layeredGround } from './groundLayers';
+import { createIdrottsparken } from './stadium/idrottsparken';
 
 export { Batch, fill, strip } from './cityMesh';
 
@@ -211,13 +212,20 @@ export function createMappedCity() {
   group.add(places.group);
   const details = createLandmarkDetails();
   group.add(details.group);
+  // Step 6: Idrottsparken (stands, roofs, masts, floodlight hooks) and its draped turf.
+  const stadium = createIdrottsparken(terrain);
+  group.add(stadium.group, stadium.turf);
   return {
     group,
     labels: details.labels,
+    stadium,
+    /** Materials of the worker-built layers (their meshes arrive after `ready`). */
+    layerMaterials: Object.values(materials).map((m) => m.material),
     /** Resolves when the worker-built ground, roads and buildings are in the scene. */
     ready,
     dispose() {
       disposed = true;
+      stadium.dispose();
       details.dispose();
       places.dispose();
       bridges.dispose();
