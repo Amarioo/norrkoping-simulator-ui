@@ -2,13 +2,15 @@
   import { onDestroy } from 'svelte';
   import { T, useTask, useThrelte } from '@threlte/core';
   import { interactivity, type IntersectionEvent } from '@threlte/extras';
-  import { DirectionalLight } from 'three';
   import { createMappedCity } from './mapView';
   import { city } from './city.svelte';
   import { createTransportModels } from './transportModels';
   import { createTrafficSignals } from './trafficSignals';
   import FreeCamera from './FreeCamera.svelte';
   import { createPublicTransport } from './publicTransport';
+  import { terrain } from './terrain';
+  import { createCityLighting } from './lighting/controller';
+  import { advanceClock, lightingState } from './lighting/state.svelte';
   let {
     focus = 'overview',
     showLabels = true,
@@ -23,17 +25,48 @@
     mapReady?: boolean;
   } = $props();
   interactivity();
-  const { renderer } = useThrelte();
+  const { renderer, scene, camera } = useThrelte();
   const buildStarted = performance.now();
   const transit = createPublicTransport();
   const view = createMappedCity(),
     transport = createTransportModels(),
     signals = createTrafficSignals();
+  // Step 6: time of day, street lighting and stadium floodlights (lighting/controller.ts). Every lit
+  // material gets the fixed lighting patch before its first compile.
+  const lighting = createCityLighting({ terrain, stadium: view.stadium, renderer, scene });
+  for (const root of [view.group, transport.group, transit.group, signals.group])
+    lighting.patch(root);
+  lighting.patchMaterials(view.layerMaterials);
+  const lightingInput = () => ({
+    date: lightingState.date,
+    minutes: lightingState.minutes,
+    stadium: lightingState.stadium,
+    legacySun: lightingState.legacySun,
+  });
+  lighting.set(lightingInput());
+  lighting.settle();
+  $effect(() => lighting.set(lightingInput()));
+  if (import.meta.env.DEV)
+    (globalThis as unknown as { __cityLighting: unknown }).__cityLighting = {
+      state: lightingState,
+      settle: () => lighting.settle(),
+      describe: () => lighting.describe(),
+      uniforms: lighting.uniforms,
+    };
   const buildMs = performance.now() - buildStarted;
   // Ground, roads and buildings are built in workers and arrive after the first frames.
   let mapReadyMs: number | null = null;
+  // Step 6: start every program's compilation at once (KHR_parallel_shader_compile through
+  // renderer.compileAsync) instead of one blocking compile per program on its first frame: once the
+  // scene graph (with its lights) is mounted, and again for the worker-built layers before they are
+  // first drawn. Without the extension this degrades to the usual synchronous compile.
+  const precompile = () => {
+    if (camera.current) renderer.compileAsync(scene, camera.current).catch(() => {});
+  };
+  $effect(precompile);
   view.ready.then(
     () => {
+      precompile();
       mapReadyMs = performance.now() - buildStarted;
       mapReady = true;
     },
@@ -49,6 +82,7 @@
     );
   onDestroy(() => {
     inspector?.dispose();
+    lighting.dispose();
     view.dispose();
     transport.dispose();
     transit.dispose();
@@ -60,6 +94,8 @@
       child.visible = focus !== 'overview' || child.userData.primary;
   });
   useTask((dt) => {
+    advanceClock(dt);
+    if (camera.current) lighting.update(dt, camera.current, renderer.domElement.height);
     if (import.meta.env.DEV) {
       (globalThis as unknown as { __cityPerformance: unknown }).__cityPerformance = {
         buildMs,
@@ -79,21 +115,6 @@
     signals.update(city.snapshot.simulationTime);
     transit.update(city.snapshot.vehicles, dt);
   });
-  const sun = new DirectionalLight('#fff3de', 2.1);
-  sun.position.set(-150, 260, 120);
-  sun.castShadow = false;
-  sun.shadow.mapSize.set(2048, 2048);
-  sun.shadow.bias = -0.0001;
-  sun.shadow.normalBias = 0.012;
-  Object.assign(sun.shadow.camera, {
-    left: -130,
-    right: 130,
-    top: 130,
-    bottom: -130,
-    near: 1,
-    far: 700,
-  });
-  sun.shadow.camera.updateProjectionMatrix();
   function pick(e: IntersectionEvent<MouseEvent>) {
     const ids = e.object.userData.ids;
     if (ids && e.instanceId !== undefined) {
@@ -103,14 +124,9 @@
   }
 </script>
 
-<T.Color attach="background" args={['#bacbd3']} /><T.Fog
-  attach="fog"
-  args={['#bacbd3', 700, 1700]}
-/>
 <FreeCamera {focus} bind:follow bind:travel />
-<T.AmbientLight color="#f3f1e7" intensity={0.75} /><T.HemisphereLight
-  args={['#d9efff', '#8b9575', 1.1]}
-/><T is={sun} />
+<!-- Sun, sky, hemisphere/ambient light, fog and fixtures: lighting/controller.ts (Step 6). -->
+<T is={lighting.group} />
 <!-- Ground and river cutouts are rendered together by mapView. -->
 <T is={view.group} />{#if inspector}<T is={inspector.group} />{/if}<T is={transport.group} onclick={pick} /><T is={signals.group} /><T
   is={transit.group}

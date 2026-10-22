@@ -1,0 +1,78 @@
+{
+ "readyMs": 4119,
+ "upload": {
+  "mapReadyAt": 3176.199999988079,
+  "maxFrameMs": 838.5999999999999,
+  "excessMs": 971.5999999999999,
+  "frames": 438
+ },
+ "perf": {
+  "buildMs": 848.8999999761581,
+  "mapReadyMs": 2222.2999999523163,
+  "triangles": 4932177,
+  "calls": 2786,
+  "geometries": 3071,
+  "frameMs": 6
+ },
+ "measures": {
+  "city-data:parse-terrain": 24.700000047683716,
+  "city-data:hydrate-terrain": 144.9000000357628,
+  "city-data:parse-map": 73.80000001192093
+ },
+ "views": {
+  "overview": {
+   "median": 12.299999999999272,
+   "p90": 13.5,
+   "mean": 12.544166666666676,
+   "triangles": 9646967,
+   "calls": 7560
+  },
+  "city": {
+   "median": 4.700000000000728,
+   "p90": 5.299999999999272,
+   "mean": 4.785000000000006,
+   "triangles": 4932177,
+   "calls": 2786
+  },
+  "parken": {
+   "median": 1.5999999999985448,
+   "p90": 1.7000000000007276,
+   "mean": 1.6041666666666667,
+   "triangles": 906432,
+   "calls": 257
+  },
+  "kungsgatan": {
+   "median": 1.7000000000007276,
+   "p90": 1.9000000000014552,
+   "mean": 1.7516666666666425,
+   "triangles": 915539,
+   "calls": 289
+  },
+  "laxtrappan": {
+   "median": 1.5,
+   "p90": 1.6000000000021828,
+   "mean": 1.5041666666666667,
+   "triangles": 730855,
+   "calls": 174
+  },
+  "stromparken": {
+   "median": 3.899999999997817,
+   "p90": 4.200000000000728,
+   "mean": 3.8816666666666606,
+   "triangles": 3237053,
+   "calls": 2058
+  },
+  "idrottsparkenPitch": {
+   "median": 4.299999999999272,
+   "p90": 4.799999999999272,
+   "mean": 4.345833333333333,
+   "triangles": 3718314,
+   "calls": 2388
+  }
+ },
+ "metrics": {
+  "JSHeapUsedSize": 188219960,
+  "JSHeapTotalSize": 227987456
+ },
+ "errors": []
+}

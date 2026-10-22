@@ -2,6 +2,95 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Step 6.1 — night polish and bridge routing (2026-10-22) — implemented, for review
+
+Continued the interrupted session, preserving the uncommitted Step 6 working tree. No commit or
+push. [Complete report, exact file inventory and comparison images](step61/README.md),
+[performance](step61/performance.md), [network IDs/coordinates/hashes](step61/measurements/network.json).
+
+- Inspected the importer, vehicle policies, transport graph, bridge/render alignment, interpolation
+  and route fallback. The pictured bridge is Bergsbron on Kungsgatan: road way `26154805`, north
+  node `286409016` (index 4903), SWEREF E568512.876703 / N6495020.614197. Onward living-street
+  way `26154806` excludes trucks/buses under the existing simulation policy.
+- Root cause: reciprocal bridge edges survived directed-dead-end pruning, leaving trucks only the
+  runtime reverse fallback. New general `throughRoadEdges` preprocessing removes policy-cut
+  branches, preserves real cul-de-sacs and uses no geographic exception or new per-tick search.
+- Live browser evidence: 13 truck reversals before, zero after; nine cars observed continuing
+  beyond the northern junction after the fix. Cars already had connectivity before. Full timed
+  extracts and browser captures are linked in the report; these are not injected test routes.
+- Kungsgatan receives oriented road-favoring light distribution, less rear spill, smaller halos and
+  warmer night adaptation. Strömparken gets softer lantern falloff with dark lawns retained.
+  Idrottsparken OFF/TRAINING/MATCH was reviewed and retained, including geometry and emitters.
+- Only four existing UI source files differ from the saved Step 6 baseline: lighting `cityLights.ts`,
+  `fixtures.ts`, `reference.ts`, `lighting.test.ts`. Added live bridge E2E, evidence utilities and
+  `docs/step61`. Backend: `CityTransport.kt`, new `RoadRouting.kt` and `RoadRoutingTest.kt`.
+  Full paths/inventory are in the report. Other Step 6 changes and `.vscode/` are preserved.
+- Checks: 210 frontend tests, type check 0 errors/warnings, production build passed (existing chunk
+  warning); 49 backend tests including six routing regressions; all five browser E2E passed on
+  final routing. Both lighting/WebGL E2E tests passed again after final shader simplification;
+  32 final captures completed without exceptions. Temporary verification servers were stopped.
+- Final paired median map-ready 3825.7 → 3873.6 ms (+47.9 ms); heap 114.560 → 114.565 MB;
+  draw calls/triangles unchanged. Largest frame-median increase 0.1 ms. Earlier shader startup
+  overhead +221.1 ms led to arithmetic simplification; both measurement series are retained.
+  Backend median initialization +2.06 ms, tick 0.1900 → 0.1555 ms; noisy, not a speedup claim.
+- No city-wide rollout, data/geometry changes or lighting architecture rewrite. Shared terrain,
+  bridge profiles and transport data remain byte-identical. Approximate photometry and existing
+  pale jagged road-depth overlap remain. Restart the normal backend to load the routing fix.
+
+---
+
+## Step 6 — day/night pilot and Idrottsparken (2026-10-21) — implemented, for review
+
+**State:** UI HEAD `994b881`, branch `codex/step6-night-lighting`, uncommitted Step 6 working tree.
+Backend HEAD `e143535`, clean `main`, unchanged. No commit or push. This continues the interrupted
+Step 6 session, preserving its implementation and measurements. The pre-existing untracked
+`.vscode/extensions.json` was left untouched.
+
+**Delivery:** [Step 6 report and image index](step6/README.md),
+[performance/budgets](step6/performance.md), [exact file inventory](step6/files.md),
+[architecture](step6/lighting-architecture.md), [lamp provenance](step6/lighting-data.md),
+[stadium discrepancies and sources](step6/stadium-references.md).
+
+- Exactly three pilots: Kungsgatan/Kungsbron, Strömparken and Idrottsparken. 105 fixtures
+  (10 mapped, 95 estimated), restricted to documented lit routes and labelled entrance estimates.
+- Europe/Stockholm date/time, solar orientation using the existing SWEREF frame, seasonal solar
+  presets, smooth sky/fog/exposure and separate off/training/event floodlights.
+- Surface illumination uses a fixed spatial-grid shader patch; no extra PointLights/SpotLights,
+  no shadow maps. Max 8 lamps/cell in the pilot (budget 16), 14 stadium emitters (budget 16).
+- Arena rebuilt from OSM footprint, 2020 LiDAR and compatible dated photographs: lower roofs and
+  corrected overhangs, distinct stands, north standing terrace, roofed NE/SW corners, open SE corner,
+  corrected mast positions/heights, main-stand glazing and adjacent halls. Anchor/scale unchanged.
+- 113 deterministic full captures, 24 comparison panels, plus the Kungsgatan baseline artifact
+  comparison. [Daylight arena](step6/evidence/before-after/stadium-elevated-se.jpg),
+  [pitch floodlights](step6/evidence/floodlights/stadium-pitch-north.jpg),
+  [street](step6/evidence/time-of-day/kungsgatan-street.jpg),
+  [park](step6/evidence/time-of-day/stromparken-path.jpg).
+- Recovery fixed WebGL context restoration: retain typed vertex arrays; free temporary merge
+  buffers. The browser regression failed before the fix and passes after it.
+
+**Checks:** 208 unit tests passed, 0 type errors/warnings, production build passed (large-chunk
+warning retained), all 4 Playwright tests passed against Ktor :8091. Those temporary E2E servers
+were stopped afterward. Relevant lighting/stadium tests (43) were rerun after the recovery fix.
+Shared terrain, bridge profiles and transport network are byte-identical across repositories;
+surface revision remains `lm-dtm-b976b87a19446d3d-surface-70559be0073d`.
+
+**Performance:** worker geometry is unchanged (8,563,150 triangles / 1,130.3 MB buffers).
+Arena: 55,822 triangles, 10 meshes, 5.78 MB buffers; `parken` draw calls 939 → 255 in daytime.
+The original startup regression was reduced from +1.4 s to +102 ms, still over the +100 ms target.
+Recovery medians: map ready **3457.2 → 3504.7 ms (+47.5 ms)** and post-GC heap
+**123.11 → 121.43 MB (−1.69 MB)**. The latest median meets the targets, but one pair and the
+earlier +102 ms series exceed the startup target; consistent sub-100 ms overhead is not established.
+All rounds, raw data and final budget comparisons are in [performance.md](step6/performance.md).
+Do not reuse the earlier upload-time array deletion to
+recover memory: it breaks context restoration.
+
+**Limits for review:** approximated occlusion/photometry; no 2026 survey of mast/projector layout;
+coarse surrounding terrain; pre-existing pale jagged road-depth overlaps on Kungsgatan remain in
+both baseline and Step 6. The pilot is not a full-city rollout and does not claim every visual or
+performance target passed. See the report before accepting the trade-offs.
+
+---
+
 **Git checkpoint (2026-10-21), geometry phase approved:** committed on `main` in both repositories with the
 user's authorisation:
 - Backend: `e143535`.

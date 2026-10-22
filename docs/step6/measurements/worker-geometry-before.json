@@ -1,0 +1,62 @@
+{
+ "revision": "lm-dtm-b976b87a19446d3d-surface-70559be0073d",
+ "meshTriangles": 930790,
+ "builderMs": {
+  "buildTerrain": 2544,
+  "buildNetwork": 3107,
+  "buildMarkings": 614,
+  "buildBuildings": 394
+ },
+ "layers": {
+  "banks": {
+   "geometries": 315,
+   "triangles": 40186,
+   "bytes": 5304552
+  },
+  "land": {
+   "geometries": 1719,
+   "triangles": 4220081,
+   "bytes": 557050692
+  },
+  "water": {
+   "geometries": 324,
+   "triangles": 143980,
+   "bytes": 19005360
+  },
+  "roads": {
+   "geometries": 1422,
+   "triangles": 3332633,
+   "bytes": 439907556
+  },
+  "markings": {
+   "geometries": 484,
+   "triangles": 414905,
+   "bytes": 54767460
+  },
+  "surveyed": {
+   "geometries": 0,
+   "triangles": 0,
+   "bytes": 0
+  },
+  "walls": {
+   "geometries": 427,
+   "triangles": 162890,
+   "bytes": 21501480
+  },
+  "roofs": {
+   "geometries": 419,
+   "triangles": 85585,
+   "bytes": 11297220
+  },
+  "cornices": {
+   "geometries": 427,
+   "triangles": 162890,
+   "bytes": 21501480
+  }
+ },
+ "total": {
+  "geometries": 5537,
+  "triangles": 8563150,
+  "bytes": 1130335800
+ }
+}
