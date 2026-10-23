@@ -1,0 +1,57 @@
+[
+  {
+    "id": "operator:ingo:ingelsta-koppargatan",
+    "name": "INGO Norrkoping Ingelsta, Koppargatan",
+    "address": "Koppargatan 1 B",
+    "coordinates": null,
+    "source": "https://www.circlek.se/station/ingo-norrkoping-ingelsta-koppargatan",
+    "retrievedDate": "2026-10-23",
+    "sourceDate": null,
+    "status": "operator-listed; reconcile with 32 OSM features before adding a distinct station",
+    "licence": null
+  },
+  {
+    "id": "operator:circlek:truck-zinkgatan",
+    "name": "Circle K Truck Norrkoping Zinkgatan",
+    "address": "Zinkgatan 10",
+    "coordinates": null,
+    "source": "https://www.circlek.se/station/circle-k-truck-norrkoping-zinkgatan",
+    "retrievedDate": "2026-10-23",
+    "sourceDate": null,
+    "status": "operator-listed truck facility; reconcile with unnamed OSM/fleet points",
+    "licence": null
+  },
+  {
+    "id": "operator:okq8:malmgatan",
+    "name": "OKQ8 Norrkoping Ingelsta",
+    "address": "Malmgatan 41",
+    "coordinates": null,
+    "source": "https://www.okq8.se/hitta-station/norrkoping/norrkoping-ingelsta",
+    "retrievedDate": "2026-10-23",
+    "sourceDate": null,
+    "status": "operator lists fuel and automatic service; no OSM fuel point within 600 m in current extract; acquire licensed location match",
+    "licence": null
+  },
+  {
+    "id": "operator:st1:truck-maskingatan",
+    "name": "St1 Truck Norrkoping Masking.",
+    "address": "Maskingatan (number unresolved)",
+    "coordinates": null,
+    "source": "https://st1.se/hitta-station",
+    "retrievedDate": "2026-10-23",
+    "sourceDate": null,
+    "status": "current operator listing; needs OSM/fleet-site reconciliation",
+    "licence": null
+  },
+  {
+    "id": "operator:okq8:ids-klinga",
+    "name": "OKQ8 IDS Klinga truck facility",
+    "address": "E4 trafikplats Klinga",
+    "coordinates": null,
+    "source": "https://www.okq8.se/hitta-station/norrkoping/norrkoping-ids-klinga",
+    "retrievedDate": "2026-10-23",
+    "sourceDate": null,
+    "status": "operator lists fuel/automatic service near the staffed Klinga station; likely subfacility of osm:way/287685623, not automatically an extra unique site",
+    "licence": null
+  }
+]

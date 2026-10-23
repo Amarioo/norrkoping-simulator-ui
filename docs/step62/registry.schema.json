@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Norrkoping lighting research registry, version 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "targetDate", "horizontalCrs", "verticalDatum", "assets"],
+  "properties": {
+    "version": {"const": 1},
+    "targetDate": {"type": "string", "format": "date"},
+    "horizontalCrs": {"const": "EPSG:3006"},
+    "verticalDatum": {"const": "RH2000"},
+    "assets": {"type": "array", "items": {"$ref": "#/definitions/asset"}}
+  },
+  "definitions": {
+    "nullableNumber": {"type": ["number", "null"]},
+    "nullableString": {"type": ["string", "null"]},
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "category", "role", "name", "parentId", "sourceGeometry", "position", "geometryType", "fixtureType", "orientationGridDegrees", "mountingHeightM", "illumination", "activation", "color", "evidence", "confidence", "positionMethod", "existingSimulatorAsset", "requiredGeometry", "priority", "performanceClass", "unresolved"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "category": {"enum": ["street", "bridge", "landmark", "transit", "public-service", "fuel", "commercial", "park", "forest-trail", "airport", "aircraft", "sports", "other"]},
+        "role": {"enum": ["fixture", "site", "route", "geometry-prerequisite"]},
+        "name": {"$ref": "#/definitions/nullableString"},
+        "parentId": {"$ref": "#/definitions/nullableString"},
+        "sourceGeometry": {"$ref": "#/definitions/nullableString"},
+        "position": {"oneOf": [
+          {"type": "null"},
+          {"type": "object", "additionalProperties": false, "required": ["e", "n", "heightRh2000M", "meaning"], "properties": {
+            "e": {"type": "number"}, "n": {"type": "number"},
+            "heightRh2000M": {"$ref": "#/definitions/nullableNumber"},
+            "meaning": {"enum": ["fixture-base", "emitter", "site-anchor", "footprint-bounds-midpoint", "route-anchor"]}
+          }}
+        ]},
+        "geometryType": {"enum": ["Point", "LineString", "Polygon", "MultiPolygon", "reference", "unknown"]},
+        "fixtureType": {"$ref": "#/definitions/nullableString"},
+        "orientationGridDegrees": {"oneOf": [{"type": "null"}, {"type": "number", "minimum": 0, "exclusiveMaximum": 360}]},
+        "mountingHeightM": {"oneOf": [{"type": "null"}, {"type": "number", "minimum": 0}]},
+        "illumination": {"enum": ["verified-lit", "mapped-lit", "mapped-unlit", "verified-unlit", "estimated", "unknown"]},
+        "activation": {"type": "object", "additionalProperties": false, "required": ["mode", "schedule", "validFrom", "validTo"], "properties": {
+          "mode": {"enum": ["unknown", "solar-night", "scheduled", "event", "operational", "vehicle-state", "off"]},
+          "schedule": {"$ref": "#/definitions/nullableString"},
+          "validFrom": {"$ref": "#/definitions/nullableString"}, "validTo": {"$ref": "#/definitions/nullableString"}
+        }},
+        "color": {"type": "object", "additionalProperties": false, "required": ["cctK", "description"], "properties": {
+          "cctK": {"oneOf": [{"type": "null"}, {"type": "number", "minimum": 1000, "maximum": 20000}]},
+          "description": {"$ref": "#/definitions/nullableString"}
+        }},
+        "evidence": {"type": "array", "minItems": 1, "items": {
+          "type": "object", "additionalProperties": false,
+          "required": ["reference", "sourceDate", "retrievedDate", "licence", "redistribution", "supports"],
+          "properties": {
+            "reference": {"type": "string", "minLength": 1},
+            "sourceDate": {"$ref": "#/definitions/nullableString"},
+            "retrievedDate": {"type": "string", "format": "date"},
+            "licence": {"$ref": "#/definitions/nullableString"},
+            "redistribution": {"enum": ["allowed-with-conditions", "unknown", "reference-only"]},
+            "supports": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+          }
+        }},
+        "confidence": {"enum": ["high", "medium", "low", "unknown"]},
+        "positionMethod": {"enum": ["surveyed", "mapped", "derived-anchor", "estimated", "unknown"]},
+        "existingSimulatorAsset": {"$ref": "#/definitions/nullableString"},
+        "requiredGeometry": {"type": "array", "items": {"type": "string"}},
+        "priority": {"enum": ["P0", "P1", "P2", "P3", "deferred"]},
+        "performanceClass": {"enum": ["instanced-static", "analytic-surface", "emissive-only", "moving-instanced", "vegetation-lod", "unknown"]},
+        "unresolved": {"type": "array", "items": {"type": "string"}}
+      }
+    }
+  }
+}

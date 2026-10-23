@@ -1,0 +1,1091 @@
+{
+  "date": "2026-10-23",
+  "runtimeSnapshot": "2026-10-16T13:35:36Z",
+  "inventorySnapshot": "2026-10-23T09:05:06Z",
+  "request": {
+    "url": "https://overpass-api.de/api/interpreter",
+    "query": "[out:json][timeout:90][bbox:58.555,16.065,58.65,16.295];(\nnwr[amenity=fuel];node[highway=street_lamp];way[highway][lit];\nnwr[amenity~\"^(police|fire_station|hospital|charging_station)$\"];\nnwr[man_made=water_tower];nwr[historic=monument];nwr[leisure~\"^(sports_centre|stadium)$\"];\nrelation[route=bus];relation[route~\"^(hiking|running|fitness_trail)$\"];\n);out meta geom;",
+    "retrievedAt": "2026-10-23T09:06:45.285Z",
+    "osmBase": "2026-10-23T09:05:06Z"
+  },
+  "frame": {
+    "crs": "EPSG:3006",
+    "originEasting": 569030,
+    "originNorthing": 6494989,
+    "gridScaleFactor": 0.9996584126,
+    "gridConvergenceDegrees": -1.0134914515,
+    "metresPerUnit": 25,
+    "verticalDatum": "RH2000",
+    "verticalOriginMetres": 0
+  },
+  "clipPolygonEN": [
+    [
+      561804.869,
+      6501570.951
+    ],
+    [
+      575151.458,
+      6501805.721
+    ],
+    [
+      575355.539,
+      6491229.31
+    ],
+    [
+      561972.712,
+      6490994.115
+    ],
+    [
+      561804.869,
+      6501570.951
+    ]
+  ],
+  "bboxEN": [
+    561804.869,
+    6490994.115,
+    575355.539,
+    6501805.721
+  ],
+  "terrain": {
+    "id": "norrkoping-dtm",
+    "source": "Markhöjdmodell Nedladdning ©Lantmäteriet (bearbetad)",
+    "sourceUrl": "https://api.lantmateriet.se/stac-hojd/v1/collections/dtm-cog",
+    "licence": "CC-BY-4.0",
+    "acquired": "2020-01-25T00:00:00Z/2025-07-01T00:00:00Z",
+    "kind": "DTM",
+    "resolutionMetres": 5,
+    "verticalAccuracyMetres": 0.1,
+    "verticalDatum": "RH2000",
+    "processing": "Native 1 m EPSG:5845 DTM; native tiles mosaicked before bilinear sampling. Scene grid mapped directly to SWEREF 99 TM (scene contract in reference; no geographic round trip). Runtime grid 5 m; RH2000 retained; vertical exaggeration 1; no invented relief or hole filling. Retained bridge decks (classified as ground) removed like other bridges: scripts/data/dtm-retained-decks.json, scripts/geo/dtm_corrections.py.",
+    "x": -289.2,
+    "z": -272.8,
+    "step": 0.2,
+    "columns": 2713,
+    "rows": 2165,
+    "swerefBounds": [
+      561802.47,
+      6490990.366,
+      575357.838,
+      6501806.67
+    ],
+    "runtimeHeightSamples": 5873645,
+    "runtimeHeightBytes": 23494580,
+    "meshTriangles": 930790
+  },
+  "counts": {
+    "buildings": 12499,
+    "buildingHeights": {
+      "estimated": 11228,
+      "levels": 1166,
+      "height": 105
+    },
+    "renderedSegments": {
+      "road": 41344,
+      "path": 36517,
+      "rail": 2717,
+      "tram": 2259,
+      "stream": 1785
+    },
+    "roadClasses": {
+      "residential": 10212,
+      "footway": 11194,
+      "motorway_link": 463,
+      "motorway": 523,
+      "secondary": 2918,
+      "trunk_link": 462,
+      "primary": 660,
+      "tertiary": 3028,
+      "unclassified": 6847,
+      "primary_link": 122,
+      "service": 15311,
+      "trunk": 444,
+      "": 6666,
+      "path": 15714,
+      "living_street": 394,
+      "track": 4428,
+      "cycleway": 4305,
+      "steps": 130,
+      "pedestrian": 39,
+      "secondary_link": 45,
+      "raceway": 557,
+      "platform": 150,
+      "tertiary_link": 10
+    },
+    "landCover": {
+      "farmland": 324,
+      "grass": 1062,
+      "wood": 526,
+      "residential": 651,
+      "industrial": 135,
+      "cemetery": 9,
+      "square": 26,
+      "pitch": 161,
+      "apron": 10,
+      "water": 129
+    },
+    "mappedTrees": 2345,
+    "signals": 116,
+    "networkNodes": 38294,
+    "networkEdges": 73332,
+    "fuelFeatures": 32,
+    "mappedLampNodes": 25,
+    "taggedLitWays": {
+      "yes": 2040,
+      "no": 175
+    },
+    "busRelations": 46
+  },
+  "southernStudyWindow": {
+    "note": "Diagnostic scene x -45..100 z>65; NOT the legal reserve boundary",
+    "woodFragments": 67,
+    "mappedTrees": 86
+  },
+  "bridges": [
+    {
+      "id": 501428827,
+      "name": "Saltängsbron",
+      "anchorEN": [
+        568905.743,
+        6495418.895
+      ]
+    },
+    {
+      "id": 501428838,
+      "name": "Hamnbron",
+      "anchorEN": [
+        569403.658,
+        6495490.374
+      ]
+    },
+    {
+      "id": 1212234767,
+      "name": "Bergsbron",
+      "anchorEN": [
+        568496.918,
+        6494969.86
+      ]
+    },
+    {
+      "id": 1212608460,
+      "name": "Gamlebro",
+      "anchorEN": [
+        568820.683,
+        6494938.721
+      ]
+    },
+    {
+      "id": 1212608461,
+      "name": "Spången",
+      "anchorEN": [
+        568779.23,
+        6495207.173
+      ]
+    },
+    {
+      "id": 8237053,
+      "name": "Laxholmsbron",
+      "anchorEN": [
+        568597.127,
+        6494875.587
+      ]
+    },
+    {
+      "id": 275578953,
+      "name": "Gångbro vid laxtrappan",
+      "anchorEN": [
+        568863.595,
+        6495004.483
+      ]
+    },
+    {
+      "id": 350376442,
+      "name": "Gångbro vid laxtrappan",
+      "anchorEN": [
+        568808.229,
+        6495195.041
+      ]
+    },
+    {
+      "id": 350376444,
+      "name": "Gångbro vid laxtrappan",
+      "anchorEN": [
+        568830.996,
+        6495131.379
+      ]
+    }
+  ],
+  "airports": [
+    {
+      "id": "ESSP",
+      "name": "Norrköpings flygplats",
+      "runway": "09/27",
+      "start": [
+        103.163,
+        14.606
+      ],
+      "end": [
+        191.357,
+        14.313
+      ],
+      "width": 1.8,
+      "historic": false,
+      "startEN": [
+        571608.194,
+        6494623.975
+      ],
+      "endEN": [
+        573812.291,
+        6494631.297
+      ]
+    },
+    {
+      "id": "F13",
+      "name": "Bråvalla F13",
+      "runway": "06/24",
+      "start": [
+        -227.157,
+        -69.786
+      ],
+      "end": [
+        -168.263,
+        -110.193
+      ],
+      "width": 1.6,
+      "historic": true,
+      "startEN": [
+        563353.015,
+        6496733.054
+      ],
+      "endEN": [
+        564824.862,
+        6497742.884
+      ]
+    }
+  ],
+  "airways": {
+    "active:runway": 2,
+    "historic:runway": 2,
+    "active:taxiway": 21,
+    "historic:taxiway": 7
+  },
+  "runwayGeometries": [
+    {
+      "id": 7840051,
+      "ref": "09/27",
+      "historic": false,
+      "surface": "asphalt",
+      "pointsEN": [
+        [
+          571608.194,
+          6494623.975
+        ],
+        [
+          571690.966,
+          6494623.9
+        ],
+        [
+          571701.062,
+          6494623.9
+        ],
+        [
+          571720.756,
+          6494624.025
+        ],
+        [
+          571795.33,
+          6494624.525
+        ],
+        [
+          572419.742,
+          6494626.524
+        ],
+        [
+          572547.673,
+          6494626.924
+        ],
+        [
+          573525.514,
+          6494630.298
+        ],
+        [
+          573689.708,
+          6494630.872
+        ],
+        [
+          573747.038,
+          6494631.072
+        ],
+        [
+          573764.982,
+          6494631.147
+        ],
+        [
+          573800.27,
+          6494631.247
+        ],
+        [
+          573812.291,
+          6494631.297
+        ]
+      ]
+    },
+    {
+      "id": 26725323,
+      "ref": "33/15",
+      "historic": true,
+      "surface": "asphalt",
+      "pointsEN": [
+        [
+          563499.74,
+          6498191.231
+        ],
+        [
+          563874.662,
+          6497616.877
+        ],
+        [
+          564111.856,
+          6497253.551
+        ],
+        [
+          564510.819,
+          6496642.235
+        ],
+        [
+          564514.143,
+          6496637.162
+        ],
+        [
+          564519.641,
+          6496628.79
+        ],
+        [
+          564522.09,
+          6496625.041
+        ],
+        [
+          564738.841,
+          6496294.304
+        ]
+      ]
+    },
+    {
+      "id": 26750466,
+      "ref": "06/24",
+      "historic": true,
+      "surface": "asphalt",
+      "pointsEN": [
+        [
+          563353.015,
+          6496733.054
+        ],
+        [
+          563376.982,
+          6496749.498
+        ],
+        [
+          563452.556,
+          6496801.331
+        ],
+        [
+          563705.145,
+          6496974.572
+        ],
+        [
+          564111.856,
+          6497253.551
+        ],
+        [
+          564811.916,
+          6497733.912
+        ],
+        [
+          564824.862,
+          6497742.884
+        ]
+      ]
+    },
+    {
+      "id": 104245589,
+      "ref": "11/29",
+      "historic": false,
+      "surface": "grass",
+      "pointsEN": [
+        [
+          572423.79,
+          6494824.306
+        ],
+        [
+          571879.726,
+          6495071.022
+        ]
+      ]
+    }
+  ],
+  "transitRoutes": [
+    {
+      "id": "tram-2",
+      "kind": "tram",
+      "stops": 58,
+      "points": 1077
+    },
+    {
+      "id": "tram-3",
+      "kind": "tram",
+      "stops": 42,
+      "points": 838
+    },
+    {
+      "id": "pendeln",
+      "kind": "train",
+      "stops": 1,
+      "points": 620
+    }
+  ],
+  "hashes": [
+    {
+      "name": "terrain",
+      "ui": "819369455be48b8f958faad294d7190886d05050af698e84287d778b8f2222b5",
+      "backend": "819369455be48b8f958faad294d7190886d05050af698e84287d778b8f2222b5",
+      "equal": true
+    },
+    {
+      "name": "bridge-profiles",
+      "ui": "fe877f8a53ef4e06c80371769fed5ee1e1bb8381f107abea4f4d6bc251846218",
+      "backend": "fe877f8a53ef4e06c80371769fed5ee1e1bb8381f107abea4f4d6bc251846218",
+      "equal": true
+    },
+    {
+      "name": "transport-network",
+      "ui": "faf6c04cdecdcc9294bd4e3daafe518365044854c82a02a4b317a5c667f0927b",
+      "backend": "faf6c04cdecdcc9294bd4e3daafe518365044854c82a02a4b317a5c667f0927b",
+      "equal": true
+    }
+  ],
+  "duplicateFuelCandidates": [
+    {
+      "a": "osm:node/2010693037",
+      "b": "osm:node/2912616288",
+      "distanceM": 58.526,
+      "decision": "review; never merge solely by proximity"
+    },
+    {
+      "a": "osm:node/13625640176",
+      "b": "osm:node/13625640177",
+      "distanceM": 42.1,
+      "decision": "review; never merge solely by proximity"
+    }
+  ],
+  "busRelationAudit": [
+    {
+      "id": 4117428,
+      "ref": "420",
+      "name": "Linje 420: Norrköping => Strömsfors => Sandviken => Djurparken => Vildmarkshotellet",
+      "sourceDate": "2025-09-10T19:43:07Z",
+      "memberWays": 124,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 54
+    },
+    {
+      "id": 4117429,
+      "ref": "420",
+      "name": "Linje 420: Vildmarkshotellet => Djurparken => Sandviken => Strömsfors => Norrköping",
+      "sourceDate": "2026-08-17T08:20:38Z",
+      "memberWays": 135,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 58
+    },
+    {
+      "id": 9556154,
+      "ref": "75",
+      "name": "Linje 75: Norrköping (Östra station) => Linköping (Mjärdevi)",
+      "sourceDate": "2026-08-03T19:39:07Z",
+      "memberWays": 167,
+      "intersectRemovedBusWays": [
+        315670216,
+        99952393
+      ],
+      "unmappedInRuntime": 103
+    },
+    {
+      "id": 9556155,
+      "ref": "75",
+      "name": "Linje 75: Linköping (Mjärdevi) => Norrköping (Östra station)",
+      "sourceDate": "2026-08-05T14:08:55Z",
+      "memberWays": 149,
+      "intersectRemovedBusWays": [
+        99952393,
+        315670216
+      ],
+      "unmappedInRuntime": 89
+    },
+    {
+      "id": 9556156,
+      "ref": "74",
+      "name": "Linje 74: Norrköping (Östra station) => Linköping (Saab)",
+      "sourceDate": "2026-08-04T08:20:06Z",
+      "memberWays": 147,
+      "intersectRemovedBusWays": [
+        315670216,
+        99952393
+      ],
+      "unmappedInRuntime": 83
+    },
+    {
+      "id": 9556157,
+      "ref": "74",
+      "name": "Linje 74: Linköping (Saab) => Norrköping (Östra station)",
+      "sourceDate": "2026-08-03T19:29:51Z",
+      "memberWays": 134,
+      "intersectRemovedBusWays": [
+        99952393,
+        315670216
+      ],
+      "unmappedInRuntime": 74
+    },
+    {
+      "id": 9556158,
+      "ref": "72",
+      "name": "Linje 72: Norrköping (Vrinnevisjukhuset) => Linköping (Ekholmen)",
+      "sourceDate": "2026-08-09T13:49:42Z",
+      "memberWays": 295,
+      "intersectRemovedBusWays": [
+        315670216,
+        99952393
+      ],
+      "unmappedInRuntime": 185
+    },
+    {
+      "id": 9556159,
+      "ref": "72",
+      "name": "Linje 72: Linköping (Ekholmen) => Norrköping (Vrinnevisjukhuset)",
+      "sourceDate": "2026-08-09T13:49:42Z",
+      "memberWays": 272,
+      "intersectRemovedBusWays": [
+        99952393,
+        315670216
+      ],
+      "unmappedInRuntime": 169
+    },
+    {
+      "id": 9556161,
+      "ref": "71",
+      "name": "Linje 71: Norrköping (Östra station) => Linköping (Ekholmen)",
+      "sourceDate": "2026-08-09T13:49:42Z",
+      "memberWays": 250,
+      "intersectRemovedBusWays": [
+        315670216,
+        99952393
+      ],
+      "unmappedInRuntime": 186
+    },
+    {
+      "id": 9556162,
+      "ref": "71",
+      "name": "Linje 71: Linköping (Ekholmen) => Norrköping (Östra station)",
+      "sourceDate": "2026-08-09T13:49:42Z",
+      "memberWays": 231,
+      "intersectRemovedBusWays": [
+        99952393,
+        315670216
+      ],
+      "unmappedInRuntime": 171
+    },
+    {
+      "id": 9556163,
+      "ref": "70",
+      "name": "Linje 70: Norrköping (Östra station) => Linköping (Garnisonen-US)",
+      "sourceDate": "2026-08-09T13:49:42Z",
+      "memberWays": 230,
+      "intersectRemovedBusWays": [
+        315670216,
+        99952393
+      ],
+      "unmappedInRuntime": 166
+    },
+    {
+      "id": 9556164,
+      "ref": "70",
+      "name": "Linje 70: Linköping (Garnisonen-US) => Norrköping (Östra station)",
+      "sourceDate": "2026-08-09T13:49:42Z",
+      "memberWays": 222,
+      "intersectRemovedBusWays": [
+        99952393,
+        315670216
+      ],
+      "unmappedInRuntime": 162
+    },
+    {
+      "id": 9903184,
+      "ref": "Campusbussen",
+      "name": "Campusbussen: Norrköping => Linköping",
+      "sourceDate": "2025-09-27T18:39:12Z",
+      "memberWays": 190,
+      "intersectRemovedBusWays": [
+        315670216,
+        99952393
+      ],
+      "unmappedInRuntime": 138
+    },
+    {
+      "id": 9903185,
+      "ref": "Campusbussen",
+      "name": "Campusbussen: Linköping => Norrköping",
+      "sourceDate": "2026-08-03T14:33:14Z",
+      "memberWays": 184,
+      "intersectRemovedBusWays": [
+        99952393,
+        315670216
+      ],
+      "unmappedInRuntime": 135
+    },
+    {
+      "id": 10744523,
+      "ref": "N32",
+      "name": "Flixbus N32 (Skandinaviska delen): Stockholm, Cityterminalen => Gedser Færgehavn",
+      "sourceDate": "2026-10-22T08:29:45Z",
+      "memberWays": 1518,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1390
+    },
+    {
+      "id": 10744524,
+      "ref": "N32",
+      "name": "Flixbus N32 (part Scandinavia): Gedser, Færgehavn => Stockholm, Cityterminalen",
+      "sourceDate": "2026-09-27T21:42:24Z",
+      "memberWays": 1612,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1463
+    },
+    {
+      "id": 10773930,
+      "ref": "N602",
+      "name": "Flixbus N602: Stockholm, Flughafen Arlanda Terminal 5 => Kopenhagen Ingerslevsgade",
+      "sourceDate": "2026-09-27T21:42:24Z",
+      "memberWays": 1501,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1373
+    },
+    {
+      "id": 10773931,
+      "ref": "N602",
+      "name": "Flixbus N602: Kopenhagen Ingerslevsgade => Stockholm, Flughafen Arlanda Terminal 2-3",
+      "sourceDate": "2026-09-27T21:42:24Z",
+      "memberWays": 1565,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1416
+    },
+    {
+      "id": 10795057,
+      "ref": "602",
+      "name": "Flixbus 602: Københavns Ingerslevsgade => Stockholm, Arlanda flygplats 2-3",
+      "sourceDate": "2026-09-27T21:42:24Z",
+      "memberWays": 1666,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1619
+    },
+    {
+      "id": 10795058,
+      "ref": "602",
+      "name": "Flixbus 602: Stockholm, Flughafen Arlanda Terminal 5 => Københavns Ingerslevsgade",
+      "sourceDate": "2026-09-27T21:42:24Z",
+      "memberWays": 1660,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1615
+    },
+    {
+      "id": 10797480,
+      "ref": "612",
+      "name": "Flixbus 612: Uppsala, Centralstation => Kalmar, Centralstation",
+      "sourceDate": "2026-09-30T20:16:53Z",
+      "memberWays": 1550,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1420
+    },
+    {
+      "id": 10799953,
+      "ref": "612",
+      "name": "Flixbus 612: Kalmar, Centralstation => Uppsala, Centralstation",
+      "sourceDate": "2026-09-28T19:38:28Z",
+      "memberWays": 1534,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1394
+    },
+    {
+      "id": 10802317,
+      "ref": "N601",
+      "name": "Flixbus N601: Uppsala, Centralstation => Göteborg, Nils Ericson Terminalen",
+      "sourceDate": "2026-09-30T20:16:53Z",
+      "memberWays": 1587,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1459
+    },
+    {
+      "id": 10802318,
+      "ref": "N601",
+      "name": "Flixbus N601: Göteborg, Nils Ericson Terminalen => Uppsala, Centralstation",
+      "sourceDate": "2026-10-15T07:42:00Z",
+      "memberWays": 1571,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1422
+    },
+    {
+      "id": 10802727,
+      "ref": "601",
+      "name": "Flixbus 601: Göteborg, Nils Ericson Terminalen => Uppsala, Centralstation",
+      "sourceDate": "2026-10-15T07:42:00Z",
+      "memberWays": 1576,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 1427
+    },
+    {
+      "id": 10922793,
+      "ref": "607",
+      "name": "Flixbus 607: Stockholm, Cityterminalen => Jönköping, Resecentrum",
+      "sourceDate": "2026-07-17T06:38:46Z",
+      "memberWays": 622,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 577
+    },
+    {
+      "id": 10922794,
+      "ref": "607",
+      "name": "Flixbus 607: Jönköping, Resecentrum => Stockholm, Cityterminalen",
+      "sourceDate": "2026-07-30T10:16:46Z",
+      "memberWays": 669,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 622
+    },
+    {
+      "id": 14025628,
+      "ref": "129",
+      "name": "Linje 129: Ringdansen => Åselstad",
+      "sourceDate": "2026-07-21T11:14:47Z",
+      "memberWays": 11,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 6
+    },
+    {
+      "id": 14025629,
+      "ref": "123",
+      "name": "Linje 129: Åselstad => Ringdansen",
+      "sourceDate": "2026-07-21T11:14:47Z",
+      "memberWays": 11,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 5
+    },
+    {
+      "id": 14025630,
+      "ref": "21",
+      "name": "Linje 21: Söder Tull => Väster Tull => Skvallertorget => Resecentrum",
+      "sourceDate": "2023-10-01T14:29:24Z",
+      "memberWays": 39,
+      "intersectRemovedBusWays": [
+        450114916,
+        239468394,
+        26154805,
+        118180748,
+        283456850
+      ],
+      "unmappedInRuntime": 2
+    },
+    {
+      "id": 14025631,
+      "ref": "21",
+      "name": "Linje 21: Resecentrum => Skvallertorget => Väster Tull => Söder Tull",
+      "sourceDate": "2023-10-01T14:29:24Z",
+      "memberWays": 51,
+      "intersectRemovedBusWays": [
+        283456850,
+        118180748,
+        26154805,
+        239468394,
+        450114916
+      ],
+      "unmappedInRuntime": 6
+    },
+    {
+      "id": 14026383,
+      "ref": "429",
+      "name": "Linje 429: Braviken => Händelö => Resecentrum",
+      "sourceDate": "2026-06-10T17:46:13Z",
+      "memberWays": 60,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 4
+    },
+    {
+      "id": 14026384,
+      "ref": "429",
+      "name": "Linje 429: Resecentrum => Händelö => Braviken",
+      "sourceDate": "2026-06-10T17:46:13Z",
+      "memberWays": 62,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 5
+    },
+    {
+      "id": 14026386,
+      "ref": "141",
+      "name": "Linje 141: Resecentrum => Söder Tull => Mässhallen",
+      "sourceDate": "2026-07-23T09:31:54Z",
+      "memberWays": 82,
+      "intersectRemovedBusWays": [
+        315670216,
+        99952393
+      ],
+      "unmappedInRuntime": 15
+    },
+    {
+      "id": 18012631,
+      "ref": "440",
+      "name": "Linje 440: Norrköping => Östra Husby => Arkösund",
+      "sourceDate": "2026-07-23T09:31:54Z",
+      "memberWays": 158,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 63
+    },
+    {
+      "id": 18018729,
+      "ref": "444",
+      "name": "Linje 444: Norrköping => Ljunga => Djurön",
+      "sourceDate": "2026-07-30T09:34:03Z",
+      "memberWays": 76,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 24
+    },
+    {
+      "id": 18019105,
+      "ref": "410",
+      "name": "Linje 410: Norrköping => Svärtinge => Finspång",
+      "sourceDate": "2026-09-13T09:43:00Z",
+      "memberWays": 140,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 81
+    },
+    {
+      "id": 18027802,
+      "ref": "412",
+      "name": "Linje 412: Norrköping => Svärtinge",
+      "sourceDate": "2026-09-15T08:10:44Z",
+      "memberWays": 67,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 8
+    },
+    {
+      "id": 18046144,
+      "ref": "13",
+      "name": "Linje 13: Navestad => Rambodal => Söder Tull => Resecentrum => Ingelsta => Loddby allé",
+      "sourceDate": "2026-03-08T16:11:40Z",
+      "memberWays": 171,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 14
+    },
+    {
+      "id": 18046145,
+      "ref": "13",
+      "name": "Linje 13: Loddby allé => Ingelsta => Resecentrum => Söder Tull => Rambodal => Navestad",
+      "sourceDate": "2026-07-29T12:55:33Z",
+      "memberWays": 172,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 12
+    },
+    {
+      "id": 18046146,
+      "ref": "11",
+      "name": "Linje 11: Vrinnevisjukhuset => Vilbergen => Söder Tull => Skarphagen => Himmelstalund",
+      "sourceDate": "2026-08-03T19:27:44Z",
+      "memberWays": 116,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 5
+    },
+    {
+      "id": 18046436,
+      "ref": "11",
+      "name": "Linje 11: Himmelstalund => Skarphagen => Söder Tull => Vilbergen => Vrinnevisjukhuset",
+      "sourceDate": "2026-08-03T19:27:44Z",
+      "memberWays": 105,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 5
+    },
+    {
+      "id": 18046437,
+      "ref": "10",
+      "name": "Linje 10: Vrinnevisjukhuset => Söder Tull => Resecentrum => Åby",
+      "sourceDate": "2026-08-03T19:27:44Z",
+      "memberWays": 162,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 42
+    },
+    {
+      "id": 18046438,
+      "ref": "10",
+      "name": "Linje 10: Åby => Resecentrum => Söder Tull => Vrinnevisjukhuset",
+      "sourceDate": "2026-08-03T19:27:44Z",
+      "memberWays": 167,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 49
+    },
+    {
+      "id": 18051281,
+      "ref": "12",
+      "name": "Linje 12: Lindö => Söder Tull => Resecentrum => Ingelsta => Jursla => Åby",
+      "sourceDate": "2026-03-08T16:11:40Z",
+      "memberWays": 165,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 38
+    },
+    {
+      "id": 18051282,
+      "ref": "12",
+      "name": "Linje 12: Åby => Jursla => Ingelsta => Resecentrum => Söder Tull => Lindö",
+      "sourceDate": "2026-03-08T16:11:40Z",
+      "memberWays": 176,
+      "intersectRemovedBusWays": [],
+      "unmappedInRuntime": 34
+    }
+  ],
+  "runningRelations": [
+    {
+      "id": 1671685,
+      "tags": {
+        "name": "Upplevelsestigen",
+        "network": "lwn",
+        "route": "hiking",
+        "source": "survey",
+        "type": "route"
+      },
+      "sourceDate": "2019-05-04T17:08:51Z",
+      "bounds": {
+        "minlat": 58.5671684,
+        "minlon": 16.1823034,
+        "maxlat": 58.5699888,
+        "maxlon": 16.1973962
+      }
+    },
+    {
+      "id": 5541021,
+      "tags": {
+        "colour": "green/white",
+        "route": "running",
+        "type": "route"
+      },
+      "sourceDate": "2026-06-02T08:31:39Z",
+      "bounds": {
+        "minlat": 58.5535966,
+        "minlon": 16.1790077,
+        "maxlat": 58.5722231,
+        "maxlon": 16.2171829
+      }
+    },
+    {
+      "id": 5703856,
+      "tags": {
+        "colour": "black",
+        "route": "running",
+        "type": "route"
+      },
+      "sourceDate": "2016-07-24T22:24:59Z",
+      "bounds": {
+        "minlat": 58.5654751,
+        "minlon": 16.1882636,
+        "maxlat": 58.5722231,
+        "maxlon": 16.1988654
+      }
+    },
+    {
+      "id": 5703857,
+      "tags": {
+        "colour": "yellow",
+        "route": "running",
+        "type": "route"
+      },
+      "sourceDate": "2016-07-24T22:24:59Z",
+      "bounds": {
+        "minlat": 58.5544261,
+        "minlon": 16.1882636,
+        "maxlat": 58.5722231,
+        "maxlon": 16.2095007
+      }
+    },
+    {
+      "id": 5703858,
+      "tags": {
+        "colour": "orange",
+        "route": "running",
+        "type": "route"
+      },
+      "sourceDate": "2016-07-24T22:25:00Z",
+      "bounds": {
+        "minlat": 58.5591813,
+        "minlon": 16.1887678,
+        "maxlat": 58.570657,
+        "maxlon": 16.206803
+      }
+    },
+    {
+      "id": 5739507,
+      "tags": {
+        "colour": "blue",
+        "route": "running",
+        "type": "route"
+      },
+      "sourceDate": "2021-01-17T13:27:00Z",
+      "bounds": {
+        "minlat": 58.5594893,
+        "minlon": 16.1801844,
+        "maxlat": 58.5646351,
+        "maxlon": 16.1872257
+      }
+    },
+    {
+      "id": 5739508,
+      "tags": {
+        "colour": "red",
+        "route": "running",
+        "type": "route"
+      },
+      "sourceDate": "2021-01-17T13:27:00Z",
+      "bounds": {
+        "minlat": 58.5561625,
+        "minlon": 16.1801844,
+        "maxlat": 58.5646351,
+        "maxlon": 16.1929725
+      }
+    },
+    {
+      "id": 6435195,
+      "tags": {
+        "distance": "8",
+        "name": "Reflexbanan",
+        "roundtrip": "yes",
+        "route": "running",
+        "type": "route"
+      },
+      "sourceDate": "2016-10-29T16:14:18Z",
+      "bounds": {
+        "minlat": 58.5518287,
+        "minlon": 16.1868954,
+        "maxlat": 58.5723164,
+        "maxlon": 16.217097
+      }
+    },
+    {
+      "id": 10981996,
+      "tags": {
+        "colour": "#ff8a00",
+        "name": "Kvillingeleden",
+        "network": "lwn",
+        "route": "hiking",
+        "type": "route",
+        "website": "https://naturkartan.se/en/norrkoping/kvillingeleden",
+        "wikidata": "Q136135569"
+      },
+      "sourceDate": "2026-07-22T21:59:56Z",
+      "bounds": {
+        "minlat": 58.6480125,
+        "minlon": 16.0674129,
+        "maxlat": 58.6571738,
+        "maxlon": 16.1457064
+      }
+    }
+  ]
+}

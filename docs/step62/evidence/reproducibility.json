@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-23",
+  "pinnedLocalInputs": true,
+  "generatedFilesCompared": 12,
+  "byteIdentical": true,
+  "hashes": {
+    "evidence/coverage.json": "6a5e4bfd712b2eaf65e9c9db6683581384b91573d60573a270b5e7a96c891299",
+    "evidence/landmarks.json": "0bac047e92665f6f742f09dbdbfcfa7d40f4bc35b260b2c0c2a3edfac7a8b272",
+    "evidence/fuel-stations.json": "617f32a37d39e90fc02daa3eaa974f42d00a324bd9bb0dfe44d8558000b06bf6",
+    "evidence/facilities.json": "d3775a5d12b065e8c24da0aa697325ddb1b5d85e8f83de6d593c1b17fc740991",
+    "evidence/mapped-lamps.json": "ce8eb55d2aba6abc01c46348201fc6671d74ef66479f8dc1b681cb70626ecf08",
+    "evidence/routing-audit.json": "89ef3bed8471b6a7f05c7345a359464986a8d100dcd85f646acf011ccdc783fb",
+    "evidence/routing-causes.json": "f39290b619e1fb75c6b04de57acaa67a84ae957d0eba16c278d9c8a9c2baa2be",
+    "evidence/operator-candidates.json": "e669f6f3038abfeca59836b09cf6eaae99b0885cfd9af64d3fd3099f89432da1",
+    "evidence/source-manifest.json": "fcda3a7867b47b8c39b52774a16c1d4ae162b1710c03d251bf4a8c042bee30be",
+    "inventory.sample.json": "db841e1225d007687e534ed61d6bbe75190511a7414459246a7143229f2d5011",
+    "fuel-stations.md": "9ff664816fbd2fd8c3b945fe732ced25b526484d4d3a4a4cd527fff7621d88f4",
+    "inventory-map.html": "577784d552fbb280b919676fc99e857e296075b7722e9ff788fb6717b42638e1"
+  },
+  "note": "Repeat local generation only; no live network acquisition. Does not make future Overpass snapshots identical."
+}

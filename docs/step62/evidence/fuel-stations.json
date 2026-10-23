@@ -1,0 +1,1648 @@
+[
+  {
+    "id": "osm:node/247135227",
+    "name": "TRB",
+    "operator": "Alltransport",
+    "brand": "TRB",
+    "address": null,
+    "coordinates": [
+      570571.413,
+      6494300.6
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/247135227",
+    "osmVersion": 9,
+    "sourceDate": "2025-08-23T15:39:21Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/146811372"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/146811372",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/247135234",
+    "name": "Preem - Norrköping, Trb",
+    "operator": "Preem",
+    "brand": "Preem",
+    "address": null,
+    "coordinates": [
+      570574.983,
+      6494134.692
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/247135234",
+    "osmVersion": 8,
+    "sourceDate": "2022-10-03T23:24:32Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/146811376"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/146811374",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/146811376",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/247135416",
+    "name": "Preem - Norrköping,Händelö",
+    "operator": "Preem",
+    "brand": "Preem",
+    "address": "Ramshällsvägen",
+    "coordinates": [
+      570152.943,
+      6497679.767
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/247135416",
+    "osmVersion": 9,
+    "sourceDate": "2025-01-06T10:12:33Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [],
+    "nearbyRuntimeFootprints60m": [],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/247135502",
+    "name": "St1 Norrköping Stockholmsvägen",
+    "operator": "St1",
+    "brand": "St1",
+    "address": "Stockholmsvägen 34",
+    "coordinates": [
+      567997.909,
+      6495930.607
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/247135502",
+    "osmVersion": 16,
+    "sourceDate": "2026-05-11T18:11:50Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": "no",
+    "openingHoursTag": "24/7",
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/93353420"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/93353420",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://st1.se/hitta-station",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Stockholmsv. listing; exact address match not independently rechecked",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/247135512",
+    "name": "Ingo Norrköping, Lindövägen",
+    "operator": "Ingo",
+    "brand": null,
+    "address": "Lindövägen 55",
+    "coordinates": [
+      570669.294,
+      6495184.866
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/247135512",
+    "osmVersion": 16,
+    "sourceDate": "2026-09-29T12:49:25Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": "Mo-Su,PH 00:00-24:00",
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/96575513"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/96575513",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.circlek.se/stations",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "INGO Lindovagen name listed",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/247135767",
+    "name": "Tanka Norrköping",
+    "operator": "OKQ8",
+    "brand": "Tanka",
+    "address": "Exportgatan 9",
+    "coordinates": [
+      570815.651,
+      6494810.281
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/247135767",
+    "osmVersion": 10,
+    "sourceDate": "2024-08-29T10:05:55Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/287685618"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/287685618",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/1354229355",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/1354229356",
+        "kind": "shed",
+        "heightM": 3
+      },
+      {
+        "id": "way/1354229357",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.okq8.se/hitta-station/norrkoping/norrkoping-exportg-9-tanka",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Exportgatan 9 identity corroborated",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/310929394",
+    "name": "St1",
+    "operator": "St1",
+    "brand": "St1",
+    "address": "Hagagatan 10",
+    "coordinates": [
+      567227.254,
+      6495604.933
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/310929394",
+    "osmVersion": 11,
+    "sourceDate": "2025-08-25T11:54:30Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": "convenience",
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/92016405"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/92016405",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/287687455",
+        "kind": "roof",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://st1.se/hitta-station",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Hagag. listing",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/529808045",
+    "name": "Circle K",
+    "operator": null,
+    "brand": "Circle K",
+    "address": "Stockholmsvägen 78",
+    "coordinates": [
+      567805.471,
+      6496421.692
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/529808045",
+    "osmVersion": 17,
+    "sourceDate": "2024-10-30T06:49:23Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": "24/7",
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/93354351"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/93354351",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/543365825",
+        "kind": "roof",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.circlek.se/station/circle-k-norrkoping-karusellen",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Stockholmsvagen 78-80 address corroborated",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/761744018",
+    "name": "Circle K",
+    "operator": null,
+    "brand": "Circle K",
+    "address": "Järngatan 15",
+    "coordinates": [
+      567460.492,
+      6498087.223
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/761744018",
+    "osmVersion": 11,
+    "sourceDate": "2024-02-21T22:06:55Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": "yes",
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/94507890"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/94507890",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/287685615",
+        "kind": "roof",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.circlek.se/station/circle-k-norrkoping-ingelsta",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Jarngatan 15 address corroborated",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/1069177545",
+    "name": "INGO",
+    "operator": "INGO",
+    "brand": "INGO",
+    "address": "Kompanigatan 3",
+    "coordinates": [
+      566200.469,
+      6496828.467
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/1069177545",
+    "osmVersion": 13,
+    "sourceDate": "2026-10-17T13:22:05Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": "24/7",
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/287685620"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/92035636",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/100066397",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/287685620",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/1568295267",
+        "kind": "residential",
+        "heightM": 13
+      },
+      {
+        "id": "way/1568295283",
+        "kind": "residential",
+        "heightM": 13
+      },
+      {
+        "id": "way/1568295291",
+        "kind": "residential",
+        "heightM": 13
+      },
+      {
+        "id": "way/1568295292",
+        "kind": "residential",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.ingo.se/station/ingo-norrkopingde-geersgatan",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Kompanigatan 3 address corroborated",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/1107696684",
+    "name": "OKQ8 Hagebygatan",
+    "operator": "OKQ8",
+    "brand": "OKQ8",
+    "address": "Hagebygatan 241",
+    "coordinates": [
+      570728.133,
+      6492545.644
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/1107696684",
+    "osmVersion": 8,
+    "sourceDate": "2024-02-21T22:06:55Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unattended (operator service STATION_AUTOMATIC)",
+    "containingRuntimeFootprints": [
+      "way/95526635"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/95526635",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/1354205861",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.okq8.se/hitta-station/norrkoping/norrkoping-hagebygatan",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Hagebygatan 241 identity; structured operator service STATION_AUTOMATIC",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/1185864032",
+    "name": "CircleK Gamla Övägen",
+    "operator": "CircleK",
+    "brand": null,
+    "address": "Gamla Övägen",
+    "coordinates": [
+      568686.897,
+      6493511.59
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/1185864032",
+    "osmVersion": 9,
+    "sourceDate": "2024-09-21T14:01:42Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": "convenience",
+    "openingHoursTag": "24/7",
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/102676701"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/102676701",
+        "kind": "service",
+        "heightM": 13
+      },
+      {
+        "id": "way/287685617",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/297697581",
+        "kind": "house",
+        "heightM": 3.1
+      },
+      {
+        "id": "way/297697586",
+        "kind": "house",
+        "heightM": 3.1
+      },
+      {
+        "id": "way/297697588",
+        "kind": "house",
+        "heightM": 3.1
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.circlek.se/stations",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Gamla Ovagen name listed",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/1376659170",
+    "name": "Gasolfyllarna",
+    "operator": null,
+    "brand": null,
+    "address": null,
+    "coordinates": [
+      565708.005,
+      6493879.339
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/1376659170",
+    "osmVersion": 3,
+    "sourceDate": "2013-05-17T20:32:06Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": "Mo-Fr 11:00-17:00; Sa 10:00-14:00",
+    "staffing": "attended LPG service (operator describes personnel)",
+    "containingRuntimeFootprints": [
+      "way/95506886"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/95506885",
+        "kind": "retail",
+        "heightM": 8
+      },
+      {
+        "id": "way/95506886",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://gasolfyllarna.se/fyllningsstation/norrkoping/",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "LPG depot, Moa Martinsons gata 14; OSM hours differ from operator",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/1839935742",
+    "name": "St1 Norrköping Koppargatan",
+    "operator": "St1",
+    "brand": "St1",
+    "address": "Koppargatan 11",
+    "coordinates": [
+      567102.838,
+      6497901.894
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/1839935742",
+    "osmVersion": 7,
+    "sourceDate": "2026-06-21T16:50:17Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": "no",
+    "openingHoursTag": "24/7",
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/287691519"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/287691519",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/760957812",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://st1.se/station/norrkoping-kopparg",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Koppargatan 11 address corroborated",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/2010693037",
+    "name": "Qstar Norrköping Norra",
+    "operator": "Qstar Försäljning",
+    "brand": "Qstar",
+    "address": null,
+    "coordinates": [
+      568961.035,
+      6496438.467
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/2010693037",
+    "osmVersion": 6,
+    "sourceDate": "2025-01-06T10:12:33Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/194456154"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/194454542",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/194454543",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/194456154",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/194456157",
+        "kind": "roof",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/2516006120",
+    "name": "OKQ8 Rondellen",
+    "operator": "OKQ8",
+    "brand": "OKQ8",
+    "address": "Stockholmsvägen 72",
+    "coordinates": [
+      567822.037,
+      6496275.298
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/2516006120",
+    "osmVersion": 8,
+    "sourceDate": "2024-10-30T06:49:23Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "attended (operator service STATION_MANNED)",
+    "containingRuntimeFootprints": [
+      "way/93354352"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/93354349",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/93354352",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/153942066",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/1540348972",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.okq8.se/hitta-station/norrkoping/norrkoping-stockholmsv-72-74",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Stockholmsvagen 72-74 identity; structured operator service STATION_MANNED",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/2912562712",
+    "name": "CNG Norrköping syd Eon",
+    "operator": "Svensk Biogas",
+    "brand": "Svensk Biogas",
+    "address": "Verksvägen",
+    "coordinates": [
+      570368.32,
+      6494518.355
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/2912562712",
+    "osmVersion": 5,
+    "sourceDate": "2025-06-07T13:16:59Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": "24/7",
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/97717122",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/2912579680",
+    "name": "St1 Norrköping Boktryckargatan",
+    "operator": "St1",
+    "brand": "St1",
+    "address": "Boktryckaregatan 2",
+    "coordinates": [
+      568249.64,
+      6496757.627
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/2912579680",
+    "osmVersion": 9,
+    "sourceDate": "2026-05-13T18:46:53Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": "convenience",
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/287687453"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/287687453",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/287687454",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/287687456",
+        "kind": "roof",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://st1.se/hitta-station",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Boktryckarg. listing",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/2912579681",
+    "name": "St1 Norrköping Stockholmsvägen 10",
+    "operator": "St1",
+    "brand": "St1",
+    "address": "Stockholmsvägen 10",
+    "coordinates": [
+      568203.214,
+      6495690.23
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/2912579681",
+    "osmVersion": 9,
+    "sourceDate": "2026-05-13T18:46:53Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": "24/7",
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/93304112"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/93304112",
+        "kind": "roof",
+        "heightM": 5
+      },
+      {
+        "id": "way/93355273",
+        "kind": "yes",
+        "heightM": 4
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://st1.se/hitta-station",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Stockholmsv. 10 listing",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/2912616288",
+    "name": "Preem Norrköping, Spårgatan",
+    "operator": "Preem",
+    "brand": "Preem",
+    "address": "Spårgatan 3",
+    "coordinates": [
+      569003.293,
+      6496397.975
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/2912616288",
+    "osmVersion": 6,
+    "sourceDate": "2025-01-06T10:12:33Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/194456157"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/194454543",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/194456154",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/194456155",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/194456157",
+        "kind": "roof",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/6518761186",
+    "name": "E85 AgroEtanol",
+    "operator": "Lantmännen",
+    "brand": null,
+    "address": "Hanholmsvägen 69",
+    "coordinates": [
+      571463.046,
+      6497521.819
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/6518761186",
+    "osmVersion": 4,
+    "sourceDate": "2022-12-31T02:43:44Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": "24/7",
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [],
+    "nearbyRuntimeFootprints60m": [],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/10159592470",
+    "name": null,
+    "operator": null,
+    "brand": null,
+    "address": null,
+    "coordinates": [
+      568097.983,
+      6501056.029
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/10159592470",
+    "osmVersion": 1,
+    "sourceDate": "2022-11-05T15:38:43Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [],
+    "nearbyRuntimeFootprints60m": [],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/13625640176",
+    "name": null,
+    "operator": null,
+    "brand": null,
+    "address": null,
+    "coordinates": [
+      568006.525,
+      6500995.338
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/13625640176",
+    "osmVersion": 1,
+    "sourceDate": "2026-03-07T20:12:44Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [],
+    "nearbyRuntimeFootprints60m": [],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:node/13625640177",
+    "name": null,
+    "operator": null,
+    "brand": null,
+    "address": null,
+    "coordinates": [
+      567965.722,
+      6501005.707
+    ],
+    "coordinateMethod": "mapped POI",
+    "geometryReference": "https://www.openstreetmap.org/node/13625640177",
+    "osmVersion": 1,
+    "sourceDate": "2026-03-07T20:12:44Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [],
+    "nearbyRuntimeFootprints60m": [],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:way/99263073",
+    "name": "Ingo Norrköping, Vagngatan",
+    "operator": null,
+    "brand": null,
+    "address": "Vagngatan 16",
+    "coordinates": [
+      567584.241,
+      6493739.507
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "geometryReference": "https://www.openstreetmap.org/way/99263073",
+    "osmVersion": 3,
+    "sourceDate": "2024-02-21T22:06:57Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/99263073"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/99263073",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/157911692",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/157911693",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/157911697",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/157911702",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.circlek.se/stations",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "INGO Vagngatan name listed",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:way/108229823",
+    "name": "Circle K",
+    "operator": null,
+    "brand": "Circle K",
+    "address": "Fjärilsgatan 23",
+    "coordinates": [
+      571105.72,
+      6493939.952
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "geometryReference": "https://www.openstreetmap.org/way/108229823",
+    "osmVersion": 10,
+    "sourceDate": "2024-02-21T22:06:57Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/108229823"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/108229814",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/108229823",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/287685616",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/415813993",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.circlek.se/stations",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Fjarilsgatan name listed",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:way/108231626",
+    "name": "Qstar Norrköping Risängen",
+    "operator": "Qstar",
+    "brand": "Qstar",
+    "address": null,
+    "coordinates": [
+      571095.09,
+      6494098.721
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "geometryReference": "https://www.openstreetmap.org/way/108231626",
+    "osmVersion": 4,
+    "sourceDate": "2025-01-25T19:07:03Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/108231626"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/108231626",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/108231627",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": null,
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:way/157911695",
+    "name": "OKQ8 Skarphagsleden",
+    "operator": "OKQ8",
+    "brand": "OKQ8",
+    "address": "Skarphagsleden",
+    "coordinates": [
+      567500.75,
+      6493692.714
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "geometryReference": "https://www.openstreetmap.org/way/157911695",
+    "osmVersion": 4,
+    "sourceDate": "2017-09-29T12:58:03Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": "convenience",
+    "openingHoursTag": "Mo-Fr 06:00-22:00; Sa-Su 08:00-22:00",
+    "staffing": "attended (operator service STATION_MANNED)",
+    "containingRuntimeFootprints": [
+      "way/157911695"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/157911693",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/157911695",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/157911701",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/287685614",
+        "kind": "roof",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.okq8.se/hitta-station/norrkoping/norrkoping-skarphagsleden",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Skarphagsleden/Vagngatan 25 identity; structured operator service STATION_MANNED",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:way/287685611",
+    "name": "OKQ8 Moa Martinssons gata",
+    "operator": "OKQ8",
+    "brand": "OKQ8",
+    "address": "Moa Martinsons gata",
+    "coordinates": [
+      565954.112,
+      6493954.351
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "geometryReference": "https://www.openstreetmap.org/way/287685611",
+    "osmVersion": 3,
+    "sourceDate": "2017-09-29T12:58:05Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/287685611"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/95506884",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/95710910",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/287685611",
+        "kind": "roof",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.okq8.se/hitta-station/norrkoping/norrkoping-moa-martinssons-g",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Moa Martinsons gata 6 identity corroborated",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:way/287685623",
+    "name": "OKQ8 Skärblackavägen",
+    "operator": "OKQ8",
+    "brand": "OKQ8",
+    "address": "Trafikplats Klinga",
+    "coordinates": [
+      562807.827,
+      6492524.265
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "geometryReference": "https://www.openstreetmap.org/way/287685623",
+    "osmVersion": 4,
+    "sourceDate": "2026-06-10T15:11:55Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": "convenience",
+    "openingHoursTag": "Mo-Fr 06:00-24:00; Sa-Su 07:00-24:00",
+    "staffing": "attended (operator service STATION_MANNED)",
+    "containingRuntimeFootprints": [
+      "way/287685623"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/287685610",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/287685621",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/287685623",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.okq8.se/hitta-station/norrkoping/norrkoping-skarblackav",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Trafikplats Klinga identity; structured operator service STATION_MANNED; colocated IDS facility needs reconciliation",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:way/287690914",
+    "name": "Preem Norrköping, Ingelsta",
+    "operator": "Preem",
+    "brand": "Preem",
+    "address": "Koppargatan 2C",
+    "coordinates": [
+      567305.908,
+      6497431.04
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "geometryReference": "https://www.openstreetmap.org/way/287690914",
+    "osmVersion": 4,
+    "sourceDate": "2026-05-03T17:45:36Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": "24/7",
+    "staffing": "unattended (operator: Automat)",
+    "containingRuntimeFootprints": [
+      "way/287690914"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/287690914",
+        "kind": "roof",
+        "heightM": 13
+      },
+      {
+        "id": "way/313681327",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/313681328",
+        "kind": "yes",
+        "heightM": 13
+      },
+      {
+        "id": "way/1486366404",
+        "kind": "yes",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.preem.se/stationer/norrkoping-norrkoping-ingelsta/",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "Koppargatan 2C address corroborated; operator says automatic",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  },
+  {
+    "id": "osm:way/287690916",
+    "name": "Ingo Norrköping, Hageby Centrum",
+    "operator": "Ingo",
+    "brand": "Ingo",
+    "address": null,
+    "coordinates": [
+      570534.347,
+      6493220.672
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "geometryReference": "https://www.openstreetmap.org/way/287690916",
+    "osmVersion": 4,
+    "sourceDate": "2024-04-07T11:07:19Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "shopTag": null,
+    "openingHoursTag": null,
+    "staffing": "unknown",
+    "containingRuntimeFootprints": [
+      "way/287690916"
+    ],
+    "nearbyRuntimeFootprints60m": [
+      {
+        "id": "way/287690916",
+        "kind": "roof",
+        "heightM": 13
+      }
+    ],
+    "canopyPresence": null,
+    "pumpIslandArrangement": null,
+    "forecourtLighting": "unknown",
+    "buildingExteriorLighting": "unknown",
+    "signLighting": "unknown",
+    "parkingEntryLighting": "unknown",
+    "operatorCorroboration": {
+      "url": "https://www.circlek.se/stations",
+      "retrievedDate": "2026-10-23",
+      "sourceDate": null,
+      "scope": "INGO Hageby Centrum name listed",
+      "confirmsLighting": false
+    },
+    "unresolved": [
+      "Confirm active 2026 operator and public vs fleet/LPG use",
+      "Match forecourt and canopy geometry",
+      "Opening hours do not establish lighting hours"
+    ]
+  }
+]

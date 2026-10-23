@@ -1,0 +1,114 @@
+{
+  "retrievedDate": "2026-10-23",
+  "note": "Hashes identify read-only local research copies, not a grant to redistribute their content. Dates are source periods as described, not universally survey dates. Scratch is intentionally ignored; no raw material is embedded here.",
+  "files": [
+    {
+      "localPath": "work/step62/osm-research.json",
+      "url": "https://overpass-api.de/api/interpreter",
+      "sourceDate": "2026-10-23T09:05:06Z",
+      "licence": "ODbL-1.0",
+      "bytes": 9028189,
+      "sha256": "dcce1dccb424a89b6e7c6a71010f38b6c1ff55e8a3f8b6e4b07b2c79e4794eda",
+      "redistribution": "allowed-with-conditions"
+    },
+    {
+      "localPath": "work/step62/trails.html",
+      "url": "https://norrkoping.se/se-och-gora/motion-och-idrott/motionsspar",
+      "sourceDate": null,
+      "licence": null,
+      "bytes": 65594,
+      "sha256": "98d96251a69fc184b134ea2e98aa2e9001484174489381565829d1a0436454d7",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/municipal.html",
+      "url": "https://norrkoping.se/boende-trafik-och-miljo/lantmateri-och-kartor/oppna-kartdata-och-tjanster",
+      "sourceDate": null,
+      "licence": null,
+      "bytes": 60580,
+      "sha256": "c02a8ecd0a39c771b759e23f85321a04d54ed897f629fe5beeb71af835d34e62",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/noka.html",
+      "url": "https://norrkoping.se/boende-trafik-och-miljo/lantmateri-och-kartor/norrkopingskartan-noka",
+      "sourceDate": null,
+      "licence": null,
+      "bytes": 67714,
+      "sha256": "48f03a57b719b2ec780212dcc40d510a059d972c58699c6dee0e7830afe8e68a",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/essp.html",
+      "url": "https://aro.lfv.se/content/eaip/AIP%20AMDT%201-2026_2026_08_07/eAIP/ES-AD%202%20ESSP%20NORRK%C3%96PING-KUNGS%C3%84NGEN%201-en-GB.html",
+      "sourceDate": "2026-08-07",
+      "licence": null,
+      "bytes": 621208,
+      "sha256": "9cae0f8b465634187fd56d23b4cb3969dde76f0d8bf1defc09f86ea233be2b20",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/lfv-ad11.html",
+      "url": "https://aro.lfv.se/content/eaip/AIP%20AMDT%201-2026_2026_08_07/eAIP/ES-AD%201.1-en-GB.html",
+      "sourceDate": "2026-08-07",
+      "licence": null,
+      "bytes": 1410539,
+      "sha256": "3b3f910d331666301a46c5126551f53b6c82f67d328bcfdb2a57a22e7c8226b9",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/vrinnevi-brochure.pdf",
+      "url": "https://uploads.naturkartan-cdn.se/uploads/site_pdf/file/370/6a0e8321fa8e6890361bc9848661402c.pdf",
+      "sourceDate": "2012-06",
+      "licence": null,
+      "bytes": 3260449,
+      "sha256": "be3150fee0361170b4ecdc277cb5a6e7854dd323f2baec93ec093be4631449c3",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/vrinnevi-map.pdf",
+      "url": "https://norrkoping.se/download/18.5ff942e1184b3f255e2663c6/1485187154271/sparkarta_vrinnevi.pdf",
+      "sourceDate": "2011-04-16",
+      "licence": null,
+      "bytes": 1321573,
+      "sha256": "527ebac9c92cfd6977d297d073e560603dc91dddfa23cf4d2898e201d7091fa4",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/operator-0.html",
+      "url": "https://www.okq8.se/hitta-station",
+      "sourceDate": null,
+      "licence": null,
+      "bytes": 2334240,
+      "sha256": "105ef2b688b611f192d606cccd8047118bb251bfce7d7ce18aeb56531c0e16f3",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/operator-1.html",
+      "url": "https://www.preem.se/hitta-station/",
+      "sourceDate": null,
+      "licence": null,
+      "bytes": 635471,
+      "sha256": "220768854043f71658c3296d77e30fefc6113165c3223d7b074c4696e47259d6",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/operator-2.html",
+      "url": "https://st1.se/hitta-station",
+      "sourceDate": null,
+      "licence": null,
+      "bytes": 1308995,
+      "sha256": "b318b4c37114ed8575f11fb1e1516350618258661846742919fea2e158f6651e",
+      "redistribution": "not-verified; reference-only"
+    },
+    {
+      "localPath": "work/step62/operator-3.html",
+      "url": "https://www.circlek.se/station/circle-k-norrkoping-ingelsta",
+      "sourceDate": null,
+      "licence": null,
+      "bytes": 88678,
+      "sha256": "55e71f003a4bd498dc5ca67ef018bff6570f0333a1f1945434c99aa1f1833d71",
+      "redistribution": "not-verified; reference-only"
+    }
+  ]
+}

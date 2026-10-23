@@ -1,0 +1,328 @@
+[
+  {
+    "id": "osm:node/2908291069",
+    "coordinates": [
+      571455.731,
+      6495485.374
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2015-05-16T17:17:56Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 2
+  },
+  {
+    "id": "osm:node/2912701801",
+    "coordinates": [
+      567186.253,
+      6496986.884
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2014-06-12T22:19:07Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 2
+  },
+  {
+    "id": "osm:node/2912701802",
+    "coordinates": [
+      567208.107,
+      6496984.02
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2014-06-12T22:19:08Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 2
+  },
+  {
+    "id": "osm:node/2912702001",
+    "coordinates": [
+      567212.984,
+      6496966.798
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2014-06-12T22:19:08Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 3
+  },
+  {
+    "id": "osm:node/5403554745",
+    "coordinates": [
+      569468.773,
+      6494067.773
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2018-02-10T13:23:38Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11097913749",
+    "coordinates": [
+      568836.258,
+      6495090.967
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T03:27:09Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 2
+  },
+  {
+    "id": "osm:node/11097919659",
+    "coordinates": [
+      568852.106,
+      6495050.587
+    ],
+    "tags": {
+      "emergency": "life_ring",
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T03:27:09Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 2
+  },
+  {
+    "id": "osm:node/11098661608",
+    "coordinates": [
+      568831.464,
+      6495108.59
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T03:35:15Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098661612",
+    "coordinates": [
+      568825.626,
+      6495125.76
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T03:35:15Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098661613",
+    "coordinates": [
+      568800.618,
+      6495208.533
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T03:35:15Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098661614",
+    "coordinates": [
+      568813.213,
+      6495166.257
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T03:35:15Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098661615",
+    "coordinates": [
+      568853.507,
+      6495030.521
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T03:35:15Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098661616",
+    "coordinates": [
+      568852.776,
+      6495009.961
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T03:35:15Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098661617",
+    "coordinates": [
+      568844.95,
+      6494993.786
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T03:35:15Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098939295",
+    "coordinates": [
+      568842.546,
+      6495486.945
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:32:13Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098939296",
+    "coordinates": [
+      568843.266,
+      6495478.092
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:32:13Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098939297",
+    "coordinates": [
+      568843.191,
+      6495462.555
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:32:13Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098939298",
+    "coordinates": [
+      568855.871,
+      6495490.242
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:32:13Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098939299",
+    "coordinates": [
+      568865.956,
+      6495467.635
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:32:13Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098973692",
+    "coordinates": [
+      568848.884,
+      6495513.874
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:30:52Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098973693",
+    "coordinates": [
+      568828.557,
+      6495498.848
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:30:52Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098973694",
+    "coordinates": [
+      568834.78,
+      6495527.679
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:30:52Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098973695",
+    "coordinates": [
+      568861.215,
+      6495504.347
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:30:52Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11098973696",
+    "coordinates": [
+      568834.678,
+      6495487.351
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-08-08T08:30:52Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  },
+  {
+    "id": "osm:node/11231112374",
+    "coordinates": [
+      568520.94,
+      6495054.157
+    ],
+    "tags": {
+      "highway": "street_lamp"
+    },
+    "sourceDate": "2023-10-01T14:29:24Z",
+    "snapshot": "2026-10-23T09:05:06Z",
+    "version": 1
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-23",
+  "jsonFilesValidated": 14,
+  "schema": "JSON Schema draft-07",
+  "registryRecords": 8,
+  "duplicateIds": 0,
+  "sharedHashesEqual": true,
+  "projectionCheck": {
+    "points": 25,
+    "maximumErrorM": 0.0006248267277858043,
+    "reference": "PROJ EPSG:4326 -> EPSG:3006; WGS84 treated as SWEREF geographic as existing project contract"
+  },
+  "notes": [
+    "Fuel spatial near-pairs are unresolved, not duplicate IDs",
+    "Research records are not simulator visual validation"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "date": "2026-10-23",
+  "errors": [],
+  "layerOptions": 6,
+  "markerProvenance": true,
+  "zoom": true,
+  "viewportChecks": [
+    "1400x1000",
+    "600x900"
+  ],
+  "scope": "Standalone inventory inspector only; no simulator/photometry validation"
+}

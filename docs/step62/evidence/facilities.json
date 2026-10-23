@@ -1,0 +1,1548 @@
+[
+  {
+    "id": "osm:node/304107779",
+    "name": "Polishuset",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "4",
+      "addr:postcode": "602 17",
+      "addr:street": "Stockholmsvägen",
+      "amenity": "police",
+      "check_date": "2026-06-26",
+      "name": "Polishuset"
+    },
+    "coordinates": [
+      568301.034,
+      6495619.097
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-06-26T08:16:15Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/1659410607",
+    "name": null,
+    "tags": {
+      "leisure": "sports_centre"
+    },
+    "coordinates": [
+      569763.82,
+      6492889.153
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2012-03-04T18:58:56Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/2034326343",
+    "name": "Saltängen BK",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "78",
+      "addr:postcode": "60138",
+      "addr:street": "Norra Promenaden",
+      "building": "office",
+      "leisure": "sports_centre",
+      "name": "Saltängen BK",
+      "sport": "soccer"
+    },
+    "coordinates": [
+      569788.535,
+      6496077.854
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2024-02-21T22:06:55Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/2164197881",
+    "name": "Norrköpings Squashcenter",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housename": "Norrköpings Squashcenter",
+      "addr:housenumber": "44",
+      "addr:postcode": "602 23",
+      "addr:street": "Fredriksdalsgatan",
+      "leisure": "sports_centre",
+      "name": "Norrköpings Squashcenter",
+      "sport": "squash",
+      "website": "https://www.squashcenter.net/"
+    },
+    "coordinates": [
+      568408.924,
+      6496086.535
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2024-02-21T22:06:55Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/2341968199",
+    "name": "Femte skorstenen",
+    "tags": {
+      "artist_name": "Jan Svenungsson",
+      "height": "14",
+      "historic": "monument",
+      "name": "Femte skorstenen",
+      "source": "BING",
+      "source:url": "http://www.norrkopingskonstmuseum.se/den-femte-skorstenen/",
+      "start_date": "1999",
+      "tourism": "artwork"
+    },
+    "coordinates": [
+      568552.952,
+      6494901.077
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2022-10-05T19:29:25Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/3203612565",
+    "name": "ICA Kvantum Klockaretorpet",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "capacity": "4",
+      "motorcar": "yes",
+      "name": "ICA Kvantum Klockaretorpet",
+      "operator": "Storbutiken i Norrköping AB",
+      "parking:fee": "no",
+      "ref:nobil": "5553",
+      "socket:type2": "4",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      566449.776,
+      6494063.198
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/6628771865",
+    "name": "Vilbergen Bowling Center",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Vilbergen Bowling Center",
+      "sport": "10pin"
+    },
+    "coordinates": [
+      568049.05,
+      6492856.889
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2019-07-18T15:42:08Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/7151430773",
+    "name": null,
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "Tesla Supercharger",
+      "capacity": "28",
+      "fee": "yes",
+      "object:city": "Norrköping",
+      "object:country": "SE",
+      "object:housenumber": "30",
+      "object:postcode": "60223",
+      "object:street": "Koppargatan",
+      "opening_hours": "24/7",
+      "operator": "Tesla",
+      "ref:supercharge_info": "norrkopingsesupercharger",
+      "ref:tesla": "norrkopingsesupercharger",
+      "socket:tesla_supercharger": "20",
+      "socket:tesla_supercharger:output": "150 kW",
+      "socket:type2_combo": "20",
+      "socket:type2_combo:output": "150 kW",
+      "website": "https://www.tesla.com/findus/location/supercharger/norrkopingsesupercharger"
+    },
+    "coordinates": [
+      567051.969,
+      6498528.402
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-07-17T19:22:31Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/7536689136",
+    "name": "Recharge McDonald's Norrköping Klinga",
+    "tags": {
+      "access": "yes",
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "amenity": "charging_station",
+      "bicycle": "no",
+      "brand": "Recharge",
+      "capacity": "2",
+      "name": "Recharge McDonald's Norrköping Klinga",
+      "operator": "Fortum Charge & Drive",
+      "parking:fee": "no",
+      "ref:nobil": "2053",
+      "socket:chademo": "1",
+      "socket:chademo:output": "50 kW",
+      "socket:type2": "1",
+      "socket:type2:output": "22 kW",
+      "socket:type2_combo": "1",
+      "socket:type2_combo:output": "50 kW"
+    },
+    "coordinates": [
+      562773.102,
+      6492535.388
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-06-10T15:16:23Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/7886965360",
+    "name": "My reformer pilates",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "My reformer pilates"
+    },
+    "coordinates": [
+      567498.044,
+      6496478.524
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2025-06-13T12:29:38Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/9085563632",
+    "name": "Lidl Norrköping Folkborgsvägen",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "capacity": "4",
+      "motorcar": "yes",
+      "name": "Lidl Norrköping Folkborgsvägen",
+      "operator": "Lidl Sverige KB",
+      "parking:fee": "no",
+      "ref:nobil": "6536",
+      "socket:chademo": "2",
+      "socket:chademo:output": "50 kW",
+      "socket:type2": "2",
+      "socket:type2:output": "22 kW",
+      "socket:type2_combo": "2",
+      "socket:type2_combo:output": "50 kW"
+    },
+    "coordinates": [
+      566524.634,
+      6494043.982
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/9085563633",
+    "name": null,
+    "tags": {
+      "amenity": "charging_station",
+      "motorcar": "yes"
+    },
+    "coordinates": [
+      566375.688,
+      6494124.425
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2021-09-13T06:30:44Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/9591688148",
+    "name": "E.ON OKQ8 Klinga",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "bicycle": "no",
+      "brand": "E.ON",
+      "capacity": "2",
+      "name": "E.ON OKQ8 Klinga",
+      "operator": "E.On",
+      "parking:fee": "no",
+      "ref:nobil": "4643",
+      "socket:chademo": "1",
+      "socket:chademo:output": "50 kW",
+      "socket:type2": "1",
+      "socket:type2:output": "43 kW",
+      "socket:type2_combo": "1",
+      "socket:type2_combo:output": "50 kW"
+    },
+    "coordinates": [
+      562785.009,
+      6492489.186
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-06-10T15:15:45Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740001288",
+    "name": "Mer Norrköping resecentrum",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "Mer",
+      "brand:wikidata": "Q100821564",
+      "capacity": "6",
+      "name": "Mer Norrköping resecentrum",
+      "parking:fee": "no",
+      "ref:nobil": "4153",
+      "socket:type2": "6",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      568417.982,
+      6495752.347
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-12-27T08:32:10Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740001291",
+    "name": "P-hus Lyckan",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "bicycle": "no",
+      "capacity": "12",
+      "name": "P-hus Lyckan",
+      "operator": "Fastighets AB L E Lundberg",
+      "parking:fee": "yes",
+      "ref:nobil": "6481",
+      "socket:type2": "12",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      569337.86,
+      6494760.712
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-09-09T06:30:07Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740001299",
+    "name": "Bredgatan 20",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "capacity": "4",
+      "name": "Bredgatan 20",
+      "operator": "Aimo Park",
+      "operator:wikidata": "Q126728228",
+      "parking:fee": "yes",
+      "ref:nobil": "7473",
+      "socket:type2": "4",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      568588.116,
+      6495069.314
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2024-10-30T06:49:23Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740001304",
+    "name": "Ionity Gröndalsgatan",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "Ionity",
+      "capacity": "4",
+      "name": "Ionity Gröndalsgatan",
+      "ref:nobil": "6187;6135",
+      "socket:type2_combo": "4",
+      "socket:type2_combo:output": "350 kW"
+    },
+    "coordinates": [
+      568693.532,
+      6493566.254
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2025-07-06T10:58:14Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022013",
+    "name": "Mer Ingelsta shopping",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "Mer",
+      "brand:wikidata": "Q100821564",
+      "capacity": "4",
+      "name": "Mer Ingelsta shopping",
+      "parking:fee": "no",
+      "ref:nobil": "4155",
+      "socket:type2": "4",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      567202.795,
+      6498156.786
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-12-27T08:32:10Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022016",
+    "name": "E.ON besöksparkering Norrköping",
+    "tags": {
+      "access": "customers",
+      "amenity": "charging_station",
+      "brand": "E.ON Drive",
+      "brand:wikidata": "Q126650419",
+      "capacity": "2",
+      "name": "E.ON besöksparkering Norrköping",
+      "operator": "E.ON",
+      "operator:wikidata": "Q270223",
+      "parking:fee": "no",
+      "ref:nobil": "5349",
+      "socket:type2": "2",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      569648.49,
+      6495282.434
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-05-18T18:10:13Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022017",
+    "name": "Hospitalsgatan 8",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "capacity": "2",
+      "name": "Hospitalsgatan 8",
+      "operator": "Förvaltnings AB Magnentus",
+      "parking:fee": "no",
+      "ref:nobil": "2579",
+      "socket:type1": "1",
+      "socket:type1:output": "3.6 kW",
+      "socket:type2": "1",
+      "socket:type2:output": "3.6 kW"
+    },
+    "coordinates": [
+      569049.813,
+      6495100.844
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022034",
+    "name": "P-hus Spiran",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "bicycle": "no",
+      "capacity": "4",
+      "name": "P-hus Spiran",
+      "operator": "Fastighets AB L E Lundberg",
+      "parking:fee": "yes",
+      "ref:nobil": "6480",
+      "socket:type2": "4",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      569120.321,
+      6494599.825
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-09-03T05:52:23Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022036",
+    "name": "Holmgrens bil",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "bicycle": "no",
+      "capacity": "2",
+      "name": "Holmgrens bil",
+      "operator": "Holmgrens bil AB",
+      "parking:fee": "no",
+      "ref:nobil": "14018",
+      "socket:type2_combo": "2",
+      "socket:type2_combo:output": "150 kW"
+    },
+    "coordinates": [
+      567672.376,
+      6501157.348
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-06-21T16:35:04Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022037",
+    "name": "Importgatan 8",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "capacity": "4",
+      "name": "Importgatan 8",
+      "operator": "Söderbergs Bil AB",
+      "parking:fee": "no",
+      "ref:nobil": "7329",
+      "socket:type2": "2",
+      "socket:type2:output": "22 kW",
+      "socket:type2_combo": "2",
+      "socket:type2_combo:output": "100 kW"
+    },
+    "coordinates": [
+      570621.346,
+      6494369.438
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022050",
+    "name": "OKQ8 Norrköping Stockholmsvägen",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "OKQ8",
+      "capacity": "4",
+      "name": "OKQ8 Norrköping Stockholmsvägen",
+      "parking:fee": "no",
+      "ref:nobil": "7405",
+      "socket:type2": "4",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      567817.001,
+      6496313.165
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022051",
+    "name": "Mer Circle K Ingelsta",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "Mer",
+      "brand:wikidata": "Q100821564",
+      "capacity": "2",
+      "name": "Mer Circle K Ingelsta",
+      "parking:fee": "no",
+      "ref:nobil": "3896",
+      "socket:chademo": "1",
+      "socket:chademo:output": "50 kW",
+      "socket:type2": "1",
+      "socket:type2:output": "43 kW",
+      "socket:type2_combo": "1",
+      "socket:type2_combo:output": "50 kW"
+    },
+    "coordinates": [
+      567461.927,
+      6498088.874
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-12-27T08:32:10Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022058",
+    "name": "Norrköping flygplats",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "capacity": "8",
+      "name": "Norrköping flygplats",
+      "operator": "Norrköping Airport",
+      "parking:fee": "yes",
+      "ref:nobil": "6483",
+      "socket:type2": "8",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      571787.933,
+      6494277.125
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022062",
+    "name": "InCharge",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "capacity": "1",
+      "name": "InCharge",
+      "parking:fee": "no",
+      "ref:nobil": "4033",
+      "socket:chademo": "1",
+      "socket:chademo:output": "50 kW",
+      "socket:type2_combo": "1",
+      "socket:type2_combo:output": "50 kW"
+    },
+    "coordinates": [
+      571033.548,
+      6493929.216
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022066",
+    "name": "Scandic Norrköping Nord",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "capacity": "6",
+      "name": "Scandic Norrköping Nord",
+      "operator": "Scandic Hotels AB",
+      "parking:fee": "yes",
+      "ref:nobil": "5639",
+      "socket:type2": "6",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      567414.81,
+      6498159.333
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022070",
+    "name": "Recharge Mirum Galleria",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "Recharge",
+      "capacity": "4",
+      "name": "Recharge Mirum Galleria",
+      "parking:fee": "no",
+      "ref:nobil": "2048",
+      "socket:type2": "4",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      570241.162,
+      6493125.613
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022076",
+    "name": "InCharge Bivägen 101",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "InCharge",
+      "capacity": "1",
+      "name": "InCharge Bivägen 101",
+      "parking:fee": "no",
+      "ref:nobil": "11738",
+      "socket:type2": "1",
+      "socket:type2:output": "11 kW"
+    },
+    "coordinates": [
+      571538.534,
+      6492884.332
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022077",
+    "name": "OKQ8 Norrköping Skarphagsleden",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "OKQ8",
+      "capacity": "4",
+      "name": "OKQ8 Norrköping Skarphagsleden",
+      "parking:fee": "no",
+      "ref:nobil": "7404",
+      "socket:type2": "4",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      567496.951,
+      6493678.254
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2023-03-16T20:33:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022086",
+    "name": "Selga Norrköping",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "bicycle": "no",
+      "capacity": "2",
+      "name": "Selga Norrköping",
+      "operator": "Selga Norrköping",
+      "parking:fee": "no",
+      "ref:nobil": "6894",
+      "socket:type2": "2",
+      "socket:type2:output": "11 kW"
+    },
+    "coordinates": [
+      570845.774,
+      6495333.503
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-09-29T12:51:29Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/10740022087",
+    "name": "Kv Lyckan",
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "bicycle": "no",
+      "capacity": "8",
+      "name": "Kv Lyckan",
+      "operator": "Lundbergs",
+      "parking:fee": "yes",
+      "ref:nobil": "5182",
+      "socket:type2": "8",
+      "socket:type2:output": "22 kW"
+    },
+    "coordinates": [
+      569293.905,
+      6494779.978
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-09-09T06:30:39Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/11737705030",
+    "name": "Eviny",
+    "tags": {
+      "amenity": "charging_station",
+      "brand": "Eviny",
+      "brand:wikidata": "Q4891601",
+      "capacity": "12",
+      "name": "Eviny",
+      "socket:type2_combo": "12"
+    },
+    "coordinates": [
+      567537.715,
+      6497969.999
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2024-03-16T21:44:48Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/13065446515",
+    "name": null,
+    "tags": {
+      "leisure": "sports_centre",
+      "sport": "climbing_adventure"
+    },
+    "coordinates": [
+      567216.288,
+      6496961.22
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2025-08-12T14:30:53Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/13263794315",
+    "name": "Norrköping Cirkus och Varieté",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Norrköping Cirkus och Varieté"
+    },
+    "coordinates": [
+      566847.54,
+      6497777.087
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2025-10-27T20:14:49Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/13263794316",
+    "name": "Norrköpings Skatehall",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Norrköpings Skatehall",
+      "operator": "Aktiv Ungdom Norrköping"
+    },
+    "coordinates": [
+      566844.382,
+      6497745.427
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2025-10-27T20:14:49Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/13625640219",
+    "name": null,
+    "tags": {
+      "amenity": "charging_station",
+      "bicycle": "no",
+      "brand": "E.ON Drive",
+      "brand:wikidata": "Q126650419",
+      "capacity": "24",
+      "capacity:motorcar": "24",
+      "fee": "yes",
+      "motorcar": "yes",
+      "motorcycle": "yes",
+      "operator": "E.ON",
+      "operator:wikidata": "Q270223",
+      "socket:type2_cable:output": "400 kW"
+    },
+    "coordinates": [
+      567832.029,
+      6501342.679
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-08-09T08:46:18Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/13625640319",
+    "name": "Einride",
+    "tags": {
+      "amenity": "charging_station",
+      "covered": "yes",
+      "fee": "yes",
+      "hgv": "yes",
+      "motorcar": "yes",
+      "motorcycle": "yes",
+      "name": "Einride"
+    },
+    "coordinates": [
+      567784.298,
+      6497679.947
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-03-07T20:12:44Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/13764017634",
+    "name": null,
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "capacity": "12",
+      "fee": "no",
+      "not:brand:wikidata": "Q71041027",
+      "operator": "Vattenfall InCharge"
+    },
+    "coordinates": [
+      567916.45,
+      6501389.11
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-07-17T19:23:50Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/14022908576",
+    "name": null,
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "brand": "Cheap Charge",
+      "capacity": "4",
+      "operator": "Cheap Charge"
+    },
+    "coordinates": [
+      568283.664,
+      6497842.917
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-07-17T19:17:37Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:node/14022916965",
+    "name": null,
+    "tags": {
+      "access": "yes",
+      "amenity": "charging_station",
+      "bicycle": "no",
+      "brand": "IONITY",
+      "capacity": "8",
+      "operator": "IONITY"
+    },
+    "coordinates": [
+      566970.621,
+      6498300.907
+    ],
+    "coordinateMethod": "mapped POI",
+    "sourceDate": "2026-07-20T11:48:42Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/24676852",
+    "name": "Bollspelaren",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Bollspelaren",
+      "sport": "soccer",
+      "wikidata": "Q10432609"
+    },
+    "coordinates": [
+      568440.933,
+      6496184.431
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-26T16:45:40Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/40439771",
+    "name": "Raceland Gokart",
+    "tags": {
+      "leisure": "stadium",
+      "name": "Raceland Gokart",
+      "sport": "karting"
+    },
+    "coordinates": [
+      571813.938,
+      6495373.171
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-14T12:42:11Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/60002615",
+    "name": "Loddby idrottsplats",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Loddby idrottsplats",
+      "short_name": "Loddby IP",
+      "sport": "soccer"
+    },
+    "coordinates": [
+      568102.279,
+      6500413.763
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2022-12-14T00:20:56Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/87398826",
+    "name": "Medley Centralbadet",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "19",
+      "addr:postcode": "603 50",
+      "addr:street": "Albrektsvägen",
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Medley Centralbadet",
+      "source": "Bing",
+      "sport": "swimming"
+    },
+    "coordinates": [
+      569921.93,
+      6494394.86
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-21T22:06:57Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/87399495",
+    "name": "Racketstadion",
+    "tags": {
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Racketstadion",
+      "source": "Bing",
+      "sport": "tennis"
+    },
+    "coordinates": [
+      566063.882,
+      6494835.787
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2025-01-29T15:44:33Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/88741174",
+    "name": "Linghallen",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "74",
+      "addr:street": "Södra Promenaden",
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Linghallen"
+    },
+    "coordinates": [
+      568840.414,
+      6494393.375
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-21T22:06:57Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/90106172",
+    "name": "Himmelstalundshallen",
+    "tags": {
+      "addr:street": "Vattenverksvägen",
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Himmelstalundshallen",
+      "source": "Bing",
+      "sport": "ice_skating",
+      "wikidata": "Q3308214"
+    },
+    "coordinates": [
+      566281.185,
+      6494710.583
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-26T16:45:35Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/90110656",
+    "name": "Curlinghallen",
+    "tags": {
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Curlinghallen"
+    },
+    "coordinates": [
+      566195.501,
+      6494726.647
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2011-02-28T11:07:33Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/91569016",
+    "name": null,
+    "tags": {
+      "building": "yes",
+      "man_made": "water_tower"
+    },
+    "coordinates": [
+      567480.061,
+      6492137.325
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2011-08-10T18:22:07Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/91644267",
+    "name": "Ektorpshallen",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Ektorpshallen"
+    },
+    "coordinates": [
+      568021.002,
+      6493423.445
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2010-12-25T23:09:57Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/91908192",
+    "name": "Teknikhallen",
+    "tags": {
+      "building": "yes",
+      "height": "15",
+      "leisure": "sports_centre",
+      "name": "Teknikhallen",
+      "roof:height": "2",
+      "roof:shape": "skillion",
+      "sport": "soccer"
+    },
+    "coordinates": [
+      568214.227,
+      6494469.302
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2020-10-13T17:15:58Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/91908705",
+    "name": "Gamla tennishallen",
+    "tags": {
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Gamla tennishallen",
+      "sport": "tennis"
+    },
+    "coordinates": [
+      568140.199,
+      6494482.866
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2011-01-05T16:41:19Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/92197513",
+    "name": "Borgsmo idrottsplats",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Borgsmo idrottsplats",
+      "short_name": "Borgsmo IP",
+      "sport": "athletics"
+    },
+    "coordinates": [
+      566330.522,
+      6493009.597
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2022-12-14T00:20:56Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/92483630",
+    "name": "Källvindsskolans gymnastikhall",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "38",
+      "addr:street": "Nygatan",
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Källvindsskolans gymnastikhall"
+    },
+    "coordinates": [
+      568395.853,
+      6494550.098
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-21T22:06:57Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/92968800",
+    "name": "Gamla gymnastikhuset",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "63",
+      "addr:street": "Nygatan",
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Gamla gymnastikhuset"
+    },
+    "coordinates": [
+      568797.853,
+      6494561.457
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-21T22:06:57Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/93481365",
+    "name": "Station Centrum",
+    "tags": {
+      "amenity": "fire_station",
+      "building": "yes",
+      "building:levels": "3",
+      "name": "Station Centrum"
+    },
+    "coordinates": [
+      568413.3,
+      6494425.98
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2016-06-17T15:18:38Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/94087574",
+    "name": "Stadium Arena",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "11",
+      "addr:postcode": "602 36",
+      "addr:street": "Utställningsvägen",
+      "building": "yes",
+      "leisure": "stadium",
+      "name": "Stadium Arena",
+      "sport": "multi",
+      "website": "http://www.stadiumarena.se/",
+      "wikidata": "Q10677127"
+    },
+    "coordinates": [
+      566483.757,
+      6494648.579
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-26T16:46:04Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/94135379",
+    "name": "Kråkvilan",
+    "tags": {
+      "leisure": "stadium",
+      "name": "Kråkvilan",
+      "sport": "motor",
+      "surface": "gravel"
+    },
+    "coordinates": [
+      572274.206,
+      6495507.79
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-14T12:42:11Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/95506887",
+    "name": "Norco-hallen",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "26",
+      "addr:street": "Moa Martinsons gata",
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Norco-hallen",
+      "sport": "table_tennis"
+    },
+    "coordinates": [
+      565347.073,
+      6493710.95
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-21T22:06:57Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/253115545",
+    "name": "Räddningsstation Kvillinge",
+    "tags": {
+      "addr:city": "Åby",
+      "addr:country": "SE",
+      "addr:housenumber": "6",
+      "addr:postcode": "61634",
+      "addr:street": "Cylindervägen",
+      "amenity": "fire_station",
+      "building": "yes",
+      "check_date": "2026-06-21",
+      "name": "Räddningsstation Kvillinge"
+    },
+    "coordinates": [
+      567678.013,
+      6501378.928
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2026-06-21T16:35:02Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/255828218",
+    "name": "City Gross Arena",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "3",
+      "addr:postcode": "600 07",
+      "addr:street": "Slörgatan",
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "City Gross Arena",
+      "source": "Bing",
+      "sport": "soccer"
+    },
+    "coordinates": [
+      573036.619,
+      6496136.658
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2016-10-23T20:49:19Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/285081603",
+    "name": null,
+    "tags": {
+      "leisure": "sports_centre"
+    },
+    "coordinates": [
+      568192.673,
+      6494294.024
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2025-08-19T20:38:22Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/312134950",
+    "name": "PreZero Arena",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "PreZero Arena",
+      "operator": "Smedby AIS",
+      "sport": "soccer"
+    },
+    "coordinates": [
+      571651.901,
+      6493718.42
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2025-01-25T16:43:41Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/447836634",
+    "name": "Räddningstjänstens utbildningsanläggning",
+    "tags": {
+      "amenity": "fire_station",
+      "building": "yes",
+      "name": "Räddningstjänstens utbildningsanläggning",
+      "operator": "Räddningstjänsten Östra Götaland"
+    },
+    "coordinates": [
+      572615.876,
+      6494315.015
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2020-10-20T06:34:10Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/530899487",
+    "name": "Maxihallen",
+    "tags": {
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Maxihallen",
+      "sport": "soccer"
+    },
+    "coordinates": [
+      565297.907,
+      6497575.26
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2017-10-07T22:22:35Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/804923714",
+    "name": null,
+    "tags": {
+      "leisure": "sports_centre"
+    },
+    "coordinates": [
+      566123.947,
+      6494470.362
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2020-05-17T14:57:39Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/846387635",
+    "name": "Sandbyhovshallen",
+    "tags": {
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Sandbyhovshallen"
+    },
+    "coordinates": [
+      567653.623,
+      6496731.984
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2020-09-15T14:36:15Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/1123969902",
+    "name": "Monnes idrottsplats",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Monnes idrottsplats",
+      "short_name": "Monnes IP",
+      "sport": "soccer"
+    },
+    "coordinates": [
+      565393.372,
+      6497271.106
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2022-12-21T20:02:34Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/1216510710",
+    "name": "Eneby B-hall",
+    "tags": {
+      "building": "yes",
+      "leisure": "sports_centre",
+      "name": "Eneby B-hall"
+    },
+    "coordinates": [
+      566571.65,
+      6496651.004
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2023-10-18T14:01:52Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/1250293709",
+    "name": null,
+    "tags": {
+      "leisure": "stadium",
+      "sport": "karting"
+    },
+    "coordinates": [
+      566022.134,
+      6495254.616
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2024-02-14T12:40:27Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/1451740967",
+    "name": "Rasphusplan",
+    "tags": {
+      "leisure": "sports_centre",
+      "name": "Rasphusplan",
+      "sport": "climbing_adventure"
+    },
+    "coordinates": [
+      569744.267,
+      6495660.412
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2025-11-18T17:52:34Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:way/1516252692",
+    "name": "Räddningsstation Ljura",
+    "tags": {
+      "addr:housenumber": "27",
+      "addr:street": "Dagsbergsvägen",
+      "amenity": "fire_station",
+      "building": "fire_station",
+      "name": "Räddningsstation Ljura",
+      "operator": "Räddningstjänsten Östra Götaland"
+    },
+    "coordinates": [
+      570223.405,
+      6494071.793
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2026-05-18T13:49:02Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:relation/1440621",
+    "name": "PlatinumCars Arena",
+    "tags": {
+      "building": "yes",
+      "height": "1;12",
+      "leisure": "stadium",
+      "name": "PlatinumCars Arena",
+      "old_name": "Idrottsparken",
+      "roof:colour": "grey",
+      "roof:height": "11",
+      "roof:material": "concrete",
+      "roof:shape": "skillion",
+      "sport": "soccer",
+      "type": "multipolygon",
+      "wikidata": "Q571624",
+      "wikipedia": "sv:Platinumcars Arena"
+    },
+    "coordinates": [
+      568197.475,
+      6494362.326
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2025-08-19T20:38:22Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  },
+  {
+    "id": "osm:relation/20618484",
+    "name": "Vrinnevisjukhuset",
+    "tags": {
+      "addr:city": "Norrköping",
+      "addr:country": "SE",
+      "addr:housenumber": "25",
+      "addr:postcode": "601 82",
+      "addr:street": "Gamla Övägen",
+      "amenity": "hospital",
+      "building": "hospital",
+      "emergency": "yes",
+      "health_specialty:emergency_medicine": "yes",
+      "health_specialty:family_medicine": "yes",
+      "health_specialty:intensive_care_medicine": "yes",
+      "health_specialty:orthopaedics": "yes",
+      "health_specialty:surgery": "yes",
+      "healthcare": "hospital",
+      "layer": "1",
+      "name": "Vrinnevisjukhuset",
+      "opening_hours": "24/7",
+      "phone": "+46 10 103 00 00",
+      "type": "multipolygon",
+      "website": "https://www.1177.se/hitta-vard/kontaktkort/Vrinnevisjukhuset-i-Norrkoping/",
+      "wikidata": "Q10716987"
+    },
+    "coordinates": [
+      568548.04,
+      6492040.674
+    ],
+    "coordinateMethod": "mapped feature bounds midpoint",
+    "sourceDate": "2026-05-03T08:02:49Z",
+    "snapshot": "2026-10-23T09:05:06Z"
+  }
+]

@@ -1,0 +1,405 @@
+{
+  "version": 1,
+  "targetDate": "2026-10-23",
+  "horizontalCrs": "EPSG:3006",
+  "verticalDatum": "RH2000",
+  "assets": [
+    {
+      "id": "osm:node/2908291069",
+      "category": "street",
+      "role": "fixture",
+      "name": "OSM mapped street lamp",
+      "parentId": null,
+      "sourceGeometry": "https://www.openstreetmap.org/node/2908291069",
+      "position": {
+        "e": 571455.731,
+        "n": 6495485.374,
+        "heightRh2000M": null,
+        "meaning": "fixture-base"
+      },
+      "geometryType": "Point",
+      "fixtureType": null,
+      "orientationGridDegrees": null,
+      "mountingHeightM": null,
+      "illumination": "unknown",
+      "activation": {
+        "mode": "unknown",
+        "schedule": null,
+        "validFrom": null,
+        "validTo": null
+      },
+      "color": {
+        "cctK": null,
+        "description": null
+      },
+      "evidence": [
+        {
+          "reference": "https://www.openstreetmap.org/node/2908291069",
+          "sourceDate": "2015-05-16T17:17:56Z",
+          "retrievedDate": "2026-10-23",
+          "licence": "ODbL-1.0",
+          "redistribution": "allowed-with-conditions",
+          "supports": [
+            "mapped lamp existence",
+            "horizontal position"
+          ]
+        }
+      ],
+      "confidence": "medium",
+      "positionMethod": "mapped",
+      "existingSimulatorAsset": null,
+      "requiredGeometry": [],
+      "priority": "P2",
+      "performanceClass": "unknown",
+      "unresolved": [
+        "Operating status, fixture type, base elevation and mounting height not surveyed"
+      ]
+    },
+    {
+      "id": "estimate:pilot:kungsgatan:est-way-26154805-0",
+      "category": "street",
+      "role": "fixture",
+      "name": "Existing estimated pilot fixture",
+      "parentId": null,
+      "sourceGeometry": "runtime:streetlights.json#kungsgatan:est-way-26154805-0",
+      "position": {
+        "e": 568479.7355276383,
+        "n": 6494927.343568257,
+        "heightRh2000M": null,
+        "meaning": "fixture-base"
+      },
+      "geometryType": "Point",
+      "fixtureType": "street-bracket-8m",
+      "orientationGridDegrees": null,
+      "mountingHeightM": 8,
+      "illumination": "estimated",
+      "activation": {
+        "mode": "solar-night",
+        "schedule": null,
+        "validFrom": null,
+        "validTo": null
+      },
+      "color": {
+        "cctK": 3000,
+        "description": null
+      },
+      "evidence": [
+        {
+          "reference": "src/lib/data/streetlights-provenance.json#kungsgatan:est-way-26154805-0",
+          "sourceDate": "2026-10-21",
+          "retrievedDate": "2026-10-23",
+          "licence": "ODbL-1.0",
+          "redistribution": "allowed-with-conditions",
+          "supports": [
+            "estimated position and type",
+            "simulation mounting/color/activation"
+          ]
+        }
+      ],
+      "confidence": "low",
+      "positionMethod": "estimated",
+      "existingSimulatorAsset": "runtime:streetlights.json#kungsgatan:est-way-26154805-0",
+      "requiredGeometry": [],
+      "priority": "P2",
+      "performanceClass": "instanced-static",
+      "unresolved": [
+        "All dimensions, photometry and real-world operating state remain estimated"
+      ]
+    },
+    {
+      "id": "osm:way/285809156",
+      "category": "landmark",
+      "role": "site",
+      "name": "Rådhuset",
+      "parentId": null,
+      "sourceGeometry": "runtime:norrkoping-map.json#way/285809156",
+      "position": {
+        "e": 569007.52,
+        "n": 6495236.091,
+        "heightRh2000M": null,
+        "meaning": "footprint-bounds-midpoint"
+      },
+      "geometryType": "Polygon",
+      "fixtureType": null,
+      "orientationGridDegrees": null,
+      "mountingHeightM": null,
+      "illumination": "unknown",
+      "activation": {
+        "mode": "unknown",
+        "schedule": null,
+        "validFrom": null,
+        "validTo": null
+      },
+      "color": {
+        "cctK": null,
+        "description": null
+      },
+      "evidence": [
+        {
+          "reference": "https://www.openstreetmap.org/way/285809156",
+          "sourceDate": "2026-10-16",
+          "retrievedDate": "2026-10-23",
+          "licence": "ODbL-1.0",
+          "redistribution": "allowed-with-conditions",
+          "supports": [
+            "footprint",
+            "anchor"
+          ]
+        }
+      ],
+      "confidence": "medium",
+      "positionMethod": "derived-anchor",
+      "existingSimulatorAsset": "runtime:norrkoping-map.json#way/285809156; mapLandmarks.ts tower",
+      "requiredGeometry": [
+        "Audit actual tower/spire heights and post-renovation exterior"
+      ],
+      "priority": "P2",
+      "performanceClass": "unknown",
+      "unresolved": []
+    },
+    {
+      "id": "component:radhuset:gull-olle",
+      "category": "landmark",
+      "role": "geometry-prerequisite",
+      "name": "Gull-Olle / Sankt Olof",
+      "parentId": "osm:way/285809156",
+      "sourceGeometry": "parent:osm:way/285809156",
+      "position": null,
+      "geometryType": "reference",
+      "fixtureType": null,
+      "orientationGridDegrees": null,
+      "mountingHeightM": null,
+      "illumination": "unknown",
+      "activation": {
+        "mode": "unknown",
+        "schedule": null,
+        "validFrom": null,
+        "validTo": null
+      },
+      "color": {
+        "cctK": null,
+        "description": null
+      },
+      "evidence": [
+        {
+          "reference": "https://norrkoping.se/kommun-och-politik/om-norrkoping/norrkopings-radhus",
+          "sourceDate": null,
+          "retrievedDate": "2026-10-23",
+          "licence": null,
+          "redistribution": "reference-only",
+          "supports": [
+            "sculpture identity",
+            "4.5 m sculpture reference; tower 68 m"
+          ]
+        }
+      ],
+      "confidence": "high",
+      "positionMethod": "unknown",
+      "existingSimulatorAsset": null,
+      "requiredGeometry": [
+        "Gilded statue at tower apex; orientation/base attachment measurements missing"
+      ],
+      "priority": "P2",
+      "performanceClass": "unknown",
+      "unresolved": [
+        "RH2000 base/top and orientation unknown",
+        "Dedicated night illumination unverified"
+      ]
+    },
+    {
+      "id": "site:vrinnevi:elljus-loop",
+      "category": "forest-trail",
+      "role": "route",
+      "name": "Vrinnevi illuminated exercise loop",
+      "parentId": null,
+      "sourceGeometry": null,
+      "position": null,
+      "geometryType": "reference",
+      "fixtureType": null,
+      "orientationGridDegrees": null,
+      "mountingHeightM": null,
+      "illumination": "verified-lit",
+      "activation": {
+        "mode": "unknown",
+        "schedule": null,
+        "validFrom": null,
+        "validTo": null
+      },
+      "color": {
+        "cctK": null,
+        "description": null
+      },
+      "evidence": [
+        {
+          "reference": "https://norrkoping.se/se-och-gora/motion-och-idrott/motionsspar",
+          "sourceDate": "2025-02-24",
+          "retrievedDate": "2026-10-23",
+          "licence": null,
+          "redistribution": "reference-only",
+          "supports": [
+            "named 2.4 km illuminated route"
+          ]
+        }
+      ],
+      "confidence": "high",
+      "positionMethod": "unknown",
+      "existingSimulatorAsset": null,
+      "requiredGeometry": [
+        "Current route/support surfaces before fixtures",
+        "Canopy-constrained forest reconstruction"
+      ],
+      "priority": "P2",
+      "performanceClass": "vegetation-lod",
+      "unresolved": [
+        "Current licensed ordered route required",
+        "OSM relation 5703856 is a candidate, not yet a municipal vector match",
+        "Pole positions and schedule unknown"
+      ]
+    },
+    {
+      "id": "site:ESSP:runway09-27",
+      "category": "airport",
+      "role": "site",
+      "name": "ESSP runway 09/27",
+      "parentId": null,
+      "sourceGeometry": "runtime:airways/7840051",
+      "position": null,
+      "geometryType": "LineString",
+      "fixtureType": null,
+      "orientationGridDegrees": null,
+      "mountingHeightM": null,
+      "illumination": "verified-lit",
+      "activation": {
+        "mode": "operational",
+        "schedule": null,
+        "validFrom": null,
+        "validTo": null
+      },
+      "color": {
+        "cctK": null,
+        "description": null
+      },
+      "evidence": [
+        {
+          "reference": "https://aro.lfv.se/content/eaip/AIP%20AMDT%201-2026_2026_08_07/eAIP/ES-AD%202%20ESSP%20NORRK%C3%96PING-KUNGS%C3%84NGEN%201-en-GB.html",
+          "sourceDate": "2026-08-07",
+          "retrievedDate": "2026-10-23",
+          "licence": null,
+          "redistribution": "reference-only",
+          "supports": [
+            "runway identity and published lighting configuration"
+          ]
+        }
+      ],
+      "confidence": "high",
+      "positionMethod": "unknown",
+      "existingSimulatorAsset": "runtime:airways/7840051",
+      "requiredGeometry": [
+        "Directional approach, threshold/end, PAPI and actual fittings"
+      ],
+      "priority": "P2",
+      "performanceClass": "unknown",
+      "unresolved": [
+        "AIP configuration is not fixture survey or live switch state"
+      ]
+    },
+    {
+      "id": "osm:node/247135227",
+      "category": "fuel",
+      "role": "site",
+      "name": "TRB",
+      "parentId": null,
+      "sourceGeometry": "https://www.openstreetmap.org/node/247135227",
+      "position": {
+        "e": 570571.413,
+        "n": 6494300.6,
+        "heightRh2000M": null,
+        "meaning": "site-anchor"
+      },
+      "geometryType": "Point",
+      "fixtureType": null,
+      "orientationGridDegrees": null,
+      "mountingHeightM": null,
+      "illumination": "unknown",
+      "activation": {
+        "mode": "unknown",
+        "schedule": null,
+        "validFrom": null,
+        "validTo": null
+      },
+      "color": {
+        "cctK": null,
+        "description": null
+      },
+      "evidence": [
+        {
+          "reference": "https://www.openstreetmap.org/node/247135227",
+          "sourceDate": "2025-08-23T15:39:21Z",
+          "retrievedDate": "2026-10-23",
+          "licence": "ODbL-1.0",
+          "redistribution": "allowed-with-conditions",
+          "supports": [
+            "mapped fuel POI",
+            "site anchor"
+          ]
+        }
+      ],
+      "confidence": "medium",
+      "positionMethod": "mapped",
+      "existingSimulatorAsset": null,
+      "requiredGeometry": [],
+      "priority": "P2",
+      "performanceClass": "unknown",
+      "unresolved": [
+        "Confirm active 2026 operator and public vs fleet/LPG use",
+        "Match forecourt and canopy geometry",
+        "Opening hours do not establish lighting hours"
+      ]
+    },
+    {
+      "id": "osm:way/8237045",
+      "category": "street",
+      "role": "route",
+      "name": "Magasinsgatan",
+      "parentId": null,
+      "sourceGeometry": "https://www.openstreetmap.org/way/8237045",
+      "position": null,
+      "geometryType": "LineString",
+      "fixtureType": null,
+      "orientationGridDegrees": null,
+      "mountingHeightM": null,
+      "illumination": "mapped-unlit",
+      "activation": {
+        "mode": "off",
+        "schedule": null,
+        "validFrom": null,
+        "validTo": null
+      },
+      "color": {
+        "cctK": null,
+        "description": null
+      },
+      "evidence": [
+        {
+          "reference": "https://www.openstreetmap.org/way/8237045",
+          "sourceDate": "2025-08-20T20:46:10Z",
+          "retrievedDate": "2026-10-23",
+          "licence": "ODbL-1.0",
+          "redistribution": "allowed-with-conditions",
+          "supports": [
+            "OSM lit=no; fixture generation exclusion"
+          ]
+        }
+      ],
+      "confidence": "medium",
+      "positionMethod": "mapped",
+      "existingSimulatorAsset": null,
+      "requiredGeometry": [],
+      "priority": "P2",
+      "performanceClass": "unknown",
+      "unresolved": [
+        "OSM darkness tag not an independent 2026 field survey"
+      ]
+    }
+  ]
+}

@@ -39,3 +39,6 @@ work/geodata/
 # Step 6 measurement scratch (baseline app snapshot, benchmark runs, captures, LiDAR probes).
 # Curated evidence is in docs/step6/; reusable tools are in scripts/.
 /work/step6/
+
+# Step 6.2 read-only research scratch, including local validator dependencies.
+/work/step62/

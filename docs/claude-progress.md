@@ -2,6 +2,48 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Step 6.2 — lighting inventory and rollout foundation (2026-10-23) — research complete, for review
+
+[Executive report and all deliverables](step62/README.md), [checkpoint readiness](step62/checkpoint-readiness.md),
+[verification](step62/verification.md), [interactive SWEREF inventory map](step62/inventory-map.html).
+
+- Corrected stale recovery assumptions: both repositories initially clean on `main`; UI `bd13495`, backend
+  `c3d9860`, already on remote `main` (read-only `ls-remote` confirmed). No reset/stash/commit/push this session.
+- Bounded routing review reproduces 11 compact /125 truck /979 bus edge removals. **Bus reachability at
+  Skvallertorget is lost**, and seven genuine mapped bus-end edges disappear. Service21 via Skvallertorget is
+  independently confirmed by the current operator index. Roaming buses are not designated transit; bundled
+  tram/train paths remain independent. Road51 is a primary-road reference, not bus service51. Existing tests
+  passing does not establish transit-preserving readiness. New backend audit test writes a local report.
+- Actual EPSG3006 map envelope E561804.869–575355.539 /N6490994.115–6501805.721; use the true clip polygon,
+  not its rectangular envelope. RH2000 retained. Runtime OSM2026-10-16, lighting pilots2026-10-21; no shared
+  runtime data changed, UI/backend hashes still equal. Vrinnevi longer routes extend past southern coverage.
+- Fresh bounded OSM base2026-10-23T09:05:06Z: 25 lamp nodes,2040 lit/175 unlit highway ways,32 fuel features.
+  Curated geographic evidence retains source dates/IDs, unknown lighting/geometry and ODbL attribution.
+  Operator-only/reconciliation candidates are recorded separately, not counted as automatically distinct sites.
+- Municipal fixture register/licence remains unavailable in this bounded public search. Police reception moved
+  to Luntgatan32 inJanuary2026 while some services remain at the old police complex; existing emblem/tower
+  geometry is present, actual POLIS sign dimensions/illumination unknown. Gull-Olle mesh absent atop existing
+  approximate townhall tower. No blanket landmark floodlighting inferred.
+- Vrinnevi2.4km lit trail distinguished from longer loops; OSM5703856 is a candidate (~2.36km), historic2011/12
+  brochure topology checked, current licensed alignment/fixture points still required. Existing procedural
+  trees have coarse outer spacing/global cap; canopy/height-constrained tiled instancing/LOD designed only.
+- Current LFV edition on research date: AIP AMDT1/2026 effective2026-08-07;09/27 lit,11/29 unlit. Approach/PAPI/
+  taxiway B/C distinctions recorded; no liveNOTAM/switch-state certification. Existing edge-box geometry on
+  all runways is not verified operational lighting. Aircraft light conventions/state/transform plan separate.
+- Architecture audit: dense geographic rectangle,16-light cells, nearest-centre truncation, input-order ties,
+  texture-height/device limits, material/instance ownership and context restoration. Proposed sparse paging,
+  overflow failure/reporting, budgets and phased rollout; **no runtime architecture/lighting change**.
+- Validation:14 targeted backend tests,54 existing lighting/coordinate tests,3 new grid stress tests passed;
+  eight schema examples and all retained JSON validated;25 E/N conversions independently match PROJ within
+  0.7mm arithmetic error (not survey accuracy). Inspector controls/layout checked in Edge. Performance
+  extracted from actual Step6.1 measurements; no full simulator rebuild or lower-tier GPU claim.
+- Changed only UI `docs/step62/**`, `scripts/step62/**`, this entry and targeted `/work/step62/` ignore; backend
+  new `Step62RoutingAuditTest.kt`. Raw research and optional validator packages remain local/ignored.
+
+**Exact next task:** Step6.1b bounded bus-policy/destination/terminus correction and regressions, preserving
+the Bergsbron truck result; then Phase0 registry/grid capacity hardening with existing105 fixtures before
+central-city expansion. Commit/push remains subject to explicit approval. Step6.2 stops here.
+
 ## Step 6.1 — night polish and bridge routing (2026-10-22) — implemented, for review
 
 Continued the interrupted session, preserving the uncommitted Step 6 working tree. No commit or
