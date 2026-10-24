@@ -1,0 +1,1370 @@
+{
+  "rule": {
+    "version": "lighting-city-v1",
+    "script": "src/lib/lighting/cityRule.ts",
+    "seed": null
+  },
+  "note": "Lengths are way centreline lengths in km inside the map clip (dual carriageways count twice); ways count = ways with any length inside the clip. Stations are preliminary centreline estimates for counting/capacity only.",
+  "ways": 12246,
+  "byStatus": {
+    "lit": {
+      "ways": 6564,
+      "km": 784.2
+    },
+    "partial": {
+      "ways": 32,
+      "km": 18.6
+    },
+    "dark": {
+      "ways": 5650,
+      "km": 820.1
+    }
+  },
+  "byReason": {
+    "osm-lit-yes": {
+      "ways": 2040,
+      "km": 255.9,
+      "litKm": 255.9
+    },
+    "osm-lit-no": {
+      "ways": 175,
+      "km": 33.2,
+      "litKm": 0
+    },
+    "gap-fill": {
+      "ways": 34,
+      "km": 0.8,
+      "litKm": 0.8
+    },
+    "rule-street-in-tatort": {
+      "ways": 1822,
+      "km": 278.2,
+      "litKm": 278.2
+    },
+    "rule-sidewalk": {
+      "ways": 172,
+      "km": 13.4,
+      "litKm": 13.4
+    },
+    "rule-path-along-street": {
+      "ways": 700,
+      "km": 83.1,
+      "litKm": 83.1
+    },
+    "rule-path-in-tatort": {
+      "ways": 1720,
+      "km": 150.2,
+      "litKm": 150.2
+    },
+    "rule-roundabout": {
+      "ways": 34,
+      "km": 1.2,
+      "litKm": 1.2
+    },
+    "rule-junction": {
+      "ways": 74,
+      "km": 20,
+      "litKm": 3.3
+    },
+    "dark-outside-tatort": {
+      "ways": 1226,
+      "km": 308,
+      "litKm": 0
+    },
+    "dark-motorway-untagged": {
+      "ways": 84,
+      "km": 13.5,
+      "litKm": 0
+    },
+    "dark-private-service": {
+      "ways": 3273,
+      "km": 313.1,
+      "litKm": 0
+    },
+    "dark-forest-path": {
+      "ways": 134,
+      "km": 17.2,
+      "litKm": 0
+    },
+    "dark-unpaved-path": {
+      "ways": 118,
+      "km": 11,
+      "litKm": 0
+    },
+    "dark-minor-path": {
+      "ways": 221,
+      "km": 24.1,
+      "litKm": 0
+    },
+    "dark-track": {
+      "ways": 390,
+      "km": 91.2,
+      "litKm": 0
+    },
+    "excluded": {
+      "ways": 29,
+      "km": 8.9,
+      "litKm": 0
+    }
+  },
+  "byGroup": {
+    "excluded": {
+      "km": 8.9,
+      "litKm": 0,
+      "tagKm": 0,
+      "gapKm": 0,
+      "ruleKm": 0
+    },
+    "major": {
+      "km": 180.3,
+      "litKm": 121.6,
+      "tagKm": 76.6,
+      "gapKm": 0.4,
+      "ruleKm": 44.6
+    },
+    "minor": {
+      "km": 439,
+      "litKm": 327.7,
+      "tagKm": 89.9,
+      "gapKm": 0.1,
+      "ruleKm": 237.7
+    },
+    "motorway": {
+      "km": 43.9,
+      "litKm": 14.5,
+      "tagKm": 14.1,
+      "gapKm": 0.2,
+      "ruleKm": 0.2
+    },
+    "path": {
+      "km": 541,
+      "litKm": 317.2,
+      "tagKm": 70.4,
+      "gapKm": 0.1,
+      "ruleKm": 246.7
+    },
+    "service": {
+      "km": 316.4,
+      "litKm": 2.8,
+      "tagKm": 2.6,
+      "gapKm": 0,
+      "ruleKm": 0.3
+    },
+    "track": {
+      "km": 93.5,
+      "litKm": 2.3,
+      "tagKm": 2.3,
+      "gapKm": 0,
+      "ruleKm": 0
+    }
+  },
+  "litKmByEvidence": {
+    "tag": 255.9,
+    "gap": 0.8,
+    "rule": 529.4
+  },
+  "coveredLitKm": 129,
+  "stations": {
+    "total": 25041,
+    "byType": {
+      "park-lantern-4m": 8437,
+      "street-bracket-6m": 12218,
+      "street-bracket-8m": 4386
+    },
+    "byEvidence": {
+      "tag": 8000,
+      "gap": 18,
+      "rule": 17023
+    },
+    "droppedInsideExistingZones": 326,
+    "droppedOutsideMap": 403,
+    "insideZonesWithoutExistingFixtureInRange": 71,
+    "existingFixtures": 273
+  },
+  "norrtull": [
+    {
+      "id": 286445696,
+      "status": "lit",
+      "reason": "gap-fill",
+      "evidence": "gap",
+      "lengthM": 21.1,
+      "covered": false,
+      "stationsPendingInsideZone": 1
+    },
+    {
+      "id": 300186798,
+      "status": "lit",
+      "reason": "gap-fill",
+      "evidence": "gap",
+      "lengthM": 29.5,
+      "covered": false,
+      "stationsPendingInsideZone": 1
+    },
+    {
+      "id": 1050773512,
+      "status": "lit",
+      "reason": "gap-fill",
+      "evidence": "gap",
+      "lengthM": 52,
+      "covered": false,
+      "stationsPendingInsideZone": 0
+    }
+  ],
+  "uncoveredInsideExistingZones": [
+    {
+      "way": 4438273,
+      "name": "Södra Promenaden",
+      "highway": "secondary",
+      "e": 568174.2,
+      "n": 6494527.1,
+      "evidence": "tag"
+    },
+    {
+      "way": 8189385,
+      "name": "Vattengatan",
+      "highway": "residential",
+      "e": 568503.4,
+      "n": 6495230.6,
+      "evidence": "rule"
+    },
+    {
+      "way": 8189385,
+      "name": "Vattengatan",
+      "highway": "residential",
+      "e": 568529.6,
+      "n": 6495238.4,
+      "evidence": "rule"
+    },
+    {
+      "way": 8238256,
+      "name": "Fleminggatan",
+      "highway": "residential",
+      "e": 568902.3,
+      "n": 6495302.8,
+      "evidence": "rule"
+    },
+    {
+      "way": 23275797,
+      "name": "Fotbollsgatan",
+      "highway": "residential",
+      "e": 568079.3,
+      "n": 6494296.3,
+      "evidence": "rule"
+    },
+    {
+      "way": 23275797,
+      "name": "Fotbollsgatan",
+      "highway": "residential",
+      "e": 568052.3,
+      "n": 6494297.4,
+      "evidence": "rule"
+    },
+    {
+      "way": 24378744,
+      "name": "Norra promenaden",
+      "highway": "residential",
+      "e": 568627.3,
+      "n": 6495588.3,
+      "evidence": "rule"
+    },
+    {
+      "way": 26154766,
+      "name": "",
+      "highway": "path",
+      "e": 568788.4,
+      "n": 6495209.8,
+      "evidence": "tag"
+    },
+    {
+      "way": 26384708,
+      "name": "Hotellgatan",
+      "highway": "residential",
+      "e": 568816.9,
+      "n": 6495460,
+      "evidence": "tag"
+    },
+    {
+      "way": 88702600,
+      "name": "Tyska torget",
+      "highway": "pedestrian",
+      "e": 568954.8,
+      "n": 6495296.1,
+      "evidence": "tag"
+    },
+    {
+      "way": 88702600,
+      "name": "Tyska torget",
+      "highway": "pedestrian",
+      "e": 568961.7,
+      "n": 6495270.2,
+      "evidence": "tag"
+    },
+    {
+      "way": 88702600,
+      "name": "Tyska torget",
+      "highway": "pedestrian",
+      "e": 568964.3,
+      "n": 6495312.2,
+      "evidence": "tag"
+    },
+    {
+      "way": 93313350,
+      "name": "",
+      "highway": "cycleway",
+      "e": 568735.6,
+      "n": 6495617.6,
+      "evidence": "tag"
+    },
+    {
+      "way": 102609258,
+      "name": "",
+      "highway": "footway",
+      "e": 568063.5,
+      "n": 6494180.2,
+      "evidence": "rule"
+    },
+    {
+      "way": 102609258,
+      "name": "",
+      "highway": "footway",
+      "e": 568058.1,
+      "n": 6494200.8,
+      "evidence": "rule"
+    },
+    {
+      "way": 102609258,
+      "name": "",
+      "highway": "footway",
+      "e": 568050.2,
+      "n": 6494220,
+      "evidence": "rule"
+    },
+    {
+      "way": 168975981,
+      "name": "Slottsgatan",
+      "highway": "residential",
+      "e": 568902.5,
+      "n": 6495562.1,
+      "evidence": "rule"
+    },
+    {
+      "way": 168975995,
+      "name": "Sveagatan",
+      "highway": "unclassified",
+      "e": 569019.8,
+      "n": 6495693.3,
+      "evidence": "rule"
+    },
+    {
+      "way": 168975995,
+      "name": "Sveagatan",
+      "highway": "unclassified",
+      "e": 569068.3,
+      "n": 6495716.3,
+      "evidence": "rule"
+    },
+    {
+      "way": 270610801,
+      "name": "Fleminggatan",
+      "highway": "residential",
+      "e": 568960.4,
+      "n": 6495319,
+      "evidence": "rule"
+    },
+    {
+      "way": 275578951,
+      "name": "",
+      "highway": "footway",
+      "e": 568876.4,
+      "n": 6495009.7,
+      "evidence": "rule"
+    },
+    {
+      "way": 285827323,
+      "name": "Södra Promenaden",
+      "highway": "secondary",
+      "e": 568114.7,
+      "n": 6494523.5,
+      "evidence": "tag"
+    },
+    {
+      "way": 286445696,
+      "name": "Norra Promenaden",
+      "highway": "secondary",
+      "e": 568421.8,
+      "n": 6495577.2,
+      "evidence": "gap"
+    },
+    {
+      "way": 286471813,
+      "name": "Albrektsvägen",
+      "highway": "secondary",
+      "e": 568348.5,
+      "n": 6494267.5,
+      "evidence": "tag"
+    },
+    {
+      "way": 297609788,
+      "name": "",
+      "highway": "footway",
+      "e": 568798.6,
+      "n": 6495660.7,
+      "evidence": "tag"
+    },
+    {
+      "way": 297609788,
+      "name": "",
+      "highway": "footway",
+      "e": 568792.9,
+      "n": 6495679.4,
+      "evidence": "tag"
+    },
+    {
+      "way": 297693802,
+      "name": "Bråddgatan",
+      "highway": "residential",
+      "e": 568495.9,
+      "n": 6495350.4,
+      "evidence": "rule"
+    },
+    {
+      "way": 297693802,
+      "name": "Bråddgatan",
+      "highway": "residential",
+      "e": 568467.6,
+      "n": 6495341.9,
+      "evidence": "rule"
+    },
+    {
+      "way": 297693804,
+      "name": "Sandgatan",
+      "highway": "residential",
+      "e": 568523.3,
+      "n": 6495133,
+      "evidence": "rule"
+    },
+    {
+      "way": 300027208,
+      "name": "Aurorerondellen",
+      "highway": "secondary",
+      "e": 568616.9,
+      "n": 6495617.6,
+      "evidence": "tag"
+    },
+    {
+      "way": 300186798,
+      "name": "Norra Promenaden",
+      "highway": "secondary",
+      "e": 568397.5,
+      "n": 6495570.2,
+      "evidence": "gap"
+    },
+    {
+      "way": 302445258,
+      "name": "Sandgatan",
+      "highway": "residential",
+      "e": 568500.1,
+      "n": 6495126.2,
+      "evidence": "rule"
+    },
+    {
+      "way": 308315541,
+      "name": "Aurorerondellen",
+      "highway": "secondary",
+      "e": 568647.6,
+      "n": 6495626.8,
+      "evidence": "tag"
+    },
+    {
+      "way": 444474494,
+      "name": "Norra promenaden",
+      "highway": "residential",
+      "e": 568415.4,
+      "n": 6495526.5,
+      "evidence": "rule"
+    },
+    {
+      "way": 444474496,
+      "name": "Norra promenaden",
+      "highway": "residential",
+      "e": 568674.4,
+      "n": 6495602.3,
+      "evidence": "tag"
+    },
+    {
+      "way": 444474496,
+      "name": "Norra promenaden",
+      "highway": "residential",
+      "e": 568697.1,
+      "n": 6495609.2,
+      "evidence": "tag"
+    },
+    {
+      "way": 475524194,
+      "name": "Hamngatan",
+      "highway": "tertiary",
+      "e": 568965.6,
+      "n": 6495372.8,
+      "evidence": "gap"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568338.6,
+      "n": 6494251.1,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568312.4,
+      "n": 6494248.8,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568286.1,
+      "n": 6494253.1,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568260.5,
+      "n": 6494259.1,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568260.9,
+      "n": 6494285.1,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568264.7,
+      "n": 6494311.5,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568268.5,
+      "n": 6494338,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568272.2,
+      "n": 6494364.4,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568276,
+      "n": 6494390.8,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568290.9,
+      "n": 6494406.6,
+      "evidence": "rule"
+    },
+    {
+      "way": 1050810136,
+      "name": "Matchgatan",
+      "highway": "residential",
+      "e": 568317.3,
+      "n": 6494403,
+      "evidence": "rule"
+    },
+    {
+      "way": 1108517221,
+      "name": "",
+      "highway": "residential",
+      "e": 568110,
+      "n": 6494508.4,
+      "evidence": "rule"
+    },
+    {
+      "way": 1108517221,
+      "name": "",
+      "highway": "residential",
+      "e": 568100.1,
+      "n": 6494479.4,
+      "evidence": "rule"
+    },
+    {
+      "way": 1108545500,
+      "name": "",
+      "highway": "footway",
+      "e": 568277.6,
+      "n": 6494294.7,
+      "evidence": "rule"
+    },
+    {
+      "way": 1108545531,
+      "name": "",
+      "highway": "footway",
+      "e": 568283.5,
+      "n": 6494330.2,
+      "evidence": "rule"
+    },
+    {
+      "way": 1108545552,
+      "name": "",
+      "highway": "footway",
+      "e": 568288.7,
+      "n": 6494367.2,
+      "evidence": "rule"
+    },
+    {
+      "way": 1195969971,
+      "name": "",
+      "highway": "footway",
+      "e": 568183.7,
+      "n": 6494267.4,
+      "evidence": "rule"
+    },
+    {
+      "way": 1195969973,
+      "name": "",
+      "highway": "footway",
+      "e": 568134.2,
+      "n": 6494244.6,
+      "evidence": "rule"
+    },
+    {
+      "way": 1195969973,
+      "name": "",
+      "highway": "footway",
+      "e": 568107.5,
+      "n": 6494242.1,
+      "evidence": "rule"
+    },
+    {
+      "way": 1207816953,
+      "name": "",
+      "highway": "footway",
+      "e": 568782.7,
+      "n": 6495121,
+      "evidence": "rule"
+    },
+    {
+      "way": 1212234769,
+      "name": "",
+      "highway": "footway",
+      "e": 568435.9,
+      "n": 6494968.6,
+      "evidence": "tag"
+    },
+    {
+      "way": 1212234769,
+      "name": "",
+      "highway": "footway",
+      "e": 568416.5,
+      "n": 6494959.7,
+      "evidence": "tag"
+    },
+    {
+      "way": 1327775604,
+      "name": "",
+      "highway": "footway",
+      "e": 568055.4,
+      "n": 6494412.1,
+      "evidence": "rule"
+    },
+    {
+      "way": 1327775604,
+      "name": "",
+      "highway": "footway",
+      "e": 568076.8,
+      "n": 6494407.6,
+      "evidence": "rule"
+    },
+    {
+      "way": 1327775604,
+      "name": "",
+      "highway": "footway",
+      "e": 568098.5,
+      "n": 6494404.7,
+      "evidence": "rule"
+    },
+    {
+      "way": 1334351418,
+      "name": "",
+      "highway": "footway",
+      "e": 568068.2,
+      "n": 6494251.9,
+      "evidence": "rule"
+    },
+    {
+      "way": 1334351419,
+      "name": "",
+      "highway": "footway",
+      "e": 568071.8,
+      "n": 6494237.1,
+      "evidence": "rule"
+    },
+    {
+      "way": 1354383920,
+      "name": "Skvallertorget",
+      "highway": "pedestrian",
+      "e": 568484,
+      "n": 6495053.6,
+      "evidence": "rule"
+    },
+    {
+      "way": 1354383920,
+      "name": "Skvallertorget",
+      "highway": "pedestrian",
+      "e": 568526.4,
+      "n": 6495069.9,
+      "evidence": "rule"
+    },
+    {
+      "way": 1354383920,
+      "name": "Skvallertorget",
+      "highway": "pedestrian",
+      "e": 568539.3,
+      "n": 6495055.6,
+      "evidence": "rule"
+    },
+    {
+      "way": 1354383920,
+      "name": "Skvallertorget",
+      "highway": "pedestrian",
+      "e": 568524.5,
+      "n": 6495029.6,
+      "evidence": "rule"
+    },
+    {
+      "way": 1354383920,
+      "name": "Skvallertorget",
+      "highway": "pedestrian",
+      "e": 568490.2,
+      "n": 6495028.9,
+      "evidence": "rule"
+    },
+    {
+      "way": 1421745789,
+      "name": "",
+      "highway": "residential",
+      "e": 568097.3,
+      "n": 6494453.6,
+      "evidence": "rule"
+    },
+    {
+      "way": 1421745789,
+      "name": "",
+      "highway": "residential",
+      "e": 568094.8,
+      "n": 6494432.6,
+      "evidence": "rule"
+    }
+  ],
+  "districts": [
+    {
+      "name": "Berget",
+      "place": "suburb",
+      "km": 18.1,
+      "litKm": 13.8,
+      "litShare": 0.761,
+      "tagKm": 7.6,
+      "gapKm": 0,
+      "ruleKm": 6.2,
+      "tatortKm": 18.1,
+      "stations": 417,
+      "existingFixtures": 25
+    },
+    {
+      "name": "Björkalund",
+      "place": "suburb",
+      "km": 23.4,
+      "litKm": 12.9,
+      "litShare": 0.549,
+      "tagKm": 6.2,
+      "gapKm": 0,
+      "ruleKm": 6.6,
+      "tatortKm": 14.7,
+      "stations": 284,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Brånnestad",
+      "place": "suburb",
+      "km": 16.2,
+      "litKm": 9,
+      "litShare": 0.554,
+      "tagKm": 2.9,
+      "gapKm": 0,
+      "ruleKm": 6.1,
+      "tatortKm": 10.1,
+      "stations": 323,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Butängen",
+      "place": "suburb",
+      "km": 25.1,
+      "litKm": 17.8,
+      "litShare": 0.709,
+      "tagKm": 11.2,
+      "gapKm": 0,
+      "ruleKm": 6.5,
+      "tatortKm": 25.1,
+      "stations": 501,
+      "existingFixtures": 10
+    },
+    {
+      "name": "Ektorp",
+      "place": "suburb",
+      "km": 23.9,
+      "litKm": 17.6,
+      "litShare": 0.738,
+      "tagKm": 2.7,
+      "gapKm": 0,
+      "ruleKm": 14.9,
+      "tatortKm": 23.9,
+      "stations": 650,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Enebymo",
+      "place": "suburb",
+      "km": 12.7,
+      "litKm": 9.6,
+      "litShare": 0.759,
+      "tagKm": 7.2,
+      "gapKm": 0,
+      "ruleKm": 2.4,
+      "tatortKm": 12.7,
+      "stations": 299,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Fyrby",
+      "place": "neighbourhood",
+      "km": 15,
+      "litKm": 7.1,
+      "litShare": 0.473,
+      "tagKm": 0.1,
+      "gapKm": 0,
+      "ruleKm": 6.9,
+      "tatortKm": 9.4,
+      "stations": 203,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Gamla Staden",
+      "place": "suburb",
+      "km": 16.3,
+      "litKm": 14.2,
+      "litShare": 0.871,
+      "tagKm": 8.8,
+      "gapKm": 0,
+      "ruleKm": 5.4,
+      "tatortKm": 16.3,
+      "stations": 420,
+      "existingFixtures": 22
+    },
+    {
+      "name": "Grönhög",
+      "place": "suburb",
+      "km": 16.1,
+      "litKm": 9,
+      "litShare": 0.561,
+      "tagKm": 5.7,
+      "gapKm": 0,
+      "ruleKm": 3.3,
+      "tatortKm": 13.8,
+      "stations": 305,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Haga",
+      "place": "suburb",
+      "km": 21.1,
+      "litKm": 14.6,
+      "litShare": 0.694,
+      "tagKm": 5.2,
+      "gapKm": 0,
+      "ruleKm": 9.4,
+      "tatortKm": 21.1,
+      "stations": 446,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Hageby",
+      "place": "suburb",
+      "km": 51,
+      "litKm": 28.4,
+      "litShare": 0.558,
+      "tagKm": 5.1,
+      "gapKm": 0,
+      "ruleKm": 23.3,
+      "tatortKm": 46.8,
+      "stations": 1060,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Hagsätter",
+      "place": "neighbourhood",
+      "km": 57.9,
+      "litKm": 9.3,
+      "litShare": 0.161,
+      "tagKm": 0,
+      "gapKm": 0,
+      "ruleKm": 9.3,
+      "tatortKm": 13.6,
+      "stations": 332,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Hallberga",
+      "place": "neighbourhood",
+      "km": 12.1,
+      "litKm": 6.5,
+      "litShare": 0.536,
+      "tagKm": 5.1,
+      "gapKm": 0,
+      "ruleKm": 1.3,
+      "tatortKm": 9.3,
+      "stations": 220,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Himmelstalund",
+      "place": "suburb",
+      "km": 30.1,
+      "litKm": 8,
+      "litShare": 0.267,
+      "tagKm": 2.2,
+      "gapKm": 0,
+      "ruleKm": 5.9,
+      "tatortKm": 18.7,
+      "stations": 346,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Ingelsta",
+      "place": "suburb",
+      "km": 159.9,
+      "litKm": 42.5,
+      "litShare": 0.266,
+      "tagKm": 20.9,
+      "gapKm": 0.3,
+      "ruleKm": 21.3,
+      "tatortKm": 64.8,
+      "stations": 1186,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Karlshov",
+      "place": "neighbourhood",
+      "km": 9.6,
+      "litKm": 6.7,
+      "litShare": 0.697,
+      "tagKm": 3.2,
+      "gapKm": 0,
+      "ruleKm": 3.5,
+      "tatortKm": 9.6,
+      "stations": 221,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Klingsberg",
+      "place": "suburb",
+      "km": 21.2,
+      "litKm": 13.9,
+      "litShare": 0.655,
+      "tagKm": 5.7,
+      "gapKm": 0,
+      "ruleKm": 8.1,
+      "tatortKm": 18.9,
+      "stations": 422,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Klockaretorpet",
+      "place": "suburb",
+      "km": 174.4,
+      "litKm": 51.8,
+      "litShare": 0.297,
+      "tagKm": 12.1,
+      "gapKm": 0.1,
+      "ruleKm": 39.6,
+      "tatortKm": 61.5,
+      "stations": 1815,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Kneippen",
+      "place": "suburb",
+      "km": 47.3,
+      "litKm": 36,
+      "litShare": 0.762,
+      "tagKm": 17.8,
+      "gapKm": 0,
+      "ruleKm": 18.2,
+      "tatortKm": 47.2,
+      "stations": 965,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Kärrhagen",
+      "place": "suburb",
+      "km": 9,
+      "litKm": 5.7,
+      "litShare": 0.63,
+      "tagKm": 2.2,
+      "gapKm": 0,
+      "ruleKm": 3.5,
+      "tatortKm": 7.7,
+      "stations": 219,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Kättsätter",
+      "place": "suburb",
+      "km": 29.4,
+      "litKm": 5.1,
+      "litShare": 0.172,
+      "tagKm": 2.6,
+      "gapKm": 0,
+      "ruleKm": 2.5,
+      "tatortKm": 9.4,
+      "stations": 219,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Lagerlunda",
+      "place": "suburb",
+      "km": 19.1,
+      "litKm": 14.2,
+      "litShare": 0.747,
+      "tagKm": 4.9,
+      "gapKm": 0,
+      "ruleKm": 9.3,
+      "tatortKm": 19.1,
+      "stations": 448,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Ljura",
+      "place": "suburb",
+      "km": 36.2,
+      "litKm": 24,
+      "litShare": 0.663,
+      "tagKm": 8.4,
+      "gapKm": 0,
+      "ruleKm": 15.6,
+      "tatortKm": 36.2,
+      "stations": 691,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Marby",
+      "place": "neighbourhood",
+      "km": 32.2,
+      "litKm": 6.5,
+      "litShare": 0.203,
+      "tagKm": 1.2,
+      "gapKm": 0,
+      "ruleKm": 5.3,
+      "tatortKm": 8.6,
+      "stations": 199,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Marbystrand",
+      "place": "neighbourhood",
+      "km": 53.3,
+      "litKm": 31,
+      "litShare": 0.582,
+      "tagKm": 9.6,
+      "gapKm": 0,
+      "ruleKm": 21.4,
+      "tatortKm": 39.4,
+      "stations": 1145,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Marielund",
+      "place": "suburb",
+      "km": 30.3,
+      "litKm": 23.9,
+      "litShare": 0.79,
+      "tagKm": 5.6,
+      "gapKm": 0,
+      "ruleKm": 18.4,
+      "tatortKm": 30.3,
+      "stations": 786,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Navestad",
+      "place": "suburb",
+      "km": 40.5,
+      "litKm": 22.3,
+      "litShare": 0.551,
+      "tagKm": 3.1,
+      "gapKm": 0,
+      "ruleKm": 19.2,
+      "tatortKm": 29.8,
+      "stations": 833,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Nordantill",
+      "place": "suburb",
+      "km": 24.5,
+      "litKm": 20.2,
+      "litShare": 0.823,
+      "tagKm": 13.3,
+      "gapKm": 0.2,
+      "ruleKm": 6.6,
+      "tatortKm": 24.5,
+      "stations": 427,
+      "existingFixtures": 200
+    },
+    {
+      "name": "Oxelbergen",
+      "place": "suburb",
+      "km": 21.6,
+      "litKm": 17,
+      "litShare": 0.786,
+      "tagKm": 3.1,
+      "gapKm": 0,
+      "ruleKm": 13.8,
+      "tatortKm": 21.6,
+      "stations": 524,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Pryssgården",
+      "place": "suburb",
+      "km": 52.4,
+      "litKm": 25.3,
+      "litShare": 0.483,
+      "tagKm": 12,
+      "gapKm": 0,
+      "ruleKm": 13.3,
+      "tatortKm": 29.8,
+      "stations": 711,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Rambodal",
+      "place": "suburb",
+      "km": 52.4,
+      "litKm": 23.7,
+      "litShare": 0.453,
+      "tagKm": 2.3,
+      "gapKm": 0,
+      "ruleKm": 21.4,
+      "tatortKm": 30.9,
+      "stations": 828,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Risängen",
+      "place": "suburb",
+      "km": 57.4,
+      "litKm": 23.5,
+      "litShare": 0.41,
+      "tagKm": 5.7,
+      "gapKm": 0,
+      "ruleKm": 17.9,
+      "tatortKm": 34.3,
+      "stations": 763,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Saltängen",
+      "place": "suburb",
+      "km": 16.8,
+      "litKm": 12.6,
+      "litShare": 0.749,
+      "tagKm": 2,
+      "gapKm": 0,
+      "ruleKm": 10.6,
+      "tatortKm": 16.8,
+      "stations": 435,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Skarphagen",
+      "place": "suburb",
+      "km": 28.2,
+      "litKm": 20.7,
+      "litShare": 0.734,
+      "tagKm": 2.3,
+      "gapKm": 0,
+      "ruleKm": 18.4,
+      "tatortKm": 27.8,
+      "stations": 627,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Slottshagen",
+      "place": "suburb",
+      "km": 65.3,
+      "litKm": 25.6,
+      "litShare": 0.392,
+      "tagKm": 1.5,
+      "gapKm": 0,
+      "ruleKm": 24.1,
+      "tatortKm": 44.3,
+      "stations": 932,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Smedby",
+      "place": "suburb",
+      "km": 52.2,
+      "litKm": 26.4,
+      "litShare": 0.506,
+      "tagKm": 3.7,
+      "gapKm": 0,
+      "ruleKm": 22.7,
+      "tatortKm": 42.3,
+      "stations": 837,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Sylten",
+      "place": "suburb",
+      "km": 15.8,
+      "litKm": 9.9,
+      "litShare": 0.624,
+      "tagKm": 3.5,
+      "gapKm": 0,
+      "ruleKm": 6.4,
+      "tatortKm": 14.3,
+      "stations": 294,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Såpkullen",
+      "place": "suburb",
+      "km": 20.9,
+      "litKm": 17.2,
+      "litShare": 0.823,
+      "tagKm": 2.6,
+      "gapKm": 0,
+      "ruleKm": 14.5,
+      "tatortKm": 20.9,
+      "stations": 407,
+      "existingFixtures": 16
+    },
+    {
+      "name": "Söderstaden",
+      "place": "suburb",
+      "km": 25.9,
+      "litKm": 21.5,
+      "litShare": 0.833,
+      "tagKm": 4.9,
+      "gapKm": 0,
+      "ruleKm": 16.6,
+      "tatortKm": 25.9,
+      "stations": 636,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Taborsberg",
+      "place": "neighbourhood",
+      "km": 12,
+      "litKm": 9.8,
+      "litShare": 0.812,
+      "tagKm": 2.1,
+      "gapKm": 0,
+      "ruleKm": 7.6,
+      "tatortKm": 12,
+      "stations": 273,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Tråbrunna",
+      "place": "neighbourhood",
+      "km": 55.9,
+      "litKm": 9.2,
+      "litShare": 0.165,
+      "tagKm": 0,
+      "gapKm": 0,
+      "ruleKm": 9.2,
+      "tatortKm": 10.7,
+      "stations": 327,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Vidablick",
+      "place": "neighbourhood",
+      "km": 34.3,
+      "litKm": 19.2,
+      "litShare": 0.558,
+      "tagKm": 8.4,
+      "gapKm": 0,
+      "ruleKm": 10.7,
+      "tatortKm": 34.3,
+      "stations": 632,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Vilbergen",
+      "place": "suburb",
+      "km": 30.5,
+      "litKm": 19.4,
+      "litShare": 0.634,
+      "tagKm": 8.8,
+      "gapKm": 0,
+      "ruleKm": 10.5,
+      "tatortKm": 30.5,
+      "stations": 720,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Vrinnevi",
+      "place": "suburb",
+      "km": 30.2,
+      "litKm": 3.6,
+      "litShare": 0.118,
+      "tagKm": 2.2,
+      "gapKm": 0,
+      "ruleKm": 1.4,
+      "tatortKm": 2.1,
+      "stations": 135,
+      "existingFixtures": 0
+    },
+    {
+      "name": "Östantill",
+      "place": "suburb",
+      "km": 25.7,
+      "litKm": 20.1,
+      "litShare": 0.784,
+      "tagKm": 9.9,
+      "gapKm": 0,
+      "ruleKm": 10.3,
+      "tatortKm": 25.7,
+      "stations": 578,
+      "existingFixtures": 0
+    }
+  ]
+}

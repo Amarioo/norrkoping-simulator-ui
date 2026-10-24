@@ -58,3 +58,7 @@ work/geodata/
 # Lighting Phase A3 scratch (A2 reference app, raw captures, perf runs, timings). Curated evidence is
 # in docs/lighting-phase-a3/; reusable tools are in scripts/lighting-a3/.
 /work/lighting-a3/
+
+# Lighting Phase L0 scratch (raw OSM/SCB/NASA downloads, captures, test logs). Curated evidence is in
+# docs/lighting-city-l0/; reusable tools are in scripts/lighting-city/.
+/work/lighting-city-l0/

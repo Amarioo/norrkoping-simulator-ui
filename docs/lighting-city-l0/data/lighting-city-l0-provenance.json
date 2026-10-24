@@ -1,0 +1,122 @@
+{
+  "phase": "lighting-city-l0",
+  "rule": {
+    "version": "lighting-city-v1",
+    "script": "src/lib/lighting/cityRule.ts",
+    "seed": null
+  },
+  "reproducibility": "node scripts/lighting-city/extract-source.mjs, then WRITE=1 vitest -c scripts/lighting-city/vitest.config.ts write. Same inputs and tool versions give byte-identical files (checked by write.test.ts).",
+  "tools": {
+    "node": "24.15.0",
+    "typescript": "type-stripped by vitest"
+  },
+  "coordinates": {
+    "horizontal": "EPSG:3006 SWEREF 99 TM, metres; OSM WGS84 projected with src/lib/geo/sweref99tm.js (WGS84 treated as SWEREF 99 geographic)",
+    "scene": "scene x = (E − 569030) / (25 × 0.9996584126), z = (6494989 − N) / (25 × 0.9996584126) (SCENE_REFERENCE); used only to read existing fixtures and for the capacity check",
+    "vertical": "none (2D classification)"
+  },
+  "sources": {
+    "osm": {
+      "dataset": "OpenStreetMap via Overpass API",
+      "file": "work/lighting-city-l0/raw/osm-city.json",
+      "url": "https://overpass-api.de/api/interpreter",
+      "method": "POST",
+      "query": "[out:json][timeout:300][bbox:58.555,16.065,58.65,16.295];\n(\nway[highway];\nnode[highway~\"^(street_lamp|traffic_signals|crossing)$\"];\nnode[railway=crossing];\nnode[place~\"^(suburb|quarter|neighbourhood)$\"];\n);\nout meta geom;",
+      "retrievedAt": "2026-10-24T19:52:03.038Z",
+      "osmBase": "2026-10-24T19:51:21Z",
+      "bytes": 11513315,
+      "sha256": "e28586216be2df97df7bf251a83513583a427317bad152815936dea8a6bece0b",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "accuracy": "Mapped geometry, typically metre-level in the city; tag completeness varies (measured in docs/lighting-city-l0/coverage.md). Edit timestamps are not survey dates."
+    },
+    "tatorter": {
+      "dataset": "SCB Statistiska tätorter 2023 (stat:Tatorter_2023)",
+      "file": "work/lighting-city-l0/raw/scb-tatorter-2023.json",
+      "url": "https://geodata.scb.se/geoserver/stat/wfs?service=WFS&REQUEST=GetFeature&version=1.1.0&TYPENAMES=stat:Tatorter_2023&outputFormat=application/json&srsName=EPSG:3006&bbox=561700,6490900,575460,6501900,EPSG:3006",
+      "method": "GET",
+      "retrievedAt": "2026-10-24T19:51:48.038Z",
+      "referenceDate": "2023-12-31 (validfrom; validto 2025-12-31 per feature)",
+      "bytes": 455700,
+      "sha256": "37fd1ada96cd0311b31b0d778145878046381c91bec339bce835bcb99123b44e",
+      "license": "CC0-1.0",
+      "licenseSource": "https://www.scb.se/omscbse (open statistics and geodata on SCB's geodata platform: CC0 1.0); SCB asks for the source 'Källa: SCB' and that processed data is not presented as SCB's own.",
+      "attribution": "Källa: SCB (Statistiska tätorter 2023), bearbetning: detta projekt",
+      "accuracy": "Statistical delineation of contiguous built-up areas (≥ 200 inhabitants), not a lighting boundary; native CRS EPSG:3006 (requested in EPSG:3006, no reprojection)."
+    },
+    "nightLights": {
+      "dataset": "NASA Black Marble 2016 (GIBS layer VIIRS_Black_Marble, VIIRS Day/Night Band annual composite, 500 m)",
+      "file": "work/lighting-city-l0/raw/viirs-black-marble-2016.png",
+      "url": "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=VIIRS_Black_Marble&STYLES=&CRS=EPSG:4326&FORMAT=image/png&BBOX=58.55416666666667,16.0625,58.65,16.295833333333334&WIDTH=56&HEIGHT=23&TIME=2016-01-01",
+      "method": "GET",
+      "retrievedAt": "2026-10-24T19:51:48.304Z",
+      "referenceDate": "2016 (annual composite)",
+      "bytes": 3295,
+      "sha256": "e2e9f8639b92c6936299197f17cc76b1897673a517adb1073a8d00c97d9dee70",
+      "license": "NASA imagery and data: no restriction on use (U.S. Government work); acknowledgement requested",
+      "attribution": "NASA Earth Observatory / NASA GIBS, Black Marble 2016",
+      "accuracy": "Visualised 8-bit RGB product (not calibrated radiance), one pixel = 15 arc-seconds ≈ 241 m E-W × 463 m N-S here; 2016 predates later LED retrofits. Used only as a district-level plausibility check."
+    }
+  },
+  "derivedFrom": {
+    "source": {
+      "file": "scripts/data/lighting-city-source.json",
+      "sha256": "17c822fda1a8401fd1c86a51c24a7f80dc9ee8cfd94251dd100dfdf78a4a7558"
+    },
+    "sources": {
+      "file": "scripts/lighting-city/sources.json",
+      "sha256": "64d59fb1cf52d59b3d645bb80c0f7e6d0aee3575357a1bba183ca29e870880e3"
+    },
+    "map": {
+      "file": "src/lib/data/norrkoping-map.json",
+      "sha256": "454ecbe0d86e64b366e7c3ac3f93664077d29cfe667ee44fc8950c944a77ac90"
+    },
+    "pilot": {
+      "file": "src/lib/data/streetlights.json",
+      "sha256": "3c90719f166b3ff38443d0e38848e158fdf0d373730a122015dfccd2d18a36f7"
+    },
+    "a1": {
+      "file": "src/lib/data/streetlights-a1.json",
+      "sha256": "7ea8da79d87b05637e3e2d566605ca0a5b685b3e2bca336f280e864863bd62dc"
+    },
+    "a2": {
+      "file": "src/lib/data/streetlights-a2.json",
+      "sha256": "8bb5986f9becdd5bba30976aa9a00a29c24083d45c2ab14b014763612f1ede0e"
+    },
+    "a3": {
+      "file": "src/lib/data/streetlights-a3.json",
+      "sha256": "9c2341bba411035d286ba9c825b084761993a8ef82d09a0ffeddfe967d9d5d9e"
+    },
+    "rule": {
+      "file": "src/lib/lighting/cityRule.ts",
+      "sha256": "bf93fc1ff36616ef6060867f8d2f2c4aea20fdc03c4a3fcc139404bac094b306"
+    },
+    "corridors": {
+      "file": "src/lib/lighting/corridorA1.ts",
+      "sha256": "d4eaa0d1ca002d281934f64b24bc8213138ab47d276d6c203bbd4f01fedd6f4e"
+    }
+  },
+  "outputs": {
+    "result": {
+      "file": "docs/lighting-city-l0/data/city-lighting-l0.json",
+      "sha256": "e2d0fba7f394cf56bc548bb95704326d94c8cf9349c59b10b2f6b927dd141985"
+    },
+    "stats": {
+      "file": "docs/lighting-city-l0/data/stats.json",
+      "sha256": "05b75fc5dc85e5a106837644e9b8fddb115c07e08c5c8aa961095fe91c764d4b"
+    },
+    "capacity": {
+      "file": "docs/lighting-city-l0/data/capacity.json",
+      "sha256": "e8d9e80ba227f70eb48696a000d9f9df1c104af771ace9b55adda4b4cd26a6bd"
+    },
+    "satellite": {
+      "file": "docs/lighting-city-l0/data/satellite-check.json",
+      "sha256": "0f9a75d72773dd27689668d5afc20f9a07f3c719466abf3fc42cdff0aac50867"
+    },
+    "map": {
+      "file": "docs/lighting-city-l0/lighting-map.html",
+      "sha256": "91646e4cdbd397c6d48bdc7a5d7825178ce74068c6c5d7e78bfbf049fe3c5598"
+    }
+  },
+  "estimates": "Every way lit by rule or gap fill, every station position, type and spacing, the district assignment (nearest place name) and the tätort-as-lighting-boundary assumption are estimates. Only lit=yes/no tags and street_lamp nodes are mapped source data. No municipal IDs, photometry or schedules."
+}

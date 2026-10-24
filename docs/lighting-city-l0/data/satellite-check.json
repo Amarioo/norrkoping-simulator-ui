@@ -1,0 +1,403 @@
+{
+  "note": "Black Marble 2016 (visualised 8-bit, saturates at 255 in the core) vs modelled lit centreline km per 15″ pixel inside the map clip. Percentiles are ranks among these pixels. District = nearest place name to the pixel centre.",
+  "pixels": 1265,
+  "saturatedPixels": 210,
+  "spearmanRho": 0.689,
+  "brightThreshold": 128,
+  "brightButModelDark": 124,
+  "darkButModelLit": 4,
+  "satelliteBrighterThanModel": [
+    {
+      "row": 1,
+      "col": 44,
+      "centre": [
+        572432.2,
+        6501058.1
+      ],
+      "lum": 255,
+      "litKm": 0,
+      "district": "Marbystrand",
+      "satPct": 92,
+      "modelPct": 28
+    },
+    {
+      "row": 1,
+      "col": 45,
+      "centre": [
+        572674.1,
+        6501062.6
+      ],
+      "lum": 255,
+      "litKm": 0,
+      "district": "Marbystrand",
+      "satPct": 92,
+      "modelPct": 28
+    },
+    {
+      "row": 1,
+      "col": 46,
+      "centre": [
+        572915.9,
+        6501067.1
+      ],
+      "lum": 255,
+      "litKm": 0,
+      "district": "Marbystrand",
+      "satPct": 92,
+      "modelPct": 28
+    },
+    {
+      "row": 1,
+      "col": 47,
+      "centre": [
+        573157.7,
+        6501071.7
+      ],
+      "lum": 255,
+      "litKm": 0,
+      "district": "Marbystrand",
+      "satPct": 92,
+      "modelPct": 28
+    },
+    {
+      "row": 1,
+      "col": 48,
+      "centre": [
+        573399.6,
+        6501076.2
+      ],
+      "lum": 255,
+      "litKm": 0,
+      "district": "Marbystrand",
+      "satPct": 92,
+      "modelPct": 28
+    },
+    {
+      "row": 5,
+      "col": 23,
+      "centre": [
+        567386,
+        6499111.4
+      ],
+      "lum": 255,
+      "litKm": 0,
+      "district": "Ingelsta",
+      "satPct": 92,
+      "modelPct": 28
+    },
+    {
+      "row": 5,
+      "col": 24,
+      "centre": [
+        567627.9,
+        6499115.6
+      ],
+      "lum": 255,
+      "litKm": 0,
+      "district": "Ingelsta",
+      "satPct": 92,
+      "modelPct": 28
+    },
+    {
+      "row": 8,
+      "col": 36,
+      "centre": [
+        570556.4,
+        6497775.4
+      ],
+      "lum": 255,
+      "litKm": 0,
+      "district": "Slottshagen",
+      "satPct": 92,
+      "modelPct": 28
+    },
+    {
+      "row": 10,
+      "col": 39,
+      "centre": [
+        571299.5,
+        6496860.8
+      ],
+      "lum": 255,
+      "litKm": 0,
+      "district": "Sylten",
+      "satPct": 92,
+      "modelPct": 28
+    },
+    {
+      "row": 10,
+      "col": 38,
+      "centre": [
+        571057.4,
+        6496856.4
+      ],
+      "lum": 249.6,
+      "litKm": 0,
+      "district": "Slottshagen",
+      "satPct": 82,
+      "modelPct": 28
+    },
+    {
+      "row": 21,
+      "col": 41,
+      "centre": [
+        571877.5,
+        6491767
+      ],
+      "lum": 249.9,
+      "litKm": 0,
+      "district": "Brånnestad",
+      "satPct": 82,
+      "modelPct": 28
+    },
+    {
+      "row": 3,
+      "col": 40,
+      "centre": [
+        571482,
+        6500112.5
+      ],
+      "lum": 249.4,
+      "litKm": 0,
+      "district": "Slottshagen",
+      "satPct": 81,
+      "modelPct": 28
+    },
+    {
+      "row": 5,
+      "col": 20,
+      "centre": [
+        566660.1,
+        6499098.9
+      ],
+      "lum": 247.1,
+      "litKm": 0,
+      "district": "Ingelsta",
+      "satPct": 81,
+      "modelPct": 28
+    },
+    {
+      "row": 3,
+      "col": 41,
+      "centre": [
+        571723.9,
+        6500116.9
+      ],
+      "lum": 241.5,
+      "litKm": 0,
+      "district": "Slottshagen",
+      "satPct": 80,
+      "modelPct": 28
+    },
+    {
+      "row": 19,
+      "col": 2,
+      "centre": [
+        562408.9,
+        6492532.3
+      ],
+      "lum": 241.3,
+      "litKm": 0,
+      "district": "Klockaretorpet",
+      "satPct": 80,
+      "modelPct": 28
+    }
+  ],
+  "modelBrighterThanSatellite": [
+    {
+      "row": 13,
+      "col": 3,
+      "centre": [
+        562606.6,
+        6495319.6
+      ],
+      "lum": 25.8,
+      "litKm": 1.663,
+      "district": "Pryssgården",
+      "satPct": 6,
+      "modelPct": 84
+    },
+    {
+      "row": 13,
+      "col": 2,
+      "centre": [
+        562364.4,
+        6495315.7
+      ],
+      "lum": 22.3,
+      "litKm": 0.789,
+      "district": "Tråbrunna",
+      "satPct": 4,
+      "modelPct": 74
+    },
+    {
+      "row": 0,
+      "col": 7,
+      "centre": [
+        563477,
+        6501365.8
+      ],
+      "lum": 24.8,
+      "litKm": 0.763,
+      "district": "Hagsätter",
+      "satPct": 5,
+      "modelPct": 74
+    },
+    {
+      "row": 10,
+      "col": 54,
+      "centre": [
+        574930.7,
+        6496928.9
+      ],
+      "lum": 34.9,
+      "litKm": 1.232,
+      "district": "Marbystrand",
+      "satPct": 12,
+      "modelPct": 80
+    },
+    {
+      "row": 13,
+      "col": 4,
+      "centre": [
+        562848.8,
+        6495323.4
+      ],
+      "lum": 27.7,
+      "litKm": 0.849,
+      "district": "Pryssgården",
+      "satPct": 7,
+      "modelPct": 75
+    },
+    {
+      "row": 2,
+      "col": 9,
+      "centre": [
+        563975.8,
+        6500446
+      ],
+      "lum": 35.6,
+      "litKm": 1.16,
+      "district": "Hagsätter",
+      "satPct": 12,
+      "modelPct": 79
+    },
+    {
+      "row": 1,
+      "col": 8,
+      "centre": [
+        563726.4,
+        6500905.9
+      ],
+      "lum": 30.8,
+      "litKm": 0.848,
+      "district": "Hagsätter",
+      "satPct": 9,
+      "modelPct": 75
+    },
+    {
+      "row": 3,
+      "col": 9,
+      "centre": [
+        563983.5,
+        6499982.1
+      ],
+      "lum": 38.8,
+      "litKm": 1.062,
+      "district": "Hagsätter",
+      "satPct": 15,
+      "modelPct": 78
+    },
+    {
+      "row": 14,
+      "col": 3,
+      "centre": [
+        562614,
+        6494855.7
+      ],
+      "lum": 29.2,
+      "litKm": 0.505,
+      "district": "Klockaretorpet",
+      "satPct": 8,
+      "modelPct": 71
+    },
+    {
+      "row": 14,
+      "col": 5,
+      "centre": [
+        563098.4,
+        6494863.5
+      ],
+      "lum": 35,
+      "litKm": 0.84,
+      "district": "Klockaretorpet",
+      "satPct": 12,
+      "modelPct": 75
+    },
+    {
+      "row": 14,
+      "col": 4,
+      "centre": [
+        562856.2,
+        6494859.6
+      ],
+      "lum": 32.2,
+      "litKm": 0.649,
+      "district": "Klockaretorpet",
+      "satPct": 10,
+      "modelPct": 72
+    },
+    {
+      "row": 16,
+      "col": 55,
+      "centre": [
+        575226.5,
+        6494150.3
+      ],
+      "lum": 35.1,
+      "litKm": 0.788,
+      "district": "Marby",
+      "satPct": 12,
+      "modelPct": 74
+    },
+    {
+      "row": 0,
+      "col": 2,
+      "centre": [
+        562268,
+        6501346.3
+      ],
+      "lum": 17,
+      "litKm": 0.14,
+      "district": "Hagsätter",
+      "satPct": 1,
+      "modelPct": 62
+    },
+    {
+      "row": 1,
+      "col": 5,
+      "centre": [
+        563000.9,
+        6500894.1
+      ],
+      "lum": 20.5,
+      "litKm": 0.25,
+      "district": "Hagsätter",
+      "satPct": 3,
+      "modelPct": 64
+    },
+    {
+      "row": 2,
+      "col": 10,
+      "centre": [
+        564217.7,
+        6500449.9
+      ],
+      "lum": 40.8,
+      "litKm": 0.996,
+      "district": "Hagsätter",
+      "satPct": 16,
+      "modelPct": 77
+    }
+  ]
+}

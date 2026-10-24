@@ -53,3 +53,13 @@ Steg 5.1 (2026-10-19): vägytan och spårbädden i de riktade lapparna (terrain.
 `scripts/data/norrkoping-lighting-source.json` (street-lamp nodes, entrance nodes and highway ways with their `lit`/`sidewalk`/`width` tags in the three pilot areas), `src/lib/data/streetlights.json` and `src/lib/data/streetlights-provenance.json` are derived from © OpenStreetMap contributors, ODbL 1.0, retrieved through the Overpass API on 2026-10-21 (queries and `osmBase` timestamps in the files). Mapped lamp positions are OSM positions, not surveys. Estimated fixtures, fixture types and photometry are this project's approximations; see `docs/step6/lighting-data.md`. No Norrköping municipal lighting dataset was found to be published (checked 2026-10-21).
 
 Idrottsparken heights and floodlight-mast positions (`src/lib/stadium/spec.ts`) are derived from Lantmäteriet Laserdata NH 2020 (tile 64925_5675), ©Lantmäteriet, CC BY 4.0, processed with `scripts/geo/stadium_lidar.py`; the footprint is © OpenStreetMap contributors (relation 1440621 and its parts), ODbL 1.0. Wikimedia Commons photographs (Nyaparken.jpg, Nya_Parken.jpg, Football_at_parken.JPG, Peking_fanz.jpg, GAIS efter IFK Norrköping 2025-05-31.jpg, Ove Kindvalls hedersläktare.jpg; CC BY-SA 3.0, CC BY 3.0 and CC0, authors listed in `docs/step6/stadium-references.md`) were inspected as references only; no photograph or texture is embedded or redistributed. The stadium model, its colours and the turf markings are original procedural work.
+
+## Lighting Phase L0 (2026-10-24): citywide lighting map
+
+`scripts/data/lighting-city-source.json` and the files under `docs/lighting-city-l0/` (classification, statistics, capacity and satellite checks, `lighting-map.html`) contain:
+
+- data from **© OpenStreetMap contributors**, ODbL 1.0 (every `highway` way, street-lamp, signal, crossing and place nodes in the map box; Overpass, OSM base 2026-10-24T19:51:21Z). These files are adapted databases under ODbL 1.0.
+- **SCB Statistiska tätorter 2023**, CC0 1.0 (SCB open geodata, https://www.scb.se/omscbse). Källa: SCB, bearbetad av detta projekt; the processed result is not SCB's.
+- pixel values of **NASA Black Marble 2016** (NASA GIBS, layer `VIIRS_Black_Marble`), no use restriction; courtesy of NASA. Used only as a plausibility check.
+
+Lit/dark decisions "by rule" follow the text of Norrköping's *Riktlinje för belysning* (2023-06-07); the document itself is not redistributed. Lamp positions are estimates (see `docs/lighting-city-l0/data-provenance.md`).

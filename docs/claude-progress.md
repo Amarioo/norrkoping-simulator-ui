@@ -2,6 +2,53 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Lighting Phase L0 — citywide lighting map, rule `lighting-city-v1` (2026-10-24) — implemented, for review
+
+[Full report](lighting-city-l0/README.md) · map: `node scripts/lighting-city/serve-map.mjs` →
+http://127.0.0.1:5195/. Branch `codex/lighting-phase-a2`. **Nothing committed, pushed or merged.** No
+runtime/app change; earlier fixtures, extracts and evidence unchanged (`git diff` empty for them).
+
+- **Decisions** (roadmap §6, user chose the recommendations): untagged streets in an SCB tätort lit;
+  paths lit beside streets / in residential areas, dark in forest, unpaved or simple paths; gap fill
+  between lit pieces (lights Norrtull); lighter review; SCB 2023 tätorter (CC0).
+- **Sources** (new snapshot, pinned in `scripts/lighting-city/sources.json`): OSM base
+  2026-10-24T19:51:21Z (all highway ways + signals/crossings/lamps/places, SHA `e2858621…`); SCB
+  Tatorter_2023 (SHA `37fd1ada…`); NASA Black Marble 2016 via GIBS (SHA `e2e9f863…`). Raw in ignored
+  `work/lighting-city-l0/raw/`; committed extract `scripts/data/lighting-city-source.json` (3.3 MB).
+- **Result inside the map:** 12 246 ways; lit 784 km, partly 18.6 km, dark 820 km of 1 623 km. Lit by
+  evidence: tag 256 km, gap 0.8 km, rule 529 km. Norrtull's three pieces lit by gap fill.
+- **Preliminary stations:** 25 041 (8 000 tag, 18 gap, 17 023 rule; 4 386 × 8 m, 12 218 × 6 m, 8 437
+  lanterns); 326 inside A1–A3/pilot zones not placed, of which 71 empty slots (Norrtull 2, Matchgatan
+  11, Skvallertorget 5, Tyska torget 3 …) → L2 seam work.
+- **Capacity (L1 input):** with the real `lightIndex`, 18 cells > 16 lamps (max 23), all from L0
+  stations; atlas 5.2 MB.
+- **Satellite:** Spearman ρ 0.69 over 1 265 pixels; largest misses = privately lit port/industry/retail
+  (Marbystrand/Lindö, Ingelsta, Slottshagen, Sylten), left dark on purpose (`dark-private-service`).
+- **Reproducible:** build ≈ 1 s, byte-identical twice (write.test.ts) and checked in the main suite.
+- **Checks:** type check 0 errors; build OK; Vitest 391/391 (+11 new); L0 harness byte-identical;
+  Playwright first full run 7/9 (A3 frame-equality + known `simulation.spec.ts` baseline), both passed
+  alone, second full run 9/9. No runtime change, so no app screenshots or perf run; map verified in browser.
+- **Local only:** `.claude/launch.json` + `l0-map` (original in `work/lighting-city-l0/launch.json.before`);
+  `.gitignore` + `/work/lighting-city-l0/`.
+
+## Roadmap — whole-city lighting and the rest of the vision (2026-10-24) — plan only, for review
+
+[docs/roadmap.md](roadmap.md) (Swedish checklist). No code or data changed. A3 is committed as `53468b0`
+(the A3 entry below predates that commit).
+
+- **Change of method proposed:** stop hand-drawn corridors; one rule-based generator for the whole map
+  (`lighting-city-v1`), reviewed on a citywide 2D lighting map before any 3D work.
+- **Measured:** only ≈ 14 % of the ≈ 1 800 km in the map has `lit=yes` (2 % `lit=no`, 84 % untagged);
+  residential streets 31 % `lit=yes`. Rough citywide need ≈ 17 000 (streets) – 29 000 (with paths)
+  fixtures vs 273 today (estimate, building-proximity proxy for built-up area, assumed spacing).
+- **Rule source:** Norrköping's *Riktlinje för belysning* (2023-06-07) §2.4.1: street lighting mainly in
+  built-up areas; roundabouts, crossings and signalised junctions always lit; park paths may stay dark.
+  Check source: NASA Black Marble VNP46A4 (district-level only).
+- **Stages:** L0 lighting map → L1 scalable renderer → L2a–c rollout → vehicle lights → town hall,
+  police, runway, aircraft, churches, fuel, trams/trains → Vrinnevi vegetation and lit trail.
+- **Open decisions** (roadmap §6): rule for untagged streets/paths, gap-fill (would light Norrtull,
+  reversing the A2/A3 decision), lighter review, built-up boundary source.
+
 ## Lighting Phase A3 — rest of the Kungstorget ring; Norrtull kept unlit (2026-10-24) — implemented, for review
 
 [Full report](lighting-phase-a3/README.md). Branch `codex/lighting-phase-a2` (UI). Before A3, with

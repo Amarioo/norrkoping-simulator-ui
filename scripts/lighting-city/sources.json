@@ -1,0 +1,46 @@
+{
+  "note": "Pinned raw inputs of Lighting Phase L0. The raw files live in ignored scratch (work/lighting-city-l0/raw/); extract-source.mjs refuses any file whose SHA-256 differs. A re-download is a NEW snapshot and needs a new entry.",
+  "sources": {
+    "osm": {
+      "dataset": "OpenStreetMap via Overpass API",
+      "file": "work/lighting-city-l0/raw/osm-city.json",
+      "url": "https://overpass-api.de/api/interpreter",
+      "method": "POST",
+      "query": "[out:json][timeout:300][bbox:58.555,16.065,58.65,16.295];\n(\nway[highway];\nnode[highway~\"^(street_lamp|traffic_signals|crossing)$\"];\nnode[railway=crossing];\nnode[place~\"^(suburb|quarter|neighbourhood)$\"];\n);\nout meta geom;",
+      "retrievedAt": "2026-10-24T19:52:03.038Z",
+      "osmBase": "2026-10-24T19:51:21Z",
+      "bytes": 11513315,
+      "sha256": "e28586216be2df97df7bf251a83513583a427317bad152815936dea8a6bece0b",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "accuracy": "Mapped geometry, typically metre-level in the city; tag completeness varies (measured in docs/lighting-city-l0/coverage.md). Edit timestamps are not survey dates."
+    },
+    "tatorter": {
+      "dataset": "SCB Statistiska tätorter 2023 (stat:Tatorter_2023)",
+      "file": "work/lighting-city-l0/raw/scb-tatorter-2023.json",
+      "url": "https://geodata.scb.se/geoserver/stat/wfs?service=WFS&REQUEST=GetFeature&version=1.1.0&TYPENAMES=stat:Tatorter_2023&outputFormat=application/json&srsName=EPSG:3006&bbox=561700,6490900,575460,6501900,EPSG:3006",
+      "method": "GET",
+      "retrievedAt": "2026-10-24T19:51:48.038Z",
+      "referenceDate": "2023-12-31 (validfrom; validto 2025-12-31 per feature)",
+      "bytes": 455700,
+      "sha256": "37fd1ada96cd0311b31b0d778145878046381c91bec339bce835bcb99123b44e",
+      "license": "CC0-1.0",
+      "licenseSource": "https://www.scb.se/omscbse (open statistics and geodata on SCB's geodata platform: CC0 1.0); SCB asks for the source 'Källa: SCB' and that processed data is not presented as SCB's own.",
+      "attribution": "Källa: SCB (Statistiska tätorter 2023), bearbetning: detta projekt",
+      "accuracy": "Statistical delineation of contiguous built-up areas (≥ 200 inhabitants), not a lighting boundary; native CRS EPSG:3006 (requested in EPSG:3006, no reprojection)."
+    },
+    "nightLights": {
+      "dataset": "NASA Black Marble 2016 (GIBS layer VIIRS_Black_Marble, VIIRS Day/Night Band annual composite, 500 m)",
+      "file": "work/lighting-city-l0/raw/viirs-black-marble-2016.png",
+      "url": "https://gibs.earthdata.nasa.gov/wms/epsg4326/best/wms.cgi?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&LAYERS=VIIRS_Black_Marble&STYLES=&CRS=EPSG:4326&FORMAT=image/png&BBOX=58.55416666666667,16.0625,58.65,16.295833333333334&WIDTH=56&HEIGHT=23&TIME=2016-01-01",
+      "method": "GET",
+      "retrievedAt": "2026-10-24T19:51:48.304Z",
+      "referenceDate": "2016 (annual composite)",
+      "bytes": 3295,
+      "sha256": "e2e9f8639b92c6936299197f17cc76b1897673a517adb1073a8d00c97d9dee70",
+      "license": "NASA imagery and data: no restriction on use (U.S. Government work); acknowledgement requested",
+      "attribution": "NASA Earth Observatory / NASA GIBS, Black Marble 2016",
+      "accuracy": "Visualised 8-bit RGB product (not calibrated radiance), one pixel = 15 arc-seconds ≈ 241 m E-W × 463 m N-S here; 2016 predates later LED retrofits. Used only as a district-level plausibility check."
+    }
+  }
+}

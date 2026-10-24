@@ -1,0 +1,372 @@
+{
+  "note": "Preliminary L0 stations (centreline) + the 273 existing fixtures through src/lib/lighting/lightIndex.ts (25 m cells, 16 slots). Input for Phase L1, not a runtime build.",
+  "ok": false,
+  "errors": [
+    "18 cell(s) exceed 16 contributing lamps (max 23); no dropping policy is approved"
+  ],
+  "lamps": 25314,
+  "stats": {
+    "cellEntries": 182750,
+    "nonEmptyCells": 49090,
+    "maxRawOccupancy": 23,
+    "overflowCells": 18,
+    "pages": 4418,
+    "payloadBytes": 5242880,
+    "directoryBytes": 59184,
+    "denseEquivalentBytes": 14866432
+  },
+  "histogram": [
+    {
+      "contributors": 1,
+      "cells": 5632
+    },
+    {
+      "contributors": 2,
+      "cells": 9940
+    },
+    {
+      "contributors": 3,
+      "cells": 12416
+    },
+    {
+      "contributors": 4,
+      "cells": 6934
+    },
+    {
+      "contributors": 5,
+      "cells": 5269
+    },
+    {
+      "contributors": 6,
+      "cells": 3818
+    },
+    {
+      "contributors": 7,
+      "cells": 1922
+    },
+    {
+      "contributors": 8,
+      "cells": 1298
+    },
+    {
+      "contributors": 9,
+      "cells": 800
+    },
+    {
+      "contributors": 10,
+      "cells": 454
+    },
+    {
+      "contributors": 11,
+      "cells": 269
+    },
+    {
+      "contributors": 12,
+      "cells": 164
+    },
+    {
+      "contributors": 13,
+      "cells": 74
+    },
+    {
+      "contributors": 14,
+      "cells": 42
+    },
+    {
+      "contributors": 15,
+      "cells": 27
+    },
+    {
+      "contributors": 16,
+      "cells": 13
+    },
+    {
+      "contributors": 17,
+      "cells": 7
+    },
+    {
+      "contributors": 18,
+      "cells": 4
+    },
+    {
+      "contributors": 19,
+      "cells": 3
+    },
+    {
+      "contributors": 20,
+      "cells": 2
+    },
+    {
+      "contributors": 22,
+      "cells": 1
+    },
+    {
+      "contributors": 23,
+      "cells": 1
+    }
+  ],
+  "conflictCount": 18,
+  "conflictsReported": 18,
+  "conflictsByDistrict": [
+    [
+      "Östantill",
+      7
+    ],
+    [
+      "Ljura",
+      4
+    ],
+    [
+      "Söderstaden",
+      4
+    ],
+    [
+      "Hageby",
+      1
+    ],
+    [
+      "Navestad",
+      1
+    ],
+    [
+      "Saltängen",
+      1
+    ]
+  ],
+  "conflicts": [
+    {
+      "cell": [
+        9,
+        -33
+      ],
+      "centreEN": [
+        569267.4,
+        6495801.2
+      ],
+      "district": "Saltängen",
+      "contributors": 17,
+      "existing": 0
+    },
+    {
+      "cell": [
+        8,
+        -10
+      ],
+      "centreEN": [
+        569242.4,
+        6495226.4
+      ],
+      "district": "Östantill",
+      "contributors": 18,
+      "existing": 0
+    },
+    {
+      "cell": [
+        9,
+        -10
+      ],
+      "centreEN": [
+        569267.4,
+        6495226.4
+      ],
+      "district": "Östantill",
+      "contributors": 18,
+      "existing": 0
+    },
+    {
+      "cell": [
+        8,
+        -9
+      ],
+      "centreEN": [
+        569242.4,
+        6495201.4
+      ],
+      "district": "Östantill",
+      "contributors": 20,
+      "existing": 0
+    },
+    {
+      "cell": [
+        9,
+        -9
+      ],
+      "centreEN": [
+        569267.4,
+        6495201.4
+      ],
+      "district": "Östantill",
+      "contributors": 22,
+      "existing": 0
+    },
+    {
+      "cell": [
+        10,
+        -9
+      ],
+      "centreEN": [
+        569292.4,
+        6495201.4
+      ],
+      "district": "Östantill",
+      "contributors": 17,
+      "existing": 0
+    },
+    {
+      "cell": [
+        8,
+        -8
+      ],
+      "centreEN": [
+        569242.4,
+        6495176.4
+      ],
+      "district": "Östantill",
+      "contributors": 19,
+      "existing": 0
+    },
+    {
+      "cell": [
+        9,
+        -8
+      ],
+      "centreEN": [
+        569267.4,
+        6495176.4
+      ],
+      "district": "Östantill",
+      "contributors": 18,
+      "existing": 0
+    },
+    {
+      "cell": [
+        7,
+        28
+      ],
+      "centreEN": [
+        569217.4,
+        6494276.7
+      ],
+      "district": "Söderstaden",
+      "contributors": 17,
+      "existing": 0
+    },
+    {
+      "cell": [
+        2,
+        32
+      ],
+      "centreEN": [
+        569092.5,
+        6494176.8
+      ],
+      "district": "Söderstaden",
+      "contributors": 19,
+      "existing": 0
+    },
+    {
+      "cell": [
+        2,
+        33
+      ],
+      "centreEN": [
+        569092.5,
+        6494151.8
+      ],
+      "district": "Söderstaden",
+      "contributors": 20,
+      "existing": 0
+    },
+    {
+      "cell": [
+        3,
+        33
+      ],
+      "centreEN": [
+        569117.5,
+        6494151.8
+      ],
+      "district": "Söderstaden",
+      "contributors": 19,
+      "existing": 0
+    },
+    {
+      "cell": [
+        21,
+        54
+      ],
+      "centreEN": [
+        569567.3,
+        6493627
+      ],
+      "district": "Ljura",
+      "contributors": 17,
+      "existing": 0
+    },
+    {
+      "cell": [
+        20,
+        55
+      ],
+      "centreEN": [
+        569542.3,
+        6493602
+      ],
+      "district": "Ljura",
+      "contributors": 23,
+      "existing": 0
+    },
+    {
+      "cell": [
+        21,
+        55
+      ],
+      "centreEN": [
+        569567.3,
+        6493602
+      ],
+      "district": "Ljura",
+      "contributors": 17,
+      "existing": 0
+    },
+    {
+      "cell": [
+        19,
+        56
+      ],
+      "centreEN": [
+        569517.3,
+        6493577
+      ],
+      "district": "Ljura",
+      "contributors": 17,
+      "existing": 0
+    },
+    {
+      "cell": [
+        61,
+        68
+      ],
+      "centreEN": [
+        570567,
+        6493277.1
+      ],
+      "district": "Hageby",
+      "contributors": 17,
+      "existing": 0
+    },
+    {
+      "cell": [
+        76,
+        105
+      ],
+      "centreEN": [
+        570941.8,
+        6492352.4
+      ],
+      "district": "Navestad",
+      "contributors": 18,
+      "existing": 0
+    }
+  ]
+}
