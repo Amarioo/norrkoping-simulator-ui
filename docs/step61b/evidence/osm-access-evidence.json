@@ -302,7 +302,7 @@
    "id": 415363780,
    "version": 2,
    "timestamp": "2021-11-15T11:49:04Z",
-   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "retrievedAt": "2026-10-24T10:43:42.321Z",
    "tags": {
     "highway": "service",
     "surface": "asphalt"
@@ -312,7 +312,7 @@
    "id": 4498924,
    "version": 2,
    "timestamp": "2011-01-19T19:04:47Z",
-   "retrievedAt": "2026-10-24T08:55:36.877Z",
+   "retrievedAt": "2026-10-24T10:43:42.318Z",
    "tags": {
     "highway": "service"
    }
@@ -352,7 +352,7 @@
    "id": 91258087,
    "version": 1,
    "timestamp": "2010-12-23T15:07:24Z",
-   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "retrievedAt": "2026-10-24T10:43:42.321Z",
    "tags": {
     "highway": "service"
    }
@@ -373,7 +373,7 @@
    "id": 93320320,
    "version": 4,
    "timestamp": "2022-09-07T16:18:36Z",
-   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "retrievedAt": "2026-10-24T10:43:42.321Z",
    "tags": {
     "highway": "service",
     "maxspeed": "40"
@@ -392,7 +392,7 @@
    "id": 145173981,
    "version": 4,
    "timestamp": "2022-10-18T07:45:19Z",
-   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "retrievedAt": "2026-10-24T10:43:42.321Z",
    "tags": {
     "highway": "service",
     "surface": "asphalt"
@@ -413,7 +413,7 @@
    "id": 94953983,
    "version": 2,
    "timestamp": "2022-05-12T13:31:51Z",
-   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "retrievedAt": "2026-10-24T10:43:42.321Z",
    "tags": {
     "highway": "service"
    }
@@ -431,7 +431,7 @@
    "id": 95557922,
    "version": 6,
    "timestamp": "2023-10-30T10:09:23Z",
-   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "retrievedAt": "2026-10-24T10:43:42.321Z",
    "tags": {
     "highway": "service"
    }
@@ -440,7 +440,7 @@
    "id": 284799165,
    "version": 4,
    "timestamp": "2022-08-20T21:33:47Z",
-   "retrievedAt": "2026-10-24T09:04:58.090Z",
+   "retrievedAt": "2026-10-24T10:43:42.321Z",
    "tags": {
     "highway": "living_street",
     "lit": "yes",

@@ -1,0 +1,218 @@
+{
+ "recorded": "2026-10-24",
+ "backend": "committed main 39a9709 (Step 6.1 policy), UI at this branch",
+ "frontend": "Vite dev server 5185, Playwright Edge, tests/bridge-traffic.spec.ts",
+ "scenario": {
+  "compact": 150,
+  "estate": 50,
+  "trucks": 100,
+  "buses": 80,
+  "trams": 0,
+  "trains": 0,
+  "flights": false,
+  "timeScale": 20
+ },
+ "window": [
+  1.9999999999999998,
+  1619.9999999990744
+ ],
+ "acceptance": {
+  "ok": false,
+  "failures": [],
+  "pending": [
+   "bus crossings 0 < 1",
+   "car crossings north on Kungsgatan 0 < 1"
+  ]
+ },
+ "summary": {
+  "compact:exitedAtJunction": 2,
+  "estate:exitedAtJunction": 1
+ },
+ "browserErrors": [],
+ "episodes": [
+  {
+   "vehicle": 120,
+   "kind": "compact",
+   "entered": 152.00000000000028,
+   "outcome": "exitedAtJunction",
+   "resolved": 164.000000000003,
+   "startedBeforeWindow": false,
+   "samples": [
+    [
+     152,
+     -21.737,
+     2.271,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     154,
+     -21.47,
+     1.424,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     156,
+     -21.203,
+     0.578,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     158,
+     -20.936,
+     -0.269,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     160,
+     -20.669,
+     -1.118,
+     -0.96,
+     "Kungsgatan"
+    ],
+    [
+     162,
+     -20.526,
+     -1.845,
+     -1,
+     "Kungsgatan"
+    ],
+    [
+     164,
+     -20.891,
+     -2.222,
+     0.33,
+     "Bredgatan"
+    ]
+   ]
+  },
+  {
+   "vehicle": 16,
+   "kind": "compact",
+   "entered": 356.00000000004667,
+   "outcome": "exitedAtJunction",
+   "resolved": 368.0000000000494,
+   "startedBeforeWindow": false,
+   "samples": [
+    [
+     356,
+     -21.776,
+     2.395,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     358,
+     -21.508,
+     1.547,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     360,
+     -21.242,
+     0.7,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     362,
+     -20.975,
+     -0.147,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     364,
+     -20.708,
+     -0.994,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     366,
+     -20.525,
+     -1.74,
+     -1,
+     "Kungsgatan"
+    ],
+    [
+     368,
+     -20.796,
+     -2.255,
+     0.33,
+     "Bredgatan"
+    ]
+   ]
+  },
+  {
+   "vehicle": 174,
+   "kind": "estate",
+   "entered": 1567.9999999991217,
+   "outcome": "exitedAtJunction",
+   "resolved": 1579.9999999991107,
+   "startedBeforeWindow": false,
+   "samples": [
+    [
+     1568,
+     -21.667,
+     2.052,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     1570,
+     -21.401,
+     1.205,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     1572,
+     -21.134,
+     0.358,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     1574,
+     -20.867,
+     -0.489,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     1576,
+     -20.613,
+     -1.342,
+     -0.99,
+     "Kungsgatan"
+    ],
+    [
+     1578,
+     -20.536,
+     -2.019,
+     -1,
+     "Kungsgatan"
+    ],
+    [
+     1580,
+     -21.048,
+     -2.167,
+     0.31,
+     "Bredgatan"
+    ]
+   ]
+  }
+ ],
+ "sampleColumns": [
+  "simulationTime",
+  "x",
+  "z",
+  "cosHeading (-1 north)",
+  "road"
+ ]
+}

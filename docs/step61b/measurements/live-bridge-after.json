@@ -1,0 +1,283 @@
+{
+ "recorded": "2026-10-24",
+ "backend": "step61b-bus-reachability working tree (3da6528 + follow-up)",
+ "frontend": "Vite dev server 5185, Playwright Edge, tests/bridge-traffic.spec.ts",
+ "scenario": {
+  "compact": 150,
+  "estate": 50,
+  "trucks": 100,
+  "buses": 80,
+  "trams": 0,
+  "trains": 0,
+  "flights": false,
+  "timeScale": 20
+ },
+ "window": [
+  1.9999999999999998,
+  1195.99999999946
+ ],
+ "acceptance": {
+  "ok": true,
+  "failures": [],
+  "pending": []
+ },
+ "summary": {
+  "compact:crossed": 1,
+  "estate:exitedAtJunction": 1,
+  "bus:crossed": 1,
+  "compact:exitedAtJunction": 1
+ },
+ "browserErrors": [],
+ "episodes": [
+  {
+   "vehicle": 120,
+   "kind": "compact",
+   "entered": 133.9999999999962,
+   "outcome": "crossed",
+   "resolved": 147.99999999999937,
+   "startedBeforeWindow": false,
+   "samples": [
+    [
+     134,
+     -21.77,
+     2.378,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     136,
+     -21.503,
+     1.53,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     138,
+     -21.236,
+     0.683,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     140,
+     -20.97,
+     -0.164,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     142,
+     -20.703,
+     -1.011,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     144,
+     -20.525,
+     -1.761,
+     -1,
+     "Kungsgatan"
+    ],
+    [
+     146,
+     -20.609,
+     -2.437,
+     -0.96,
+     "Kungsgatan"
+    ],
+    [
+     148,
+     -20.803,
+     -3.076,
+     -0.96,
+     "Kungsgatan"
+    ]
+   ]
+  },
+  {
+   "vehicle": 197,
+   "kind": "estate",
+   "entered": 588.000000000013,
+   "outcome": "exitedAtJunction",
+   "resolved": 600.000000000002,
+   "startedBeforeWindow": false,
+   "samples": [
+    [
+     588,
+     -21.806,
+     2.493,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     590,
+     -21.536,
+     1.634,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     592,
+     -21.269,
+     0.787,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     594,
+     -21.002,
+     -0.06,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     596,
+     -20.736,
+     -0.907,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     598,
+     -20.538,
+     -1.661,
+     -0.97,
+     "Kungsgatan"
+    ],
+    [
+     600,
+     -20.522,
+     -2.191,
+     -0.11,
+     "Bredgatan"
+    ]
+   ]
+  },
+  {
+   "vehicle": 359,
+   "kind": "bus",
+   "entered": 671.9999999999366,
+   "outcome": "crossed",
+   "resolved": 683.9999999999256,
+   "startedBeforeWindow": false,
+   "samples": [
+    [
+     672,
+     -21.652,
+     2.003,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     674,
+     -21.385,
+     1.157,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     676,
+     -21.119,
+     0.31,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     678,
+     -20.852,
+     -0.537,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     680,
+     -20.606,
+     -1.386,
+     -0.99,
+     "Kungsgatan"
+    ],
+    [
+     682,
+     -20.539,
+     -2.058,
+     -1,
+     "Kungsgatan"
+    ],
+    [
+     684,
+     -20.694,
+     -2.717,
+     -0.96,
+     "Kungsgatan"
+    ]
+   ]
+  },
+  {
+   "vehicle": 46,
+   "kind": "compact",
+   "entered": 1167.9999999994855,
+   "outcome": "exitedAtJunction",
+   "resolved": 1179.9999999994745,
+   "startedBeforeWindow": false,
+   "samples": [
+    [
+     1168,
+     -21.662,
+     2.035,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     1170,
+     -21.395,
+     1.188,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     1172,
+     -21.129,
+     0.341,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     1174,
+     -20.862,
+     -0.506,
+     -0.95,
+     "Kungsgatan"
+    ],
+    [
+     1176,
+     -20.61,
+     -1.357,
+     -0.99,
+     "Kungsgatan"
+    ],
+    [
+     1178,
+     -20.537,
+     -2.031,
+     -1,
+     "Kungsgatan"
+    ],
+    [
+     1180,
+     -20.173,
+     -2.229,
+     -0.1,
+     "Bredgatan"
+    ]
+   ]
+  }
+ ],
+ "sampleColumns": [
+  "simulationTime",
+  "x",
+  "z",
+  "cosHeading (-1 north)",
+  "road"
+ ]
+}

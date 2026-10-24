@@ -1,5 +1,5 @@
 {
-    "note": "Deterministic RoadTraffic seed 1309; before = Step 6.1 policy, after = Step 6.1b. Different allowed sets change random spawns, so counts are behaviour evidence, not paired throughput.",
+    "note": "Deterministic replay of the live service (seed 1309, time scale 20, scenario 600/170/150/80, every transition traced). Before = Step 6.1 policy, after = Step 6.1b. Different allowed sets change random spawns, so counts are behaviour evidence, not paired throughput.",
     "static": {
         "before": {
             "compact": {
@@ -74,99 +74,492 @@
     },
     "startupMedians": {
         "before": {
-            "policyComputationMs": 22.109,
-            "roadTrafficInitialiseMs": 23.5463,
+            "policyComputationMs": 30.1655,
+            "roadTrafficInitialiseMs": 45.2992,
             "rounds": 7
         },
         "after": {
-            "policyComputationMs": 19.9284,
-            "roadTrafficInitialiseMs": 18.4469,
+            "policyComputationMs": 34.6543,
+            "roadTrafficInitialiseMs": 43.0218,
             "rounds": 7
         }
     },
+    "order": [
+        "before",
+        "after"
+    ],
     "before": {
-        "simulatedSeconds": 3600.0,
-        "vehicles": 1000,
-        "initialiseMs": 39.8116,
-        "configureMs": 14.195,
-        "tickMs": 1.1088471414565826,
-        "transitions": 1444330,
+        "simulatedSeconds": 3600.000000004331,
+        "wallMs": 117174.9009,
+        "transitions": 1479993,
+        "transitionsHiddenFromPerTickSampling": 325,
         "transitionsOutsidePolicy": 0,
         "reversals": {
-            "bus": {
-                "mappedRoadEnd": 1235
-            },
             "compact": {
-                "mappedRoadEnd": 25419
+                "mappedRoadEnd": 25320,
+                "turnaroundFacility": 0,
+                "artificial": 0
             },
             "estate": {
-                "mappedRoadEnd": 6503
+                "mappedRoadEnd": 6611,
+                "turnaroundFacility": 0,
+                "artificial": 0
             },
             "truck": {
-                "mappedRoadEnd": 131
+                "mappedRoadEnd": 134,
+                "turnaroundFacility": 0,
+                "artificial": 0
+            },
+            "bus": {
+                "mappedRoadEnd": 1287,
+                "turnaroundFacility": 0,
+                "artificial": 0
             }
         },
-        "artificialReversalSamples": [],
-        "bergsbron": {
-            "truckNorthboundEntries": 0,
-            "carNorthboundEntries": 27,
-            "busNorthboundEntries": 0,
-            "busSouthboundEntries": 0,
-            "busGangfartsomradeNorthbound": 0,
-            "busGangfartsomradeSouthbound": 0
+        "artificialReversals": [],
+        "bergsbronEpisodes": [
+            {
+                "vehicle": 558,
+                "kind": "compact",
+                "entered": 4.64999999999999,
+                "outcome": "exited at junction",
+                "resolved": 17.3000000000001,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 708,
+                "kind": "estate",
+                "entered": 34.30000000000015,
+                "outcome": "crossed",
+                "resolved": 46.599999999999454,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 737,
+                "kind": "estate",
+                "entered": 502.65000000008,
+                "outcome": "crossed",
+                "resolved": 514.9500000000794,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 455,
+                "kind": "compact",
+                "entered": 794.3499999998253,
+                "outcome": "crossed",
+                "resolved": 806.6499999998141,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 665,
+                "kind": "estate",
+                "entered": 916.2499999997144,
+                "outcome": "exited at junction",
+                "resolved": 928.5499999997032,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 629,
+                "kind": "estate",
+                "entered": 1395.1499999992789,
+                "outcome": "exited at junction",
+                "resolved": 1407.4499999992677,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 323,
+                "kind": "compact",
+                "entered": 1438.7999999992392,
+                "outcome": "exited at junction",
+                "resolved": 1451.049999999228,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 449,
+                "kind": "compact",
+                "entered": 1458.1499999992216,
+                "outcome": "exited at junction",
+                "resolved": 1470.3999999992104,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 323,
+                "kind": "compact",
+                "entered": 1665.9999999990325,
+                "outcome": "exited at junction",
+                "resolved": 1678.2999999990213,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 701,
+                "kind": "estate",
+                "entered": 1908.9499999988116,
+                "outcome": "crossed",
+                "resolved": 1921.2499999988004,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 299,
+                "kind": "compact",
+                "entered": 2158.0499999990852,
+                "outcome": "crossed",
+                "resolved": 2170.29999999913,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 20,
+                "kind": "compact",
+                "entered": 2306.4999999996253,
+                "outcome": "crossed",
+                "resolved": 2318.79999999967,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 70,
+                "kind": "compact",
+                "entered": 2620.9500000007693,
+                "outcome": "exited at junction",
+                "resolved": 2633.250000000814,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 646,
+                "kind": "estate",
+                "entered": 2729.5500000011643,
+                "outcome": "crossed",
+                "resolved": 2741.850000001209,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 579,
+                "kind": "compact",
+                "entered": 3591.9500000043017,
+                "outcome": "open",
+                "detail": ""
+            }
+        ],
+        "crossings": {
+            "car": 7,
+            "truck": 0,
+            "bus": 0,
+            "carPassagesInclBredgatan": 14
         },
-        "dwellEpisodes": 1176,
-        "distinctStopNamesServed": 121,
-        "skvallertorgetDwells": 0,
-        "klockaretorpetDwells": 0,
+        "gangfartsomradeWayEntries": {
+            "compact-north": 60,
+            "compact-south": 76,
+            "estate-north": 30,
+            "estate-south": 22
+        },
+        "skvallertorgetBusesServed": 0,
+        "klockaretorpetBusesServed": 0,
+        "distinctStopNamesServed": 118,
         "distinctEdgesVisited": {
-            "bus": 32614,
-            "compact": 71417,
-            "estate": 59331,
-            "truck": 5490
+            "bus": 32865,
+            "compact": 71366,
+            "estate": 59390,
+            "truck": 5479
         }
     },
     "after": {
-        "simulatedSeconds": 3600.0,
-        "vehicles": 1000,
-        "initialiseMs": 32.3995,
-        "configureMs": 1.3768,
-        "tickMs": 1.2266728921568628,
-        "transitions": 1383531,
+        "simulatedSeconds": 3600.000000004331,
+        "wallMs": 113026.1946,
+        "transitions": 1506756,
+        "transitionsHiddenFromPerTickSampling": 307,
         "transitionsOutsidePolicy": 0,
         "reversals": {
-            "bus": {
-                "mappedRoadEnd": 1311,
-                "turnaroundFacility": 55
-            },
             "compact": {
-                "mappedRoadEnd": 24605
+                "mappedRoadEnd": 25978,
+                "turnaroundFacility": 0,
+                "artificial": 0
             },
             "estate": {
-                "mappedRoadEnd": 6336
+                "mappedRoadEnd": 7084,
+                "turnaroundFacility": 0,
+                "artificial": 0
             },
             "truck": {
-                "mappedRoadEnd": 117
+                "mappedRoadEnd": 165,
+                "turnaroundFacility": 0,
+                "artificial": 0
+            },
+            "bus": {
+                "mappedRoadEnd": 1478,
+                "turnaroundFacility": 83,
+                "artificial": 0
             }
         },
-        "artificialReversalSamples": [],
-        "bergsbron": {
-            "truckNorthboundEntries": 0,
-            "carNorthboundEntries": 20,
-            "busNorthboundEntries": 3,
-            "busSouthboundEntries": 1,
-            "busGangfartsomradeNorthbound": 12,
-            "busGangfartsomradeSouthbound": 4
+        "artificialReversals": [],
+        "bergsbronEpisodes": [
+            {
+                "vehicle": 558,
+                "kind": "compact",
+                "entered": 4.64999999999999,
+                "outcome": "exited at junction",
+                "resolved": 17.3000000000001,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 708,
+                "kind": "estate",
+                "entered": 34.30000000000015,
+                "outcome": "crossed",
+                "resolved": 46.599999999999454,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 751,
+                "kind": "estate",
+                "entered": 217.05000000001507,
+                "outcome": "crossed",
+                "resolved": 229.30000000001786,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 160,
+                "kind": "compact",
+                "entered": 393.4500000000552,
+                "outcome": "crossed",
+                "resolved": 405.70000000005797,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 592,
+                "kind": "compact",
+                "entered": 643.5999999999624,
+                "outcome": "crossed",
+                "resolved": 655.8999999999512,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 656,
+                "kind": "estate",
+                "entered": 708.4999999999034,
+                "outcome": "crossed",
+                "resolved": 720.7999999998922,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 419,
+                "kind": "compact",
+                "entered": 795.4499999998243,
+                "outcome": "exited at junction",
+                "resolved": 807.7499999998131,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 129,
+                "kind": "compact",
+                "entered": 847.0999999997773,
+                "outcome": "crossed",
+                "resolved": 859.3499999997662,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 197,
+                "kind": "compact",
+                "entered": 881.9999999997456,
+                "outcome": "exited at junction",
+                "resolved": 894.2999999997344,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 602,
+                "kind": "estate",
+                "entered": 1136.549999999514,
+                "outcome": "exited at junction",
+                "resolved": 1148.799999999503,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 751,
+                "kind": "estate",
+                "entered": 1229.1999999994298,
+                "outcome": "exited at junction",
+                "resolved": 1241.4999999994186,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 248,
+                "kind": "compact",
+                "entered": 1265.4499999993968,
+                "outcome": "crossed",
+                "resolved": 1277.7499999993856,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 341,
+                "kind": "compact",
+                "entered": 1545.8499999991418,
+                "outcome": "crossed",
+                "resolved": 1558.1499999991306,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 227,
+                "kind": "compact",
+                "entered": 1824.799999998888,
+                "outcome": "exited at junction",
+                "resolved": 1837.099999998877,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 286,
+                "kind": "compact",
+                "entered": 1964.8499999987607,
+                "outcome": "crossed",
+                "resolved": 1977.0999999987496,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 190,
+                "kind": "compact",
+                "entered": 2003.8999999987252,
+                "outcome": "exited at junction",
+                "resolved": 2016.149999998714,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 681,
+                "kind": "estate",
+                "entered": 2065.1499999987473,
+                "outcome": "exited at junction",
+                "resolved": 2077.449999998792,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 678,
+                "kind": "estate",
+                "entered": 2261.2499999994607,
+                "outcome": "crossed",
+                "resolved": 2273.5499999995054,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 592,
+                "kind": "compact",
+                "entered": 2357.849999999812,
+                "outcome": "crossed",
+                "resolved": 2370.149999999857,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 996,
+                "kind": "bus",
+                "entered": 2449.7500000001464,
+                "outcome": "crossed",
+                "resolved": 2462.1500000001915,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 468,
+                "kind": "compact",
+                "entered": 2464.0000000001983,
+                "outcome": "crossed",
+                "resolved": 2476.300000000243,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 329,
+                "kind": "compact",
+                "entered": 2523.4500000004145,
+                "outcome": "exited at junction",
+                "resolved": 2535.700000000459,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 353,
+                "kind": "compact",
+                "entered": 2568.150000000577,
+                "outcome": "exited at junction",
+                "resolved": 2580.450000000622,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 664,
+                "kind": "estate",
+                "entered": 2777.85000000134,
+                "outcome": "crossed",
+                "resolved": 2790.1000000013846,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 485,
+                "kind": "compact",
+                "entered": 3021.8000000022275,
+                "outcome": "crossed",
+                "resolved": 3034.1000000022723,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 323,
+                "kind": "compact",
+                "entered": 3132.200000002629,
+                "outcome": "exited at junction",
+                "resolved": 3144.500000002674,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 197,
+                "kind": "compact",
+                "entered": 3406.1000000036256,
+                "outcome": "crossed",
+                "resolved": 3418.4000000036704,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 642,
+                "kind": "estate",
+                "entered": 3432.05000000372,
+                "outcome": "crossed",
+                "resolved": 3444.3500000037648,
+                "detail": "continued north on way 444474485"
+            },
+            {
+                "vehicle": 718,
+                "kind": "estate",
+                "entered": 3446.4500000037724,
+                "outcome": "exited at junction",
+                "resolved": 3458.750000003817,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 2,
+                "kind": "compact",
+                "entered": 3489.7000000039297,
+                "outcome": "exited at junction",
+                "resolved": 3501.9500000039743,
+                "detail": "way 444474474"
+            },
+            {
+                "vehicle": 996,
+                "kind": "bus",
+                "entered": 3597.750000004323,
+                "outcome": "open",
+                "detail": ""
+            }
+        ],
+        "crossings": {
+            "car": 16,
+            "truck": 0,
+            "bus": 1,
+            "carPassagesInclBredgatan": 29
         },
-        "dwellEpisodes": 1256,
+        "gangfartsomradeWayEntries": {
+            "bus-north": 4,
+            "bus-south": 4,
+            "compact-north": 98,
+            "compact-south": 84,
+            "estate-north": 56,
+            "estate-south": 20
+        },
+        "skvallertorgetBusesServed": 1,
+        "klockaretorpetBusesServed": 1,
         "distinctStopNamesServed": 123,
-        "skvallertorgetDwells": 10,
-        "klockaretorpetDwells": 6,
         "distinctEdgesVisited": {
-            "bus": 33401,
-            "compact": 71110,
-            "estate": 58919,
-            "truck": 5490
+            "bus": 32812,
+            "compact": 70973,
+            "estate": 60063,
+            "truck": 5479
         }
     }
 }

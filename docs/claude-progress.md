@@ -2,10 +2,71 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Step 6.1b — bus reachability without reintroducing reversals (2026-10-24) — implemented, for review
+## Step 6.1b — bus reachability without reintroducing reversals (2026-10-24) — ACCEPTED as a bounded routing correction
 
 [Full report](step61b/README.md). Branch `step61b-bus-reachability` in both repositories, created from UI `1cdf45f` and
-backend `39a9709` (the Step 6.2 commits; both were clean and matched `origin/main`). Nothing committed or pushed.
+backend `39a9709` (the Step 6.2 commits on `main`).
+
+- **Commits:** Step 6.1b is UI `650c071` and backend `3da6528`. The review follow-up and the final documentation
+  corrections are the next commit on the same branch in each repository (hashes in `git log`).
+- **Not pushed or merged.**
+- **Scope of acceptance:** the generic roaming-bus routing correction only. Scheduled route 21 service is **not**
+  implemented; buses remain generic roaming traffic.
+- **Known baseline test failures:** both also fail on clean baseline worktrees.
+  - `simulation.spec.ts:36` (second-tab timing).
+  - Vitest 5 s geometry timeouts under full-suite load.
+
+### Review follow-up (same day; committed with the final documentation corrections)
+
+- **Browser test made real.** The Bergsbron test now uses a controlled, deterministic scenario (150/50/100/80, speed
+  20). It needs one observed bus to enter the deck and continue north past the Bredgatan junction, matched per entry
+  episode, with window edges handled explicitly. 7 analyzer unit tests. Passes on the branch (bus #359, 672 → 684 s);
+  **fails as intended** against the Step 6.1 backend (`bus crossings 0 < 1`).
+- **Runtime regression by default.** New `Step61bTrafficRegressionTest` (about 16 s) replays the live service exactly
+  (seed 1309, the service's tick arithmetic). It asserts: 0 artificial reversals, 0 transitions outside a vehicle's
+  policy, 0 truck trap entries, a bus crossing north, a Skvallertorget bus dwell, and car passages; diagnostics name
+  the vehicle, edge or node and time. The opt-in 3,600 s run now reports skipped by default and asserts when enabled,
+  including that the Step 6.1 policy reproduces the lost service. Both pass.
+- **Exact tracing.** Minimal internal hook `RoadTraffic.transitionListener` (default `null`, no behaviour change). Per-tick
+  sampling had hidden about 0.02% of transitions. This is the only production-code change.
+- **Classification corrected.** 96 blocking roads were checked against current OSM tags, from two sets: the 95 seed
+  roads behind the 684 filtered-out edges, and 1 driveway (`1111771303`) isolating the 2 retained-but-unreachable
+  edges. None carries an explicit bus restriction. The 979 removed edges, on two separate axes:
+  - **Simulator status:**
+    - 293 restored and usable;
+    - **684 filtered out** (566 dead end + 118 island);
+    - 2 retained but unreachable.
+  - **Real-world evidence:**
+    - 8 verified access;
+    - 285 turnaround restorations;
+    - 682 unresolved access (562 dead end + 118 island + 2 retained but unreachable);
+    - 4 graph topology;
+    - 0 verified restrictions.
+  The earlier "643 correctly excluded" and "seven ends have no lawful bus access" are **retracted**. Access stays
+  closed conservatively.
+- **Route 21 wording corrected.** The service and its stop sequence are operator-verified; the corridor geometry
+  comes from the 2023 OSM relation and is not.
+- **New analyzer defect found and fixed.** A car exiting onto Bredgatan and later returning south (turning at
+  Bredgatan's mapped road end) was flagged as `turnedBack`. It is now `exitedAtJunction`. Not a routing defect.
+- **Validation.**
+  - Backend: 62 tests (61 passed, 1 opt-in skipped).
+  - Opt-in evidence run: passed.
+  - Analyzer: 7/7.
+  - Live bridge test: passed.
+  - Playwright: 4/5. `simulation.spec.ts:36` fails identically on clean baseline worktrees (UI `1cdf45f` + backend
+    `39a9709`).
+  - Vitest: geometry tests hit 5 s timeouts under load, also on baseline; the affected files pass alone, and nothing
+    Vitest loads differs from `main`.
+  - Type check and build: clean.
+- **Open (non-blocking).**
+  - Current GTFS verification of route 21 geometry and of the 13 relation-only service ways.
+  - Missing terminal and bus-only topology (Resecentrum, Söder Tull, Drottninggatan) for a future re-import.
+  - Unresolved real-world access for 682 edges (680 filtered out, 2 retained but unreachable).
+- **Final corrections (2026-10-24):** blocking-road count scope (95 seed roads vs 96 tag-checked) and the simulator
+  status counts (684 filtered out vs 686 not usable) reconciled with `removed-bus-edges.json`. Documentation only:
+  no code, tests, access data or dated evidence changed.
+
+### Original Step 6.1b entry (claims superseded where marked above)
 
 - **Root causes.**
   - The importer's bus heuristic closes all `living_street`/`service` roads and ignores `bus`/`psv` tags.
@@ -24,8 +85,9 @@ backend `39a9709` (the Step 6.2 commits; both were clean and matched `origin/mai
     their mapped ways.
   - Bus-stop nodes in the main network: 245 → 249 (legacy 251).
   - Of the 979 edges Step 6.1 removed: 293 restored and usable, 643 correctly excluded, 22 uncertain, 2 retained
-    but unreachable.
-  - The seven Step 6.2 bus ends are islands with no lawful bus access.
+    but unreachable. *(Superseded: "correctly excluded" was not evidenced; see the follow-up.)*
+  - The seven Step 6.2 bus ends are islands with no lawful bus access. *(Superseded: they are islands under the
+    simulator policy; real-world access is unresolved.)*
   - Trucks: 0 Bergsbron trap entries; 0 artificial reversals in any class (deterministic 3,600 s run and live
     browser run). Buses now cross Bergsbron, use the gångfartsområde (living street) and dwell at Skvallertorget.
 - **Validation.**
