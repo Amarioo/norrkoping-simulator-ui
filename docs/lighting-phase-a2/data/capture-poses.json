@@ -1,0 +1,110 @@
+{
+ "a2-norra-promenaden-west-street": {
+  "position": [
+   -19,
+   0.21,
+   -25.45
+  ],
+  "target": [
+   -24,
+   0.33,
+   -23.6
+  ]
+ },
+ "a2-norra-promenaden-west-elevated": {
+  "position": [
+   -17,
+   2.4,
+   -28
+  ],
+  "target": [
+   -23.5,
+   0.2,
+   -23
+  ]
+ },
+ "a2-kungsgatan-north-street": {
+  "position": [
+   -24.35,
+   0.63,
+   -15
+  ],
+  "target": [
+   -25.6,
+   0.45,
+   -20
+  ]
+ },
+ "a2-kungsgatan-north-elevated": {
+  "position": [
+   -21.8,
+   2.6,
+   -12.8
+  ],
+  "target": [
+   -25.4,
+   0.35,
+   -19.5
+  ]
+ },
+ "a2-a1-junction": {
+  "position": [
+   -20.5,
+   1.3,
+   -27
+  ],
+  "target": [
+   -17.2,
+   0.13,
+   -24.6
+  ]
+ },
+ "a2-pilot-junction": {
+  "position": [
+   -22.9,
+   1.5,
+   -16.8
+  ],
+  "target": [
+   -24.4,
+   0.6,
+   -13.2
+  ]
+ },
+ "a2-kungstorget-junction": {
+  "position": [
+   -25.15,
+   1.6,
+   -17.6
+  ],
+  "target": [
+   -26.4,
+   0.4,
+   -22
+  ]
+ },
+ "a2-central-overview": {
+  "position": [
+   -10,
+   13,
+   -4
+  ],
+  "target": [
+   -22,
+   0.3,
+   -19
+  ]
+ },
+ "a1-drottninggatan-elevated": {
+  "position": [
+   -3,
+   2.4,
+   -18
+  ],
+  "target": [
+   -7.2,
+   0.1,
+   -23.8
+  ]
+ }
+}

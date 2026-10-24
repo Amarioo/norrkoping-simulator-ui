@@ -2,6 +2,41 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Lighting Phase A2 — western Norra Promenaden + northern Kungsgatan (2026-10-24) — implemented, for review
+
+[Full report](lighting-phase-a2/README.md). Branch `codex/lighting-phase-a2` (UI), created from the
+committed A1 state `1fe6296` (Phase 0 `b40908a` below it; both local only). Backend unchanged
+(`3673568`, clean). **Not committed, pushed or merged.** User's untracked `.claude/` not staged
+(five `a2-*` server entries added to `launch.json`; original backed up in ignored `work/lighting-a2/`).
+
+- **Area:** two EPSG:3006 zones (0.0198 km², `lighting/corridorA2.ts`): D Norra Promenaden from A1's
+  west edge to the Kungstorget east junction (incl. Norrtull tram stop), E Kungsgatan from Kungstorget
+  to the pilot's north bound (incl. Slottsgatan mouth). Seams on A1's edge and the pilot bound; no
+  overlap (tested).
+- **Fixtures:** 35 new, all labelled estimates (no mapped OSM lamp exists there): 22 × 8 m, 1 × 6 m
+  bracket, 12 lanterns. Rendered total 267 (pilot 105 + A1 127 + A2 35). The 232 earlier fixtures are
+  bit-identical (records, lamp rows, cells, housing transforms).
+- **Pipeline:** same pinned Step 6.2 snapshot → committed 26 KB extract (`extract-source.mjs a2`) →
+  the A1 generator with a corridor spec (A1 output byte-identical) → `streetlights-a2.json`
+  (+ provenance). Policy `lighting-a2-v1` = A1 + two seam rules (earlier estimates count as accepted;
+  A1 station-slot identity). One candidate skipped at the pilot seam; IDs never merged by distance.
+- **Capacity:** combined accepted, max 15/16 (A1's square, unchanged), A2 cells ≤ 9, 0 overflow,
+  69 pages, +10.6 KB textures.
+- **Seams:** continuous (centreline minima 10.0 lux at the pilot seam, 5.3 lux at the A1 seam, not
+  below those inside the neighbours); junctions within A1's brightness range; reference views change
+  only where A2 appears in the distance; 20 programs everywhere.
+- **Decision needed:** Norra Promenaden pieces 286445696/300186798/1050773512 at Norrtull have no
+  `lit` tag → left unlit (≈ 0 lux over ≈ 35–40 m per carriageway). Options in
+  `lighting-phase-a2/remaining-gaps.md`.
+- **Perf:** series 1 (idle machine) map-ready −2.8 ms, heap +0.06 MB, max p95 +0.4 ms, day p95 ≤ +0.3 ms,
+  ≤ +7 calls / +15.7 k triangles per view, 20 programs. Two later series were disturbed by a game running
+  on the machine (kept, flagged); re-run on an idle machine recommended.
+- **Tests:** type check clean; build OK; Vitest 342/342 (single worker; parallel runs hit known 5 s
+  geometry timeouts under load); Playwright lighting 5/5, bridge bus/truck and transit pass;
+  `simulation.spec.ts` second-tab timeout fails identically on the committed A1 app.
+- **Incident (fixed):** re-running the Phase 0 harnesses rewrote two Phase 0 evidence files again;
+  restored to the committed content.
+
 ## Lighting Phase A1 — central city corridor (2026-10-24) — implemented, for review
 
 [Full report](lighting-phase-a1/README.md). Same branch `codex/lighting-phase0` (UI, HEAD `bf5f726`), on

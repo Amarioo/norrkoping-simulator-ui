@@ -1,0 +1,844 @@
+{
+ "capacity": 16,
+ "cellMetres": 25,
+ "chunkCells": 4,
+ "a1State": {
+  "ok": true,
+  "fixtures": 232,
+  "maxRawOccupancy": 15,
+  "overflowCells": 0,
+  "nonEmptyCells": 476,
+  "cellEntries": 1807,
+  "histogram": [
+   0,
+   98,
+   96,
+   79,
+   39,
+   50,
+   37,
+   26,
+   22,
+   16,
+   5,
+   2,
+   2,
+   3,
+   0,
+   1
+  ],
+  "pages": 63,
+  "bytes": {
+   "lamp": 29696,
+   "payload": 64512,
+   "directory": 864
+  }
+ },
+ "a2Only": {
+  "ok": true,
+  "fixtures": 35,
+  "maxRawOccupancy": 9,
+  "overflowCells": 0,
+  "nonEmptyCells": 75,
+  "cellEntries": 299,
+  "histogram": [
+   0,
+   11,
+   13,
+   12,
+   12,
+   5,
+   9,
+   7,
+   4,
+   2
+  ],
+  "pages": 10,
+  "bytes": {
+   "lamp": 4480,
+   "payload": 10240,
+   "directory": 48
+  }
+ },
+ "combined": {
+  "ok": true,
+  "fixtures": 267,
+  "maxRawOccupancy": 15,
+  "overflowCells": 0,
+  "nonEmptyCells": 538,
+  "cellEntries": 2106,
+  "histogram": [
+   0,
+   102,
+   103,
+   85,
+   49,
+   60,
+   47,
+   35,
+   26,
+   18,
+   5,
+   2,
+   2,
+   3,
+   0,
+   1
+  ],
+  "pages": 69,
+  "bytes": {
+   "lamp": 34176,
+   "payload": 70656,
+   "directory": 864
+  }
+ },
+ "nearCapacityCells": [
+  {
+   "cell": [
+    -8,
+    -21
+   ],
+   "centreEN": [
+    568842.6,
+    6495501.3
+   ],
+   "count": 15,
+   "before": 15,
+   "byRollout": {
+    "lighting-a1-v1": 15
+   },
+   "mapped": 8,
+   "estimated": 7,
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s1",
+    "estimate:lighting-a1-v1:way/168975952:s0",
+    "estimate:lighting-a1-v1:way/168975952:s1",
+    "estimate:lighting-a1-v1:way/297693805:s3",
+    "estimate:lighting-a1-v1:way/88701989:s0",
+    "estimate:lighting-a1-v1:way/88701995:s2",
+    "estimate:lighting-a1-v1:way/88701997:s2",
+    "osm:node/11098939295",
+    "osm:node/11098939296",
+    "osm:node/11098939298",
+    "osm:node/11098973692",
+    "osm:node/11098973693",
+    "osm:node/11098973694",
+    "osm:node/11098973695",
+    "osm:node/11098973696"
+   ]
+  },
+  {
+   "cell": [
+    -8,
+    -23
+   ],
+   "centreEN": [
+    568842.6,
+    6495551.3
+   ],
+   "count": 13,
+   "before": 13,
+   "byRollout": {
+    "lighting-a1-v1": 13
+   },
+   "mapped": 1,
+   "estimated": 12,
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s2",
+    "estimate:lighting-a1-v1:way/168975952:s0",
+    "estimate:lighting-a1-v1:way/297609740:s0",
+    "estimate:lighting-a1-v1:way/297693805:s3",
+    "estimate:lighting-a1-v1:way/297693805:s4",
+    "estimate:lighting-a1-v1:way/308315542:s2",
+    "estimate:lighting-a1-v1:way/308315542:s3",
+    "estimate:lighting-a1-v1:way/760535008:s0",
+    "estimate:lighting-a1-v1:way/88701997:s2",
+    "estimate:lighting-a1-v1:way/92459665:s0",
+    "estimate:lighting-a1-v1:way/92459665:s1",
+    "estimate:lighting-a1-v1:way/93313348:s0",
+    "osm:node/11098973694"
+   ]
+  },
+  {
+   "cell": [
+    -8,
+    -22
+   ],
+   "centreEN": [
+    568842.6,
+    6495526.3
+   ],
+   "count": 13,
+   "before": 13,
+   "byRollout": {
+    "lighting-a1-v1": 13
+   },
+   "mapped": 4,
+   "estimated": 9,
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s2",
+    "estimate:lighting-a1-v1:way/168975952:s0",
+    "estimate:lighting-a1-v1:way/168975952:s1",
+    "estimate:lighting-a1-v1:way/297693805:s3",
+    "estimate:lighting-a1-v1:way/297693805:s4",
+    "estimate:lighting-a1-v1:way/308315542:s3",
+    "estimate:lighting-a1-v1:way/88701995:s2",
+    "estimate:lighting-a1-v1:way/88701997:s2",
+    "estimate:lighting-a1-v1:way/92459665:s0",
+    "osm:node/11098973692",
+    "osm:node/11098973693",
+    "osm:node/11098973694",
+    "osm:node/11098973695"
+   ]
+  },
+  {
+   "cell": [
+    -7,
+    -20
+   ],
+   "centreEN": [
+    568867.6,
+    6495476.3
+   ],
+   "count": 13,
+   "before": 13,
+   "byRollout": {
+    "lighting-a1-v1": 13
+   },
+   "mapped": 6,
+   "estimated": 7,
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s0",
+    "estimate:lighting-a1-v1:way/1289270292:s1",
+    "estimate:lighting-a1-v1:way/168975952:s1",
+    "estimate:lighting-a1-v1:way/168975952:s2",
+    "estimate:lighting-a1-v1:way/47460598:s0",
+    "estimate:lighting-a1-v1:way/501428826:s2",
+    "estimate:lighting-a1-v1:way/88701993:s0",
+    "osm:node/11098939295",
+    "osm:node/11098939296",
+    "osm:node/11098939297",
+    "osm:node/11098939298",
+    "osm:node/11098939299",
+    "osm:node/11098973695"
+   ]
+  }
+ ],
+ "cellsReachedByA2": {
+  "count": 75,
+  "maxCount": 9,
+  "histogram": {
+   "1": 8,
+   "2": 11,
+   "3": 9,
+   "4": 12,
+   "5": 10,
+   "6": 10,
+   "7": 9,
+   "8": 4,
+   "9": 2
+  },
+  "gainedFromBefore": 13,
+  "newCells": 62,
+  "busiest": [
+   {
+    "cell": [
+     -26,
+     -19
+    ],
+    "centreEN": [
+     568392.7,
+     6495451.3
+    ],
+    "count": 9,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 9
+    },
+    "mapped": 0,
+    "estimated": 9,
+    "ids": [
+     "estimate:lighting-a2-v1:way/297613947:s4",
+     "estimate:lighting-a2-v1:way/297613948:s1",
+     "estimate:lighting-a2-v1:way/297613948:s2",
+     "estimate:lighting-a2-v1:way/297613948:s3",
+     "estimate:lighting-a2-v1:way/297613948:s4",
+     "estimate:lighting-a2-v1:way/297616121:s0",
+     "estimate:lighting-a2-v1:way/94463450:s1",
+     "estimate:lighting-a2-v1:way/94463450:s2",
+     "estimate:lighting-a2-v1:way/94463450:s3"
+    ]
+   },
+   {
+    "cell": [
+     -26,
+     -18
+    ],
+    "centreEN": [
+     568392.7,
+     6495426.4
+    ],
+    "count": 9,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 9
+    },
+    "mapped": 0,
+    "estimated": 9,
+    "ids": [
+     "estimate:lighting-a2-v1:way/297613947:s3",
+     "estimate:lighting-a2-v1:way/297613947:s4",
+     "estimate:lighting-a2-v1:way/297613948:s1",
+     "estimate:lighting-a2-v1:way/297613948:s2",
+     "estimate:lighting-a2-v1:way/297613948:s3",
+     "estimate:lighting-a2-v1:way/297616121:s0",
+     "estimate:lighting-a2-v1:way/94463450:s2",
+     "estimate:lighting-a2-v1:way/94463450:s3",
+     "estimate:lighting-a2-v1:way/94463450:s4"
+    ]
+   },
+   {
+    "cell": [
+     -26,
+     -22
+    ],
+    "centreEN": [
+     568392.7,
+     6495526.3
+    ],
+    "count": 8,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 8
+    },
+    "mapped": 0,
+    "estimated": 8,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445685:s0",
+     "estimate:lighting-a2-v1:way/286445687:s0",
+     "estimate:lighting-a2-v1:way/286457920:s0",
+     "estimate:lighting-a2-v1:way/300186799:s0",
+     "estimate:lighting-a2-v1:way/4384888:s0",
+     "estimate:lighting-a2-v1:way/4384888:s1",
+     "estimate:lighting-a2-v1:way/444474566:s0",
+     "estimate:lighting-a2-v1:way/92385198:s0"
+    ]
+   },
+   {
+    "cell": [
+     -26,
+     -20
+    ],
+    "centreEN": [
+     568392.7,
+     6495476.3
+    ],
+    "count": 8,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 8
+    },
+    "mapped": 0,
+    "estimated": 8,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445687:s0",
+     "estimate:lighting-a2-v1:way/297613948:s1",
+     "estimate:lighting-a2-v1:way/297613948:s2",
+     "estimate:lighting-a2-v1:way/297613948:s3",
+     "estimate:lighting-a2-v1:way/297613948:s4",
+     "estimate:lighting-a2-v1:way/92385198:s0",
+     "estimate:lighting-a2-v1:way/94463450:s1",
+     "estimate:lighting-a2-v1:way/94463450:s2"
+    ]
+   },
+   {
+    "cell": [
+     -26,
+     -17
+    ],
+    "centreEN": [
+     568392.7,
+     6495401.4
+    ],
+    "count": 8,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 8
+    },
+    "mapped": 0,
+    "estimated": 8,
+    "ids": [
+     "estimate:lighting-a2-v1:way/297613947:s1",
+     "estimate:lighting-a2-v1:way/297613947:s2",
+     "estimate:lighting-a2-v1:way/297613947:s3",
+     "estimate:lighting-a2-v1:way/297613947:s4",
+     "estimate:lighting-a2-v1:way/297613948:s1",
+     "estimate:lighting-a2-v1:way/297616121:s0",
+     "estimate:lighting-a2-v1:way/94463450:s4",
+     "estimate:lighting-a2-v1:way/94463450:s5"
+    ]
+   },
+   {
+    "cell": [
+     -25,
+     -17
+    ],
+    "centreEN": [
+     568417.7,
+     6495401.4
+    ],
+    "count": 8,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 8
+    },
+    "mapped": 0,
+    "estimated": 8,
+    "ids": [
+     "estimate:lighting-a2-v1:way/297613947:s1",
+     "estimate:lighting-a2-v1:way/297613947:s2",
+     "estimate:lighting-a2-v1:way/297613947:s3",
+     "estimate:lighting-a2-v1:way/297613947:s4",
+     "estimate:lighting-a2-v1:way/297613948:s1",
+     "estimate:lighting-a2-v1:way/297616121:s0",
+     "estimate:lighting-a2-v1:way/94463450:s4",
+     "estimate:lighting-a2-v1:way/94463450:s5"
+    ]
+   },
+   {
+    "cell": [
+     -27,
+     -20
+    ],
+    "centreEN": [
+     568367.7,
+     6495476.3
+    ],
+    "count": 7,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 7
+    },
+    "mapped": 0,
+    "estimated": 7,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445687:s0",
+     "estimate:lighting-a2-v1:way/297613948:s2",
+     "estimate:lighting-a2-v1:way/297613948:s3",
+     "estimate:lighting-a2-v1:way/297613948:s4",
+     "estimate:lighting-a2-v1:way/92385198:s0",
+     "estimate:lighting-a2-v1:way/94463450:s1",
+     "estimate:lighting-a2-v1:way/94463450:s2"
+    ]
+   },
+   {
+    "cell": [
+     -27,
+     -19
+    ],
+    "centreEN": [
+     568367.7,
+     6495451.3
+    ],
+    "count": 7,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 7
+    },
+    "mapped": 0,
+    "estimated": 7,
+    "ids": [
+     "estimate:lighting-a2-v1:way/297613948:s1",
+     "estimate:lighting-a2-v1:way/297613948:s2",
+     "estimate:lighting-a2-v1:way/297613948:s3",
+     "estimate:lighting-a2-v1:way/297613948:s4",
+     "estimate:lighting-a2-v1:way/94463450:s1",
+     "estimate:lighting-a2-v1:way/94463450:s2",
+     "estimate:lighting-a2-v1:way/94463450:s3"
+    ]
+   },
+   {
+    "cell": [
+     -26,
+     -21
+    ],
+    "centreEN": [
+     568392.7,
+     6495501.3
+    ],
+    "count": 7,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 7
+    },
+    "mapped": 0,
+    "estimated": 7,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445687:s0",
+     "estimate:lighting-a2-v1:way/297613948:s3",
+     "estimate:lighting-a2-v1:way/297613948:s4",
+     "estimate:lighting-a2-v1:way/4384888:s0",
+     "estimate:lighting-a2-v1:way/444474566:s0",
+     "estimate:lighting-a2-v1:way/92385198:s0",
+     "estimate:lighting-a2-v1:way/94463450:s1"
+    ]
+   },
+   {
+    "cell": [
+     -25,
+     -23
+    ],
+    "centreEN": [
+     568417.7,
+     6495551.3
+    ],
+    "count": 7,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 7
+    },
+    "mapped": 0,
+    "estimated": 7,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445685:s0",
+     "estimate:lighting-a2-v1:way/286445690:s2",
+     "estimate:lighting-a2-v1:way/286457920:s0",
+     "estimate:lighting-a2-v1:way/286457920:s1",
+     "estimate:lighting-a2-v1:way/286457920:s2",
+     "estimate:lighting-a2-v1:way/4384888:s0",
+     "estimate:lighting-a2-v1:way/4384888:s1"
+    ]
+   },
+   {
+    "cell": [
+     -25,
+     -22
+    ],
+    "centreEN": [
+     568417.7,
+     6495526.3
+    ],
+    "count": 7,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 7
+    },
+    "mapped": 0,
+    "estimated": 7,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286457920:s0",
+     "estimate:lighting-a2-v1:way/286457920:s1",
+     "estimate:lighting-a2-v1:way/286457920:s2",
+     "estimate:lighting-a2-v1:way/4384888:s0",
+     "estimate:lighting-a2-v1:way/4384888:s1",
+     "estimate:lighting-a2-v1:way/444474566:s0",
+     "estimate:lighting-a2-v1:way/92385198:s0"
+    ]
+   },
+   {
+    "cell": [
+     -25,
+     -18
+    ],
+    "centreEN": [
+     568417.7,
+     6495426.4
+    ],
+    "count": 7,
+    "before": 0,
+    "byRollout": {
+     "lighting-a2-v1": 7
+    },
+    "mapped": 0,
+    "estimated": 7,
+    "ids": [
+     "estimate:lighting-a2-v1:way/297613947:s3",
+     "estimate:lighting-a2-v1:way/297613947:s4",
+     "estimate:lighting-a2-v1:way/297613948:s1",
+     "estimate:lighting-a2-v1:way/297613948:s2",
+     "estimate:lighting-a2-v1:way/297616121:s0",
+     "estimate:lighting-a2-v1:way/94463450:s3",
+     "estimate:lighting-a2-v1:way/94463450:s4"
+    ]
+   }
+  ],
+  "seamCells": [
+   {
+    "cell": [
+     -25,
+     -16
+    ],
+    "centreEN": [
+     568417.7,
+     6495376.4
+    ],
+    "count": 7,
+    "before": 1,
+    "byRollout": {
+     "lighting-a2-v1": 6,
+     "step6-pilot-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 7
+   },
+   {
+    "cell": [
+     -25,
+     -15
+    ],
+    "centreEN": [
+     568417.7,
+     6495351.4
+    ],
+    "count": 7,
+    "before": 4,
+    "byRollout": {
+     "lighting-a2-v1": 3,
+     "step6-pilot-v1": 4
+    },
+    "mapped": 0,
+    "estimated": 7
+   },
+   {
+    "cell": [
+     -19,
+     -25
+    ],
+    "centreEN": [
+     568567.7,
+     6495601.3
+    ],
+    "count": 6,
+    "before": 2,
+    "byRollout": {
+     "lighting-a1-v1": 2,
+     "lighting-a2-v1": 4
+    },
+    "mapped": 0,
+    "estimated": 6
+   },
+   {
+    "cell": [
+     -18,
+     -26
+    ],
+    "centreEN": [
+     568592.6,
+     6495626.3
+    ],
+    "count": 6,
+    "before": 4,
+    "byRollout": {
+     "lighting-a1-v1": 4,
+     "lighting-a2-v1": 2
+    },
+    "mapped": 0,
+    "estimated": 6
+   },
+   {
+    "cell": [
+     -26,
+     -15
+    ],
+    "centreEN": [
+     568392.7,
+     6495351.4
+    ],
+    "count": 5,
+    "before": 2,
+    "byRollout": {
+     "lighting-a2-v1": 3,
+     "step6-pilot-v1": 2
+    },
+    "mapped": 0,
+    "estimated": 5
+   },
+   {
+    "cell": [
+     -24,
+     -15
+    ],
+    "centreEN": [
+     568442.7,
+     6495351.4
+    ],
+    "count": 5,
+    "before": 3,
+    "byRollout": {
+     "lighting-a2-v1": 2,
+     "step6-pilot-v1": 3
+    },
+    "mapped": 0,
+    "estimated": 5
+   },
+   {
+    "cell": [
+     -19,
+     -26
+    ],
+    "centreEN": [
+     568567.7,
+     6495626.3
+    ],
+    "count": 5,
+    "before": 2,
+    "byRollout": {
+     "lighting-a1-v1": 2,
+     "lighting-a2-v1": 3
+    },
+    "mapped": 0,
+    "estimated": 5
+   },
+   {
+    "cell": [
+     -19,
+     -24
+    ],
+    "centreEN": [
+     568567.7,
+     6495576.3
+    ],
+    "count": 5,
+    "before": 1,
+    "byRollout": {
+     "lighting-a1-v1": 1,
+     "lighting-a2-v1": 4
+    },
+    "mapped": 0,
+    "estimated": 5
+   },
+   {
+    "cell": [
+     -18,
+     -25
+    ],
+    "centreEN": [
+     568592.6,
+     6495601.3
+    ],
+    "count": 5,
+    "before": 3,
+    "byRollout": {
+     "lighting-a1-v1": 3,
+     "lighting-a2-v1": 2
+    },
+    "mapped": 0,
+    "estimated": 5
+   },
+   {
+    "cell": [
+     -24,
+     -16
+    ],
+    "centreEN": [
+     568442.7,
+     6495376.4
+    ],
+    "count": 4,
+    "before": 1,
+    "byRollout": {
+     "lighting-a2-v1": 3,
+     "step6-pilot-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 4
+   },
+   {
+    "cell": [
+     -18,
+     -27
+    ],
+    "centreEN": [
+     568592.6,
+     6495651.3
+    ],
+    "count": 4,
+    "before": 3,
+    "byRollout": {
+     "lighting-a1-v1": 3,
+     "lighting-a2-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 4
+   },
+   {
+    "cell": [
+     -18,
+     -24
+    ],
+    "centreEN": [
+     568592.6,
+     6495576.3
+    ],
+    "count": 3,
+    "before": 2,
+    "byRollout": {
+     "lighting-a1-v1": 2,
+     "lighting-a2-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 3
+   },
+   {
+    "cell": [
+     -19,
+     -27
+    ],
+    "centreEN": [
+     568567.7,
+     6495651.3
+    ],
+    "count": 2,
+    "before": 1,
+    "byRollout": {
+     "lighting-a1-v1": 1,
+     "lighting-a2-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 2
+   }
+  ]
+ },
+ "densityHeadroom": [
+  {
+   "spacingFactor": 1,
+   "a2Fixtures": 35,
+   "ok": true,
+   "maxRawOccupancy": 15,
+   "maxInCellsA2Reaches": 9,
+   "overflowCells": 0,
+   "conflictCount": 0,
+   "conflicts": []
+  },
+  {
+   "spacingFactor": 0.85,
+   "a2Fixtures": 42,
+   "ok": true,
+   "maxRawOccupancy": 15,
+   "maxInCellsA2Reaches": 12,
+   "overflowCells": 0,
+   "conflictCount": 0,
+   "conflicts": []
+  },
+  {
+   "spacingFactor": 0.75,
+   "a2Fixtures": 50,
+   "ok": true,
+   "maxRawOccupancy": 15,
+   "maxInCellsA2Reaches": 13,
+   "overflowCells": 0,
+   "conflictCount": 0,
+   "conflicts": []
+  },
+  {
+   "spacingFactor": 0.6,
+   "a2Fixtures": 62,
+   "ok": true,
+   "maxRawOccupancy": 16,
+   "maxInCellsA2Reaches": 16,
+   "overflowCells": 0,
+   "conflictCount": 0,
+   "conflicts": []
+  }
+ ]
+}

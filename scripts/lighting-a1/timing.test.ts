@@ -6,7 +6,11 @@
 // Prints medians of 15 runs; not written to the docs automatically (timings vary between machines).
 import { test } from 'vitest';
 import { terrain } from '../../src/lib/terrain';
-import { pilotLightingRegistry, runtimeLightingRegistry } from '../../src/lib/lighting/controller';
+// Phase A2: 'combined' here is the A1 state (pilot + A1); A2 timings: scripts/lighting-a2/timing.test.ts.
+import {
+  a1RuntimeLightingRegistry as runtimeLightingRegistry,
+  pilotLightingRegistry,
+} from '../../src/lib/lighting/controller';
 import { generateCorridor } from '../../src/lib/lighting/corridorGenerator';
 import { prepareStreetLighting } from '../../src/lib/lighting/streetLighting';
 import { loadInputs } from './inputs';

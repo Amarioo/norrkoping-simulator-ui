@@ -239,7 +239,7 @@ test('street lighting survives rebuilds, controller recreation and context resto
   await page.waitForTimeout(3000);
   const before = await shot();
   const base = await resources();
-  expect(base).toMatchObject({ fixtures: 232, status: 'ok' }); // pilot 105 + Phase A1 127
+  expect(base).toMatchObject({ fixtures: 267, status: 'ok' }); // pilot 105 + Phase A1 127 + Phase A2 35
   const series: Awaited<ReturnType<typeof resources>>[] = [];
   for (let i = 0; i < 10; i++) {
     expect(
@@ -271,7 +271,7 @@ test('street lighting survives rebuilds, controller recreation and context resto
     expect(s.geometries).toBeLessThanOrEqual(base.geometries);
     expect(s.textures).toBeLessThanOrEqual(base.textures);
     expect(s.programs).toBe(base.programs);
-    expect(s.fixtures).toBe(232);
+    expect(s.fixtures).toBe(267);
   }
   // Post-GC JS heap: no growth trend across the 20 cycles (first vs last cycle within 2 MB).
   expect(Math.abs(series.at(-1)!.heapMB - series[0].heapMB)).toBeLessThan(2);
@@ -305,8 +305,8 @@ test('street lighting survives rebuilds, controller recreation and context resto
   expect(errors).toEqual([]);
 });
 
-// Lighting Phase A1: the central corridor on the live map. Complete set swaps (pilot only ↔ pilot +
-// A1) return to a resource plateau without new programs; a rejected (overflowing) set leaves the
+// Lighting Phase A1: the central corridor on the live map. Complete set swaps (pilot only ↔ the runtime
+// set, since Phase A2 pilot + A1 + A2) return to a resource plateau without new programs; a rejected (overflowing) set leaves the
 // rendered frame byte-identical; the corridor really lights the ground (measured brightness, pilot-only
 // vs pilot + A1 at the same pose); the expanded set survives recreation and context restoration.
 test('Phase A1 corridor: illumination, set swaps, rejection, recreation and context restoration', async ({
@@ -377,10 +377,11 @@ test('Phase A1 corridor: illumination, set swaps, rejection, recreation and cont
   await page.waitForTimeout(3000);
   const full = await shot();
   const start = await state();
-  expect(start).toMatchObject({ fixtures: 232, status: 'ok' });
+  expect(start).toMatchObject({ fixtures: 267, status: 'ok' });
   expect(start.max).toBeLessThanOrEqual(16);
   expect(start.rollouts).toEqual({
     'lighting-a1-v1': { mapped: 10, estimated: 117 },
+    'lighting-a2-v1': { mapped: 0, estimated: 35 },
     'step6-pilot-v1': { mapped: 10, estimated: 95 },
   });
   // Pilot only: the corridor goes dark (no ambient compensation), and comes back with the A1 set.
@@ -396,7 +397,7 @@ test('Phase A1 corridor: illumination, set swaps, rejection, recreation and cont
     if (kind === 'pilot' && !pilotOnly) pilotOnly = await shot();
   }
   for (const [i, s] of swaps.entries()) {
-    expect(s.fixtures).toBe(i % 2 ? 232 : 105);
+    expect(s.fixtures).toBe(i % 2 ? 267 : 105);
     // Never a new program. A rebuilt set's halo program compiles when a halo is first drawn: with the
     // pilot only, no halo is in this view (19 programs); with A1 in view it is back to the start.
     expect(s.programs).toBeLessThanOrEqual(start.programs);
@@ -441,12 +442,170 @@ test('Phase A1 corridor: illumination, set swaps, rejection, recreation and cont
   expect((await shot()).equals(full)).toBe(true);
   // After restoration only the programs this view needs are recompiled (never more than at start).
   const restoredState = await state();
-  expect(restoredState).toMatchObject({ fixtures: 232, status: 'ok' });
+  expect(restoredState).toMatchObject({ fixtures: 267, status: 'ok' });
   expect(restoredState.programs).toBeLessThanOrEqual(start.programs);
   fs.mkdirSync('test-results/lighting-a1', { recursive: true });
   fs.writeFileSync(
     'test-results/lighting-a1/e2e.json',
     JSON.stringify({ start, swaps, luma: { lit, dark } }, null, 1),
+  );
+  expect(errors).toEqual([]);
+});
+
+// Lighting Phase A2: western Norra Promenaden + northern Kungsgatan on the live map. Complete swaps
+// between the accepted A1 state (pilot + A1) and pilot + A1 + A2 return to a resource plateau without
+// new programs; A2 really lights the ground at the Kungsgatan pose (measured brightness, no ambient
+// change); a view facing away from A2 is byte-identical with and without A2; a rejected set changes
+// nothing; the combined set survives recreation and context restoration.
+test('Phase A2 corridor: illumination, unchanged reference view, swaps, rejection, recreation and context restoration', async ({
+  page,
+}) => {
+  test.setTimeout(240000);
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.route('**/api/**', (route) => route.abort());
+  await page.setViewportSize({ width: 1400, height: 1000 });
+  await page.goto('/?date=2026-10-21&time=21:30&stadium=off');
+  await expect(page.locator('[data-map-ready="true"]')).toBeVisible({ timeout: 120000 });
+  await page.addStyleTag({ content: '.connection-banner{display:none!important}' });
+  await page.locator('.label-toggle input').uncheck();
+  const hook = 'globalThis.__cityLighting';
+  const call = <T>(expr: string) => page.evaluate((e) => (0, eval)(e) as T, expr);
+  // scripts/lighting-a2/poses.json a2-kungsgatan-north-elevated; the reference view looks south over
+  // Strömparken with the A2 corridor behind the camera.
+  const POSES = {
+    a2: { position: [-21.8, 2.6, -12.8], target: [-25.4, 0.35, -19.5] },
+    away: { position: [-8.0, 1.5, -6.0], target: [-6.0, 0.3, 0.0] },
+  };
+  const pose = (p: { position: number[]; target: number[] }) =>
+    page.evaluate((p) => {
+      const { camera, controls } = (globalThis as any).__cityCamera;
+      camera.position.fromArray(p.position);
+      controls.target.fromArray(p.target);
+      controls.update();
+      (globalThis as any).__cityLighting.settle();
+    }, p);
+  const frames = () =>
+    page.evaluate(
+      () =>
+        new Promise<void>((r) =>
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => requestAnimationFrame(() => r())),
+          ),
+        ),
+    );
+  const shot = async (p = POSES.a2) => {
+    await pose(p);
+    await page.waitForTimeout(800);
+    await frames();
+    return page.locator('.map-panel').screenshot();
+  };
+  const luma = (png: Buffer) =>
+    page.evaluate(async (b64) => {
+      const img = new Image();
+      img.src = 'data:image/png;base64,' + b64;
+      await img.decode();
+      const c = new OffscreenCanvas(img.width, img.height);
+      const g = c.getContext('2d')!;
+      g.drawImage(img, 0, 0);
+      const d = g.getImageData(0, 0, img.width, img.height).data;
+      let s = 0;
+      for (let i = 0; i < d.length; i += 4)
+        s += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+      return s / (d.length / 4);
+    }, png.toString('base64'));
+  const state = () =>
+    call<{
+      fixtures: number;
+      status: string;
+      rollouts: Record<string, unknown>;
+      max: number;
+      pages: number;
+      geometries: number;
+      textures: number;
+      programs: number;
+    }>(
+      `(() => { const l = ${hook}; const d = l.describe(); return { fixtures: d.fixtures, status: d.streetLighting.status, rollouts: d.streetLighting.rollouts, max: d.streetLighting.index.maxRawOccupancy, pages: d.streetLighting.index.pages.allocated, geometries: l.renderer.info.memory.geometries, textures: l.renderer.info.memory.textures, programs: l.renderer.info.programs.length }; })()`,
+    );
+  const swap = (kind: 'a1Runtime' | 'runtime') =>
+    call<{ ok: boolean }>(`${hook}.replaceStreetLighting(${hook}.registries.${kind}())`);
+  await pose(POSES.a2);
+  await page.waitForTimeout(3000);
+  const full = await shot();
+  const awayFull = await shot(POSES.away);
+  const start = await state();
+  expect(start).toMatchObject({ fixtures: 267, status: 'ok', max: 15, pages: 69 });
+  expect(start.rollouts).toEqual({
+    'lighting-a1-v1': { mapped: 10, estimated: 117 },
+    'lighting-a2-v1': { mapped: 0, estimated: 35 },
+    'step6-pilot-v1': { mapped: 10, estimated: 95 },
+  });
+  const swaps: Awaited<ReturnType<typeof state>>[] = [];
+  let a1Only: Buffer | null = null,
+    awayA1: Buffer | null = null;
+  for (let i = 0; i < 6; i++) {
+    const kind = i % 2 ? 'runtime' : 'a1Runtime';
+    expect(await swap(kind)).toEqual({ ok: true });
+    await frames();
+    // The same pose sequence on every swap, so GPU object counts compare like for like.
+    const away = await shot(POSES.away);
+    const here = await shot();
+    if (kind === 'a1Runtime' && !a1Only) {
+      a1Only = here;
+      awayA1 = away;
+    }
+    swaps.push(await state());
+  }
+  for (const [i, s] of swaps.entries()) {
+    expect(s.fixtures).toBe(i % 2 ? 267 : 232);
+    expect(s.programs).toBeLessThanOrEqual(start.programs);
+    if (i >= 2) {
+      expect(s.geometries).toBe(swaps[i - 2].geometries);
+      expect(s.textures).toBe(swaps[i - 2].textures);
+    }
+  }
+  // A2 lights the street (no ambient or exposure change); the view facing away is unchanged.
+  const lit = await luma(full),
+    dark = await luma(a1Only!);
+  expect(lit).toBeGreaterThan(dark * 1.15);
+  expect(awayA1!.equals(awayFull)).toBe(true);
+  expect((await shot()).equals(full)).toBe(true);
+  // A rejected set (17 lamps in one A2 cell) changes nothing on screen.
+  const rejected = await call<{ ok: boolean; stage: string }>(`(() => {
+    const r = ${hook}.registries.runtime();
+    const f = r.fixtures.find((x) => x.id.startsWith('estimate:lighting-a2-v1'));
+    const crowd = Array.from({ length: 17 }, (_, k) => ({ ...f, id: 'estimate:lighting-a2-v1:e2e/' + k, runtimeId: 'estimate:lighting-a2-v1:e2e/' + k }));
+    return ${hook}.replaceStreetLighting({ ...r, fixtures: [...r.fixtures, ...crowd] });
+  })()`);
+  expect(rejected).toMatchObject({ ok: false, stage: 'capacity' });
+  expect((await state()).status).toBe('rendering-previous');
+  expect((await shot()).equals(full)).toBe(true);
+  // Recreation and WebGL context restoration with the combined set.
+  await call(`${hook}.recreate()`);
+  await frames();
+  expect((await shot()).equals(full)).toBe(true);
+  await page.evaluate(async () => {
+    const canvas = document.querySelector('.map-panel canvas') as HTMLCanvasElement;
+    const extension = canvas.getContext('webgl2')!.getExtension('WEBGL_lose_context')!;
+    const lost = new Promise((r) => canvas.addEventListener('webglcontextlost', r, { once: true }));
+    const restored = new Promise((r) =>
+      canvas.addEventListener('webglcontextrestored', r, { once: true }),
+    );
+    extension.loseContext();
+    await lost;
+    await new Promise((r) => setTimeout(r, 200));
+    extension.restoreContext();
+    await restored;
+  });
+  await page.waitForTimeout(3000);
+  expect((await shot()).equals(full)).toBe(true);
+  const restoredState = await state();
+  expect(restoredState).toMatchObject({ fixtures: 267, status: 'ok' });
+  expect(restoredState.programs).toBeLessThanOrEqual(start.programs);
+  fs.mkdirSync('test-results/lighting-a2', { recursive: true });
+  fs.writeFileSync(
+    'test-results/lighting-a2/e2e.json',
+    JSON.stringify({ start, swaps, restoredState, luma: { lit, dark } }, null, 1),
   );
   expect(errors).toEqual([]);
 });

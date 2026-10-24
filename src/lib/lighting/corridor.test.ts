@@ -2,6 +2,9 @@
  * Lighting Phase A1 (central corridor): reproducible generation, geographic placement rules, pilot
  * preservation inside the combined set, capacity, identity collisions, invalid data, grouping,
  * cross-group illumination, set replacement lifecycle and source precedence.
+ *
+ * Phase A2: the controller default is now pilot + A1 + A2; these tests keep verifying the accepted A1
+ * state (pilot + A1, 232 fixtures) through a1RuntimeLightingRegistry. A2 tests: corridorA2.test.ts.
  */
 import { describe, expect, test } from 'vitest';
 import { createHash } from 'node:crypto';
@@ -22,9 +25,9 @@ import { createIdrottsparken } from '../stadium/idrottsparken';
 import { LAMP_TEXELS, MAX_PER_CELL } from './cityLights';
 import {
   a1LightingRegistry,
+  a1RuntimeLightingRegistry as runtimeLightingRegistry,
   createCityLighting,
   pilotLightingRegistry,
-  runtimeLightingRegistry,
 } from './controller';
 import { A1_ZONES, GROUP_CHUNK_CELLS, groupKey, inRing, zoneOfEN } from './corridorA1';
 import { A1_POLICY, generateCorridor, type GeneratorInput } from './corridorGenerator';
@@ -45,7 +48,7 @@ const output = generateCorridor(input);
 const a1 = a1Data as unknown as { fixtures: typeof output.fixtures };
 const fakeRenderer = () =>
   ({ toneMappingExposure: 1, info: { programs: [] } }) as unknown as WebGLRenderer;
-const make = (registry?: LightingRegistry, strict = true) => {
+const make = (registry: LightingRegistry = runtimeLightingRegistry(terrain), strict = true) => {
   const stadium = createIdrottsparken(terrain);
   const lighting = createCityLighting({
     terrain,

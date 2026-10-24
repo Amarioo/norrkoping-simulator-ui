@@ -1,0 +1,721 @@
+{
+ "zones": {
+  "D": {
+   "name": "Norra Promenaden west (A1 – Kungstorget), Norrtull tram stop, Kungstorget east junction",
+   "ringEN": [
+    [
+     568572.7,
+     6495635
+    ],
+    [
+     568514.2,
+     6495616.5
+    ],
+    [
+     568428,
+     6495594.5
+    ],
+    [
+     568377.7,
+     6495581.3
+    ],
+    [
+     568356.5,
+     6495571.3
+    ],
+    [
+     568359,
+     6495546.3
+    ],
+    [
+     568347.7,
+     6495521.3
+    ],
+    [
+     568341.5,
+     6495502.6
+    ],
+    [
+     568367.7,
+     6495483.1
+    ],
+    [
+     568408.7,
+     6495494.1
+    ],
+    [
+     568412.7,
+     6495521.3
+    ],
+    [
+     568423.7,
+     6495539.3
+    ],
+    [
+     568446.7,
+     6495545.8
+    ],
+    [
+     568496.9,
+     6495559.6
+    ],
+    [
+     568572.7,
+     6495573.8
+    ]
+   ],
+   "areaM2": 14409,
+   "fixtures": 20
+  },
+  "E": {
+   "name": "Kungsgatan north (Kungstorget – Kungsgatan pilot), Slottsgatan junction",
+   "ringEN": [
+    [
+     568367.7,
+     6495483.1
+    ],
+    [
+     568374.5,
+     6495457.1
+    ],
+    [
+     568385.7,
+     6495414.4
+    ],
+    [
+     568392.2,
+     6495392.1
+    ],
+    [
+     568405.2,
+     6495353.876
+    ],
+    [
+     568443.2,
+     6495353.876
+    ],
+    [
+     568430.2,
+     6495401.1
+    ],
+    [
+     568423.7,
+     6495423.4
+    ],
+    [
+     568412.5,
+     6495466.1
+    ],
+    [
+     568408.7,
+     6495494.1
+    ]
+   ],
+   "areaM2": 5431,
+   "fixtures": 15
+  }
+ },
+ "counts": {
+  "fixtures": 35,
+  "mapped": 0,
+  "estimated": 35,
+  "candidates": 39,
+  "rejected": 18,
+  "deck": 0,
+  "zoneD": 20,
+  "zoneE": 15,
+  "rejected:covered-by-road-lighting": 14,
+  "rejected:suppressed-by-existing": 1,
+  "rejected:suppressed-by-estimate": 3
+ },
+ "rejectedByReason": {
+  "covered-by-road-lighting": 14,
+  "suppressed-by-existing": 1,
+  "suppressed-by-estimate": 3
+ },
+ "rejected": [
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286445702:s0",
+   "element": "way/286445702",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "5.9 m from a lit road centreline",
+   "en": [
+    568371.3,
+    6495513.47
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286445702:s1",
+   "element": "way/286445702",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.6 m from a lit road centreline",
+   "en": [
+    568355.35,
+    6495501.78
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286457919:s3",
+   "element": "way/286457919",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "7.8 m from a lit road centreline",
+   "en": [
+    568551.82,
+    6495620.82
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286457919:s4",
+   "element": "way/286457919",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "7.5 m from a lit road centreline",
+   "en": [
+    568529.73,
+    6495614.3
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286457919:s5",
+   "element": "way/286457919",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "7.1 m from a lit road centreline",
+   "en": [
+    568507.62,
+    6495607.88
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286457919:s6",
+   "element": "way/286457919",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "6.4 m from a lit road centreline",
+   "en": [
+    568485.48,
+    6495601.52
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286457919:s7",
+   "element": "way/286457919",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "5.7 m from a lit road centreline",
+   "en": [
+    568463.35,
+    6495595.16
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286457919:s8",
+   "element": "way/286457919",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "5.1 m from a lit road centreline",
+   "en": [
+    568441.22,
+    6495588.8
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286457920:s5",
+   "element": "way/286457920",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.7 m from a lit road centreline",
+   "en": [
+    568509.49,
+    6495564.78
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286457920:s6",
+   "element": "way/286457920",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.4 m from a lit road centreline",
+   "en": [
+    568531.17,
+    6495571.02
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/286457920:s7",
+   "element": "way/286457920",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.2 m from a lit road centreline",
+   "en": [
+    568552.84,
+    6495577.23
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/297613947:s0",
+   "element": "way/297613947",
+   "zone": "E",
+   "reason": "suppressed-by-existing",
+   "detail": "estimate:step6-pilot-v1:way/444474488:s0 at 15.5 m",
+   "en": [
+    568419.44,
+    6495354.66
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/297613948:s0",
+   "element": "way/297613948",
+   "zone": "E",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a2-v1:way/297613947:s4 at 14.6 m",
+   "en": [
+    568399.4,
+    6495424.36
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/444474489:s0",
+   "element": "way/444474489",
+   "zone": "D",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a2-v1:way/297613948:s4 at 14.8 m",
+   "en": [
+    568379.45,
+    6495493.91
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/92385220:s0",
+   "element": "way/92385220",
+   "zone": "D",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a2-v1:way/286445687:s0 at 9.9 m",
+   "en": [
+    568363.48,
+    6495505.54
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/93304115:s0",
+   "element": "way/93304115",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "3.8 m from a lit road centreline",
+   "en": [
+    568384.73,
+    6495540.16
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/93304115:s1",
+   "element": "way/93304115",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "3.8 m from a lit road centreline",
+   "en": [
+    568378.55,
+    6495561.9
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a2-v1:way/94463450:s0",
+   "element": "way/94463450",
+   "zone": "D",
+   "reason": "covered-by-road-lighting",
+   "detail": "8.5 m from a lit road centreline",
+   "en": [
+    568371.28,
+    6495493.72
+   ]
+  }
+ ],
+ "ways": [
+  {
+   "way": 4384887,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 74.8,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 4384888,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 72.7,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 92385198,
+   "name": "Kungsgatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D",
+    "E"
+   ],
+   "lengthInsideM": 29.2,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 92385203,
+   "name": "Ingelstagatan",
+   "highway": "unclassified",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 92385220,
+   "name": "Kungsgatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 25.8,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 93304115,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 56.4,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 94463450,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "D",
+    "E"
+   ],
+   "lengthInsideM": 182.7,
+   "status": "estimated",
+   "fixtures": 6
+  },
+  {
+   "way": 286445685,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 41,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445686,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 2.3,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 286445687,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 33.4,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445689,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 88.7,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 286445690,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 89.1,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 286445702,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 37.2,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 286457919,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 176.9,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 286457920,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 226.6,
+   "status": "estimated",
+   "fixtures": 5
+  },
+  {
+   "way": 297613947,
+   "name": "Kungsgatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "E"
+   ],
+   "lengthInsideM": 72.5,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 297613948,
+   "name": "Kungsgatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "E"
+   ],
+   "lengthInsideM": 72,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 297616121,
+   "name": "Slottsgatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "E"
+   ],
+   "lengthInsideM": 17.7,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 300186799,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 16.7,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 312490062,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 391438985,
+   "name": "C",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 74,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 391446183,
+   "name": "F",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "E"
+   ],
+   "lengthInsideM": 46.8,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 444474486,
+   "name": "Kungsgatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 11.8,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 444474489,
+   "name": "Kungsgatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "D",
+    "E"
+   ],
+   "lengthInsideM": 19.5,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 444474566,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 11.2,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 760535004,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 9,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 760535005,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "D"
+   ],
+   "lengthInsideM": 10.5,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  }
+ ],
+ "unknownWays": [
+  {
+   "way": 93304118,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 16.4
+  },
+  {
+   "way": 286445696,
+   "name": "Norra Promenaden",
+   "class": "secondary",
+   "lengthInsideM": 21
+  },
+  {
+   "way": 297642830,
+   "name": "Slottsgatan",
+   "class": "residential",
+   "lengthInsideM": 19
+  },
+  {
+   "way": 300027227,
+   "name": "Kungstorget",
+   "class": "secondary",
+   "lengthInsideM": 4.9
+  },
+  {
+   "way": 300186798,
+   "name": "Norra Promenaden",
+   "class": "secondary",
+   "lengthInsideM": 29.5
+  },
+  {
+   "way": 1050773512,
+   "name": "Norra Promenaden",
+   "class": "secondary",
+   "lengthInsideM": 52
+  },
+  {
+   "way": 1212136552,
+   "name": "",
+   "class": "path",
+   "lengthInsideM": 187.2
+  },
+  {
+   "way": 1212234783,
+   "name": "",
+   "class": "path",
+   "lengthInsideM": 23.7
+  },
+  {
+   "way": 1212234784,
+   "name": "",
+   "class": "path",
+   "lengthInsideM": 23
+  }
+ ]
+}

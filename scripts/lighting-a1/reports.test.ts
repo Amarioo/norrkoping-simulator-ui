@@ -17,9 +17,10 @@ import { terrain } from '../../src/lib/terrain';
 import { createIdrottsparken } from '../../src/lib/stadium/idrottsparken';
 import {
   a1LightingRegistry,
+  // Phase A2: the controller default includes A2; this harness describes the A1 state (pilot + A1).
+  a1RuntimeLightingRegistry as runtimeLightingRegistry,
   createCityLighting,
   pilotLightingRegistry,
-  runtimeLightingRegistry,
 } from '../../src/lib/lighting/controller';
 import { A1_POLICY, generateCorridor } from '../../src/lib/lighting/corridorGenerator';
 import { A1_GENERATOR, A1_ZONES, inRing } from '../../src/lib/lighting/corridorA1';
@@ -280,6 +281,7 @@ test('write the A1 evidence data', () => {
       stadium,
       renderer: { toneMappingExposure: 1, info: { programs: [] } } as unknown as WebGLRenderer,
       scene: new Scene(),
+      registry: runtimeLightingRegistry(terrain),
     });
     return { lighting: l, dispose: () => (l.dispose(), stadium.dispose()) };
   })();

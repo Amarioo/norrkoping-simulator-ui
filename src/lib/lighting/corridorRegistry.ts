@@ -1,6 +1,7 @@
 /**
- * Lighting Phase A1: registry adapter for generated corridor records (src/lib/data/streetlights-a1.json)
- * and the merge with the Step 6 pilot.
+ * Lighting Phase A1/A2: registry adapter for generated corridor records (src/lib/data/streetlights-a1.json,
+ * streetlights-a2.json) and the merge with the Step 6 pilot. The corridor's dataset and generator are
+ * passed in (default: A1), so A1 records are built exactly as before.
  *
  * Concepts stay separate (docs/lighting-phase-a1/data-provenance.md):
  * - identity: canonical `id` (= runtimeId; A1 has no legacy IDs);
@@ -12,7 +13,8 @@
  * set is rejected (the generator already excludes identities that exist in the pilot).
  */
 import { sceneToSweref } from '../geo/sweref99tm.js';
-import { A1_DATASET, A1_GENERATOR, groupKey, inRing, type A1Zone } from './corridorA1';
+import { A1_DATASET, A1_GENERATOR, groupKey, inRing } from './corridorA1';
+import { A2_DATASET, A2_GENERATOR } from './corridorA2';
 import type { A1Fixture } from './corridorGenerator';
 import {
   headingToGridAzimuth,
@@ -30,9 +32,21 @@ export interface A1Data {
 
 const ELEMENT = /^(?:osm:(node)\/(\d+)|estimate:[a-z0-9.-]+:(way)\/(\d+):s(\d+))$/;
 
-export function corridorRegistry(data: A1Data, reference: SceneReferenceLike): LightingRegistry {
-  const source = data.meta.sources.find((s) => s.id === A1_DATASET);
-  const fixtures = data.fixtures.map((f): RegistryFixture & { zone: A1Zone } => {
+/** Identity of a corridor rollout in its registry records. */
+export interface CorridorIdentity {
+  dataset: string;
+  generator: { script: string; version: string };
+}
+export const A1_IDENTITY: CorridorIdentity = { dataset: A1_DATASET, generator: A1_GENERATOR };
+export const A2_IDENTITY: CorridorIdentity = { dataset: A2_DATASET, generator: A2_GENERATOR };
+
+export function corridorRegistry(
+  data: A1Data,
+  reference: SceneReferenceLike,
+  identity: CorridorIdentity = A1_IDENTITY,
+): LightingRegistry {
+  const source = data.meta.sources.find((s) => s.id === identity.dataset);
+  const fixtures = data.fixtures.map((f): RegistryFixture & { zone: string } => {
     const m = ELEMENT.exec(f.id);
     const element = m ? (m[1] ? `node/${m[2]}` : `way/${m[4]}`) : null;
     const [e, n] = sceneToSweref(reference as never, f.x, f.z);
@@ -46,14 +60,14 @@ export function corridorRegistry(data: A1Data, reference: SceneReferenceLike): L
       placement: f.placement,
       illumination: f.placement === 'mapped' ? 'mapped-lit' : 'estimated',
       source: {
-        dataset: A1_DATASET,
+        dataset: identity.dataset,
         element,
         snapshot: source?.osmBase ?? '',
         licence: source?.license ?? '',
       },
       generator: {
-        script: A1_GENERATOR.script,
-        version: A1_GENERATOR.version,
+        script: identity.generator.script,
+        version: identity.generator.version,
         seed: null,
         method: f.placement === 'mapped' ? 'osm-node' : 'lit-way-station',
         station: m?.[5] !== undefined ? Number(m[5]) : null,

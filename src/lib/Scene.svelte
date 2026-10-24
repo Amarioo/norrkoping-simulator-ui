@@ -12,6 +12,8 @@
   import { terrain } from './terrain';
   import {
     a1LightingRegistry,
+    a1RuntimeLightingRegistry,
+    a2LightingRegistry,
     createCityLighting,
     pilotLightingRegistry,
     runtimeLightingRegistry,
@@ -86,11 +88,13 @@
       },
       reloadStreetLighting: () =>
         lighting.replaceStreetLighting(runtimeLightingRegistry(terrain)).ok,
-      // Lighting Phase A1 checks: swap complete sets (pilot only ↔ pilot + A1), submit arbitrary
+      // Lighting Phase A1/A2 checks: swap complete sets (pilot only, pilot + A1, pilot + A1 + A2), submit arbitrary
       // (e.g. deliberately invalid) registries, and list the rendered fixtures.
       registries: {
         pilot: () => pilotLightingRegistry(terrain),
         a1: () => a1LightingRegistry(terrain),
+        a2: () => a2LightingRegistry(terrain),
+        a1Runtime: () => a1RuntimeLightingRegistry(terrain),
         runtime: () => runtimeLightingRegistry(terrain),
       },
       replaceStreetLighting: (registry: Parameters<typeof lighting.replaceStreetLighting>[0]) => {

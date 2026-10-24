@@ -36,9 +36,19 @@
  *    group within 0.55 × spacing, and to any accepted fixture within 3 m. Acceptance runs in canonical
  *    priority order (class rank, then canonical ID), so input order cannot change the outcome.
  * Canonical IDs: osm:node/<id>; estimate:lighting-a1-v1:way/<id>:s<station index along the way>.
+ *
+ * Lighting Phase A2 runs the same generator with its own corridor spec (zones, generator version,
+ * dataset; corridorA2.ts) and two seam rules that are off for A1 (its output is unchanged):
+ * - existingEstimatesAsAccepted: estimates of earlier rollouts (pilot, A1) count like this run's own
+ *   accepted estimates (0.55 × class spacing within the class group), so a way that continues across
+ *   a rollout boundary keeps its spacing instead of getting a second, offset row at the seam;
+ * - stationSlotFamilies: a station (way, index) that an earlier rollout with the same station rule
+ *   already rendered is that rollout's fixture (identity), never a second record.
+ * Earlier records are never moved, merged or removed; every skipped candidate is reported.
  */
 import { geodeticToScene, sceneToSweref, swerefToScene } from '../geo/sweref99tm.js';
-import { A1_GENERATOR, A1_ZONE_ORDER, A1_ZONES, inRing, type A1Zone } from './corridorA1';
+import { A1_DATASET, A1_GENERATOR, A1_ZONE_ORDER, A1_ZONES, inRing } from './corridorA1';
+import { A2_DATASET, A2_GENERATOR, A2_ZONE_ORDER, A2_ZONES } from './corridorA2';
 import { emitterPosition, type FixtureRecord } from './fixtures';
 
 export interface SceneReference {
@@ -90,6 +100,10 @@ export interface ExistingFixture {
   x: number;
   z: number;
   type: string;
+  /** Evidence class (Phase A2 seam rule; absent = treated as a mapped/existing fixture). */
+  placement?: 'mapped' | 'estimated';
+  /** Source element, e.g. way/123 (Phase A2 diagnostics). */
+  element?: string | null;
 }
 export interface GeneratorInput {
   reference: SceneReference;
@@ -115,7 +129,8 @@ export type Mount =
 /** Runtime record (src/lib/data/streetlights-a1.json): the pilot shape with canonical ID and zone. */
 export interface A1Fixture {
   id: string;
-  zone: A1Zone;
+  /** Corridor zone (A1: A/B/C, A2: D/E). */
+  zone: string;
   type: string;
   x: number;
   z: number;
@@ -131,7 +146,7 @@ export interface A1Fixture {
 }
 export interface A1Provenance {
   id: string;
-  zone: A1Zone;
+  zone: string;
   method: string;
   rule: string;
   source: {
@@ -161,7 +176,7 @@ export interface A1Provenance {
 export interface Rejection {
   candidate: string;
   element: string;
-  zone: A1Zone;
+  zone: string;
   reason: string;
   detail: string;
   /** EPSG:3006 E/N of the unshifted candidate, 0.01 m. */
@@ -172,7 +187,7 @@ export interface WayCoverage {
   name: string;
   highway: string;
   lit: string;
-  zones: A1Zone[];
+  zones: string[];
   lengthInsideM: number;
   status: string;
   fixtures: number;
@@ -206,6 +221,45 @@ export const A1_POLICY = {
   staggerWidthM: 9,
   extraSetbacksM: [0, 0.5, 1, 1.5, 2],
 } as const;
+/** Placement policy of a corridor run (A1_POLICY plus the Phase A2 seam rules, off when absent). */
+export type CorridorPolicy = Omit<typeof A1_POLICY, 'version'> & {
+  version: string;
+  existingEstimatesAsAccepted?: boolean;
+  stationSlotFamilies?: readonly string[];
+};
+/** A bounded corridor rollout: zones (EPSG:3006), generator identity, dataset and policy. */
+export interface CorridorSpec {
+  generator: { script: string; version: string; seed: null };
+  dataset: string;
+  zones: Record<string, { name: string; ring: [number, number][] }>;
+  zoneOrder: readonly string[];
+  policy: CorridorPolicy;
+}
+export const A1_SPEC: CorridorSpec = {
+  generator: A1_GENERATOR,
+  dataset: A1_DATASET,
+  zones: A1_ZONES,
+  zoneOrder: A1_ZONE_ORDER,
+  policy: A1_POLICY,
+};
+/**
+ * Placement policy `lighting-a2-v1`: A1's rules and values unchanged, plus the two seam rules (header).
+ * Station-slot identity applies to A1 records (same station rule); the Step 6 pilot used a different
+ * station walk, so its estimates take part through the spacing rule only.
+ */
+export const A2_POLICY: CorridorPolicy = {
+  ...A1_POLICY,
+  version: A2_GENERATOR.version,
+  existingEstimatesAsAccepted: true,
+  stationSlotFamilies: [A1_GENERATOR.version],
+};
+export const A2_SPEC: CorridorSpec = {
+  generator: A2_GENERATOR,
+  dataset: A2_DATASET,
+  zones: A2_ZONES,
+  zoneOrder: A2_ZONE_ORDER,
+  policy: A2_POLICY,
+};
 const SECTORS = 16;
 const ROAD = new Set([
   'trunk',
@@ -280,7 +334,11 @@ function emitterXZ(type: string, x: number, z: number, heading: number | null, m
   return [ex, ez];
 }
 
-export function generateCorridor(input: GeneratorInput): GeneratorOutput {
+export function generateCorridor(
+  input: GeneratorInput,
+  spec: CorridorSpec = A1_SPEC,
+): GeneratorOutput {
+  const POL = spec.policy;
   // Only the affine part of the reference is used (geo/sweref99tm.js).
   const ref = input.reference as unknown as Parameters<typeof sceneToSweref>[0];
   const M = input.reference.metresPerUnit;
@@ -290,11 +348,11 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
     return [round(e, 2), round(n, 2)];
   };
   // Zones in scene units (derived once from the canonical E/N rings).
-  const zones = A1_ZONE_ORDER.map((z) => ({
+  const zones = spec.zoneOrder.map((z) => ({
     zone: z,
-    ring: A1_ZONES[z].ring.map(([e, n]) => swerefToScene(ref, e, n) as P),
+    ring: spec.zones[z].ring.map(([e, n]) => swerefToScene(ref, e, n) as P),
   }));
-  const zoneOf = (p: readonly number[]): A1Zone | null =>
+  const zoneOf = (p: readonly number[]): string | null =>
     zones.find((z) => inRing(p, z.ring))?.zone ?? null;
   const all = zones.flatMap((z) => z.ring);
   const bx0 = Math.min(...all.map((p) => p[0])) - 3,
@@ -360,18 +418,16 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
     for (const b of buildings)
       if (b.rings[0].length >= 3 && inPolygon(p, b.rings)) return `building ${b.id}`;
     for (const [a, b] of edges)
-      if (segDist(p, a, b).d < A1_POLICY.buildingClearanceM / M) return 'building wall clearance';
+      if (segDist(p, a, b).d < POL.buildingClearanceM / M) return 'building wall clearance';
     for (const r of carRoads) {
       if (support === 'deck' && r.way === ownWay) continue;
-      if (segDist(p, r.a, r.b).d < r.width / 2 + A1_POLICY.carriagewayClearanceM / M)
+      if (segDist(p, r.a, r.b).d < r.width / 2 + POL.carriagewayClearanceM / M)
         return `carriageway way/${r.way}`;
     }
     for (const r of trams)
-      if (segDist(p, r.a, r.b).d < A1_POLICY.tramClearanceM / M)
-        return `tram clearance way/${r.way}`;
+      if (segDist(p, r.a, r.b).d < POL.tramClearanceM / M) return `tram clearance way/${r.way}`;
     for (const r of rails)
-      if (segDist(p, r.a, r.b).d < A1_POLICY.railClearanceM / M)
-        return `rail clearance way/${r.way}`;
+      if (segDist(p, r.a, r.b).d < POL.railClearanceM / M) return `rail clearance way/${r.way}`;
     for (const pl of platforms) if (inRing(p, pl.ring)) return `${pl.kind} platform ${pl.id}`;
     if (support === 'ground') {
       for (const w of water) if (inPolygon(p, w.rings)) return `water ${w.id}`;
@@ -425,7 +481,7 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
   const reject = (
     candidate: string,
     element: string,
-    zone: A1Zone,
+    zone: string,
     reason: string,
     detail: string,
     p: readonly number[],
@@ -434,7 +490,7 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
   // Lengths inside the corridor and per-way coverage bookkeeping.
   const insideInfo = (pts: P[]) => {
     let len = 0;
-    const zs = new Set<A1Zone>();
+    const zs = new Set<string>();
     for (let i = 1; i < pts.length; i++) {
       const mid: P = [(pts[i][0] + pts[i - 1][0]) / 2, (pts[i][1] + pts[i - 1][1]) / 2];
       const z = zoneOf(mid);
@@ -447,7 +503,7 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
       const z = zoneOf(p);
       if (z) zs.add(z);
     }
-    return { len, zones: A1_ZONE_ORDER.filter((z) => zs.has(z)) };
+    return { len, zones: spec.zoneOrder.filter((z) => zs.has(z)) };
   };
   const coverage = new Map<number, WayCoverage>();
   const fixtureCount = new Map<number, number>();
@@ -467,14 +523,23 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
     id: string;
     p: P;
     group: ClassGroup;
-    kind: 'mapped' | 'existing' | 'estimated';
+    /** existing-estimate: an earlier rollout's estimate under the A2 seam rule (counts as accepted). */
+    kind: 'mapped' | 'existing' | 'existing-estimate' | 'estimated';
+    element: string | null;
   }
-  const accepted: Accepted[] = input.existing.map((f) => ({
-    id: f.id,
-    p: [f.x, f.z],
-    group: groupOfType(f.type),
-    kind: 'existing',
-  }));
+  // Canonical-ID order, so the reported suppressor never depends on input order.
+  const accepted: Accepted[] = [...input.existing]
+    .sort((a, b) => cmp(a.id, b.id))
+    .map((f) => ({
+      id: f.id,
+      p: [f.x, f.z],
+      group: groupOfType(f.type),
+      kind:
+        POL.existingEstimatesAsAccepted && f.placement === 'estimated'
+          ? 'existing-estimate'
+          : 'existing',
+      element: f.element ?? null,
+    }));
   const fixtures: A1Fixture[] = [];
   const provenance: A1Provenance[] = [];
   for (const n of elements) {
@@ -484,7 +549,14 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
     if (!zone) continue;
     const id = `osm:node/${n.id}`;
     if (existingIds.has(id)) {
-      reject(id, `node/${n.id}`, zone, 'identity-in-existing-set', 'already in the pilot', p);
+      reject(
+        id,
+        `node/${n.id}`,
+        zone,
+        'identity-in-existing-set',
+        'already in an earlier rollout',
+        p,
+      );
       continue;
     }
     let near: { d: number; q: P; e: SourceElement } | null = null;
@@ -524,7 +596,7 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
       method: `OSM node position; type from nearest way ${near ? `way/${near.e.id} (highway=${near.e.tags.highway}, ${(near.d * M).toFixed(1)} m)` : '(none)'}`,
       rule: 'mapped-osm-node',
       source: {
-        dataset: 'osm-lighting-a1-snapshot',
+        dataset: spec.dataset,
         element: `node/${n.id}`,
         version: n.version,
         timestamp: n.timestamp,
@@ -545,13 +617,13 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
         ...(c ? [`clearance warning: ${c}`] : []),
       ],
     });
-    accepted.push({ id, p, group, kind: 'mapped' });
+    accepted.push({ id, p, group, kind: 'mapped', element: `node/${n.id}` });
   }
 
   // ---- 2. Estimate candidates along lit=yes ways. ----
   interface Candidate {
     id: string;
-    zone: A1Zone;
+    zone: string;
     group: ClassGroup;
     type: string;
     p: P;
@@ -627,7 +699,7 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
       for (const s of segs) d = Math.min(d, segDist(p, s.a, s.b).d);
       deviation = Math.max(deviation, d * M);
     }
-    if (deviation > A1_POLICY.maxMapDeviationM) {
+    if (deviation > POL.maxMapDeviationM) {
       cov.status = `source geometry differs from the rendered road by ${deviation.toFixed(2)} m (no fixture)`;
       continue;
     }
@@ -651,11 +723,11 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
               o.e.tags.lit === 'yes',
           )
         : [];
-    const stagger = group !== 'path' && !oneway && !bridge && width * M >= A1_POLICY.staggerWidthM;
+    const stagger = group !== 'path' && !oneway && !bridge && width * M >= POL.staggerWidthM;
     const offsetM =
       group === 'path'
-        ? A1_POLICY.pathOffsetM
-        : (width * M) / 2 + (bridge ? A1_POLICY.deckSetbackM : A1_POLICY.kerbSetbackM);
+        ? POL.pathOffsetM
+        : (width * M) / 2 + (bridge ? POL.deckSetbackM : POL.kerbSetbackM);
     // Chainage table.
     const cum = [0];
     for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + dist(pts[i], pts[i - 1]) * M);
@@ -678,7 +750,7 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
       };
     };
     for (let i = 0; i < N; i++) {
-      const id = `estimate:${A1_GENERATOR.version}:way/${e.id}:s${i}`;
+      const id = `estimate:${spec.generator.version}:way/${e.id}:s${i}`;
       const chain = ((i + 0.5) * L) / N;
       const base0 = at(chain);
       // Preferred side (+1 = right of travel; normal (-dz, dx) in scene x east / z south).
@@ -698,11 +770,10 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
         let near: { d: number; q: P } | null = null;
         for (const o of partners) {
           const r = polylineDist(base0.p, o.pts);
-          if (r.dir[0] * base0.dir[0] + r.dir[1] * base0.dir[1] > -A1_POLICY.partnerParallelCos)
-            continue;
+          if (r.dir[0] * base0.dir[0] + r.dir[1] * base0.dir[1] > -POL.partnerParallelCos) continue;
           if (!near || r.d < near.d) near = r;
         }
-        if (near && near.d * M <= A1_POLICY.partnerSearchM) {
+        if (near && near.d * M <= POL.partnerSearchM) {
           const nrm = [-base0.dir[1], base0.dir[0]];
           side = (near.q[0] - base0.p[0]) * nrm[0] + (near.q[1] - base0.p[1]) * nrm[1] > 0 ? -1 : 1;
           sideName = 'outer';
@@ -715,8 +786,8 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
         let last: string | null = null;
         // Standard setback with every shift first; then a deeper setback (ground only), e.g. to
         // stand outside a tram envelope; only then the other side (caller).
-        for (const extra of bridge ? [0] : A1_POLICY.extraSetbacksM)
-          for (const shift of A1_POLICY.shiftsM) {
+        for (const extra of bridge ? [0] : POL.extraSetbacksM)
+          for (const shift of POL.shiftsM) {
             const c = chain + shift;
             if (c < 0 || c > L) continue;
             const { p: base, dir } = at(c);
@@ -739,11 +810,27 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
       })();
       const zone0 = zoneOf(unshifted);
       if (!zone0) continue; // station outside the corridor: not a candidate of this rollout
+      // Station-slot identity (A2): the same station of the same way under the same station rule,
+      // already rendered by an earlier rollout, is that rollout's fixture.
+      const slot = (POL.stationSlotFamilies ?? [])
+        .map((v) => `estimate:${v}:way/${e.id}:s${i}`)
+        .find((s) => existingIds.has(s));
+      if (slot) {
+        reject(
+          id,
+          `way/${e.id}`,
+          zone0,
+          'identity-in-existing-set',
+          `station slot already rendered as ${slot}`,
+          unshifted,
+        );
+        continue;
+      }
       // A path station within 10 m of a lit road centreline is lit by that road (Step 6 rule,
       // applied per station: sidewalk-like stretches get none, park stretches get lanterns).
       if (group === 'path') {
         const d = nearestLitRoad(base0.p) * M;
-        if (d < A1_POLICY.roadCoverM) {
+        if (d < POL.roadCoverM) {
           reject(
             id,
             `way/${e.id}`,
@@ -803,7 +890,7 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
                   ? 'lit-path-beside'
                   : 'lit-way-one-side',
           source: {
-            dataset: 'osm-lighting-a1-snapshot',
+            dataset: spec.dataset,
             element: `way/${e.id}`,
             version: e.version,
             timestamp: e.timestamp,
@@ -847,32 +934,34 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
   for (const c of candidates) {
     const T = input.types[c.type];
     const element = c.prov.source.element;
+    const asEstimate = (a: Accepted) => a.kind === 'estimated' || a.kind === 'existing-estimate';
     const by = accepted.find(
       (a) =>
-        (a.kind !== 'estimated' && a.group === c.group && dist(a.p, c.p) * M < T.suppressM) ||
-        (a.kind === 'estimated' &&
+        (!asEstimate(a) && a.group === c.group && dist(a.p, c.p) * M < T.suppressM) ||
+        (asEstimate(a) &&
           a.group === c.group &&
-          dist(a.p, c.p) * M < A1_POLICY.estimateSeparationFactor * T.spacingM) ||
-        dist(a.p, c.p) * M < A1_POLICY.anySeparationM,
+          dist(a.p, c.p) * M < POL.estimateSeparationFactor * T.spacingM) ||
+        dist(a.p, c.p) * M < POL.anySeparationM,
     );
     if (by) {
       const reason =
         by.kind === 'mapped'
           ? 'suppressed-by-mapped'
-          : by.kind === 'existing'
+          : by.kind === 'existing' || by.kind === 'existing-estimate'
             ? 'suppressed-by-existing'
             : 'suppressed-by-estimate';
+      const sameWay = by.kind === 'existing-estimate' && by.element === element;
       reject(
         c.id,
         element,
         c.zone,
         reason,
-        `${by.id} at ${(dist(by.p, c.p) * M).toFixed(1)} m`,
+        `${by.id} at ${(dist(by.p, c.p) * M).toFixed(1)} m${sameWay ? ' (same source way, earlier rollout)' : ''}`,
         c.p,
       );
       continue;
     }
-    accepted.push({ id: c.id, p: c.p, group: c.group, kind: 'estimated' });
+    accepted.push({ id: c.id, p: c.p, group: c.group, kind: 'estimated', element });
     fixtures.push(
       fixtureOf({
         id: c.id,
@@ -920,7 +1009,7 @@ export function generateCorridor(input: GeneratorInput): GeneratorOutput {
     rejected: rejected.length,
     deck: fixtures.filter((f) => f.mount.kind === 'bridge').length,
   };
-  for (const z of A1_ZONE_ORDER) counts[`zone${z}`] = fixtures.filter((f) => f.zone === z).length;
+  for (const z of spec.zoneOrder) counts[`zone${z}`] = fixtures.filter((f) => f.zone === z).length;
   for (const r of rejected)
     counts[`rejected:${r.reason}`] = (counts[`rejected:${r.reason}`] ?? 0) + 1;
   return {

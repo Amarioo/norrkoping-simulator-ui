@@ -1,13 +1,14 @@
 // Lighting Phase A1: loads the pinned generator inputs from the repository (tests and the writer).
 import fs from 'node:fs';
 import {
-  A1_POLICY,
+  A1_SPEC,
+  type CorridorSpec,
   type GeneratorInput,
   type GeneratorOutput,
   type SourceExtract,
   type TypeSpec,
 } from '../../src/lib/lighting/corridorGenerator';
-import { A1_DATASET, A1_GENERATOR, A1_ROLLOUT, A1_ZONES } from '../../src/lib/lighting/corridorA1';
+import { A1_ROLLOUT } from '../../src/lib/lighting/corridorA1';
 import { pilotRegistry, type PilotData } from '../../src/lib/lighting/registry';
 import { inRing } from '../../src/lib/lighting/corridorA1';
 import { terrain } from '../../src/lib/terrain';
@@ -23,28 +24,49 @@ export const INPUT_FILES = {
   corridor: 'src/lib/lighting/corridorA1.ts',
 } as const;
 
+/** How a corridor rollout's generated files describe themselves (default: Phase A1, unchanged). */
+export interface RolloutFiles {
+  spec: CorridorSpec;
+  rollout: string;
+  /** Corridor label in the source description ("the A1 corridor"). */
+  label: string;
+  sourceFile: string;
+  provenanceFile: string;
+}
+export const A1_FILES: RolloutFiles = {
+  spec: A1_SPEC,
+  rollout: A1_ROLLOUT,
+  label: 'A1',
+  sourceFile: 'scripts/data/lighting-a1-source.json',
+  provenanceFile: 'src/lib/data/streetlights-a1-provenance.json',
+};
+
 /** Runtime (bundled) and provenance (not bundled) files of a generator run. */
-export function toFiles(out: GeneratorOutput, input: GeneratorInput) {
+export function toFiles(
+  out: GeneratorOutput,
+  input: GeneratorInput,
+  files: RolloutFiles = A1_FILES,
+) {
+  const { spec } = files;
   const meta = input.source.meta as SourceExtract['meta'] & {
     snapshot: { sha256: string; retrievedAt: string };
   };
   const sources = [
     {
-      id: A1_DATASET,
-      dataset:
-        'OpenStreetMap (Overpass API), Step 6.2 research snapshot clipped to the A1 corridor',
+      id: spec.dataset,
+      dataset: `OpenStreetMap (Overpass API), Step 6.2 research snapshot clipped to the ${files.label} corridor`,
       license: 'ODbL-1.0 © OpenStreetMap contributors',
       osmBase: meta.osmBase,
     },
   ];
   const runtime = {
     meta: {
-      generator: A1_GENERATOR,
-      rollout: A1_ROLLOUT,
-      provenance: 'src/lib/data/streetlights-a1-provenance.json',
+      generator: spec.generator,
+      rollout: files.rollout,
+      provenance: files.provenanceFile,
       sources,
       corridor: Object.fromEntries(
-        Object.entries(A1_ZONES).map(([k, z]) => [k, { name: z.name, ringEN: z.ring }]),
+        Object.entries(spec.zones).map(([k, z]) => [k, { name: z.name, ringEN: z.ring }]),
       ),
       units:
         'x, z: scene units (1 = 25 m, SWEREF 99 TM scene frame); heights, ranges, occlusion: metres; corridor rings: EPSG:3006 E/N metres',
@@ -54,10 +76,10 @@ export function toFiles(out: GeneratorOutput, input: GeneratorInput) {
   };
   const provenance = {
     meta: {
-      generator: A1_GENERATOR,
-      policy: A1_POLICY,
+      generator: spec.generator,
+      policy: spec.policy,
       source: {
-        file: INPUT_FILES.source,
+        file: files.sourceFile,
         osmBase: meta.osmBase,
         snapshotSha256: meta.snapshot.sha256,
         retrievedAt: meta.snapshot.retrievedAt,

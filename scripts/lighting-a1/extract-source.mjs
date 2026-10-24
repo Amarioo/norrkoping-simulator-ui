@@ -1,7 +1,8 @@
 // Lighting Phase A1: clips the pinned Step 6.2 OSM research snapshot to the A1 corridor and writes
 // the small committed source extract the generator reads (no network access, no new snapshot).
 //
-//   node scripts/lighting-a1/extract-source.mjs
+//   node scripts/lighting-a1/extract-source.mjs        # A1 (default)
+//   node scripts/lighting-a1/extract-source.mjs a2     # Lighting Phase A2 (corridorA2.ts → lighting-a2-source.json)
 //
 // Input:  work/step62/osm-research.json (ignored scratch; base 2026-10-23T09:05:06Z). Its SHA-256 must
 //         equal the value pinned in docs/step62/evidence/source-manifest.json, otherwise nothing is
@@ -14,10 +15,14 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import { geodeticToSweref } from '../../src/lib/geo/sweref99tm.js';
 import { A1_ZONES, inRing } from '../../src/lib/lighting/corridorA1.ts';
+import { A2_ZONES } from '../../src/lib/lighting/corridorA2.ts';
 
 const SNAPSHOT = 'work/step62/osm-research.json';
 const MANIFEST = 'docs/step62/evidence/source-manifest.json';
-const OUT = 'scripts/data/lighting-a1-source.json';
+const CORRIDOR = process.argv[2] ?? 'a1';
+if (!['a1', 'a2'].includes(CORRIDOR)) throw new Error(`unknown corridor ${CORRIDOR}`);
+const ZONES = CORRIDOR === 'a2' ? A2_ZONES : A1_ZONES;
+const OUT = `scripts/data/lighting-${CORRIDOR}-source.json`;
 const MARGIN_M = 60;
 const KEEP =
   /^(highway|lit|lit:.*|name|oneway|junction|sidewalk.*|footway|width|est_width|lanes|bridge|layer|tunnel|area|embedded_rails|railway|access|foot|bicycle|motor_vehicle|surface|light_source|lamp_.*|support|man_made|operator|start_date|check_date|segregated)$/;
@@ -31,7 +36,7 @@ if (!pinned || pinned.sha256 !== sha256)
   throw new Error(`${SNAPSHOT} SHA-256 ${sha256} differs from the pinned ${pinned?.sha256}`);
 const osm = JSON.parse(raw.toString('utf8'));
 
-const rings = Object.values(A1_ZONES).map((z) => z.ring);
+const rings = Object.values(ZONES).map((z) => z.ring);
 const segDist = (p, a, b) => {
   const dx = b[0] - a[0],
     dy = b[1] - a[1],
@@ -110,7 +115,13 @@ const out = {
       query: request.query,
       note: 'Step 6.2 research snapshot (docs/step62/evidence/source-manifest.json); not re-fetched.',
     },
-    clip: { corridor: 'src/lib/lighting/corridorA1.ts (A1_ZONES)', marginM: MARGIN_M },
+    clip: {
+      corridor:
+        CORRIDOR === 'a2'
+          ? 'src/lib/lighting/corridorA2.ts (A2_ZONES)'
+          : 'src/lib/lighting/corridorA1.ts (A1_ZONES)',
+      marginM: MARGIN_M,
+    },
     queryLimits:
       'The query fetched highway ways WITH a lit tag and highway=street_lamp nodes only: a highway way absent here has no lit tag (unknown illumination); man_made=street_lamp, light_source and entrance nodes were not part of the snapshot.',
     counts: {

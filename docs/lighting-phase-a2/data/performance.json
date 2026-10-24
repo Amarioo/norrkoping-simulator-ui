@@ -1,0 +1,2208 @@
+{
+ "note": "Paired production runs, committed A1 (1fe6296, port 5203) vs A2 (5204). Series 1 on an otherwise idle machine = the result. Series 2 and 3 ran while a GPU-heavy game (bf6.exe, 7.3 GB) was running on the same machine: map-ready 5-10 s in both builds and frame deltas swinging -10…+21 ms in both directions; retained, not used for conclusions. A first attempt of series 2 failed (preview servers down) and is not included.",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+  "cores": 16,
+  "memoryGB": 66,
+  "platform": "win32 10.0.26300"
+ },
+ "viewport": {
+  "width": 1280,
+  "height": 900
+ },
+ "views": [
+  "kungsgatan",
+  "ingelstaBridge",
+  "policeEmblem",
+  "station",
+  "grandHotel",
+  "centrum",
+  "city",
+  "stromparken",
+  "idrottsparkenPitch",
+  "parken"
+ ],
+ "conditions": [
+  [
+   "day",
+   759,
+   "off"
+  ],
+  [
+   "night-off",
+   1290,
+   "off"
+  ],
+  [
+   "night-match",
+   1290,
+   "event"
+  ]
+ ],
+ "samplesPerView": 180,
+ "series1": {
+  "mapReady": {
+   "before": 3701.8,
+   "after": 3699,
+   "delta": -2.8
+  },
+  "heap": {
+   "before": 118.009,
+   "after": 118.064,
+   "delta": 0.055
+  },
+  "frames": {
+   "day": {
+    "kungsgatan": {
+     "before": {
+      "median": 1.8,
+      "p95": 2.2
+     },
+     "after": {
+      "median": 1.8,
+      "p95": 2.3
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.1
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 3.6,
+      "p95": 4.2
+     },
+     "after": {
+      "median": 3.7,
+      "p95": 4.5
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.3
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 3.3,
+      "p95": 3.9
+     },
+     "after": {
+      "median": 3.4,
+      "p95": 4
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.1
+     }
+    },
+    "station": {
+     "before": {
+      "median": 1.6,
+      "p95": 1.9
+     },
+     "after": {
+      "median": 1.6,
+      "p95": 2.2
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.3
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 3.4,
+      "p95": 3.9
+     },
+     "after": {
+      "median": 3.5,
+      "p95": 4.2
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.3
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 2.3,
+      "p95": 2.7
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.8
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.1
+     }
+    },
+    "city": {
+     "before": {
+      "median": 4.8,
+      "p95": 5.4
+     },
+     "after": {
+      "median": 5,
+      "p95": 5.6
+     },
+     "delta": {
+      "median": 0.2,
+      "p95": 0.2
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 4.2,
+      "p95": 4.9
+     },
+     "after": {
+      "median": 4.2,
+      "p95": 5
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.1
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 4.6,
+      "p95": 5.3
+     },
+     "after": {
+      "median": 4.8,
+      "p95": 5.6
+     },
+     "delta": {
+      "median": 0.2,
+      "p95": 0.3
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 1.7,
+      "p95": 2
+     },
+     "after": {
+      "median": 1.7,
+      "p95": 2
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    }
+   },
+   "night-off": {
+    "kungsgatan": {
+     "before": {
+      "median": 1.7,
+      "p95": 2
+     },
+     "after": {
+      "median": 1.8,
+      "p95": 2.2
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.2
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 3.5,
+      "p95": 4.1
+     },
+     "after": {
+      "median": 3.5,
+      "p95": 4.2
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.1
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 3.2,
+      "p95": 3.7
+     },
+     "after": {
+      "median": 3.3,
+      "p95": 3.8
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.1
+     }
+    },
+    "station": {
+     "before": {
+      "median": 1.7,
+      "p95": 2.2
+     },
+     "after": {
+      "median": 1.7,
+      "p95": 2.1
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.1
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 3.5,
+      "p95": 4
+     },
+     "after": {
+      "median": 3.7,
+      "p95": 4.3
+     },
+     "delta": {
+      "median": 0.2,
+      "p95": 0.3
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 2.3,
+      "p95": 2.7
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "city": {
+     "before": {
+      "median": 5,
+      "p95": 5.8
+     },
+     "after": {
+      "median": 4.9,
+      "p95": 5.7
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.1
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 3.8,
+      "p95": 4.5
+     },
+     "after": {
+      "median": 4,
+      "p95": 4.8
+     },
+     "delta": {
+      "median": 0.2,
+      "p95": 0.3
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 4.3,
+      "p95": 4.9
+     },
+     "after": {
+      "median": 4.3,
+      "p95": 4.8
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 1.7,
+      "p95": 1.9
+     },
+     "after": {
+      "median": 1.6,
+      "p95": 2
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": 0.1
+     }
+    }
+   },
+   "night-match": {
+    "kungsgatan": {
+     "before": {
+      "median": 1.8,
+      "p95": 2.1
+     },
+     "after": {
+      "median": 1.8,
+      "p95": 2.3
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.2
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 3.6,
+      "p95": 4.1
+     },
+     "after": {
+      "median": 3.7,
+      "p95": 4.2
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.1
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 3.2,
+      "p95": 3.6
+     },
+     "after": {
+      "median": 3.2,
+      "p95": 3.6
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "station": {
+     "before": {
+      "median": 1.6,
+      "p95": 2
+     },
+     "after": {
+      "median": 1.6,
+      "p95": 2
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 3.3,
+      "p95": 3.8
+     },
+     "after": {
+      "median": 3.3,
+      "p95": 3.8
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.7
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0
+     }
+    },
+    "city": {
+     "before": {
+      "median": 4.8,
+      "p95": 5.5
+     },
+     "after": {
+      "median": 4.8,
+      "p95": 5.9
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.4
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 4.2,
+      "p95": 5
+     },
+     "after": {
+      "median": 4.2,
+      "p95": 4.7
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.3
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 4.6,
+      "p95": 5.3
+     },
+     "after": {
+      "median": 4.6,
+      "p95": 5.1
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.2
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 1.7,
+      "p95": 2
+     },
+     "after": {
+      "median": 1.7,
+      "p95": 2
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    }
+   }
+  },
+  "pairedRounds": [
+   {
+    "round": "work/lighting-a2/perf/series1.json#1",
+    "mapReadyDelta": 133.8,
+    "heapDelta": 0.056,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/ingelstaBridge": 0.4,
+     "day/policeEmblem": 0,
+     "day/station": 0.3,
+     "day/grandHotel": 0.2,
+     "day/centrum": 0.2,
+     "day/city": -0.2,
+     "day/stromparken": 0.1,
+     "day/idrottsparkenPitch": 0.1,
+     "day/parken": 0.3,
+     "night-off/kungsgatan": -0.1,
+     "night-off/ingelstaBridge": 0.1,
+     "night-off/policeEmblem": -0.1,
+     "night-off/station": 0.1,
+     "night-off/grandHotel": 0.2,
+     "night-off/centrum": 0,
+     "night-off/city": 0.2,
+     "night-off/stromparken": -0.1,
+     "night-off/idrottsparkenPitch": 0.8,
+     "night-off/parken": 0.3,
+     "night-match/kungsgatan": -0.1,
+     "night-match/ingelstaBridge": -0.1,
+     "night-match/policeEmblem": -0.3,
+     "night-match/station": 0.2,
+     "night-match/grandHotel": 0.3,
+     "night-match/centrum": 0.1,
+     "night-match/city": 0.8,
+     "night-match/stromparken": 1.1,
+     "night-match/idrottsparkenPitch": -0.7,
+     "night-match/parken": -0.3
+    }
+   },
+   {
+    "round": "work/lighting-a2/perf/series1.json#2",
+    "mapReadyDelta": -29.2,
+    "heapDelta": 0.066,
+    "p95Delta": {
+     "day/kungsgatan": 0.2,
+     "day/ingelstaBridge": 0.3,
+     "day/policeEmblem": 0.1,
+     "day/station": 0.1,
+     "day/grandHotel": 0.3,
+     "day/centrum": 0.1,
+     "day/city": 0.8,
+     "day/stromparken": 0.3,
+     "day/idrottsparkenPitch": 0.5,
+     "day/parken": -0.2,
+     "night-off/kungsgatan": 0.6,
+     "night-off/ingelstaBridge": 0.2,
+     "night-off/policeEmblem": 0.1,
+     "night-off/station": -0.1,
+     "night-off/grandHotel": 2.2,
+     "night-off/centrum": 0,
+     "night-off/city": -0.1,
+     "night-off/stromparken": 0.3,
+     "night-off/idrottsparkenPitch": -0.1,
+     "night-off/parken": -0.1,
+     "night-match/kungsgatan": 0.2,
+     "night-match/ingelstaBridge": -0.2,
+     "night-match/policeEmblem": 0,
+     "night-match/station": -0.2,
+     "night-match/grandHotel": -0.2,
+     "night-match/centrum": 0.1,
+     "night-match/city": -0.2,
+     "night-match/stromparken": -0.5,
+     "night-match/idrottsparkenPitch": -0.1,
+     "night-match/parken": 0
+    }
+   },
+   {
+    "round": "work/lighting-a2/perf/series1.json#3",
+    "mapReadyDelta": -5.1,
+    "heapDelta": 0.054,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/ingelstaBridge": 0,
+     "day/policeEmblem": 0,
+     "day/station": 0,
+     "day/grandHotel": 0.3,
+     "day/centrum": -0.1,
+     "day/city": 0.4,
+     "day/stromparken": -0.2,
+     "day/idrottsparkenPitch": 0.4,
+     "day/parken": 0,
+     "night-off/kungsgatan": 0.2,
+     "night-off/ingelstaBridge": -0.1,
+     "night-off/policeEmblem": 0.3,
+     "night-off/station": 0.2,
+     "night-off/grandHotel": 0.2,
+     "night-off/centrum": -0.2,
+     "night-off/city": 0.2,
+     "night-off/stromparken": 0.3,
+     "night-off/idrottsparkenPitch": -0.1,
+     "night-off/parken": 0.2,
+     "night-match/kungsgatan": 0,
+     "night-match/ingelstaBridge": 0.8,
+     "night-match/policeEmblem": 0,
+     "night-match/station": 0,
+     "night-match/grandHotel": 0.1,
+     "night-match/centrum": 0,
+     "night-match/city": 0.4,
+     "night-match/stromparken": 0.2,
+     "night-match/idrottsparkenPitch": -0.2,
+     "night-match/parken": 0
+    }
+   }
+  ],
+  "runs": [
+   {
+    "label": "before",
+    "round": 1,
+    "failed": null,
+    "mapReadyMs": 3701.8,
+    "heapMB": 118.007,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "after",
+    "round": 1,
+    "failed": null,
+    "mapReadyMs": 3835.6,
+    "heapMB": 118.064,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "after",
+    "round": 2,
+    "failed": null,
+    "mapReadyMs": 3699,
+    "heapMB": 118.078,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "before",
+    "round": 2,
+    "failed": null,
+    "mapReadyMs": 3728.2,
+    "heapMB": 118.011,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "before",
+    "round": 3,
+    "failed": null,
+    "mapReadyMs": 3543.5,
+    "heapMB": 118.009,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "after",
+    "round": 3,
+    "failed": null,
+    "mapReadyMs": 3538.4,
+    "heapMB": 118.064,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   }
+  ]
+ },
+ "series2Contended": {
+  "mapReady": {
+   "before": 6398.85,
+   "after": 5296.4,
+   "delta": -1102.45
+  },
+  "heap": {
+   "before": 118.015,
+   "after": 118.051,
+   "delta": 0.036
+  },
+  "frames": {
+   "day": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.7,
+      "p95": 3.45
+     },
+     "after": {
+      "median": 2.75,
+      "p95": 3.6
+     },
+     "delta": {
+      "median": 0.05,
+      "p95": 0.15
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 6.15,
+      "p95": 8.3
+     },
+     "after": {
+      "median": 6.7,
+      "p95": 8.8
+     },
+     "delta": {
+      "median": 0.55,
+      "p95": 0.5
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 5.55,
+      "p95": 6.7
+     },
+     "after": {
+      "median": 5.65,
+      "p95": 7.05
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.35
+     }
+    },
+    "station": {
+     "before": {
+      "median": 2.4,
+      "p95": 3.05
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 3.2
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": 0.15
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 5.9,
+      "p95": 7.15
+     },
+     "after": {
+      "median": 6.75,
+      "p95": 8.35
+     },
+     "delta": {
+      "median": 0.85,
+      "p95": 1.2
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 3.7,
+      "p95": 5.25
+     },
+     "after": {
+      "median": 3.4,
+      "p95": 4.3
+     },
+     "delta": {
+      "median": -0.3,
+      "p95": -0.95
+     }
+    },
+    "city": {
+     "before": {
+      "median": 12.05,
+      "p95": 22.15
+     },
+     "after": {
+      "median": 9.35,
+      "p95": 11.85
+     },
+     "delta": {
+      "median": -2.7,
+      "p95": -10.3
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 8.7,
+      "p95": 11.2
+     },
+     "after": {
+      "median": 7.95,
+      "p95": 9.75
+     },
+     "delta": {
+      "median": -0.75,
+      "p95": -1.45
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 9.55,
+      "p95": 11.4
+     },
+     "after": {
+      "median": 9.6,
+      "p95": 12.5
+     },
+     "delta": {
+      "median": 0.05,
+      "p95": 1.1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.8,
+      "p95": 4
+     },
+     "after": {
+      "median": 2.2,
+      "p95": 2.9
+     },
+     "delta": {
+      "median": -0.6,
+      "p95": -1.1
+     }
+    }
+   },
+   "night-off": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.9,
+      "p95": 3.75
+     },
+     "after": {
+      "median": 2.35,
+      "p95": 3.05
+     },
+     "delta": {
+      "median": -0.55,
+      "p95": -0.7
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 6.95,
+      "p95": 8.45
+     },
+     "after": {
+      "median": 5.85,
+      "p95": 7.3
+     },
+     "delta": {
+      "median": -1.1,
+      "p95": -1.15
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 6,
+      "p95": 7.4
+     },
+     "after": {
+      "median": 5,
+      "p95": 6.15
+     },
+     "delta": {
+      "median": -1,
+      "p95": -1.25
+     }
+    },
+    "station": {
+     "before": {
+      "median": 2.35,
+      "p95": 2.85
+     },
+     "after": {
+      "median": 2.1,
+      "p95": 2.85
+     },
+     "delta": {
+      "median": -0.25,
+      "p95": 0
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 5.95,
+      "p95": 7.2
+     },
+     "after": {
+      "median": 5.5,
+      "p95": 8.45
+     },
+     "delta": {
+      "median": -0.45,
+      "p95": 1.25
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 3.5,
+      "p95": 4.45
+     },
+     "after": {
+      "median": 3.2,
+      "p95": 4.05
+     },
+     "delta": {
+      "median": -0.3,
+      "p95": -0.4
+     }
+    },
+    "city": {
+     "before": {
+      "median": 9.8,
+      "p95": 11.9
+     },
+     "after": {
+      "median": 8.35,
+      "p95": 10.8
+     },
+     "delta": {
+      "median": -1.45,
+      "p95": -1.1
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 8.4,
+      "p95": 12.45
+     },
+     "after": {
+      "median": 6.85,
+      "p95": 8.25
+     },
+     "delta": {
+      "median": -1.55,
+      "p95": -4.2
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 11.65,
+      "p95": 13.55
+     },
+     "after": {
+      "median": 8.8,
+      "p95": 11.45
+     },
+     "delta": {
+      "median": -2.85,
+      "p95": -2.1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.5,
+      "p95": 3.05
+     },
+     "after": {
+      "median": 2.35,
+      "p95": 3.1
+     },
+     "delta": {
+      "median": -0.15,
+      "p95": 0.05
+     }
+    }
+   },
+   "night-match": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.65,
+      "p95": 3.3
+     },
+     "after": {
+      "median": 2.35,
+      "p95": 2.95
+     },
+     "delta": {
+      "median": -0.3,
+      "p95": -0.35
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 6.15,
+      "p95": 7.65
+     },
+     "after": {
+      "median": 5.65,
+      "p95": 6.85
+     },
+     "delta": {
+      "median": -0.5,
+      "p95": -0.8
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 5.4,
+      "p95": 6.5
+     },
+     "after": {
+      "median": 5.1,
+      "p95": 6.2
+     },
+     "delta": {
+      "median": -0.3,
+      "p95": -0.3
+     }
+    },
+    "station": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.85
+     },
+     "after": {
+      "median": 2.25,
+      "p95": 3
+     },
+     "delta": {
+      "median": 0.05,
+      "p95": 0.15
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 6,
+      "p95": 8.55
+     },
+     "after": {
+      "median": 5.25,
+      "p95": 6.35
+     },
+     "delta": {
+      "median": -0.75,
+      "p95": -2.2
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 3.45,
+      "p95": 4.4
+     },
+     "after": {
+      "median": 3.15,
+      "p95": 4
+     },
+     "delta": {
+      "median": -0.3,
+      "p95": -0.4
+     }
+    },
+    "city": {
+     "before": {
+      "median": 9.1,
+      "p95": 11.05
+     },
+     "after": {
+      "median": 8.6,
+      "p95": 10.15
+     },
+     "delta": {
+      "median": -0.5,
+      "p95": -0.9
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 7.45,
+      "p95": 10.2
+     },
+     "after": {
+      "median": 7.1,
+      "p95": 8.5
+     },
+     "delta": {
+      "median": -0.35,
+      "p95": -1.7
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 8.6,
+      "p95": 11.15
+     },
+     "after": {
+      "median": 8.4,
+      "p95": 10.25
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": -0.9
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.45,
+      "p95": 3.2
+     },
+     "after": {
+      "median": 2.55,
+      "p95": 3.7
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.5
+     }
+    }
+   }
+  },
+  "pairedRounds": [
+   {
+    "round": "work/lighting-a2/perf/series2.json#1",
+    "mapReadyDelta": -497.4,
+    "heapDelta": 0.047,
+    "p95Delta": {
+     "day/kungsgatan": 0.4,
+     "day/ingelstaBridge": 2.1,
+     "day/policeEmblem": 0.1,
+     "day/station": 0.2,
+     "day/grandHotel": 1.7,
+     "day/centrum": 0.4,
+     "day/city": 1.9,
+     "day/stromparken": 2.3,
+     "day/idrottsparkenPitch": -1.3,
+     "day/parken": -0.4,
+     "night-off/kungsgatan": -0.2,
+     "night-off/ingelstaBridge": -0.2,
+     "night-off/policeEmblem": -0.5,
+     "night-off/station": 0.2,
+     "night-off/grandHotel": -0.8,
+     "night-off/centrum": -0.2,
+     "night-off/city": -0.9,
+     "night-off/stromparken": -7.2,
+     "night-off/idrottsparkenPitch": -4.3,
+     "night-off/parken": 0.1,
+     "night-match/kungsgatan": -0.3,
+     "night-match/ingelstaBridge": -1.4,
+     "night-match/policeEmblem": -0.8,
+     "night-match/station": 0.1,
+     "night-match/grandHotel": -3.5,
+     "night-match/centrum": -0.3,
+     "night-match/city": -1.7,
+     "night-match/stromparken": -2.6,
+     "night-match/idrottsparkenPitch": -1.6,
+     "night-match/parken": 0
+    }
+   },
+   {
+    "round": "work/lighting-a2/perf/series2.json#2",
+    "mapReadyDelta": -1707.5,
+    "heapDelta": 0.026,
+    "p95Delta": {
+     "day/kungsgatan": -0.1,
+     "day/ingelstaBridge": -1.1,
+     "day/policeEmblem": 0.6,
+     "day/station": 0.1,
+     "day/grandHotel": 0.7,
+     "day/centrum": -2.3,
+     "day/city": -22.5,
+     "day/stromparken": -5.2,
+     "day/idrottsparkenPitch": 3.5,
+     "day/parken": -1.8,
+     "night-off/kungsgatan": -1.2,
+     "night-off/ingelstaBridge": -2.1,
+     "night-off/policeEmblem": -2,
+     "night-off/station": -0.2,
+     "night-off/grandHotel": 3.3,
+     "night-off/centrum": -0.6,
+     "night-off/city": -1.3,
+     "night-off/stromparken": -1.2,
+     "night-off/idrottsparkenPitch": 0.1,
+     "night-off/parken": 0,
+     "night-match/kungsgatan": -0.4,
+     "night-match/ingelstaBridge": -0.2,
+     "night-match/policeEmblem": 0.2,
+     "night-match/station": 0.2,
+     "night-match/grandHotel": -0.9,
+     "night-match/centrum": -0.5,
+     "night-match/city": -0.1,
+     "night-match/stromparken": -0.8,
+     "night-match/idrottsparkenPitch": -0.2,
+     "night-match/parken": 1
+    }
+   }
+  ],
+  "runs": [
+   {
+    "label": "before",
+    "round": 1,
+    "failed": null,
+    "mapReadyMs": 5883.6,
+    "heapMB": 118.026,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "after",
+    "round": 1,
+    "failed": null,
+    "mapReadyMs": 5386.2,
+    "heapMB": 118.073,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "after",
+    "round": 2,
+    "failed": null,
+    "mapReadyMs": 5206.6,
+    "heapMB": 118.029,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "before",
+    "round": 2,
+    "failed": null,
+    "mapReadyMs": 6914.1,
+    "heapMB": 118.003,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   }
+  ]
+ },
+ "series3Contended": {
+  "mapReady": {
+   "before": 6981.8,
+   "after": 7040.9,
+   "delta": 59.1
+  },
+  "heap": {
+   "before": 117.985,
+   "after": 118.032,
+   "delta": 0.047
+  },
+  "frames": {
+   "day": {
+    "kungsgatan": {
+     "before": {
+      "median": 3.1,
+      "p95": 4.5
+     },
+     "after": {
+      "median": 3,
+      "p95": 4.8
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": 0.3
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 9.2,
+      "p95": 12.9
+     },
+     "after": {
+      "median": 7.8,
+      "p95": 12.4
+     },
+     "delta": {
+      "median": -1.4,
+      "p95": -0.5
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 6.9,
+      "p95": 8.8
+     },
+     "after": {
+      "median": 7.6,
+      "p95": 10.3
+     },
+     "delta": {
+      "median": 0.7,
+      "p95": 1.5
+     }
+    },
+    "station": {
+     "before": {
+      "median": 2.7,
+      "p95": 4.5
+     },
+     "after": {
+      "median": 2.6,
+      "p95": 3.9
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.6
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 7.7,
+      "p95": 9.9
+     },
+     "after": {
+      "median": 10.3,
+      "p95": 12.8
+     },
+     "delta": {
+      "median": 2.6,
+      "p95": 2.9
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 4.4,
+      "p95": 5.9
+     },
+     "after": {
+      "median": 4.1,
+      "p95": 6.1
+     },
+     "delta": {
+      "median": -0.3,
+      "p95": 0.2
+     }
+    },
+    "city": {
+     "before": {
+      "median": 13.2,
+      "p95": 16.9
+     },
+     "after": {
+      "median": 11.5,
+      "p95": 14.1
+     },
+     "delta": {
+      "median": -1.7,
+      "p95": -2.8
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 10.1,
+      "p95": 12.9
+     },
+     "after": {
+      "median": 9.4,
+      "p95": 12
+     },
+     "delta": {
+      "median": -0.7,
+      "p95": -0.9
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 11.2,
+      "p95": 13.9
+     },
+     "after": {
+      "median": 10.5,
+      "p95": 12.9
+     },
+     "delta": {
+      "median": -0.7,
+      "p95": -1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.8,
+      "p95": 4.2
+     },
+     "after": {
+      "median": 2.8,
+      "p95": 4.6
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.4
+     }
+    }
+   },
+   "night-off": {
+    "kungsgatan": {
+     "before": {
+      "median": 3,
+      "p95": 4.7
+     },
+     "after": {
+      "median": 2.8,
+      "p95": 4.4
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": -0.3
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 8.3,
+      "p95": 10.9
+     },
+     "after": {
+      "median": 8,
+      "p95": 10
+     },
+     "delta": {
+      "median": -0.3,
+      "p95": -0.9
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 8,
+      "p95": 10.3
+     },
+     "after": {
+      "median": 6.9,
+      "p95": 9.2
+     },
+     "delta": {
+      "median": -1.1,
+      "p95": -1.1
+     }
+    },
+    "station": {
+     "before": {
+      "median": 2.8,
+      "p95": 4.4
+     },
+     "after": {
+      "median": 3.6,
+      "p95": 5.4
+     },
+     "delta": {
+      "median": 0.8,
+      "p95": 1
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 8.4,
+      "p95": 10.8
+     },
+     "after": {
+      "median": 10,
+      "p95": 31.9
+     },
+     "delta": {
+      "median": 1.6,
+      "p95": 21.1
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 4.9,
+      "p95": 6.9
+     },
+     "after": {
+      "median": 7.5,
+      "p95": 12.9
+     },
+     "delta": {
+      "median": 2.6,
+      "p95": 6
+     }
+    },
+    "city": {
+     "before": {
+      "median": 13.4,
+      "p95": 16
+     },
+     "after": {
+      "median": 15.8,
+      "p95": 33.2
+     },
+     "delta": {
+      "median": 2.4,
+      "p95": 17.2
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 10.2,
+      "p95": 12.6
+     },
+     "after": {
+      "median": 13.5,
+      "p95": 17
+     },
+     "delta": {
+      "median": 3.3,
+      "p95": 4.4
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 14.4,
+      "p95": 34.5
+     },
+     "after": {
+      "median": 15.5,
+      "p95": 33.5
+     },
+     "delta": {
+      "median": 1.1,
+      "p95": -1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 3.5,
+      "p95": 5.6
+     },
+     "after": {
+      "median": 3.4,
+      "p95": 5.5
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.1
+     }
+    }
+   },
+   "night-match": {
+    "kungsgatan": {
+     "before": {
+      "median": 3.6,
+      "p95": 5.5
+     },
+     "after": {
+      "median": 3.7,
+      "p95": 6.9
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 1.4
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 10.3,
+      "p95": 12.5
+     },
+     "after": {
+      "median": 12.2,
+      "p95": 15.7
+     },
+     "delta": {
+      "median": 1.9,
+      "p95": 3.2
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 9,
+      "p95": 11.8
+     },
+     "after": {
+      "median": 9.3,
+      "p95": 11.8
+     },
+     "delta": {
+      "median": 0.3,
+      "p95": 0
+     }
+    },
+    "station": {
+     "before": {
+      "median": 3,
+      "p95": 4.6
+     },
+     "after": {
+      "median": 3.4,
+      "p95": 7.1
+     },
+     "delta": {
+      "median": 0.4,
+      "p95": 2.5
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 12,
+      "p95": 15.1
+     },
+     "after": {
+      "median": 9.5,
+      "p95": 12.1
+     },
+     "delta": {
+      "median": -2.5,
+      "p95": -3
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 5,
+      "p95": 7.5
+     },
+     "after": {
+      "median": 5.2,
+      "p95": 7.2
+     },
+     "delta": {
+      "median": 0.2,
+      "p95": -0.3
+     }
+    },
+    "city": {
+     "before": {
+      "median": 14.7,
+      "p95": 31.5
+     },
+     "after": {
+      "median": 21.4,
+      "p95": 34.2
+     },
+     "delta": {
+      "median": 6.7,
+      "p95": 2.7
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 12.9,
+      "p95": 21.5
+     },
+     "after": {
+      "median": 12.7,
+      "p95": 26.3
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": 4.8
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 14.8,
+      "p95": 30.3
+     },
+     "after": {
+      "median": 21.1,
+      "p95": 33.1
+     },
+     "delta": {
+      "median": 6.3,
+      "p95": 2.8
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 3.4,
+      "p95": 5.1
+     },
+     "after": {
+      "median": 3.9,
+      "p95": 6.5
+     },
+     "delta": {
+      "median": 0.5,
+      "p95": 1.4
+     }
+    }
+   }
+  },
+  "pairedRounds": [
+   {
+    "round": "work/lighting-a2/perf/series3.json#1",
+    "mapReadyDelta": -749.3,
+    "heapDelta": 0.41,
+    "p95Delta": {
+     "day/kungsgatan": 1.7,
+     "day/ingelstaBridge": 2.2,
+     "day/policeEmblem": 3,
+     "day/station": 0.5,
+     "day/grandHotel": 0.5,
+     "day/centrum": 1.3,
+     "day/city": 2.7,
+     "day/stromparken": 0.1,
+     "day/idrottsparkenPitch": 0.1,
+     "day/parken": 1.2,
+     "night-off/kungsgatan": 0.8,
+     "night-off/ingelstaBridge": 3.2,
+     "night-off/policeEmblem": 2.7,
+     "night-off/station": 0.6,
+     "night-off/grandHotel": 5.2,
+     "night-off/centrum": 0.7,
+     "night-off/city": 12.3,
+     "night-off/stromparken": 1.3,
+     "night-off/idrottsparkenPitch": 0.5,
+     "night-off/parken": -0.5,
+     "night-match/kungsgatan": -0.4,
+     "night-match/ingelstaBridge": 0.1,
+     "night-match/policeEmblem": 0.3,
+     "night-match/station": -0.1,
+     "night-match/grandHotel": 0.5,
+     "night-match/centrum": 1.9,
+     "night-match/city": 4.6,
+     "night-match/stromparken": 5.1,
+     "night-match/idrottsparkenPitch": 22.5,
+     "night-match/parken": 2.2
+    }
+   },
+   {
+    "round": "work/lighting-a2/perf/series3.json#2",
+    "mapReadyDelta": 59.1,
+    "heapDelta": 0.047,
+    "p95Delta": {
+     "day/kungsgatan": -0.7,
+     "day/ingelstaBridge": -0.5,
+     "day/policeEmblem": 1.5,
+     "day/station": -0.6,
+     "day/grandHotel": 2.9,
+     "day/centrum": 0.2,
+     "day/city": -3.2,
+     "day/stromparken": -0.9,
+     "day/idrottsparkenPitch": -1,
+     "day/parken": -0.7,
+     "night-off/kungsgatan": -0.3,
+     "night-off/ingelstaBridge": -1.7,
+     "night-off/policeEmblem": -3.6,
+     "night-off/station": 1,
+     "night-off/grandHotel": 21.1,
+     "night-off/centrum": 10.8,
+     "night-off/city": 17.2,
+     "night-off/stromparken": 4.4,
+     "night-off/idrottsparkenPitch": -1,
+     "night-off/parken": -0.1,
+     "night-match/kungsgatan": 1.4,
+     "night-match/ingelstaBridge": 3.2,
+     "night-match/policeEmblem": 0,
+     "night-match/station": 2.5,
+     "night-match/grandHotel": -4,
+     "night-match/centrum": -0.3,
+     "night-match/city": 3.3,
+     "night-match/stromparken": 4.8,
+     "night-match/idrottsparkenPitch": 4.5,
+     "night-match/parken": 1.4
+    }
+   },
+   {
+    "round": "work/lighting-a2/perf/series3.json#3",
+    "mapReadyDelta": 2115.5,
+    "heapDelta": 0.063,
+    "p95Delta": {
+     "day/kungsgatan": 6.9,
+     "day/ingelstaBridge": 12.3,
+     "day/policeEmblem": 21,
+     "day/station": 1.8,
+     "day/grandHotel": 17,
+     "day/centrum": 6.2,
+     "day/city": 3.2,
+     "day/stromparken": 15.4,
+     "day/idrottsparkenPitch": 11,
+     "day/parken": -1,
+     "night-off/kungsgatan": 4.2,
+     "night-off/ingelstaBridge": 2.6,
+     "night-off/policeEmblem": 15.7,
+     "night-off/station": 6.9,
+     "night-off/grandHotel": 19.3,
+     "night-off/centrum": 4.6,
+     "night-off/city": 14.9,
+     "night-off/stromparken": 12.4,
+     "night-off/idrottsparkenPitch": 12.1,
+     "night-off/parken": 7.6,
+     "night-match/kungsgatan": 11.1,
+     "night-match/ingelstaBridge": 7.1,
+     "night-match/policeEmblem": 17.4,
+     "night-match/station": 2.1,
+     "night-match/grandHotel": 19,
+     "night-match/centrum": 6.2,
+     "night-match/city": -0.7,
+     "night-match/stromparken": 1.4,
+     "night-match/idrottsparkenPitch": -3.2,
+     "night-match/parken": 2
+    }
+   }
+  ],
+  "runs": [
+   {
+    "label": "before",
+    "round": 1,
+    "failed": null,
+    "mapReadyMs": 5819.6,
+    "heapMB": 117.99,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "after",
+    "round": 1,
+    "failed": null,
+    "mapReadyMs": 5070.3,
+    "heapMB": 118.4,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "after",
+    "round": 2,
+    "failed": null,
+    "mapReadyMs": 7040.9,
+    "heapMB": 118.032,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "before",
+    "round": 2,
+    "failed": null,
+    "mapReadyMs": 6981.8,
+    "heapMB": 117.985,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "before",
+    "round": 3,
+    "failed": null,
+    "mapReadyMs": 7779,
+    "heapMB": 117.969,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "label": "after",
+    "round": 3,
+    "failed": null,
+    "mapReadyMs": 9894.5,
+    "heapMB": 118.032,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   }
+  ]
+ },
+ "nodeTimings": {
+  "node": "v24.15.0",
+  "runs": 25,
+  "generateA2Ms": 8.144,
+  "registryA1StateMs": 0.062,
+  "registryCombinedMs": 0.068,
+  "prepareA1StateMs": 0.881,
+  "prepareCombinedMs": 1.034
+ },
+ "e2e": {
+  "a2": {
+   "start": {
+    "fixtures": 267,
+    "status": "ok",
+    "rollouts": {
+     "lighting-a1-v1": {
+      "mapped": 10,
+      "estimated": 117
+     },
+     "lighting-a2-v1": {
+      "mapped": 0,
+      "estimated": 35
+     },
+     "step6-pilot-v1": {
+      "mapped": 10,
+      "estimated": 95
+     }
+    },
+    "max": 15,
+    "pages": 69,
+    "geometries": 4758,
+    "textures": 252,
+    "programs": 20
+   },
+   "swaps": [
+    {
+     "fixtures": 232,
+     "status": "ok",
+     "rollouts": {
+      "lighting-a1-v1": {
+       "mapped": 10,
+       "estimated": 117
+      },
+      "step6-pilot-v1": {
+       "mapped": 10,
+       "estimated": 95
+      }
+     },
+     "max": 15,
+     "pages": 63,
+     "geometries": 4747,
+     "textures": 252,
+     "programs": 20
+    },
+    {
+     "fixtures": 267,
+     "status": "ok",
+     "rollouts": {
+      "lighting-a1-v1": {
+       "mapped": 10,
+       "estimated": 117
+      },
+      "lighting-a2-v1": {
+       "mapped": 0,
+       "estimated": 35
+      },
+      "step6-pilot-v1": {
+       "mapped": 10,
+       "estimated": 95
+      }
+     },
+     "max": 15,
+     "pages": 69,
+     "geometries": 4753,
+     "textures": 252,
+     "programs": 20
+    },
+    {
+     "fixtures": 232,
+     "status": "ok",
+     "rollouts": {
+      "lighting-a1-v1": {
+       "mapped": 10,
+       "estimated": 117
+      },
+      "step6-pilot-v1": {
+       "mapped": 10,
+       "estimated": 95
+      }
+     },
+     "max": 15,
+     "pages": 63,
+     "geometries": 4747,
+     "textures": 252,
+     "programs": 20
+    },
+    {
+     "fixtures": 267,
+     "status": "ok",
+     "rollouts": {
+      "lighting-a1-v1": {
+       "mapped": 10,
+       "estimated": 117
+      },
+      "lighting-a2-v1": {
+       "mapped": 0,
+       "estimated": 35
+      },
+      "step6-pilot-v1": {
+       "mapped": 10,
+       "estimated": 95
+      }
+     },
+     "max": 15,
+     "pages": 69,
+     "geometries": 4753,
+     "textures": 252,
+     "programs": 20
+    },
+    {
+     "fixtures": 232,
+     "status": "ok",
+     "rollouts": {
+      "lighting-a1-v1": {
+       "mapped": 10,
+       "estimated": 117
+      },
+      "step6-pilot-v1": {
+       "mapped": 10,
+       "estimated": 95
+      }
+     },
+     "max": 15,
+     "pages": 63,
+     "geometries": 4747,
+     "textures": 252,
+     "programs": 20
+    },
+    {
+     "fixtures": 267,
+     "status": "ok",
+     "rollouts": {
+      "lighting-a1-v1": {
+       "mapped": 10,
+       "estimated": 117
+      },
+      "lighting-a2-v1": {
+       "mapped": 0,
+       "estimated": 35
+      },
+      "step6-pilot-v1": {
+       "mapped": 10,
+       "estimated": 95
+      }
+     },
+     "max": 15,
+     "pages": 69,
+     "geometries": 4753,
+     "textures": 252,
+     "programs": 20
+    }
+   ],
+   "restoredState": {
+    "fixtures": 267,
+    "status": "ok",
+    "rollouts": {
+     "lighting-a1-v1": {
+      "mapped": 10,
+      "estimated": 117
+     },
+     "lighting-a2-v1": {
+      "mapped": 0,
+      "estimated": 35
+     },
+     "step6-pilot-v1": {
+      "mapped": 10,
+      "estimated": 95
+     }
+    },
+    "max": 15,
+    "pages": 69,
+    "geometries": 2165,
+    "textures": 76,
+    "programs": 18
+   },
+   "luma": {
+    "lit": 12.53737748093121,
+    "dark": 8.558072647805128
+   }
+  },
+  "phase0Lifecycle": {
+   "base": {
+    "geometries": 4156,
+    "textures": 226,
+    "programs": 20,
+    "fixtures": 267,
+    "rebound": 0,
+    "status": "ok",
+    "heapMB": 131.238584
+   },
+   "series": [
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.21016
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.257596
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.281056
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.29484
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.375324
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.348004
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.353704
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.38598
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.382804
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 0,
+     "status": "ok",
+     "heapMB": 131.393476
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.403852
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.55408
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.560992
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.579164
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.60084
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.645912
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.732764
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.780352
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.782776
+    },
+    {
+     "geometries": 4150,
+     "textures": 226,
+     "programs": 20,
+     "fixtures": 267,
+     "rebound": 1227,
+     "status": "ok",
+     "heapMB": 131.801568
+    }
+   ],
+   "afterRestore": {
+    "geometries": 2204,
+    "textures": 73,
+    "programs": 18,
+    "fixtures": 267,
+    "rebound": 1227,
+    "status": "ok",
+    "heapMB": 139.816472
+   }
+  }
+ }
+}

@@ -1,0 +1,827 @@
+{
+ "note": "diff.py, no tolerance; before = A1 state (1fe6296), after = A2; noise = same build captured twice",
+ "a1ToA2": {
+  "a1-drottninggatan-elevated-day": {
+   "changed": 8,
+   "max": 55,
+   "mean": 0.0003,
+   "bbox": [
+    21,
+    185,
+    66,
+    200
+   ]
+  },
+  "a1-drottninggatan-elevated-night": {
+   "changed": 236,
+   "max": 183,
+   "mean": 0.006,
+   "bbox": [
+    1,
+    184,
+    174,
+    216
+   ]
+  },
+  "a1-drottninggatan-elevated-twilight": {
+   "changed": 228,
+   "max": 177,
+   "mean": 0.0039,
+   "bbox": [
+    1,
+    184,
+    174,
+    216
+   ]
+  },
+  "a2-a1-junction-day": {
+   "changed": 681,
+   "max": 125,
+   "mean": 0.0587,
+   "bbox": [
+    602,
+    347,
+    1053,
+    549
+   ]
+  },
+  "a2-a1-junction-night": {
+   "changed": 186392,
+   "max": 220,
+   "mean": 6.8467,
+   "bbox": [
+    315,
+    302,
+    1062,
+    658
+   ]
+  },
+  "a2-a1-junction-twilight": {
+   "changed": 177405,
+   "max": 183,
+   "mean": 4.3719,
+   "bbox": [
+    314,
+    301,
+    1062,
+    658
+   ]
+  },
+  "a2-central-overview-day": {
+   "changed": 157,
+   "max": 58,
+   "mean": 0.0038,
+   "bbox": [
+    374,
+    234,
+    725,
+    351
+   ]
+  },
+  "a2-central-overview-night": {
+   "changed": 10625,
+   "max": 251,
+   "mean": 0.5112,
+   "bbox": [
+    359,
+    230,
+    757,
+    371
+   ]
+  },
+  "a2-central-overview-twilight": {
+   "changed": 10609,
+   "max": 210,
+   "mean": 0.3335,
+   "bbox": [
+    359,
+    229,
+    756,
+    371
+   ]
+  },
+  "a2-kungsgatan-north-elevated-day": {
+   "changed": 864,
+   "max": 115,
+   "mean": 0.0374,
+   "bbox": [
+    231,
+    240,
+    1006,
+    531
+   ]
+  },
+  "a2-kungsgatan-north-elevated-night": {
+   "changed": 65085,
+   "max": 253,
+   "mean": 3.7421,
+   "bbox": [
+    102,
+    240,
+    1045,
+    658
+   ]
+  },
+  "a2-kungsgatan-north-elevated-twilight": {
+   "changed": 64760,
+   "max": 225,
+   "mean": 2.5341,
+   "bbox": [
+    111,
+    240,
+    1042,
+    658
+   ]
+  },
+  "a2-kungsgatan-north-street-day": {
+   "changed": 5352,
+   "max": 170,
+   "mean": 0.4877,
+   "bbox": [
+    207,
+    102,
+    652,
+    393
+   ]
+  },
+  "a2-kungsgatan-north-street-night": {
+   "changed": 408226,
+   "max": 255,
+   "mean": 27.8827,
+   "bbox": [
+    1,
+    97,
+    1062,
+    658
+   ]
+  },
+  "a2-kungsgatan-north-street-twilight": {
+   "changed": 409882,
+   "max": 255,
+   "mean": 20.3982,
+   "bbox": [
+    1,
+    97,
+    1062,
+    658
+   ]
+  },
+  "a2-kungstorget-junction-day": {
+   "changed": 1491,
+   "max": 106,
+   "mean": 0.1063,
+   "bbox": [
+    383,
+    255,
+    686,
+    626
+   ]
+  },
+  "a2-kungstorget-junction-night": {
+   "changed": 166583,
+   "max": 253,
+   "mean": 10.8541,
+   "bbox": [
+    237,
+    255,
+    890,
+    658
+   ]
+  },
+  "a2-kungstorget-junction-twilight": {
+   "changed": 167085,
+   "max": 221,
+   "mean": 7.0797,
+   "bbox": [
+    237,
+    255,
+    888,
+    658
+   ]
+  },
+  "a2-norra-promenaden-west-elevated-day": {
+   "changed": 793,
+   "max": 136,
+   "mean": 0.0425,
+   "bbox": [
+    123,
+    219,
+    611,
+    642
+   ]
+  },
+  "a2-norra-promenaden-west-elevated-night": {
+   "changed": 122445,
+   "max": 247,
+   "mean": 5.3232,
+   "bbox": [
+    1,
+    219,
+    690,
+    658
+   ]
+  },
+  "a2-norra-promenaden-west-elevated-twilight": {
+   "changed": 121411,
+   "max": 220,
+   "mean": 3.2993,
+   "bbox": [
+    1,
+    219,
+    690,
+    658
+   ]
+  },
+  "a2-norra-promenaden-west-street-day": {
+   "changed": 2530,
+   "max": 144,
+   "mean": 0.1797,
+   "bbox": [
+    123,
+    266,
+    572,
+    500
+   ]
+  },
+  "a2-norra-promenaden-west-street-night": {
+   "changed": 310092,
+   "max": 255,
+   "mean": 13.4833,
+   "bbox": [
+    1,
+    261,
+    1062,
+    658
+   ]
+  },
+  "a2-norra-promenaden-west-street-twilight": {
+   "changed": 309543,
+   "max": 251,
+   "mean": 8.6722,
+   "bbox": [
+    1,
+    261,
+    1062,
+    658
+   ]
+  },
+  "a2-pilot-junction-day": {
+   "changed": 750,
+   "max": 145,
+   "mean": 0.0719,
+   "bbox": [
+    747,
+    401,
+    1062,
+    555
+   ]
+  },
+  "a2-pilot-junction-night": {
+   "changed": 52560,
+   "max": 254,
+   "mean": 3.5094,
+   "bbox": [
+    584,
+    361,
+    1062,
+    607
+   ]
+  },
+  "a2-pilot-junction-twilight": {
+   "changed": 52687,
+   "max": 252,
+   "mean": 2.3422,
+   "bbox": [
+    579,
+    366,
+    1062,
+    607
+   ]
+  },
+  "kungsgatan-street-day": {
+   "changed": 279,
+   "max": 89,
+   "mean": 0.0081,
+   "bbox": [
+    490,
+    313,
+    550,
+    339
+   ]
+  },
+  "kungsgatan-street-night": {
+   "changed": 1264,
+   "max": 235,
+   "mean": 0.0583,
+   "bbox": [
+    478,
+    313,
+    577,
+    340
+   ]
+  },
+  "kungsgatan-street-twilight": {
+   "changed": 1296,
+   "max": 211,
+   "mean": 0.0404,
+   "bbox": [
+    478,
+    313,
+    577,
+    340
+   ]
+  },
+  "pilot-overview-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "pilot-overview-night": {
+   "changed": 1867,
+   "max": 252,
+   "mean": 0.1002,
+   "bbox": [
+    574,
+    67,
+    687,
+    128
+   ]
+  },
+  "pilot-overview-twilight": {
+   "changed": 1868,
+   "max": 217,
+   "mean": 0.0679,
+   "bbox": [
+    574,
+    67,
+    686,
+    128
+   ]
+  },
+  "stromparken-elevated-day": {
+   "changed": 12,
+   "max": 1,
+   "mean": 0,
+   "bbox": [
+    295,
+    4,
+    762,
+    571
+   ]
+  },
+  "stromparken-elevated-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "stromparken-elevated-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  }
+ },
+ "noiseA1": {
+  "a1-drottninggatan-elevated-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a1-drottninggatan-elevated-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a1-drottninggatan-elevated-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-a1-junction-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-a1-junction-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-a1-junction-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-central-overview-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-central-overview-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-central-overview-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-elevated-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-elevated-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-elevated-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-street-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-street-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-street-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungstorget-junction-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungstorget-junction-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungstorget-junction-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-elevated-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-elevated-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-elevated-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-street-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-street-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-street-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-pilot-junction-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-pilot-junction-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-pilot-junction-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "kungsgatan-street-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "kungsgatan-street-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "kungsgatan-street-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "pilot-overview-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "pilot-overview-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "pilot-overview-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "stromparken-elevated-day": {
+   "changed": 12,
+   "max": 1,
+   "mean": 0,
+   "bbox": [
+    295,
+    4,
+    762,
+    571
+   ]
+  },
+  "stromparken-elevated-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "stromparken-elevated-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  }
+ },
+ "noiseA2": {
+  "a1-drottninggatan-elevated-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a1-drottninggatan-elevated-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a1-drottninggatan-elevated-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-a1-junction-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-a1-junction-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-a1-junction-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-central-overview-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-central-overview-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-central-overview-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-elevated-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-elevated-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-elevated-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-street-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-street-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungsgatan-north-street-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungstorget-junction-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungstorget-junction-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-kungstorget-junction-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-elevated-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-elevated-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-elevated-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-street-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-street-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-norra-promenaden-west-street-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-pilot-junction-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-pilot-junction-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "a2-pilot-junction-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "kungsgatan-street-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "kungsgatan-street-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "kungsgatan-street-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "pilot-overview-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "pilot-overview-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "pilot-overview-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "stromparken-elevated-day": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "stromparken-elevated-night": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  },
+  "stromparken-elevated-twilight": {
+   "changed": 0,
+   "max": 0,
+   "mean": 0,
+   "bbox": null
+  }
+ }
+}
