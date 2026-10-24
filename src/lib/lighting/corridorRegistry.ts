@@ -15,6 +15,7 @@
 import { sceneToSweref } from '../geo/sweref99tm.js';
 import { A1_DATASET, A1_GENERATOR, groupKey, inRing } from './corridorA1';
 import { A2_DATASET, A2_GENERATOR } from './corridorA2';
+import { A3_DATASET, A3_GENERATOR } from './corridorA3';
 import type { A1Fixture } from './corridorGenerator';
 import {
   headingToGridAzimuth,
@@ -39,6 +40,7 @@ export interface CorridorIdentity {
 }
 export const A1_IDENTITY: CorridorIdentity = { dataset: A1_DATASET, generator: A1_GENERATOR };
 export const A2_IDENTITY: CorridorIdentity = { dataset: A2_DATASET, generator: A2_GENERATOR };
+export const A3_IDENTITY: CorridorIdentity = { dataset: A3_DATASET, generator: A3_GENERATOR };
 
 export function corridorRegistry(
   data: A1Data,

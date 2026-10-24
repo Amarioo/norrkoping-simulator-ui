@@ -1,0 +1,192 @@
+{
+ "date": "2026-10-21",
+ "timezoneId": "Europe/Stockholm",
+ "viewport": {
+  "width": 1400,
+  "height": 1000
+ },
+ "states": {
+  "day": [
+   759,
+   "off"
+  ],
+  "twilight": [
+   1072,
+   "off"
+  ],
+  "night": [
+   1290,
+   "off"
+  ]
+ },
+ "poses": {
+  "a3-ring-north-street": {
+   "position": [
+    -26.6,
+    0.53,
+    -24.3
+   ],
+   "target": [
+    -29,
+    0.5,
+    -23.7
+   ]
+  },
+  "a3-ring-west-street": {
+   "position": [
+    -30.3,
+    0.65,
+    -23
+   ],
+   "target": [
+    -30.2,
+    0.6,
+    -20.6
+   ]
+  },
+  "a3-ring-south-street": {
+   "position": [
+    -30,
+    0.69,
+    -20
+   ],
+   "target": [
+    -27.4,
+    0.48,
+    -20.3
+   ]
+  },
+  "a3-ring-elevated": {
+   "position": [
+    -25,
+    3.2,
+    -18
+   ],
+   "target": [
+    -28.8,
+    0.45,
+    -22.2
+   ]
+  },
+  "a3-ring-overhead": {
+   "position": [
+    -28.4,
+    6,
+    -19.2
+   ],
+   "target": [
+    -28.5,
+    0.45,
+    -22.1
+   ]
+  },
+  "a3-a2-seam-north": {
+   "position": [
+    -28.4,
+    1.9,
+    -25.6
+   ],
+   "target": [
+    -26.4,
+    0.45,
+    -23
+   ]
+  },
+  "a3-stockholmsvagen-approach": {
+   "position": [
+    -31.6,
+    0.64,
+    -24.6
+   ],
+   "target": [
+    -29.6,
+    0.52,
+    -22.6
+   ]
+  },
+  "a3-central-overview": {
+   "position": [
+    -14,
+    13,
+    -8
+   ],
+   "target": [
+    -26,
+    0.4,
+    -21
+   ]
+  },
+  "a2-kungstorget-junction": {
+   "position": [
+    -25.15,
+    1.6,
+    -17.6
+   ],
+   "target": [
+    -26.4,
+    0.4,
+    -22
+   ]
+  },
+  "a2-norra-promenaden-west-street": {
+   "position": [
+    -19,
+    0.21,
+    -25.45
+   ],
+   "target": [
+    -24,
+    0.33,
+    -23.6
+   ]
+  },
+  "a2-kungsgatan-north-elevated": {
+   "position": [
+    -21.8,
+    2.6,
+    -12.8
+   ],
+   "target": [
+    -25.4,
+    0.35,
+    -19.5
+   ]
+  },
+  "kungsgatan-street": {
+   "position": [
+    -21.86,
+    0.8894,
+    -6.4
+   ],
+   "target": [
+    -23.3,
+    0.7587,
+    -11.5
+   ]
+  },
+  "stromparken-elevated": {
+   "position": [
+    -4.6,
+    3.044,
+    -2.4
+   ],
+   "target": [
+    -7.6,
+    0.1339,
+    -5.6
+   ]
+  },
+  "pilot-overview": {
+   "position": [
+    -8.27,
+    38,
+    37.8
+   ],
+   "target": [
+    -20,
+    0,
+    8
+   ]
+  }
+ }
+}

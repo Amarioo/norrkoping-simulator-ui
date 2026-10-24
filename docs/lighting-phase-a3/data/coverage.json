@@ -1,0 +1,344 @@
+{
+ "zones": {
+  "F": {
+   "name": "Kungstorget ring west of zone D (north, west and south arcs)",
+   "ringEN": [
+    [
+     568377.7,
+     6495581.3
+    ],
+    [
+     568365.5,
+     6495581.5
+    ],
+    [
+     568359.6,
+     6495585.9
+    ],
+    [
+     568353.2,
+     6495589.3
+    ],
+    [
+     568346.3,
+     6495591.8
+    ],
+    [
+     568339.1,
+     6495593.3
+    ],
+    [
+     568331.8,
+     6495593.7
+    ],
+    [
+     568324.4,
+     6495593.1
+    ],
+    [
+     568314.9,
+     6495591.3
+    ],
+    [
+     568307.8,
+     6495588.8
+    ],
+    [
+     568304.2,
+     6495587.1
+    ],
+    [
+     568295.2,
+     6495581.2
+    ],
+    [
+     568285.8,
+     6495571.3
+    ],
+    [
+     568279.9,
+     6495561.2
+    ],
+    [
+     568275.4,
+     6495550.2
+    ],
+    [
+     568274.4,
+     6495547.4
+    ],
+    [
+     568273.3,
+     6495543.8
+    ],
+    [
+     568271.8,
+     6495537.5
+    ],
+    [
+     568271.4,
+     6495535.1
+    ],
+    [
+     568271.4,
+     6495532.2
+    ],
+    [
+     568271.6,
+     6495529.7
+    ],
+    [
+     568272.3,
+     6495526
+    ],
+    [
+     568273.5,
+     6495522.2
+    ],
+    [
+     568274.3,
+     6495520.2
+    ],
+    [
+     568276.1,
+     6495515.7
+    ],
+    [
+     568281.3,
+     6495506.1
+    ],
+    [
+     568283.9,
+     6495503
+    ],
+    [
+     568284.2,
+     6495502.7
+    ],
+    [
+     568289.4,
+     6495499.1
+    ],
+    [
+     568294.4,
+     6495495.7
+    ],
+    [
+     568299.7,
+     6495493.5
+    ],
+    [
+     568305,
+     6495492.5
+    ],
+    [
+     568311.1,
+     6495492.1
+    ],
+    [
+     568333.1,
+     6495497.1
+    ],
+    [
+     568367.7,
+     6495483.1
+    ],
+    [
+     568341.5,
+     6495502.6
+    ],
+    [
+     568347.7,
+     6495521.3
+    ],
+    [
+     568359,
+     6495546.3
+    ],
+    [
+     568356.5,
+     6495571.3
+    ]
+   ],
+   "areaM2": 7130,
+   "fixtures": 6
+  }
+ },
+ "counts": {
+  "fixtures": 6,
+  "mapped": 0,
+  "estimated": 6,
+  "candidates": 6,
+  "rejected": 0,
+  "deck": 0,
+  "zoneF": 6
+ },
+ "rejectedByReason": {},
+ "rejected": [],
+ "ways": [
+  {
+   "way": 4438351,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 6.5,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 8174527,
+   "name": "Stockholmsvägen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 14.6,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 92385203,
+   "name": "Ingelstagatan",
+   "highway": "unclassified",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 10.3,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 92385206,
+   "name": "Ingelstagatan",
+   "highway": "unclassified",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 14.3,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 163928046,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 35.6,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445686,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 37.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445688,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 45.7,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 287527545,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 11.8,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 287528316,
+   "name": "Stockholmsvägen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 10.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 308315550,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 19.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 312486752,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 14.6,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 312490062,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 44.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 684962393,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 10.7,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  }
+ ],
+ "unknownWays": [
+  {
+   "way": 287527541,
+   "name": "Norra Promenaden",
+   "class": "secondary",
+   "lengthInsideM": 7.9
+  }
+ ]
+}

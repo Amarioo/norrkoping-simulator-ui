@@ -2,6 +2,36 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Lighting Phase A3 — rest of the Kungstorget ring; Norrtull kept unlit (2026-10-24) — implemented, for review
+
+[Full report](lighting-phase-a3/README.md). Branch `codex/lighting-phase-a2` (UI). Before A3, with
+approved file lists: `7519862` "docs: add project instructions" (CLAUDE.md) and `b42dd37` "Lighting
+Phase A2 — …" (the 64 A2 files; the A2 entry below describes that state). **A3 is not committed,
+pushed or merged.** Backend unchanged. `.claude/` untracked (five `a3-*` entries added to
+`launch.json`; original in ignored `work/lighting-a3/`).
+
+- **Norrtull:** user decision = option 1 (keep 286445696/300186798/1050773512 unlit). No lamp added;
+  illuminance there identical before/after (tested). What an OSM `lit` check would need:
+  `lighting-phase-a3/remaining-gaps.md` §1.
+- **Zone F** (7 130 m², `lighting/corridorA3.ts`): 8 m outside the seven remaining ring ways (210.7 m,
+  not ≈ 250 m), closed along A2 zone D's west edge (vertices reused exactly). No overlap (tested).
+- **Fixtures:** 6 new estimated 8 m brackets on the outer kerb (no mapped lamp exists); rendered total
+  273. The 267 earlier fixtures are bit-identical (files, records, lamp rows, cells, housings).
+- **Pipeline:** same pinned snapshot → 24 KB extract (`extract-source.mjs a3`; A1/A2 extracts
+  byte-identical) → shared generator + `A3_SPEC` (policy `lighting-a3-v1` = A2's; slot identity also
+  covers A2) → `streetlights-a3.json` (+ provenance). 0 rejections.
+- **Capacity:** max 15/16 (A1's square, unchanged), A3 cells ≤ 8, 0 overflow, 72 pages, +3.8 KB.
+- **Light:** A3 ring centreline median 0 → 11.4 lux; A2 seam ≥ 3.3 lux. Two dim stretches remain
+  under the per-way station rule: north arc ≈ 15 m < 3 lux (min 0.5), west link ≈ 5 m at 2.4–2.9 lux.
+- **Tests:** type check clean; build OK; Vitest 380/380 (28 files; A2 tests pinned to the A2 state);
+  Playwright first full run 8/9 (the A2 E2E failed one frame-equality check under heavy CPU load
+  from another session); that test then passed 3 of 3 times, the lighting spec 6/6 incl. the new A3 test.
+- **Perf:** draw calls unchanged in all captured views, +12…+552 triangles, 20 programs, +3.8 KB
+  textures, App +3.5 KB. The paired frame-time series was disturbed by another session's load
+  (map-ready −342 ms = noise); re-run on an idle machine recommended.
+- **Incidents:** a production build during a capture pass spoiled six twilight noise captures (repeated);
+  another session's vitest/Edge processes were running during the E2E and performance runs.
+
 ## Lighting Phase A2 — western Norra Promenaden + northern Kungsgatan (2026-10-24) — implemented, for review
 
 [Full report](lighting-phase-a2/README.md). Branch `codex/lighting-phase-a2` (UI), created from the

@@ -56,7 +56,14 @@ import { createFixtureVisuals } from './fixtures';
 import lightingData from '../data/streetlights.json';
 import a1Data from '../data/streetlights-a1.json';
 import a2Data from '../data/streetlights-a2.json';
-import { A2_IDENTITY, corridorRegistry, mergeRegistries, type A1Data } from './corridorRegistry';
+import a3Data from '../data/streetlights-a3.json';
+import {
+  A2_IDENTITY,
+  A3_IDENTITY,
+  corridorRegistry,
+  mergeRegistries,
+  type A1Data,
+} from './corridorRegistry';
 import { pilotRegistry, type LightingRegistry, type PilotData } from './registry';
 import {
   describeRejection,
@@ -84,19 +91,33 @@ export function a1LightingRegistry(terrain: TerrainService) {
 export function a2LightingRegistry(terrain: TerrainService) {
   return corridorRegistry(a2Data as unknown as A1Data, terrain.data.reference, A2_IDENTITY);
 }
+/** The bundled Lighting Phase A3 corridor (generated, src/lib/data/streetlights-a3.json). */
+export function a3LightingRegistry(terrain: TerrainService) {
+  return corridorRegistry(a3Data as unknown as A1Data, terrain.data.reference, A3_IDENTITY);
+}
 /** The accepted Phase A1 rendered set (pilot + A1, 232 fixtures): the A1 tests and A2 comparisons. */
 export function a1RuntimeLightingRegistry(terrain: TerrainService) {
   return mergeRegistries(pilotLightingRegistry(terrain), a1LightingRegistry(terrain));
 }
+/** The accepted Phase A2 rendered set (pilot + A1 + A2, 267 fixtures): the A2 tests and A3 comparisons. */
+export function a2RuntimeLightingRegistry(terrain: TerrainService) {
+  return mergeRegistries(
+    pilotLightingRegistry(terrain),
+    a1LightingRegistry(terrain),
+    a2LightingRegistry(terrain),
+  );
+}
 /**
- * The rendered street lighting: the Step 6 pilot plus the Phase A1 and A2 corridors, validated and
- * indexed as one set (a capacity conflict or ID collision rejects the whole set; nothing is dropped).
+ * The rendered street lighting: the Step 6 pilot plus the Phase A1, A2 and A3 corridors, validated
+ * and indexed as one set (a capacity conflict or ID collision rejects the whole set; nothing is
+ * dropped).
  */
 export function runtimeLightingRegistry(terrain: TerrainService) {
   return mergeRegistries(
     pilotLightingRegistry(terrain),
     a1LightingRegistry(terrain),
     a2LightingRegistry(terrain),
+    a3LightingRegistry(terrain),
   );
 }
 const now = () => (typeof performance === 'undefined' ? Date.now() : performance.now());
@@ -113,7 +134,7 @@ export function createCityLighting(options: {
   stadium: ReturnType<typeof createIdrottsparken>;
   renderer: WebGLRenderer;
   scene: Scene;
-  /** Street-lighting registry (default: the bundled runtime set, pilot + Phase A1 + Phase A2). */
+  /** Street-lighting registry (default: the bundled runtime set, pilot + Phase A1 + A2 + A3). */
   registry?: LightingRegistry;
   /** Throw on a rejected initial street-lighting set (default: development and tests). */
   strict?: boolean;

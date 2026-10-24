@@ -1,0 +1,577 @@
+{
+ "note": "Series 1 (3 alternating rounds, production builds A2 b42dd37 on 5208 vs A3 on 5209). DISTURBED: another session was running vitest/Edge processes on the same machine; the load log sampled 10-s windows of process CPU time (> 1 CPU-s per process, incl. the measurement browser itself). Kept for the record, not used for acceptance; re-run on an idle machine.",
+ "loadCpuSecondsPer10s": {
+  "samples": 49,
+  "mean": 31.4,
+  "max": 70.9
+ },
+ "summary": {
+  "mapReady": {
+   "before": 3964,
+   "after": 3622.5,
+   "delta": -341.5
+  },
+  "heap": {
+   "before": 118.066,
+   "after": 118.083,
+   "delta": 0.017
+  },
+  "gates": {
+   "mapReadyDeltaMs": -341.5,
+   "maxP95DeltaMs": 3.3,
+   "maxDayP95DeltaMs": 0.5,
+   "heapDeltaMB": 0.017,
+   "failedRuns": 0
+  },
+  "frames": {
+   "day": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.1,
+      "p95": 3.4
+     },
+     "after": {
+      "median": 1.9,
+      "p95": 2.3
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": -1.1
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 4.3,
+      "p95": 5.4
+     },
+     "after": {
+      "median": 3.8,
+      "p95": 4.5
+     },
+     "delta": {
+      "median": -0.5,
+      "p95": -0.9
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 4,
+      "p95": 5.5
+     },
+     "after": {
+      "median": 3.4,
+      "p95": 4
+     },
+     "delta": {
+      "median": -0.6,
+      "p95": -1.5
+     }
+    },
+    "station": {
+     "before": {
+      "median": 1.8,
+      "p95": 2.4
+     },
+     "after": {
+      "median": 1.7,
+      "p95": 2.1
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.3
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 4,
+      "p95": 5.1
+     },
+     "after": {
+      "median": 3.4,
+      "p95": 4
+     },
+     "delta": {
+      "median": -0.6,
+      "p95": -1.1
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 2.5,
+      "p95": 3.3
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": -0.6
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.3,
+      "p95": 8.6
+     },
+     "after": {
+      "median": 4.9,
+      "p95": 5.6
+     },
+     "delta": {
+      "median": -2.4,
+      "p95": -3
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 4.3,
+      "p95": 4.8
+     },
+     "after": {
+      "median": 4.2,
+      "p95": 5
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": 0.2
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 4.8,
+      "p95": 8.2
+     },
+     "after": {
+      "median": 5.2,
+      "p95": 6.9
+     },
+     "delta": {
+      "median": 0.4,
+      "p95": -1.3
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 1.7,
+      "p95": 2.1
+     },
+     "after": {
+      "median": 1.8,
+      "p95": 2.6
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.5
+     }
+    }
+   },
+   "night-off": {
+    "kungsgatan": {
+     "before": {
+      "median": 1.8,
+      "p95": 2.2
+     },
+     "after": {
+      "median": 1.8,
+      "p95": 2.3
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.1
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 3.5,
+      "p95": 4.2
+     },
+     "after": {
+      "median": 3.6,
+      "p95": 4.8
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.6
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 3.3,
+      "p95": 3.9
+     },
+     "after": {
+      "median": 3.3,
+      "p95": 4
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.1
+     }
+    },
+    "station": {
+     "before": {
+      "median": 1.8,
+      "p95": 2.2
+     },
+     "after": {
+      "median": 1.8,
+      "p95": 2.2
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 3.6,
+      "p95": 4.2
+     },
+     "after": {
+      "median": 3.7,
+      "p95": 4.3
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.1
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 2.4,
+      "p95": 2.8
+     },
+     "after": {
+      "median": 2.4,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.1
+     }
+    },
+    "city": {
+     "before": {
+      "median": 5.9,
+      "p95": 7.4
+     },
+     "after": {
+      "median": 7.4,
+      "p95": 10.7
+     },
+     "delta": {
+      "median": 1.5,
+      "p95": 3.3
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 4.3,
+      "p95": 7.7
+     },
+     "after": {
+      "median": 5.3,
+      "p95": 7.2
+     },
+     "delta": {
+      "median": 1,
+      "p95": -0.5
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 5.6,
+      "p95": 7.7
+     },
+     "after": {
+      "median": 7,
+      "p95": 8.5
+     },
+     "delta": {
+      "median": 1.4,
+      "p95": 0.8
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 1.9,
+      "p95": 2.5
+     },
+     "after": {
+      "median": 1.8,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": 0.2
+     }
+    }
+   },
+   "night-match": {
+    "kungsgatan": {
+     "before": {
+      "median": 1.9,
+      "p95": 2.2
+     },
+     "after": {
+      "median": 2,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.5
+     }
+    },
+    "ingelstaBridge": {
+     "before": {
+      "median": 4.5,
+      "p95": 5.6
+     },
+     "after": {
+      "median": 4.1,
+      "p95": 5.4
+     },
+     "delta": {
+      "median": -0.4,
+      "p95": -0.2
+     }
+    },
+    "policeEmblem": {
+     "before": {
+      "median": 4,
+      "p95": 5.1
+     },
+     "after": {
+      "median": 3.7,
+      "p95": 5.9
+     },
+     "delta": {
+      "median": -0.3,
+      "p95": 0.8
+     }
+    },
+    "station": {
+     "before": {
+      "median": 1.9,
+      "p95": 2.4
+     },
+     "after": {
+      "median": 1.7,
+      "p95": 2.1
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": -0.3
+     }
+    },
+    "grandHotel": {
+     "before": {
+      "median": 4,
+      "p95": 5.1
+     },
+     "after": {
+      "median": 4,
+      "p95": 5.4
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.3
+     }
+    },
+    "centrum": {
+     "before": {
+      "median": 2.5,
+      "p95": 3
+     },
+     "after": {
+      "median": 2.5,
+      "p95": 3
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "city": {
+     "before": {
+      "median": 5.6,
+      "p95": 7.3
+     },
+     "after": {
+      "median": 6.9,
+      "p95": 9.2
+     },
+     "delta": {
+      "median": 1.3,
+      "p95": 1.9
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 4.2,
+      "p95": 4.7
+     },
+     "after": {
+      "median": 5.6,
+      "p95": 6.7
+     },
+     "delta": {
+      "median": 1.4,
+      "p95": 2
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 4.4,
+      "p95": 4.9
+     },
+     "after": {
+      "median": 6.3,
+      "p95": 7
+     },
+     "delta": {
+      "median": 1.9,
+      "p95": 2.1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 1.7,
+      "p95": 2
+     },
+     "after": {
+      "median": 1.8,
+      "p95": 2
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0
+     }
+    }
+   }
+  },
+  "pairedRounds": [
+   {
+    "round": "work/lighting-a3/perf/series1.json#1",
+    "mapReadyDelta": -360.6,
+    "heapDelta": 0.022,
+    "p95Delta": {
+     "day/kungsgatan": -0.8,
+     "day/ingelstaBridge": 0.9,
+     "day/policeEmblem": 1.7,
+     "day/station": 0.7,
+     "day/grandHotel": 1.3,
+     "day/centrum": 2.6,
+     "day/city": 4.6,
+     "day/stromparken": 5.5,
+     "day/idrottsparkenPitch": 1.2,
+     "day/parken": 0.6,
+     "night-off/kungsgatan": 0.5,
+     "night-off/ingelstaBridge": 2.9,
+     "night-off/policeEmblem": 1.4,
+     "night-off/station": 0.5,
+     "night-off/grandHotel": 2.5,
+     "night-off/centrum": 1.5,
+     "night-off/city": 4.8,
+     "night-off/stromparken": -0.5,
+     "night-off/idrottsparkenPitch": 3,
+     "night-off/parken": -0.3,
+     "night-match/kungsgatan": -1.9,
+     "night-match/ingelstaBridge": -2.5,
+     "night-match/policeEmblem": -3.9,
+     "night-match/station": -0.3,
+     "night-match/grandHotel": -0.8,
+     "night-match/centrum": -0.1,
+     "night-match/city": -4.1,
+     "night-match/stromparken": -2.3,
+     "night-match/idrottsparkenPitch": -3.5,
+     "night-match/parken": -0.3
+    }
+   },
+   {
+    "round": "work/lighting-a3/perf/series1.json#2",
+    "mapReadyDelta": -341.5,
+    "heapDelta": 0.009,
+    "p95Delta": {
+     "day/kungsgatan": -1,
+     "day/ingelstaBridge": -0.9,
+     "day/policeEmblem": -3.3,
+     "day/station": -0.4,
+     "day/grandHotel": -1.2,
+     "day/centrum": -0.6,
+     "day/city": -3,
+     "day/stromparken": 0.3,
+     "day/idrottsparkenPitch": 1,
+     "day/parken": 0.5,
+     "night-off/kungsgatan": 0.1,
+     "night-off/ingelstaBridge": 0.6,
+     "night-off/policeEmblem": 0.1,
+     "night-off/station": 0.1,
+     "night-off/grandHotel": 0.1,
+     "night-off/centrum": 0.1,
+     "night-off/city": 7.2,
+     "night-off/stromparken": 10.7,
+     "night-off/idrottsparkenPitch": 3.3,
+     "night-off/parken": 0.9,
+     "night-match/kungsgatan": 0.5,
+     "night-match/ingelstaBridge": 1.6,
+     "night-match/policeEmblem": 2.9,
+     "night-match/station": 0.6,
+     "night-match/grandHotel": 1.8,
+     "night-match/centrum": 0.4,
+     "night-match/city": 4.3,
+     "night-match/stromparken": 3,
+     "night-match/idrottsparkenPitch": 3.2,
+     "night-match/parken": 0.6
+    }
+   },
+   {
+    "round": "work/lighting-a3/perf/series1.json#3",
+    "mapReadyDelta": 14.4,
+    "heapDelta": 0.012,
+    "p95Delta": {
+     "day/kungsgatan": -2.7,
+     "day/ingelstaBridge": -6.5,
+     "day/policeEmblem": -2,
+     "day/station": -0.5,
+     "day/grandHotel": -1.4,
+     "day/centrum": -1.1,
+     "day/city": -5.4,
+     "day/stromparken": -3.1,
+     "day/idrottsparkenPitch": -3.5,
+     "day/parken": -0.5,
+     "night-off/kungsgatan": -0.3,
+     "night-off/ingelstaBridge": -1.2,
+     "night-off/policeEmblem": -1.6,
+     "night-off/station": -0.3,
+     "night-off/grandHotel": -1.7,
+     "night-off/centrum": -0.6,
+     "night-off/city": -2,
+     "night-off/stromparken": -3.6,
+     "night-off/idrottsparkenPitch": -6.7,
+     "night-off/parken": 0.6,
+     "night-match/kungsgatan": 1.8,
+     "night-match/ingelstaBridge": -0.6,
+     "night-match/policeEmblem": -0.6,
+     "night-match/station": -0.6,
+     "night-match/grandHotel": 0.3,
+     "night-match/centrum": -0.1,
+     "night-match/city": 1.9,
+     "night-match/stromparken": 2.1,
+     "night-match/idrottsparkenPitch": 2.1,
+     "night-match/parken": 0
+    }
+   }
+  ]
+ },
+ "nodeTimings": {
+  "node": "v24.15.0",
+  "runs": 25,
+  "generateA3Ms": 4.796,
+  "registryA2StateMs": 0.07,
+  "registryCombinedMs": 0.072,
+  "prepareA2StateMs": 1.062,
+  "prepareCombinedMs": 1.126
+ }
+}

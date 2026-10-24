@@ -49,6 +49,7 @@
 import { geodeticToScene, sceneToSweref, swerefToScene } from '../geo/sweref99tm.js';
 import { A1_DATASET, A1_GENERATOR, A1_ZONE_ORDER, A1_ZONES, inRing } from './corridorA1';
 import { A2_DATASET, A2_GENERATOR, A2_ZONE_ORDER, A2_ZONES } from './corridorA2';
+import { A3_DATASET, A3_GENERATOR, A3_ZONE_ORDER, A3_ZONES } from './corridorA3';
 import { emitterPosition, type FixtureRecord } from './fixtures';
 
 export interface SceneReference {
@@ -259,6 +260,23 @@ export const A2_SPEC: CorridorSpec = {
   zones: A2_ZONES,
   zoneOrder: A2_ZONE_ORDER,
   policy: A2_POLICY,
+};
+/**
+ * Placement policy `lighting-a3-v1` (Lighting Phase A3, the rest of the Kungstorget ring): A2's rules
+ * and values unchanged; station-slot identity now also covers A2 records (same station rule as A1).
+ */
+export const A3_POLICY: CorridorPolicy = {
+  ...A1_POLICY,
+  version: A3_GENERATOR.version,
+  existingEstimatesAsAccepted: true,
+  stationSlotFamilies: [A1_GENERATOR.version, A2_GENERATOR.version],
+};
+export const A3_SPEC: CorridorSpec = {
+  generator: A3_GENERATOR,
+  dataset: A3_DATASET,
+  zones: A3_ZONES,
+  zoneOrder: A3_ZONE_ORDER,
+  policy: A3_POLICY,
 };
 const SECTORS = 16;
 const ROAD = new Set([

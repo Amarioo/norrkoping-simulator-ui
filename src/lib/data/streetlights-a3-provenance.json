@@ -1,0 +1,507 @@
+{
+ "meta": {
+  "generator": {
+   "script": "src/lib/lighting/corridorGenerator.ts",
+   "version": "lighting-a3-v1",
+   "seed": null
+  },
+  "policy": {
+   "version": "lighting-a3-v1",
+   "kerbSetbackM": 0.8,
+   "deckSetbackM": 0.3,
+   "pathOffsetM": 1.2,
+   "shiftsM": [
+    0,
+    1.5,
+    -1.5,
+    3,
+    -3,
+    4,
+    -4
+   ],
+   "buildingClearanceM": 0.6,
+   "carriagewayClearanceM": 0.4,
+   "tramClearanceM": 2.2,
+   "railClearanceM": 3,
+   "partnerSearchM": 40,
+   "partnerParallelCos": 0.7,
+   "roadCoverM": 10,
+   "estimateSeparationFactor": 0.55,
+   "anySeparationM": 3,
+   "maxMapDeviationM": 1,
+   "staggerWidthM": 9,
+   "extraSetbacksM": [
+    0,
+    0.5,
+    1,
+    1.5,
+    2
+   ],
+   "existingEstimatesAsAccepted": true,
+   "stationSlotFamilies": [
+    "lighting-a1-v1",
+    "lighting-a2-v1"
+   ]
+  },
+  "source": {
+   "file": "scripts/data/lighting-a3-source.json",
+   "osmBase": "2026-10-23T09:05:06Z",
+   "snapshotSha256": "dcce1dccb424a89b6e7c6a71010f38b6c1ff55e8a3f8b6e4b07b2c79e4794eda",
+   "retrievedAt": "2026-10-23T09:06:45.285Z",
+   "license": "ODbL-1.0 © OpenStreetMap contributors"
+  },
+  "counts": {
+   "fixtures": 6,
+   "mapped": 0,
+   "estimated": 6,
+   "candidates": 6,
+   "rejected": 0,
+   "deck": 0,
+   "zoneF": 6
+  }
+ },
+ "fixtures": [
+  {
+   "id": "estimate:lighting-a3-v1:way/163928046:s0",
+   "zone": "F",
+   "method": "lit=yes on way/163928046 (highway=secondary, Kungstorget); station 1/1, effective spacing 35.6 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a3-snapshot",
+    "element": "way/163928046",
+    "version": 16,
+    "timestamp": "2026-10-17T13:22:37Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Kungstorget",
+     "oneway": "yes",
+     "junction": "circular"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 17.78,
+    "wayLengthM": 35.57,
+    "spacingM": 35.57,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a3-v1:way/286445686:s0",
+   "zone": "F",
+   "method": "lit=yes on way/286445686 (highway=secondary, Kungstorget); station 1/1, effective spacing 40.1 m (class 30 m), outer side, 5.75 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a3-snapshot",
+    "element": "way/286445686",
+    "version": 12,
+    "timestamp": "2024-09-07T19:31:20Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Kungstorget",
+     "oneway": "yes",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 20.04,
+    "wayLengthM": 40.09,
+    "spacingM": 40.09,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 5.75
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a3-v1:way/286445688:s0",
+   "zone": "F",
+   "method": "lit=yes on way/286445688 (highway=secondary, Kungstorget); station 1/2, effective spacing 22.9 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a3-snapshot",
+    "element": "way/286445688",
+    "version": 13,
+    "timestamp": "2026-06-21T17:01:54Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Kungstorget",
+     "oneway": "yes",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 2,
+    "chainageM": 11.44,
+    "wayLengthM": 45.75,
+    "spacingM": 22.87,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.021,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a3-v1:way/286445688:s1",
+   "zone": "F",
+   "method": "lit=yes on way/286445688 (highway=secondary, Kungstorget); station 2/2, effective spacing 22.9 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a3-snapshot",
+    "element": "way/286445688",
+    "version": 13,
+    "timestamp": "2026-06-21T17:01:54Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Kungstorget",
+     "oneway": "yes",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 2,
+    "chainageM": 34.31,
+    "wayLengthM": 45.75,
+    "spacingM": 22.87,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.021,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a3-v1:way/308315550:s0",
+   "zone": "F",
+   "method": "lit=yes on way/308315550 (highway=secondary, Kungstorget); station 1/1, effective spacing 19.8 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a3-snapshot",
+    "element": "way/308315550",
+    "version": 9,
+    "timestamp": "2024-10-30T06:49:23Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Kungstorget",
+     "oneway": "yes",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 9.92,
+    "wayLengthM": 19.84,
+    "spacingM": 19.84,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.014,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a3-v1:way/312490062:s0",
+   "zone": "F",
+   "method": "lit=yes on way/312490062 (highway=secondary, Kungstorget); station 1/1, effective spacing 44.3 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a3-snapshot",
+    "element": "way/312490062",
+    "version": 12,
+    "timestamp": "2026-06-21T17:01:54Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Kungstorget",
+     "oneway": "yes",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 22.15,
+    "wayLengthM": 44.31,
+    "spacingM": 44.31,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.021,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  }
+ ],
+ "rejected": [],
+ "ways": [
+  {
+   "way": 4438351,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 6.5,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 8174527,
+   "name": "Stockholmsvägen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 14.6,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 92385203,
+   "name": "Ingelstagatan",
+   "highway": "unclassified",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 10.3,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 92385206,
+   "name": "Ingelstagatan",
+   "highway": "unclassified",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 14.3,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 163928046,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 35.6,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445686,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 37.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445688,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 45.7,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 287527545,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 11.8,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 287528316,
+   "name": "Stockholmsvägen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 10.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 308315550,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 19.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 312486752,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 14.6,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 312490062,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 44.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 684962393,
+   "name": "Kungstorget",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "F"
+   ],
+   "lengthInsideM": 10.7,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  }
+ ],
+ "unknownWays": [
+  {
+   "way": 287527541,
+   "name": "Norra Promenaden",
+   "class": "secondary",
+   "lengthInsideM": 7.9
+  }
+ ]
+}

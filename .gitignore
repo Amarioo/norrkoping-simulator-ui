@@ -54,3 +54,7 @@ work/geodata/
 # Lighting Phase A2 scratch (A1 reference app, raw captures, perf runs, exploration). Curated evidence is
 # in docs/lighting-phase-a2/; reusable tools are in scripts/lighting-a2/.
 /work/lighting-a2/
+
+# Lighting Phase A3 scratch (A2 reference app, raw captures, perf runs, timings). Curated evidence is
+# in docs/lighting-phase-a3/; reusable tools are in scripts/lighting-a3/.
+/work/lighting-a3/

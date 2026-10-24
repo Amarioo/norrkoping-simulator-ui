@@ -3,6 +3,7 @@
 //
 //   node scripts/lighting-a1/extract-source.mjs        # A1 (default)
 //   node scripts/lighting-a1/extract-source.mjs a2     # Lighting Phase A2 (corridorA2.ts → lighting-a2-source.json)
+//   node scripts/lighting-a1/extract-source.mjs a3     # Lighting Phase A3 (corridorA3.ts → lighting-a3-source.json)
 //
 // Input:  work/step62/osm-research.json (ignored scratch; base 2026-10-23T09:05:06Z). Its SHA-256 must
 //         equal the value pinned in docs/step62/evidence/source-manifest.json, otherwise nothing is
@@ -16,12 +17,14 @@ import fs from 'node:fs';
 import { geodeticToSweref } from '../../src/lib/geo/sweref99tm.js';
 import { A1_ZONES, inRing } from '../../src/lib/lighting/corridorA1.ts';
 import { A2_ZONES } from '../../src/lib/lighting/corridorA2.ts';
+import { A3_ZONES } from '../../src/lib/lighting/corridorA3.ts';
 
 const SNAPSHOT = 'work/step62/osm-research.json';
 const MANIFEST = 'docs/step62/evidence/source-manifest.json';
 const CORRIDOR = process.argv[2] ?? 'a1';
-if (!['a1', 'a2'].includes(CORRIDOR)) throw new Error(`unknown corridor ${CORRIDOR}`);
-const ZONES = CORRIDOR === 'a2' ? A2_ZONES : A1_ZONES;
+const ZONE_SETS = { a1: A1_ZONES, a2: A2_ZONES, a3: A3_ZONES };
+if (!(CORRIDOR in ZONE_SETS)) throw new Error(`unknown corridor ${CORRIDOR}`);
+const ZONES = ZONE_SETS[CORRIDOR];
 const OUT = `scripts/data/lighting-${CORRIDOR}-source.json`;
 const MARGIN_M = 60;
 const KEEP =
@@ -116,10 +119,7 @@ const out = {
       note: 'Step 6.2 research snapshot (docs/step62/evidence/source-manifest.json); not re-fetched.',
     },
     clip: {
-      corridor:
-        CORRIDOR === 'a2'
-          ? 'src/lib/lighting/corridorA2.ts (A2_ZONES)'
-          : 'src/lib/lighting/corridorA1.ts (A1_ZONES)',
+      corridor: `src/lib/lighting/corridor${CORRIDOR.toUpperCase()}.ts (${CORRIDOR.toUpperCase()}_ZONES)`,
       marginM: MARGIN_M,
     },
     queryLimits:

@@ -18,9 +18,11 @@ import {
   a1LightingRegistry,
   a1RuntimeLightingRegistry,
   a2LightingRegistry,
+  // Phase A3: the controller default is now pilot + A1 + A2 + A3; these tests keep verifying the
+  // accepted A2 state (pilot + A1 + A2, 267 fixtures). A3 tests: corridorA3.test.ts.
+  a2RuntimeLightingRegistry as runtimeLightingRegistry,
   createCityLighting,
   pilotLightingRegistry,
-  runtimeLightingRegistry,
 } from './controller';
 import { A1_ZONES, groupKey, inRing } from './corridorA1';
 import { A2_GENERATOR, A2_ZONE_ORDER, A2_ZONES } from './corridorA2';

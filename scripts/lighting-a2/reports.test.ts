@@ -21,8 +21,9 @@ import { createIdrottsparken } from '../../src/lib/stadium/idrottsparken';
 import {
   a1RuntimeLightingRegistry,
   a2LightingRegistry,
+  // Phase A3: the controller default includes A3; this harness describes the A2 state (pilot + A1 + A2).
+  a2RuntimeLightingRegistry as runtimeLightingRegistry,
   createCityLighting,
-  runtimeLightingRegistry,
 } from '../../src/lib/lighting/controller';
 import { A2_SPEC, generateCorridor } from '../../src/lib/lighting/corridorGenerator';
 import { A1_ZONES, inRing } from '../../src/lib/lighting/corridorA1';

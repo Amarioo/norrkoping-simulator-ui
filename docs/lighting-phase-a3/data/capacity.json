@@ -1,0 +1,797 @@
+{
+ "capacity": 16,
+ "cellMetres": 25,
+ "chunkCells": 4,
+ "a2State": {
+  "ok": true,
+  "fixtures": 267,
+  "maxRawOccupancy": 15,
+  "overflowCells": 0,
+  "nonEmptyCells": 538,
+  "cellEntries": 2106,
+  "histogram": [
+   0,
+   102,
+   103,
+   85,
+   49,
+   60,
+   47,
+   35,
+   26,
+   18,
+   5,
+   2,
+   2,
+   3,
+   0,
+   1
+  ],
+  "pages": 69,
+  "bytes": {
+   "lamp": 34176,
+   "payload": 70656,
+   "directory": 864
+  }
+ },
+ "a3Only": {
+  "ok": true,
+  "fixtures": 6,
+  "maxRawOccupancy": 4,
+  "overflowCells": 0,
+  "nonEmptyCells": 35,
+  "cellEntries": 63,
+  "histogram": [
+   0,
+   17,
+   9,
+   8,
+   1
+  ],
+  "pages": 6,
+  "bytes": {
+   "lamp": 768,
+   "payload": 6144,
+   "directory": 24
+  }
+ },
+ "combined": {
+  "ok": true,
+  "fixtures": 273,
+  "maxRawOccupancy": 15,
+  "overflowCells": 0,
+  "nonEmptyCells": 561,
+  "cellEntries": 2169,
+  "histogram": [
+   0,
+   105,
+   110,
+   95,
+   51,
+   61,
+   45,
+   36,
+   27,
+   18,
+   5,
+   2,
+   2,
+   3,
+   0,
+   1
+  ],
+  "pages": 72,
+  "bytes": {
+   "lamp": 34944,
+   "payload": 73728,
+   "directory": 864
+  }
+ },
+ "nearCapacityCells": [
+  {
+   "cell": [
+    -8,
+    -21
+   ],
+   "centreEN": [
+    568842.6,
+    6495501.3
+   ],
+   "count": 15,
+   "before": 15,
+   "byRollout": {
+    "lighting-a1-v1": 15
+   },
+   "mapped": 8,
+   "estimated": 7,
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s1",
+    "estimate:lighting-a1-v1:way/168975952:s0",
+    "estimate:lighting-a1-v1:way/168975952:s1",
+    "estimate:lighting-a1-v1:way/297693805:s3",
+    "estimate:lighting-a1-v1:way/88701989:s0",
+    "estimate:lighting-a1-v1:way/88701995:s2",
+    "estimate:lighting-a1-v1:way/88701997:s2",
+    "osm:node/11098939295",
+    "osm:node/11098939296",
+    "osm:node/11098939298",
+    "osm:node/11098973692",
+    "osm:node/11098973693",
+    "osm:node/11098973694",
+    "osm:node/11098973695",
+    "osm:node/11098973696"
+   ]
+  },
+  {
+   "cell": [
+    -8,
+    -23
+   ],
+   "centreEN": [
+    568842.6,
+    6495551.3
+   ],
+   "count": 13,
+   "before": 13,
+   "byRollout": {
+    "lighting-a1-v1": 13
+   },
+   "mapped": 1,
+   "estimated": 12,
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s2",
+    "estimate:lighting-a1-v1:way/168975952:s0",
+    "estimate:lighting-a1-v1:way/297609740:s0",
+    "estimate:lighting-a1-v1:way/297693805:s3",
+    "estimate:lighting-a1-v1:way/297693805:s4",
+    "estimate:lighting-a1-v1:way/308315542:s2",
+    "estimate:lighting-a1-v1:way/308315542:s3",
+    "estimate:lighting-a1-v1:way/760535008:s0",
+    "estimate:lighting-a1-v1:way/88701997:s2",
+    "estimate:lighting-a1-v1:way/92459665:s0",
+    "estimate:lighting-a1-v1:way/92459665:s1",
+    "estimate:lighting-a1-v1:way/93313348:s0",
+    "osm:node/11098973694"
+   ]
+  },
+  {
+   "cell": [
+    -8,
+    -22
+   ],
+   "centreEN": [
+    568842.6,
+    6495526.3
+   ],
+   "count": 13,
+   "before": 13,
+   "byRollout": {
+    "lighting-a1-v1": 13
+   },
+   "mapped": 4,
+   "estimated": 9,
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s2",
+    "estimate:lighting-a1-v1:way/168975952:s0",
+    "estimate:lighting-a1-v1:way/168975952:s1",
+    "estimate:lighting-a1-v1:way/297693805:s3",
+    "estimate:lighting-a1-v1:way/297693805:s4",
+    "estimate:lighting-a1-v1:way/308315542:s3",
+    "estimate:lighting-a1-v1:way/88701995:s2",
+    "estimate:lighting-a1-v1:way/88701997:s2",
+    "estimate:lighting-a1-v1:way/92459665:s0",
+    "osm:node/11098973692",
+    "osm:node/11098973693",
+    "osm:node/11098973694",
+    "osm:node/11098973695"
+   ]
+  },
+  {
+   "cell": [
+    -7,
+    -20
+   ],
+   "centreEN": [
+    568867.6,
+    6495476.3
+   ],
+   "count": 13,
+   "before": 13,
+   "byRollout": {
+    "lighting-a1-v1": 13
+   },
+   "mapped": 6,
+   "estimated": 7,
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s0",
+    "estimate:lighting-a1-v1:way/1289270292:s1",
+    "estimate:lighting-a1-v1:way/168975952:s1",
+    "estimate:lighting-a1-v1:way/168975952:s2",
+    "estimate:lighting-a1-v1:way/47460598:s0",
+    "estimate:lighting-a1-v1:way/501428826:s2",
+    "estimate:lighting-a1-v1:way/88701993:s0",
+    "osm:node/11098939295",
+    "osm:node/11098939296",
+    "osm:node/11098939297",
+    "osm:node/11098939298",
+    "osm:node/11098939299",
+    "osm:node/11098973695"
+   ]
+  }
+ ],
+ "cellsReachedByA3": {
+  "count": 35,
+  "maxCount": 8,
+  "histogram": {
+   "1": 7,
+   "2": 9,
+   "3": 12,
+   "4": 3,
+   "5": 1,
+   "7": 2,
+   "8": 1
+  },
+  "gainedFromBefore": 12,
+  "newCells": 23,
+  "busiest": [
+   {
+    "cell": [
+     -27,
+     -20
+    ],
+    "centreEN": [
+     568367.7,
+     6495476.3
+    ],
+    "count": 8,
+    "before": 7,
+    "byRollout": {
+     "lighting-a2-v1": 7,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 8,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445687:s0",
+     "estimate:lighting-a2-v1:way/297613948:s2",
+     "estimate:lighting-a2-v1:way/297613948:s3",
+     "estimate:lighting-a2-v1:way/297613948:s4",
+     "estimate:lighting-a2-v1:way/92385198:s0",
+     "estimate:lighting-a2-v1:way/94463450:s1",
+     "estimate:lighting-a2-v1:way/94463450:s2",
+     "estimate:lighting-a3-v1:way/286445686:s0"
+    ]
+   },
+   {
+    "cell": [
+     -27,
+     -22
+    ],
+    "centreEN": [
+     568367.7,
+     6495526.3
+    ],
+    "count": 7,
+    "before": 6,
+    "byRollout": {
+     "lighting-a2-v1": 6,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 7,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445685:s0",
+     "estimate:lighting-a2-v1:way/286445687:s0",
+     "estimate:lighting-a2-v1:way/300186799:s0",
+     "estimate:lighting-a2-v1:way/4384888:s0",
+     "estimate:lighting-a2-v1:way/444474566:s0",
+     "estimate:lighting-a2-v1:way/92385198:s0",
+     "estimate:lighting-a3-v1:way/286445686:s0"
+    ]
+   },
+   {
+    "cell": [
+     -27,
+     -21
+    ],
+    "centreEN": [
+     568367.7,
+     6495501.3
+    ],
+    "count": 7,
+    "before": 6,
+    "byRollout": {
+     "lighting-a2-v1": 6,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 7,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445687:s0",
+     "estimate:lighting-a2-v1:way/297613948:s3",
+     "estimate:lighting-a2-v1:way/297613948:s4",
+     "estimate:lighting-a2-v1:way/4384888:s0",
+     "estimate:lighting-a2-v1:way/92385198:s0",
+     "estimate:lighting-a2-v1:way/94463450:s1",
+     "estimate:lighting-a3-v1:way/286445686:s0"
+    ]
+   },
+   {
+    "cell": [
+     -27,
+     -23
+    ],
+    "centreEN": [
+     568367.7,
+     6495551.3
+    ],
+    "count": 5,
+    "before": 4,
+    "byRollout": {
+     "lighting-a2-v1": 4,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 5,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445685:s0",
+     "estimate:lighting-a2-v1:way/286445687:s0",
+     "estimate:lighting-a2-v1:way/300186799:s0",
+     "estimate:lighting-a2-v1:way/4384888:s0",
+     "estimate:lighting-a3-v1:way/312490062:s0"
+    ]
+   },
+   {
+    "cell": [
+     -29,
+     -22
+    ],
+    "centreEN": [
+     568317.7,
+     6495526.3
+    ],
+    "count": 4,
+    "before": 0,
+    "byRollout": {
+     "lighting-a3-v1": 4
+    },
+    "mapped": 0,
+    "estimated": 4,
+    "ids": [
+     "estimate:lighting-a3-v1:way/163928046:s0",
+     "estimate:lighting-a3-v1:way/286445686:s0",
+     "estimate:lighting-a3-v1:way/286445688:s1",
+     "estimate:lighting-a3-v1:way/308315550:s0"
+    ]
+   },
+   {
+    "cell": [
+     -28,
+     -23
+    ],
+    "centreEN": [
+     568342.7,
+     6495551.3
+    ],
+    "count": 4,
+    "before": 3,
+    "byRollout": {
+     "lighting-a2-v1": 3,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 4,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445685:s0",
+     "estimate:lighting-a2-v1:way/286445687:s0",
+     "estimate:lighting-a2-v1:way/300186799:s0",
+     "estimate:lighting-a3-v1:way/312490062:s0"
+    ]
+   },
+   {
+    "cell": [
+     -27,
+     -24
+    ],
+    "centreEN": [
+     568367.7,
+     6495576.3
+    ],
+    "count": 4,
+    "before": 3,
+    "byRollout": {
+     "lighting-a2-v1": 3,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 4,
+    "ids": [
+     "estimate:lighting-a2-v1:way/286445685:s0",
+     "estimate:lighting-a2-v1:way/300186799:s0",
+     "estimate:lighting-a2-v1:way/4384888:s0",
+     "estimate:lighting-a3-v1:way/312490062:s0"
+    ]
+   },
+   {
+    "cell": [
+     -31,
+     -23
+    ],
+    "centreEN": [
+     568267.8,
+     6495551.3
+    ],
+    "count": 3,
+    "before": 0,
+    "byRollout": {
+     "lighting-a3-v1": 3
+    },
+    "mapped": 0,
+    "estimated": 3,
+    "ids": [
+     "estimate:lighting-a3-v1:way/163928046:s0",
+     "estimate:lighting-a3-v1:way/286445688:s0",
+     "estimate:lighting-a3-v1:way/286445688:s1"
+    ]
+   },
+   {
+    "cell": [
+     -31,
+     -22
+    ],
+    "centreEN": [
+     568267.8,
+     6495526.3
+    ],
+    "count": 3,
+    "before": 0,
+    "byRollout": {
+     "lighting-a3-v1": 3
+    },
+    "mapped": 0,
+    "estimated": 3,
+    "ids": [
+     "estimate:lighting-a3-v1:way/163928046:s0",
+     "estimate:lighting-a3-v1:way/286445688:s1",
+     "estimate:lighting-a3-v1:way/308315550:s0"
+    ]
+   },
+   {
+    "cell": [
+     -30,
+     -23
+    ],
+    "centreEN": [
+     568292.8,
+     6495551.3
+    ],
+    "count": 3,
+    "before": 0,
+    "byRollout": {
+     "lighting-a3-v1": 3
+    },
+    "mapped": 0,
+    "estimated": 3,
+    "ids": [
+     "estimate:lighting-a3-v1:way/163928046:s0",
+     "estimate:lighting-a3-v1:way/286445688:s0",
+     "estimate:lighting-a3-v1:way/286445688:s1"
+    ]
+   },
+   {
+    "cell": [
+     -30,
+     -22
+    ],
+    "centreEN": [
+     568292.8,
+     6495526.3
+    ],
+    "count": 3,
+    "before": 0,
+    "byRollout": {
+     "lighting-a3-v1": 3
+    },
+    "mapped": 0,
+    "estimated": 3,
+    "ids": [
+     "estimate:lighting-a3-v1:way/163928046:s0",
+     "estimate:lighting-a3-v1:way/286445688:s1",
+     "estimate:lighting-a3-v1:way/308315550:s0"
+    ]
+   },
+   {
+    "cell": [
+     -30,
+     -21
+    ],
+    "centreEN": [
+     568292.8,
+     6495501.3
+    ],
+    "count": 3,
+    "before": 0,
+    "byRollout": {
+     "lighting-a3-v1": 3
+    },
+    "mapped": 0,
+    "estimated": 3,
+    "ids": [
+     "estimate:lighting-a3-v1:way/163928046:s0",
+     "estimate:lighting-a3-v1:way/286445686:s0",
+     "estimate:lighting-a3-v1:way/308315550:s0"
+    ]
+   }
+  ],
+  "seamCells": [
+   {
+    "cell": [
+     -27,
+     -20
+    ],
+    "centreEN": [
+     568367.7,
+     6495476.3
+    ],
+    "count": 8,
+    "before": 7,
+    "byRollout": {
+     "lighting-a2-v1": 7,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 8
+   },
+   {
+    "cell": [
+     -27,
+     -22
+    ],
+    "centreEN": [
+     568367.7,
+     6495526.3
+    ],
+    "count": 7,
+    "before": 6,
+    "byRollout": {
+     "lighting-a2-v1": 6,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 7
+   },
+   {
+    "cell": [
+     -27,
+     -21
+    ],
+    "centreEN": [
+     568367.7,
+     6495501.3
+    ],
+    "count": 7,
+    "before": 6,
+    "byRollout": {
+     "lighting-a2-v1": 6,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 7
+   },
+   {
+    "cell": [
+     -27,
+     -23
+    ],
+    "centreEN": [
+     568367.7,
+     6495551.3
+    ],
+    "count": 5,
+    "before": 4,
+    "byRollout": {
+     "lighting-a2-v1": 4,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 5
+   },
+   {
+    "cell": [
+     -28,
+     -23
+    ],
+    "centreEN": [
+     568342.7,
+     6495551.3
+    ],
+    "count": 4,
+    "before": 3,
+    "byRollout": {
+     "lighting-a2-v1": 3,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 4
+   },
+   {
+    "cell": [
+     -27,
+     -24
+    ],
+    "centreEN": [
+     568367.7,
+     6495576.3
+    ],
+    "count": 4,
+    "before": 3,
+    "byRollout": {
+     "lighting-a2-v1": 3,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 4
+   },
+   {
+    "cell": [
+     -28,
+     -24
+    ],
+    "centreEN": [
+     568342.7,
+     6495576.3
+    ],
+    "count": 3,
+    "before": 2,
+    "byRollout": {
+     "lighting-a2-v1": 2,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 3
+   },
+   {
+    "cell": [
+     -28,
+     -22
+    ],
+    "centreEN": [
+     568342.7,
+     6495526.3
+    ],
+    "count": 3,
+    "before": 2,
+    "byRollout": {
+     "lighting-a2-v1": 2,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 3
+   },
+   {
+    "cell": [
+     -28,
+     -21
+    ],
+    "centreEN": [
+     568342.7,
+     6495501.3
+    ],
+    "count": 3,
+    "before": 1,
+    "byRollout": {
+     "lighting-a2-v1": 1,
+     "lighting-a3-v1": 2
+    },
+    "mapped": 0,
+    "estimated": 3
+   },
+   {
+    "cell": [
+     -28,
+     -20
+    ],
+    "centreEN": [
+     568342.7,
+     6495476.3
+    ],
+    "count": 3,
+    "before": 1,
+    "byRollout": {
+     "lighting-a2-v1": 1,
+     "lighting-a3-v1": 2
+    },
+    "mapped": 0,
+    "estimated": 3
+   },
+   {
+    "cell": [
+     -28,
+     -25
+    ],
+    "centreEN": [
+     568342.7,
+     6495601.3
+    ],
+    "count": 2,
+    "before": 1,
+    "byRollout": {
+     "lighting-a2-v1": 1,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 2
+   },
+   {
+    "cell": [
+     -27,
+     -25
+    ],
+    "centreEN": [
+     568367.7,
+     6495601.3
+    ],
+    "count": 2,
+    "before": 1,
+    "byRollout": {
+     "lighting-a2-v1": 1,
+     "lighting-a3-v1": 1
+    },
+    "mapped": 0,
+    "estimated": 2
+   }
+  ]
+ },
+ "densityHeadroom": [
+  {
+   "spacingFactor": 1,
+   "a3Fixtures": 6,
+   "ok": true,
+   "maxRawOccupancy": 15,
+   "maxInCellsA3Reaches": 8,
+   "overflowCells": 0,
+   "conflictCount": 0,
+   "conflicts": []
+  },
+  {
+   "spacingFactor": 0.85,
+   "a3Fixtures": 9,
+   "ok": true,
+   "maxRawOccupancy": 15,
+   "maxInCellsA3Reaches": 7,
+   "overflowCells": 0,
+   "conflictCount": 0,
+   "conflicts": []
+  },
+  {
+   "spacingFactor": 0.75,
+   "a3Fixtures": 11,
+   "ok": true,
+   "maxRawOccupancy": 15,
+   "maxInCellsA3Reaches": 8,
+   "overflowCells": 0,
+   "conflictCount": 0,
+   "conflicts": []
+  },
+  {
+   "spacingFactor": 0.6,
+   "a3Fixtures": 13,
+   "ok": true,
+   "maxRawOccupancy": 15,
+   "maxInCellsA3Reaches": 8,
+   "overflowCells": 0,
+   "conflictCount": 0,
+   "conflicts": []
+  },
+  {
+   "spacingFactor": 0.5,
+   "a3Fixtures": 16,
+   "ok": true,
+   "maxRawOccupancy": 15,
+   "maxInCellsA3Reaches": 9,
+   "overflowCells": 0,
+   "conflictCount": 0,
+   "conflicts": []
+  }
+ ]
+}

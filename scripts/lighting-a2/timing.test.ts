@@ -8,9 +8,10 @@
 import { test } from 'vitest';
 import fs from 'node:fs';
 import { terrain } from '../../src/lib/terrain';
+// Phase A3: 'Combined' here is the A2 state (pilot + A1 + A2); A3 timings: scripts/lighting-a3/timing.test.ts.
 import {
   a1RuntimeLightingRegistry,
-  runtimeLightingRegistry,
+  a2RuntimeLightingRegistry as runtimeLightingRegistry,
 } from '../../src/lib/lighting/controller';
 import { prepareStreetLighting } from '../../src/lib/lighting/streetLighting';
 import { generateA2, loadA2Inputs } from './inputs';

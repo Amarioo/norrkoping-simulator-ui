@@ -1,0 +1,180 @@
+{
+ "note": "Noise floor: two independent A3 capture passes of the same build and poses. Day/night: pass 1 (after-a) vs pass 2 (after-b). Twilight: pass 1 vs pass 3 (after-c), because six twilight captures of pass 2 were taken before the map had finished loading (mapReadyMs null; a production build was running on the machine at the time) and are excluded.",
+ "images": {
+  "a2-kungsgatan-north-elevated-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a2-kungsgatan-north-elevated-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a2-kungstorget-junction-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a2-kungstorget-junction-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a2-norra-promenaden-west-street-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a2-norra-promenaden-west-street-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-a2-seam-north-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-a2-seam-north-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-central-overview-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-central-overview-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-elevated-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-elevated-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-north-street-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-north-street-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-overhead-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-overhead-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-south-street-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-south-street-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-west-street-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-west-street-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-stockholmsvagen-approach-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-stockholmsvagen-approach-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "kungsgatan-street-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "kungsgatan-street-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "pilot-overview-day": {
+   "changed": 0,
+   "max": 0
+  },
+  "pilot-overview-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "stromparken-elevated-day": {
+   "changed": 12,
+   "max": 1
+  },
+  "stromparken-elevated-night": {
+   "changed": 0,
+   "max": 0
+  },
+  "a2-kungsgatan-north-elevated-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a2-kungstorget-junction-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a2-norra-promenaden-west-street-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-a2-seam-north-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-central-overview-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-elevated-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-north-street-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-overhead-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-south-street-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-ring-west-street-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "a3-stockholmsvagen-approach-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "kungsgatan-street-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "pilot-overview-twilight": {
+   "changed": 0,
+   "max": 0
+  },
+  "stromparken-elevated-twilight": {
+   "changed": 0,
+   "max": 0
+  }
+ },
+ "allZero": false,
+ "nonZero": {
+  "stromparken-elevated-day": {
+   "changed": 12,
+   "max": 1
+  }
+ }
+}
