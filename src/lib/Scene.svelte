@@ -20,6 +20,12 @@
     pilotLightingRegistry,
     runtimeLightingRegistry,
   } from './lighting/controller';
+  import {
+    corridorRegistry,
+    mergeRegistries,
+    type A1Data,
+    type CorridorIdentity,
+  } from './lighting/corridorRegistry';
   import { advanceClock, lightingState } from './lighting/state.svelte';
   let {
     focus = 'overview',
@@ -65,7 +71,9 @@
   lighting.set(lightingInput());
   lighting.settle();
   $effect(() => lighting.set(lightingInput()));
-  if (import.meta.env.DEV)
+  // Development, or a test build made with VITE_LIGHTING_HOOK=1 (Lighting Phase L1 measurements of
+  // large sets on a production bundle). Unset in normal builds, so the hook is removed there.
+  if (import.meta.env.DEV || import.meta.env.VITE_LIGHTING_HOOK === '1')
     (globalThis as unknown as { __cityLighting: unknown }).__cityLighting = {
       state: lightingState,
       settle: () => lighting.settle(),
@@ -101,6 +109,12 @@
         a1Runtime: () => a1RuntimeLightingRegistry(terrain),
         a2Runtime: () => a2RuntimeLightingRegistry(terrain),
         runtime: () => runtimeLightingRegistry(terrain),
+        // Phase L1: any set in the A1–A3 runtime format (e.g. the stress set) on top of the runtime set.
+        runtimePlus: (data: A1Data, identity: CorridorIdentity) =>
+          mergeRegistries(
+            runtimeLightingRegistry(terrain),
+            corridorRegistry(data, terrain.data.reference, identity),
+          ),
       },
       replaceStreetLighting: (registry: Parameters<typeof lighting.replaceStreetLighting>[0]) => {
         const r = lighting.replaceStreetLighting(registry);

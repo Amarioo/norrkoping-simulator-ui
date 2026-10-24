@@ -1,0 +1,10 @@
+{
+  "city-overview": { "position": [31.33, 114, 97.47], "target": [-3.86, 0, 8.08] },
+  "inner-city-elevated": { "position": [12.0, 18.0, 22.0], "target": [-6.0, 0.5, -6.0] },
+  "drottninggatan-elevated": { "position": [-2.0, 3.0, -12.0], "target": [-6.0, 0.5, -17.25] },
+  "soderstaden-elevated": { "position": [16.0, 4.0, 21.0], "target": [10.8, 0.5, 15.57] },
+  "hageby-elevated": { "position": [88.0, 6.0, 100.0], "target": [80.83, 1.0, 91.59] },
+  "klockaretorpet-elevated": { "position": [-82.0, 6.0, 76.0], "target": [-89.23, 1.0, 67.58] },
+  "a3-ring-north-street": { "position": [-26.6, 0.53, -24.3], "target": [-29.0, 0.5, -23.7] },
+  "a3-central-overview": { "position": [-14.0, 13.0, -8.0], "target": [-26.0, 0.4, -21.0] }
+}

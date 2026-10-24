@@ -5,10 +5,13 @@
  *
  * Known shortcomings documented by scripts/step62/grid-audit.test.ts: the rectangle spans every lamp
  * range (memory grows with the bounding area, not with the lit area); a cell with more than
- * MAX_PER_CELL lamps is silently truncated to the nearest ones; equidistant ties depend on input order.
+ * STEP6_MAX_PER_CELL lamps is silently truncated to the nearest ones; equidistant ties depend on input order.
  */
 import { DataTexture, FloatType, NearestFilter, RGBAFormat } from 'three';
-import { MAX_PER_CELL, type ShaderLamp } from './cityLights';
+import type { ShaderLamp } from './cityLights';
+
+/** Slots per cell of the Step 6 dense grid (frozen reference; the runtime index allows MAX_PER_CELL). */
+export const STEP6_MAX_PER_CELL = 16;
 
 export interface LightGrid {
   originX: number;
@@ -16,13 +19,13 @@ export interface LightGrid {
   cell: number;
   columns: number;
   rows: number;
-  /** Lamp indices per cell (row-major), at most MAX_PER_CELL each. */
+  /** Lamp indices per cell (row-major), at most STEP6_MAX_PER_CELL each. */
   cells: number[][];
-  /** Cells whose lamp list was truncated to MAX_PER_CELL (should be 0). */
+  /** Cells whose lamp list was truncated to STEP6_MAX_PER_CELL (should be 0). */
   overflow: number;
 }
 /**
- * Lists every lamp in each cell its range circle touches. A cell with more than MAX_PER_CELL lamps
+ * Lists every lamp in each cell its range circle touches. A cell with more than STEP6_MAX_PER_CELL lamps
  * keeps the nearest ones (to the cell centre) and is counted in `overflow`.
  */
 export function buildLightGrid(lamps: ShaderLamp[], metresPerUnit: number, cell = 1): LightGrid {
@@ -65,7 +68,7 @@ export function buildLightGrid(lamps: ShaderLamp[], metresPerUnit: number, cell 
   });
   let overflow = 0;
   cells.forEach((list, k) => {
-    if (list.length <= MAX_PER_CELL) return;
+    if (list.length <= STEP6_MAX_PER_CELL) return;
     overflow++;
     const cx = originX + ((k % columns) + 0.5) * cell,
       cz = originZ + (Math.floor(k / columns) + 0.5) * cell;
@@ -73,21 +76,58 @@ export function buildLightGrid(lamps: ShaderLamp[], metresPerUnit: number, cell 
       (a, b) =>
         Math.hypot(lamps[a].x - cx, lamps[a].z - cz) - Math.hypot(lamps[b].x - cx, lamps[b].z - cz),
     );
-    list.length = MAX_PER_CELL;
+    list.length = STEP6_MAX_PER_CELL;
   });
   return { originX, originZ, cell, columns, rows, cells, overflow };
 }
 export function packGrid(grid: LightGrid) {
-  const width = Math.max(1, grid.columns * (MAX_PER_CELL / 4)),
+  const width = Math.max(1, grid.columns * (STEP6_MAX_PER_CELL / 4)),
     height = Math.max(1, grid.rows);
   const data = new Float32Array(width * height * 4).fill(-1);
   grid.cells.forEach((list, k) => {
     const cx = k % grid.columns,
       cz = Math.floor(k / grid.columns);
-    list.forEach((lamp, j) => (data[(cz * width + cx * (MAX_PER_CELL / 4)) * 4 + j] = lamp));
+    list.forEach((lamp, j) => (data[(cz * width + cx * (STEP6_MAX_PER_CELL / 4)) * 4 + j] = lamp));
   });
   const texture = new DataTexture(data, width, height, RGBAFormat, FloatType);
   texture.minFilter = texture.magFilter = NearestFilter;
   texture.needsUpdate = true;
   return texture;
+}
+
+/**
+ * Phase 0 – A3 page atlas (16 fixed slots per cell, RGBA32F, unused slots −1) rebuilt from a Phase L1
+ * index (cell headers + lamp list), for byte comparison with the hashes pinned by those phases. A
+ * cell with more than 16 lamps cannot be represented and throws. Tests only.
+ */
+export function toStep6SlotPayload(
+  index: {
+    chunkCells: number;
+    payload: Float32Array;
+    list: Float32Array;
+    stats: { pages: number; payload: { pagesPerRow: number; width: number } };
+  },
+  maxTextureSize: number,
+) {
+  const C = index.chunkCells,
+    pages = index.stats.pages,
+    slotTexels = STEP6_MAX_PER_CELL / 4;
+  const pageWidth = C * slotTexels;
+  const ppr = Math.max(1, Math.min(pages, Math.floor(maxTextureSize / pageWidth)));
+  const width = Math.max(1, ppr * pageWidth),
+    height = Math.max(1, Math.ceil(pages / ppr) * C);
+  const out = new Float32Array(width * height * 4).fill(-1);
+  const newPpr = index.stats.payload.pagesPerRow,
+    newWidth = index.stats.payload.width;
+  for (let p = 0; p < pages; p++)
+    for (let lz = 0; lz < C; lz++)
+      for (let lx = 0; lx < C; lx++) {
+        const h = ((Math.floor(p / newPpr) * C + lz) * newWidth + (p % newPpr) * C + lx) * 2;
+        const start = index.payload[h],
+          count = index.payload[h + 1];
+        if (count > STEP6_MAX_PER_CELL) throw new Error(`cell with ${count} lamps has no 16-slot form`);
+        const base = ((Math.floor(p / ppr) * C + lz) * width + ((p % ppr) * C + lx) * slotTexels) * 4;
+        for (let k = 0; k < count; k++) out[base + k] = index.list[start + k];
+      }
+  return out;
 }

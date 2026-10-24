@@ -412,11 +412,11 @@ test('Phase A1 corridor: illumination, set swaps, rejection, recreation and cont
     dark = await luma(pilotOnly!);
   expect(lit).toBeGreaterThan(dark * 1.15);
   expect((await shot()).equals(full)).toBe(true);
-  // A rejected set (17 lamps in one corridor cell) changes nothing on screen.
+  // A rejected set (33 = MAX_PER_CELL + 1 lamps in one corridor cell, Phase L1) changes nothing on screen.
   const rejected = await call<{ ok: boolean; stage: string }>(`(() => {
     const r = ${hook}.registries.runtime();
     const f = r.fixtures.find((x) => x.id.startsWith('estimate:lighting-a1-v1'));
-    const crowd = Array.from({ length: 17 }, (_, k) => ({ ...f, id: 'estimate:lighting-a1-v1:e2e/' + k, runtimeId: 'estimate:lighting-a1-v1:e2e/' + k }));
+    const crowd = Array.from({ length: 33 }, (_, k) => ({ ...f, id: 'estimate:lighting-a1-v1:e2e/' + k, runtimeId: 'estimate:lighting-a1-v1:e2e/' + k }));
     return ${hook}.replaceStreetLighting({ ...r, fixtures: [...r.fixtures, ...crowd] });
   })()`);
   expect(rejected).toMatchObject({ ok: false, stage: 'capacity' });
@@ -573,11 +573,11 @@ test('Phase A2 corridor: illumination, unchanged reference view, swaps, rejectio
   expect(lit).toBeGreaterThan(dark * 1.15);
   expect(awayA1!.equals(awayFull)).toBe(true);
   expect((await shot()).equals(full)).toBe(true);
-  // A rejected set (17 lamps in one A2 cell) changes nothing on screen.
+  // A rejected set (33 = MAX_PER_CELL + 1 lamps in one A2 cell, Phase L1) changes nothing on screen.
   const rejected = await call<{ ok: boolean; stage: string }>(`(() => {
     const r = ${hook}.registries.runtime();
     const f = r.fixtures.find((x) => x.id.startsWith('estimate:lighting-a2-v1'));
-    const crowd = Array.from({ length: 17 }, (_, k) => ({ ...f, id: 'estimate:lighting-a2-v1:e2e/' + k, runtimeId: 'estimate:lighting-a2-v1:e2e/' + k }));
+    const crowd = Array.from({ length: 33 }, (_, k) => ({ ...f, id: 'estimate:lighting-a2-v1:e2e/' + k, runtimeId: 'estimate:lighting-a2-v1:e2e/' + k }));
     return ${hook}.replaceStreetLighting({ ...r, fixtures: [...r.fixtures, ...crowd] });
   })()`);
   expect(rejected).toMatchObject({ ok: false, stage: 'capacity' });
@@ -733,11 +733,11 @@ test('Phase A3 Kungstorget ring: illumination, unchanged reference view, swaps, 
   expect(lit).toBeGreaterThan(dark * 1.15);
   expect(awayA2!.equals(awayFull)).toBe(true);
   expect((await shot()).equals(full)).toBe(true);
-  // A rejected set (17 lamps in one A3 cell) changes nothing on screen.
+  // A rejected set (33 = MAX_PER_CELL + 1 lamps in one A3 cell, Phase L1) changes nothing on screen.
   const rejected = await call<{ ok: boolean; stage: string }>(`(() => {
     const r = ${hook}.registries.runtime();
     const f = r.fixtures.find((x) => x.id.startsWith('estimate:lighting-a3-v1'));
-    const crowd = Array.from({ length: 17 }, (_, k) => ({ ...f, id: 'estimate:lighting-a3-v1:e2e/' + k, runtimeId: 'estimate:lighting-a3-v1:e2e/' + k }));
+    const crowd = Array.from({ length: 33 }, (_, k) => ({ ...f, id: 'estimate:lighting-a3-v1:e2e/' + k, runtimeId: 'estimate:lighting-a3-v1:e2e/' + k }));
     return ${hook}.replaceStreetLighting({ ...r, fixtures: [...r.fixtures, ...crowd] });
   })()`);
   expect(rejected).toMatchObject({ ok: false, stage: 'capacity' });

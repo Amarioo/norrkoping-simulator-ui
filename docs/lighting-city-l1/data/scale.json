@@ -1,0 +1,361 @@
+{
+  "note": "Lighting Phase L1: runtime set (273) + stress set (L0 stations at an approximate kerb), through createCityLighting with a fake renderer in Node. Deterministic figures only; CPU timings are in work/lighting-city-l1/timing.json (machine-dependent).",
+  "stressSet": {
+    "file": "work/lighting-city-l1/l0-stress-set.json",
+    "bytes": 8053828,
+    "sha256": "dbb370242edb530039fc120c37bf41193702aa2a9ccf184385187482ecc18b80",
+    "fixtures": 25041,
+    "counts": {
+      "fixtures": 25041,
+      "atKerb": 24841,
+      "atCentreline": 200
+    }
+  },
+  "poses": {
+    "drottninggatan": {
+      "e": 568880,
+      "n": 6495420
+    },
+    "kungstorget": {
+      "e": 568445,
+      "n": 6495640
+    },
+    "soderstaden": {
+      "e": 569300,
+      "n": 6494600
+    },
+    "hageby": {
+      "e": 571050,
+      "n": 6492700
+    },
+    "klockaretorpet": {
+      "e": 566800,
+      "n": 6493300
+    },
+    "ingelsta": {
+      "e": 567500,
+      "n": 6498300
+    },
+    "overviewCentre": {
+      "e": 568900,
+      "n": 6495000,
+      "h": 600
+    }
+  },
+  "figures": {
+    "maxTextureSize16384": {
+      "status": "ok",
+      "fixtures": 25314,
+      "rollouts": {
+        "lighting-a1-v1": {
+          "mapped": 10,
+          "estimated": 117
+        },
+        "lighting-a2-v1": {
+          "mapped": 0,
+          "estimated": 35
+        },
+        "lighting-a3-v1": {
+          "mapped": 0,
+          "estimated": 6
+        },
+        "lighting-l1-stress-v0": {
+          "mapped": 0,
+          "estimated": 25041
+        },
+        "step6-pilot-v1": {
+          "mapped": 10,
+          "estimated": 95
+        }
+      },
+      "index": {
+        "cellEntries": 183071,
+        "nonEmptyCells": 49249,
+        "maxRawOccupancy": 22,
+        "overflowCells": 0,
+        "histogram": [
+          0,
+          5585,
+          10079,
+          12450,
+          6861,
+          5393,
+          3810,
+          1955,
+          1286,
+          813,
+          457,
+          245,
+          157,
+          67,
+          39,
+          23,
+          14,
+          3,
+          2,
+          6,
+          2,
+          1,
+          1
+        ],
+        "pages": 4434,
+        "directory": {
+          "columns": 137,
+          "rows": 108,
+          "bytes": 59184
+        },
+        "payload": {
+          "width": 16384,
+          "height": 8,
+          "pagesPerRow": 4096,
+          "bytes": 1048576
+        },
+        "list": {
+          "width": 4096,
+          "height": 45,
+          "entries": 183071,
+          "bytes": 737280
+        },
+        "denseEquivalent": {
+          "columns": 545,
+          "rows": 427,
+          "bytes": 14893760
+        }
+      },
+      "textures": {
+        "lamp": {
+          "width": 16,
+          "height": 16384,
+          "rows": 16384,
+          "format": "RGBA32F"
+        },
+        "payload": {
+          "width": 16384,
+          "height": 8,
+          "format": "RG32F"
+        },
+        "list": {
+          "width": 4096,
+          "height": 45,
+          "format": "R32F"
+        },
+        "directory": {
+          "width": 137,
+          "height": 108,
+          "format": "R32F"
+        },
+        "maxTextureSize": 16384
+      },
+      "bytes": {
+        "lamp": 4194304,
+        "payload": 1048576,
+        "directory": 59184,
+        "list": 737280,
+        "instanceBuffers": 2949784,
+        "fixtureGeometry": 28820
+      },
+      "visuals": {
+        "instancedMeshes": 13,
+        "instanceCapacity": 41344,
+        "tiles": 1265,
+        "halos": 25314,
+        "instanceBytes": 2949784,
+        "geometryBytes": 28820
+      },
+      "poses": {
+        "drottninggatan": {
+          "detailInstances": 3770,
+          "detailTriangles": 58066,
+          "drawnMeshes": 10
+        },
+        "kungstorget": {
+          "detailInstances": 3518,
+          "detailTriangles": 45718,
+          "drawnMeshes": 10
+        },
+        "soderstaden": {
+          "detailInstances": 4339,
+          "detailTriangles": 62936,
+          "drawnMeshes": 10
+        },
+        "hageby": {
+          "detailInstances": 2907,
+          "detailTriangles": 38074,
+          "drawnMeshes": 10
+        },
+        "klockaretorpet": {
+          "detailInstances": 2900,
+          "detailTriangles": 43368,
+          "drawnMeshes": 10
+        },
+        "ingelsta": {
+          "detailInstances": 904,
+          "detailTriangles": 8376,
+          "drawnMeshes": 8
+        },
+        "overviewCentre": {
+          "detailInstances": 2175,
+          "detailTriangles": 14730,
+          "drawnMeshes": 6
+        }
+      }
+    },
+    "maxTextureSize4096": {
+      "status": "ok",
+      "fixtures": 25314,
+      "rollouts": {
+        "lighting-a1-v1": {
+          "mapped": 10,
+          "estimated": 117
+        },
+        "lighting-a2-v1": {
+          "mapped": 0,
+          "estimated": 35
+        },
+        "lighting-a3-v1": {
+          "mapped": 0,
+          "estimated": 6
+        },
+        "lighting-l1-stress-v0": {
+          "mapped": 0,
+          "estimated": 25041
+        },
+        "step6-pilot-v1": {
+          "mapped": 10,
+          "estimated": 95
+        }
+      },
+      "index": {
+        "cellEntries": 183071,
+        "nonEmptyCells": 49249,
+        "maxRawOccupancy": 22,
+        "overflowCells": 0,
+        "histogram": [
+          0,
+          5585,
+          10079,
+          12450,
+          6861,
+          5393,
+          3810,
+          1955,
+          1286,
+          813,
+          457,
+          245,
+          157,
+          67,
+          39,
+          23,
+          14,
+          3,
+          2,
+          6,
+          2,
+          1,
+          1
+        ],
+        "pages": 4434,
+        "directory": {
+          "columns": 137,
+          "rows": 108,
+          "bytes": 59184
+        },
+        "payload": {
+          "width": 4096,
+          "height": 20,
+          "pagesPerRow": 1024,
+          "bytes": 655360
+        },
+        "list": {
+          "width": 4096,
+          "height": 45,
+          "entries": 183071,
+          "bytes": 737280
+        },
+        "denseEquivalent": {
+          "columns": 545,
+          "rows": 427,
+          "bytes": 14893760
+        }
+      },
+      "textures": {
+        "lamp": {
+          "width": 56,
+          "height": 4096,
+          "rows": 4096,
+          "format": "RGBA32F"
+        },
+        "payload": {
+          "width": 4096,
+          "height": 20,
+          "format": "RG32F"
+        },
+        "list": {
+          "width": 4096,
+          "height": 45,
+          "format": "R32F"
+        },
+        "directory": {
+          "width": 137,
+          "height": 108,
+          "format": "R32F"
+        },
+        "maxTextureSize": 4096
+      },
+      "bytes": {
+        "lamp": 3670016,
+        "payload": 655360,
+        "directory": 59184,
+        "list": 737280,
+        "instanceBuffers": 2949784,
+        "fixtureGeometry": 28820
+      },
+      "visuals": {
+        "instancedMeshes": 13,
+        "instanceCapacity": 41344,
+        "tiles": 1265,
+        "halos": 25314,
+        "instanceBytes": 2949784,
+        "geometryBytes": 28820
+      },
+      "poses": {
+        "drottninggatan": {
+          "detailInstances": 3770,
+          "detailTriangles": 58066,
+          "drawnMeshes": 10
+        },
+        "kungstorget": {
+          "detailInstances": 3518,
+          "detailTriangles": 45718,
+          "drawnMeshes": 10
+        },
+        "soderstaden": {
+          "detailInstances": 4339,
+          "detailTriangles": 62936,
+          "drawnMeshes": 10
+        },
+        "hageby": {
+          "detailInstances": 2907,
+          "detailTriangles": 38074,
+          "drawnMeshes": 10
+        },
+        "klockaretorpet": {
+          "detailInstances": 2900,
+          "detailTriangles": 43368,
+          "drawnMeshes": 10
+        },
+        "ingelsta": {
+          "detailInstances": 904,
+          "detailTriangles": 8376,
+          "drawnMeshes": 8
+        },
+        "overviewCentre": {
+          "detailInstances": 2175,
+          "detailTriangles": 14730,
+          "drawnMeshes": 6
+        }
+      }
+    }
+  }
+}

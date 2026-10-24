@@ -35,14 +35,18 @@ import {
   NearestFilter,
   RedFormat,
   RGBAFormat,
+  RGFormat,
   Vector4,
   type Material,
 } from 'three';
 
 export const LAMP_TEXELS = 8;
-export const MAX_PER_CELL = 16;
-/** RGBA texels holding one cell's MAX_PER_CELL lamp slots. */
-export const SLOT_TEXELS = MAX_PER_CELL / 4;
+/**
+ * Most lamps one 25 m cell may list (the shader loop guard). 16 until Lighting Phase A3 (fixed slots);
+ * 32 since Phase L1, where cells store a run in a lamp list, so the cost per pixel and the memory
+ * follow the actual count. A set with more is rejected, never truncated.
+ */
+export const MAX_PER_CELL = 32;
 export const SECTORS = 16;
 export const STADIUM_MAX = 16;
 export const STADIUM_ROOFS = 8;
@@ -96,10 +100,15 @@ export function createLightingUniforms() {
   empty.needsUpdate = true;
   const noPages = new DataTexture(new Float32Array([-1]), 1, 1, RedFormat, FloatType);
   noPages.needsUpdate = true;
+  const emptyRg = new DataTexture(new Float32Array([0, 0]), 1, 1, RGFormat, FloatType);
+  emptyRg.needsUpdate = true;
   return {
     cityLampTex: { value: empty as DataTexture },
-    /** Page atlas: SLOT_TEXELS RGBA texels per cell, chunkCells × chunkCells cells per page. */
-    cityGridTex: { value: empty as DataTexture },
+    /** Page atlas (RG32F): one (start, count) texel per cell, chunkCells × chunkCells cells per page. */
+    cityGridTex: { value: emptyRg as DataTexture },
+    /** Lamp list (R32F): lamp indices of every cell's run, cityListWidth texels per row. */
+    cityListTex: { value: noPages as DataTexture },
+    cityListWidth: { value: 1 },
     /** Page directory (R32F): page index of every chunk, −1 for an empty chunk. */
     cityPageTex: { value: noPages as DataTexture },
     /** Directory originX, originZ (scene units, chunk-aligned), 1 / cell size, columns (chunks). */
@@ -111,7 +120,7 @@ export function createLightingUniforms() {
     cityPagesPerRow: { value: 1 },
     cityLampRows: { value: 1 },
     cityLampLevel: { value: 0 },
-    /** Lamp slots per grid cell, a uniform so the shader loop stays dynamic (not unrolled). */
+    /** Most lamps evaluated per cell (loop guard), a uniform so the loop stays dynamic (not unrolled). */
     cityCellSlots: { value: MAX_PER_CELL },
     cityLuxScale: { value: STREET_LUX_SCALE },
     cityMetres: { value: 25 },
@@ -168,9 +177,16 @@ export function packLampData(lamps: ShaderLamp[], maxTextureSize = 16384) {
 /**
  * Float data texture read with texelFetch only (no filtering, no mipmaps). The typed array stays on
  * the texture: WebGL context restoration re-uploads from it, so it must never be released on upload.
+ * `channels`: true or 1 = R32F, 2 = RG32F, otherwise RGBA32F.
  */
-export function floatTexture(data: Float32Array, width: number, height: number, red = false) {
-  const texture = new DataTexture(data, width, height, red ? RedFormat : RGBAFormat, FloatType);
+export function floatTexture(
+  data: Float32Array,
+  width: number,
+  height: number,
+  channels: boolean | 1 | 2 | 4 = 4,
+) {
+  const format = channels === true || channels === 1 ? RedFormat : channels === 2 ? RGFormat : RGBAFormat;
+  const texture = new DataTexture(data, width, height, format, FloatType);
   texture.minFilter = texture.magFilter = NearestFilter;
   texture.generateMipmaps = false;
   texture.needsUpdate = true;
@@ -204,6 +220,8 @@ varying vec3 vCityWorld;
 uniform highp sampler2D cityLampTex;
 uniform highp sampler2D cityGridTex;
 uniform highp sampler2D cityPageTex;
+uniform highp sampler2D cityListTex;
+uniform int cityListWidth;
 uniform vec4 cityGrid;
 uniform float cityGridRows;
 uniform float cityLampLevel;
@@ -289,8 +307,7 @@ vec3 stadiumLight( int j, vec3 p, out vec3 dir ) {
 const FRAGMENT_MAIN = /* glsl */ `
 	{
 		// Lighting in world space: one normal/view transform per fragment, none per light. One dynamic
-		// loop (uniform bounds): floodlights first, then the grid cell's lamp slots until the first empty
-		// slot. Lean shading (Lambert diffuse; normalised Blinn specular for standard materials),
+		// loop: floodlights first, then the grid cell's run of lamps (its count, at most cityCellSlots). Lean shading (Lambert diffuse; normalised Blinn specular for standard materials),
 		// accumulated and added once. Measured: the full RE_Direct per light inside constant-bound loops
 		// made each lit program much larger and slower to compile on ANGLE/D3D (+1.4 s map ready).
 		vec3 cityN = inverseTransformDirection( geometryNormal, viewMatrix );
@@ -302,12 +319,12 @@ const FRAGMENT_MAIN = /* glsl */ `
 		#else
 			float cityShininess = 1.0;
 		#endif
-		// Sparse cell lookup (lightIndex.ts): cell → chunk → page directory → page atlas texel. The
-		// directory is only read at night; an empty chunk (−1) or a point outside it has no lamps.
+		// Sparse cell lookup (lightIndex.ts): cell → chunk → page directory → cell header (start,
+		// count) → lamp list. Read only at night; an empty chunk (−1) or a point outside has no lamps.
 		ivec2 cityCell = ivec2( floor( ( vCityWorld.xz - cityGrid.xy ) * cityGrid.z ) );
 		ivec2 cityDirCells = ivec2( int( cityGrid.w ), int( cityGridRows ) ) * cityChunkCells;
 		bool cityInGrid = cityCell.x >= 0 && cityCell.y >= 0 && cityCell.x < cityDirCells.x && cityCell.y < cityDirCells.y;
-		ivec2 citySlots = ivec2( 0 );
+		int cityListStart = 0;
 		int cityLamps = 0;
 		if ( cityLampLevel > 0.0005 && cityInGrid ) {
 			ivec2 cityChunk = cityCell / cityChunkCells;
@@ -316,8 +333,9 @@ const FRAGMENT_MAIN = /* glsl */ `
 				int page = int( cityPage );
 				int pageRow = page / cityPagesPerRow;
 				ivec2 local = cityCell - cityChunk * cityChunkCells;
-				citySlots = ivec2( ( ( page - pageRow * cityPagesPerRow ) * cityChunkCells + local.x ) * ${SLOT_TEXELS}, pageRow * cityChunkCells + local.y );
-				cityLamps = cityCellSlots;
+				vec2 head = texelFetch( cityGridTex, ivec2( ( page - pageRow * cityPagesPerRow ) * cityChunkCells + local.x, pageRow * cityChunkCells + local.y ), 0 ).xy;
+				cityListStart = int( head.x );
+				cityLamps = min( int( head.y ), cityCellSlots );
 			}
 		}
 		vec3 stadiumP = vec3( 0.0 );
@@ -335,12 +353,10 @@ const FRAGMENT_MAIN = /* glsl */ `
 			if ( n < cityFloods ) {
 				col = stadiumLight( n, stadiumP, dir ) * ( stadiumLuxScale * stadiumLevel * stadiumMask );
 			} else {
-				int slot = n - cityFloods;
-				vec4 ids = texelFetch( cityGridTex, citySlots + ivec2( slot / 4, 0 ), 0 );
-				int c = slot - ( slot / 4 ) * 4;
-				float id = c == 0 ? ids.x : c == 1 ? ids.y : c == 2 ? ids.z : ids.w;
-				if ( id < 0.0 ) break;
-				col = cityLamp( int( id ), vCityWorld, dir ) * ( cityLuxScale * cityLampLevel );
+				int at = cityListStart + n - cityFloods;
+				int listRow = at / cityListWidth;
+				float id = texelFetch( cityListTex, ivec2( at - listRow * cityListWidth, listRow ), 0 ).r;
+				col =cityLamp( int( id ), vCityWorld, dir ) * ( cityLuxScale * cityLampLevel );
 			}
 			float nl = max( dot( cityN, dir ), 0.0 );
 			cityIrradiance += col * nl;
@@ -355,7 +371,7 @@ const FRAGMENT_MAIN = /* glsl */ `
 		#endif
 	}
 `;
-const PATCH_KEY = 'city-lights-v2';
+const PATCH_KEY = 'city-lights-v3';
 /**
  * Uniform binding of a patched material. A lit material can outlive the controller that patched it
  * (cached or shared materials, scene recreation); patching it again with another controller's

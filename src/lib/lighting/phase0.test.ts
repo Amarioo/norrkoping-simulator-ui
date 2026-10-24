@@ -22,8 +22,17 @@ import {
 import { terrain } from '../terrain';
 import { createIdrottsparken } from '../stadium/idrottsparken';
 import { boundUniforms, LAMP_TEXELS, MAX_PER_CELL } from './cityLights';
+import { toStep6SlotPayload } from './legacyGrid';
 import { createCityLighting, pilotLightingRegistry } from './controller';
-import { FIXTURES, fixtureLamps, HALO_CULL_MARGIN, POLE_DETAIL } from './fixtures';
+import {
+  FIXTURES,
+  fixtureLamps,
+  HALO_CULL_MARGIN,
+  LENS_DETAIL,
+  POLE_DETAIL,
+  POLE_NEAR,
+  REGATHER,
+} from './fixtures';
 import { lookupLamps } from './lightIndex';
 import { lampLux } from './reference';
 import type { LightingRegistry } from './registry';
@@ -158,33 +167,55 @@ describe('parity with the frozen Step 6.1b pilot', () => {
     expect(offPage).toBeGreaterThan(50);
   });
   test('fixture instances (housings, lenses, halos) keep the frozen transforms and halo colours', () => {
-    const groupKey = (v: { parent?: string; material: string; vertices: number; count: number }) =>
-      `${v.parent}|${v.material}|${v.vertices}|${v.count}`;
+    // Phase L1 gathers housings and lenses near the camera (one mesh per type / colour temperature)
+    // instead of one mesh per pilot area; halos are one mesh. The frozen per-area meshes are compared
+    // as multisets per (material, geometry vertex count): every frozen instance transform must be
+    // reproduced bit for bit, and nothing else. Housings/lenses are collected by gathering at every
+    // fixture (each is then within full detail), halos from the single static mesh.
+    const kindKey = (material: string, vertices: number) => `${material}|${vertices}`;
     const frozen = new Map<string, string[]>();
-    for (const v of baseline.visuals)
-      frozen.set(groupKey(v), [
-        ...v.instances.map((m) => m.join(',')),
-        ...(v.colors ? [`colors:${[...v.colors].length}`] : []),
-      ]);
+    for (const v of baseline.visuals) {
+      const k = kindKey(v.material, v.vertices);
+      frozen.set(k, [...(frozen.get(k) ?? []), ...v.instances.map((m) => m.join(','))]);
+    }
     const m = new Matrix4();
-    let meshes = 0;
-    lighting.group.traverse((o) => {
-      if (!(o instanceof InstancedMesh)) return;
-      meshes++;
-      const key = groupKey({
-        parent: o.parent?.name,
-        material: o.material.type,
-        vertices: o.geometry.getAttribute('position').count,
-        count: o.count,
+    const seen = new Map<string, Map<string, string>>(); // kind → fixture id → matrix
+    const lod = new Map<string, string>(); // fixture id → low-detail housing matrix
+    lighting.set({ date: '2026-10-21', minutes: 22 * 60, stadium: 'off' });
+    lighting.settle();
+    for (const f of lighting.fixtures) {
+      lighting.update(0.016, { position: new Vector3(f.x, 1, f.z) } as never, 800);
+      lighting.group.traverse((o) => {
+        if (!(o instanceof InstancedMesh) || !o.visible) return;
+        const ids = o.userData.fixtureIds as string[];
+        expect(ids.length).toBe(o.count);
+        const isLod = o.name.startsWith('lighting-body-lod-');
+        const k = kindKey(o.material.type, o.geometry.getAttribute('position').count);
+        const byId = isLod ? lod : (seen.get(k) ?? new Map<string, string>());
+        if (!isLod) seen.set(k, byId);
+        for (let j = 0; j < o.count; j++) {
+          const mat = (o.getMatrixAt(j, m), Array.from(m.elements).join(','));
+          if (byId.has(ids[j])) expect(byId.get(ids[j])).toBe(mat);
+          byId.set(ids[j], mat);
+        }
       });
-      const mats: string[] = [];
-      for (let k = 0; k < o.count; k++)
-        mats.push((o.getMatrixAt(k, m), Array.from(m.elements).join(',')));
-      if (o.instanceColor) mats.push(`colors:${o.instanceColor.array.length}`);
-      expect(frozen.has(key), key).toBe(true);
-      expect([...mats].sort(), key).toEqual([...frozen.get(key)!].sort());
-    });
-    expect(meshes).toBe(baseline.visuals.length);
+    }
+    expect([...seen.keys()].sort()).toEqual([...frozen.keys()].sort());
+    for (const [k, list] of frozen)
+      expect([...seen.get(k)!.values()].sort(), k).toEqual([...list].sort());
+    // A low-detail housing uses exactly the full-detail housing transform of the same fixture.
+    const housings = new Map<string, string>();
+    for (const [k, byId] of seen)
+      if (k.startsWith('MeshStandardMaterial|')) for (const [id, mat] of byId) housings.set(id, mat);
+    expect(lod.size).toBeGreaterThan(0);
+    for (const [id, mat] of lod) expect(housings.get(id), id).toBe(mat);
+    // One halo mesh holds every lamp.
+    const halos: InstancedMesh[] = [];
+    lighting.group.traverse(
+      (o) => o instanceof InstancedMesh && o.name === 'lighting-halos' && halos.push(o),
+    );
+    expect(halos).toHaveLength(1);
+    expect(halos[0].count).toBe(105);
     // Halo colour triples as multisets.
     const colours = (list: number[]) => {
       const out: string[] = [];
@@ -256,7 +287,14 @@ describe('determinism', () => {
     const u = lighting.uniforms;
     expect({
       lampTexture: sha(u.cityLampTex.value.image.data as Float32Array),
-      pagePayload: sha(u.cityGridTex.value.image.data as Float32Array),
+      // Phase L1 stores cell headers + a lamp list; rebuilt into the 16-slot atlas of this
+      // phase, the bytes must equal the pinned hash (same lamps, same order, every cell).
+      pagePayload: sha(
+        toStep6SlotPayload(
+          lighting.index!,
+          lighting.describe().streetLighting.textures.maxTextureSize,
+        ),
+      ),
       pageDirectory: sha(u.cityPageTex.value.image.data as Float32Array),
       canonicalOrder: createHash('sha256').update(lighting.index!.order.join('\n')).digest('hex'),
     }).toEqual(manifest.outputs.hashes);
@@ -271,53 +309,99 @@ describe('fixture bounds and detail selection', () => {
       v = new Vector3(),
       armTip = new Box3();
     let checked = 0;
-    lighting.group.traverse((o) => {
-      if (!(o instanceof InstancedMesh)) return;
-      const position = o.geometry.getAttribute('position');
-      for (let k = 0; k < o.count; k++) {
-        o.getMatrixAt(k, m);
-        // Every vertex (pole, arm, head, lens) of every instance lies inside the mesh bounds.
-        for (let j = 0; j < position.count; j++) {
-          v.fromBufferAttribute(position, j).applyMatrix4(m);
-          expect(o.boundingSphere!.distanceToPoint(v)).toBeLessThanOrEqual(1e-9);
-          if ((o.material as Material).type === 'MeshStandardMaterial') armTip.expandByPoint(v);
+    // Gathered meshes (Phase L1) recompute their bounds on every gather: check after gathering in
+    // each pilot area (housings, low-detail housings and lenses near the camera) and for the halos.
+    for (const pilot of ['kungsgatan', 'stromparken', 'idrottsparken']) {
+      const f = lighting.fixtures.find((x) => x.pilot === pilot)!;
+      lighting.update(0.016, { position: new Vector3(f.x, 1, f.z) } as never, 800);
+      lighting.group.traverse((o) => {
+        if (!(o instanceof InstancedMesh) || !o.count) return;
+        const position = o.geometry.getAttribute('position');
+        for (let k = 0; k < o.count; k++) {
+          o.getMatrixAt(k, m);
+          // Every vertex (pole, arm, head, lens) of every instance lies inside the mesh bounds.
+          for (let j = 0; j < position.count; j++) {
+            v.fromBufferAttribute(position, j).applyMatrix4(m);
+            expect(o.boundingSphere!.distanceToPoint(v)).toBeLessThanOrEqual(1e-9);
+            if ((o.material as Material).type === 'MeshStandardMaterial') armTip.expandByPoint(v);
+          }
+          checked++;
         }
-        checked++;
-      }
-      if ((o.material as Material).type === 'ShaderMaterial') {
-        // The halo margin is added on top of the instances' own bounding sphere.
-        const padded = o.boundingSphere!.clone();
-        o.computeBoundingSphere();
-        expect(padded.radius).toBeCloseTo(o.boundingSphere!.radius + HALO_CULL_MARGIN, 12);
-        expect(padded.center.equals(o.boundingSphere!.center)).toBe(true);
-        o.boundingSphere = padded;
-      }
-    });
+        if ((o.material as Material).type === 'ShaderMaterial') {
+          // The halo margin is added on top of the instances' own bounding sphere.
+          const padded = o.boundingSphere!.clone();
+          o.computeBoundingSphere();
+          expect(padded.radius).toBeCloseTo(o.boundingSphere!.radius + HALO_CULL_MARGIN, 12);
+          expect(padded.center.equals(o.boundingSphere!.center)).toBe(true);
+          o.boundingSphere = padded;
+        }
+      });
+    }
     expect(checked).toBeGreaterThan(300);
     expect(armTip.isEmpty()).toBe(false);
     dispose();
   });
-  test('a fixture within detail distance is shown even when its group centre is beyond it', () => {
+  test('detail is chosen per fixture: full housing within POLE_NEAR, low detail to POLE_DETAIL, lens to LENS_DETAIL, none beyond', () => {
     const { lighting, dispose } = make();
-    const groups = lighting.describe().streetLighting.visuals!.groupBounds;
-    const kungs = groups.find((g) => g.id === 'kungsgatan')!;
     const members = lighting.fixtures.filter((f) => f.pilot === 'kungsgatan');
-    // Camera beyond the nearest member (along the axis away from the centre), 0.95 · POLE_DETAIL from it.
+    // Camera beyond the outermost member, 0.95 · POLE_DETAIL from it: far from the area centre,
+    // the old per-area rule would have depended on the group bounds; now every fixture decides.
     const far = members.reduce((a, b) => (b.z > a.z ? b : a));
-    const camera = { position: new Vector3(far.x, 2, far.z + POLE_DETAIL * 0.95) } as never;
-    const centreDistance = new Vector3(...kungs.centre).distanceTo(
-      new Vector3(far.x, 2, far.z + POLE_DETAIL * 0.95),
-    );
-    expect(centreDistance).toBeGreaterThan(POLE_DETAIL);
+    const position = new Vector3(far.x, 2, far.z + POLE_DETAIL * 0.95);
     lighting.set({ date: '2026-10-21', minutes: 22 * 60, stadium: 'off' });
     lighting.settle();
-    lighting.update(0.016, camera, 800);
-    const kGroup = lighting.group.getObjectByName('lighting-kungsgatan')!;
-    const bodies = kGroup.children.filter(
-      (c) => c instanceof InstancedMesh && (c.material as Material).type === 'MeshStandardMaterial',
-    );
-    expect(bodies.length).toBeGreaterThan(0);
-    expect(bodies.every((b) => b.visible)).toBe(true);
+    lighting.update(0.016, { position } as never, 800);
+    const shown = { near: new Set<string>(), lod: new Set<string>(), lens: new Set<string>() };
+    lighting.group.traverse((o) => {
+      if (!(o instanceof InstancedMesh) || !o.visible) return;
+      const ids = o.userData.fixtureIds as string[];
+      const kind = o.name.startsWith('lighting-body-lod-')
+        ? 'lod'
+        : o.name.startsWith('lighting-body-')
+          ? 'near'
+          : o.name.startsWith('lighting-lens-')
+            ? 'lens'
+            : null;
+      if (kind) for (const id of ids) shown[kind].add(id);
+    });
+    const lamps = lighting.lamps;
+    let checked = 0;
+    lighting.fixtures.forEach((f, i) => {
+      const d = position.distanceTo(new Vector3(f.x, lamps[i].baseY, f.z));
+      expect(shown.near.has(f.id), f.id).toBe(d < POLE_NEAR);
+      expect(shown.lod.has(f.id), f.id).toBe(d >= POLE_NEAR && d < POLE_DETAIL);
+      expect(shown.lens.has(f.id), f.id).toBe(d < LENS_DETAIL);
+      checked++;
+    });
+    expect(checked).toBe(105);
+    expect(shown.lod.has(far.id)).toBe(true);
+    expect(shown.lod.size + shown.near.size).toBeGreaterThan(0);
+    dispose();
+  });
+  test('gathering is deterministic and only repeats after the camera moved REGATHER', () => {
+    const { lighting, dispose } = make();
+    const f = lighting.fixtures[0];
+    const at = (dx: number) =>
+      lighting.update(0.016, { position: new Vector3(f.x + dx, 1, f.z) } as never, 800);
+    const snapshot = () => {
+      const out: string[] = [];
+      lighting.group.traverse(
+        (o) =>
+          o instanceof InstancedMesh &&
+          out.push(`${o.name}:${o.count}:${(o.userData.fixtureIds as string[]).join(',')}`),
+      );
+      return out.join('\n');
+    };
+    at(0);
+    const first = snapshot();
+    const gathers = () => lighting.describe().streetLighting.visuals!.gathers;
+    const g0 = gathers();
+    at(REGATHER * 0.9);
+    expect(gathers()).toBe(g0);
+    at(REGATHER * 1.1);
+    expect(gathers()).toBe(g0 + 1);
+    at(0);
+    expect(snapshot()).toBe(first);
     dispose();
   });
 });
@@ -390,12 +474,12 @@ describe('lifecycle, rebinding and failure handling', () => {
       (k) => lighting.uniforms[k as 'cityLampTex'].value,
     );
     const crowd = { ...registry.fixtures[0] };
-    // 17 co-located copies of one fixture: a capacity conflict (distinct canonical IDs).
+    // MAX_PER_CELL + 1 (33) co-located copies of one fixture: a capacity conflict (distinct canonical IDs).
     const crowded = {
       ...registry,
       fixtures: [
         ...registry.fixtures,
-        ...Array.from({ length: 17 }, (_, k) => ({
+        ...Array.from({ length: MAX_PER_CELL + 1 }, (_, k) => ({
           ...crowd,
           id: `estimate:test:crowd:${k}`,
           runtimeId: `test:crowd-${k}`,
@@ -507,14 +591,16 @@ describe('lifecycle, rebinding and failure handling', () => {
         initTexture: (t: Texture) => uploaded.push(t),
       }),
     });
-    const textures = (['cityLampTex', 'cityGridTex', 'cityPageTex'] as const).map(
+    const textures = (['cityLampTex', 'cityGridTex', 'cityPageTex', 'cityListTex'] as const).map(
       (k) => lighting.uniforms[k].value,
     );
     expect(uploaded).toEqual(textures);
-    for (const t of textures) {
+    // Channels: lamp atlas RGBA, cell headers RG (Phase L1), page directory R, lamp list R (L1).
+    const channels = [4, 2, 1, 1];
+    for (const [k, t] of textures.entries()) {
       expect(t.image.data).toBeInstanceOf(Float32Array);
       expect((t.image.data as Float32Array).length).toBe(
-        t.image.width * t.image.height * (t === textures[2] ? 1 : 4),
+        t.image.width * t.image.height * channels[k],
       );
       expect(t.onUpdate).toBeNull();
       expect(t.generateMipmaps).toBe(false);

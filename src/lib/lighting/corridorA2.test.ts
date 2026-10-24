@@ -14,6 +14,7 @@ import { sceneToSweref, swerefToScene } from '../geo/sweref99tm.js';
 import { terrain } from '../terrain';
 import { createIdrottsparken } from '../stadium/idrottsparken';
 import { LAMP_TEXELS, MAX_PER_CELL } from './cityLights';
+import { STEP6_MAX_PER_CELL, toStep6SlotPayload } from './legacyGrid';
 import {
   a1LightingRegistry,
   a1RuntimeLightingRegistry,
@@ -32,6 +33,9 @@ import { lookupLamps } from './lightIndex';
 import { lampLux } from './reference';
 import { validateRegistry, type LightingRegistry, type RegistryFixture } from './registry';
 import baseline from './testdata/pilot-baseline.json';
+import { byGeometry, frozenByGeometry, gatheredTransforms, shownAt } from './testVisuals';
+
+const PILOT_GROUPS = new Set(['kungsgatan', 'stromparken', 'idrottsparken']);
 import {
   A2_OUTPUT_FILES,
   existingBeforeA2,
@@ -565,7 +569,7 @@ describe('combined runtime set (pilot + A1 + A2)', () => {
     expect(lighting.describe().streetLighting.status).toBe('ok');
     expect(stats.overflowCells).toBe(0);
     expect(stats.maxRawOccupancy).toBe(15); // unchanged: A1's square with 8 mapped lamps
-    expect(stats.histogram.slice(MAX_PER_CELL + 1).every((n) => n === 0)).toBe(true);
+    expect(stats.histogram.slice(STEP6_MAX_PER_CELL + 1).every((n) => n === 0)).toBe(true);
     const a2 = new Set(a2LightingRegistry(terrain).fixtures.map((r) => r.id));
     let max = 0;
     for (let cx = -32; cx <= -14; cx++)
@@ -576,41 +580,18 @@ describe('combined runtime set (pilot + A1 + A2)', () => {
     expect(max).toBe(9);
   });
   test('pilot visuals keep the frozen instance transforms; every A1 housing keeps its transform', () => {
-    const m = new Matrix4();
-    const key = (v: { parent?: string; material: string; vertices: number; count: number }) =>
-      `${v.parent}|${v.material}|${v.vertices}|${v.count}`;
-    const now = new Map<string, string[]>();
-    const housing = (l: typeof lighting) => {
-      const out = new Map<string, string>();
-      l.group.traverse((o) => {
-        if (!(o instanceof InstancedMesh)) return;
-        const fixtureIds = o.userData.fixtureIds as string[] | undefined;
-        if (fixtureIds)
-          fixtureIds.forEach((id, k) => out.set(id, (o.getMatrixAt(k, m), m.elements.join(','))));
-      });
-      return out;
-    };
-    lighting.group.traverse((o) => {
-      if (!(o instanceof InstancedMesh)) return;
-      const mats: string[] = [];
-      for (let k = 0; k < o.count; k++)
-        mats.push((o.getMatrixAt(k, m), Array.from(m.elements).join(',')));
-      now.set(
-        key({
-          parent: o.parent?.name,
-          material: o.material.type,
-          vertices: o.geometry.getAttribute('position').count,
-          count: o.count,
-        }),
-        mats.sort(),
-      );
-    });
-    for (const v of baseline.visuals)
-      expect(now.get(key(v)), key(v)).toEqual(v.instances.map((i) => i.join(',')).sort());
-    const was = housing(prior.lighting),
-      is = housing(lighting);
+    // Phase L1: visuals are gathered per fixture (testVisuals.ts). The pilot's housings, lenses and
+    // halos must reproduce the frozen transforms per geometry, and every earlier fixture's
+    // full-detail housing must keep the transform it has in the earlier set, bit for bit.
+    const now = gatheredTransforms(lighting);
+    const pilotIds = new Set(
+      lighting.fixtures.filter((f) => PILOT_GROUPS.has(f.pilot)).map((f) => f.id),
+    );
+    expect(pilotIds.size).toBe(105);
+    expect(byGeometry(now, pilotIds)).toEqual(frozenByGeometry(baseline.visuals));
+    const was = gatheredTransforms(prior.lighting).near;
     expect(was.size).toBe(232);
-    for (const [id, mat] of was) expect(is.get(id), id).toBe(mat);
+    for (const [id, t] of was) expect(now.near.get(id)?.matrix, id).toBe(t.matrix);
   });
   test('pinned combined output matches the A2 manifest', () => {
     const manifest = JSON.parse(
@@ -619,7 +600,14 @@ describe('combined runtime set (pilot + A1 + A2)', () => {
     const u = lighting.uniforms;
     expect({
       lampTexture: sha(u.cityLampTex.value.image.data as Float32Array),
-      pagePayload: sha(u.cityGridTex.value.image.data as Float32Array),
+      // Phase L1 stores cell headers + a lamp list; rebuilt into the 16-slot atlas of this
+      // phase, the bytes must equal the pinned hash (same lamps, same order, every cell).
+      pagePayload: sha(
+        toStep6SlotPayload(
+          lighting.index!,
+          lighting.describe().streetLighting.textures.maxTextureSize,
+        ),
+      ),
       pageDirectory: sha(u.cityPageTex.value.image.data as Float32Array),
       canonicalOrder: createHash('sha256').update(lighting.index!.order.join('\n')).digest('hex'),
     }).toEqual(manifest.outputs.combinedHashes);
@@ -657,20 +645,17 @@ describe('combined runtime set (pilot + A1 + A2)', () => {
     const r = rng(7);
     lighting.set({ date: '2026-10-21', minutes: 22 * 60, stadium: 'off' });
     lighting.settle();
-    const owner = new Map<string, InstancedMesh>();
-    lighting.group.traverse((o) => {
-      if (o instanceof InstancedMesh && (o.material as Material).type === 'MeshStandardMaterial')
-        for (const id of o.userData.fixtureIds as string[]) owner.set(id, o);
-    });
     let checked = 0;
     for (let k = 0; k < 300; k++) {
       const position = new Vector3(-29 + r() * 14, 0.2 + r() * 3, -28 + r() * 18);
-      lighting.update(0.016, { position } as never, 800);
-      for (const f of lighting.fixtures) {
-        if (Math.hypot(f.x - position.x, f.z - position.z) >= POLE_DETAIL * 0.98) continue;
-        expect(owner.get(f.id)!.visible, f.id).toBe(true);
+      const shown = shownAt(lighting, position);
+      lighting.fixtures.forEach((f, i) => {
+        // Phase L1 decides per fixture by the 3D distance to its base (housing to POLE_DETAIL).
+        const d = position.distanceTo(new Vector3(f.x, lighting.lamps[i].baseY, f.z));
+        if (d >= POLE_DETAIL * 0.98) return;
+        expect(shown.near.has(f.id) || shown.lod.has(f.id), f.id).toBe(true);
         checked++;
-      }
+      });
     }
     expect(checked).toBeGreaterThan(10000);
   });
@@ -756,10 +741,10 @@ describe('rejection keeps the last valid set; lifecycle', () => {
     id: `estimate:lighting-a2-v1:test/${k}`,
     runtimeId: `estimate:lighting-a2-v1:test/${k}`,
   });
-  test('17 lamps crowding one A2 cell are rejected as a capacity conflict; the 267-fixture set stays rendered', () => {
+  test('MAX_PER_CELL + 1 (33) lamps crowding one A2 cell are rejected as a capacity conflict; the 267-fixture set stays rendered', () => {
     const { lighting, dispose } = make();
     const before = lighting.uniforms.cityLampTex.value;
-    const crowd = Array.from({ length: 17 }, (_, k) => variant(a2Fixture, k));
+    const crowd = Array.from({ length: MAX_PER_CELL + 1 }, (_, k) => variant(a2Fixture, k));
     const result = lighting.replaceStreetLighting({
       ...runtime,
       fixtures: [...runtime.fixtures, ...crowd],

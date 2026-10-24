@@ -62,3 +62,7 @@ work/geodata/
 # Lighting Phase L0 scratch (raw OSM/SCB/NASA downloads, captures, test logs). Curated evidence is in
 # docs/lighting-city-l0/; reusable tools are in scripts/lighting-city/.
 /work/lighting-city-l0/
+
+# Lighting Phase L1 scratch (A3 baseline app, stress set, captures, perf runs). Curated evidence is in
+# docs/lighting-city-l1/; reusable tools are in scripts/lighting-l1/.
+/work/lighting-city-l1/

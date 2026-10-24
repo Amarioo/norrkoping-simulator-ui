@@ -20,7 +20,7 @@ import {
   createLightingUniforms,
   type ShaderLamp,
 } from './cityLights';
-import { buildLightGrid } from './legacyGrid';
+import { buildLightGrid, STEP6_MAX_PER_CELL } from './legacyGrid';
 import { FIXTURES, fixtureLamps } from './fixtures';
 import { lampLux, emitterLux } from './reference';
 import { createCityLighting } from './controller';
@@ -68,7 +68,7 @@ describe('light grid', () => {
   const grid = buildLightGrid(lamps, M, 1);
   test('every surface point within a lamp range finds that lamp in its cell; cap respected', () => {
     expect(grid.overflow).toBe(0);
-    expect(Math.max(...grid.cells.map((c) => c.length))).toBeLessThanOrEqual(MAX_PER_CELL);
+    expect(Math.max(...grid.cells.map((c) => c.length))).toBeLessThanOrEqual(STEP6_MAX_PER_CELL);
     lamps.forEach((l, i) => {
       for (let k = 0; k < 24; k++) {
         const a = (k / 24) * Math.PI * 2,
@@ -280,7 +280,7 @@ describe('controller: independent states, no recompiles, clean teardown', () => 
     expect(patchMaterial(m, u)).toBe(true);
     expect(patchMaterial(m, u)).toBe(false);
     expect(isPatched(m)).toBe(true);
-    expect(m.customProgramCacheKey()).toBe('layered-ground|city-lights-v2');
+    expect(m.customProgramCacheKey()).toBe('layered-ground|city-lights-v3');
     // The shader receives the shared uniform objects and the fixed injection points.
     const shader = {
       uniforms: {},

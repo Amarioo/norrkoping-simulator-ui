@@ -1,6 +1,6 @@
 # Lighting Phase L0 — citywide lighting map (rule `lighting-city-v1`)
 
-2026-10-24 · branch `codex/lighting-phase-a2` · **not committed, pushed or merged** · no 3D/runtime change.
+2026-10-24 · branch `codex/lighting-phase-a2` · committed as `d5f242b` (approved 2026-10-24) · no 3D/runtime change.
 
 **Open the map:** `node scripts/lighting-city/serve-map.mjs` → http://127.0.0.1:5195/ (or the
 `l0-map` entry in `.claude/launch.json`). The file is self-contained:

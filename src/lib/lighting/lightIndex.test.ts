@@ -1,6 +1,6 @@
 /**
- * Lighting Phase 0 sparse index: capacity, determinism, boundaries, sparsity, device limits and
- * sentinel integrity. The independent reference for cell membership is the unchanged Step 6 dense
+ * Lighting Phase 0 sparse index (cell headers + lamp list since Phase L1): capacity, determinism,
+ * boundaries, sparsity, device limits and run integrity. The independent reference for cell membership is the unchanged Step 6 dense
  * grid (legacyGrid.ts) or a direct closed-square distance test written here.
  */
 import { describe, expect, test } from 'vitest';
@@ -9,7 +9,6 @@ import {
   lampLayout,
   MAX_PER_CELL,
   packLampData,
-  SLOT_TEXELS,
   type ShaderLamp,
 } from './cityLights';
 import { buildLightGrid } from './legacyGrid';
@@ -57,7 +56,7 @@ const idsAt = (index: SparseLightIndex, x: number, z: number) =>
   lookupLamps(index, x, z).map((i) => index.order[i]);
 /** Structural invariants of the packed arrays. */
 function checkIntegrity(index: SparseLightIndex) {
-  const { stats, directory, payload } = index;
+  const { stats, directory, payload, list } = index;
   const pages = new Set<number>();
   for (const v of directory) {
     expect(v === EMPTY_PAGE || (Number.isInteger(v) && v >= 0 && v < stats.pages)).toBe(true);
@@ -67,23 +66,38 @@ function checkIntegrity(index: SparseLightIndex) {
     }
   }
   expect(pages.size).toBe(stats.pages);
-  expect(payload.length).toBe(stats.payload.width * stats.payload.height * 4);
-  for (let c = 0; c < payload.length; c += MAX_PER_CELL) {
-    let ended = false;
+  expect(payload.length).toBe(stats.payload.width * stats.payload.height * 2);
+  expect(list.length).toBe(stats.list.width * stats.list.height);
+  expect(index.listWidth).toBe(stats.list.width);
+  // Every non-empty header owns a run of the list; the runs tile [0, entries) without overlap.
+  const runs: [number, number][] = [];
+  for (let c = 0; c < payload.length; c += 2) {
+    const start = payload[c],
+      count = payload[c + 1];
+    expect(Number.isInteger(start) && Number.isInteger(count) && count >= 0).toBe(true);
+    expect(count).toBeLessThanOrEqual(MAX_PER_CELL);
+    if (!count) {
+      expect(start).toBe(0); // empty cell of a non-empty page (or unused atlas texel)
+      continue;
+    }
+    runs.push([start, count]);
     const seen = new Set<number>();
-    for (let s = 0; s < MAX_PER_CELL; s++) {
-      const v = payload[c + s];
-      if (v < 0) {
-        expect(v).toBe(-1);
-        ended = true;
-      } else {
-        expect(ended).toBe(false); // no lamp after the first empty slot
-        expect(Number.isInteger(v) && v < index.order.length).toBe(true);
-        expect(seen.has(v)).toBe(false); // no lamp twice in a cell
-        seen.add(v);
-      }
+    for (let k = start; k < start + count; k++) {
+      const v = list[k];
+      expect(Number.isInteger(v) && v >= 0 && v < index.order.length).toBe(true);
+      expect(seen.has(v)).toBe(false); // no lamp twice in a cell
+      seen.add(v);
     }
   }
+  runs.sort((a, b) => a[0] - b[0]);
+  let next = 0;
+  for (const [start, count] of runs) {
+    expect(start).toBe(next);
+    next += count;
+  }
+  expect(next).toBe(stats.list.entries);
+  expect(stats.list.entries).toBe(stats.cellEntries);
+  for (let k = stats.list.entries; k < list.length; k++) expect(list[k]).toBe(-1);
 }
 
 describe('capacity', () => {
@@ -105,31 +119,47 @@ describe('capacity', () => {
     expect(index.stats.nonEmptyCells).toBe(cells);
     checkIntegrity(index);
   });
-  test('16 co-located lamps are accepted; 17 are rejected with a complete conflict report', () => {
+  test('MAX_PER_CELL (32) co-located lamps are accepted; 33 are rejected with a complete conflict report', () => {
+    expect(MAX_PER_CELL).toBe(32);
     const many = (n: number) =>
       Array.from({ length: n }, (_, k) => lamp(`lamp-${String(k).padStart(2, '0')}`, 0.5, 0.5));
-    const ok = accepted(many(16));
-    expect(ok.stats.maxRawOccupancy).toBe(16);
-    expect(idsAt(ok, 0.5, 0.5)).toHaveLength(16);
-    const r = build(many(17));
+    const ok = accepted(many(MAX_PER_CELL));
+    expect(ok.stats.maxRawOccupancy).toBe(MAX_PER_CELL);
+    expect(idsAt(ok, 0.5, 0.5)).toEqual(many(MAX_PER_CELL).map((l) => l.id));
+    checkIntegrity(ok);
+    const r = build(many(MAX_PER_CELL + 1));
     expect(r.ok).toBe(false);
     if (r.ok) return;
-    expect(r.errors[0]).toMatch(/exceed 16 contributing lamps.*no dropping policy/);
+    expect(r.errors[0]).toMatch(/exceed 32 contributing lamps.*no dropping policy/);
     expect(r.conflictCount).toBe(r.stats!.overflowCells);
-    expect(r.conflictCount).toBe(r.stats!.histogram[17]);
+    expect(r.conflictCount).toBe(r.stats!.histogram[MAX_PER_CELL + 1]);
     for (const c of r.conflicts) {
-      expect(c.raw).toEqual(many(17).map((l) => l.id));
+      expect(c.raw).toEqual(many(MAX_PER_CELL + 1).map((l) => l.id));
       // Equidistant co-located lamps: the review candidate split falls back to the canonical ID.
-      expect(c.candidateDropped).toEqual(['lamp-16']);
-      expect(c.candidateRetained).toEqual(c.raw.slice(0, 16));
+      expect(c.candidateDropped).toEqual([`lamp-${MAX_PER_CELL}`]);
+      expect(c.candidateRetained).toEqual(c.raw.slice(0, MAX_PER_CELL));
     }
     expect(r.stats!.maxRetainedOccupancy).toBe(0);
   });
+  test('the lamp list grows with the actual entries, not with a fixed number of slots per cell', () => {
+    // 23 lamps reaching one cell (the L0 maximum) fit; storage = entries × 4 bytes (+ row padding).
+    const crowd = Array.from({ length: 23 }, (_, k) =>
+      lamp(`q${String(k).padStart(2, '0')}`, 0.5 + k * 0.01, 0.5, 20),
+    );
+    const index = accepted(crowd);
+    expect(index.stats.maxRawOccupancy).toBe(23);
+    expect(index.stats.list.entries).toBe(index.stats.cellEntries);
+    expect(index.stats.list.bytes).toBe(index.stats.list.width * index.stats.list.height * 4);
+    expect(index.stats.list.bytes).toBeLessThan(index.stats.cellEntries * 4 + 4 * 4096);
+    expect(index.stats.payload.bytes).toBe(index.stats.pages * index.chunkCells ** 2 * 8);
+    checkIntegrity(index);
+  });
   test('equidistant ring: the candidate split is distance first, canonical ID second, never input order', () => {
-    const ring = Array.from({ length: 17 }, (_, k) => {
-      const a = (k / 17) * Math.PI * 2;
+    const N = MAX_PER_CELL + 1;
+    const ring = Array.from({ length: N }, (_, k) => {
+      const a = (k / N) * Math.PI * 2;
       return lamp(
-        `r${String((k * 7) % 17).padStart(2, '0')}`,
+        `r${String((k * 7) % N).padStart(2, '0')}`,
         10.5 + Math.cos(a) * 0.2,
         10.5 + Math.sin(a) * 0.2,
         5,
@@ -146,7 +176,7 @@ describe('capacity', () => {
   });
   test('large crowded sets: every overflowing cell is counted; the listed report is bounded', () => {
     const r = rng(5);
-    const lamps = Array.from({ length: 2000 }, (_, k) => lamp(`c${k}`, r() * 30, r() * 30, 30));
+    const lamps = Array.from({ length: 6000 }, (_, k) => lamp(`c${k}`, r() * 30, r() * 30, 30));
     const res = build(lamps);
     expect(res.ok).toBe(false);
     if (res.ok) return;
@@ -169,6 +199,7 @@ describe('determinism', () => {
       expect(b.order).toEqual(a.order);
       expect(Buffer.from(b.directory.buffer).equals(Buffer.from(a.directory.buffer))).toBe(true);
       expect(Buffer.from(b.payload.buffer).equals(Buffer.from(a.payload.buffer))).toBe(true);
+      expect(Buffer.from(b.list.buffer).equals(Buffer.from(a.list.buffer))).toBe(true);
       expect(b.stats).toEqual(a.stats);
     }
     expect(a.order).toEqual([...a.order].sort());
@@ -206,7 +237,7 @@ describe('determinism', () => {
   test('rejection reports are order-independent too', () => {
     const crowded = [
       ...lamps,
-      ...Array.from({ length: 20 }, (_, k) => lamp(`z${k}`, 0.5, 0.5, 30)),
+      ...Array.from({ length: MAX_PER_CELL + 4 }, (_, k) => lamp(`z${k}`, 0.5, 0.5, 30)),
     ];
     const a = build(crowded),
       b = build(shuffle(crowded, 4));
@@ -222,7 +253,7 @@ describe('sparsity and boundaries', () => {
     expect(s.denseEquivalent.columns * s.denseEquivalent.rows).toBeGreaterThan(230_000);
     expect(s.denseEquivalent.bytes).toBeGreaterThan(14_000_000);
     expect(s.pages).toBeLessThanOrEqual(8);
-    expect(s.payload.bytes).toBe(s.pages * index.chunkCells ** 2 * MAX_PER_CELL * 4);
+    expect(s.payload.bytes).toBe(s.pages * index.chunkCells ** 2 * 8);
     expect(s.payload.bytes).toBeLessThanOrEqual(8 * 1024);
     // The directory is the only rectangle-sized structure: 4 bytes per 4 × 4-cell chunk instead of
     // 64 bytes per cell, i.e. 1/256 of the dense grid (≈ 59 KB for this 13.5 × 10.8 km span).
@@ -330,7 +361,8 @@ describe('validation before allocation and device limits', () => {
       expect(r.ok).toBe(false);
       if (!r.ok) expect(r.errors.join('\n')).toMatch(message);
     }
-    expect(build([lamp('a', 0, 0)], { capacity: 32 }).ok).toBe(false);
+    expect(build([lamp('a', 0, 0)], { capacity: 16 }).ok).toBe(false);
+    expect(build([lamp('a', 0, 0)], { capacity: 64 }).ok).toBe(false);
     expect(build([lamp('a', 0, 0)], { chunkCells: 0 }).ok).toBe(false);
   });
   test('the cell-entry budget is checked before any per-cell allocation', () => {
@@ -351,10 +383,13 @@ describe('validation before allocation and device limits', () => {
       lamp(`p${k}`, -20 + r() * 40, -20 + r() * 40, 20),
     );
     const wide = accepted(lamps);
-    const narrow = accepted(lamps, { maxTextureSize: 8 * 4 * SLOT_TEXELS }); // 8 pages per row
-    expect(narrow.stats.payload.pagesPerRow).toBe(8);
-    expect(narrow.stats.pages).toBeGreaterThan(16);
-    expect(narrow.stats.payload.height).toBe(Math.ceil(narrow.stats.pages / 8) * narrow.chunkCells);
+    const narrow = accepted(lamps, { maxTextureSize: 16 * 4 }); // 16 pages of 4 cells per row
+    expect(narrow.stats.payload.pagesPerRow).toBe(16);
+    expect(narrow.stats.pages).toBeGreaterThan(32);
+    expect(narrow.stats.payload.height).toBe(Math.ceil(narrow.stats.pages / 16) * narrow.chunkCells);
+    // The lamp list wraps into rows of the device width too.
+    expect(narrow.stats.list.width).toBe(64);
+    expect(narrow.stats.list.height).toBeGreaterThan(1);
     for (let k = 0; k < 1000; k++) {
       const x = -25 + r() * 50,
         z = -25 + r() * 50;

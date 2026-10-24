@@ -124,7 +124,9 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   - Generatorn `lighting-city-v1` enligt 2.3: per väg "upplyst/mörk + orsak", sedan lyktpositioner.
   - Satellitkontroll (Black Marble) per ruta.
   - Leverans: interaktiv 2D-karta + statistik. **Här godkänner du regeln för hela staden på en gång.**
-- [ ] **L1 Skalbar rendering** — M
+- [ ] **L1 Skalbar rendering** — M — *genomförd 2026-10-24, väntar på granskning:
+  [docs/lighting-city-l1/README.md](lighting-city-l1/README.md). 25 314 lyktor utan mätbar bildtid;
+  minnet (+25 MB) klarar inte målet, åtgärdas med kompakt dataformat i L2.*
   - Renderaren klarar idag max 16 lyktor per 25 m-ruta och ritar varje stolpe. Med ca 30 000
     lyktor behövs: regel för överfulla rutor i korsningar (aldrig tyst bortfall), stolpar bara nära
     kameran, långt bort bara ljuspunkter/glöd.

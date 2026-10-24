@@ -1,0 +1,410 @@
+{
+ "a": "work\\lighting-city-l1\\captures\\before",
+ "b": "work\\lighting-city-l1\\captures\\after",
+ "images": {
+  "a3-central-overview-day": {
+   "pixels": 702240,
+   "changed": 397,
+   "changedFraction": 0.0005653337890179996,
+   "max": 68,
+   "mean": 0.005911559201032885,
+   "histogram": {
+    "1-1": 108,
+    "2-2": 32,
+    "3-5": 78,
+    "6-10": 39,
+    "11-50": 137,
+    "51-255": 3
+   },
+   "bbox": [
+    105,
+    249,
+    1061,
+    658
+   ]
+  },
+  "a3-central-overview-night": {
+   "pixels": 702240,
+   "changed": 309,
+   "changedFraction": 0.0004400205058099795,
+   "max": 60,
+   "mean": 0.005589731905521379,
+   "histogram": {
+    "1-1": 41,
+    "2-2": 21,
+    "3-5": 37,
+    "6-10": 36,
+    "11-50": 168,
+    "51-255": 6
+   },
+   "bbox": [
+    105,
+    249,
+    1060,
+    658
+   ]
+  },
+  "a3-ring-north-street-day": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  },
+  "a3-ring-north-street-night": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  },
+  "city-overview-day": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  },
+  "city-overview-night": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  },
+  "drottninggatan-elevated-day": {
+   "pixels": 702240,
+   "changed": 492,
+   "changedFraction": 0.0007006151742993848,
+   "max": 64,
+   "mean": 0.005398439280018227,
+   "histogram": {
+    "1-1": 174,
+    "2-2": 60,
+    "3-5": 59,
+    "6-10": 79,
+    "11-50": 117,
+    "51-255": 3
+   },
+   "bbox": [
+    128,
+    125,
+    871,
+    279
+   ]
+  },
+  "drottninggatan-elevated-night": {
+   "pixels": 702240,
+   "changed": 308,
+   "changedFraction": 0.0004385964912280702,
+   "max": 73,
+   "mean": 0.004333276372750057,
+   "histogram": {
+    "1-1": 102,
+    "2-2": 33,
+    "3-5": 28,
+    "6-10": 38,
+    "11-50": 97,
+    "51-255": 10
+   },
+   "bbox": [
+    128,
+    125,
+    847,
+    279
+   ]
+  },
+  "hageby-elevated-day": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  },
+  "hageby-elevated-night": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  },
+  "inner-city-elevated-day": {
+   "pixels": 702240,
+   "changed": 208,
+   "changedFraction": 0.0002961950330371383,
+   "max": 37,
+   "mean": 0.0058161502240449605,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 2,
+    "3-5": 11,
+    "6-10": 16,
+    "11-50": 179,
+    "51-255": 0
+   },
+   "bbox": [
+    188,
+    174,
+    784,
+    378
+   ]
+  },
+  "inner-city-elevated-night": {
+   "pixels": 702240,
+   "changed": 205,
+   "changedFraction": 0.00029192298929141036,
+   "max": 64,
+   "mean": 0.0037850307587149693,
+   "histogram": {
+    "1-1": 14,
+    "2-2": 9,
+    "3-5": 28,
+    "6-10": 22,
+    "11-50": 131,
+    "51-255": 1
+   },
+   "bbox": [
+    201,
+    174,
+    784,
+    378
+   ]
+  },
+  "klockaretorpet-elevated-day": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  },
+  "klockaretorpet-elevated-night": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  },
+  "kungsgatan-street-day": {
+   "pixels": 702240,
+   "changed": 168,
+   "changedFraction": 0.00023923444976076556,
+   "max": 42,
+   "mean": 0.0012968026125920863,
+   "histogram": {
+    "1-1": 56,
+    "2-2": 41,
+    "3-5": 21,
+    "6-10": 16,
+    "11-50": 34,
+    "51-255": 0
+   },
+   "bbox": [
+    493,
+    317,
+    549,
+    338
+   ]
+  },
+  "kungsgatan-street-night": {
+   "pixels": 702240,
+   "changed": 130,
+   "changedFraction": 0.00018512189564821144,
+   "max": 51,
+   "mean": 0.0008268778005620111,
+   "histogram": {
+    "1-1": 64,
+    "2-2": 18,
+    "3-5": 17,
+    "6-10": 13,
+    "11-50": 17,
+    "51-255": 1
+   },
+   "bbox": [
+    493,
+    317,
+    549,
+    339
+   ]
+  },
+  "soderstaden-elevated-day": {
+   "pixels": 702240,
+   "changed": 30,
+   "changedFraction": 4.2720437457279566e-05,
+   "max": 38,
+   "mean": 0.0005582137161084529,
+   "histogram": {
+    "1-1": 7,
+    "2-2": 3,
+    "3-5": 1,
+    "6-10": 3,
+    "11-50": 16,
+    "51-255": 0
+   },
+   "bbox": [
+    277,
+    42,
+    887,
+    75
+   ]
+  },
+  "soderstaden-elevated-night": {
+   "pixels": 702240,
+   "changed": 23,
+   "changedFraction": 3.275233538391433e-05,
+   "max": 28,
+   "mean": 0.00021027948659527607,
+   "histogram": {
+    "1-1": 4,
+    "2-2": 3,
+    "3-5": 5,
+    "6-10": 5,
+    "11-50": 6,
+    "51-255": 0
+   },
+   "bbox": [
+    288,
+    43,
+    887,
+    58
+   ]
+  },
+  "stadium-elevated-se-day": {
+   "pixels": 702240,
+   "changed": 345,
+   "changedFraction": 0.000491285030758715,
+   "max": 75,
+   "mean": 0.005102244246981089,
+   "histogram": {
+    "1-1": 105,
+    "2-2": 28,
+    "3-5": 61,
+    "6-10": 38,
+    "11-50": 104,
+    "51-255": 9
+   },
+   "bbox": [
+    67,
+    66,
+    1056,
+    514
+   ]
+  },
+  "stadium-elevated-se-night": {
+   "pixels": 702240,
+   "changed": 249,
+   "changedFraction": 0.0003545796308954204,
+   "max": 79,
+   "mean": 0.004416818561555404,
+   "histogram": {
+    "1-1": 46,
+    "2-2": 17,
+    "3-5": 40,
+    "6-10": 38,
+    "11-50": 93,
+    "51-255": 15
+   },
+   "bbox": [
+    67,
+    66,
+    1056,
+    514
+   ]
+  },
+  "stromparken-path-day": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  },
+  "stromparken-path-night": {
+   "pixels": 702240,
+   "changed": 0,
+   "changedFraction": 0.0,
+   "max": 0,
+   "mean": 0.0,
+   "histogram": {
+    "1-1": 0,
+    "2-2": 0,
+    "3-5": 0,
+    "6-10": 0,
+    "11-50": 0,
+    "51-255": 0
+   }
+  }
+ },
+ "totalChanged": 2864,
+ "compared": 22
+}

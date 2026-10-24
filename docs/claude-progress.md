@@ -2,10 +2,35 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Lighting Phase L0 — citywide lighting map, rule `lighting-city-v1` (2026-10-24) — implemented, for review
+## Lighting Phase L1 — scalable rendering (2026-10-24) — implemented, committed and pushed, for review
+
+[Full report](lighting-city-l1/README.md). Branch `codex/lighting-phase-a2`, on top of L0. **Committed** in the commit after L0 `d5f242b`; `main` was fast-forwarded to this branch and pushed to `origin` (with Phase 0–A3 and L0). Baseline for comparisons: committed A3 `53468b0`
+(exported to ignored `work/lighting-city-l1/before-app`). No runtime data changed (still 273 fixtures).
+
+- **Light index:** 16 fixed slots per 25 m cell → cell header (start, count; RG32F) + one lamp list
+  (R32F); `MAX_PER_CELL` 16 → 32 (loop guard; > 32 still rejects the set, nothing dropped). Today's
+  index 74 KB → 18 KB; rebuilt into the 16-slot form it equals the Phase 0/A1/A2/A3 pinned hashes.
+  Shader key `city-lights-v3`; 20 programs.
+- **Fixture visuals:** per-area meshes → housings/lenses gathered per fixture near the camera (full
+  detail ≤ 250 m, low detail ≤ 600 m, lenses ≤ 1 km, re-gather after 12.5 m; exact capacity, 0 drops)
+  and one halo mesh for all lamps. ≤ 13 meshes regardless of city size.
+- **Test load:** `scripts/lighting-l1/stress-set.ts` → ignored `work/lighting-city-l1/l0-stress-set.json`
+  (25 041 L0 stations at an approximate kerb + occlusion; 8 MB; not runtime data). Dev hook
+  `registries.runtimePlus`; hook also in builds with `VITE_LIGHTING_HOOK=1` (absent otherwise).
+- **Measured (RTX 5070 Ti, production builds, 3 rounds):** 273 before/after p95 −0.4…+0.5 ms, map-ready
+  +91.5 ms (noise ±98), heap −0.02 MB, App +2.5 KB. 273 → 25 314 lamps: p95 −0.6…+0.5 ms, calls +0…+3,
+  night triangles +50…+103 k, swap 130 ms, textures 6 MB, **heap +24.9 MB (gate 10 MB missed)**.
+- **Pixels (273):** 10/22 captures identical; others ≤ 492 px at pole/lens silhouettes 250 m+ away.
+- **Checks:** type check 0 errors; build OK; Vitest 395/395; Playwright 9/9 first run; L0 and L1
+  harnesses byte-identical. Tests adapted to the new format without weakening (list in README).
+- **Decisions open:** memory gate → compact runtime format in L2; night triangle gate (+103 k in one
+  view); keep capacity 32.
+- **Local only:** `.claude/launch.json` + `l1-*` entries; `.gitignore` + `/work/lighting-city-l1/`.
+
+## Lighting Phase L0 — citywide lighting map, rule `lighting-city-v1` (2026-10-24) — approved (user, 2026-10-24)
 
 [Full report](lighting-city-l0/README.md) · map: `node scripts/lighting-city/serve-map.mjs` →
-http://127.0.0.1:5195/. Branch `codex/lighting-phase-a2`. **Nothing committed, pushed or merged.** No
+http://127.0.0.1:5195/. Branch `codex/lighting-phase-a2`. **Committed as `d5f242b`** (with the roadmap). No
 runtime/app change; earlier fixtures, extracts and evidence unchanged (`git diff` empty for them).
 
 - **Decisions** (roadmap §6, user chose the recommendations): untagged streets in an SCB tätort lit;

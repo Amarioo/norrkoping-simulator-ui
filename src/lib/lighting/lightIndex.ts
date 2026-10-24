@@ -10,21 +10,25 @@
  * - Page directory: one R32F texel per chunk of `chunkCells` × `chunkCells` cells over the bounding
  *   rectangle of the non-empty chunks; value = page index, or −1 (EMPTY_PAGE) for a chunk without
  *   lamps. This is the only structure that scales with the bounding rectangle (4 bytes per chunk).
- * - Page atlas: only non-empty chunks; per cell SLOT_TEXELS RGBA texels = MAX_PER_CELL lamp indices,
- *   unused slots −1 (the shader stops at the first negative slot). Pages are laid out in rows of
- *   `pagesPerRow` within the device texture limit.
+ * - Page atlas (RG32F, Lighting Phase L1): only non-empty chunks; one texel per cell = (start, count)
+ *   of the cell's run in the lamp list (count 0 for an empty cell of a non-empty page). Pages are laid
+ *   out in rows of `pagesPerRow` within the device texture limit.
+ * - Lamp list (R32F, L1): every (cell, lamp) entry once, cells in row-major order, lamps of a cell in
+ *   canonical order, wrapped into rows of `listWidth` texels. Memory grows with the actual entries,
+ *   not with a fixed number of slots per cell (Phase 0–A3 stored 16 slots per cell, mostly −1).
  * - Lamp data are stored once (cityLights.packLampData), indexed in canonical-ID order.
  *
  * Determinism: lamps are ordered by canonical ID (UTF-16 code-unit order, never locale or input
  * order); a cell lists its lamps in that order; pages are numbered in (chunk z, chunk x) order. Any
  * permutation of equivalent input produces byte-identical arrays.
  *
- * Capacity: a cell with more than `capacity` contributing lamps is an error. The whole build is
+ * Capacity: a cell with more than `capacity` (MAX_PER_CELL, 32 since L1: the shader's loop guard)
+ * contributing lamps is an error. The whole build is
  * rejected with a conflict report (raw / candidate-retained / candidate-dropped IDs); nothing is
  * truncated. The candidate split (nearest to the cell centre, canonical-ID tie-break) is reported for
  * review only and is never applied: no dropping policy has been approved.
  */
-import { MAX_PER_CELL, SLOT_TEXELS } from './cityLights';
+import { MAX_PER_CELL } from './cityLights';
 
 export const EMPTY_PAGE = -1;
 /** Default chunk side in cells (4 × 25 m = 100 m); see docs/lighting-phase0/README.md. */
@@ -37,6 +41,10 @@ export const MAX_COORDINATE = 10_000;
 export const MAX_CELL_ENTRIES = 4_000_000;
 /** Conflicts listed in full in a report (the count is always complete). */
 export const MAX_REPORTED_CONFLICTS = 200;
+/** Lamp-list row width (texels; capped by the device limit). */
+export const LIST_WIDTH = 4096;
+/** Texels per cell of the Step 6 dense grid (16 slots / 4 channels), for the dense comparison only. */
+const STEP6_SLOT_TEXELS = 4;
 
 export interface IndexLamp {
   /** Canonical, unique ID (registry.ts). */
@@ -84,8 +92,11 @@ export interface IndexStats {
   cellMetres: number;
   pages: number;
   directory: { columns: number; rows: number; bytes: number };
+  /** Page atlas of cell headers (RG32F: start, count). */
   payload: { width: number; height: number; pagesPerRow: number; bytes: number };
-  /** The dense Step 6 rectangle for the same lamps (for comparison; not allocated). */
+  /** Lamp list (R32F): one texel per (cell, lamp) entry. */
+  list: { width: number; height: number; entries: number; bytes: number };
+  /** The dense Step 6 rectangle (16 slots per cell) for the same lamps (comparison; not allocated). */
   denseEquivalent: { columns: number; rows: number; bytes: number };
 }
 export interface SparseLightIndex {
@@ -101,7 +112,11 @@ export interface SparseLightIndex {
   chunkX0: number;
   chunkZ0: number;
   directory: Float32Array;
+  /** Cell headers, 2 floats (start, count) per texel. */
   payload: Float32Array;
+  /** Lamp indices, 1 float per texel, `listWidth` per row. */
+  list: Float32Array;
+  listWidth: number;
   stats: IndexStats;
 }
 export type IndexResult =
@@ -299,11 +314,13 @@ export function buildLightIndex(input: readonly IndexLamp[], options: IndexOptio
   }
   const dirColumns = chunkX1 - chunkX0 + 1,
     dirRows = chunkZ1 - chunkZ0 + 1;
-  const pageWidth = chunkCells * SLOT_TEXELS;
+  const pageWidth = chunkCells;
   const pagesPerRow = Math.max(1, Math.min(pages, Math.floor(maxTex / pageWidth)));
   const pageRows = Math.ceil(pages / pagesPerRow);
   const payloadWidth = Math.max(1, pagesPerRow * pageWidth),
     payloadHeight = Math.max(1, pageRows * chunkCells);
+  const listWidth = Math.max(1, Math.min(LIST_WIDTH, maxTex, entries));
+  const listHeight = Math.max(1, Math.ceil(entries / listWidth));
   const denseColumns = n ? Math.ceil(denseX1 - Math.floor(denseX0)) : 0,
     denseRows = n ? Math.ceil(denseZ1 - Math.floor(denseZ0)) : 0;
   const stats: IndexStats = {
@@ -322,12 +339,13 @@ export function buildLightIndex(input: readonly IndexLamp[], options: IndexOptio
       width: payloadWidth,
       height: payloadHeight,
       pagesPerRow,
-      bytes: payloadWidth * payloadHeight * 16,
+      bytes: payloadWidth * payloadHeight * 8,
     },
+    list: { width: listWidth, height: listHeight, entries, bytes: listWidth * listHeight * 4 },
     denseEquivalent: {
       columns: denseColumns,
       rows: denseRows,
-      bytes: Math.max(1, denseColumns * SLOT_TEXELS) * Math.max(1, denseRows) * 16,
+      bytes: Math.max(1, denseColumns * STEP6_SLOT_TEXELS) * Math.max(1, denseRows) * 16,
     },
   };
   if (conflictCount)
@@ -344,6 +362,9 @@ export function buildLightIndex(input: readonly IndexLamp[], options: IndexOptio
     limits.push(`page directory ${dirColumns}×${dirRows} exceeds max texture size ${maxTex}`);
   if (payloadWidth > maxTex || payloadHeight > maxTex)
     limits.push(`page atlas ${payloadWidth}×${payloadHeight} exceeds max texture size ${maxTex}`);
+  if (listHeight > maxTex)
+    limits.push(`lamp list ${listWidth}×${listHeight} exceeds max texture size ${maxTex}`);
+  if (entries >= 2 ** 24) limits.push(`${entries} cell entries exceed exact float index range`);
   if (pages >= 2 ** 24) limits.push(`${pages} pages exceed exact float index range`);
   if (limits.length) return fail(limits, stats);
 
@@ -351,7 +372,10 @@ export function buildLightIndex(input: readonly IndexLamp[], options: IndexOptio
   const directory = new Float32Array(Math.max(1, dirColumns * dirRows)).fill(EMPTY_PAGE);
   for (const [x, z] of chunkList)
     directory[(z - chunkZ0) * dirColumns + (x - chunkX0)] = pageKeys.get(`${x},${z}`)!;
-  const payload = new Float32Array(payloadWidth * payloadHeight * 4).fill(-1);
+  // Headers default to (0, 0): an empty cell of a non-empty page lists no lamps.
+  const payload = new Float32Array(payloadWidth * payloadHeight * 2);
+  const list = new Float32Array(listWidth * listHeight).fill(-1);
+  for (let k = 0; k < entries; k++) list[k] = el[sorted[k]];
   for (let c = 0; c < cellStarts.length - 1; c++) {
     const first = sorted[cellStarts[c]];
     const cx = ex[first],
@@ -359,11 +383,11 @@ export function buildLightIndex(input: readonly IndexLamp[], options: IndexOptio
     const chx = chunkOf(cx),
       chz = chunkOf(cz);
     const p = pageKeys.get(`${chx},${chz}`)!;
-    const col = ((p % pagesPerRow) * chunkCells + (cx - chx * chunkCells)) * SLOT_TEXELS,
+    const col = (p % pagesPerRow) * chunkCells + (cx - chx * chunkCells),
       row = Math.floor(p / pagesPerRow) * chunkCells + (cz - chz * chunkCells);
-    const base = (row * payloadWidth + col) * 4;
-    for (let j = 0, s = cellStarts[c]; s < cellStarts[c + 1]; s++, j++)
-      payload[base + j] = el[sorted[s]];
+    const base = (row * payloadWidth + col) * 2;
+    payload[base] = cellStarts[c];
+    payload[base + 1] = cellStarts[c + 1] - cellStarts[c];
   }
   return {
     ok: true,
@@ -378,6 +402,8 @@ export function buildLightIndex(input: readonly IndexLamp[], options: IndexOptio
       chunkZ0,
       directory,
       payload,
+      list,
+      listWidth,
       stats,
     },
     errors: [],
@@ -400,13 +426,12 @@ export function lookupLamps(index: SparseLightIndex, x: number, z: number) {
   const page = index.directory[chz * stats.directory.columns + chx];
   if (page < 0) return [];
   const ppr = stats.payload.pagesPerRow;
-  const col = ((page % ppr) * C + (cx - chx * C)) * SLOT_TEXELS,
+  const col = (page % ppr) * C + (cx - chx * C),
     row = Math.floor(page / ppr) * C + (cz - chz * C);
+  const base = (row * stats.payload.width + col) * 2;
+  const start = index.payload[base],
+    count = Math.min(index.payload[base + 1], index.capacity);
   const out: number[] = [];
-  for (let slot = 0; slot < index.capacity; slot++) {
-    const id = index.payload[(row * stats.payload.width + col) * 4 + slot];
-    if (id < 0) break;
-    out.push(id);
-  }
+  for (let k = 0; k < count; k++) out.push(index.list[start + k]);
   return out;
 }

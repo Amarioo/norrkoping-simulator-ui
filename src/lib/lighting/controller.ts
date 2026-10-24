@@ -172,13 +172,14 @@ export function createCityLighting(options: {
     const { index, lampPack } = prepared;
     const { directory, payload } = index.stats;
     const lampTexture = floatTexture(lampPack.data, lampPack.width, lampPack.height);
-    const gridTexture = floatTexture(index.payload, payload.width, payload.height);
+    const gridTexture = floatTexture(index.payload, payload.width, payload.height, 2);
     const pageTexture = floatTexture(
       index.directory,
       Math.max(1, directory.columns),
       Math.max(1, directory.rows),
-      true,
+      1,
     );
+    const listTexture = floatTexture(index.list, index.stats.list.width, index.stats.list.height, 1);
     const visuals = createFixtureVisuals(prepared.fixtures, prepared.lamps, metres);
     visuals.group.traverse((o) => {
       const material = (o as Mesh).material as Material | Material[] | undefined;
@@ -188,20 +189,28 @@ export function createCityLighting(options: {
     let uploadMs: number | null = null;
     if (typeof renderer.initTexture === 'function') {
       const t = now();
-      for (const texture of [lampTexture, gridTexture, pageTexture]) renderer.initTexture(texture);
+      for (const texture of [lampTexture, gridTexture, pageTexture, listTexture])
+        renderer.initTexture(texture);
       uploadMs = now() - t;
     }
     // Swap uniforms and visuals in one step, then release the previous set.
     uniforms.cityLampTex.value = lampTexture;
     uniforms.cityGridTex.value = gridTexture;
     uniforms.cityPageTex.value = pageTexture;
+    uniforms.cityListTex.value = listTexture;
+    uniforms.cityListWidth.value = index.listWidth;
     uniforms.cityGrid.value.set(index.originX, index.originZ, 1 / index.cell, directory.columns);
     uniforms.cityGridRows.value = directory.rows;
     uniforms.cityChunkCells.value = index.chunkCells;
     uniforms.cityPagesPerRow.value = payload.pagesPerRow;
     uniforms.cityLampRows.value = lampPack.rows;
     const previous = street;
-    street = { prepared, textures: [lampTexture, gridTexture, pageTexture], visuals, uploadMs };
+    street = {
+      prepared,
+      textures: [lampTexture, gridTexture, pageTexture, listTexture],
+      visuals,
+      uploadMs,
+    };
     if (previous.visuals) group.remove(previous.visuals.group);
     group.add(visuals.group);
     previous.visuals?.dispose();
@@ -341,6 +350,7 @@ export function createCityLighting(options: {
         pages: { allocated: stats.pages, resident: stats.pages, residency: 'static' },
         directory: stats.directory,
         payload: stats.payload,
+        list: stats.list,
         denseEquivalent: stats.denseEquivalent,
       },
       textures: {
@@ -353,8 +363,9 @@ export function createCityLighting(options: {
         payload: stats && {
           width: stats.payload.width,
           height: stats.payload.height,
-          format: 'RGBA32F',
+          format: 'RG32F',
         },
+        list: stats && { width: stats.list.width, height: stats.list.height, format: 'R32F' },
         directory: stats && {
           width: stats.directory.columns,
           height: stats.directory.rows,
@@ -367,6 +378,7 @@ export function createCityLighting(options: {
         lamp: bytes(0),
         payload: bytes(1),
         directory: bytes(2),
+        list: bytes(3),
         instanceBuffers: visualCounts?.instanceBytes ?? 0,
         fixtureGeometry: visualCounts?.geometryBytes ?? 0,
       },

@@ -12,7 +12,7 @@
  *   grey stubs  rejected or suppressed A1 candidates (reason in __lightingInspection.rejected)
  *   red lines   ways mapped lit=no (explicitly unlit)     grey lines  rendered ways without lit tag
  * Also: the A1 zone boundaries (green lines) and the light-grid occupancy of every non-empty 25 m
- * cell (flat tiles, blue = 1 lamp … red = 16, the shader capacity).
+ * cell (flat tiles, blue = 1 lamp … red = 16 or more; the shader guard is MAX_PER_CELL = 32).
  * `globalThis.__lightingInspection` holds counts, status/overflow, near-capacity cells with their
  * contributing IDs, rejected candidates and the missing-evidence ways.
  */
@@ -35,7 +35,7 @@ import { swerefToScene } from './geo/sweref99tm.js';
 import { A1_ZONES } from './lighting/corridorA1';
 import type { CityLighting } from './lighting/controller';
 import { EMPTY_PAGE } from './lighting/lightIndex';
-import { MAX_PER_CELL, SLOT_TEXELS } from './lighting/cityLights';
+import { MAX_PER_CELL } from './lighting/cityLights';
 import { terrain } from './terrain';
 import { cityJson } from './cityData';
 
@@ -190,14 +190,11 @@ export async function createLightingInspector(lighting: CityLighting) {
         if (page === EMPTY_PAGE) continue;
         for (let lz = 0; lz < C; lz++)
           for (let lx = 0; lx < C; lx++) {
-            const col = ((page % ppr) * C + lx) * SLOT_TEXELS,
+            const col = (page % ppr) * C + lx,
               row = Math.floor(page / ppr) * C + lz;
-            const ids: number[] = [];
-            for (let s = 0; s < index.capacity; s++) {
-              const id = index.payload[(row * width + col) * 4 + s];
-              if (id < 0) break;
-              ids.push(id);
-            }
+            const start = index.payload[(row * width + col) * 2],
+              count = index.payload[(row * width + col) * 2 + 1];
+            const ids = Array.from(index.list.subarray(start, start + count));
             if (ids.length)
               cells.push({
                 x: index.originX + (cx * C + lx) * index.cell,
@@ -231,7 +228,7 @@ export async function createLightingInspector(lighting: CityLighting) {
       heat.setMatrixAt(n, matrix.compose(position, rotation, scale));
       heat.setColorAt(
         n,
-        color.setHSL((1 - (c.ids.length - 1) / (MAX_PER_CELL - 1)) * 0.66, 1, 0.5),
+        color.setHSL((1 - Math.min(1, (c.ids.length - 1) / 15)) * 0.66, 1, 0.5),
       );
     });
     group.add(heat);
@@ -250,7 +247,7 @@ export async function createLightingInspector(lighting: CityLighting) {
     },
     lastRejection: d.lastRejection,
     nearCapacity: cells
-      .filter((c) => c.ids.length >= MAX_PER_CELL - 2)
+      .filter((c) => c.ids.length >= Math.min(14, MAX_PER_CELL - 2))
       .map((c) => ({ cell: [c.x, c.z], count: c.ids.length, ids: c.ids.map((i) => order[i]) })),
     rejected: rejected.map(({ candidate, reason, detail, en }) => ({
       candidate,
