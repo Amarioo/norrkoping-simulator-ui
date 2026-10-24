@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
+  import { Group } from 'three';
   import { T, useTask, useThrelte } from '@threlte/core';
   import { interactivity, type IntersectionEvent } from '@threlte/extras';
   import { createMappedCity } from './mapView';
@@ -9,7 +10,7 @@
   import FreeCamera from './FreeCamera.svelte';
   import { createPublicTransport } from './publicTransport';
   import { terrain } from './terrain';
-  import { createCityLighting } from './lighting/controller';
+  import { createCityLighting, pilotLightingRegistry } from './lighting/controller';
   import { advanceClock, lightingState } from './lighting/state.svelte';
   let {
     focus = 'overview',
@@ -32,11 +33,20 @@
     transport = createTransportModels(),
     signals = createTrafficSignals();
   // Step 6: time of day, street lighting and stadium floodlights (lighting/controller.ts). Every lit
-  // material gets the fixed lighting patch before its first compile.
-  const lighting = createCityLighting({ terrain, stadium: view.stadium, renderer, scene });
-  for (const root of [view.group, transport.group, transit.group, signals.group])
-    lighting.patch(root);
-  lighting.patchMaterials(view.layerMaterials);
+  // material gets the fixed lighting patch before its first compile. Recreating the controller
+  // (development hook below) rebinds the same materials to the new controller's uniforms. The
+  // controller's group lives in a stable root: Threlte keeps every object ever passed to <T is>
+  // until the component unmounts, so swapping `is` would retain each replaced group.
+  const createLighting = () => {
+    const l = createCityLighting({ terrain, stadium: view.stadium, renderer, scene });
+    for (const root of [view.group, transport.group, transit.group, signals.group]) l.patch(root);
+    l.patchMaterials(view.layerMaterials);
+    return l;
+  };
+  const lightingRoot = new Group();
+  lightingRoot.name = 'city-lighting-root';
+  let lighting = createLighting();
+  lightingRoot.add(lighting.group);
   const lightingInput = () => ({
     date: lightingState.date,
     minutes: lightingState.minutes,
@@ -51,7 +61,25 @@
       state: lightingState,
       settle: () => lighting.settle(),
       describe: () => lighting.describe(),
-      uniforms: lighting.uniforms,
+      get uniforms() {
+        return lighting.uniforms;
+      },
+      get group() {
+        return lighting.group;
+      },
+      renderer,
+      // Lighting Phase 0 lifecycle checks (tests/lighting.spec.ts): full controller recreation on the
+      // live scene, and a complete street-lighting rebuild/swap from the same registry.
+      recreate() {
+        lightingRoot.remove(lighting.group);
+        lighting.dispose();
+        lighting = createLighting();
+        lightingRoot.add(lighting.group);
+        lighting.set(lightingInput());
+        lighting.settle();
+        return lighting.describe();
+      },
+      reloadStreetLighting: () => lighting.replaceStreetLighting(pilotLightingRegistry(terrain)).ok,
     };
   const buildMs = performance.now() - buildStarted;
   // Ground, roads and buildings are built in workers and arrive after the first frames.
@@ -126,7 +154,7 @@
 
 <FreeCamera {focus} bind:follow bind:travel />
 <!-- Sun, sky, hemisphere/ambient light, fog and fixtures: lighting/controller.ts (Step 6). -->
-<T is={lighting.group} />
+<T is={lightingRoot} />
 <!-- Ground and river cutouts are rendered together by mapView. -->
 <T is={view.group} />{#if inspector}<T is={inspector.group} />{/if}<T is={transport.group} onclick={pick} /><T is={signals.group} /><T
   is={transit.group}

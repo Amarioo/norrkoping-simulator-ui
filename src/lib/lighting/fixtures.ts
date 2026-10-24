@@ -8,6 +8,9 @@
  * - Visuals: one InstancedMesh per (pilot, type) for the housing and one for the lens, plus one halo
  *   InstancedMesh per pilot (camera-facing glare quads with a minimum pixel size). Housings are hidden
  *   beyond POLE_DETAIL (1.25 km) and lenses beyond LENS_DETAIL; halos stay as distant city lights.
+ *   Detail distances are measured to the nearest point of the group's bounds (Phase 0; previously to
+ *   the group centre, which could hide a nearby fixture of a wide group). Halo bounds carry a margin
+ *   for the screen-space minimum quad size, so a partly visible halo is not frustum-culled.
  */
 import {
   AdditiveBlending,
@@ -24,6 +27,7 @@ import {
   PlaneGeometry,
   Quaternion,
   ShaderMaterial,
+  Sphere,
   SRGBColorSpace,
   Vector3,
   type Camera,
@@ -48,6 +52,8 @@ export interface FixtureRecord {
       };
   /** Mapped (OSM node) or estimated; method, source and uncertainty: streetlights-provenance.json. */
   placement: 'mapped' | 'estimated';
+  /** Canonical registry ID (registry.ts), when the record came through the registry. */
+  canonicalId?: string;
   heightM: number;
   cct: number;
   candela: number;
@@ -59,6 +65,11 @@ export const FIXTURES = lighting.fixtures as unknown as FixtureRecord[];
 export const LIGHTING_META = lighting.meta;
 export const POLE_DETAIL = 50;
 export const LENS_DETAIL = 140;
+/**
+ * Extra halo bounding radius (scene units): the halo quad keeps haloMinPx on screen, so its world size
+ * grows with distance (≈ 1.8 units at the 1 700-unit fog end for a 1 000 px viewport).
+ */
+export const HALO_CULL_MARGIN = 2;
 
 /** Night-adapted white point; keeps warm lamps warm without a yellow wash on grass/pavements. */
 export const WHITE_POINT_K = 3500;
@@ -89,6 +100,12 @@ function blackBody(kelvin: number): [number, number, number] {
   );
   const m = Math.max(c.r, c.g, c.b);
   return [c.r / m, c.g / m, c.b / m];
+}
+
+/** Grows `target` to contain `s` (an empty target becomes `s`). */
+function unionSphere(target: Sphere, s: Sphere) {
+  if (target.isEmpty()) target.copy(s);
+  else target.union(s);
 }
 
 interface TypeShape {
@@ -134,6 +151,8 @@ const TYPE_SHAPE: Record<string, () => TypeShape> = {
   'park-lantern-4m': () => SHAPES.lantern(4.2, 0),
   'entrance-post-4m': () => SHAPES.lantern(4, 0),
 };
+/** Fixture types the renderer has geometry for (registry validation). */
+export const FIXTURE_TYPES = Object.keys(TYPE_SHAPE);
 
 /** Mounting surface height of a fixture (scene units). */
 export function mountHeight(f: FixtureRecord, terrain: TerrainService) {
@@ -263,7 +282,7 @@ export function createFixtureVisuals(
   );
   const pilots = new Map<
     string,
-    { group: Group; centre: Vector3; bodies: InstancedMesh[]; lenses: InstancedMesh[] }
+    { group: Group; bounds: Sphere; bodies: InstancedMesh[]; lenses: InstancedMesh[] }
   >();
   const m = new Matrix4(),
     q = new Quaternion(),
@@ -277,7 +296,7 @@ export function createFixtureVisuals(
     pg.name = 'lighting-' + pilot;
     const entry = {
       group: pg,
-      centre: new Vector3(),
+      bounds: new Sphere(),
       bodies: [] as InstancedMesh[],
       lenses: [] as InstancedMesh[],
     };
@@ -296,9 +315,9 @@ export function createFixtureVisuals(
         q.setFromAxisAngle(up, f.heading ?? 0);
         m.compose(v.set(f.x, lamps[i].baseY, f.z), q, s);
         body.setMatrixAt(k, m);
-        entry.centre.add(v);
       });
       body.computeBoundingSphere();
+      unionSphere(entry.bounds, body.boundingSphere!);
       body.userData.fixtureIds = list.map((i) => fixtures[i].id);
       pg.add(body);
       entry.bodies.push(body);
@@ -311,11 +330,11 @@ export function createFixtureVisuals(
           lens.setMatrixAt(k, m);
         });
         lens.computeBoundingSphere();
+        unionSphere(entry.bounds, lens.boundingSphere!);
         pg.add(lens);
         entry.lenses.push(lens);
       }
     }
-    entry.centre.divideScalar(indices.length);
     const halo = own(new InstancedMesh(own(new PlaneGeometry(1, 1)), haloMaterial, indices.length));
     const colors = new Float32Array(indices.length * 3);
     indices.forEach((i, k) => {
@@ -328,6 +347,8 @@ export function createFixtureVisuals(
     });
     halo.instanceColor = new InstancedBufferAttribute(colors, 3);
     halo.computeBoundingSphere();
+    halo.boundingSphere!.radius += HALO_CULL_MARGIN;
+    unionSphere(entry.bounds, halo.boundingSphere!);
     halo.renderOrder = 5;
     halo.frustumCulled = true;
     pg.add(halo);
@@ -346,7 +367,8 @@ export function createFixtureVisuals(
       fog: { near: number; far: number },
     ) {
       for (const p of pilots.values()) {
-        const d = camera.position.distanceTo(p.centre);
+        // Distance to the nearest point of the group's bounds (0 inside): never farther than any member.
+        const d = Math.max(0, camera.position.distanceTo(p.bounds.center) - p.bounds.radius);
         for (const b of p.bodies) b.visible = d < POLE_DETAIL;
         for (const l of p.lenses) l.visible = d < LENS_DETAIL;
       }
@@ -364,13 +386,42 @@ export function createFixtureVisuals(
         for (const c of p.group.children)
           if (c instanceof InstancedMesh && c.material === haloMaterial) c.visible = showHalos;
     },
-    counts: () => ({
-      pilots: pilots.size,
-      instancedMeshes: [...pilots.values()].reduce(
-        (s, p) => s + p.bodies.length + p.lenses.length + 1,
-        0,
-      ),
-    }),
+    counts: () => {
+      let instancedMeshes = 0,
+        instances = 0,
+        detailInstances = 0,
+        instanceBytes = 0,
+        geometryBytes = 0;
+      const geometries = new Set<BufferGeometry>();
+      group.traverse((o) => {
+        if (!(o instanceof InstancedMesh)) return;
+        instancedMeshes++;
+        instances += o.count;
+        if (o.visible) detailInstances += o.count;
+        instanceBytes +=
+          o.instanceMatrix.array.byteLength + (o.instanceColor?.array.byteLength ?? 0);
+        geometries.add(o.geometry);
+      });
+      for (const g of geometries) {
+        for (const a of Object.values(g.attributes))
+          geometryBytes += (a.array as ArrayLike<number> & { byteLength: number }).byteLength;
+        geometryBytes += g.index?.array.byteLength ?? 0;
+      }
+      return {
+        groups: pilots.size,
+        instancedMeshes,
+        instances,
+        /** Instances in meshes enabled by detail/day-night state (before frustum culling). */
+        detailInstances,
+        instanceBytes,
+        geometryBytes,
+        groupBounds: [...pilots].map(([id, p]) => ({
+          id,
+          centre: p.bounds.center.toArray(),
+          radius: p.bounds.radius,
+        })),
+      };
+    },
     dispose() {
       owned.forEach((r) => r.dispose());
       group.clear();

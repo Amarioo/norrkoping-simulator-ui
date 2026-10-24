@@ -1,0 +1,651 @@
+{
+ "note": "Lighting Phase 0 pilot registry manifest. Inputs are pinned by SHA-256 and git blob ID; outputs are the packed runtime arrays. Regenerate only deliberately (scripts/lighting-phase0/manifest.test.ts).",
+ "registry": {
+  "version": 1,
+  "horizontalCrs": "EPSG:3006",
+  "verticalDatum": "RH2000",
+  "generator": {
+   "script": "scripts/step6/import-streetlights.mjs",
+   "version": "step6-pilot-v1",
+   "seed": null,
+   "method": "osm-node",
+   "station": null
+  },
+  "sources": [
+   {
+    "id": "osm-lighting-snapshot",
+    "dataset": "OpenStreetMap (Overpass API)",
+    "license": "ODbL-1.0 © OpenStreetMap contributors",
+    "snapshot": {
+     "kungsgatan": "2026-10-21T15:53:24Z",
+     "stromparken": "2026-10-21T15:54:26Z",
+     "idrottsparken": "2026-10-21T15:54:26Z"
+    }
+   },
+   {
+    "id": "osm-map",
+    "dataset": "OpenStreetMap map snapshot",
+    "license": "ODbL-1.0",
+    "snapshot": "2026-10-16T13:35:36Z"
+   }
+  ],
+  "counts": {
+   "records": 105,
+   "fixtures": 105,
+   "mapped": 10,
+   "estimated": 95,
+   "byGroup": {
+    "kungsgatan": {
+     "mapped": 1,
+     "estimated": 41
+    },
+    "stromparken": {
+     "mapped": 9,
+     "estimated": 16
+    },
+    "idrottsparken": {
+     "mapped": 0,
+     "estimated": 38
+    }
+   },
+   "bySupport": {
+    "ground": 98,
+    "bridge-deck": 7
+   }
+  },
+  "compactRegistrySha256": "563bf74ee33c5e0156c7cb5755c3ab82e460aa50a1ee5087d0b4442857e8b123"
+ },
+ "inputs": [
+  {
+   "path": "src/lib/data/streetlights.json",
+   "bytes": 36987,
+   "sha256": "3c90719f166b3ff38443d0e38848e158fdf0d373730a122015dfccd2d18a36f7",
+   "gitBlob": "e49579840b5e2ee3a1d736195210e56d68e00a0c"
+  },
+  {
+   "path": "src/lib/data/streetlights-provenance.json",
+   "bytes": 68633,
+   "sha256": "f096e181b2bd0347cf73f59d151c27802ccc5f857a31a0f9d4d6bcf1f0de0b14",
+   "gitBlob": "b56a2a36b91a80f83f7c2c5131eabc8ba16147da"
+  },
+  {
+   "path": "scripts/data/norrkoping-lighting-source.json",
+   "bytes": 133262,
+   "sha256": "8f1e0f46c8afcf2b84f001b23cc22153f972d95124077fe046676ba9c75147fe",
+   "gitBlob": "d2e5050a68a79e715a28b2ac105b3d78ff62a163"
+  },
+  {
+   "path": "src/lib/data/norrkoping-map.json",
+   "bytes": 22659735,
+   "sha256": "454ecbe0d86e64b366e7c3ac3f93664077d29cfe667ee44fc8950c944a77ac90",
+   "gitBlob": "ac190315f7b49eec43b06726409e382a9d5afcb5"
+  },
+  {
+   "path": "src/lib/data/terrain.json",
+   "bytes": 34840381,
+   "sha256": "819369455be48b8f958faad294d7190886d05050af698e84287d778b8f2222b5",
+   "gitBlob": "bfc9bcc2e37f67dcd1b5ecf63e7c0ae98c34dc55"
+  },
+  {
+   "path": "src/lib/data/bridge-profiles.json",
+   "bytes": 95271,
+   "sha256": "fe877f8a53ef4e06c80371769fed5ee1e1bb8381f107abea4f4d6bc251846218",
+   "gitBlob": "1ddbd91c9b4035a268c09ba6fc529d3252d6815c"
+  },
+  {
+   "path": "scripts/step6/import-streetlights.mjs",
+   "bytes": 19744,
+   "sha256": "f9aacc88b954557705af50d1661dd6e658a34793c97d87aad94c8a50ae29f302",
+   "gitBlob": "fc51a9d347da30dc799ae9da9b7baec99e4be386"
+  },
+  {
+   "path": "scripts/step6/pilots.mjs",
+   "bytes": 832,
+   "sha256": "2ebf8b9c5c6374e0435524a87fec963750c47093c39bf2464ba6614307f180b3",
+   "gitBlob": "d19a132a7af537825d0bdb471f8dd67b619c767d"
+  },
+  {
+   "path": "src/lib/geo/sweref99tm.js",
+   "bytes": 5847,
+   "sha256": "31d9fead2a8dfb291adb6161c7a3fbc5d7a07ba70f1252d917e016b15789d010",
+   "gitBlob": "9b59f417d79ddfb7c70cae1a05b26bedb454c968"
+  }
+ ],
+ "code": [
+  {
+   "path": "src/lib/lighting/registry.ts",
+   "bytes": 21425,
+   "sha256": "c48b0bbe6d87233b032ca0323b27f9543970a11d236d4ce8e77c2836ad0da0de",
+   "gitBlob": "fbe61c2f8b3472d602d4d9f1a842a8cab56fe998"
+  },
+  {
+   "path": "src/lib/lighting/streetLighting.ts",
+   "bytes": 4487,
+   "sha256": "8cb62f0d36d393653169f70605fa0c682f0a79774c3f674aaec0fefd2545e041",
+   "gitBlob": "e47f2de05c60e2802be75cf09055f9347c32a75b"
+  },
+  {
+   "path": "src/lib/lighting/lightIndex.ts",
+   "bytes": 16151,
+   "sha256": "aff40abf4ed84a7343aacd67f720c7d28830a2786ae21dd7dc2128e148b484d4",
+   "gitBlob": "8d5a8a7aef8420ce64edd45f1985b533c3c4b431"
+  },
+  {
+   "path": "src/lib/lighting/cityLights.ts",
+   "bytes": 20046,
+   "sha256": "1a97516da9ca797b47049d12eef474c0e031781d509b4e253379bc608475b9ac",
+   "gitBlob": "fc78fea90067c3451449dbc473c72b51cdad1dbd"
+  },
+  {
+   "path": "src/lib/lighting/fixtures.ts",
+   "bytes": 15734,
+   "sha256": "981a669be330d26c72c0d87433671c5846d6a812274f3c7a8f0a2c8a5569762a",
+   "gitBlob": "c68b28adc2dc41e3ad77e5c9e5f5c04d9c0eb0a5"
+  },
+  {
+   "path": "src/lib/lighting/controller.ts",
+   "bytes": 17940,
+   "sha256": "2fabda2fa86bcc4667c997643b45e2ee2fa99df705e8d0e30770840133da6a4d",
+   "gitBlob": "e7acd61bca1cd9d87e1eb80df41723ee323683a5"
+  }
+ ],
+ "terrainRevision": "lm-dtm-b976b87a19446d3d-surface-70559be0073d",
+ "explicitUnlitWays": {
+  "kungsgatan": [
+   "way/182081653"
+  ],
+  "stromparken": [],
+  "idrottsparken": []
+ },
+ "outputs": {
+  "hashes": {
+   "lampTexture": "a4f7afb980317a8892c12909ee3d824e205db45ea2653857d8ef471a9f4763a5",
+   "pagePayload": "741eb6ce193636dfd76b6b13f9fcb4696a581f88b372b4aca8f33a8f65bb2bab",
+   "pageDirectory": "9719f4c6aaca1d7993342ec5ef08e6101a68f6a153b348723d199432438b5084",
+   "canonicalOrder": "02ba30928294517ec729748c0b4ae8e01f7fc9327879dd7097ac7476eaa74fae"
+  },
+  "index": {
+   "chunkCells": 4,
+   "cellMetres": 25,
+   "capacity": 16,
+   "cellEntries": 806,
+   "nonEmptyCells": 279,
+   "maxRawOccupancy": 8,
+   "maxRetainedOccupancy": 8,
+   "histogram": [
+    0,
+    67,
+    71,
+    57,
+    28,
+    33,
+    14,
+    7,
+    2
+   ],
+   "overflowCells": 0,
+   "pages": {
+    "allocated": 40,
+    "resident": 40,
+    "residency": "static"
+   },
+   "directory": {
+    "columns": 10,
+    "rows": 13,
+    "bytes": 520
+   },
+   "payload": {
+    "width": 640,
+    "height": 4,
+    "pagesPerRow": 40,
+    "bytes": 40960
+   },
+   "denseEquivalent": {
+    "columns": 36,
+    "rows": 50,
+    "bytes": 115200
+   }
+  },
+  "textures": {
+   "lamp": {
+    "width": 8,
+    "height": 105,
+    "rows": 105,
+    "format": "RGBA32F"
+   },
+   "payload": {
+    "width": 640,
+    "height": 4,
+    "format": "RGBA32F"
+   },
+   "directory": {
+    "width": 10,
+    "height": 13,
+    "format": "R32F"
+   },
+   "maxTextureSize": 2048
+  }
+ },
+ "crosswalk": [
+  [
+   "estimate:step6-pilot-v1:idrottsparken:entrance-0",
+   "idrottsparken:est-entrance-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:idrottsparken:entrance-1",
+   "idrottsparken:est-entrance-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:idrottsparken:entrance-2",
+   "idrottsparken:est-entrance-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/118180748:s0",
+   "kungsgatan:est-way-118180748-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/1246956893:s6",
+   "idrottsparken:est-way-1246956893-6"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/1246956893:s7",
+   "idrottsparken:est-way-1246956893-7"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/1246956893:s8",
+   "idrottsparken:est-way-1246956893-8"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/1246956893:s9",
+   "idrottsparken:est-way-1246956893-9"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/1353086228:s0",
+   "kungsgatan:est-way-1353086228-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/1353086228:s1",
+   "kungsgatan:est-way-1353086228-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/1353086228:s2",
+   "kungsgatan:est-way-1353086228-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/243821537:s10",
+   "stromparken:est-way-243821537-10"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/243821537:s11",
+   "stromparken:est-way-243821537-11"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/243821537:s6",
+   "stromparken:est-way-243821537-6"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/243821537:s9",
+   "stromparken:est-way-243821537-9"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/26154767:s0",
+   "stromparken:est-way-26154767-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/26154805:s0",
+   "kungsgatan:est-way-26154805-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/26154805:s1",
+   "kungsgatan:est-way-26154805-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/26154805:s2",
+   "kungsgatan:est-way-26154805-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/26154805:s3",
+   "kungsgatan:est-way-26154805-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/26154805:s4",
+   "kungsgatan:est-way-26154805-4"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/26154805:s5",
+   "kungsgatan:est-way-26154805-5"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/26154805:s6",
+   "kungsgatan:est-way-26154805-6"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/283456849:s1",
+   "kungsgatan:est-way-283456849-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/283456849:s2",
+   "kungsgatan:est-way-283456849-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/283456852:s0",
+   "kungsgatan:est-way-283456852-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/283456853:s3",
+   "kungsgatan:est-way-283456853-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/283456855:s0",
+   "kungsgatan:est-way-283456855-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285084138:s0",
+   "idrottsparken:est-way-285084138-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285084138:s1",
+   "idrottsparken:est-way-285084138-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285084138:s2",
+   "idrottsparken:est-way-285084138-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285084138:s3",
+   "idrottsparken:est-way-285084138-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285084145:s0",
+   "idrottsparken:est-way-285084145-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285084145:s1",
+   "idrottsparken:est-way-285084145-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285084145:s2",
+   "idrottsparken:est-way-285084145-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285084145:s3",
+   "idrottsparken:est-way-285084145-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285827323:s2",
+   "idrottsparken:est-way-285827323-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285827323:s3",
+   "idrottsparken:est-way-285827323-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285827323:s4",
+   "idrottsparken:est-way-285827323-4"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285827323:s5",
+   "idrottsparken:est-way-285827323-5"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285827323:s6",
+   "idrottsparken:est-way-285827323-6"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/285827323:s7",
+   "idrottsparken:est-way-285827323-7"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/286469468:s0",
+   "idrottsparken:est-way-286469468-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/286471811:s1",
+   "idrottsparken:est-way-286471811-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/286471811:s3",
+   "idrottsparken:est-way-286471811-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/286471813:s1",
+   "idrottsparken:est-way-286471813-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/286471813:s2",
+   "idrottsparken:est-way-286471813-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/286471813:s3",
+   "idrottsparken:est-way-286471813-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/286471813:s4",
+   "idrottsparken:est-way-286471813-4"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/286471813:s5",
+   "idrottsparken:est-way-286471813-5"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/297613950:s1",
+   "kungsgatan:est-way-297613950-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/297613950:s3",
+   "kungsgatan:est-way-297613950-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/297613952:s0",
+   "kungsgatan:est-way-297613952-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/297613952:s1",
+   "kungsgatan:est-way-297613952-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/297615552:s1",
+   "kungsgatan:est-way-297615552-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/297615552:s3",
+   "kungsgatan:est-way-297615552-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/350376447:s0",
+   "stromparken:est-way-350376447-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/415773604:s0",
+   "idrottsparken:est-way-415773604-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/4390719:s0",
+   "idrottsparken:est-way-4390719-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/4438273:s1",
+   "idrottsparken:est-way-4438273-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/4438273:s2",
+   "idrottsparken:est-way-4438273-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/4438273:s3",
+   "idrottsparken:est-way-4438273-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/4438273:s4",
+   "idrottsparken:est-way-4438273-4"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/4438273:s5",
+   "idrottsparken:est-way-4438273-5"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/444474476:s0",
+   "kungsgatan:est-way-444474476-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/444474484:s1",
+   "kungsgatan:est-way-444474484-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/444474488:s0",
+   "kungsgatan:est-way-444474488-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/444474544:s1",
+   "kungsgatan:est-way-444474544-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/444474544:s2",
+   "kungsgatan:est-way-444474544-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/449067051:s0",
+   "idrottsparken:est-way-449067051-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/449067051:s1",
+   "idrottsparken:est-way-449067051-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s0",
+   "stromparken:est-way-92429395-0"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s1",
+   "stromparken:est-way-92429395-1"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s2",
+   "stromparken:est-way-92429395-2"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s3",
+   "stromparken:est-way-92429395-3"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s4",
+   "stromparken:est-way-92429395-4"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s5",
+   "stromparken:est-way-92429395-5"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s6",
+   "stromparken:est-way-92429395-6"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s7",
+   "stromparken:est-way-92429395-7"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s8",
+   "stromparken:est-way-92429395-8"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/92429395:s9",
+   "stromparken:est-way-92429395-9"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s10",
+   "kungsgatan:est-way-94463450-10"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s11",
+   "kungsgatan:est-way-94463450-11"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s12",
+   "kungsgatan:est-way-94463450-12"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s13",
+   "kungsgatan:est-way-94463450-13"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s14",
+   "kungsgatan:est-way-94463450-14"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s15",
+   "kungsgatan:est-way-94463450-15"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s16",
+   "kungsgatan:est-way-94463450-16"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s17",
+   "kungsgatan:est-way-94463450-17"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s18",
+   "kungsgatan:est-way-94463450-18"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s19",
+   "kungsgatan:est-way-94463450-19"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s20",
+   "kungsgatan:est-way-94463450-20"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s7",
+   "kungsgatan:est-way-94463450-7"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s8",
+   "kungsgatan:est-way-94463450-8"
+  ],
+  [
+   "estimate:step6-pilot-v1:way/94463450:s9",
+   "kungsgatan:est-way-94463450-9"
+  ],
+  [
+   "osm:node/11097913749",
+   "stromparken:osm-node-11097913749"
+  ],
+  [
+   "osm:node/11097919659",
+   "stromparken:osm-node-11097919659"
+  ],
+  [
+   "osm:node/11098661608",
+   "stromparken:osm-node-11098661608"
+  ],
+  [
+   "osm:node/11098661612",
+   "stromparken:osm-node-11098661612"
+  ],
+  [
+   "osm:node/11098661613",
+   "stromparken:osm-node-11098661613"
+  ],
+  [
+   "osm:node/11098661614",
+   "stromparken:osm-node-11098661614"
+  ],
+  [
+   "osm:node/11098661615",
+   "stromparken:osm-node-11098661615"
+  ],
+  [
+   "osm:node/11098661616",
+   "stromparken:osm-node-11098661616"
+  ],
+  [
+   "osm:node/11098661617",
+   "stromparken:osm-node-11098661617"
+  ],
+  [
+   "osm:node/11231112374",
+   "kungsgatan:osm-node-11231112374"
+  ]
+ ]
+}

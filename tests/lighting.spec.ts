@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import { test, expect } from '@playwright/test';
 
 // Step 6: time of day, presets, floodlights and pilot views (dev server: __cityLighting is DEV-only).
@@ -157,4 +158,149 @@ test('stadium and lighting recover after WebGL context loss', async ({ page }) =
       ),
     )
     .toBeGreaterThan(500000);
+});
+
+// Lighting Phase 0: real-scene lifecycle. Ten complete street-lighting rebuilds (atomic swaps), ten
+// full controller recreations (shared scene materials rebound to the new uniforms) and a WebGL
+// context loss/restore on the live map. GPU resource counts must return to their plateau, no shader
+// program may be added, and the rendered night view must stay pixel-identical. Traffic is disabled
+// (API aborted) so the frame is static.
+test('street lighting survives rebuilds, controller recreation and context restoration', async ({
+  page,
+}) => {
+  test.setTimeout(240000);
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.route('**/api/**', (route) => route.abort());
+  await page.setViewportSize({ width: 1400, height: 1000 });
+  await page.goto('/?date=2026-10-21&time=21:30&stadium=event');
+  await expect(page.locator('[data-map-ready="true"]')).toBeVisible({ timeout: 120000 });
+  await page.addStyleTag({ content: '.connection-banner{display:none!important}' });
+  await page.locator('.label-toggle input').uncheck();
+  type Hooks = {
+    settle(): void;
+    describe(): {
+      fixtures: number;
+      programs: number;
+      reboundMaterials: number;
+      streetLighting: { status: string; builds: number };
+    };
+    recreate(): unknown;
+    reloadStreetLighting(): boolean;
+    renderer: { info: { memory: { geometries: number; textures: number }; programs: unknown[] } };
+  };
+  const pose = async () =>
+    page.evaluate(() => {
+      const { camera, controls } = (globalThis as any).__cityCamera;
+      camera.position.fromArray([-21.86, 0.8894, -6.4]); // docs/step6/poses.json kungsgatan-street
+      controls.target.fromArray([-23.3, 0.7587, -11.5]);
+      controls.update();
+      (globalThis as any).__cityLighting.settle();
+    });
+  const frames = (n = 4) =>
+    page.evaluate(
+      (k) =>
+        new Promise<void>((resolve) => {
+          const step = (i: number) => (i ? requestAnimationFrame(() => step(i - 1)) : resolve());
+          step(k);
+        }),
+      n,
+    );
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('HeapProfiler.enable');
+  await cdp.send('Performance.enable');
+  const heapMB = async () => {
+    for (let i = 0; i < 2; i++) await cdp.send('HeapProfiler.collectGarbage');
+    const m = await cdp.send('Performance.getMetrics');
+    return m.metrics.find((x) => x.name === 'JSHeapUsedSize')!.value / 1e6;
+  };
+  const resources = async () => ({
+    ...(await page.evaluate(() => {
+      const l = (globalThis as unknown as { __cityLighting: Hooks }).__cityLighting;
+      const d = l.describe();
+      return {
+        geometries: l.renderer.info.memory.geometries,
+        textures: l.renderer.info.memory.textures,
+        programs: l.renderer.info.programs.length,
+        fixtures: d.fixtures,
+        rebound: d.reboundMaterials,
+        status: d.streetLighting.status,
+      };
+    })),
+    heapMB: await heapMB(),
+  });
+  const shot = async () => {
+    await pose();
+    await page.waitForTimeout(800);
+    await frames();
+    return page.locator('.map-panel').screenshot();
+  };
+  await pose();
+  await page.waitForTimeout(3000);
+  const before = await shot();
+  const base = await resources();
+  expect(base).toMatchObject({ fixtures: 105, status: 'ok' });
+  const series: Awaited<ReturnType<typeof resources>>[] = [];
+  for (let i = 0; i < 10; i++) {
+    expect(
+      await page.evaluate(() =>
+        (globalThis as unknown as { __cityLighting: Hooks }).__cityLighting.reloadStreetLighting(),
+      ),
+    ).toBe(true);
+    await frames();
+    series.push(await resources());
+  }
+  for (let i = 0; i < 10; i++) {
+    await page.evaluate(() =>
+      (globalThis as unknown as { __cityLighting: Hooks }).__cityLighting.recreate(),
+    );
+    await frames();
+    series.push(await resources());
+  }
+  fs.mkdirSync('test-results/lighting-phase0', { recursive: true });
+  fs.writeFileSync(
+    'test-results/lighting-phase0/lifecycle-series.json',
+    JSON.stringify({ base, series }, null, 1),
+  );
+  // Plateau: every cycle ends with the same GPU object counts as the first cycle, never above the
+  // start (the initial precompile also uploaded geometry of detail-hidden fixture meshes, which a
+  // rebuilt set uploads only when drawn), and no program is added.
+  for (const s of series) {
+    expect(s.geometries).toBe(series[0].geometries);
+    expect(s.textures).toBe(series[0].textures);
+    expect(s.geometries).toBeLessThanOrEqual(base.geometries);
+    expect(s.textures).toBeLessThanOrEqual(base.textures);
+    expect(s.programs).toBe(base.programs);
+    expect(s.fixtures).toBe(105);
+  }
+  // Post-GC JS heap: no growth trend across the 20 cycles (first vs last cycle within 2 MB).
+  expect(Math.abs(series.at(-1)!.heapMB - series[0].heapMB)).toBeLessThan(2);
+  // The recreated controller rebound the shared map/stadium materials patched by its predecessor.
+  expect(series.at(-1)!.rebound).toBeGreaterThan(100);
+  const afterCycles = await shot();
+  expect(afterCycles.equals(before)).toBe(true);
+  await page.evaluate(async () => {
+    const canvas = document.querySelector('.map-panel canvas') as HTMLCanvasElement;
+    const gl = canvas.getContext('webgl2')!;
+    const extension = gl.getExtension('WEBGL_lose_context')!;
+    const lost = new Promise((r) => canvas.addEventListener('webglcontextlost', r, { once: true }));
+    const restored = new Promise((r) =>
+      canvas.addEventListener('webglcontextrestored', r, { once: true }),
+    );
+    extension.loseContext();
+    await lost;
+    await new Promise((r) => setTimeout(r, 200));
+    extension.restoreContext();
+    await restored;
+  });
+  await page.waitForTimeout(3000);
+  const afterRestore = await shot();
+  expect(afterRestore.equals(before)).toBe(true);
+  expect((await resources()).status).toBe('ok');
+  fs.mkdirSync('test-results/lighting-phase0', { recursive: true });
+  fs.writeFileSync(
+    'test-results/lighting-phase0/lifecycle.json',
+    JSON.stringify({ base, series, afterRestore: await resources() }, null, 1),
+  );
+  expect(errors).toEqual([]);
 });

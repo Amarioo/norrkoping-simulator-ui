@@ -1,0 +1,201 @@
+{
+ "note": "SYNTHETIC LOAD for index sizing only: hypothetical centreline emitters along OSM lit=yes ways at pilot spacing/range. Not a fixture inventory; not rendered; positions, sides, staggering and photometry of real lamps are unknown.",
+ "source": {
+  "file": "work/step62/osm-research.json",
+  "sha256": "dcce1dccb424a89b6e7c6a71010f38b6c1ff55e8a3f8b6e4b07b2c79e4794eda",
+  "osmBase": "2026-10-23T09:05:06Z"
+ },
+ "rules": {
+  "road": {
+   "spacingM": 30,
+   "rangeM": 30
+  },
+  "minor": {
+   "spacingM": 27,
+   "rangeM": 24
+  },
+  "path": {
+   "spacingM": 22,
+   "rangeM": 16
+  },
+  "clip": "supported-map envelope (rectangle)"
+ },
+ "ways": 1824,
+ "waysOfOtherClasses": 216,
+ "lamps": 8937,
+ "cellEntries": 66879,
+ "nonEmptyCells": 18550,
+ "histogram": [
+  0,
+  2572,
+  4238,
+  4625,
+  2018,
+  1784,
+  1436,
+  624,
+  451,
+  344,
+  165,
+  114,
+  77,
+  43,
+  21,
+  20,
+  14,
+  2,
+  1,
+  1
+ ],
+ "maxRawOccupancy": 19,
+ "overflowCells": 4,
+ "denseEquivalent": {
+  "columns": 504,
+  "rows": 435,
+  "bytes": 14031360
+ },
+ "lampTextureBytes": 1143936,
+ "byChunkSize": [
+  {
+   "chunkCells": 1,
+   "chunkMetres": 25,
+   "accepted": false,
+   "buildMs": 42.8,
+   "pages": 18550,
+   "payloadBytes": 1310720,
+   "payloadTexture": [
+    16384,
+    5
+   ],
+   "directoryBytes": 876960,
+   "directoryTexture": [
+    504,
+    435
+   ],
+   "pageFill": 1
+  },
+  {
+   "chunkCells": 2,
+   "chunkMetres": 50,
+   "accepted": false,
+   "buildMs": 29.5,
+   "pages": 5927,
+   "payloadBytes": 1572864,
+   "payloadTexture": [
+    16384,
+    6
+   ],
+   "directoryBytes": 219744,
+   "directoryTexture": [
+    252,
+    218
+   ],
+   "pageFill": 0.782
+  },
+  {
+   "chunkCells": 4,
+   "chunkMetres": 100,
+   "accepted": false,
+   "buildMs": 24.9,
+   "pages": 1992,
+   "payloadBytes": 2097152,
+   "payloadTexture": [
+    16384,
+    8
+   ],
+   "directoryBytes": 55880,
+   "directoryTexture": [
+    127,
+    110
+   ],
+   "pageFill": 0.582
+  },
+  {
+   "chunkCells": 8,
+   "chunkMetres": 200,
+   "accepted": false,
+   "buildMs": 23,
+   "pages": 677,
+   "payloadBytes": 4194304,
+   "payloadTexture": [
+    16384,
+    16
+   ],
+   "directoryBytes": 14336,
+   "directoryTexture": [
+    64,
+    56
+   ],
+   "pageFill": 0.428
+  },
+  {
+   "chunkCells": 10,
+   "chunkMetres": 250,
+   "accepted": false,
+   "buildMs": 19.8,
+   "pages": 500,
+   "payloadBytes": 5235200,
+   "payloadTexture": [
+    16360,
+    20
+   ],
+   "directoryBytes": 9180,
+   "directoryTexture": [
+    51,
+    45
+   ],
+   "pageFill": 0.371
+  }
+ ],
+ "determinismSha256": "bc6064c4df1c9f27eb41ea2b8381e78ac33034b9e6118ea78e86abd35328645a",
+ "conflictSample": [
+  {
+   "cell": [
+    -8,
+    -24
+   ],
+   "centreEN": [
+    568842.6,
+    6495576.3
+   ],
+   "raw": 18,
+   "ways": 12
+  },
+  {
+   "cell": [
+    -8,
+    -23
+   ],
+   "centreEN": [
+    568842.6,
+    6495551.3
+   ],
+   "raw": 19,
+   "ways": 15
+  },
+  {
+   "cell": [
+    -8,
+    -22
+   ],
+   "centreEN": [
+    568842.6,
+    6495526.3
+   ],
+   "raw": 17,
+   "ways": 10
+  },
+  {
+   "cell": [
+    77,
+    104
+   ],
+   "centreEN": [
+    570966.8,
+    6492377.4
+   ],
+   "raw": 17,
+   "ways": 13
+  }
+ ]
+}

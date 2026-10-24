@@ -1,0 +1,1685 @@
+{
+ "note": "Medians across runs of per-run median/p95 rAF intervals (ms). Series 1 and 2: 3 alternating rounds each on the pre-stable-root build; confirmation: 2 rounds on the final build (App-DzHoMlAp.js). pooled = all 8 rounds.",
+ "series1": {
+  "files": [
+   "work/lighting-phase0/perf/frontend-r1.json"
+  ],
+  "runs": [
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "before",
+    "round": 1,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3960.6,
+    "heapMB": 114.897,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "after",
+    "round": 1,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3984.2,
+    "heapMB": 115.293,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "after",
+    "round": 2,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3919.1,
+    "heapMB": 115.322,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "before",
+    "round": 2,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3951.9,
+    "heapMB": 114.936,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "before",
+    "round": 3,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3904.3,
+    "heapMB": 114.94,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "after",
+    "round": 3,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3894.8,
+    "heapMB": 115.292,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   }
+  ],
+  "mapReady": {
+   "before": 3951.9,
+   "after": 3919.1,
+   "delta": -32.8
+  },
+  "heap": {
+   "before": 114.936,
+   "after": 115.293,
+   "delta": 0.357
+  },
+  "frames": {
+   "day": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.4,
+      "p95": 2.9
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.9
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": 0
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.6,
+      "p95": 6.6
+     },
+     "after": {
+      "median": 5.5,
+      "p95": 6.5
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.1
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.4,
+      "p95": 7.7
+     },
+     "after": {
+      "median": 6.2,
+      "p95": 7.5
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": -0.2
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.7
+     },
+     "after": {
+      "median": 2.2,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.2,
+      "p95": 8.4
+     },
+     "after": {
+      "median": 7.3,
+      "p95": 8.7
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.3
+     }
+    }
+   },
+   "night-off": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.3,
+      "p95": 3
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.9
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.1
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.9,
+      "p95": 7
+     },
+     "after": {
+      "median": 5.8,
+      "p95": 6.9
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.1
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.3,
+      "p95": 7.6
+     },
+     "after": {
+      "median": 6.4,
+      "p95": 7.5
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": -0.1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.1,
+      "p95": 2.6
+     },
+     "after": {
+      "median": 2.2,
+      "p95": 2.8
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.2
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.3,
+      "p95": 8.6
+     },
+     "after": {
+      "median": 7.7,
+      "p95": 10.8
+     },
+     "delta": {
+      "median": 0.4,
+      "p95": 2.2
+     }
+    }
+   },
+   "night-match": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.3,
+      "p95": 2.9
+     },
+     "after": {
+      "median": 2.2,
+      "p95": 2.6
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.3
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.8,
+      "p95": 6.6
+     },
+     "after": {
+      "median": 5.5,
+      "p95": 6.5
+     },
+     "delta": {
+      "median": -0.3,
+      "p95": -0.1
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.7,
+      "p95": 8.4
+     },
+     "after": {
+      "median": 6.5,
+      "p95": 7.3
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": -1.1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.6
+     },
+     "after": {
+      "median": 2.1,
+      "p95": 2.6
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": 0
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.3,
+      "p95": 8.7
+     },
+     "after": {
+      "median": 7.2,
+      "p95": 8.3
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.4
+     }
+    }
+   }
+  },
+  "pairedRounds": [
+   {
+    "round": "work/lighting-phase0/perf/frontend-r1.json#1",
+    "mapReadyDelta": 23.6,
+    "heapDelta": 0.397,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/stromparken": -0.6,
+     "day/idrottsparkenPitch": -1.5,
+     "day/parken": -0.4,
+     "day/city": 0.2,
+     "night-off/kungsgatan": -0.1,
+     "night-off/stromparken": -0.4,
+     "night-off/idrottsparkenPitch": 4.2,
+     "night-off/parken": 0.1,
+     "night-off/city": 2.3,
+     "night-match/kungsgatan": -0.3,
+     "night-match/stromparken": 0.5,
+     "night-match/idrottsparkenPitch": -2.7,
+     "night-match/parken": -0.2,
+     "night-match/city": -0.6
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-r1.json#2",
+    "mapReadyDelta": -32.8,
+    "heapDelta": 0.387,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/stromparken": 0,
+     "day/idrottsparkenPitch": 2.1,
+     "day/parken": 0,
+     "day/city": 0.4,
+     "night-off/kungsgatan": -0.2,
+     "night-off/stromparken": 0,
+     "night-off/idrottsparkenPitch": -0.8,
+     "night-off/parken": 0.3,
+     "night-off/city": 2.4,
+     "night-match/kungsgatan": -0.3,
+     "night-match/stromparken": -0.4,
+     "night-match/idrottsparkenPitch": 0.2,
+     "night-match/parken": -0.3,
+     "night-match/city": 0.4
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-r1.json#3",
+    "mapReadyDelta": -9.5,
+    "heapDelta": 0.352,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/stromparken": -0.3,
+     "day/idrottsparkenPitch": -0.1,
+     "day/parken": 0.1,
+     "day/city": 0,
+     "night-off/kungsgatan": -0.2,
+     "night-off/stromparken": -0.5,
+     "night-off/idrottsparkenPitch": 0,
+     "night-off/parken": 0,
+     "night-off/city": -0.3,
+     "night-match/kungsgatan": 0.1,
+     "night-match/stromparken": 0.4,
+     "night-match/idrottsparkenPitch": -0.9,
+     "night-match/parken": 0,
+     "night-match/city": -2.6
+    }
+   }
+  ],
+  "gates": {
+   "mapReadyDeltaMs": -32.8,
+   "maxP95DeltaMs": 2.2,
+   "maxDayP95DeltaMs": 0.3,
+   "heapDeltaMB": 0.357,
+   "failedRuns": 0
+  }
+ },
+ "series2": {
+  "files": [
+   "work/lighting-phase0/perf/frontend-r2.json"
+  ],
+  "runs": [
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "before",
+    "round": 1,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3874.5,
+    "heapMB": 114.94,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "after",
+    "round": 1,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3953.9,
+    "heapMB": 115.32,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "after",
+    "round": 2,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3874.7,
+    "heapMB": 115.3,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "before",
+    "round": 2,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3874,
+    "heapMB": 114.966,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "before",
+    "round": 3,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3906.1,
+    "heapMB": 114.902,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "after",
+    "round": 3,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3835.3,
+    "heapMB": 115.298,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   }
+  ],
+  "mapReady": {
+   "before": 3874.5,
+   "after": 3874.7,
+   "delta": 0.2
+  },
+  "heap": {
+   "before": 114.94,
+   "after": 115.3,
+   "delta": 0.36
+  },
+  "frames": {
+   "day": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.3,
+      "p95": 2.9
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.9
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.6,
+      "p95": 6.4
+     },
+     "after": {
+      "median": 5.7,
+      "p95": 6.4
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.2,
+      "p95": 7.2
+     },
+     "after": {
+      "median": 6.3,
+      "p95": 7.1
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": -0.1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.8
+     },
+     "after": {
+      "median": 2.2,
+      "p95": 2.8
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.2,
+      "p95": 8.3
+     },
+     "after": {
+      "median": 7.3,
+      "p95": 8.7
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.4
+     }
+    }
+   },
+   "night-off": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.3,
+      "p95": 2.9
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.8
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.1
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.8,
+      "p95": 6.8
+     },
+     "after": {
+      "median": 5.8,
+      "p95": 6.9
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.1
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.3,
+      "p95": 7.3
+     },
+     "after": {
+      "median": 6.3,
+      "p95": 7.3
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.1,
+      "p95": 2.8
+     },
+     "after": {
+      "median": 2.1,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.1
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.4,
+      "p95": 8.6
+     },
+     "after": {
+      "median": 7.2,
+      "p95": 8.1
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": -0.5
+     }
+    }
+   },
+   "night-match": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.9
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.9
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.7,
+      "p95": 6.7
+     },
+     "after": {
+      "median": 5.7,
+      "p95": 6.8
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.1
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.6,
+      "p95": 7.5
+     },
+     "after": {
+      "median": 6.5,
+      "p95": 7.3
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.2
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.7
+     },
+     "after": {
+      "median": 2.1,
+      "p95": 2.6
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.1
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.2,
+      "p95": 8.3
+     },
+     "after": {
+      "median": 7.1,
+      "p95": 8.1
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.2
+     }
+    }
+   }
+  },
+  "pairedRounds": [
+   {
+    "round": "work/lighting-phase0/perf/frontend-r2.json#1",
+    "mapReadyDelta": 79.4,
+    "heapDelta": 0.38,
+    "p95Delta": {
+     "day/kungsgatan": -0.1,
+     "day/stromparken": 0,
+     "day/idrottsparkenPitch": 0.1,
+     "day/parken": 0,
+     "day/city": 0,
+     "night-off/kungsgatan": -0.1,
+     "night-off/stromparken": 0.6,
+     "night-off/idrottsparkenPitch": 0.2,
+     "night-off/parken": -0.3,
+     "night-off/city": -0.1,
+     "night-match/kungsgatan": 0.3,
+     "night-match/stromparken": -2.2,
+     "night-match/idrottsparkenPitch": -0.1,
+     "night-match/parken": -0.1,
+     "night-match/city": 0.2
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-r2.json#2",
+    "mapReadyDelta": 0.7,
+    "heapDelta": 0.333,
+    "p95Delta": {
+     "day/kungsgatan": 0.1,
+     "day/stromparken": 0.1,
+     "day/idrottsparkenPitch": 0.3,
+     "day/parken": -0.1,
+     "day/city": 0.6,
+     "night-off/kungsgatan": 0.1,
+     "night-off/stromparken": 0.1,
+     "night-off/idrottsparkenPitch": 0.6,
+     "night-off/parken": 0.1,
+     "night-off/city": 0.1,
+     "night-match/kungsgatan": -0.1,
+     "night-match/stromparken": 0.5,
+     "night-match/idrottsparkenPitch": 0.1,
+     "night-match/parken": 0,
+     "night-match/city": 0.4
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-r2.json#3",
+    "mapReadyDelta": -70.8,
+    "heapDelta": 0.397,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/stromparken": -0.8,
+     "day/idrottsparkenPitch": -0.4,
+     "day/parken": 0.1,
+     "day/city": -0.5,
+     "night-off/kungsgatan": -0.4,
+     "night-off/stromparken": -0.9,
+     "night-off/idrottsparkenPitch": -0.3,
+     "night-off/parken": -0.1,
+     "night-off/city": -0.9,
+     "night-match/kungsgatan": 0,
+     "night-match/stromparken": 0.8,
+     "night-match/idrottsparkenPitch": -0.8,
+     "night-match/parken": -0.1,
+     "night-match/city": -0.2
+    }
+   }
+  ],
+  "gates": {
+   "mapReadyDeltaMs": 0.2,
+   "maxP95DeltaMs": 0.4,
+   "maxDayP95DeltaMs": 0.4,
+   "heapDeltaMB": 0.36,
+   "failedRuns": 0
+  }
+ },
+ "confirmation": {
+  "files": [
+   "work/lighting-phase0/perf/frontend-final.json"
+  ],
+  "runs": [
+   {
+    "file": "work/lighting-phase0/perf/frontend-final.json",
+    "label": "before",
+    "round": 1,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3951.1,
+    "heapMB": 114.901,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-final.json",
+    "label": "after",
+    "round": 1,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 4087.6,
+    "heapMB": 115.284,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-final.json",
+    "label": "after",
+    "round": 2,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3922.1,
+    "heapMB": 115.299,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-final.json",
+    "label": "before",
+    "round": 2,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3995.7,
+    "heapMB": 114.944,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   }
+  ],
+  "mapReady": {
+   "before": 3973.4,
+   "after": 4004.85,
+   "delta": 31.45
+  },
+  "heap": {
+   "before": 114.922,
+   "after": 115.292,
+   "delta": 0.37
+  },
+  "frames": {
+   "day": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.65
+     },
+     "after": {
+      "median": 2.2,
+      "p95": 2.65
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.4,
+      "p95": 6.7
+     },
+     "after": {
+      "median": 5.85,
+      "p95": 7.45
+     },
+     "delta": {
+      "median": 0.45,
+      "p95": 0.75
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 5.95,
+      "p95": 7.05
+     },
+     "after": {
+      "median": 6.15,
+      "p95": 7.7
+     },
+     "delta": {
+      "median": 0.2,
+      "p95": 0.65
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.1,
+      "p95": 2.6
+     },
+     "after": {
+      "median": 2.1,
+      "p95": 2.6
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.2,
+      "p95": 8.55
+     },
+     "after": {
+      "median": 7.05,
+      "p95": 8.35
+     },
+     "delta": {
+      "median": -0.15,
+      "p95": -0.2
+     }
+    }
+   },
+   "night-off": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.65
+     },
+     "after": {
+      "median": 2.2,
+      "p95": 2.65
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.55,
+      "p95": 7.05
+     },
+     "after": {
+      "median": 5.4,
+      "p95": 6.65
+     },
+     "delta": {
+      "median": -0.15,
+      "p95": -0.4
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.35,
+      "p95": 7.6
+     },
+     "after": {
+      "median": 6.55,
+      "p95": 8.5
+     },
+     "delta": {
+      "median": 0.2,
+      "p95": 0.9
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.05,
+      "p95": 2.45
+     },
+     "after": {
+      "median": 2.1,
+      "p95": 2.75
+     },
+     "delta": {
+      "median": 0.05,
+      "p95": 0.3
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.15,
+      "p95": 8.5
+     },
+     "after": {
+      "median": 7.35,
+      "p95": 8.5
+     },
+     "delta": {
+      "median": 0.2,
+      "p95": 0
+     }
+    }
+   },
+   "night-match": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.15,
+      "p95": 2.55
+     },
+     "after": {
+      "median": 2.2,
+      "p95": 2.6
+     },
+     "delta": {
+      "median": 0.05,
+      "p95": 0.05
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.3,
+      "p95": 6.05
+     },
+     "after": {
+      "median": 5.55,
+      "p95": 7.25
+     },
+     "delta": {
+      "median": 0.25,
+      "p95": 1.2
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.05,
+      "p95": 7.9
+     },
+     "after": {
+      "median": 6.25,
+      "p95": 7.8
+     },
+     "delta": {
+      "median": 0.2,
+      "p95": -0.1
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.1,
+      "p95": 2.6
+     },
+     "after": {
+      "median": 2.05,
+      "p95": 2.55
+     },
+     "delta": {
+      "median": -0.05,
+      "p95": -0.05
+     }
+    },
+    "city": {
+     "before": {
+      "median": 6.95,
+      "p95": 8.7
+     },
+     "after": {
+      "median": 6.8,
+      "p95": 8.05
+     },
+     "delta": {
+      "median": -0.15,
+      "p95": -0.65
+     }
+    }
+   }
+  },
+  "pairedRounds": [
+   {
+    "round": "work/lighting-phase0/perf/frontend-final.json#1",
+    "mapReadyDelta": 136.5,
+    "heapDelta": 0.384,
+    "p95Delta": {
+     "day/kungsgatan": -0.3,
+     "day/stromparken": 2,
+     "day/idrottsparkenPitch": 0.1,
+     "day/parken": -0.1,
+     "day/city": -1.1,
+     "night-off/kungsgatan": 0,
+     "night-off/stromparken": -1.2,
+     "night-off/idrottsparkenPitch": -0.1,
+     "night-off/parken": 0.2,
+     "night-off/city": -0.4,
+     "night-match/kungsgatan": 0.1,
+     "night-match/stromparken": 1.8,
+     "night-match/idrottsparkenPitch": 0.1,
+     "night-match/parken": -0.2,
+     "night-match/city": -0.2
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-final.json#2",
+    "mapReadyDelta": -73.6,
+    "heapDelta": 0.355,
+    "p95Delta": {
+     "day/kungsgatan": 0.3,
+     "day/stromparken": -0.5,
+     "day/idrottsparkenPitch": 1.2,
+     "day/parken": 0.1,
+     "day/city": 0.7,
+     "night-off/kungsgatan": 0,
+     "night-off/stromparken": 0.4,
+     "night-off/idrottsparkenPitch": 1.9,
+     "night-off/parken": 0.4,
+     "night-off/city": 0.4,
+     "night-match/kungsgatan": 0,
+     "night-match/stromparken": 0.6,
+     "night-match/idrottsparkenPitch": -0.3,
+     "night-match/parken": 0.1,
+     "night-match/city": -1.1
+    }
+   }
+  ],
+  "gates": {
+   "mapReadyDeltaMs": 31.45,
+   "maxP95DeltaMs": 1.2,
+   "maxDayP95DeltaMs": 0.75,
+   "heapDeltaMB": 0.37,
+   "failedRuns": 0
+  }
+ },
+ "pooled": {
+  "files": [
+   "work/lighting-phase0/perf/frontend-r1.json",
+   "work/lighting-phase0/perf/frontend-r2.json",
+   "work/lighting-phase0/perf/frontend-final.json"
+  ],
+  "runs": [
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "before",
+    "round": 1,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3960.6,
+    "heapMB": 114.897,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "after",
+    "round": 1,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3984.2,
+    "heapMB": 115.293,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "after",
+    "round": 2,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3919.1,
+    "heapMB": 115.322,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "before",
+    "round": 2,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3951.9,
+    "heapMB": 114.936,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "before",
+    "round": 3,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3904.3,
+    "heapMB": 114.94,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r1.json",
+    "label": "after",
+    "round": 3,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3894.8,
+    "heapMB": 115.292,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "before",
+    "round": 1,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3874.5,
+    "heapMB": 114.94,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "after",
+    "round": 1,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3953.9,
+    "heapMB": 115.32,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "after",
+    "round": 2,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3874.7,
+    "heapMB": 115.3,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "before",
+    "round": 2,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3874,
+    "heapMB": 114.966,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "before",
+    "round": 3,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3906.1,
+    "heapMB": 114.902,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-r2.json",
+    "label": "after",
+    "round": 3,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3835.3,
+    "heapMB": 115.298,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-final.json",
+    "label": "before",
+    "round": 1,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3951.1,
+    "heapMB": 114.901,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-final.json",
+    "label": "after",
+    "round": 1,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 4087.6,
+    "heapMB": 115.284,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-final.json",
+    "label": "after",
+    "round": 2,
+    "order": 0,
+    "failed": null,
+    "mapReadyMs": 3922.1,
+    "heapMB": 115.299,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   },
+   {
+    "file": "work/lighting-phase0/perf/frontend-final.json",
+    "label": "before",
+    "round": 2,
+    "order": 1,
+    "failed": null,
+    "mapReadyMs": 3995.7,
+    "heapMB": 114.944,
+    "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+    "browser": "156.0.4314.42"
+   }
+  ],
+  "mapReady": {
+   "before": 3928.6,
+   "after": 3920.6,
+   "delta": -8
+  },
+  "heap": {
+   "before": 114.938,
+   "after": 115.299,
+   "delta": 0.361
+  },
+  "frames": {
+   "day": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.3,
+      "p95": 2.9
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.9
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.6,
+      "p95": 6.55
+     },
+     "after": {
+      "median": 5.5,
+      "p95": 6.45
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.1
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.2,
+      "p95": 7.2
+     },
+     "after": {
+      "median": 6.2,
+      "p95": 7.4
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.2
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.75
+     },
+     "after": {
+      "median": 2.2,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.05
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.2,
+      "p95": 8.4
+     },
+     "after": {
+      "median": 7.3,
+      "p95": 8.7
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.3
+     }
+    }
+   },
+   "night-off": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.3,
+      "p95": 2.95
+     },
+     "after": {
+      "median": 2.3,
+      "p95": 2.8
+     },
+     "delta": {
+      "median": 0,
+      "p95": -0.15
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.85,
+      "p95": 6.95
+     },
+     "after": {
+      "median": 5.75,
+      "p95": 6.8
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.15
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.3,
+      "p95": 7.35
+     },
+     "after": {
+      "median": 6.4,
+      "p95": 7.7
+     },
+     "delta": {
+      "median": 0.1,
+      "p95": 0.35
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.1,
+      "p95": 2.6
+     },
+     "after": {
+      "median": 2.1,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": 0,
+      "p95": 0.1
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.3,
+      "p95": 8.6
+     },
+     "after": {
+      "median": 7.35,
+      "p95": 8.5
+     },
+     "delta": {
+      "median": 0.05,
+      "p95": -0.1
+     }
+    }
+   },
+   "night-match": {
+    "kungsgatan": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.85
+     },
+     "after": {
+      "median": 2.25,
+      "p95": 2.7
+     },
+     "delta": {
+      "median": 0.05,
+      "p95": -0.15
+     }
+    },
+    "stromparken": {
+     "before": {
+      "median": 5.7,
+      "p95": 6.45
+     },
+     "after": {
+      "median": 5.65,
+      "p95": 6.85
+     },
+     "delta": {
+      "median": -0.05,
+      "p95": 0.4
+     }
+    },
+    "idrottsparkenPitch": {
+     "before": {
+      "median": 6.55,
+      "p95": 8.1
+     },
+     "after": {
+      "median": 6.5,
+      "p95": 7.3
+     },
+     "delta": {
+      "median": -0.05,
+      "p95": -0.8
+     }
+    },
+    "parken": {
+     "before": {
+      "median": 2.2,
+      "p95": 2.7
+     },
+     "after": {
+      "median": 2.1,
+      "p95": 2.6
+     },
+     "delta": {
+      "median": -0.1,
+      "p95": -0.1
+     }
+    },
+    "city": {
+     "before": {
+      "median": 7.25,
+      "p95": 8.3
+     },
+     "after": {
+      "median": 7.05,
+      "p95": 8.1
+     },
+     "delta": {
+      "median": -0.2,
+      "p95": -0.2
+     }
+    }
+   }
+  },
+  "pairedRounds": [
+   {
+    "round": "work/lighting-phase0/perf/frontend-r1.json#1",
+    "mapReadyDelta": 23.6,
+    "heapDelta": 0.397,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/stromparken": -0.6,
+     "day/idrottsparkenPitch": -1.5,
+     "day/parken": -0.4,
+     "day/city": 0.2,
+     "night-off/kungsgatan": -0.1,
+     "night-off/stromparken": -0.4,
+     "night-off/idrottsparkenPitch": 4.2,
+     "night-off/parken": 0.1,
+     "night-off/city": 2.3,
+     "night-match/kungsgatan": -0.3,
+     "night-match/stromparken": 0.5,
+     "night-match/idrottsparkenPitch": -2.7,
+     "night-match/parken": -0.2,
+     "night-match/city": -0.6
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-r1.json#2",
+    "mapReadyDelta": -32.8,
+    "heapDelta": 0.387,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/stromparken": 0,
+     "day/idrottsparkenPitch": 2.1,
+     "day/parken": 0,
+     "day/city": 0.4,
+     "night-off/kungsgatan": -0.2,
+     "night-off/stromparken": 0,
+     "night-off/idrottsparkenPitch": -0.8,
+     "night-off/parken": 0.3,
+     "night-off/city": 2.4,
+     "night-match/kungsgatan": -0.3,
+     "night-match/stromparken": -0.4,
+     "night-match/idrottsparkenPitch": 0.2,
+     "night-match/parken": -0.3,
+     "night-match/city": 0.4
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-r1.json#3",
+    "mapReadyDelta": -9.5,
+    "heapDelta": 0.352,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/stromparken": -0.3,
+     "day/idrottsparkenPitch": -0.1,
+     "day/parken": 0.1,
+     "day/city": 0,
+     "night-off/kungsgatan": -0.2,
+     "night-off/stromparken": -0.5,
+     "night-off/idrottsparkenPitch": 0,
+     "night-off/parken": 0,
+     "night-off/city": -0.3,
+     "night-match/kungsgatan": 0.1,
+     "night-match/stromparken": 0.4,
+     "night-match/idrottsparkenPitch": -0.9,
+     "night-match/parken": 0,
+     "night-match/city": -2.6
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-r2.json#1",
+    "mapReadyDelta": 79.4,
+    "heapDelta": 0.38,
+    "p95Delta": {
+     "day/kungsgatan": -0.1,
+     "day/stromparken": 0,
+     "day/idrottsparkenPitch": 0.1,
+     "day/parken": 0,
+     "day/city": 0,
+     "night-off/kungsgatan": -0.1,
+     "night-off/stromparken": 0.6,
+     "night-off/idrottsparkenPitch": 0.2,
+     "night-off/parken": -0.3,
+     "night-off/city": -0.1,
+     "night-match/kungsgatan": 0.3,
+     "night-match/stromparken": -2.2,
+     "night-match/idrottsparkenPitch": -0.1,
+     "night-match/parken": -0.1,
+     "night-match/city": 0.2
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-r2.json#2",
+    "mapReadyDelta": 0.7,
+    "heapDelta": 0.333,
+    "p95Delta": {
+     "day/kungsgatan": 0.1,
+     "day/stromparken": 0.1,
+     "day/idrottsparkenPitch": 0.3,
+     "day/parken": -0.1,
+     "day/city": 0.6,
+     "night-off/kungsgatan": 0.1,
+     "night-off/stromparken": 0.1,
+     "night-off/idrottsparkenPitch": 0.6,
+     "night-off/parken": 0.1,
+     "night-off/city": 0.1,
+     "night-match/kungsgatan": -0.1,
+     "night-match/stromparken": 0.5,
+     "night-match/idrottsparkenPitch": 0.1,
+     "night-match/parken": 0,
+     "night-match/city": 0.4
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-r2.json#3",
+    "mapReadyDelta": -70.8,
+    "heapDelta": 0.397,
+    "p95Delta": {
+     "day/kungsgatan": 0,
+     "day/stromparken": -0.8,
+     "day/idrottsparkenPitch": -0.4,
+     "day/parken": 0.1,
+     "day/city": -0.5,
+     "night-off/kungsgatan": -0.4,
+     "night-off/stromparken": -0.9,
+     "night-off/idrottsparkenPitch": -0.3,
+     "night-off/parken": -0.1,
+     "night-off/city": -0.9,
+     "night-match/kungsgatan": 0,
+     "night-match/stromparken": 0.8,
+     "night-match/idrottsparkenPitch": -0.8,
+     "night-match/parken": -0.1,
+     "night-match/city": -0.2
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-final.json#1",
+    "mapReadyDelta": 136.5,
+    "heapDelta": 0.384,
+    "p95Delta": {
+     "day/kungsgatan": -0.3,
+     "day/stromparken": 2,
+     "day/idrottsparkenPitch": 0.1,
+     "day/parken": -0.1,
+     "day/city": -1.1,
+     "night-off/kungsgatan": 0,
+     "night-off/stromparken": -1.2,
+     "night-off/idrottsparkenPitch": -0.1,
+     "night-off/parken": 0.2,
+     "night-off/city": -0.4,
+     "night-match/kungsgatan": 0.1,
+     "night-match/stromparken": 1.8,
+     "night-match/idrottsparkenPitch": 0.1,
+     "night-match/parken": -0.2,
+     "night-match/city": -0.2
+    }
+   },
+   {
+    "round": "work/lighting-phase0/perf/frontend-final.json#2",
+    "mapReadyDelta": -73.6,
+    "heapDelta": 0.355,
+    "p95Delta": {
+     "day/kungsgatan": 0.3,
+     "day/stromparken": -0.5,
+     "day/idrottsparkenPitch": 1.2,
+     "day/parken": 0.1,
+     "day/city": 0.7,
+     "night-off/kungsgatan": 0,
+     "night-off/stromparken": 0.4,
+     "night-off/idrottsparkenPitch": 1.9,
+     "night-off/parken": 0.4,
+     "night-off/city": 0.4,
+     "night-match/kungsgatan": 0,
+     "night-match/stromparken": 0.6,
+     "night-match/idrottsparkenPitch": -0.3,
+     "night-match/parken": 0.1,
+     "night-match/city": -1.1
+    }
+   }
+  ],
+  "gates": {
+   "mapReadyDeltaMs": -8,
+   "maxP95DeltaMs": 0.4,
+   "maxDayP95DeltaMs": 0.3,
+   "heapDeltaMB": 0.361,
+   "failedRuns": 0
+  }
+ }
+}

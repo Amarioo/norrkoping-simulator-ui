@@ -6,9 +6,12 @@
  * Lambert, Phong, Toon) gets one fixed shader patch (patchMaterial) that adds:
  *
  * 1. Street lamps from a world-space light grid. Lamps live in a float texture (LAMP_TEXELS texels
- *    per lamp); the grid texture lists up to MAX_PER_CELL lamp indices per 25 m cell (a lamp is listed
- *    in every cell its range touches). A fragment evaluates only its own cell's lamps, so the cost per
- *    pixel is bounded (≤ 16) however many fixtures exist; no CPU selection, no popping.
+ *    per lamp, wrapped into further column blocks beyond the device texture height); every 25 m cell
+ *    lists up to MAX_PER_CELL lamp indices (a lamp is listed in every cell its range touches). A
+ *    fragment evaluates only its own cell's lamps, so the cost per pixel is bounded (≤ 16) however
+ *    many fixtures exist; no CPU selection, no popping. Since Lighting Phase 0 the cells are stored
+ *    sparsely (lightIndex.ts): a page directory (one texel per chunk of chunkCells² cells, −1 =
+ *    empty) points into a page atlas that holds only chunks containing lit cells.
  *    Each lamp has a luminaire profile (full-cutoff street / lantern), inverse-square falloff in
  *    metres with a smooth range window, 16 horizontal occlusion sectors from building footprints
  *    (no light behind façades or through buildings) and, for bridge-deck lamps, no light below the
@@ -30,6 +33,7 @@ import {
   Matrix3,
   Matrix4,
   NearestFilter,
+  RedFormat,
   RGBAFormat,
   Vector4,
   type Material,
@@ -37,6 +41,8 @@ import {
 
 export const LAMP_TEXELS = 8;
 export const MAX_PER_CELL = 16;
+/** RGBA texels holding one cell's MAX_PER_CELL lamp slots. */
+export const SLOT_TEXELS = MAX_PER_CELL / 4;
 export const SECTORS = 16;
 export const STADIUM_MAX = 16;
 export const STADIUM_ROOFS = 8;
@@ -88,12 +94,22 @@ export interface StadiumRoof {
 export function createLightingUniforms() {
   const empty = new DataTexture(new Float32Array([-1, -1, -1, -1]), 1, 1, RGBAFormat, FloatType);
   empty.needsUpdate = true;
+  const noPages = new DataTexture(new Float32Array([-1]), 1, 1, RedFormat, FloatType);
+  noPages.needsUpdate = true;
   return {
     cityLampTex: { value: empty as DataTexture },
+    /** Page atlas: SLOT_TEXELS RGBA texels per cell, chunkCells × chunkCells cells per page. */
     cityGridTex: { value: empty as DataTexture },
-    /** originX, originZ, 1 / cell size, columns (scene units). */
+    /** Page directory (R32F): page index of every chunk, −1 for an empty chunk. */
+    cityPageTex: { value: noPages as DataTexture },
+    /** Directory originX, originZ (scene units, chunk-aligned), 1 / cell size, columns (chunks). */
     cityGrid: { value: new Vector4(0, 0, 1, 0) },
+    /** Directory rows (chunks). */
     cityGridRows: { value: 0 },
+    /** Cells per chunk side, pages per atlas row, lamp atlas rows (column-block height). */
+    cityChunkCells: { value: 1 },
+    cityPagesPerRow: { value: 1 },
+    cityLampRows: { value: 1 },
     cityLampLevel: { value: 0 },
     /** Lamp slots per grid cell, a uniform so the shader loop stays dynamic (not unrolled). */
     cityCellSlots: { value: MAX_PER_CELL },
@@ -115,12 +131,27 @@ export function createLightingUniforms() {
 }
 export type LightingUniforms = ReturnType<typeof createLightingUniforms>;
 
-/** Packs lamps into the lamp texture (LAMP_TEXELS texels per row, one row per lamp). */
-export function packLamps(lamps: ShaderLamp[]) {
-  const rows = Math.max(1, lamps.length);
-  const data = new Float32Array(LAMP_TEXELS * 4 * rows);
+/**
+ * Lamp texture layout: lamp i occupies LAMP_TEXELS texels of row (i mod rows) in column block
+ * floor(i / rows), rows = min(count, maxTextureSize). Up to maxTextureSize lamps this is exactly the
+ * Step 6 layout (LAMP_TEXELS × count). Throws before allocating when the atlas cannot fit the device.
+ */
+export function lampLayout(count: number, maxTextureSize: number) {
+  const rows = Math.max(1, Math.min(count, maxTextureSize));
+  const blocks = Math.max(1, Math.ceil(count / rows));
+  const width = blocks * LAMP_TEXELS;
+  if (width > maxTextureSize || count >= 2 ** 24)
+    throw new Error(
+      `${count} lamps exceed the lamp atlas limit for max texture size ${maxTextureSize}`,
+    );
+  return { rows, width, height: rows };
+}
+/** Packs lamps (in index order) into RGBA32F lamp atlas data. */
+export function packLampData(lamps: ShaderLamp[], maxTextureSize = 16384) {
+  const { rows, width, height } = lampLayout(lamps.length, maxTextureSize);
+  const data = new Float32Array(width * height * 4);
   lamps.forEach((l, i) => {
-    const o = i * LAMP_TEXELS * 4;
+    const o = ((i % rows) * width + Math.floor(i / rows) * LAMP_TEXELS) * 4;
     data.set([l.x, l.y, l.z, l.rangeM], o);
     data.set(
       [l.color[0] * l.candela, l.color[1] * l.candela, l.color[2] * l.candela, l.profile],
@@ -132,90 +163,24 @@ export function packLamps(lamps: ShaderLamp[]) {
     );
     for (let s = 0; s < SECTORS; s++) data[o + 12 + s] = l.occlusionM[s] ?? l.rangeM;
   });
-  const texture = new DataTexture(data, LAMP_TEXELS, rows, RGBAFormat, FloatType);
+  return { data, width, height, rows };
+}
+/**
+ * Float data texture read with texelFetch only (no filtering, no mipmaps). The typed array stays on
+ * the texture: WebGL context restoration re-uploads from it, so it must never be released on upload.
+ */
+export function floatTexture(data: Float32Array, width: number, height: number, red = false) {
+  const texture = new DataTexture(data, width, height, red ? RedFormat : RGBAFormat, FloatType);
   texture.minFilter = texture.magFilter = NearestFilter;
+  texture.generateMipmaps = false;
   texture.needsUpdate = true;
   return texture;
 }
-export interface LightGrid {
-  originX: number;
-  originZ: number;
-  cell: number;
-  columns: number;
-  rows: number;
-  /** Lamp indices per cell (row-major), at most MAX_PER_CELL each. */
-  cells: number[][];
-  /** Cells whose lamp list was truncated to MAX_PER_CELL (should be 0). */
-  overflow: number;
-}
-/**
- * Lists every lamp in each cell its range circle touches. A cell with more than MAX_PER_CELL lamps
- * keeps the nearest ones (to the cell centre) and is counted in `overflow`.
- */
-export function buildLightGrid(lamps: ShaderLamp[], metresPerUnit: number, cell = 1): LightGrid {
-  if (!lamps.length)
-    return { originX: 0, originZ: 0, cell, columns: 0, rows: 0, cells: [], overflow: 0 };
-  let x0 = Infinity,
-    z0 = Infinity,
-    x1 = -Infinity,
-    z1 = -Infinity;
-  for (const l of lamps) {
-    const r = l.rangeM / metresPerUnit;
-    x0 = Math.min(x0, l.x - r);
-    z0 = Math.min(z0, l.z - r);
-    x1 = Math.max(x1, l.x + r);
-    z1 = Math.max(z1, l.z + r);
-  }
-  const originX = Math.floor(x0 / cell) * cell,
-    originZ = Math.floor(z0 / cell) * cell;
-  const columns = Math.ceil((x1 - originX) / cell),
-    rows = Math.ceil((z1 - originZ) / cell);
-  const cells: number[][] = Array.from({ length: columns * rows }, () => []);
-  lamps.forEach((l, i) => {
-    const r = l.rangeM / metresPerUnit;
-    for (
-      let cz = Math.floor((l.z - r - originZ) / cell);
-      cz <= Math.floor((l.z + r - originZ) / cell);
-      cz++
-    )
-      for (
-        let cx = Math.floor((l.x - r - originX) / cell);
-        cx <= Math.floor((l.x + r - originX) / cell);
-        cx++
-      ) {
-        if (cx < 0 || cz < 0 || cx >= columns || cz >= rows) continue;
-        // Distance from the lamp to the nearest point of the cell.
-        const nx = Math.max(originX + cx * cell, Math.min(l.x, originX + (cx + 1) * cell)),
-          nz = Math.max(originZ + cz * cell, Math.min(l.z, originZ + (cz + 1) * cell));
-        if (Math.hypot(nx - l.x, nz - l.z) <= r) cells[cz * columns + cx].push(i);
-      }
-  });
-  let overflow = 0;
-  cells.forEach((list, k) => {
-    if (list.length <= MAX_PER_CELL) return;
-    overflow++;
-    const cx = originX + ((k % columns) + 0.5) * cell,
-      cz = originZ + (Math.floor(k / columns) + 0.5) * cell;
-    list.sort(
-      (a, b) =>
-        Math.hypot(lamps[a].x - cx, lamps[a].z - cz) - Math.hypot(lamps[b].x - cx, lamps[b].z - cz),
-    );
-    list.length = MAX_PER_CELL;
-  });
-  return { originX, originZ, cell, columns, rows, cells, overflow };
-}
-export function packGrid(grid: LightGrid) {
-  const width = Math.max(1, grid.columns * (MAX_PER_CELL / 4)),
-    height = Math.max(1, grid.rows);
-  const data = new Float32Array(width * height * 4).fill(-1);
-  grid.cells.forEach((list, k) => {
-    const cx = k % grid.columns,
-      cz = Math.floor(k / grid.columns);
-    list.forEach((lamp, j) => (data[(cz * width + cx * (MAX_PER_CELL / 4)) * 4 + j] = lamp));
-  });
-  const texture = new DataTexture(data, width, height, RGBAFormat, FloatType);
-  texture.minFilter = texture.magFilter = NearestFilter;
-  texture.needsUpdate = true;
+/** Packs lamps into the lamp texture (see lampLayout). */
+export function packLamps(lamps: ShaderLamp[], maxTextureSize = 16384) {
+  const { data, width, height, rows } = packLampData(lamps, maxTextureSize);
+  const texture = floatTexture(data, width, height);
+  texture.userData.rows = rows;
   return texture;
 }
 
@@ -238,6 +203,7 @@ const FRAGMENT_PARS = /* glsl */ `
 varying vec3 vCityWorld;
 uniform highp sampler2D cityLampTex;
 uniform highp sampler2D cityGridTex;
+uniform highp sampler2D cityPageTex;
 uniform vec4 cityGrid;
 uniform float cityGridRows;
 uniform float cityLampLevel;
@@ -246,6 +212,9 @@ uniform float cityMetres;
 uniform float stadiumLevel;
 uniform int stadiumCount;
 uniform int cityCellSlots;
+uniform int cityChunkCells;
+uniform int cityPagesPerRow;
+uniform int cityLampRows;
 uniform int stadiumRoofCount;
 uniform float stadiumLuxScale;
 uniform mat4 stadiumToLocal;
@@ -254,8 +223,8 @@ uniform vec4 stadiumBox;
 uniform vec4 stadiumLights[ ${STADIUM_MAX * 3} ];
 uniform vec4 stadiumRoofs[ ${STADIUM_ROOFS * 2} ];
 
-float cityOcclusion( int lamp, int s ) {
-	vec4 t = texelFetch( cityLampTex, ivec2( 3 + s / 4, lamp ), 0 );
+float cityOcclusion( ivec2 lamp, int s ) {
+	vec4 t = texelFetch( cityLampTex, lamp + ivec2( 3 + s / 4, 0 ), 0 );
 	int c = s - ( s / 4 ) * 4;
 	return c == 0 ? t.x : c == 1 ? t.y : c == 2 ? t.z : t.w;
 }
@@ -263,9 +232,11 @@ float cityOcclusion( int lamp, int s ) {
 // world direction to the lamp. Straight-line code (no early returns): the D3D compiler behind ANGLE
 // compiles branchy loop bodies very slowly.
 vec3 cityLamp( int i, vec3 P, out vec3 dir ) {
-	vec4 t0 = texelFetch( cityLampTex, ivec2( 0, i ), 0 );
-	vec4 t1 = texelFetch( cityLampTex, ivec2( 1, i ), 0 );
-	vec4 t2 = texelFetch( cityLampTex, ivec2( 2, i ), 0 );
+	int block = i / cityLampRows;
+	ivec2 base = ivec2( block * ${LAMP_TEXELS}, i - block * cityLampRows );
+	vec4 t0 = texelFetch( cityLampTex, base, 0 );
+	vec4 t1 = texelFetch( cityLampTex, base + ivec2( 1, 0 ), 0 );
+	vec4 t2 = texelFetch( cityLampTex, base + ivec2( 2, 0 ), 0 );
 	vec3 Lm = ( t0.xyz - P ) * cityMetres;
 	float d2 = max( dot( Lm, Lm ), 0.09 );
 	float d = sqrt( d2 );
@@ -279,7 +250,7 @@ vec3 cityLamp( int i, vec3 P, out vec3 dir ) {
 	float fs = floor( s );
 	int s0 = int( fs ) + ( fs < 0.0 ? ${SECTORS} : 0 );
 	int s1 = s0 + 1 >= ${SECTORS} ? 0 : s0 + 1;
-	float occ = mix( cityOcclusion( i, s0 ), cityOcclusion( i, s1 ), s - fs );
+	float occ = mix( cityOcclusion( base, s0 ), cityOcclusion( base, s1 ), s - fs );
 	float fade = hd > 0.3 ? 1.0 - smoothstep( occ + 0.2, occ + 1.2, hd ) : 1.0;
 	float c = dir.y;
 	// Broad longitudinal street distribution and a softer house-side cutoff. Use the existing arm
@@ -331,9 +302,24 @@ const FRAGMENT_MAIN = /* glsl */ `
 		#else
 			float cityShininess = 1.0;
 		#endif
+		// Sparse cell lookup (lightIndex.ts): cell → chunk → page directory → page atlas texel. The
+		// directory is only read at night; an empty chunk (−1) or a point outside it has no lamps.
 		ivec2 cityCell = ivec2( floor( ( vCityWorld.xz - cityGrid.xy ) * cityGrid.z ) );
-		bool cityInGrid = cityCell.x >= 0 && cityCell.y >= 0 && cityCell.x < int( cityGrid.w ) && cityCell.y < int( cityGridRows );
-		int cityLamps = cityLampLevel > 0.0005 && cityInGrid ? cityCellSlots : 0;
+		ivec2 cityDirCells = ivec2( int( cityGrid.w ), int( cityGridRows ) ) * cityChunkCells;
+		bool cityInGrid = cityCell.x >= 0 && cityCell.y >= 0 && cityCell.x < cityDirCells.x && cityCell.y < cityDirCells.y;
+		ivec2 citySlots = ivec2( 0 );
+		int cityLamps = 0;
+		if ( cityLampLevel > 0.0005 && cityInGrid ) {
+			ivec2 cityChunk = cityCell / cityChunkCells;
+			float cityPage = texelFetch( cityPageTex, cityChunk, 0 ).r;
+			if ( cityPage >= 0.0 ) {
+				int page = int( cityPage );
+				int pageRow = page / cityPagesPerRow;
+				ivec2 local = cityCell - cityChunk * cityChunkCells;
+				citySlots = ivec2( ( ( page - pageRow * cityPagesPerRow ) * cityChunkCells + local.x ) * ${SLOT_TEXELS}, pageRow * cityChunkCells + local.y );
+				cityLamps = cityCellSlots;
+			}
+		}
 		vec3 stadiumP = vec3( 0.0 );
 		float stadiumMask = 0.0;
 		if ( stadiumLevel > 0.0005 ) {
@@ -350,7 +336,7 @@ const FRAGMENT_MAIN = /* glsl */ `
 				col = stadiumLight( n, stadiumP, dir ) * ( stadiumLuxScale * stadiumLevel * stadiumMask );
 			} else {
 				int slot = n - cityFloods;
-				vec4 ids = texelFetch( cityGridTex, ivec2( cityCell.x * ${MAX_PER_CELL / 4} + slot / 4, cityCell.y ), 0 );
+				vec4 ids = texelFetch( cityGridTex, citySlots + ivec2( slot / 4, 0 ), 0 );
 				int c = slot - ( slot / 4 ) * 4;
 				float id = c == 0 ? ids.x : c == 1 ? ids.y : c == 2 ? ids.z : ids.w;
 				if ( id < 0.0 ) break;
@@ -369,8 +355,22 @@ const FRAGMENT_MAIN = /* glsl */ `
 		#endif
 	}
 `;
-const PATCH_KEY = 'city-lights-v1';
-const patched = new WeakSet<Material>();
+const PATCH_KEY = 'city-lights-v2';
+/**
+ * Uniform binding of a patched material. A lit material can outlive the controller that patched it
+ * (cached or shared materials, scene recreation); patching it again with another controller's
+ * uniforms rebinds it. Compiled programs keep their uniform objects (three.js materialProperties
+ * .uniforms, looked up by name on every upload), so rebinding replaces the entries in every compiled
+ * uniforms object of the material: no recompilation and no per-frame indirection. A later compile
+ * (e.g. after WebGL context restoration) injects the current binding.
+ */
+interface MaterialBinding {
+  uniforms: LightingUniforms;
+  /** Uniform objects of the material's compiled programs (bounded: the most recent compiles). */
+  compiled: Record<string, unknown>[];
+}
+const bindings = new WeakMap<Material, MaterialBinding>();
+const MAX_COMPILED = 8;
 type LitMaterial = Material & {
   isMeshStandardMaterial?: boolean;
   isMeshLambertMaterial?: boolean;
@@ -388,18 +388,31 @@ export function isLitMaterial(m: Material) {
   );
 }
 /**
- * Adds the lighting patch to a lit material (idempotent). Chains any existing onBeforeCompile and
- * program cache key (e.g. groundLayers.layeredGround).
+ * Adds the lighting patch to a lit material, or rebinds an already patched material to `uniforms`.
+ * Returns true only for a new patch. Chains any existing onBeforeCompile and program cache key
+ * (e.g. groundLayers.layeredGround). The program cache key and shader text never depend on the
+ * uniforms, so rebinding never creates a program variant.
  */
 export function patchMaterial(material: Material, uniforms: LightingUniforms) {
-  if (patched.has(material) || !isLitMaterial(material)) return false;
-  patched.add(material);
+  if (!isLitMaterial(material)) return false;
+  const existing = bindings.get(material);
+  if (existing) {
+    if (existing.uniforms !== uniforms) {
+      existing.uniforms = uniforms;
+      for (const compiled of existing.compiled) Object.assign(compiled, uniforms);
+    }
+    return false;
+  }
+  const binding: MaterialBinding = { uniforms, compiled: [] };
+  bindings.set(material, binding);
   const previous = material.onBeforeCompile;
   const previousKey = material.customProgramCacheKey;
   const hadOwnKey = Object.prototype.hasOwnProperty.call(material, 'customProgramCacheKey');
   material.onBeforeCompile = function (shader, renderer) {
     previous.call(this, shader, renderer);
-    Object.assign(shader.uniforms, uniforms);
+    Object.assign(shader.uniforms, binding.uniforms);
+    binding.compiled.push(shader.uniforms);
+    if (binding.compiled.length > MAX_COMPILED) binding.compiled.shift();
     shader.vertexShader = shader.vertexShader
       .replace('#include <common>', '#include <common>\n' + VERTEX_PARS)
       .replace('#include <project_vertex>', '#include <project_vertex>\n' + VERTEX_MAIN);
@@ -417,5 +430,9 @@ export function patchMaterial(material: Material, uniforms: LightingUniforms) {
   return true;
 }
 export function isPatched(material: Material) {
-  return patched.has(material);
+  return bindings.has(material);
+}
+/** The uniforms a patched material is currently bound to (tests and diagnostics). */
+export function boundUniforms(material: Material) {
+  return bindings.get(material)?.uniforms ?? null;
 }

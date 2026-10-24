@@ -1,0 +1,127 @@
+{
+ "note": "Draw calls/triangles of the measured focus views (DEV servers, 1280x900).",
+ "before": {
+  "day/kungsgatan": {
+   "calls": 288,
+   "triangles": 915455
+  },
+  "day/stromparken": {
+   "calls": 2056,
+   "triangles": 3236919
+  },
+  "day/idrottsparkenPitch": {
+   "calls": 2385,
+   "triangles": 3718104
+  },
+  "day/parken": {
+   "calls": 255,
+   "triangles": 906272
+  },
+  "day/city": {
+   "calls": 2783,
+   "triangles": 4931967
+  },
+  "night-off/kungsgatan": {
+   "calls": 289,
+   "triangles": 915539
+  },
+  "night-off/stromparken": {
+   "calls": 2058,
+   "triangles": 3237053
+  },
+  "night-off/idrottsparkenPitch": {
+   "calls": 2388,
+   "triangles": 3718314
+  },
+  "night-off/parken": {
+   "calls": 257,
+   "triangles": 906432
+  },
+  "night-off/city": {
+   "calls": 2786,
+   "triangles": 4932177
+  },
+  "night-match/kungsgatan": {
+   "calls": 289,
+   "triangles": 915539
+  },
+  "night-match/stromparken": {
+   "calls": 2058,
+   "triangles": 3237053
+  },
+  "night-match/idrottsparkenPitch": {
+   "calls": 2388,
+   "triangles": 3718314
+  },
+  "night-match/parken": {
+   "calls": 257,
+   "triangles": 906432
+  },
+  "night-match/city": {
+   "calls": 2786,
+   "triangles": 4932177
+  }
+ },
+ "after": {
+  "day/kungsgatan": {
+   "calls": 288,
+   "triangles": 915455
+  },
+  "day/stromparken": {
+   "calls": 2056,
+   "triangles": 3236919
+  },
+  "day/idrottsparkenPitch": {
+   "calls": 2385,
+   "triangles": 3718104
+  },
+  "day/parken": {
+   "calls": 255,
+   "triangles": 906272
+  },
+  "day/city": {
+   "calls": 2786,
+   "triangles": 4932085
+  },
+  "night-off/kungsgatan": {
+   "calls": 290,
+   "triangles": 915589
+  },
+  "night-off/stromparken": {
+   "calls": 2058,
+   "triangles": 3237053
+  },
+  "night-off/idrottsparkenPitch": {
+   "calls": 2388,
+   "triangles": 3718314
+  },
+  "night-off/parken": {
+   "calls": 257,
+   "triangles": 906432
+  },
+  "night-off/city": {
+   "calls": 2789,
+   "triangles": 4932295
+  },
+  "night-match/kungsgatan": {
+   "calls": 290,
+   "triangles": 915589
+  },
+  "night-match/stromparken": {
+   "calls": 2058,
+   "triangles": 3237053
+  },
+  "night-match/idrottsparkenPitch": {
+   "calls": 2388,
+   "triangles": 3718314
+  },
+  "night-match/parken": {
+   "calls": 257,
+   "triangles": 906432
+  },
+  "night-match/city": {
+   "calls": 2789,
+   "triangles": 4932295
+  }
+ }
+}

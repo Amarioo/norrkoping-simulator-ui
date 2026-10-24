@@ -2,6 +2,34 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Lighting Phase 0 — registry, deterministic capacity and sparse spatial index (2026-10-24) — implemented, for review
+
+[Full report](lighting-phase0/README.md). Branch `codex/lighting-phase0` in the UI repository, created from verified
+`main` = `origin/main` = `bf5f726` (Step 6.1b included). Backend unchanged (`main` = `3673568`, clean, no branch).
+**Not committed, pushed or merged.** No geographic fixture added; Phase A1 not started.
+
+- **Registry** (`lighting/registry.ts`): the 105 pilot fixtures (10 mapped, 95 estimated) as records with canonical
+  IDs (`osm:node/…`, `estimate:step6-pilot-v1:way/…:s<n>`), crosswalk to the pilot IDs, source/snapshot/licence,
+  generator version and (absent) seed, E/N EPSG:3006 derived from the stored scene values (rendering unchanged),
+  RH2000 elevations null, per-field known/derived/estimated/unknown status. Semantic validation before allocation;
+  pinned inputs and output hashes in `docs/lighting-phase0/measurements/registry-manifest.json`.
+- **Capacity** (`lighting/lightIndex.ts`): canonical-ID order, any cell above 16 contributors rejects the set with a
+  full conflict report; no truncation. Development/tests throw; production keeps the previous set and reports it.
+- **Sparse index:** same 25 m cells and 16 slots; 100 m pages in an atlas plus an R32F page directory. Pilot street
+  textures 128,640 → 54,920 B. Synthetic citywide load (8,937 hypothetical emitters): 2.15 MB vs 14.0 MB dense, and
+  4 overflowing cells (rejected) — a capacity risk for Phase A1.
+- **Parity:** lamp texture rows bit-identical; all 279 non-empty cells list the same lamps; 33/42 paired captures
+  pixel-identical, 3 within the 1-level noise floor, 6 pilot-overview images show poles now drawn by the corrected
+  detail distance. Programs 20 in every state.
+- **Fixes:** shared materials now rebind to a recreated controller (previously kept the old uniforms); fixture
+  detail distance measured to the nearest bound; halo cull margin; Threlte `<T is>` retention of replaced lighting
+  groups avoided with a stable root group.
+- **Validation:** type check clean; build OK; Vitest 279/279; Playwright 6/6 (incl. new real-scene lifecycle test and
+  live Bergsbron regression, isolated backend copy); backend 61 passed + 1 opt-in skipped. Pooled 8-round performance:
+  map-ready −8 ms, max p95 +0.4 ms, day p95 +0.3 ms, heap +0.36 MB; single-cell p95 excursions up to +2.2 ms in
+  individual series did not reproduce (identical draw calls).
+- **Phase A1:** renderer technically ready; fixture data, licence and verified operating state are not.
+
 ## Step 6.1b — bus reachability without reintroducing reversals (2026-10-24) — ACCEPTED as a bounded routing correction
 
 [Full report](step61b/README.md). Branch `step61b-bus-reachability` in both repositories, created from UI `1cdf45f` and

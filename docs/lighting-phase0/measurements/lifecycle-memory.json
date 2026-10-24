@@ -1,0 +1,635 @@
+{
+ "note": "Post-GC JS heap (CDP JSHeapUsedSize) per cycle on the live DEV scene, API aborted; live object counts via Runtime.queryObjects (probe objects released). Before fix = controller group swapped through <T is>; fixed = stable root group.",
+ "heapProbeBeforeFix": {
+  "base": "http://127.0.0.1:5194/",
+  "cycles": 40,
+  "phases": {
+   "control": {
+    "series": [
+     127.7538,
+     127.7584,
+     127.7471,
+     127.7419,
+     127.7697,
+     127.7668,
+     127.7742,
+     127.7755,
+     127.7688,
+     127.7701,
+     127.7669,
+     127.7746,
+     127.7745,
+     127.7669,
+     127.7709,
+     127.7816,
+     127.7689,
+     127.7689,
+     127.7689,
+     127.7695,
+     127.7708,
+     127.7763,
+     127.7689,
+     127.7689,
+     127.7689,
+     127.7766,
+     127.7761,
+     127.7734,
+     127.7742,
+     127.7715,
+     127.7659,
+     127.7616,
+     127.7659,
+     127.7612,
+     127.7638,
+     127.7656,
+     127.7618,
+     127.7638,
+     127.7684,
+     127.7729
+    ],
+    "firstFiveMeanMB": 127.75417999999999,
+    "lastFiveMeanMB": 127.7665,
+    "perCycleKB": 0.3520000000000729
+   },
+   "reload": {
+    "series": [
+     127.8911,
+     127.9214,
+     127.9375,
+     127.9503,
+     127.9808,
+     127.9887,
+     127.9922,
+     128.0955,
+     128.0966,
+     128.0994,
+     128.1006,
+     128.1039,
+     128.1097,
+     128.1106,
+     128.1115,
+     128.1116,
+     128.1197,
+     128.1157,
+     128.1117,
+     128.1157,
+     128.1178,
+     128.1232,
+     128.1192,
+     128.1221,
+     128.1246,
+     128.1331,
+     128.1457,
+     128.1523,
+     128.165,
+     128.1573,
+     128.1585,
+     128.1601,
+     128.165,
+     128.1625,
+     128.1666,
+     128.1654,
+     128.1679,
+     128.1649,
+     128.1653,
+     128.1706
+    ],
+    "firstFiveMeanMB": 127.93622,
+    "lastFiveMeanMB": 128.16682,
+    "perCycleKB": 6.588571428571299
+   },
+   "recreate": {
+    "series": [
+     128.1623,
+     128.2397,
+     128.2502,
+     128.263,
+     128.2783,
+     128.2856,
+     128.2874,
+     128.3232,
+     128.3413,
+     128.3502,
+     128.3521,
+     128.3548,
+     128.357,
+     128.3597,
+     128.3613,
+     128.3642,
+     128.3675,
+     128.3733,
+     128.3717,
+     128.3752,
+     128.3748,
+     128.3789,
+     128.3844,
+     128.3888,
+     128.3918,
+     128.3941,
+     128.3959,
+     128.398,
+     128.4341,
+     128.4279,
+     128.441,
+     128.4453,
+     128.4485,
+     128.4504,
+     128.4584,
+     128.4688,
+     128.4918,
+     128.4786,
+     128.479,
+     128.4797
+    ],
+    "firstFiveMeanMB": 128.23870000000002,
+    "lastFiveMeanMB": 128.47958,
+    "perCycleKB": 6.882285714285022
+   }
+  },
+  "errors": [],
+  "memory": {
+   "geometries": 3095,
+   "textures": 222,
+   "programs": 20
+  }
+ },
+ "heapProbeFixed": {
+  "base": "http://127.0.0.1:5194/",
+  "cycles": 40,
+  "phases": {
+   "control": {
+    "series": [
+     127.751,
+     127.751,
+     127.751,
+     127.7472,
+     127.7697,
+     127.7683,
+     127.7685,
+     127.7685,
+     127.7754,
+     128.0962,
+     127.7887,
+     127.7712,
+     127.7712,
+     127.7712,
+     127.7731,
+     127.7731,
+     127.7801,
+     127.7769,
+     127.7798,
+     127.7769,
+     127.7813,
+     127.7769,
+     127.7769,
+     127.7837,
+     127.7769,
+     127.7769,
+     127.7796,
+     127.7813,
+     127.7769,
+     127.7769,
+     127.7769,
+     127.7769,
+     127.7769,
+     127.7769,
+     127.7769,
+     127.7795,
+     127.7795,
+     127.7795,
+     127.7812,
+     127.7795
+    ],
+    "firstFiveMeanMB": 127.75398,
+    "lastFiveMeanMB": 127.77984000000001,
+    "perCycleKB": 0.7388571428573901
+   },
+   "reload": {
+    "series": [
+     127.8979,
+     127.9351,
+     127.9516,
+     127.9641,
+     127.9794,
+     128.0012,
+     128.0033,
+     128.1071,
+     128.1088,
+     128.112,
+     128.1148,
+     128.1169,
+     128.122,
+     128.1214,
+     128.1226,
+     128.1276,
+     128.1238,
+     128.1254,
+     128.131,
+     128.135,
+     128.1386,
+     128.1385,
+     128.1391,
+     128.1418,
+     128.1425,
+     128.155,
+     128.1647,
+     128.1706,
+     128.1745,
+     128.1748,
+     128.1773,
+     128.1774,
+     128.1775,
+     128.1775,
+     128.1776,
+     128.1826,
+     128.1826,
+     128.1833,
+     128.184,
+     128.1867
+    ],
+    "firstFiveMeanMB": 127.94562,
+    "lastFiveMeanMB": 128.18383999999998,
+    "perCycleKB": 6.806285714284854
+   },
+   "recreate": {
+    "series": [
+     128.2055,
+     128.2428,
+     128.2583,
+     128.2654,
+     128.2727,
+     128.2809,
+     128.2826,
+     128.3191,
+     128.3335,
+     128.3375,
+     128.3434,
+     128.3445,
+     128.3457,
+     128.3471,
+     128.3479,
+     128.3492,
+     128.3497,
+     128.3512,
+     128.3517,
+     128.3526,
+     128.3533,
+     128.3555,
+     128.3578,
+     128.3604,
+     128.3609,
+     128.3613,
+     128.3624,
+     128.3645,
+     128.3911,
+     128.391,
+     128.4026,
+     128.4042,
+     128.4046,
+     128.4051,
+     128.4115,
+     128.412,
+     128.4228,
+     128.425,
+     128.4244,
+     128.4257
+    ],
+    "firstFiveMeanMB": 128.24894,
+    "lastFiveMeanMB": 128.42198,
+    "perCycleKB": 4.943999999999602
+   }
+  },
+  "errors": [],
+  "memory": {
+   "geometries": 3095,
+   "textures": 222,
+   "programs": 20
+  }
+ },
+ "objectCounts": {
+  "reloadFixed": [
+   {
+    "at": "start",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 35,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1432,
+     "Array": 624628,
+     "Object": 1499701,
+     "Function": 28890
+    }
+   },
+   {
+    "at": "10",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 35,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1430,
+     "Array": 624597,
+     "Object": 1499769,
+     "Function": 29153
+    }
+   },
+   {
+    "at": "20",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 35,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1430,
+     "Array": 624597,
+     "Object": 1499779,
+     "Function": 29153
+    }
+   },
+   {
+    "at": "30",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 35,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1430,
+     "Array": 624597,
+     "Object": 1499789,
+     "Function": 29153
+    }
+   }
+  ],
+  "recreateBeforeFix": [
+   {
+    "at": "start",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 34,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1432,
+     "Array": 624624,
+     "Object": 1499684,
+     "Function": 28888
+    }
+   },
+   {
+    "at": "10",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 44,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1430,
+     "Array": 624653,
+     "Object": 1500034,
+     "Function": 29171
+    }
+   },
+   {
+    "at": "20",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 54,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1430,
+     "Array": 624713,
+     "Object": 1500324,
+     "Function": 29191
+    }
+   },
+   {
+    "at": "30",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 64,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1430,
+     "Array": 624773,
+     "Object": 1500614,
+     "Function": 29211
+    }
+   }
+  ],
+  "recreateFixed": [
+   {
+    "at": "start",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 35,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1432,
+     "Array": 624628,
+     "Object": 1499701,
+     "Function": 28890
+    }
+   },
+   {
+    "at": "10",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 35,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1430,
+     "Array": 624597,
+     "Object": 1499851,
+     "Function": 29153
+    }
+   },
+   {
+    "at": "20",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 35,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1430,
+     "Array": 624597,
+     "Object": 1499941,
+     "Function": 29153
+    }
+   },
+   {
+    "at": "30",
+    "counts": {
+     "DataTexture": 7,
+     "InstancedMesh": 1154,
+     "BufferGeometry": 23793,
+     "MeshStandardMaterial": 1232,
+     "Group": 35,
+     "Float32Array": 0,
+     "ArrayBuffer": 0,
+     "Map": 1430,
+     "Array": 624597,
+     "Object": 1500031,
+     "Function": 29153
+    }
+   }
+  ]
+ },
+ "heapSnapshotDiffReload10to40": {
+  "note": "self-size growth by node type|name between snapshots after 10 and 40 rebuilds: [key, count delta, bytes delta]",
+  "rows": [
+   [
+    "code|(code)",
+    221,
+    195228
+   ],
+   [
+    "native|system / WeakArrayList",
+    27,
+    9684
+   ],
+   [
+    "native|WebGLProgram",
+    30,
+    2880
+   ],
+   [
+    "native|PerformanceLongAnimationFrameTiming",
+    4,
+    704
+   ],
+   [
+    "native|blink::ScriptTimingInfo",
+    4,
+    544
+   ],
+   [
+    "array|(object elements)",
+    0,
+    540
+   ],
+   [
+    "native|blink::HeapHashTableBacking<blink::HashTable<cppgc::internal",
+    0,
+    512
+   ],
+   [
+    "native|PerformanceScriptTiming",
+    4,
+    480
+   ],
+   [
+    "native|system / ProtectedFixedArray",
+    27,
+    464
+   ],
+   [
+    "array|",
+    0,
+    448
+   ],
+   [
+    "native|blink::NetworkResourcesData::ResourceData",
+    1,
+    288
+   ],
+   [
+    "native|blink::HeapVectorBacking<cppgc::internal::BasicMember<blink:",
+    4,
+    272
+   ],
+   [
+    "native|system / SharedFunctionInfoWrapper",
+    27,
+    216
+   ],
+   [
+    "object shape|system / TransitionArray",
+    0,
+    176
+   ],
+   [
+    "object shape|system / Map",
+    4,
+    160
+   ],
+   [
+    "native|PerformanceResourceTiming",
+    1,
+    136
+   ],
+   [
+    "native|blink::ConsoleMessage",
+    1,
+    88
+   ],
+   [
+    "object shape|system / DescriptorArray",
+    2,
+    80
+   ],
+   [
+    "native|blink::SourceLocation",
+    1,
+    56
+   ],
+   [
+    "object|Object",
+    2,
+    40
+   ],
+   [
+    "string|(string)",
+    2,
+    0
+   ],
+   [
+    "number|smi number",
+    2,
+    0
+   ],
+   [
+    "native|blink::ShareableElementData",
+    -13,
+    -1008
+   ],
+   [
+    "native|blink::HeapHashTableBacking<blink::HashTable<unsigned int, b",
+    -3,
+    -1752
+   ]
+  ]
+ },
+ "retainerFinding": "Before fix: each detached city-lighting Group was retained by Threlte disposal context (disposableObjects Map) because <T is> keeps every object ever passed until unmount."
+}

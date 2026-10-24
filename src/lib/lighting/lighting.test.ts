@@ -14,13 +14,13 @@ import { layeredGround } from '../groundLayers';
 import { createIdrottsparken } from '../stadium/idrottsparken';
 import { environmentAt } from './environment';
 import {
-  buildLightGrid,
   isPatched,
   MAX_PER_CELL,
   patchMaterial,
   createLightingUniforms,
   type ShaderLamp,
 } from './cityLights';
+import { buildLightGrid } from './legacyGrid';
 import { FIXTURES, fixtureLamps } from './fixtures';
 import { lampLux, emitterLux } from './reference';
 import { createCityLighting } from './controller';
@@ -280,7 +280,7 @@ describe('controller: independent states, no recompiles, clean teardown', () => 
     expect(patchMaterial(m, u)).toBe(true);
     expect(patchMaterial(m, u)).toBe(false);
     expect(isPatched(m)).toBe(true);
-    expect(m.customProgramCacheKey()).toBe('layered-ground|city-lights-v1');
+    expect(m.customProgramCacheKey()).toBe('layered-ground|city-lights-v2');
     // The shader receives the shared uniform objects and the fixed injection points.
     const shader = {
       uniforms: {},
@@ -315,6 +315,7 @@ describe('controller: independent states, no recompiles, clean teardown', () => 
         });
       track(lighting.uniforms.cityLampTex.value as Texture);
       track(lighting.uniforms.cityGridTex.value as Texture);
+      track(lighting.uniforms.cityPageTex.value as Texture);
       lighting.dispose();
       stadium.dispose();
       expect([...live]).toEqual([]);

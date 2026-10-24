@@ -1,5 +1,10 @@
+// HISTORICAL EVIDENCE (Step 6.2): these tests document the dense grid of Step 6 – 6.1b, kept unchanged
+// in legacyGrid.ts as a reference. Since Lighting Phase 0 the runtime uses lightIndex.ts, whose
+// opposite expectations (17 contributors rejected, order-independent output, sparse allocation) are
+// tested in src/lib/lighting/lightIndex.test.ts.
 import { expect, test } from 'vitest';
-import { buildLightGrid, packGrid, packLamps, type ShaderLamp } from '../../src/lib/lighting/cityLights';
+import { packLamps, type ShaderLamp } from '../../src/lib/lighting/cityLights';
+import { buildLightGrid, packGrid } from '../../src/lib/lighting/legacyGrid';
 
 const lamp = (x = 0, z = 0): ShaderLamp => ({ x, z, y: .3, rangeM: 30,
   color: [1,1,1],candela: 1000,profile: 0,baseY:0,clipBelow:false,occlusionM:Array(16).fill(30) });

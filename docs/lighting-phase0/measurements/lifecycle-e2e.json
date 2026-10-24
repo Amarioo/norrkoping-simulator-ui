@@ -1,0 +1,203 @@
+{
+ "note": "tests/lighting.spec.ts real-scene lifecycle: 10 street-lighting rebuilds then 10 controller recreations, then WebGL context loss/restore; renderer.info counts and post-GC heap after each cycle. Screenshots before/after cycles and after restore compared byte-for-byte (equal).",
+ "base": {
+  "geometries": 4148,
+  "textures": 226,
+  "programs": 20,
+  "fixtures": 105,
+  "rebound": 0,
+  "status": "ok",
+  "heapMB": 130.587216
+ },
+ "series": [
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.564592
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.597568
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.615992
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.628824
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.640252
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.659036
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.66832
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.704144
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.708008
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 0,
+   "status": "ok",
+   "heapMB": 130.722896
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.718236
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.836108
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.844968
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.878756
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.875436
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.883964
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.91052
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.962288
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.959432
+  },
+  {
+   "geometries": 4143,
+   "textures": 226,
+   "programs": 20,
+   "fixtures": 105,
+   "rebound": 1227,
+   "status": "ok",
+   "heapMB": 130.979948
+  }
+ ],
+ "afterRestore": {
+  "geometries": 2197,
+  "textures": 73,
+  "programs": 18,
+  "fixtures": 105,
+  "rebound": 1227,
+  "status": "ok",
+  "heapMB": 139.0775
+ }
+}

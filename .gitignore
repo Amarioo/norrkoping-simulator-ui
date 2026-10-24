@@ -42,3 +42,7 @@ work/geodata/
 
 # Step 6.2 read-only research scratch, including local validator dependencies.
 /work/step62/
+
+# Lighting Phase 0 scratch (baseline app snapshot, raw captures, perf runs). Curated evidence is in
+# docs/lighting-phase0/; reusable tools are in scripts/lighting-phase0/.
+/work/lighting-phase0/
