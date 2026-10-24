@@ -46,3 +46,7 @@ work/geodata/
 # Lighting Phase 0 scratch (baseline app snapshot, raw captures, perf runs). Curated evidence is in
 # docs/lighting-phase0/; reusable tools are in scripts/lighting-phase0/.
 /work/lighting-phase0/
+
+# Lighting Phase A1 scratch (Phase 0 snapshot, before/after apps, raw captures, perf runs). Curated evidence is
+# in docs/lighting-phase-a1/; reusable tools are in scripts/lighting-a1/.
+/work/lighting-a1/

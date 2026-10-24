@@ -1,0 +1,147 @@
+{
+ "note": "Lighting Phase A1 manifest. Inputs pinned by SHA-256 and git blob ID; outputs are the combined (pilot + A1) runtime arrays. Regenerate deliberately (scripts/lighting-a1/reports.test.ts).",
+ "generator": {
+  "script": "src/lib/lighting/corridorGenerator.ts",
+  "version": "lighting-a1-v1",
+  "seed": null
+ },
+ "policy": {
+  "version": "lighting-a1-v1",
+  "kerbSetbackM": 0.8,
+  "deckSetbackM": 0.3,
+  "pathOffsetM": 1.2,
+  "shiftsM": [
+   0,
+   1.5,
+   -1.5,
+   3,
+   -3,
+   4,
+   -4
+  ],
+  "buildingClearanceM": 0.6,
+  "carriagewayClearanceM": 0.4,
+  "tramClearanceM": 2.2,
+  "railClearanceM": 3,
+  "partnerSearchM": 40,
+  "partnerParallelCos": 0.7,
+  "roadCoverM": 10,
+  "estimateSeparationFactor": 0.55,
+  "anySeparationM": 3,
+  "maxMapDeviationM": 1,
+  "staggerWidthM": 9,
+  "extraSetbacksM": [
+   0,
+   0.5,
+   1,
+   1.5,
+   2
+  ]
+ },
+ "inputs": [
+  {
+   "path": "scripts/data/lighting-a1-source.json",
+   "bytes": 68516,
+   "sha256": "5e591a55c53dca981a8806de394fc7996d68827e4933218216f2a49dcda1e104",
+   "gitBlob": "ce64f1c86d3b7dfb2803ce31e0c44dd85316a000"
+  },
+  {
+   "path": "src/lib/data/norrkoping-map.json",
+   "bytes": 22659735,
+   "sha256": "454ecbe0d86e64b366e7c3ac3f93664077d29cfe667ee44fc8950c944a77ac90",
+   "gitBlob": "ac190315f7b49eec43b06726409e382a9d5afcb5"
+  },
+  {
+   "path": "src/lib/data/city-bridges.json",
+   "bytes": 11708,
+   "sha256": "c56d62249969a222f1909330dbb2492ecb9327fac3710110a28d589bc53031a3",
+   "gitBlob": "a2488ecd7cdf2f252678be59b4525a8ca2631084"
+  },
+  {
+   "path": "src/lib/data/city-places.json",
+   "bytes": 53278,
+   "sha256": "55fc79c658ead327a8283019e7ef0d75a9bebc5cc656c27d9dcc8acaff10c6a8",
+   "gitBlob": "6cdc553d74f812402cb6ef163c2278e603bf6cc1"
+  },
+  {
+   "path": "src/lib/data/streetlights.json",
+   "bytes": 36987,
+   "sha256": "3c90719f166b3ff38443d0e38848e158fdf0d373730a122015dfccd2d18a36f7",
+   "gitBlob": "e49579840b5e2ee3a1d736195210e56d68e00a0c"
+  },
+  {
+   "path": "src/lib/lighting/corridorGenerator.ts",
+   "bytes": 36069,
+   "sha256": "0fb2f1b279e9620f14299c0a2659f3b1b912c6fd4363df498a49e0f31e1b484a",
+   "gitBlob": "225ec96fb5b5c7a6605df48eacde9fa0d4252065"
+  },
+  {
+   "path": "src/lib/lighting/corridorA1.ts",
+   "bytes": 4689,
+   "sha256": "d4eaa0d1ca002d281934f64b24bc8213138ab47d276d6c203bbd4f01fedd6f4e",
+   "gitBlob": "7e0536591725bb7b86838da0bdb9c88c80aba748"
+  },
+  {
+   "path": "src/lib/data/terrain.json",
+   "bytes": 34840381,
+   "sha256": "819369455be48b8f958faad294d7190886d05050af698e84287d778b8f2222b5",
+   "gitBlob": "bfc9bcc2e37f67dcd1b5ecf63e7c0ae98c34dc55"
+  },
+  {
+   "path": "src/lib/data/bridge-profiles.json",
+   "bytes": 95271,
+   "sha256": "fe877f8a53ef4e06c80371769fed5ee1e1bb8381f107abea4f4d6bc251846218",
+   "gitBlob": "1ddbd91c9b4035a268c09ba6fc529d3252d6815c"
+  },
+  {
+   "path": "src/lib/geo/sweref99tm.js",
+   "bytes": 5847,
+   "sha256": "31d9fead2a8dfb291adb6161c7a3fbc5d7a07ba70f1252d917e016b15789d010",
+   "gitBlob": "9b59f417d79ddfb7c70cae1a05b26bedb454c968"
+  },
+  {
+   "path": "scripts/lighting-a1/inputs.ts",
+   "bytes": 6231,
+   "sha256": "4cfc773df2b39e49e62a67124ffcf21f43599dd29206bdb4dc567c3fd7ebe23d",
+   "gitBlob": "821c2784362c4d81f2f54082163d0bb79b7623e0"
+  },
+  {
+   "path": "scripts/lighting-a1/extract-source.mjs",
+   "bytes": 5141,
+   "sha256": "76f66e2d20c2f360349ae8fd9181c6cb1d5ca9b1b7875da57a30252556a28f4d",
+   "gitBlob": "4e2c6cab47b8304106c110a96673884ac05aacfc"
+  }
+ ],
+ "outputs": {
+  "files": [
+   {
+    "path": "src/lib/data/streetlights-a1.json",
+    "bytes": 42741,
+    "sha256": "7ea8da79d87b05637e3e2d566605ca0a5b685b3e2bca336f280e864863bd62dc",
+    "gitBlob": "7675b76691e4ccf900177700b626c9571117cc57"
+   },
+   {
+    "path": "src/lib/data/streetlights-a1-provenance.json",
+    "bytes": 172670,
+    "sha256": "b22630de4089da6b2a990c3e7275a3266bfb60fcff159dd5cb255aa0528b2b26",
+    "gitBlob": "a21da93c2608a6deb53b108717f0578a3c51410e"
+   }
+  ],
+  "combinedHashes": {
+   "lampTexture": "73fb444b7ba95951c7f815be8504d20529d1cae14114e216da8c61412fb9a529",
+   "pagePayload": "b5cd78f89d0f681edddebb16e8e9060cb696d044d0322d2b81a67afcbb5d3a23",
+   "pageDirectory": "1cfc1018e88bef26667c70ac4d42a95e406f28dea4bab61f4aa4eb6a5928b1b7",
+   "canonicalOrder": "02dcfbf1c66c8950946434a7270380db1e904835f4ba105023634dedcc949b5d"
+  },
+  "counts": {
+   "lighting-a1-v1": {
+    "mapped": 10,
+    "estimated": 117
+   },
+   "step6-pilot-v1": {
+    "mapped": 10,
+    "estimated": 95
+   }
+  }
+ }
+}

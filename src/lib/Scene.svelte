@@ -10,7 +10,12 @@
   import FreeCamera from './FreeCamera.svelte';
   import { createPublicTransport } from './publicTransport';
   import { terrain } from './terrain';
-  import { createCityLighting, pilotLightingRegistry } from './lighting/controller';
+  import {
+    a1LightingRegistry,
+    createCityLighting,
+    pilotLightingRegistry,
+    runtimeLightingRegistry,
+  } from './lighting/controller';
   import { advanceClock, lightingState } from './lighting/state.svelte';
   let {
     focus = 'overview',
@@ -79,7 +84,20 @@
         lighting.settle();
         return lighting.describe();
       },
-      reloadStreetLighting: () => lighting.replaceStreetLighting(pilotLightingRegistry(terrain)).ok,
+      reloadStreetLighting: () =>
+        lighting.replaceStreetLighting(runtimeLightingRegistry(terrain)).ok,
+      // Lighting Phase A1 checks: swap complete sets (pilot only ↔ pilot + A1), submit arbitrary
+      // (e.g. deliberately invalid) registries, and list the rendered fixtures.
+      registries: {
+        pilot: () => pilotLightingRegistry(terrain),
+        a1: () => a1LightingRegistry(terrain),
+        runtime: () => runtimeLightingRegistry(terrain),
+      },
+      replaceStreetLighting: (registry: Parameters<typeof lighting.replaceStreetLighting>[0]) => {
+        const r = lighting.replaceStreetLighting(registry);
+        return r.ok ? { ok: true } : { ok: false, stage: r.stage, conflictCount: r.conflictCount };
+      },
+      inspect: () => lighting.inspect(),
     };
   const buildMs = performance.now() - buildStarted;
   // Ground, roads and buildings are built in workers and arrive after the first frames.
@@ -106,6 +124,14 @@
     view.ready.then(() =>
       import('./inspectInfra').then((m) => {
         inspector = m.createInfraInspector();
+      }),
+    );
+  // Development only: `?inspect=lighting` shows runtime fixtures, research-only candidates, the A1
+  // zones and light-grid occupancy (inspectLighting.ts, Lighting Phase A1).
+  if (import.meta.env.DEV && new URLSearchParams(location.search).get('inspect') === 'lighting')
+    view.ready.then(() =>
+      import('./inspectLighting').then(async (m) => {
+        inspector = await m.createLightingInspector(lighting);
       }),
     );
   onDestroy(() => {

@@ -32,7 +32,8 @@ try {
     );
     await page.selectOption('#stadium-lights', mode);
     await page.waitForTimeout(1600);
-    for (const view of ['kungsgatan', 'stromparken', 'idrottsparkenPitch', 'parken', 'city']) {
+    for (const view of process.env.VIEWS?.split(',') ??
+      ['kungsgatan', 'stromparken', 'idrottsparkenPitch', 'parken', 'city']) {
       await page.selectOption('#city-focus', view);
       await page.waitForTimeout(3000);
       const p = await page.evaluate(() => globalThis.__cityPerformance);

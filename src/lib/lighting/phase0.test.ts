@@ -32,8 +32,10 @@ import baseline from './testdata/pilot-baseline.json';
 const M = terrain.data.reference.metresPerUnit;
 const fakeRenderer = (extra: Record<string, unknown> = {}) =>
   ({ toneMappingExposure: 1, info: { programs: [] }, ...extra }) as unknown as WebGLRenderer;
+// Phase A1: the controller's default set is pilot + A1; these frozen-baseline tests use the pilot alone
+// (A1 parity inside the combined set: corridor.test.ts).
 const make = (
-  registry?: LightingRegistry,
+  registry: LightingRegistry | undefined = pilotLightingRegistry(terrain),
   extra: Parameters<typeof createCityLighting>[0] extends infer O ? Partial<O> : never = {},
 ) => {
   const stadium = createIdrottsparken(terrain);

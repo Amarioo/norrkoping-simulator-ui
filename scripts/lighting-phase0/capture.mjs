@@ -17,6 +17,8 @@ poses['bergsbron-north-end'] = { position: [-17.9, 2.8, 2.9], target: [-21.1, 0.
 // and the inner city (CITY_VIEWS.city pose).
 poses['pilot-overview'] = { position: [-8.27, 38, 37.8], target: [-20, 0, 8] };
 poses['city-overview'] = { position: [31.33, 114, 97.47], target: [-3.86, 0, 8.08] };
+// Lighting Phase A1: optional extra poses (POSES=<json file>) and state subset (STATES=day,night).
+if (process.env.POSES) Object.assign(poses, JSON.parse(fs.readFileSync(process.env.POSES, 'utf8')));
 const selected = (
   process.env.ONLY ??
   [
@@ -39,6 +41,8 @@ const states = {
   training: [1290, 'training'],
   match: [1290, 'event'],
 };
+if (process.env.STATES)
+  for (const k of Object.keys(states)) if (!process.env.STATES.split(',').includes(k)) delete states[k];
 const stadiumOnly = new Set(['training', 'match']);
 fs.mkdirSync(out, { recursive: true });
 const browser = await chromium.launch({ channel: 'msedge', args: ['--enable-unsafe-swiftshader'] });

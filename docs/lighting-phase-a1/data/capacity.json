@@ -1,0 +1,562 @@
+{
+ "capacity": 16,
+ "cellMetres": 25,
+ "chunkCells": 4,
+ "pilot": {
+  "ok": true,
+  "fixtures": 105,
+  "maxRawOccupancy": 8,
+  "overflowCells": 0,
+  "nonEmptyCells": 279,
+  "cellEntries": 806,
+  "histogram": [
+   0,
+   67,
+   71,
+   57,
+   28,
+   33,
+   14,
+   7,
+   2
+  ],
+  "pages": 40,
+  "bytes": {
+   "lamp": 13440,
+   "payload": 40960,
+   "directory": 520
+  },
+  "conflicts": []
+ },
+ "a1Only": {
+  "ok": true,
+  "fixtures": 127,
+  "maxRawOccupancy": 15,
+  "overflowCells": 0,
+  "nonEmptyCells": 197,
+  "cellEntries": 1001,
+  "histogram": [
+   0,
+   31,
+   25,
+   22,
+   11,
+   17,
+   23,
+   19,
+   20,
+   16,
+   5,
+   2,
+   2,
+   3,
+   0,
+   1
+  ],
+  "pages": 24,
+  "bytes": {
+   "lamp": 16256,
+   "payload": 24576,
+   "directory": 168
+  },
+  "conflicts": []
+ },
+ "combined": {
+  "ok": true,
+  "fixtures": 232,
+  "maxRawOccupancy": 15,
+  "overflowCells": 0,
+  "nonEmptyCells": 476,
+  "cellEntries": 1807,
+  "histogram": [
+   0,
+   98,
+   96,
+   79,
+   39,
+   50,
+   37,
+   26,
+   22,
+   16,
+   5,
+   2,
+   2,
+   3,
+   0,
+   1
+  ],
+  "pages": 63,
+  "bytes": {
+   "lamp": 29696,
+   "payload": 64512,
+   "directory": 864
+  }
+ },
+ "nearCapacityCells": [
+  {
+   "cell": [
+    -8,
+    -21
+   ],
+   "centreEN": [
+    568842.6,
+    6495501.3
+   ],
+   "count": 15,
+   "mapped": 8,
+   "estimated": 7,
+   "byType": {
+    "street-bracket-8m": 3,
+    "street-bracket-6m": 1,
+    "park-lantern-4m": 11
+   },
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s1",
+    "estimate:lighting-a1-v1:way/168975952:s0",
+    "estimate:lighting-a1-v1:way/168975952:s1",
+    "estimate:lighting-a1-v1:way/297693805:s3",
+    "estimate:lighting-a1-v1:way/88701989:s0",
+    "estimate:lighting-a1-v1:way/88701995:s2",
+    "estimate:lighting-a1-v1:way/88701997:s2",
+    "osm:node/11098939295",
+    "osm:node/11098939296",
+    "osm:node/11098939298",
+    "osm:node/11098973692",
+    "osm:node/11098973693",
+    "osm:node/11098973694",
+    "osm:node/11098973695",
+    "osm:node/11098973696"
+   ]
+  },
+  {
+   "cell": [
+    -8,
+    -22
+   ],
+   "centreEN": [
+    568842.6,
+    6495526.3
+   ],
+   "count": 13,
+   "mapped": 4,
+   "estimated": 9,
+   "byType": {
+    "street-bracket-8m": 5,
+    "street-bracket-6m": 2,
+    "park-lantern-4m": 6
+   },
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s2",
+    "estimate:lighting-a1-v1:way/168975952:s0",
+    "estimate:lighting-a1-v1:way/168975952:s1",
+    "estimate:lighting-a1-v1:way/297693805:s3",
+    "estimate:lighting-a1-v1:way/297693805:s4",
+    "estimate:lighting-a1-v1:way/308315542:s3",
+    "estimate:lighting-a1-v1:way/88701995:s2",
+    "estimate:lighting-a1-v1:way/88701997:s2",
+    "estimate:lighting-a1-v1:way/92459665:s0",
+    "osm:node/11098973692",
+    "osm:node/11098973693",
+    "osm:node/11098973694",
+    "osm:node/11098973695"
+   ]
+  },
+  {
+   "cell": [
+    -7,
+    -20
+   ],
+   "centreEN": [
+    568867.6,
+    6495476.3
+   ],
+   "count": 13,
+   "mapped": 6,
+   "estimated": 7,
+   "byType": {
+    "street-bracket-8m": 6,
+    "park-lantern-4m": 7
+   },
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s0",
+    "estimate:lighting-a1-v1:way/1289270292:s1",
+    "estimate:lighting-a1-v1:way/168975952:s1",
+    "estimate:lighting-a1-v1:way/168975952:s2",
+    "estimate:lighting-a1-v1:way/47460598:s0",
+    "estimate:lighting-a1-v1:way/501428826:s2",
+    "estimate:lighting-a1-v1:way/88701993:s0",
+    "osm:node/11098939295",
+    "osm:node/11098939296",
+    "osm:node/11098939297",
+    "osm:node/11098939298",
+    "osm:node/11098939299",
+    "osm:node/11098973695"
+   ]
+  },
+  {
+   "cell": [
+    -8,
+    -23
+   ],
+   "centreEN": [
+    568842.6,
+    6495551.3
+   ],
+   "count": 13,
+   "mapped": 1,
+   "estimated": 12,
+   "byType": {
+    "street-bracket-8m": 6,
+    "park-lantern-4m": 5,
+    "street-bracket-6m": 2
+   },
+   "ids": [
+    "estimate:lighting-a1-v1:way/1289270292:s2",
+    "estimate:lighting-a1-v1:way/168975952:s0",
+    "estimate:lighting-a1-v1:way/297609740:s0",
+    "estimate:lighting-a1-v1:way/297693805:s3",
+    "estimate:lighting-a1-v1:way/297693805:s4",
+    "estimate:lighting-a1-v1:way/308315542:s2",
+    "estimate:lighting-a1-v1:way/308315542:s3",
+    "estimate:lighting-a1-v1:way/760535008:s0",
+    "estimate:lighting-a1-v1:way/88701997:s2",
+    "estimate:lighting-a1-v1:way/92459665:s0",
+    "estimate:lighting-a1-v1:way/92459665:s1",
+    "estimate:lighting-a1-v1:way/93313348:s0",
+    "osm:node/11098973694"
+   ]
+  }
+ ],
+ "densityHeadroom": [
+  {
+   "spacingFactor": 1,
+   "a1Fixtures": 127,
+   "ok": true,
+   "fixtures": 232,
+   "maxRawOccupancy": 15,
+   "overflowCells": 0,
+   "nonEmptyCells": 476,
+   "cellEntries": 1807,
+   "histogram": [
+    0,
+    98,
+    96,
+    79,
+    39,
+    50,
+    37,
+    26,
+    22,
+    16,
+    5,
+    2,
+    2,
+    3,
+    0,
+    1
+   ],
+   "pages": 63,
+   "bytes": {
+    "lamp": 29696,
+    "payload": 64512,
+    "directory": 864
+   },
+   "conflicts": [],
+   "conflictCount": 0
+  },
+  {
+   "spacingFactor": 0.85,
+   "a1Fixtures": 147,
+   "ok": false,
+   "fixtures": 252,
+   "maxRawOccupancy": 17,
+   "overflowCells": 1,
+   "nonEmptyCells": 476,
+   "cellEntries": 1997,
+   "histogram": [
+    0,
+    95,
+    90,
+    79,
+    37,
+    45,
+    28,
+    26,
+    20,
+    16,
+    18,
+    7,
+    7,
+    2,
+    2,
+    2,
+    1,
+    1
+   ],
+   "pages": 62,
+   "bytes": null,
+   "conflicts": [
+    {
+     "cell": [
+      -8,
+      -21
+     ],
+     "raw": [
+      "estimate:lighting-a1-v1:way/1289270292:s2",
+      "estimate:lighting-a1-v1:way/168975952:s0",
+      "estimate:lighting-a1-v1:way/168975952:s1",
+      "estimate:lighting-a1-v1:way/168975952:s2",
+      "estimate:lighting-a1-v1:way/297693805:s4",
+      "estimate:lighting-a1-v1:way/88701987:s0",
+      "estimate:lighting-a1-v1:way/88701989:s0",
+      "estimate:lighting-a1-v1:way/88701995:s3",
+      "estimate:lighting-a1-v1:way/88701997:s2",
+      "osm:node/11098939295",
+      "osm:node/11098939296",
+      "osm:node/11098939298",
+      "osm:node/11098973692",
+      "osm:node/11098973693",
+      "osm:node/11098973694",
+      "osm:node/11098973695",
+      "osm:node/11098973696"
+     ]
+    }
+   ],
+   "conflictCount": 1
+  },
+  {
+   "spacingFactor": 0.75,
+   "a1Fixtures": 166,
+   "ok": false,
+   "fixtures": 271,
+   "maxRawOccupancy": 18,
+   "overflowCells": 1,
+   "nonEmptyCells": 476,
+   "cellEntries": 2128,
+   "histogram": [
+    0,
+    91,
+    90,
+    76,
+    40,
+    44,
+    29,
+    20,
+    13,
+    18,
+    14,
+    9,
+    10,
+    9,
+    7,
+    3,
+    2,
+    0,
+    1
+   ],
+   "pages": 63,
+   "bytes": null,
+   "conflicts": [
+    {
+     "cell": [
+      -8,
+      -21
+     ],
+     "raw": [
+      "estimate:lighting-a1-v1:way/1289270292:s2",
+      "estimate:lighting-a1-v1:way/168975952:s0",
+      "estimate:lighting-a1-v1:way/168975952:s1",
+      "estimate:lighting-a1-v1:way/168975952:s2",
+      "estimate:lighting-a1-v1:way/297693805:s4",
+      "estimate:lighting-a1-v1:way/88701987:s0",
+      "estimate:lighting-a1-v1:way/88701987:s1",
+      "estimate:lighting-a1-v1:way/88701987:s4",
+      "estimate:lighting-a1-v1:way/88701989:s0",
+      "estimate:lighting-a1-v1:way/88701997:s2",
+      "osm:node/11098939295",
+      "osm:node/11098939296",
+      "osm:node/11098939298",
+      "osm:node/11098973692",
+      "osm:node/11098973693",
+      "osm:node/11098973694",
+      "osm:node/11098973695",
+      "osm:node/11098973696"
+     ]
+    }
+   ],
+   "conflictCount": 1
+  },
+  {
+   "spacingFactor": 0.6,
+   "a1Fixtures": 208,
+   "ok": false,
+   "fixtures": 313,
+   "maxRawOccupancy": 20,
+   "overflowCells": 15,
+   "nonEmptyCells": 480,
+   "cellEntries": 2453,
+   "histogram": [
+    0,
+    90,
+    84,
+    72,
+    45,
+    43,
+    23,
+    15,
+    9,
+    21,
+    9,
+    10,
+    7,
+    14,
+    7,
+    11,
+    5,
+    4,
+    8,
+    1,
+    2
+   ],
+   "pages": 63,
+   "bytes": null,
+   "conflicts": [
+    {
+     "cell": [
+      -13,
+      -28
+     ],
+     "raw": [
+      "estimate:lighting-a1-v1:way/153090860:s0",
+      "estimate:lighting-a1-v1:way/153090860:s1",
+      "estimate:lighting-a1-v1:way/153090860:s2",
+      "estimate:lighting-a1-v1:way/153090860:s3",
+      "estimate:lighting-a1-v1:way/153090860:s4",
+      "estimate:lighting-a1-v1:way/153090860:s5",
+      "estimate:lighting-a1-v1:way/153090862:s0",
+      "estimate:lighting-a1-v1:way/286445691:s4",
+      "estimate:lighting-a1-v1:way/286445691:s5",
+      "estimate:lighting-a1-v1:way/4438348:s3",
+      "estimate:lighting-a1-v1:way/4438348:s4",
+      "estimate:lighting-a1-v1:way/4438348:s5",
+      "estimate:lighting-a1-v1:way/4438348:s6",
+      "estimate:lighting-a1-v1:way/4438348:s7",
+      "estimate:lighting-a1-v1:way/94350352:s4",
+      "estimate:lighting-a1-v1:way/963450943:s0",
+      "estimate:lighting-a1-v1:way/963450943:s1"
+     ]
+    },
+    {
+     "cell": [
+      -12,
+      -28
+     ],
+     "raw": [
+      "estimate:lighting-a1-v1:way/153090860:s0",
+      "estimate:lighting-a1-v1:way/153090860:s1",
+      "estimate:lighting-a1-v1:way/153090860:s2",
+      "estimate:lighting-a1-v1:way/153090860:s3",
+      "estimate:lighting-a1-v1:way/153090860:s4",
+      "estimate:lighting-a1-v1:way/286445691:s4",
+      "estimate:lighting-a1-v1:way/286445691:s5",
+      "estimate:lighting-a1-v1:way/286445697:s0",
+      "estimate:lighting-a1-v1:way/286445697:s1",
+      "estimate:lighting-a1-v1:way/4438348:s2",
+      "estimate:lighting-a1-v1:way/4438348:s3",
+      "estimate:lighting-a1-v1:way/4438348:s4",
+      "estimate:lighting-a1-v1:way/4438348:s5",
+      "estimate:lighting-a1-v1:way/4438348:s6",
+      "estimate:lighting-a1-v1:way/47460597:s1",
+      "estimate:lighting-a1-v1:way/963450939:s2",
+      "estimate:lighting-a1-v1:way/963450943:s0",
+      "estimate:lighting-a1-v1:way/963450943:s1"
+     ]
+    },
+    {
+     "cell": [
+      -9,
+      -28
+     ],
+     "raw": [
+      "estimate:lighting-a1-v1:way/115784824:s0",
+      "estimate:lighting-a1-v1:way/115784835:s2",
+      "estimate:lighting-a1-v1:way/163928048:s0",
+      "estimate:lighting-a1-v1:way/163928048:s1",
+      "estimate:lighting-a1-v1:way/163928048:s2",
+      "estimate:lighting-a1-v1:way/163928051:s0",
+      "estimate:lighting-a1-v1:way/286445697:s1",
+      "estimate:lighting-a1-v1:way/286445697:s2",
+      "estimate:lighting-a1-v1:way/308315542:s0",
+      "estimate:lighting-a1-v1:way/4385505:s0",
+      "estimate:lighting-a1-v1:way/4385505:s1",
+      "estimate:lighting-a1-v1:way/4438348:s0",
+      "estimate:lighting-a1-v1:way/4438348:s1",
+      "estimate:lighting-a1-v1:way/47460597:s1",
+      "estimate:lighting-a1-v1:way/47460597:s2",
+      "estimate:lighting-a1-v1:way/47460597:s3",
+      "estimate:lighting-a1-v1:way/92459665:s5"
+     ]
+    },
+    {
+     "cell": [
+      -12,
+      -27
+     ],
+     "raw": [
+      "estimate:lighting-a1-v1:way/153090860:s0",
+      "estimate:lighting-a1-v1:way/153090860:s1",
+      "estimate:lighting-a1-v1:way/286445691:s3",
+      "estimate:lighting-a1-v1:way/286445691:s4",
+      "estimate:lighting-a1-v1:way/286445691:s5",
+      "estimate:lighting-a1-v1:way/286445697:s0",
+      "estimate:lighting-a1-v1:way/286445697:s1",
+      "estimate:lighting-a1-v1:way/286457917:s0",
+      "estimate:lighting-a1-v1:way/286457920:s26",
+      "estimate:lighting-a1-v1:way/286457920:s27",
+      "estimate:lighting-a1-v1:way/286457920:s28",
+      "estimate:lighting-a1-v1:way/4438348:s2",
+      "estimate:lighting-a1-v1:way/4438348:s3",
+      "estimate:lighting-a1-v1:way/4438348:s4",
+      "estimate:lighting-a1-v1:way/4438348:s5",
+      "estimate:lighting-a1-v1:way/4438348:s6",
+      "estimate:lighting-a1-v1:way/47460597:s1",
+      "estimate:lighting-a1-v1:way/93313350:s8"
+     ]
+    },
+    {
+     "cell": [
+      -11,
+      -27
+     ],
+     "raw": [
+      "estimate:lighting-a1-v1:way/115784824:s0",
+      "estimate:lighting-a1-v1:way/1165440608:s0",
+      "estimate:lighting-a1-v1:way/1165440608:s1",
+      "estimate:lighting-a1-v1:way/286445691:s4",
+      "estimate:lighting-a1-v1:way/286445691:s5",
+      "estimate:lighting-a1-v1:way/286445697:s0",
+      "estimate:lighting-a1-v1:way/286445697:s1",
+      "estimate:lighting-a1-v1:way/286445697:s2",
+      "estimate:lighting-a1-v1:way/286457917:s0",
+      "estimate:lighting-a1-v1:way/286457920:s27",
+      "estimate:lighting-a1-v1:way/286457920:s28",
+      "estimate:lighting-a1-v1:way/4438348:s1",
+      "estimate:lighting-a1-v1:way/4438348:s2",
+      "estimate:lighting-a1-v1:way/4438348:s3",
+      "estimate:lighting-a1-v1:way/4438348:s4",
+      "estimate:lighting-a1-v1:way/47460597:s1",
+      "estimate:lighting-a1-v1:way/47460597:s2",
+      "estimate:lighting-a1-v1:way/93313350:s8"
+     ]
+    }
+   ],
+   "conflictCount": 15
+  }
+ ],
+ "phase0SyntheticCityLoad": {
+  "note": "Phase 0 hypothetical centreline emitters (not an inventory); unchanged by A1",
+  "overflowCells": 4,
+  "maxRawOccupancy": 19
+ }
+}

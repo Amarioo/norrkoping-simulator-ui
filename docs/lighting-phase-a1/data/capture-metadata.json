@@ -1,0 +1,642 @@
+{
+ "base": "http://127.0.0.1:5196/",
+ "date": "2026-10-21",
+ "timezoneId": "Europe/Stockholm",
+ "viewport": {
+  "width": 1400,
+  "height": 1000
+ },
+ "deviceScaleFactor": 1,
+ "traffic": "API requests aborted (no vehicles, no simulation)",
+ "states": {
+  "day": [
+   759,
+   "off"
+  ],
+  "twilight": [
+   1072,
+   "off"
+  ],
+  "night": [
+   1290,
+   "off"
+  ],
+  "training": [
+   1290,
+   "training"
+  ],
+  "match": [
+   1290,
+   "event"
+  ]
+ },
+ "poses": {
+  "a1-resecentrum-street": {
+   "position": [
+    -5.9,
+    0.2,
+    -26
+   ],
+   "target": [
+    -9.4,
+    0.3,
+    -28.3
+   ]
+  },
+  "a1-resecentrum-elevated": {
+   "position": [
+    -3,
+    2.6,
+    -22
+   ],
+   "target": [
+    -9.2,
+    0.1,
+    -28
+   ]
+  },
+  "a1-norra-promenaden-street": {
+   "position": [
+    -0.6,
+    0.19,
+    -29
+   ],
+   "target": [
+    -6,
+    0.3,
+    -27.4
+   ]
+  },
+  "a1-drottninggatan-street": {
+   "position": [
+    -5.7,
+    0.21,
+    -20.2
+   ],
+   "target": [
+    -7.1,
+    0.3,
+    -24.6
+   ]
+  },
+  "a1-drottninggatan-elevated": {
+   "position": [
+    -3,
+    2.4,
+    -18
+   ],
+   "target": [
+    -7.2,
+    0.1,
+    -23.8
+   ]
+  },
+  "a1-saltangsbron-street": {
+   "position": [
+    -4,
+    0.21,
+    -14.4
+   ],
+   "target": [
+    -5.6,
+    0.35,
+    -19.2
+   ]
+  },
+  "a1-saltangsbron-side": {
+   "position": [
+    -1.6,
+    0.9,
+    -18.6
+   ],
+   "target": [
+    -5,
+    0.15,
+    -17
+   ]
+  },
+  "a1-central-overview": {
+   "position": [
+    8,
+    16,
+    -3
+   ],
+   "target": [
+    -7,
+    0,
+    -21
+   ]
+  },
+  "kungsgatan-street": {
+   "position": [
+    -21.86,
+    0.8894,
+    -6.4
+   ],
+   "target": [
+    -23.3,
+    0.7587,
+    -11.5
+   ]
+  },
+  "kungsgatan-elevated": {
+   "position": [
+    -18.6,
+    3.7799,
+    -4.2
+   ],
+   "target": [
+    -22.6,
+    0.7354,
+    -9
+   ]
+  },
+  "bergsbron-north-end": {
+   "position": [
+    -17.9,
+    2.8,
+    2.9
+   ],
+   "target": [
+    -21.1,
+    0.8,
+    -0.9
+   ]
+  },
+  "stromparken-path": {
+   "position": [
+    -6.62,
+    0.2358,
+    -3.7
+   ],
+   "target": [
+    -7.25,
+    0.1828,
+    -5.7
+   ]
+  },
+  "stromparken-elevated": {
+   "position": [
+    -4.6,
+    3.044,
+    -2.4
+   ],
+   "target": [
+    -7.6,
+    0.1339,
+    -5.6
+   ]
+  },
+  "stadium-pitch-north": {
+   "position": [
+    -33.7268,
+    1.9332,
+    28.3525
+   ],
+   "target": [
+    -33.0555,
+    1.1893,
+    23.7613
+   ]
+  },
+  "stadium-elevated-se": {
+   "position": [
+    -27.2135,
+    7.4598,
+    36.3387
+   ],
+   "target": [
+    -33.287,
+    1.11,
+    25.3445
+   ]
+  },
+  "pilot-overview": {
+   "position": [
+    -8.27,
+    38,
+    37.8
+   ],
+   "target": [
+    -20,
+    0,
+    8
+   ]
+  },
+  "city-overview": {
+   "position": [
+    31.33,
+    114,
+    97.47
+   ],
+   "target": [
+    -3.86,
+    0,
+    8.08
+   ]
+  }
+ },
+ "browser": "156.0.4314.42",
+ "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "captures": {
+  "a1-resecentrum-street-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 2218,
+   "triangles": 2822036
+  },
+  "a1-resecentrum-elevated-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 2214,
+   "triangles": 2920775
+  },
+  "a1-norra-promenaden-street-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 2354,
+   "triangles": 3308830
+  },
+  "a1-drottninggatan-street-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 1778,
+   "triangles": 2856695
+  },
+  "a1-drottninggatan-elevated-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 2003,
+   "triangles": 2999457
+  },
+  "a1-saltangsbron-street-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 1910,
+   "triangles": 2992983
+  },
+  "a1-saltangsbron-side-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 1905,
+   "triangles": 3344891
+  },
+  "a1-central-overview-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 998,
+   "triangles": 2132652
+  },
+  "kungsgatan-street-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 1893,
+   "triangles": 3092792
+  },
+  "kungsgatan-elevated-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 1531,
+   "triangles": 2939140
+  },
+  "bergsbron-north-end-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 2298,
+   "triangles": 3172901
+  },
+  "stromparken-path-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 2085,
+   "triangles": 3286455
+  },
+  "stromparken-elevated-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 432,
+   "triangles": 1254368
+  },
+  "stadium-pitch-north-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 2412,
+   "triangles": 3764121
+  },
+  "stadium-elevated-se-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 1866,
+   "triangles": 3482694
+  },
+  "pilot-overview-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 821,
+   "triangles": 1820653
+  },
+  "city-overview-day": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 0,
+   "calls": 2778,
+   "triangles": 4941399
+  },
+  "a1-resecentrum-street-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2219,
+   "triangles": 2822280
+  },
+  "a1-resecentrum-elevated-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2215,
+   "triangles": 2921019
+  },
+  "a1-norra-promenaden-street-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2358,
+   "triangles": 3309244
+  },
+  "a1-drottninggatan-street-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1780,
+   "triangles": 2856949
+  },
+  "a1-drottninggatan-elevated-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2004,
+   "triangles": 2999701
+  },
+  "a1-saltangsbron-street-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1912,
+   "triangles": 2993237
+  },
+  "a1-saltangsbron-side-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1909,
+   "triangles": 3345345
+  },
+  "a1-central-overview-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1002,
+   "triangles": 2133040
+  },
+  "kungsgatan-street-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1895,
+   "triangles": 3093120
+  },
+  "kungsgatan-elevated-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1533,
+   "triangles": 2939468
+  },
+  "bergsbron-north-end-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2300,
+   "triangles": 3173229
+  },
+  "stromparken-path-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2089,
+   "triangles": 3286843
+  },
+  "stromparken-elevated-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 435,
+   "triangles": 1254746
+  },
+  "stadium-pitch-north-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2417,
+   "triangles": 3764585
+  },
+  "stadium-elevated-se-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1869,
+   "triangles": 3483098
+  },
+  "pilot-overview-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 826,
+   "triangles": 1821117
+  },
+  "city-overview-twilight": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2783,
+   "triangles": 4941863
+  },
+  "a1-resecentrum-street-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2219,
+   "triangles": 2822280
+  },
+  "a1-resecentrum-elevated-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2215,
+   "triangles": 2921019
+  },
+  "a1-norra-promenaden-street-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2358,
+   "triangles": 3309244
+  },
+  "a1-drottninggatan-street-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1780,
+   "triangles": 2856949
+  },
+  "a1-drottninggatan-elevated-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2004,
+   "triangles": 2999701
+  },
+  "a1-saltangsbron-street-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1912,
+   "triangles": 2993237
+  },
+  "a1-saltangsbron-side-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1909,
+   "triangles": 3345345
+  },
+  "a1-central-overview-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1002,
+   "triangles": 2133040
+  },
+  "kungsgatan-street-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1895,
+   "triangles": 3093120
+  },
+  "kungsgatan-elevated-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1533,
+   "triangles": 2939468
+  },
+  "bergsbron-north-end-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2300,
+   "triangles": 3173229
+  },
+  "stromparken-path-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2089,
+   "triangles": 3286843
+  },
+  "stromparken-elevated-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 435,
+   "triangles": 1254746
+  },
+  "stadium-pitch-north-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2417,
+   "triangles": 3764585
+  },
+  "stadium-elevated-se-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1869,
+   "triangles": 3483098
+  },
+  "pilot-overview-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 826,
+   "triangles": 1821117
+  },
+  "city-overview-night": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2783,
+   "triangles": 4941863
+  },
+  "stadium-pitch-north-training": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2417,
+   "triangles": 3764585
+  },
+  "stadium-elevated-se-training": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1869,
+   "triangles": 3483098
+  },
+  "pilot-overview-training": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 826,
+   "triangles": 1821117
+  },
+  "stadium-pitch-north-match": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 2417,
+   "triangles": 3764585
+  },
+  "stadium-elevated-se-match": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 1869,
+   "triangles": 3483098
+  },
+  "pilot-overview-match": {
+   "programs": 20,
+   "fixtures": 232,
+   "artificial": 1,
+   "calls": 826,
+   "triangles": 1821117
+  }
+ }
+}

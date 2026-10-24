@@ -1,0 +1,10 @@
+{
+  "a1-resecentrum-street": { "position": [-5.9, 0.2, -26.0], "target": [-9.4, 0.3, -28.3] },
+  "a1-resecentrum-elevated": { "position": [-3.0, 2.6, -22.0], "target": [-9.2, 0.1, -28.0] },
+  "a1-norra-promenaden-street": { "position": [-0.6, 0.19, -29.0], "target": [-6.0, 0.3, -27.4] },
+  "a1-drottninggatan-street": { "position": [-5.7, 0.21, -20.2], "target": [-7.1, 0.3, -24.6] },
+  "a1-drottninggatan-elevated": { "position": [-3.0, 2.4, -18.0], "target": [-7.2, 0.1, -23.8] },
+  "a1-saltangsbron-street": { "position": [-4.0, 0.21, -14.4], "target": [-5.6, 0.35, -19.2] },
+  "a1-saltangsbron-side": { "position": [-1.6, 0.9, -18.6], "target": [-5.0, 0.15, -17.0] },
+  "a1-central-overview": { "position": [8.0, 16.0, -3.0], "target": [-7.0, 0.0, -21.0] }
+}

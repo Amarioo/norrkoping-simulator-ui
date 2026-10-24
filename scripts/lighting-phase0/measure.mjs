@@ -15,7 +15,8 @@ const [
   afterPort = '5191',
 ] = process.argv.slice(2);
 const rounds = Number(roundsArg);
-const VIEWS = ['kungsgatan', 'stromparken', 'idrottsparkenPitch', 'parken', 'city'];
+// Lighting Phase A1: optional view subset/extension (VIEWS=station,grandHotel,…; CITY_VIEWS keys).
+const VIEWS = process.env.VIEWS?.split(',') ?? ['kungsgatan', 'stromparken', 'idrottsparkenPitch', 'parken', 'city'];
 const CONDITIONS = [
   ['day', 759, 'off'],
   ['night-off', 1290, 'off'],

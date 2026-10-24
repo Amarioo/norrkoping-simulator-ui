@@ -2,6 +2,36 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Lighting Phase A1 — central city corridor (2026-10-24) — implemented, for review
+
+[Full report](lighting-phase-a1/README.md). Same branch `codex/lighting-phase0` (UI, HEAD `bf5f726`), on
+top of the uncommitted Phase 0 work, which was snapshotted first (`work/lighting-a1/phase0-snapshot/`,
+ignored). Backend unchanged (`3673568`). **Not committed, pushed or merged.**
+
+- **Area:** three EPSG:3006 zones (0.083 km², `lighting/corridorA1.ts`): A Resecentrum + Norra
+  Promenaden (Aurorarondellen – Sveagatan), B Drottninggatan to Saltängsbron, C Saltängsbron + Hamngatan
+  junctions + Drottninggatan tram street to Gamla Rådstugugatan. Clear of all pilots (≥ 45 m).
+- **Fixtures:** 127 new (10 mapped OSM lamps, 117 labelled estimates on `lit=yes` ways; 6 on the
+  Saltängsbron deck); rendered total 232. `lit=no`, untagged ways, platforms and Tyska torget get none.
+  No municipal ID, photometry or schedule invented.
+- **Pipeline:** pinned Step 6.2 snapshot (2026-10-23, SHA-verified) → committed 68 KB extract → pure,
+  order-independent generator (`corridorGenerator.ts`) → `streetlights-a1.json` (+ provenance, not
+  bundled), byte-identical regeneration. IDs `osm:node/…`, `estimate:lighting-a1-v1:way/…:s<n>`;
+  duplicates by identity only; municipal precedence (`reconcileSources`) implemented, unused.
+- **Placement:** outer-kerb rows on dual carriageways, roundabout rings, deck edges; carriageway, tram
+  (2.2 m), rail, platform, water, building and deck rules; ground lamps occlude through elevated decks
+  (0 lux under Saltängsbron through the deck); occlusion measured from the emitter.
+- **Capacity:** combined 232 accepted, max 15 / 16, 0 overflow; tightest cell is driven by the 8 real
+  mapped lamps; 85 % estimate spacing would overflow (reported, not applied).
+- **Grouping:** A1 visual groups = fixed 800 m chunks; pilot groups unchanged.
+- **Regression:** pilot lamp rows bit-identical inside the combined set; 24/33 pilot-pose captures
+  byte-identical, the other 9 differ only where the new corridor appears in the background; 20
+  programs everywhere. Pooled perf: map-ready −9 ms, heap +0.32 MB, p95 within the ±1 ms method noise.
+- **Tests:** type check clean; build OK; Vitest 307/307; Playwright 7/7 (new A1 E2E); A1 harnesses pass.
+- **Incident (fixed):** re-running the Phase 0 harnesses overwrote two Phase 0 evidence files; restored
+  byte-for-byte; the manifest writer now uses the pilot registry explicitly.
+- **Next (recommended):** A2 — Norra Promenaden west + Kungsgatan north link to the Kungsgatan pilot.
+
 ## Lighting Phase 0 — registry, deterministic capacity and sparse spatial index (2026-10-24) — implemented, for review
 
 [Full report](lighting-phase0/README.md). Branch `codex/lighting-phase0` in the UI repository, created from verified

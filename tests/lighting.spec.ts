@@ -239,7 +239,7 @@ test('street lighting survives rebuilds, controller recreation and context resto
   await page.waitForTimeout(3000);
   const before = await shot();
   const base = await resources();
-  expect(base).toMatchObject({ fixtures: 105, status: 'ok' });
+  expect(base).toMatchObject({ fixtures: 232, status: 'ok' }); // pilot 105 + Phase A1 127
   const series: Awaited<ReturnType<typeof resources>>[] = [];
   for (let i = 0; i < 10; i++) {
     expect(
@@ -271,7 +271,7 @@ test('street lighting survives rebuilds, controller recreation and context resto
     expect(s.geometries).toBeLessThanOrEqual(base.geometries);
     expect(s.textures).toBeLessThanOrEqual(base.textures);
     expect(s.programs).toBe(base.programs);
-    expect(s.fixtures).toBe(105);
+    expect(s.fixtures).toBe(232);
   }
   // Post-GC JS heap: no growth trend across the 20 cycles (first vs last cycle within 2 MB).
   expect(Math.abs(series.at(-1)!.heapMB - series[0].heapMB)).toBeLessThan(2);
@@ -301,6 +301,152 @@ test('street lighting survives rebuilds, controller recreation and context resto
   fs.writeFileSync(
     'test-results/lighting-phase0/lifecycle.json',
     JSON.stringify({ base, series, afterRestore: await resources() }, null, 1),
+  );
+  expect(errors).toEqual([]);
+});
+
+// Lighting Phase A1: the central corridor on the live map. Complete set swaps (pilot only ↔ pilot +
+// A1) return to a resource plateau without new programs; a rejected (overflowing) set leaves the
+// rendered frame byte-identical; the corridor really lights the ground (measured brightness, pilot-only
+// vs pilot + A1 at the same pose); the expanded set survives recreation and context restoration.
+test('Phase A1 corridor: illumination, set swaps, rejection, recreation and context restoration', async ({
+  page,
+}) => {
+  test.setTimeout(240000);
+  const errors: string[] = [];
+  page.on('pageerror', (e) => errors.push(e.message));
+  await page.route('**/api/**', (route) => route.abort());
+  await page.setViewportSize({ width: 1400, height: 1000 });
+  await page.goto('/?date=2026-10-21&time=21:30&stadium=off');
+  await expect(page.locator('[data-map-ready="true"]')).toBeVisible({ timeout: 120000 });
+  await page.addStyleTag({ content: '.connection-banner{display:none!important}' });
+  await page.locator('.label-toggle input').uncheck();
+  const hook = 'globalThis.__cityLighting';
+  const call = <T>(expr: string) => page.evaluate((e) => (0, eval)(e) as T, expr);
+  const pose = () =>
+    page.evaluate(() => {
+      const { camera, controls } = (globalThis as any).__cityCamera;
+      camera.position.fromArray([-3.0, 2.4, -18.0]); // scripts/lighting-a1/poses.json drottninggatan-elevated
+      controls.target.fromArray([-7.2, 0.1, -23.8]);
+      controls.update();
+      (globalThis as any).__cityLighting.settle();
+    });
+  const frames = () =>
+    page.evaluate(
+      () =>
+        new Promise<void>((r) =>
+          requestAnimationFrame(() =>
+            requestAnimationFrame(() => requestAnimationFrame(() => r())),
+          ),
+        ),
+    );
+  const shot = async () => {
+    await pose();
+    await page.waitForTimeout(800);
+    await frames();
+    return page.locator('.map-panel').screenshot();
+  };
+  /** Mean sRGB luma (0–255) of a PNG, decoded in the page. */
+  const luma = (png: Buffer) =>
+    page.evaluate(async (b64) => {
+      const img = new Image();
+      img.src = 'data:image/png;base64,' + b64;
+      await img.decode();
+      const c = new OffscreenCanvas(img.width, img.height);
+      const g = c.getContext('2d')!;
+      g.drawImage(img, 0, 0);
+      const d = g.getImageData(0, 0, img.width, img.height).data;
+      let s = 0;
+      for (let i = 0; i < d.length; i += 4)
+        s += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+      return s / (d.length / 4);
+    }, png.toString('base64'));
+  const state = () =>
+    call<{
+      fixtures: number;
+      status: string;
+      rollouts: Record<string, unknown>;
+      max: number;
+      geometries: number;
+      textures: number;
+      programs: number;
+    }>(
+      `(() => { const l = ${hook}; const d = l.describe(); return { fixtures: d.fixtures, status: d.streetLighting.status, rollouts: d.streetLighting.rollouts, max: d.streetLighting.index.maxRawOccupancy, geometries: l.renderer.info.memory.geometries, textures: l.renderer.info.memory.textures, programs: l.renderer.info.programs.length }; })()`,
+    );
+  await pose();
+  await page.waitForTimeout(3000);
+  const full = await shot();
+  const start = await state();
+  expect(start).toMatchObject({ fixtures: 232, status: 'ok' });
+  expect(start.max).toBeLessThanOrEqual(16);
+  expect(start.rollouts).toEqual({
+    'lighting-a1-v1': { mapped: 10, estimated: 117 },
+    'step6-pilot-v1': { mapped: 10, estimated: 95 },
+  });
+  // Pilot only: the corridor goes dark (no ambient compensation), and comes back with the A1 set.
+  const swaps: Awaited<ReturnType<typeof state>>[] = [];
+  let pilotOnly: Buffer | null = null;
+  for (let i = 0; i < 6; i++) {
+    const kind = i % 2 ? 'runtime' : 'pilot';
+    expect(
+      await call<{ ok: boolean }>(`${hook}.replaceStreetLighting(${hook}.registries.${kind}())`),
+    ).toEqual({ ok: true });
+    await frames();
+    swaps.push(await state());
+    if (kind === 'pilot' && !pilotOnly) pilotOnly = await shot();
+  }
+  for (const [i, s] of swaps.entries()) {
+    expect(s.fixtures).toBe(i % 2 ? 232 : 105);
+    // Never a new program. A rebuilt set's halo program compiles when a halo is first drawn: with the
+    // pilot only, no halo is in this view (19 programs); with A1 in view it is back to the start.
+    expect(s.programs).toBeLessThanOrEqual(start.programs);
+    if (i % 2) expect(s.programs).toBe(start.programs);
+    if (i >= 2) {
+      expect(s.geometries).toBe(swaps[i - 2].geometries);
+      expect(s.textures).toBe(swaps[i - 2].textures);
+    }
+  }
+  const lit = await luma(full),
+    dark = await luma(pilotOnly!);
+  expect(lit).toBeGreaterThan(dark * 1.15);
+  expect((await shot()).equals(full)).toBe(true);
+  // A rejected set (17 lamps in one corridor cell) changes nothing on screen.
+  const rejected = await call<{ ok: boolean; stage: string }>(`(() => {
+    const r = ${hook}.registries.runtime();
+    const f = r.fixtures.find((x) => x.id.startsWith('estimate:lighting-a1-v1'));
+    const crowd = Array.from({ length: 17 }, (_, k) => ({ ...f, id: 'estimate:lighting-a1-v1:e2e/' + k, runtimeId: 'estimate:lighting-a1-v1:e2e/' + k }));
+    return ${hook}.replaceStreetLighting({ ...r, fixtures: [...r.fixtures, ...crowd] });
+  })()`);
+  expect(rejected).toMatchObject({ ok: false, stage: 'capacity' });
+  expect((await state()).status).toBe('rendering-previous');
+  expect((await shot()).equals(full)).toBe(true);
+  // Recreation and WebGL context restoration with the expanded set.
+  await call(`${hook}.recreate()`);
+  await frames();
+  expect((await shot()).equals(full)).toBe(true);
+  await page.evaluate(async () => {
+    const canvas = document.querySelector('.map-panel canvas') as HTMLCanvasElement;
+    const extension = canvas.getContext('webgl2')!.getExtension('WEBGL_lose_context')!;
+    const lost = new Promise((r) => canvas.addEventListener('webglcontextlost', r, { once: true }));
+    const restored = new Promise((r) =>
+      canvas.addEventListener('webglcontextrestored', r, { once: true }),
+    );
+    extension.loseContext();
+    await lost;
+    await new Promise((r) => setTimeout(r, 200));
+    extension.restoreContext();
+    await restored;
+  });
+  await page.waitForTimeout(3000);
+  expect((await shot()).equals(full)).toBe(true);
+  // After restoration only the programs this view needs are recompiled (never more than at start).
+  const restoredState = await state();
+  expect(restoredState).toMatchObject({ fixtures: 232, status: 'ok' });
+  expect(restoredState.programs).toBeLessThanOrEqual(start.programs);
+  fs.mkdirSync('test-results/lighting-a1', { recursive: true });
+  fs.writeFileSync(
+    'test-results/lighting-a1/e2e.json',
+    JSON.stringify({ start, swaps, luma: { lit, dark } }, null, 1),
   );
   expect(errors).toEqual([]);
 });

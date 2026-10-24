@@ -89,6 +89,8 @@ test('write the pilot registry manifest', () => {
     stadium,
     scene: new Scene(),
     renderer: { toneMappingExposure: 1, info: { programs: [] } } as never,
+    // Phase A1: the default set is pilot + A1; this manifest describes the pilot alone.
+    registry,
   });
   const u = lighting.uniforms;
   const records = [...joined.fixtures].sort((a, b) => (a.record.id < b.record.id ? -1 : 1));

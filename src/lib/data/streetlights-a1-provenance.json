@@ -1,0 +1,7708 @@
+{
+ "meta": {
+  "generator": {
+   "script": "src/lib/lighting/corridorGenerator.ts",
+   "version": "lighting-a1-v1",
+   "seed": null
+  },
+  "policy": {
+   "version": "lighting-a1-v1",
+   "kerbSetbackM": 0.8,
+   "deckSetbackM": 0.3,
+   "pathOffsetM": 1.2,
+   "shiftsM": [
+    0,
+    1.5,
+    -1.5,
+    3,
+    -3,
+    4,
+    -4
+   ],
+   "buildingClearanceM": 0.6,
+   "carriagewayClearanceM": 0.4,
+   "tramClearanceM": 2.2,
+   "railClearanceM": 3,
+   "partnerSearchM": 40,
+   "partnerParallelCos": 0.7,
+   "roadCoverM": 10,
+   "estimateSeparationFactor": 0.55,
+   "anySeparationM": 3,
+   "maxMapDeviationM": 1,
+   "staggerWidthM": 9,
+   "extraSetbacksM": [
+    0,
+    0.5,
+    1,
+    1.5,
+    2
+   ]
+  },
+  "source": {
+   "file": "scripts/data/lighting-a1-source.json",
+   "osmBase": "2026-10-23T09:05:06Z",
+   "snapshotSha256": "dcce1dccb424a89b6e7c6a71010f38b6c1ff55e8a3f8b6e4b07b2c79e4794eda",
+   "retrievedAt": "2026-10-23T09:06:45.285Z",
+   "license": "ODbL-1.0 © OpenStreetMap contributors"
+  },
+  "counts": {
+   "fixtures": 127,
+   "mapped": 10,
+   "estimated": 117,
+   "candidates": 138,
+   "rejected": 71,
+   "deck": 6,
+   "zoneA": 72,
+   "zoneB": 37,
+   "zoneC": 18,
+   "rejected:covered-by-road-lighting": 50,
+   "rejected:suppressed-by-estimate": 14,
+   "rejected:suppressed-by-mapped": 7
+  }
+ },
+ "fixtures": [
+  {
+   "id": "estimate:lighting-a1-v1:way/115784824:s0",
+   "zone": "A",
+   "method": "lit=yes on way/115784824 (highway=secondary, Stationsrondellen); station 1/1, effective spacing 23.0 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/115784824",
+    "version": 11,
+    "timestamp": "2024-06-09T08:18:12Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Stationsrondellen",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 11.49,
+    "wayLengthM": 22.99,
+    "spacingM": 22.99,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 1.5,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.014,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/115784835:s0",
+   "zone": "A",
+   "method": "lit=yes on way/115784835 (highway=secondary, Norra Promenaden); station 1/2, effective spacing 29.1 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/115784835",
+    "version": 11,
+    "timestamp": "2025-08-20T20:45:32Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 2,
+    "chainageM": 14.56,
+    "wayLengthM": 58.22,
+    "spacingM": 29.11,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.021,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/115784835:s1",
+   "zone": "A",
+   "method": "lit=yes on way/115784835 (highway=secondary, Norra Promenaden); station 2/2, effective spacing 29.1 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/115784835",
+    "version": 11,
+    "timestamp": "2025-08-20T20:45:32Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 2,
+    "chainageM": 43.67,
+    "wayLengthM": 58.22,
+    "spacingM": 29.11,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.021,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/1165440608:s0",
+   "zone": "A",
+   "method": "lit=yes on way/1165440608 (highway=cycleway); station 1/1, effective spacing 26.9 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/1165440608",
+    "version": 3,
+    "timestamp": "2023-04-25T17:01:42Z",
+    "tags": {
+     "highway": "cycleway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 13.47,
+    "wayLengthM": 26.94,
+    "spacingM": 26.94,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.011,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/1289270292:s0",
+   "zone": "B",
+   "method": "lit=yes on way/1289270292 (highway=secondary, Drottninggatan); station 1/3, effective spacing 33.2 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/1289270292",
+    "version": 3,
+    "timestamp": "2024-06-04T07:12:09Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 3,
+    "chainageM": 16.62,
+    "wayLengthM": 99.74,
+    "spacingM": 33.25,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.017,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/1289270292:s1",
+   "zone": "B",
+   "method": "lit=yes on way/1289270292 (highway=secondary, Drottninggatan); station 2/3, effective spacing 33.2 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/1289270292",
+    "version": 3,
+    "timestamp": "2024-06-04T07:12:09Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 3,
+    "chainageM": 49.87,
+    "wayLengthM": 99.74,
+    "spacingM": 33.25,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.017,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/1289270292:s2",
+   "zone": "B",
+   "method": "lit=yes on way/1289270292 (highway=secondary, Drottninggatan); station 3/3, effective spacing 33.2 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/1289270292",
+    "version": 3,
+    "timestamp": "2024-06-04T07:12:09Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 83.12,
+    "wayLengthM": 99.74,
+    "spacingM": 33.25,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.017,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/1422459685:s1",
+   "zone": "C",
+   "method": "lit=yes on way/1422459685 (highway=path); station 2/3, effective spacing 21.7 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/1422459685",
+    "version": 1,
+    "timestamp": "2025-08-15T11:41:01Z",
+    "tags": {
+     "highway": "path",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 3,
+    "chainageM": 32.59,
+    "wayLengthM": 65.17,
+    "spacingM": 21.72,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.027,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/153090860:s0",
+   "zone": "A",
+   "method": "lit=yes on way/153090860 (highway=service); station 1/3, effective spacing 30.4 m (class 27 m), right side, 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/153090860",
+    "version": 5,
+    "timestamp": "2024-06-04T07:17:40Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 3,
+    "chainageM": 15.21,
+    "wayLengthM": 91.28,
+    "spacingM": 30.43,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.014,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/153090860:s1",
+   "zone": "A",
+   "method": "lit=yes on way/153090860 (highway=service); station 2/3, effective spacing 30.4 m (class 27 m), right side, 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/153090860",
+    "version": 5,
+    "timestamp": "2024-06-04T07:17:40Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 3,
+    "chainageM": 45.64,
+    "wayLengthM": 91.28,
+    "spacingM": 30.43,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.014,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/153090860:s2",
+   "zone": "A",
+   "method": "lit=yes on way/153090860 (highway=service); station 3/3, effective spacing 30.4 m (class 27 m), left side (preferred side blocked), 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/153090860",
+    "version": 5,
+    "timestamp": "2024-06-04T07:17:40Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 76.06,
+    "wayLengthM": 91.28,
+    "spacingM": 30.43,
+    "side": "left",
+    "sideFallback": true,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.014,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/153090862:s0",
+   "zone": "A",
+   "method": "lit=yes on way/153090862 (highway=service); station 1/4, effective spacing 24.6 m (class 27 m), left side (preferred side blocked), 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/153090862",
+    "version": 4,
+    "timestamp": "2024-06-04T07:17:39Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 4,
+    "chainageM": 12.3,
+    "wayLengthM": 98.43,
+    "spacingM": 24.61,
+    "side": "left",
+    "sideFallback": true,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/153090862:s1",
+   "zone": "A",
+   "method": "lit=yes on way/153090862 (highway=service); station 2/4, effective spacing 24.6 m (class 27 m), left side (preferred side blocked), 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/153090862",
+    "version": 4,
+    "timestamp": "2024-06-04T07:17:39Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 4,
+    "chainageM": 36.91,
+    "wayLengthM": 98.43,
+    "spacingM": 24.61,
+    "side": "left",
+    "sideFallback": true,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/153090862:s2",
+   "zone": "A",
+   "method": "lit=yes on way/153090862 (highway=service); station 3/4, effective spacing 24.6 m (class 27 m), right side, 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/153090862",
+    "version": 4,
+    "timestamp": "2024-06-04T07:17:39Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 4,
+    "chainageM": 61.52,
+    "wayLengthM": 98.43,
+    "spacingM": 24.61,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/153090862:s3",
+   "zone": "A",
+   "method": "lit=yes on way/153090862 (highway=service); station 4/4, effective spacing 24.6 m (class 27 m), right side, 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/153090862",
+    "version": 4,
+    "timestamp": "2024-06-04T07:17:39Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 4,
+    "chainageM": 86.12,
+    "wayLengthM": 98.43,
+    "spacingM": 24.61,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/163928048:s0",
+   "zone": "A",
+   "method": "lit=yes on way/163928048 (highway=secondary, Stationsrondellen); station 1/2, effective spacing 25.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/163928048",
+    "version": 11,
+    "timestamp": "2024-06-09T08:18:12Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Stationsrondellen",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 2,
+    "chainageM": 12.81,
+    "wayLengthM": 51.23,
+    "spacingM": 25.62,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 3,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.023,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/163928048:s1",
+   "zone": "A",
+   "method": "lit=yes on way/163928048 (highway=secondary, Stationsrondellen); station 2/2, effective spacing 25.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/163928048",
+    "version": 11,
+    "timestamp": "2024-06-09T08:18:12Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Stationsrondellen",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 2,
+    "chainageM": 38.43,
+    "wayLengthM": 51.23,
+    "spacingM": 25.62,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.023,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/163928051:s0",
+   "zone": "A",
+   "method": "lit=yes on way/163928051 (highway=secondary, Stationsrondellen); station 1/1, effective spacing 32.5 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/163928051",
+    "version": 10,
+    "timestamp": "2024-06-09T08:18:12Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Stationsrondellen",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 16.27,
+    "wayLengthM": 32.53,
+    "spacingM": 32.53,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/168975952:s0",
+   "zone": "B",
+   "method": "lit=yes on way/168975952 (highway=secondary, Drottninggatan); station 1/3, effective spacing 33.3 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/168975952",
+    "version": 8,
+    "timestamp": "2024-05-27T18:38:02Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 3,
+    "chainageM": 16.67,
+    "wayLengthM": 100.02,
+    "spacingM": 33.34,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.011,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/168975952:s1",
+   "zone": "B",
+   "method": "lit=yes on way/168975952 (highway=secondary, Drottninggatan); station 2/3, effective spacing 33.3 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/168975952",
+    "version": 8,
+    "timestamp": "2024-05-27T18:38:02Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 3,
+    "chainageM": 50.01,
+    "wayLengthM": 100.02,
+    "spacingM": 33.34,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.011,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/168975952:s2",
+   "zone": "B",
+   "method": "lit=yes on way/168975952 (highway=secondary, Drottninggatan); station 3/3, effective spacing 33.3 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/168975952",
+    "version": 8,
+    "timestamp": "2024-05-27T18:38:02Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 83.35,
+    "wayLengthM": 100.02,
+    "spacingM": 33.34,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.011,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/168975977:s0",
+   "zone": "A",
+   "method": "lit=yes on way/168975977 (highway=secondary, Norra Promenaden); station 1/1, effective spacing 27.5 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/168975977",
+    "version": 13,
+    "timestamp": "2025-08-20T20:45:22Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 13.77,
+    "wayLengthM": 27.54,
+    "spacingM": 27.54,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.017,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/244462639:s0",
+   "zone": "C",
+   "method": "lit=yes on way/244462639 (highway=footway); station 1/9, effective spacing 23.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/244462639",
+    "version": 6,
+    "timestamp": "2025-08-13T06:35:52Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 9,
+    "chainageM": 11.59,
+    "wayLengthM": 208.67,
+    "spacingM": 23.19,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/244462639:s3",
+   "zone": "C",
+   "method": "lit=yes on way/244462639 (highway=footway); station 4/9, effective spacing 23.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/244462639",
+    "version": 6,
+    "timestamp": "2025-08-13T06:35:52Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 9,
+    "chainageM": 81.15,
+    "wayLengthM": 208.67,
+    "spacingM": 23.19,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/27657625:s10",
+   "zone": "A",
+   "method": "lit=yes on way/27657625 (highway=path); station 11/26, effective spacing 22.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/27657625",
+    "version": 22,
+    "timestamp": "2025-08-19T18:47:53Z",
+    "tags": {
+     "highway": "path",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 10,
+    "of": 26,
+    "chainageM": 233.61,
+    "wayLengthM": 578.47,
+    "spacingM": 22.25,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.028,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/27657625:s11",
+   "zone": "A",
+   "method": "lit=yes on way/27657625 (highway=path); station 12/26, effective spacing 22.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/27657625",
+    "version": 22,
+    "timestamp": "2025-08-19T18:47:53Z",
+    "tags": {
+     "highway": "path",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 11,
+    "of": 26,
+    "chainageM": 255.86,
+    "wayLengthM": 578.47,
+    "spacingM": 22.25,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.028,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/27657625:s12",
+   "zone": "A",
+   "method": "lit=yes on way/27657625 (highway=path); station 13/26, effective spacing 22.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/27657625",
+    "version": 22,
+    "timestamp": "2025-08-19T18:47:53Z",
+    "tags": {
+     "highway": "path",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 12,
+    "of": 26,
+    "chainageM": 278.11,
+    "wayLengthM": 578.47,
+    "spacingM": 22.25,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.028,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/27657625:s13",
+   "zone": "A",
+   "method": "lit=yes on way/27657625 (highway=path); station 14/26, effective spacing 22.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/27657625",
+    "version": 22,
+    "timestamp": "2025-08-19T18:47:53Z",
+    "tags": {
+     "highway": "path",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 13,
+    "of": 26,
+    "chainageM": 300.36,
+    "wayLengthM": 578.47,
+    "spacingM": 22.25,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.028,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/27657625:s15",
+   "zone": "A",
+   "method": "lit=yes on way/27657625 (highway=path); station 16/26, effective spacing 22.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/27657625",
+    "version": 22,
+    "timestamp": "2025-08-19T18:47:53Z",
+    "tags": {
+     "highway": "path",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 15,
+    "of": 26,
+    "chainageM": 344.86,
+    "wayLengthM": 578.47,
+    "spacingM": 22.25,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.028,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/27657625:s9",
+   "zone": "A",
+   "method": "lit=yes on way/27657625 (highway=path); station 10/26, effective spacing 22.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/27657625",
+    "version": 22,
+    "timestamp": "2025-08-19T18:47:53Z",
+    "tags": {
+     "highway": "path",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 9,
+    "of": 26,
+    "chainageM": 211.36,
+    "wayLengthM": 578.47,
+    "spacingM": 22.25,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.028,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/2809544:s15",
+   "zone": "B",
+   "method": "lit=yes on way/2809544 (highway=footway); station 16/16, effective spacing 21.4 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/2809544",
+    "version": 12,
+    "timestamp": "2025-08-13T06:35:52Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 15,
+    "of": 16,
+    "chainageM": 331.7,
+    "wayLengthM": 342.4,
+    "spacingM": 21.4,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/285599454:s0",
+   "zone": "C",
+   "method": "lit=yes on way/285599454 (highway=residential, Hamngatan); station 1/1, effective spacing 21.6 m (class 27 m), right side, 3.55 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/285599454",
+    "version": 8,
+    "timestamp": "2022-08-20T21:33:47Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Hamngatan",
+     "oneway": "yes",
+     "sidewalk": "left"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 10.78,
+    "wayLengthM": 21.57,
+    "spacingM": 21.57,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 1.5,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445691:s0",
+   "zone": "A",
+   "method": "lit=yes on way/286445691 (highway=secondary, Norra Promenaden); station 1/4, effective spacing 28.7 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445691",
+    "version": 9,
+    "timestamp": "2024-02-17T11:26:02Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 4,
+    "chainageM": 14.33,
+    "wayLengthM": 114.66,
+    "spacingM": 28.66,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.025,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445691:s1",
+   "zone": "A",
+   "method": "lit=yes on way/286445691 (highway=secondary, Norra Promenaden); station 2/4, effective spacing 28.7 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445691",
+    "version": 9,
+    "timestamp": "2024-02-17T11:26:02Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 4,
+    "chainageM": 43,
+    "wayLengthM": 114.66,
+    "spacingM": 28.66,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.025,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445691:s2",
+   "zone": "A",
+   "method": "lit=yes on way/286445691 (highway=secondary, Norra Promenaden); station 3/4, effective spacing 28.7 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445691",
+    "version": 9,
+    "timestamp": "2024-02-17T11:26:02Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 4,
+    "chainageM": 71.66,
+    "wayLengthM": 114.66,
+    "spacingM": 28.66,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.025,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445691:s3",
+   "zone": "A",
+   "method": "lit=yes on way/286445691 (highway=secondary, Norra Promenaden); station 4/4, effective spacing 28.7 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445691",
+    "version": 9,
+    "timestamp": "2024-02-17T11:26:02Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 4,
+    "chainageM": 100.33,
+    "wayLengthM": 114.66,
+    "spacingM": 28.66,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.025,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445692:s0",
+   "zone": "A",
+   "method": "lit=yes on way/286445692 (highway=secondary, Norra Promenaden); station 1/2, effective spacing 34.9 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445692",
+    "version": 13,
+    "timestamp": "2025-08-20T20:45:13Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 2,
+    "chainageM": 17.44,
+    "wayLengthM": 69.74,
+    "spacingM": 34.87,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.01,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445692:s1",
+   "zone": "A",
+   "method": "lit=yes on way/286445692 (highway=secondary, Norra Promenaden); station 2/2, effective spacing 34.9 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445692",
+    "version": 13,
+    "timestamp": "2025-08-20T20:45:13Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 2,
+    "chainageM": 52.31,
+    "wayLengthM": 69.74,
+    "spacingM": 34.87,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.01,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445694:s0",
+   "zone": "A",
+   "method": "lit=yes on way/286445694 (highway=secondary, Norra Promenaden); station 1/3, effective spacing 33.5 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445694",
+    "version": 10,
+    "timestamp": "2025-08-20T20:45:18Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 3,
+    "chainageM": 16.76,
+    "wayLengthM": 100.53,
+    "spacingM": 33.51,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.012,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445694:s1",
+   "zone": "A",
+   "method": "lit=yes on way/286445694 (highway=secondary, Norra Promenaden); station 2/3, effective spacing 33.5 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445694",
+    "version": 10,
+    "timestamp": "2025-08-20T20:45:18Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 3,
+    "chainageM": 50.27,
+    "wayLengthM": 100.53,
+    "spacingM": 33.51,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.012,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445694:s2",
+   "zone": "A",
+   "method": "lit=yes on way/286445694 (highway=secondary, Norra Promenaden); station 3/3, effective spacing 33.5 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445694",
+    "version": 10,
+    "timestamp": "2025-08-20T20:45:18Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 83.78,
+    "wayLengthM": 100.53,
+    "spacingM": 33.51,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.012,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445695:s0",
+   "zone": "A",
+   "method": "lit=yes on way/286445695 (highway=secondary, Norra Promenaden); station 1/2, effective spacing 25.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445695",
+    "version": 12,
+    "timestamp": "2025-08-20T12:28:59Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 2,
+    "chainageM": 12.79,
+    "wayLengthM": 51.15,
+    "spacingM": 25.58,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.009,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445695:s1",
+   "zone": "A",
+   "method": "lit=yes on way/286445695 (highway=secondary, Norra Promenaden); station 2/2, effective spacing 25.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445695",
+    "version": 12,
+    "timestamp": "2025-08-20T12:28:59Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 2,
+    "chainageM": 38.36,
+    "wayLengthM": 51.15,
+    "spacingM": 25.58,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.009,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286445697:s0",
+   "zone": "A",
+   "method": "lit=yes on way/286445697 (highway=secondary, Norra Promenaden); station 1/2, effective spacing 30.8 m (class 30 m), outer side, 5.05 m from the centreline (setback +1.5 m)",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286445697",
+    "version": 12,
+    "timestamp": "2024-10-30T06:49:23Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 2,
+    "chainageM": 15.42,
+    "wayLengthM": 61.69,
+    "spacingM": 30.84,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": -4,
+    "offsetM": 5.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.023,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286457917:s0",
+   "zone": "A",
+   "method": "lit=yes on way/286457917 (highway=cycleway); station 1/1, effective spacing 14.3 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286457917",
+    "version": 4,
+    "timestamp": "2023-04-25T17:01:44Z",
+    "tags": {
+     "highway": "cycleway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 7.15,
+    "wayLengthM": 14.3,
+    "spacingM": 14.3,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.021,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286457920:s11",
+   "zone": "A",
+   "method": "lit=yes on way/286457920 (highway=cycleway); station 12/19, effective spacing 22.6 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286457920",
+    "version": 5,
+    "timestamp": "2023-10-01T21:40:52Z",
+    "tags": {
+     "highway": "cycleway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 11,
+    "of": 19,
+    "chainageM": 259.42,
+    "wayLengthM": 428.6,
+    "spacingM": 22.56,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 4,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286457920:s12",
+   "zone": "A",
+   "method": "lit=yes on way/286457920 (highway=cycleway); station 13/19, effective spacing 22.6 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286457920",
+    "version": 5,
+    "timestamp": "2023-10-01T21:40:52Z",
+    "tags": {
+     "highway": "cycleway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 12,
+    "of": 19,
+    "chainageM": 281.97,
+    "wayLengthM": 428.6,
+    "spacingM": 22.56,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286457920:s13",
+   "zone": "A",
+   "method": "lit=yes on way/286457920 (highway=cycleway); station 14/19, effective spacing 22.6 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286457920",
+    "version": 5,
+    "timestamp": "2023-10-01T21:40:52Z",
+    "tags": {
+     "highway": "cycleway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 13,
+    "of": 19,
+    "chainageM": 304.53,
+    "wayLengthM": 428.6,
+    "spacingM": 22.56,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286457920:s14",
+   "zone": "A",
+   "method": "lit=yes on way/286457920 (highway=cycleway); station 15/19, effective spacing 22.6 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286457920",
+    "version": 5,
+    "timestamp": "2023-10-01T21:40:52Z",
+    "tags": {
+     "highway": "cycleway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 14,
+    "of": 19,
+    "chainageM": 327.09,
+    "wayLengthM": 428.6,
+    "spacingM": 22.56,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286457920:s15",
+   "zone": "A",
+   "method": "lit=yes on way/286457920 (highway=cycleway); station 16/19, effective spacing 22.6 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286457920",
+    "version": 5,
+    "timestamp": "2023-10-01T21:40:52Z",
+    "tags": {
+     "highway": "cycleway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 15,
+    "of": 19,
+    "chainageM": 349.65,
+    "wayLengthM": 428.6,
+    "spacingM": 22.56,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/286457920:s16",
+   "zone": "A",
+   "method": "lit=yes on way/286457920 (highway=cycleway); station 17/19, effective spacing 22.6 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/286457920",
+    "version": 5,
+    "timestamp": "2023-10-01T21:40:52Z",
+    "tags": {
+     "highway": "cycleway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 16,
+    "of": 19,
+    "chainageM": 372.21,
+    "wayLengthM": 428.6,
+    "spacingM": 22.56,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297609740:s0",
+   "zone": "B",
+   "method": "lit=yes on way/297609740 (highway=footway); station 1/3, effective spacing 18.4 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297609740",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:14Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 3,
+    "chainageM": 9.22,
+    "wayLengthM": 55.31,
+    "spacingM": 18.44,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.017,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297609740:s1",
+   "zone": "B",
+   "method": "lit=yes on way/297609740 (highway=footway); station 2/3, effective spacing 18.4 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297609740",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:14Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 3,
+    "chainageM": 27.66,
+    "wayLengthM": 55.31,
+    "spacingM": 18.44,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.017,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297609740:s2",
+   "zone": "B",
+   "method": "lit=yes on way/297609740 (highway=footway); station 3/3, effective spacing 18.4 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297609740",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:14Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 46.1,
+    "wayLengthM": 55.31,
+    "spacingM": 18.44,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.017,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297609788:s2",
+   "zone": "A",
+   "method": "lit=yes on way/297609788 (highway=footway); station 3/3, effective spacing 19.6 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297609788",
+    "version": 5,
+    "timestamp": "2022-09-01T18:39:50Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 48.93,
+    "wayLengthM": 58.71,
+    "spacingM": 19.57,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.019,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297690883:s0",
+   "zone": "C",
+   "method": "lit=yes on way/297690883 (highway=service, Drottninggatan); station 1/7, effective spacing 27.7 m (class 27 m), right side, 4.05 m from the centreline (setback +1 m)",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297690883",
+    "version": 11,
+    "timestamp": "2025-11-07T16:14:00Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "sidewalk": "both"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 7,
+    "chainageM": 13.84,
+    "wayLengthM": 193.75,
+    "spacingM": 27.68,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297690883:s1",
+   "zone": "C",
+   "method": "lit=yes on way/297690883 (highway=service, Drottninggatan); station 2/7, effective spacing 27.7 m (class 27 m), right side, 4.05 m from the centreline (setback +1 m)",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297690883",
+    "version": 11,
+    "timestamp": "2025-11-07T16:14:00Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "sidewalk": "both"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 7,
+    "chainageM": 41.52,
+    "wayLengthM": 193.75,
+    "spacingM": 27.68,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297690883:s2",
+   "zone": "C",
+   "method": "lit=yes on way/297690883 (highway=service, Drottninggatan); station 3/7, effective spacing 27.7 m (class 27 m), right side, 4.05 m from the centreline (setback +1 m)",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297690883",
+    "version": 11,
+    "timestamp": "2025-11-07T16:14:00Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "sidewalk": "both"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 7,
+    "chainageM": 69.2,
+    "wayLengthM": 193.75,
+    "spacingM": 27.68,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 1.5,
+    "offsetM": 4.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297690883:s3",
+   "zone": "C",
+   "method": "lit=yes on way/297690883 (highway=service, Drottninggatan); station 4/7, effective spacing 27.7 m (class 27 m), right side, 4.05 m from the centreline (setback +1 m)",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297690883",
+    "version": 11,
+    "timestamp": "2025-11-07T16:14:00Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "sidewalk": "both"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 7,
+    "chainageM": 96.87,
+    "wayLengthM": 193.75,
+    "spacingM": 27.68,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297690886:s0",
+   "zone": "C",
+   "method": "lit=yes on way/297690886 (highway=residential, Hamngatan); station 1/1, effective spacing 18.3 m (class 27 m), right side, 3.55 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297690886",
+    "version": 5,
+    "timestamp": "2021-08-01T14:39:04Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Hamngatan",
+     "oneway": "yes",
+     "sidewalk": "left"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 9.16,
+    "wayLengthM": 18.32,
+    "spacingM": 18.32,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.011,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297693805:s3",
+   "zone": "B",
+   "method": "lit=yes on way/297693805 (highway=residential, Slottsgatan); station 4/5, effective spacing 25.3 m (class 27 m), right side, 4.10 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297693805",
+    "version": 5,
+    "timestamp": "2021-07-18T13:14:05Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Slottsgatan"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 5,
+    "chainageM": 88.71,
+    "wayLengthM": 126.73,
+    "spacingM": 25.35,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.015,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/297693805:s4",
+   "zone": "B",
+   "method": "lit=yes on way/297693805 (highway=residential, Slottsgatan); station 5/5, effective spacing 25.3 m (class 27 m), right side, 4.10 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/297693805",
+    "version": 5,
+    "timestamp": "2021-07-18T13:14:05Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Slottsgatan"
+    }
+   },
+   "station": {
+    "index": 4,
+    "of": 5,
+    "chainageM": 114.06,
+    "wayLengthM": 126.73,
+    "spacingM": 25.35,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.015,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/300027207:s0",
+   "zone": "A",
+   "method": "lit=yes on way/300027207 (highway=secondary, Aurorerondellen); station 1/1, effective spacing 24.4 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/300027207",
+    "version": 9,
+    "timestamp": "2023-10-01T21:40:52Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Aurorerondellen",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 12.21,
+    "wayLengthM": 24.42,
+    "spacingM": 24.42,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 3,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/308315542:s1",
+   "zone": "B",
+   "method": "lit=yes on way/308315542 (highway=secondary, Drottninggatan); station 2/4, effective spacing 26.5 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/308315542",
+    "version": 9,
+    "timestamp": "2024-05-27T18:37:44Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 4,
+    "chainageM": 39.7,
+    "wayLengthM": 105.86,
+    "spacingM": 26.46,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.01,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/308315542:s2",
+   "zone": "B",
+   "method": "lit=yes on way/308315542 (highway=secondary, Drottninggatan); station 3/4, effective spacing 26.5 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/308315542",
+    "version": 9,
+    "timestamp": "2024-05-27T18:37:44Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 4,
+    "chainageM": 66.16,
+    "wayLengthM": 105.86,
+    "spacingM": 26.46,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.01,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/308315542:s3",
+   "zone": "B",
+   "method": "lit=yes on way/308315542 (highway=secondary, Drottninggatan); station 4/4, effective spacing 26.5 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/308315542",
+    "version": 9,
+    "timestamp": "2024-05-27T18:37:44Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 4,
+    "chainageM": 92.62,
+    "wayLengthM": 105.86,
+    "spacingM": 26.46,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.01,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4384887:s0",
+   "zone": "A",
+   "method": "lit=yes on way/4384887 (highway=secondary, Norra Promenaden); station 1/3, effective spacing 34.3 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4384887",
+    "version": 20,
+    "timestamp": "2025-08-20T12:28:59Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 3,
+    "chainageM": 17.17,
+    "wayLengthM": 103.02,
+    "spacingM": 34.34,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.015,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4385505:s0",
+   "zone": "A",
+   "method": "lit=yes on way/4385505 (highway=secondary, Stationsrondellen); station 1/1, effective spacing 31.0 m (class 30 m), outer side, 4.10 m from the centreline",
+   "rule": "lit-way-roundabout-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4385505",
+    "version": 22,
+    "timestamp": "2024-06-09T08:18:12Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Stationsrondellen",
+     "junction": "circular",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 15.51,
+    "wayLengthM": 31.01,
+    "spacingM": 31.01,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.015,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438347:s1",
+   "zone": "A",
+   "method": "lit=yes on way/4438347 (highway=secondary, Norra Promenaden); station 2/8, effective spacing 28.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438347",
+    "version": 19,
+    "timestamp": "2025-08-20T20:45:35Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 8,
+    "chainageM": 42.97,
+    "wayLengthM": 229.15,
+    "spacingM": 28.64,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.027,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438347:s2",
+   "zone": "A",
+   "method": "lit=yes on way/4438347 (highway=secondary, Norra Promenaden); station 3/8, effective spacing 28.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438347",
+    "version": 19,
+    "timestamp": "2025-08-20T20:45:35Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 8,
+    "chainageM": 71.61,
+    "wayLengthM": 229.15,
+    "spacingM": 28.64,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.027,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438347:s3",
+   "zone": "A",
+   "method": "lit=yes on way/4438347 (highway=secondary, Norra Promenaden); station 4/8, effective spacing 28.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438347",
+    "version": 19,
+    "timestamp": "2025-08-20T20:45:35Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 8,
+    "chainageM": 100.25,
+    "wayLengthM": 229.15,
+    "spacingM": 28.64,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.027,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438347:s4",
+   "zone": "A",
+   "method": "lit=yes on way/4438347 (highway=secondary, Norra Promenaden); station 5/8, effective spacing 28.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438347",
+    "version": 19,
+    "timestamp": "2025-08-20T20:45:35Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 4,
+    "of": 8,
+    "chainageM": 128.9,
+    "wayLengthM": 229.15,
+    "spacingM": 28.64,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.027,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438347:s5",
+   "zone": "A",
+   "method": "lit=yes on way/4438347 (highway=secondary, Norra Promenaden); station 6/8, effective spacing 28.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438347",
+    "version": 19,
+    "timestamp": "2025-08-20T20:45:35Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 5,
+    "of": 8,
+    "chainageM": 157.54,
+    "wayLengthM": 229.15,
+    "spacingM": 28.64,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.027,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438347:s6",
+   "zone": "A",
+   "method": "lit=yes on way/4438347 (highway=secondary, Norra Promenaden); station 7/8, effective spacing 28.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438347",
+    "version": 19,
+    "timestamp": "2025-08-20T20:45:35Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 6,
+    "of": 8,
+    "chainageM": 186.19,
+    "wayLengthM": 229.15,
+    "spacingM": 28.64,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.027,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438347:s7",
+   "zone": "A",
+   "method": "lit=yes on way/4438347 (highway=secondary, Norra Promenaden); station 8/8, effective spacing 28.6 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438347",
+    "version": 19,
+    "timestamp": "2025-08-20T20:45:35Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 7,
+    "of": 8,
+    "chainageM": 214.83,
+    "wayLengthM": 229.15,
+    "spacingM": 28.64,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.027,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438348:s1",
+   "zone": "A",
+   "method": "lit=yes on way/4438348 (highway=secondary, Norra Promenaden); station 2/6, effective spacing 29.4 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438348",
+    "version": 16,
+    "timestamp": "2024-02-17T11:26:51Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 6,
+    "chainageM": 44.15,
+    "wayLengthM": 176.59,
+    "spacingM": 29.43,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438348:s2",
+   "zone": "A",
+   "method": "lit=yes on way/4438348 (highway=secondary, Norra Promenaden); station 3/6, effective spacing 29.4 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438348",
+    "version": 16,
+    "timestamp": "2024-02-17T11:26:51Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 6,
+    "chainageM": 73.58,
+    "wayLengthM": 176.59,
+    "spacingM": 29.43,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438348:s3",
+   "zone": "A",
+   "method": "lit=yes on way/4438348 (highway=secondary, Norra Promenaden); station 4/6, effective spacing 29.4 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438348",
+    "version": 16,
+    "timestamp": "2024-02-17T11:26:51Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 6,
+    "chainageM": 103.01,
+    "wayLengthM": 176.59,
+    "spacingM": 29.43,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438348:s4",
+   "zone": "A",
+   "method": "lit=yes on way/4438348 (highway=secondary, Norra Promenaden); station 5/6, effective spacing 29.4 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438348",
+    "version": 16,
+    "timestamp": "2024-02-17T11:26:51Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 4,
+    "of": 6,
+    "chainageM": 132.44,
+    "wayLengthM": 176.59,
+    "spacingM": 29.43,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/4438348:s5",
+   "zone": "A",
+   "method": "lit=yes on way/4438348 (highway=secondary, Norra Promenaden); station 6/6, effective spacing 29.4 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/4438348",
+    "version": 16,
+    "timestamp": "2024-02-17T11:26:51Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 5,
+    "of": 6,
+    "chainageM": 161.88,
+    "wayLengthM": 176.59,
+    "spacingM": 29.43,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/444474495:s0",
+   "zone": "A",
+   "method": "lit=yes on way/444474495 (highway=residential, Norra promenaden); station 1/1, effective spacing 18.2 m (class 27 m), right side, 4.10 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/444474495",
+    "version": 4,
+    "timestamp": "2023-04-25T17:15:32Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Norra promenaden",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 9.12,
+    "wayLengthM": 18.25,
+    "spacingM": 18.25,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.019,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/47460597:s1",
+   "zone": "A",
+   "method": "lit=yes on way/47460597 (highway=secondary, Norra Promenaden); station 2/2, effective spacing 35.0 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/47460597",
+    "version": 12,
+    "timestamp": "2024-05-27T18:37:17Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Norra Promenaden",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 2,
+    "chainageM": 52.55,
+    "wayLengthM": 70.07,
+    "spacingM": 35.03,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.022,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/47460598:s0",
+   "zone": "C",
+   "method": "lit=yes on way/47460598 (highway=secondary, bridge, Drottninggatan); station 1/3, effective spacing 26.0 m (class 30 m), outer side, 3.05 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/47460598",
+    "version": 17,
+    "timestamp": "2024-06-04T07:12:08Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "bridge": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 3,
+    "chainageM": 13.01,
+    "wayLengthM": 78.08,
+    "spacingM": 26.03,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.014,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/47460598:s1",
+   "zone": "C",
+   "method": "lit=yes on way/47460598 (highway=secondary, bridge, Drottninggatan); station 2/3, effective spacing 26.0 m (class 30 m), outer side, 3.05 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/47460598",
+    "version": 17,
+    "timestamp": "2024-06-04T07:12:08Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "bridge": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 3,
+    "chainageM": 39.04,
+    "wayLengthM": 78.08,
+    "spacingM": 26.03,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.014,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/47460598:s2",
+   "zone": "C",
+   "method": "lit=yes on way/47460598 (highway=secondary, bridge, Drottninggatan); station 3/3, effective spacing 26.0 m (class 30 m), outer side, 3.05 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/47460598",
+    "version": 17,
+    "timestamp": "2024-06-04T07:12:08Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "bridge": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 65.07,
+    "wayLengthM": 78.08,
+    "spacingM": 26.03,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.014,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/501428826:s0",
+   "zone": "C",
+   "method": "lit=yes on way/501428826 (highway=secondary, bridge, Drottninggatan); station 1/3, effective spacing 26.0 m (class 30 m), outer side, 3.05 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/501428826",
+    "version": 8,
+    "timestamp": "2024-06-04T07:17:40Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "bridge": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 3,
+    "chainageM": 12.99,
+    "wayLengthM": 77.94,
+    "spacingM": 25.98,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/501428826:s1",
+   "zone": "C",
+   "method": "lit=yes on way/501428826 (highway=secondary, bridge, Drottninggatan); station 2/3, effective spacing 26.0 m (class 30 m), outer side, 3.05 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/501428826",
+    "version": 8,
+    "timestamp": "2024-06-04T07:17:40Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "bridge": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 3,
+    "chainageM": 38.97,
+    "wayLengthM": 77.94,
+    "spacingM": 25.98,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/501428826:s2",
+   "zone": "C",
+   "method": "lit=yes on way/501428826 (highway=secondary, bridge, Drottninggatan); station 3/3, effective spacing 26.0 m (class 30 m), outer side, 3.05 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/501428826",
+    "version": 8,
+    "timestamp": "2024-06-04T07:17:40Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes",
+     "bridge": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 64.95,
+    "wayLengthM": 77.94,
+    "spacingM": 25.98,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.05
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/760535006:s0",
+   "zone": "A",
+   "method": "lit=yes on way/760535006 (highway=footway); station 1/1, effective spacing 14.4 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/760535006",
+    "version": 5,
+    "timestamp": "2021-07-18T13:14:21Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 7.21,
+    "wayLengthM": 14.41,
+    "spacingM": 14.41,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.017,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/760535007:s0",
+   "zone": "B",
+   "method": "lit=yes on way/760535007 (highway=footway); station 1/1, effective spacing 30.5 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/760535007",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:18Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 15.25,
+    "wayLengthM": 30.49,
+    "spacingM": 30.49,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/760535008:s0",
+   "zone": "B",
+   "method": "lit=yes on way/760535008 (highway=footway); station 1/1, effective spacing 32.3 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/760535008",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:09Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 16.13,
+    "wayLengthM": 32.25,
+    "spacingM": 32.25,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.015,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/8236738:s0",
+   "zone": "C",
+   "method": "lit=yes on way/8236738 (highway=residential, Hamngatan); station 1/4, effective spacing 27.8 m (class 27 m), right side, 3.55 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/8236738",
+    "version": 19,
+    "timestamp": "2024-09-16T12:13:39Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Hamngatan",
+     "oneway": "yes",
+     "sidewalk": "no"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 4,
+    "chainageM": 13.89,
+    "wayLengthM": 111.09,
+    "spacingM": 27.77,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.015,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/850158980:s0",
+   "zone": "A",
+   "method": "lit=yes on way/850158980 (highway=residential, Sveagatan); station 1/4, effective spacing 24.2 m (class 27 m), left side (preferred side blocked), 4.10 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/850158980",
+    "version": 7,
+    "timestamp": "2025-08-20T20:46:08Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Sveagatan",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 4,
+    "chainageM": 12.1,
+    "wayLengthM": 96.78,
+    "spacingM": 24.19,
+    "side": "left",
+    "sideFallback": true,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/850158980:s1",
+   "zone": "A",
+   "method": "lit=yes on way/850158980 (highway=residential, Sveagatan); station 2/4, effective spacing 24.2 m (class 27 m), left side (preferred side blocked), 4.10 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/850158980",
+    "version": 7,
+    "timestamp": "2025-08-20T20:46:08Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Sveagatan",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 4,
+    "chainageM": 36.29,
+    "wayLengthM": 96.78,
+    "spacingM": 24.19,
+    "side": "left",
+    "sideFallback": true,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/850158980:s2",
+   "zone": "A",
+   "method": "lit=yes on way/850158980 (highway=residential, Sveagatan); station 3/4, effective spacing 24.2 m (class 27 m), left side (preferred side blocked), 4.10 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/850158980",
+    "version": 7,
+    "timestamp": "2025-08-20T20:46:08Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Sveagatan",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 4,
+    "chainageM": 60.49,
+    "wayLengthM": 96.78,
+    "spacingM": 24.19,
+    "side": "left",
+    "sideFallback": true,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/850158980:s3",
+   "zone": "A",
+   "method": "lit=yes on way/850158980 (highway=residential, Sveagatan); station 4/4, effective spacing 24.2 m (class 27 m), left side (preferred side blocked), 4.10 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/850158980",
+    "version": 7,
+    "timestamp": "2025-08-20T20:46:08Z",
+    "tags": {
+     "highway": "residential",
+     "lit": "yes",
+     "name": "Sveagatan",
+     "sidewalk": "right"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 4,
+    "chainageM": 84.68,
+    "wayLengthM": 96.78,
+    "spacingM": 24.19,
+    "side": "left",
+    "sideFallback": true,
+    "shiftM": 0,
+    "offsetM": 4.1
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/88701989:s0",
+   "zone": "B",
+   "method": "lit=yes on way/88701989 (highway=footway); station 1/1, effective spacing 22.5 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/88701989",
+    "version": 4,
+    "timestamp": "2023-10-02T20:17:49Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 11.23,
+    "wayLengthM": 22.45,
+    "spacingM": 22.45,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.012,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/88701993:s0",
+   "zone": "B",
+   "method": "lit=yes on way/88701993 (highway=path); station 1/2, effective spacing 26.4 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/88701993",
+    "version": 7,
+    "timestamp": "2025-08-13T10:02:58Z",
+    "tags": {
+     "highway": "path",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 2,
+    "chainageM": 13.22,
+    "wayLengthM": 52.9,
+    "spacingM": 26.45,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/88701993:s1",
+   "zone": "B",
+   "method": "lit=yes on way/88701993 (highway=path); station 2/2, effective spacing 26.4 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/88701993",
+    "version": 7,
+    "timestamp": "2025-08-13T10:02:58Z",
+    "tags": {
+     "highway": "path",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 2,
+    "chainageM": 39.67,
+    "wayLengthM": 52.9,
+    "spacingM": 26.45,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/88701995:s2",
+   "zone": "B",
+   "method": "lit=yes on way/88701995 (highway=footway); station 3/3, effective spacing 23.3 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/88701995",
+    "version": 4,
+    "timestamp": "2021-07-18T13:14:06Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 58.3,
+    "wayLengthM": 69.96,
+    "spacingM": 23.32,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.01,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/88701997:s2",
+   "zone": "B",
+   "method": "lit=yes on way/88701997 (highway=footway); station 3/3, effective spacing 18.9 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/88701997",
+    "version": 4,
+    "timestamp": "2022-11-12T14:03:34Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 47.33,
+    "wayLengthM": 56.79,
+    "spacingM": 18.93,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.017,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/92459627:s0",
+   "zone": "C",
+   "method": "lit=yes on way/92459627 (highway=secondary, Drottninggatan); station 1/1, effective spacing 30.1 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/92459627",
+    "version": 9,
+    "timestamp": "2021-08-01T14:39:07Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 15.04,
+    "wayLengthM": 30.08,
+    "spacingM": 30.08,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.016,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/92459645:s0",
+   "zone": "C",
+   "method": "lit=yes on way/92459645 (highway=secondary, Drottninggatan); station 1/1, effective spacing 18.9 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/92459645",
+    "version": 7,
+    "timestamp": "2024-06-04T07:12:07Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 9.47,
+    "wayLengthM": 18.94,
+    "spacingM": 18.94,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.014,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/92459665:s0",
+   "zone": "B",
+   "method": "lit=yes on way/92459665 (highway=secondary, Drottninggatan); station 1/4, effective spacing 26.8 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/92459665",
+    "version": 12,
+    "timestamp": "2024-06-04T07:12:09Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 4,
+    "chainageM": 13.39,
+    "wayLengthM": 107.09,
+    "spacingM": 26.77,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.021,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/92459665:s1",
+   "zone": "B",
+   "method": "lit=yes on way/92459665 (highway=secondary, Drottninggatan); station 2/4, effective spacing 26.8 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/92459665",
+    "version": 12,
+    "timestamp": "2024-06-04T07:12:09Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 4,
+    "chainageM": 40.16,
+    "wayLengthM": 107.09,
+    "spacingM": 26.77,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.021,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/92459665:s2",
+   "zone": "B",
+   "method": "lit=yes on way/92459665 (highway=secondary, Drottninggatan); station 3/4, effective spacing 26.8 m (class 30 m), outer side, 3.55 m from the centreline",
+   "rule": "lit-way-dual-carriageway-outer",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/92459665",
+    "version": 12,
+    "timestamp": "2024-06-04T07:12:09Z",
+    "tags": {
+     "highway": "secondary",
+     "lit": "yes",
+     "name": "Drottninggatan",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 4,
+    "chainageM": 66.93,
+    "wayLengthM": 107.09,
+    "spacingM": 26.77,
+    "side": "outer",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 3.55
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.021,
+   "uncertaintyM": 15,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/92459682:s1",
+   "zone": "B",
+   "method": "lit=yes on way/92459682 (highway=footway); station 2/2, effective spacing 26.6 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/92459682",
+    "version": 8,
+    "timestamp": "2025-08-13T06:35:52Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 2,
+    "chainageM": 39.85,
+    "wayLengthM": 53.14,
+    "spacingM": 26.57,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.013,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/93313348:s0",
+   "zone": "B",
+   "method": "lit=yes on way/93313348 (highway=footway); station 1/1, effective spacing 32.8 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/93313348",
+    "version": 6,
+    "timestamp": "2021-07-18T13:14:11Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 1,
+    "chainageM": 16.38,
+    "wayLengthM": 32.76,
+    "spacingM": 32.76,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.019,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/93313350:s5",
+   "zone": "A",
+   "method": "lit=yes on way/93313350 (highway=cycleway); station 6/7, effective spacing 20.7 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/93313350",
+    "version": 5,
+    "timestamp": "2025-11-26T17:29:14Z",
+    "tags": {
+     "highway": "cycleway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 5,
+    "of": 7,
+    "chainageM": 113.58,
+    "wayLengthM": 144.56,
+    "spacingM": 20.65,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.02,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/94350352:s0",
+   "zone": "A",
+   "method": "lit=yes on way/94350352 (highway=service); station 1/3, effective spacing 28.4 m (class 27 m), right side, 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/94350352",
+    "version": 4,
+    "timestamp": "2024-06-04T07:17:39Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 0,
+    "of": 3,
+    "chainageM": 14.18,
+    "wayLengthM": 85.1,
+    "spacingM": 28.37,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.015,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/94350352:s1",
+   "zone": "A",
+   "method": "lit=yes on way/94350352 (highway=service); station 2/3, effective spacing 28.4 m (class 27 m), right side, 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/94350352",
+    "version": 4,
+    "timestamp": "2024-06-04T07:17:39Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 3,
+    "chainageM": 42.55,
+    "wayLengthM": 85.1,
+    "spacingM": 28.37,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.015,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/94350352:s2",
+   "zone": "A",
+   "method": "lit=yes on way/94350352 (highway=service); station 3/3, effective spacing 28.4 m (class 27 m), right side, 2.80 m from the centreline",
+   "rule": "lit-way-one-side",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/94350352",
+    "version": 4,
+    "timestamp": "2024-06-04T07:17:39Z",
+    "tags": {
+     "highway": "service",
+     "lit": "yes",
+     "oneway": "yes"
+    }
+   },
+   "station": {
+    "index": 2,
+    "of": 3,
+    "chainageM": 70.92,
+    "wayLengthM": 85.1,
+    "spacingM": 28.37,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 2.8
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.015,
+   "uncertaintyM": 13.5,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/963450939:s1",
+   "zone": "A",
+   "method": "lit=yes on way/963450939 (highway=footway); station 2/8, effective spacing 23.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/963450939",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:32Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 1,
+    "of": 8,
+    "chainageM": 34.75,
+    "wayLengthM": 185.34,
+    "spacingM": 23.17,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/963450939:s3",
+   "zone": "A",
+   "method": "lit=yes on way/963450939 (highway=footway); station 4/8, effective spacing 23.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/963450939",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:32Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 3,
+    "of": 8,
+    "chainageM": 81.09,
+    "wayLengthM": 185.34,
+    "spacingM": 23.17,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/963450939:s5",
+   "zone": "A",
+   "method": "lit=yes on way/963450939 (highway=footway); station 6/8, effective spacing 23.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/963450939",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:32Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 5,
+    "of": 8,
+    "chainageM": 127.42,
+    "wayLengthM": 185.34,
+    "spacingM": 23.17,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/963450939:s6",
+   "zone": "A",
+   "method": "lit=yes on way/963450939 (highway=footway); station 7/8, effective spacing 23.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/963450939",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:32Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 6,
+    "of": 8,
+    "chainageM": 150.59,
+    "wayLengthM": 185.34,
+    "spacingM": 23.17,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "estimate:lighting-a1-v1:way/963450939:s7",
+   "zone": "A",
+   "method": "lit=yes on way/963450939 (highway=footway); station 8/8, effective spacing 23.2 m (class 22 m), right side, 1.20 m from the centreline",
+   "rule": "lit-path-beside",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "way/963450939",
+    "version": 3,
+    "timestamp": "2021-07-18T13:14:32Z",
+    "tags": {
+     "highway": "footway",
+     "lit": "yes"
+    }
+   },
+   "station": {
+    "index": 7,
+    "of": 8,
+    "chainageM": 173.76,
+    "wayLengthM": 185.34,
+    "spacingM": 23.17,
+    "side": "right",
+    "sideFallback": false,
+    "shiftM": 0,
+    "offsetM": 1.2
+   },
+   "orientation": "estimated",
+   "mapDeviationM": 0.018,
+   "uncertaintyM": 11,
+   "observed": [
+    "the way is lit (lit=yes)"
+   ],
+   "inferred": [
+    "pole position",
+    "spacing",
+    "side",
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output"
+   ]
+  },
+  {
+   "id": "osm:node/11098939295",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/88701987 (highway=footway, 4.4 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098939295",
+    "version": 1,
+    "timestamp": "2023-08-08T08:32:13Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "osm:node/11098939296",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/88702227 (highway=footway, 2.0 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098939296",
+    "version": 1,
+    "timestamp": "2023-08-08T08:32:13Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "osm:node/11098939297",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/88702227 (highway=footway, 1.6 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098939297",
+    "version": 1,
+    "timestamp": "2023-08-08T08:32:13Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "osm:node/11098939298",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/760535009 (highway=footway, 2.3 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098939298",
+    "version": 1,
+    "timestamp": "2023-08-08T08:32:13Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "osm:node/11098939299",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/88701990 (highway=footway, 2.2 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098939299",
+    "version": 1,
+    "timestamp": "2023-08-08T08:32:13Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "osm:node/11098973692",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/760535009 (highway=footway, 2.1 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098973692",
+    "version": 1,
+    "timestamp": "2023-08-08T08:30:52Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "osm:node/11098973693",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/88701987 (highway=footway, 1.5 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098973693",
+    "version": 1,
+    "timestamp": "2023-08-08T08:30:52Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "osm:node/11098973694",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/88701996 (highway=footway, 1.7 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098973694",
+    "version": 1,
+    "timestamp": "2023-08-08T08:30:52Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "osm:node/11098973695",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/760535009 (highway=footway, 3.4 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098973695",
+    "version": 1,
+    "timestamp": "2023-08-08T08:30:52Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  },
+  {
+   "id": "osm:node/11098973696",
+   "zone": "B",
+   "method": "OSM node position; type from nearest way way/88701987 (highway=footway, 0.7 m)",
+   "rule": "mapped-osm-node",
+   "source": {
+    "dataset": "osm-lighting-a1-snapshot",
+    "element": "node/11098973696",
+    "version": 1,
+    "timestamp": "2023-08-08T08:30:52Z",
+    "tags": {
+     "highway": "street_lamp"
+    }
+   },
+   "station": null,
+   "orientation": "unknown",
+   "mapDeviationM": null,
+   "uncertaintyM": 3,
+   "observed": [
+    "position (mapped, not surveyed)",
+    "presence of a street lamp"
+   ],
+   "inferred": [
+    "fixture type",
+    "mounting height",
+    "colour temperature",
+    "light output",
+    "distribution"
+   ]
+  }
+ ],
+ "rejected": [
+  {
+   "candidate": "estimate:lighting-a1-v1:way/1422459685:s0",
+   "element": "way/1422459685",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "6.3 m from a lit road centreline",
+   "en": [
+    568904.01,
+    6495367.76
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/153090863:s0",
+   "element": "way/153090863",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/153090860:s2 at 6.2 m",
+   "en": [
+    568706.51,
+    6495692.09
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/244462639:s1",
+   "element": "way/244462639",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "8.4 m from a lit road centreline",
+   "en": [
+    568906.92,
+    6495455.93
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/244462639:s2",
+   "element": "way/244462639",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "1.5 m from a lit road centreline",
+   "en": [
+    568885.42,
+    6495447.28
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/244462640:s0",
+   "element": "way/244462640",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.7 m from a lit road centreline",
+   "en": [
+    568885.08,
+    6495467.32
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s0",
+   "element": "way/27657625",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "5.2 m from a lit road centreline",
+   "en": [
+    568871.46,
+    6495565.16
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s1",
+   "element": "way/27657625",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "5.1 m from a lit road centreline",
+   "en": [
+    568864.69,
+    6495586.39
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s14",
+   "element": "way/27657625",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.9 m from a lit road centreline",
+   "en": [
+    569056.9,
+    6495723.74
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s2",
+   "element": "way/27657625",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.6 m from a lit road centreline",
+   "en": [
+    568858.14,
+    6495607.59
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s3",
+   "element": "way/27657625",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.9 m from a lit road centreline",
+   "en": [
+    568852.59,
+    6495628.84
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s4",
+   "element": "way/27657625",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "8.6 m from a lit road centreline",
+   "en": [
+    568853.93,
+    6495650.62
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s5",
+   "element": "way/27657625",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "6.8 m from a lit road centreline",
+   "en": [
+    568865.5,
+    6495668.11
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s6",
+   "element": "way/27657625",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.9 m from a lit road centreline",
+   "en": [
+    568885.79,
+    6495674.75
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s7",
+   "element": "way/27657625",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.8 m from a lit road centreline",
+   "en": [
+    568907.22,
+    6495680.97
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/27657625:s8",
+   "element": "way/27657625",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.8 m from a lit road centreline",
+   "en": [
+    568928.56,
+    6495687.13
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/2809544:s14",
+   "element": "way/2809544",
+   "zone": "C",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/244462639:s0 at 8.5 m",
+   "en": [
+    568936.73,
+    6495466.73
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286445697:s1",
+   "element": "way/286445697",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/115784824:s0 at 14.5 m",
+   "en": [
+    568799.32,
+    6495660.22
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286445700:s0",
+   "element": "way/286445700",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "3.5 m from a lit road centreline",
+   "en": [
+    568862.3,
+    6495705.1
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286445700:s1",
+   "element": "way/286445700",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "2.7 m from a lit road centreline",
+   "en": [
+    568868.47,
+    6495683.58
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286457919:s0",
+   "element": "way/286457919",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "8.7 m from a lit road centreline",
+   "en": [
+    568613.97,
+    6495644.39
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286457919:s1",
+   "element": "way/286457919",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "6.7 m from a lit road centreline",
+   "en": [
+    568595.99,
+    6495633.86
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286457919:s2",
+   "element": "way/286457919",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "8.1 m from a lit road centreline",
+   "en": [
+    568573.9,
+    6495627.34
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286457920:s10",
+   "element": "way/286457920",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "8.8 m from a lit road centreline",
+   "en": [
+    568617.89,
+    6495595.72
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286457920:s17",
+   "element": "way/286457920",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "8.9 m from a lit road centreline",
+   "en": [
+    568769.21,
+    6495640.72
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286457920:s18",
+   "element": "way/286457920",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "6.8 m from a lit road centreline",
+   "en": [
+    568790.86,
+    6495647.03
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286457920:s8",
+   "element": "way/286457920",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.0 m from a lit road centreline",
+   "en": [
+    568574.52,
+    6495583.45
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/286457920:s9",
+   "element": "way/286457920",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "8.7 m from a lit road centreline",
+   "en": [
+    568596.19,
+    6495589.67
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/297609788:s0",
+   "element": "way/297609788",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "2.9 m from a lit road centreline",
+   "en": [
+    568799.68,
+    6495661.05
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/297609788:s1",
+   "element": "way/297609788",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "1.5 m from a lit road centreline",
+   "en": [
+    568794.03,
+    6495679.79
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/300027208:s0",
+   "element": "way/300027208",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/286445695:s1 at 14.4 m",
+   "en": [
+    568613.64,
+    6495616.19
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/308315541:s0",
+   "element": "way/308315541",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/286445691:s0 at 14.2 m",
+   "en": [
+    568651.14,
+    6495627.12
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/308315542:s0",
+   "element": "way/308315542",
+   "zone": "B",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/163928048:s0 at 15.6 m",
+   "en": [
+    568825.41,
+    6495635.32
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/4438346:s0",
+   "element": "way/4438346",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/163928051:s0 at 15.4 m",
+   "en": [
+    568868.83,
+    6495676.31
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/4438348:s0",
+   "element": "way/4438348",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/115784824:s0 at 16.5 m",
+   "en": [
+    568796.88,
+    6495685.87
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/47460597:s0",
+   "element": "way/47460597",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/286445697:s0 at 5.4 m",
+   "en": [
+    568772.77,
+    6495648.06
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/501428825:s0",
+   "element": "way/501428825",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "5.1 m from a lit road centreline",
+   "en": [
+    568925.58,
+    6495394.86
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/501428825:s1",
+   "element": "way/501428825",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.8 m from a lit road centreline",
+   "en": [
+    568919.08,
+    6495413.23
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/501428825:s2",
+   "element": "way/501428825",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.6 m from a lit road centreline",
+   "en": [
+    568912.59,
+    6495431.61
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/501428825:s3",
+   "element": "way/501428825",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.4 m from a lit road centreline",
+   "en": [
+    568906.09,
+    6495449.98
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/760535009:s0",
+   "element": "way/760535009",
+   "zone": "B",
+   "reason": "suppressed-by-mapped",
+   "detail": "osm:node/11098973695 at 2.2 m",
+   "en": [
+    568859.12,
+    6495503.72
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/760535011:s0",
+   "element": "way/760535011",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "5.6 m from a lit road centreline",
+   "en": [
+    568900.47,
+    6495471.29
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88701987:s0",
+   "element": "way/88701987",
+   "zone": "B",
+   "reason": "suppressed-by-mapped",
+   "detail": "osm:node/11098973694 at 8.9 m",
+   "en": [
+    568836.88,
+    6495519.04
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88701987:s1",
+   "element": "way/88701987",
+   "zone": "B",
+   "reason": "suppressed-by-mapped",
+   "detail": "osm:node/11098973693 at 2.9 m",
+   "en": [
+    568829.05,
+    6495495.98
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88701987:s2",
+   "element": "way/88701987",
+   "zone": "B",
+   "reason": "suppressed-by-mapped",
+   "detail": "osm:node/11098939296 at 5.4 m",
+   "en": [
+    568848.48,
+    6495479.42
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88701990:s0",
+   "element": "way/88701990",
+   "zone": "B",
+   "reason": "suppressed-by-mapped",
+   "detail": "osm:node/11098939299 at 8.4 m",
+   "en": [
+    568865.34,
+    6495476.02
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88701995:s0",
+   "element": "way/88701995",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "7.4 m from a lit road centreline",
+   "en": [
+    568837.3,
+    6495536.69
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88701996:s0",
+   "element": "way/88701996",
+   "zone": "B",
+   "reason": "suppressed-by-mapped",
+   "detail": "osm:node/11098973694 at 1.3 m",
+   "en": [
+    568835.62,
+    6495526.73
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88701997:s0",
+   "element": "way/88701997",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "5.1 m from a lit road centreline",
+   "en": [
+    568840.53,
+    6495548.23
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88701997:s1",
+   "element": "way/88701997",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "6.5 m from a lit road centreline",
+   "en": [
+    568847.42,
+    6495539.6
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88702227:s1",
+   "element": "way/88702227",
+   "zone": "B",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/88701993:s1 at 10.3 m",
+   "en": [
+    568842.94,
+    6495450.84
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/88702227:s2",
+   "element": "way/88702227",
+   "zone": "B",
+   "reason": "suppressed-by-mapped",
+   "detail": "osm:node/11098939296 at 6.4 m",
+   "en": [
+    568842.62,
+    6495471.77
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/92459658:s0",
+   "element": "way/92459658",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.4 m from a lit road centreline",
+   "en": [
+    568882.87,
+    6495442.17
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/92459658:s1",
+   "element": "way/92459658",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.5 m from a lit road centreline",
+   "en": [
+    568889.07,
+    6495423.66
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/92459658:s2",
+   "element": "way/92459658",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.6 m from a lit road centreline",
+   "en": [
+    568895.28,
+    6495405.15
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/92459658:s3",
+   "element": "way/92459658",
+   "zone": "C",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.7 m from a lit road centreline",
+   "en": [
+    568901.48,
+    6495386.64
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/92459665:s3",
+   "element": "way/92459665",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/163928048:s1 at 12.5 m",
+   "en": [
+    568848.1,
+    6495643.2
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/92459682:s0",
+   "element": "way/92459682",
+   "zone": "B",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/2809544:s15 at 3.4 m",
+   "en": [
+    568917.32,
+    6495469.75
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/93313350:s6",
+   "element": "way/93313350",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.6 m from a lit road centreline",
+   "en": [
+    568735.26,
+    6495618.72
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450933:s0",
+   "element": "way/963450933",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "9.3 m from a lit road centreline",
+   "en": [
+    568812.16,
+    6495643.25
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450933:s1",
+   "element": "way/963450933",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "2.7 m from a lit road centreline",
+   "en": [
+    568826.75,
+    6495631.56
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450933:s2",
+   "element": "way/963450933",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "3.0 m from a lit road centreline",
+   "en": [
+    568833.9,
+    6495613.33
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450933:s3",
+   "element": "way/963450933",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "3.4 m from a lit road centreline",
+   "en": [
+    568839.03,
+    6495594.04
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450933:s4",
+   "element": "way/963450933",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "3.6 m from a lit road centreline",
+   "en": [
+    568844.17,
+    6495574.75
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450935:s0",
+   "element": "way/963450935",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "6.0 m from a lit road centreline",
+   "en": [
+    568838.53,
+    6495639.73
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450937:s0",
+   "element": "way/963450937",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "5.3 m from a lit road centreline",
+   "en": [
+    568857.95,
+    6495569.2
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450939:s0",
+   "element": "way/963450939",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "4.6 m from a lit road centreline",
+   "en": [
+    568741.57,
+    6495698.02
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450939:s2",
+   "element": "way/963450939",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/297609788:s2 at 7.2 m",
+   "en": [
+    568781.2,
+    6495698.51
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450939:s4",
+   "element": "way/963450939",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "8.4 m from a lit road centreline",
+   "en": [
+    568826.04,
+    6495705.04
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450940:s0",
+   "element": "way/963450940",
+   "zone": "A",
+   "reason": "covered-by-road-lighting",
+   "detail": "6.0 m from a lit road centreline",
+   "en": [
+    568614.29,
+    6495661.8
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/963450943:s0",
+   "element": "way/963450943",
+   "zone": "A",
+   "reason": "suppressed-by-estimate",
+   "detail": "estimate:lighting-a1-v1:way/153090860:s0 at 10.6 m",
+   "en": [
+    568722.51,
+    6495689.41
+   ]
+  },
+  {
+   "candidate": "estimate:lighting-a1-v1:way/971638546:s0",
+   "element": "way/971638546",
+   "zone": "B",
+   "reason": "covered-by-road-lighting",
+   "detail": "6.5 m from a lit road centreline",
+   "en": [
+    568845.78,
+    6495559.13
+   ]
+  }
+ ],
+ "ways": [
+  {
+   "way": 2809544,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 35.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 4384886,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 4.9,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 4384887,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 28.2,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 4385505,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 31,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 4438346,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 33.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 4438347,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 194.8,
+   "status": "estimated",
+   "fixtures": 7
+  },
+  {
+   "way": 4438348,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 176.6,
+   "status": "estimated",
+   "fixtures": 5
+  },
+  {
+   "way": 8236738,
+   "name": "Hamngatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 23.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 8237045,
+   "name": "Magasinsgatan",
+   "highway": "residential",
+   "lit": "no",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 99.5,
+   "status": "explicit-unlit (lit=no): excluded",
+   "fixtures": 0
+  },
+  {
+   "way": 26384708,
+   "name": "Hotellgatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 27657409,
+   "name": "Rodgagatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 3.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 27657625,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 353.3,
+   "status": "estimated",
+   "fixtures": 6
+  },
+  {
+   "way": 47460597,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 70.1,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 47460598,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 78.1,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 88701987,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 75.5,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 88701989,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 22.5,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 88701990,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 28,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 88701993,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 52.9,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 88701995,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 63.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 88701996,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 16.3,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 88701997,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 56.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 88702227,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 62.7,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 88702600,
+   "name": "Tyska torget",
+   "highway": "pedestrian",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 72.7,
+   "status": "lit area (square): positions cannot be derived from the outline (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 92385213,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 13.4,
+   "status": "shorter than half the 27 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 92459627,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 30.1,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 92459645,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 18.9,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 92459658,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 78.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 92459665,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 107.1,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 92459682,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 44.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 93313348,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 32.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 93313350,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 46.6,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 93313353,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 9,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 93313355,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 93313357,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 11.4,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 94350352,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 85.1,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 95580372,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 13.1,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 95587586,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 7.7,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 115784824,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 23,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 115784835,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 58.2,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 153090860,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 91.3,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 153090862,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 98.4,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 153090863,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 23,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 163928048,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 51.2,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 163928051,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 32.5,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 168975952,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 100,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 168975977,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 27.5,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 244462639,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 94,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 244462640,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 18.2,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 285599454,
+   "name": "Hamngatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 21.6,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445689,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 286445691,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 114.7,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 286445692,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 69.7,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 286445694,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 100.5,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 286445695,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 51.2,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 286445697,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 61.7,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445700,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 44.8,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 286457917,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 14.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286457919,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 30.5,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 286457920,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 202,
+   "status": "estimated",
+   "fixtures": 6
+  },
+  {
+   "way": 287588687,
+   "name": "",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 78.5,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 287588693,
+   "name": "",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 61.7,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 287588700,
+   "name": "",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 51.2,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 287588703,
+   "name": "",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 90.1,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 297609739,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 4.3,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 297609740,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 46.9,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 297609788,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 52.1,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 297690883,
+   "name": "Drottninggatan",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 107.8,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 297690886,
+   "name": "Hamngatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 18.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 297690887,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 2.9,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 297693805,
+   "name": "Slottsgatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 61.6,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 300027207,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 24.4,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 300027208,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 29.6,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 300027238,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 2.2,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 308315540,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 1.4,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 308315541,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 23.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 308315542,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 105.9,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 444474480,
+   "name": "Bråddgatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 444474495,
+   "name": "Norra promenaden",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 18.2,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 444474496,
+   "name": "Norra promenaden",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 71.4,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 444474547,
+   "name": "Vattengränden",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 501428820,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 5.4,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 501428825,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 78,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 501428826,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 77.9,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 760535006,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 14.4,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 760535007,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 30.5,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 760535008,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 32.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 760535009,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 32.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 760535010,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 5.8,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 760535011,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 15.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 760535012,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 7.2,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 850158980,
+   "name": "Sveagatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 96.8,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 963450933,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 99.8,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450935,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 26.2,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450936,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 8.6,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 963450937,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 21.4,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450938,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 7.4,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 963450939,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 158.3,
+   "status": "estimated",
+   "fixtures": 5
+  },
+  {
+   "way": 963450940,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 29.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450941,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 1.4,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450943,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 34.6,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 965368845,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 5.5,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 971638546,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 14.5,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 1165440608,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 26.9,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 1289270292,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 99.7,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 1422459685,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 39.2,
+   "status": "estimated",
+   "fixtures": 1
+  }
+ ],
+ "unknownWays": [
+  {
+   "way": 8124933,
+   "name": "",
+   "class": "path",
+   "lengthInsideM": 14.5
+  },
+  {
+   "way": 8237359,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 8.9
+  },
+  {
+   "way": 8238256,
+   "name": "Fleminggatan",
+   "class": "residential",
+   "lengthInsideM": 78.5
+  },
+  {
+   "way": 24378744,
+   "name": "Norra promenaden",
+   "class": "residential",
+   "lengthInsideM": 16.6
+  },
+  {
+   "way": 92386978,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 15
+  },
+  {
+   "way": 92459661,
+   "name": "",
+   "class": "path",
+   "lengthInsideM": 44.3
+  },
+  {
+   "way": 115784832,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 17.2
+  },
+  {
+   "way": 115784839,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 187.8
+  },
+  {
+   "way": 168975967,
+   "name": "Godsgatan",
+   "class": "residential",
+   "lengthInsideM": 25.2
+  },
+  {
+   "way": 168975981,
+   "name": "Slottsgatan",
+   "class": "residential",
+   "lengthInsideM": 64.3
+  },
+  {
+   "way": 168975995,
+   "name": "Sveagatan",
+   "class": "unclassified",
+   "lengthInsideM": 68.2
+  },
+  {
+   "way": 270610801,
+   "name": "Fleminggatan",
+   "class": "residential",
+   "lengthInsideM": 24.7
+  },
+  {
+   "way": 286457918,
+   "name": "",
+   "class": "path",
+   "lengthInsideM": 41.3
+  },
+  {
+   "way": 286505035,
+   "name": "Aurorerondellen",
+   "class": "secondary",
+   "lengthInsideM": 19.1
+  },
+  {
+   "way": 297690884,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 44.2
+  },
+  {
+   "way": 297690885,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 16.2
+  },
+  {
+   "way": 297690888,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 7.5
+  },
+  {
+   "way": 297690889,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 7.9
+  },
+  {
+   "way": 297690890,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 10
+  },
+  {
+   "way": 312486748,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 18.7
+  },
+  {
+   "way": 312486749,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 22
+  },
+  {
+   "way": 312486750,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 19.5
+  },
+  {
+   "way": 315777121,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 15.1
+  },
+  {
+   "way": 315781116,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 231.2
+  },
+  {
+   "way": 444474551,
+   "name": "Vattengränden",
+   "class": "residential",
+   "lengthInsideM": 19.4
+  },
+  {
+   "way": 475524194,
+   "name": "Hamngatan",
+   "class": "tertiary",
+   "lengthInsideM": 40.8
+  },
+  {
+   "way": 501428822,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 5.7
+  },
+  {
+   "way": 1212391251,
+   "name": "Vattengränden",
+   "class": "residential",
+   "lengthInsideM": 19.5
+  },
+  {
+   "way": 1422460209,
+   "name": "Saltängsgatan",
+   "class": "residential",
+   "lengthInsideM": 63.8
+  }
+ ]
+}

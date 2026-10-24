@@ -17,6 +17,7 @@ import {
   toPilotFixture,
   validateRegistry,
   type LightingRegistry,
+  type RegistryFixture,
   type RegistryIssue,
   type ValidationResult,
 } from './registry';
@@ -25,6 +26,10 @@ export interface PreparedStreetLighting {
   ok: true;
   /** Fixtures in canonical-ID order; lamp i, fixture i and payload index i agree. */
   fixtures: FixtureRecord[];
+  /** Registry records in the same canonical order (diagnostics; Phase A1). */
+  records: RegistryFixture[];
+  /** Fixture counts per rollout (generator version) and placement (Phase A1). */
+  rollouts: Record<string, { mapped: number; estimated: number }>;
   lamps: ShaderLamp[];
   index: SparseLightIndex;
   lampPack: ReturnType<typeof packLampData>;
@@ -110,9 +115,16 @@ export function prepareStreetLighting(
     return reject('capacity', ['index order differs from fixture order'], {
       counts: validation.counts,
     });
+  const rollouts: PreparedStreetLighting['rollouts'] = {};
+  for (const r of records) {
+    const c = (rollouts[r.generator.version] ??= { mapped: 0, estimated: 0 });
+    c[r.placement]++;
+  }
   return {
     ok: true,
     fixtures,
+    records,
+    rollouts,
     lamps,
     index: built.index,
     lampPack: packLampData(lamps, options.maxTextureSize),

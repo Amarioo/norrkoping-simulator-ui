@@ -1,0 +1,30 @@
+{
+ "bridge": "Saltängsbron (city-bridges.json id 501428827)",
+ "coveredDefinition": "deck top ≥ 2 m above the rendered ground/water",
+ "deckOccluderEdges": 28,
+ "withDeckOccluders": {
+  "coveredSamples": 1947,
+  "sampleStepM": 1,
+  "maxLuxThroughDeck": {
+   "lux": 0,
+   "id": ""
+  },
+  "maxLuxFromOpenSides": {
+   "lux": 3.493,
+   "id": "estimate:lighting-a1-v1:way/92459627:s0"
+  }
+ },
+ "withoutDeckOccluders": {
+  "coveredSamples": 1947,
+  "sampleStepM": 1,
+  "maxLuxThroughDeck": {
+   "lux": 1.963,
+   "id": "estimate:lighting-a1-v1:way/92459627:s0"
+  },
+  "maxLuxFromOpenSides": {
+   "lux": 3.703,
+   "id": "estimate:lighting-a1-v1:way/92459645:s0"
+  }
+ },
+ "referenceRoadLux": "a street-bracket-8m lamp gives ≈ 25 lux at its nadir (1600 cd / 8 m²)"
+}

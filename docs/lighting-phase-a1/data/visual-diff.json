@@ -1,0 +1,1004 @@
+{
+ "note": "Pixel comparison, no tolerance (scripts/lighting-phase0/diff.py). before = Phase 0 reference DEV server, after = A1 DEV server, noise = second Phase 0 reference run. 1400x1000, DPR 1, Edge 156/ANGLE D3D11, 2026-10-21 Europe/Stockholm, labels off, API aborted.",
+ "states": {
+  "day": "12:39",
+  "twilight": "17:52",
+  "night": "21:30 stadium off",
+  "training": "21:30 TRAINING",
+  "match": "21:30 MATCH"
+ },
+ "noise": {
+  "totalChanged": 7,
+  "compared": 57,
+  "images": {
+   "a1-resecentrum-elevated-day": {
+    "changed": 7,
+    "max": 1,
+    "mean": 0,
+    "histogram": {
+     "1-1": 7,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": [
+     869,
+     320,
+     872,
+     322
+    ]
+   }
+  }
+ },
+ "phase0VsA1": {
+  "totalChanged": 3354691,
+  "compared": 57,
+  "images": {
+   "a1-central-overview-day": {
+    "changed": 352,
+    "max": 55,
+    "mean": 0.0092,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 5,
+     "3-5": 29,
+     "6-10": 40,
+     "11-50": 277,
+     "51-255": 1
+    },
+    "bbox": [
+     403,
+     203,
+     860,
+     532
+    ]
+   },
+   "a1-central-overview-night": {
+    "changed": 28177,
+    "max": 255,
+    "mean": 1.3367,
+    "histogram": {
+     "1-1": 1879,
+     "2-2": 818,
+     "3-5": 1665,
+     "6-10": 1771,
+     "11-50": 12588,
+     "51-255": 9456
+    },
+    "bbox": [
+     386,
+     200,
+     884,
+     554
+    ]
+   },
+   "a1-central-overview-twilight": {
+    "changed": 28453,
+    "max": 252,
+    "mean": 0.8956,
+    "histogram": {
+     "1-1": 2004,
+     "2-2": 1026,
+     "3-5": 1984,
+     "6-10": 2611,
+     "11-50": 16525,
+     "51-255": 4303
+    },
+    "bbox": [
+     386,
+     200,
+     887,
+     556
+    ]
+   },
+   "a1-drottninggatan-elevated-day": {
+    "changed": 1916,
+    "max": 129,
+    "mean": 0.0855,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 7,
+     "3-5": 121,
+     "6-10": 158,
+     "11-50": 1122,
+     "51-255": 508
+    },
+    "bbox": [
+     66,
+     197,
+     817,
+     658
+    ]
+   },
+   "a1-drottninggatan-elevated-night": {
+    "changed": 150248,
+    "max": 255,
+    "mean": 7.1299,
+    "histogram": {
+     "1-1": 6543,
+     "2-2": 3649,
+     "3-5": 7288,
+     "6-10": 9071,
+     "11-50": 75529,
+     "51-255": 48168
+    },
+    "bbox": [
+     1,
+     197,
+     1023,
+     658
+    ]
+   },
+   "a1-drottninggatan-elevated-twilight": {
+    "changed": 150678,
+    "max": 252,
+    "mean": 4.8628,
+    "histogram": {
+     "1-1": 6528,
+     "2-2": 4088,
+     "3-5": 9309,
+     "6-10": 13497,
+     "11-50": 92630,
+     "51-255": 24626
+    },
+    "bbox": [
+     1,
+     197,
+     1023,
+     658
+    ]
+   },
+   "a1-drottninggatan-street-day": {
+    "changed": 8852,
+    "max": 169,
+    "mean": 0.7111,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 19,
+     "3-5": 189,
+     "6-10": 216,
+     "11-50": 2236,
+     "51-255": 6192
+    },
+    "bbox": [
+     11,
+     193,
+     657,
+     658
+    ]
+   },
+   "a1-drottninggatan-street-night": {
+    "changed": 361114,
+    "max": 255,
+    "mean": 27.6255,
+    "histogram": {
+     "1-1": 5677,
+     "2-2": 3913,
+     "3-5": 7307,
+     "6-10": 10673,
+     "11-50": 165817,
+     "51-255": 167727
+    },
+    "bbox": [
+     1,
+     183,
+     1062,
+     658
+    ]
+   },
+   "a1-drottninggatan-street-twilight": {
+    "changed": 363056,
+    "max": 244,
+    "mean": 19.3265,
+    "histogram": {
+     "1-1": 5682,
+     "2-2": 3963,
+     "3-5": 7360,
+     "6-10": 14863,
+     "11-50": 192023,
+     "51-255": 139165
+    },
+    "bbox": [
+     1,
+     183,
+     1062,
+     658
+    ]
+   },
+   "a1-norra-promenaden-street-day": {
+    "changed": 1842,
+    "max": 123,
+    "mean": 0.1578,
+    "histogram": {
+     "1-1": 1,
+     "2-2": 22,
+     "3-5": 26,
+     "6-10": 37,
+     "11-50": 715,
+     "51-255": 1041
+    },
+    "bbox": [
+     352,
+     315,
+     908,
+     587
+    ]
+   },
+   "a1-norra-promenaden-street-night": {
+    "changed": 222547,
+    "max": 253,
+    "mean": 11.9223,
+    "histogram": {
+     "1-1": 7081,
+     "2-2": 6335,
+     "3-5": 15347,
+     "6-10": 14598,
+     "11-50": 92431,
+     "51-255": 86755
+    },
+    "bbox": [
+     1,
+     315,
+     1062,
+     658
+    ]
+   },
+   "a1-norra-promenaden-street-twilight": {
+    "changed": 223687,
+    "max": 222,
+    "mean": 8.1511,
+    "histogram": {
+     "1-1": 7315,
+     "2-2": 5765,
+     "3-5": 14005,
+     "6-10": 21721,
+     "11-50": 125828,
+     "51-255": 49053
+    },
+    "bbox": [
+     1,
+     315,
+     1062,
+     658
+    ]
+   },
+   "a1-resecentrum-elevated-day": {
+    "changed": 1629,
+    "max": 136,
+    "mean": 0.0769,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 11,
+     "3-5": 91,
+     "6-10": 125,
+     "11-50": 930,
+     "51-255": 472
+    },
+    "bbox": [
+     38,
+     244,
+     1056,
+     614
+    ]
+   },
+   "a1-resecentrum-elevated-night": {
+    "changed": 177605,
+    "max": 254,
+    "mean": 8.1832,
+    "histogram": {
+     "1-1": 11508,
+     "2-2": 5998,
+     "3-5": 9740,
+     "6-10": 14106,
+     "11-50": 80216,
+     "51-255": 56037
+    },
+    "bbox": [
+     1,
+     244,
+     1062,
+     658
+    ]
+   },
+   "a1-resecentrum-elevated-twilight": {
+    "changed": 172545,
+    "max": 238,
+    "mean": 5.5278,
+    "histogram": {
+     "1-1": 7668,
+     "2-2": 5153,
+     "3-5": 11919,
+     "6-10": 19895,
+     "11-50": 100451,
+     "51-255": 27459
+    },
+    "bbox": [
+     1,
+     244,
+     1062,
+     658
+    ]
+   },
+   "a1-resecentrum-street-day": {
+    "changed": 3306,
+    "max": 166,
+    "mean": 0.2403,
+    "histogram": {
+     "1-1": 8,
+     "2-2": 16,
+     "3-5": 14,
+     "6-10": 184,
+     "11-50": 1366,
+     "51-255": 1718
+    },
+    "bbox": [
+     3,
+     294,
+     1041,
+     453
+    ]
+   },
+   "a1-resecentrum-street-night": {
+    "changed": 326048,
+    "max": 255,
+    "mean": 9.1386,
+    "histogram": {
+     "1-1": 42544,
+     "2-2": 25887,
+     "3-5": 38976,
+     "6-10": 34984,
+     "11-50": 128394,
+     "51-255": 55263
+    },
+    "bbox": [
+     1,
+     291,
+     1062,
+     658
+    ]
+   },
+   "a1-resecentrum-street-twilight": {
+    "changed": 311604,
+    "max": 255,
+    "mean": 6.2636,
+    "histogram": {
+     "1-1": 35709,
+     "2-2": 18220,
+     "3-5": 43153,
+     "6-10": 49391,
+     "11-50": 140259,
+     "51-255": 24872
+    },
+    "bbox": [
+     1,
+     291,
+     1062,
+     658
+    ]
+   },
+   "a1-saltangsbron-side-day": {
+    "changed": 2138,
+    "max": 136,
+    "mean": 0.1407,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 28,
+     "3-5": 45,
+     "6-10": 91,
+     "11-50": 961,
+     "51-255": 1013
+    },
+    "bbox": [
+     33,
+     258,
+     1041,
+     459
+    ]
+   },
+   "a1-saltangsbron-side-night": {
+    "changed": 116975,
+    "max": 255,
+    "mean": 6.1186,
+    "histogram": {
+     "1-1": 11168,
+     "2-2": 3804,
+     "3-5": 5717,
+     "6-10": 5105,
+     "11-50": 48605,
+     "51-255": 42576
+    },
+    "bbox": [
+     1,
+     258,
+     1062,
+     570
+    ]
+   },
+   "a1-saltangsbron-side-twilight": {
+    "changed": 120679,
+    "max": 254,
+    "mean": 3.9977,
+    "histogram": {
+     "1-1": 11335,
+     "2-2": 4911,
+     "3-5": 8667,
+     "6-10": 8520,
+     "11-50": 62756,
+     "51-255": 24490
+    },
+    "bbox": [
+     1,
+     258,
+     1062,
+     575
+    ]
+   },
+   "a1-saltangsbron-street-day": {
+    "changed": 11460,
+    "max": 148,
+    "mean": 0.6959,
+    "histogram": {
+     "1-1": 24,
+     "2-2": 54,
+     "3-5": 183,
+     "6-10": 564,
+     "11-50": 5547,
+     "51-255": 5088
+    },
+    "bbox": [
+     10,
+     300,
+     961,
+     657
+    ]
+   },
+   "a1-saltangsbron-street-night": {
+    "changed": 265975,
+    "max": 255,
+    "mean": 20.0338,
+    "histogram": {
+     "1-1": 9856,
+     "2-2": 3929,
+     "3-5": 5854,
+     "6-10": 6117,
+     "11-50": 105732,
+     "51-255": 134487
+    },
+    "bbox": [
+     1,
+     295,
+     1062,
+     658
+    ]
+   },
+   "a1-saltangsbron-street-twilight": {
+    "changed": 269079,
+    "max": 243,
+    "mean": 14.3198,
+    "histogram": {
+     "1-1": 8146,
+     "2-2": 5180,
+     "3-5": 7487,
+     "6-10": 7931,
+     "11-50": 133741,
+     "51-255": 106594
+    },
+    "bbox": [
+     1,
+     295,
+     1062,
+     658
+    ]
+   },
+   "bergsbron-north-end-day": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "bergsbron-north-end-night": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "bergsbron-north-end-twilight": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "city-overview-day": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "city-overview-night": {
+    "changed": 1348,
+    "max": 254,
+    "mean": 0.1034,
+    "histogram": {
+     "1-1": 67,
+     "2-2": 33,
+     "3-5": 59,
+     "6-10": 77,
+     "11-50": 531,
+     "51-255": 581
+    },
+    "bbox": [
+     524,
+     205,
+     621,
+     269
+    ]
+   },
+   "city-overview-twilight": {
+    "changed": 1355,
+    "max": 237,
+    "mean": 0.0801,
+    "histogram": {
+     "1-1": 78,
+     "2-2": 40,
+     "3-5": 92,
+     "6-10": 122,
+     "11-50": 603,
+     "51-255": 420
+    },
+    "bbox": [
+     524,
+     205,
+     621,
+     269
+    ]
+   },
+   "kungsgatan-elevated-day": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "kungsgatan-elevated-night": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "kungsgatan-elevated-twilight": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "kungsgatan-street-day": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "kungsgatan-street-night": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "kungsgatan-street-twilight": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "pilot-overview-day": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "pilot-overview-match": {
+    "changed": 6711,
+    "max": 254,
+    "mean": 0.3381,
+    "histogram": {
+     "1-1": 421,
+     "2-2": 190,
+     "3-5": 373,
+     "6-10": 418,
+     "11-50": 3022,
+     "51-255": 2287
+    },
+    "bbox": [
+     673,
+     71,
+     921,
+     219
+    ]
+   },
+   "pilot-overview-night": {
+    "changed": 6711,
+    "max": 254,
+    "mean": 0.3381,
+    "histogram": {
+     "1-1": 421,
+     "2-2": 190,
+     "3-5": 373,
+     "6-10": 418,
+     "11-50": 3022,
+     "51-255": 2287
+    },
+    "bbox": [
+     673,
+     71,
+     921,
+     219
+    ]
+   },
+   "pilot-overview-training": {
+    "changed": 6711,
+    "max": 254,
+    "mean": 0.3381,
+    "histogram": {
+     "1-1": 421,
+     "2-2": 190,
+     "3-5": 373,
+     "6-10": 418,
+     "11-50": 3022,
+     "51-255": 2287
+    },
+    "bbox": [
+     673,
+     71,
+     921,
+     219
+    ]
+   },
+   "pilot-overview-twilight": {
+    "changed": 6737,
+    "max": 227,
+    "mean": 0.2344,
+    "histogram": {
+     "1-1": 459,
+     "2-2": 229,
+     "3-5": 452,
+     "6-10": 633,
+     "11-50": 3825,
+     "51-255": 1139
+    },
+    "bbox": [
+     673,
+     71,
+     921,
+     219
+    ]
+   },
+   "stadium-elevated-se-day": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stadium-elevated-se-match": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stadium-elevated-se-night": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stadium-elevated-se-training": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stadium-elevated-se-twilight": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stadium-pitch-north-day": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stadium-pitch-north-match": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stadium-pitch-north-night": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stadium-pitch-north-training": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stadium-pitch-north-twilight": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stromparken-elevated-day": {
+    "changed": 58,
+    "max": 54,
+    "mean": 0.0012,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 1,
+     "3-5": 18,
+     "6-10": 2,
+     "11-50": 36,
+     "51-255": 1
+    },
+    "bbox": [
+     1006,
+     5,
+     1061,
+     33
+    ]
+   },
+   "stromparken-elevated-night": {
+    "changed": 2492,
+    "max": 226,
+    "mean": 0.0523,
+    "histogram": {
+     "1-1": 527,
+     "2-2": 208,
+     "3-5": 349,
+     "6-10": 286,
+     "11-50": 791,
+     "51-255": 331
+    },
+    "bbox": [
+     978,
+     1,
+     1062,
+     58
+    ]
+   },
+   "stromparken-elevated-twilight": {
+    "changed": 2603,
+    "max": 192,
+    "mean": 0.0349,
+    "histogram": {
+     "1-1": 656,
+     "2-2": 250,
+     "3-5": 429,
+     "6-10": 287,
+     "11-50": 816,
+     "51-255": 165
+    },
+    "bbox": [
+     980,
+     1,
+     1062,
+     62
+    ]
+   },
+   "stromparken-path-day": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stromparken-path-night": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   },
+   "stromparken-path-twilight": {
+    "changed": 0,
+    "max": 0,
+    "mean": 0,
+    "histogram": {
+     "1-1": 0,
+     "2-2": 0,
+     "3-5": 0,
+     "6-10": 0,
+     "11-50": 0,
+     "51-255": 0
+    },
+    "bbox": null
+   }
+  }
+ }
+}

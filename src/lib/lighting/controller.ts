@@ -54,6 +54,8 @@ import {
 } from './environment';
 import { createFixtureVisuals } from './fixtures';
 import lightingData from '../data/streetlights.json';
+import a1Data from '../data/streetlights-a1.json';
+import { corridorRegistry, mergeRegistries, type A1Data } from './corridorRegistry';
 import { pilotRegistry, type LightingRegistry, type PilotData } from './registry';
 import {
   describeRejection,
@@ -73,6 +75,17 @@ export const LEGACY_SUN = new Vector3(-150, 260, 120).normalize();
 export function pilotLightingRegistry(terrain: TerrainService) {
   return pilotRegistry(lightingData as unknown as PilotData, terrain.data.reference);
 }
+/** The bundled Lighting Phase A1 corridor (generated, src/lib/data/streetlights-a1.json). */
+export function a1LightingRegistry(terrain: TerrainService) {
+  return corridorRegistry(a1Data as unknown as A1Data, terrain.data.reference);
+}
+/**
+ * The rendered street lighting: the Step 6 pilot plus the Phase A1 corridor, validated and indexed as
+ * one set (a capacity conflict or ID collision rejects the whole set; nothing is dropped).
+ */
+export function runtimeLightingRegistry(terrain: TerrainService) {
+  return mergeRegistries(pilotLightingRegistry(terrain), a1LightingRegistry(terrain));
+}
 const now = () => (typeof performance === 'undefined' ? Date.now() : performance.now());
 
 export interface LightingInput {
@@ -87,7 +100,7 @@ export function createCityLighting(options: {
   stadium: ReturnType<typeof createIdrottsparken>;
   renderer: WebGLRenderer;
   scene: Scene;
-  /** Street-lighting registry (default: the bundled pilot). */
+  /** Street-lighting registry (default: the bundled runtime set, pilot + Phase A1). */
   registry?: LightingRegistry;
   /** Throw on a rejected initial street-lighting set (default: development and tests). */
   strict?: boolean;
@@ -220,7 +233,7 @@ export function createCityLighting(options: {
   const ambient = new AmbientLight('#f3f1e7', 0.75);
   const sky = createSky();
   group.add(sun, sun.target, hemi, ambient, sky.mesh);
-  const initial = replaceStreetLighting(options.registry ?? pilotLightingRegistry(terrain));
+  const initial = replaceStreetLighting(options.registry ?? runtimeLightingRegistry(terrain));
   if (!initial.ok) {
     const message = describeRejection(initial);
     if (options.strict ?? import.meta.env.DEV) {
@@ -279,6 +292,7 @@ export function createCityLighting(options: {
       status: !p ? 'rejected' : lastRejection ? 'rendering-previous' : 'ok',
       builds: streetBuilds,
       registry: p?.counts ?? lastRejection?.counts ?? null,
+      rollouts: p?.rollouts ?? null,
       emitters: p?.lamps.length ?? 0,
       index: stats && {
         chunkCells: stats.chunkCells,
@@ -355,6 +369,25 @@ export function createCityLighting(options: {
       for (const m of materials) bind(m);
     },
     replaceStreetLighting,
+    /**
+     * Development inspection (Phase A1): every rendered fixture with identity, rollout, visual group,
+     * evidence class, type, support and EPSG:3006 position. Runtime lights only; research-only
+     * inventory points are in docs/lighting-phase-a1/inspector.html.
+     */
+    inspect() {
+      return (street.prepared?.records ?? []).map((r) => ({
+        id: r.id,
+        rollout: r.generator.version,
+        group: r.group,
+        placement: r.placement,
+        type: r.photometry.fixtureType,
+        support: r.support.kind,
+        e: r.position.e,
+        n: r.position.n,
+        x: r.position.scene.x,
+        z: r.position.scene.z,
+      }));
+    },
     set(next: LightingInput) {
       const nextUtc = localToUtc(next.date, next.minutes);
       const jump = Math.abs(nextUtc - utc) > 20 * 60000 || !!next.legacySun !== !!input.legacySun;

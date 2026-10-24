@@ -1,0 +1,1611 @@
+{
+ "zones": {
+  "A": {
+   "name": "Resecentrum and Norra Promenaden",
+   "ringEN": [
+    [
+     568572.7,
+     6495691.3
+    ],
+    [
+     568730.1,
+     6495713.8
+    ],
+    [
+     568750.1,
+     6495691.3
+    ],
+    [
+     568840.1,
+     6495716.3
+    ],
+    [
+     568907.5,
+     6495728.7
+    ],
+    [
+     568967.5,
+     6495746.2
+    ],
+    [
+     569030,
+     6495763.7
+    ],
+    [
+     569085,
+     6495780
+    ],
+    [
+     569085,
+     6495713.8
+    ],
+    [
+     568905,
+     6495653.8
+    ],
+    [
+     568790.1,
+     6495628.8
+    ],
+    [
+     568730.1,
+     6495613.8
+    ],
+    [
+     568572.7,
+     6495573.8
+    ]
+   ],
+   "fixtures": 72
+  },
+  "B": {
+   "name": "Drottninggatan (Norra Promenaden – Saltängsbron)",
+   "ringEN": [
+    [
+     568790.1,
+     6495628.8
+    ],
+    [
+     568905,
+     6495653.8
+    ],
+    [
+     568920,
+     6495538.8
+    ],
+    [
+     568947.5,
+     6495474.1
+    ],
+    [
+     568857.6,
+     6495439.6
+    ],
+    [
+     568815.1,
+     6495429.6
+    ],
+    [
+     568815.1,
+     6495536.3
+    ],
+    [
+     568815.1,
+     6495621.3
+    ]
+   ],
+   "fixtures": 37
+  },
+  "C": {
+   "name": "Saltängsbron and its south connection (Hamngatan – Gamla Rådstugugatan)",
+   "ringEN": [
+    [
+     568857.6,
+     6495439.6
+    ],
+    [
+     568947.5,
+     6495474.1
+    ],
+    [
+     568965,
+     6495388.9
+    ],
+    [
+     568990,
+     6495301.4
+    ],
+    [
+     568992.5,
+     6495263.9
+    ],
+    [
+     568900,
+     6495263.9
+    ],
+    [
+     568885,
+     6495328.9
+    ],
+    [
+     568872.6,
+     6495368.9
+    ],
+    [
+     568880.1,
+     6495393.9
+    ]
+   ],
+   "fixtures": 18
+  }
+ },
+ "counts": {
+  "fixtures": 127,
+  "mapped": 10,
+  "estimated": 117,
+  "candidates": 138,
+  "rejected": 71,
+  "deck": 6,
+  "zoneA": 72,
+  "zoneB": 37,
+  "zoneC": 18,
+  "rejected:covered-by-road-lighting": 50,
+  "rejected:suppressed-by-estimate": 14,
+  "rejected:suppressed-by-mapped": 7
+ },
+ "rejectedByReason": {
+  "covered-by-road-lighting": 50,
+  "suppressed-by-estimate": 14,
+  "suppressed-by-mapped": 7
+ },
+ "ways": [
+  {
+   "way": 2809544,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 35.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 4384886,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 4.9,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 4384887,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 28.2,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 4385505,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 31,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 4438346,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 33.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 4438347,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 194.8,
+   "status": "estimated",
+   "fixtures": 7
+  },
+  {
+   "way": 4438348,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 176.6,
+   "status": "estimated",
+   "fixtures": 5
+  },
+  {
+   "way": 8236738,
+   "name": "Hamngatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 23.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 8237045,
+   "name": "Magasinsgatan",
+   "highway": "residential",
+   "lit": "no",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 99.5,
+   "status": "explicit-unlit (lit=no): excluded",
+   "fixtures": 0
+  },
+  {
+   "way": 26384708,
+   "name": "Hotellgatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 27657409,
+   "name": "Rodgagatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 3.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 27657625,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 353.3,
+   "status": "estimated",
+   "fixtures": 6
+  },
+  {
+   "way": 47460597,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 70.1,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 47460598,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 78.1,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 88701987,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 75.5,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 88701989,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 22.5,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 88701990,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 28,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 88701993,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 52.9,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 88701995,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 63.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 88701996,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 16.3,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 88701997,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 56.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 88702227,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 62.7,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 88702600,
+   "name": "Tyska torget",
+   "highway": "pedestrian",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 72.7,
+   "status": "lit area (square): positions cannot be derived from the outline (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 92385213,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 13.4,
+   "status": "shorter than half the 27 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 92459627,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 30.1,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 92459645,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 18.9,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 92459658,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 78.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 92459665,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 107.1,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 92459682,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 44.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 93313348,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 32.8,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 93313350,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 46.6,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 93313353,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 9,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 93313355,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 93313357,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 11.4,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 94350352,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 85.1,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 95580372,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 13.1,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 95587586,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 7.7,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 115784824,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 23,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 115784835,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 58.2,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 153090860,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 91.3,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 153090862,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 98.4,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 153090863,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 23,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 163928048,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 51.2,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 163928051,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 32.5,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 168975952,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 100,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 168975977,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 27.5,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 244462639,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 94,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 244462640,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 18.2,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 285599454,
+   "name": "Hamngatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 21.6,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445689,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 286445691,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 114.7,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 286445692,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 69.7,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 286445694,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 100.5,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 286445695,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 51.2,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 286445697,
+   "name": "Norra Promenaden",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 61.7,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286445700,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 44.8,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 286457917,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 14.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 286457919,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 30.5,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 286457920,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 202,
+   "status": "estimated",
+   "fixtures": 6
+  },
+  {
+   "way": 287588687,
+   "name": "",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 78.5,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 287588693,
+   "name": "",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 61.7,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 287588700,
+   "name": "",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 51.2,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 287588703,
+   "name": "",
+   "highway": "platform",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 90.1,
+   "status": "lit platform: shelter/canopy luminaires not modelled (no fixture)",
+   "fixtures": 0
+  },
+  {
+   "way": 297609739,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 4.3,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 297609740,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 46.9,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 297609788,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 52.1,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 297690883,
+   "name": "Drottninggatan",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 107.8,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 297690886,
+   "name": "Hamngatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 18.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 297690887,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 2.9,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 297693805,
+   "name": "Slottsgatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 61.6,
+   "status": "estimated",
+   "fixtures": 2
+  },
+  {
+   "way": 300027207,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 24.4,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 300027208,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 29.6,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 300027238,
+   "name": "Stationsrondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 2.2,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 308315540,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 1.4,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 308315541,
+   "name": "Aurorerondellen",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 23.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 308315542,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 105.9,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 444474480,
+   "name": "Bråddgatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 444474495,
+   "name": "Norra promenaden",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 18.2,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 444474496,
+   "name": "Norra promenaden",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 71.4,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 444474547,
+   "name": "Vattengränden",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 0,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 501428820,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 5.4,
+   "status": "shorter than half the 30 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 501428825,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 78,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 501428826,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "B",
+    "C"
+   ],
+   "lengthInsideM": 77.9,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 760535006,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 14.4,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 760535007,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 30.5,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 760535008,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 32.3,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 760535009,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 32.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 760535010,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 5.8,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 760535011,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 15.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 760535012,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 7.2,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 850158980,
+   "name": "Sveagatan",
+   "highway": "residential",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 96.8,
+   "status": "estimated",
+   "fixtures": 4
+  },
+  {
+   "way": 963450933,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 99.8,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450935,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A",
+    "B"
+   ],
+   "lengthInsideM": 26.2,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450936,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 8.6,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 963450937,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 21.4,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450938,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 7.4,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 963450939,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 158.3,
+   "status": "estimated",
+   "fixtures": 5
+  },
+  {
+   "way": 963450940,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 29.1,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450941,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 1.4,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 963450943,
+   "name": "",
+   "highway": "service",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 34.6,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 965368845,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 5.5,
+   "status": "shorter than half the 22 m spacing (no station)",
+   "fixtures": 0
+  },
+  {
+   "way": 971638546,
+   "name": "",
+   "highway": "footway",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 14.5,
+   "status": "estimated",
+   "fixtures": 0
+  },
+  {
+   "way": 1165440608,
+   "name": "",
+   "highway": "cycleway",
+   "lit": "yes",
+   "zones": [
+    "A"
+   ],
+   "lengthInsideM": 26.9,
+   "status": "estimated",
+   "fixtures": 1
+  },
+  {
+   "way": 1289270292,
+   "name": "Drottninggatan",
+   "highway": "secondary",
+   "lit": "yes",
+   "zones": [
+    "B"
+   ],
+   "lengthInsideM": 99.7,
+   "status": "estimated",
+   "fixtures": 3
+  },
+  {
+   "way": 1422459685,
+   "name": "",
+   "highway": "path",
+   "lit": "yes",
+   "zones": [
+    "C"
+   ],
+   "lengthInsideM": 39.2,
+   "status": "estimated",
+   "fixtures": 1
+  }
+ ],
+ "unknownWays": [
+  {
+   "way": 8124933,
+   "name": "",
+   "class": "path",
+   "lengthInsideM": 14.5
+  },
+  {
+   "way": 8237359,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 8.9
+  },
+  {
+   "way": 8238256,
+   "name": "Fleminggatan",
+   "class": "residential",
+   "lengthInsideM": 78.5
+  },
+  {
+   "way": 24378744,
+   "name": "Norra promenaden",
+   "class": "residential",
+   "lengthInsideM": 16.6
+  },
+  {
+   "way": 92386978,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 15
+  },
+  {
+   "way": 92459661,
+   "name": "",
+   "class": "path",
+   "lengthInsideM": 44.3
+  },
+  {
+   "way": 115784832,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 17.2
+  },
+  {
+   "way": 115784839,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 187.8
+  },
+  {
+   "way": 168975967,
+   "name": "Godsgatan",
+   "class": "residential",
+   "lengthInsideM": 25.2
+  },
+  {
+   "way": 168975981,
+   "name": "Slottsgatan",
+   "class": "residential",
+   "lengthInsideM": 64.3
+  },
+  {
+   "way": 168975995,
+   "name": "Sveagatan",
+   "class": "unclassified",
+   "lengthInsideM": 68.2
+  },
+  {
+   "way": 270610801,
+   "name": "Fleminggatan",
+   "class": "residential",
+   "lengthInsideM": 24.7
+  },
+  {
+   "way": 286457918,
+   "name": "",
+   "class": "path",
+   "lengthInsideM": 41.3
+  },
+  {
+   "way": 286505035,
+   "name": "Aurorerondellen",
+   "class": "secondary",
+   "lengthInsideM": 19.1
+  },
+  {
+   "way": 297690884,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 44.2
+  },
+  {
+   "way": 297690885,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 16.2
+  },
+  {
+   "way": 297690888,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 7.5
+  },
+  {
+   "way": 297690889,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 7.9
+  },
+  {
+   "way": 297690890,
+   "name": "",
+   "class": "service",
+   "lengthInsideM": 10
+  },
+  {
+   "way": 312486748,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 18.7
+  },
+  {
+   "way": 312486749,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 22
+  },
+  {
+   "way": 312486750,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 19.5
+  },
+  {
+   "way": 315777121,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 15.1
+  },
+  {
+   "way": 315781116,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 231.2
+  },
+  {
+   "way": 444474551,
+   "name": "Vattengränden",
+   "class": "residential",
+   "lengthInsideM": 19.4
+  },
+  {
+   "way": 475524194,
+   "name": "Hamngatan",
+   "class": "tertiary",
+   "lengthInsideM": 40.8
+  },
+  {
+   "way": 501428822,
+   "name": "Drottninggatan",
+   "class": "service",
+   "lengthInsideM": 5.7
+  },
+  {
+   "way": 1212391251,
+   "name": "Vattengränden",
+   "class": "residential",
+   "lengthInsideM": 19.5
+  },
+  {
+   "way": 1422460209,
+   "name": "Saltängsgatan",
+   "class": "residential",
+   "lengthInsideM": 63.8
+  }
+ ]
+}

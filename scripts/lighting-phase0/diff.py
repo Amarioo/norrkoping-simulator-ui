@@ -11,6 +11,7 @@ No tolerance is applied. With <evidenceDir>, the listed captures are written as 
 A | B | |A-B| amplified ×16 (half resolution). Uses the codex-runtimes Python (PIL, numpy).
 """
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -58,7 +59,9 @@ for a_path in sorted(a_dir.glob('*.png')):
         for k, img in enumerate([a.astype(np.uint8), b.astype(np.uint8), heat]):
             canvas.paste(Image.fromarray(img).resize((w // 2, h // 2), Image.LANCZOS), (k * w // 2, 22))
         draw = ImageDraw.Draw(canvas)
-        labels = ['before (bf5f726)', 'after (Phase 0)', f'|diff| x16: {changed} px changed, max {entry["max"]}']
+        # Lighting Phase A1: LABELS='before|after' overrides the first two captions.
+        names = os.environ.get('LABELS', 'before (bf5f726)|after (Phase 0)').split('|')
+        labels = [names[0], names[1], f'|diff| x16: {changed} px changed, max {entry["max"]}']
         for k, text in enumerate(labels):
             draw.text((k * w // 2 + 6, 5), text, fill=(230, 230, 230))
         canvas.save(evidence / f'{a_path.stem}.jpg', quality=82)
