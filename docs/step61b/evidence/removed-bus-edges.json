@@ -1,0 +1,1529 @@
+{
+ "generated": "2026-10-24",
+ "parity": {
+  "step61Retained": 42834,
+  "step61bRetained": 43157,
+  "legacyRetained": 43813
+ },
+ "removedByStep61": 979,
+ "restoredByStep61b": 295,
+ "newlyAllowedBeyondLegacy": 28,
+ "categories": {
+  "incorrectly excluded by the algorithm (restored: mapped turnaround facility)": {
+   "regions": 27,
+   "edges": 306,
+   "restoredEdges": 285,
+   "examples": [
+    {
+     "edges": 17,
+     "restored": 17,
+     "ways": [
+      4384905
+     ],
+     "names": [
+      "Platinagatan"
+     ],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 2563561110,
+     "sweref": [
+      567267.3,
+      6497445.6
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 102405096,
+       "class": "service"
+      },
+      {
+       "way": 102405081,
+       "class": "service"
+      },
+      {
+       "way": 102405085,
+       "class": "service"
+      },
+      {
+       "way": 102405089,
+       "class": "service"
+      },
+      {
+       "way": 102405080,
+       "class": "service"
+      },
+      {
+       "way": 102405077,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 22,
+     "restored": 21,
+     "ways": [
+      4499012,
+      444422269,
+      444422270,
+      444422271,
+      444422272,
+      1421982484
+     ],
+     "names": [
+      "Klingagatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 4419011079,
+     "sweref": [
+      567613.7,
+      6493287.4
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 91631571,
+       "class": "service"
+      },
+      {
+       "way": 1109618170,
+       "class": "service"
+      },
+      {
+       "way": 1109618142,
+       "class": "service"
+      },
+      {
+       "way": 1109618091,
+       "class": "service"
+      },
+      {
+       "way": 91631591,
+       "class": "service"
+      },
+      {
+       "way": 91631569,
+       "class": "service"
+      }
+     ],
+     "partiallyRestored": true
+    },
+    {
+     "edges": 10,
+     "restored": 10,
+     "ways": [
+      8178172
+     ],
+     "names": [
+      "Axel Swartlings gata"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 2605189111,
+     "sweref": [
+      565703.4,
+      6493272.8
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 254713744,
+       "class": "service"
+      },
+      {
+       "way": 347201352,
+       "class": "service"
+      },
+      {
+       "way": 731030816,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 64,
+     "restored": 60,
+     "ways": [
+      8202129,
+      27711584,
+      89150221,
+      90929693,
+      102686457
+     ],
+     "names": [
+      "Emil Hedelius gata",
+      "Moa Martinsons gata",
+      "Hjalmar Lundgrens gata",
+      "Mathilda Jungstedts gata"
+     ],
+     "classes": [
+      "residential",
+      "unclassified",
+      "tertiary"
+     ],
+     "node": 437140,
+     "sweref": [
+      565477.6,
+      6493689
+     ],
+     "stops": [
+      {
+       "node": 12874407073,
+       "name": "Klockaretorpets centrum"
+      },
+      {
+       "node": 12874407074,
+       "name": "Klockaretorpets centrum"
+      }
+     ],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 94595486,
+       "class": "service"
+      },
+      {
+       "way": 94595487,
+       "class": "service"
+      },
+      {
+       "way": 8202119,
+       "class": "service"
+      },
+      {
+       "way": 1359153568,
+       "class": "service"
+      },
+      {
+       "way": 1111049372,
+       "class": "service"
+      },
+      {
+       "way": 1111049742,
+       "class": "service"
+      },
+      {
+       "way": 95506889,
+       "class": "service"
+      },
+      {
+       "way": 89150220,
+       "class": "service"
+      }
+     ],
+     "partiallyRestored": true
+    },
+    {
+     "edges": 4,
+     "restored": 4,
+     "ways": [
+      26140901
+     ],
+     "names": [
+      "Kantorsgatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 1156777943,
+     "sweref": [
+      565978.4,
+      6496874.5
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 1102552399,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 2,
+     "restored": 2,
+     "ways": [
+      26141314
+     ],
+     "names": [
+      "Hagagatan"
+     ],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 8745429991,
+     "sweref": [
+      567131.3,
+      6495511.4
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 26141298,
+       "class": "service"
+      },
+      {
+       "way": 26735318,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 7,
+     "restored": 7,
+     "ways": [
+      27122026
+     ],
+     "names": [
+      "Oskarsgatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 1148172004,
+     "sweref": [
+      567650.6,
+      6494279.5
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 993742670,
+       "class": "service"
+      },
+      {
+       "way": 1108514181,
+       "class": "service"
+      },
+      {
+       "way": 1108514291,
+       "class": "service"
+      },
+      {
+       "way": 1108514392,
+       "class": "service"
+      },
+      {
+       "way": 1108514386,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 4,
+     "restored": 4,
+     "ways": [
+      27201966
+     ],
+     "names": [
+      "Alholmsgatan"
+     ],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 1037910358,
+     "sweref": [
+      569417.4,
+      6497427.8
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 1107674412,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 3,
+     "restored": 3,
+     "ways": [
+      27323323
+     ],
+     "names": [
+      "Fjärilsgatan"
+     ],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 1170071823,
+     "sweref": [
+      571532.2,
+      6493983.8
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 415814022,
+       "class": "service"
+      },
+      {
+       "way": 415814026,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 7,
+     "restored": 7,
+     "ways": [
+      36911304
+     ],
+     "names": [
+      "Rambogatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 1169630032,
+     "sweref": [
+      572000.4,
+      6492755.5
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 101318099,
+       "class": "service"
+      },
+      {
+       "way": 96466129,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 2,
+     "restored": 2,
+     "ways": [
+      36911874
+     ],
+     "names": [
+      "Hustomtebacken"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 3170492759,
+     "sweref": [
+      571000.7,
+      6493401.4
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 279819475,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 3,
+     "restored": 3,
+     "ways": [
+      89804237
+     ],
+     "names": [
+      "Albrektsvägen"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 9769005728,
+     "sweref": [
+      569732.9,
+      6494353.6
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 100113178,
+       "class": "service"
+      }
+     ]
+    }
+   ]
+  },
+  "correctly excluded (dead end for buses: entering forces an artificial turnaround; cause is a bus-closed onward road or one-way topology, see boundaryWays)": {
+   "regions": 69,
+   "edges": 523,
+   "restoredEdges": 0,
+   "examples": [
+    {
+     "edges": 47,
+     "restored": 0,
+     "ways": [
+      4390835,
+      103394584
+     ],
+     "names": [
+      "Mässingsgatan"
+     ],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 1097104283,
+     "sweref": [
+      567206.4,
+      6497688.7
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 102405079,
+       "class": "service"
+      },
+      {
+       "way": 1486366391,
+       "class": "service"
+      },
+      {
+       "way": 96324711,
+       "class": "service"
+      },
+      {
+       "way": 1165093975,
+       "class": "service"
+      },
+      {
+       "way": 415357972,
+       "class": "service"
+      },
+      {
+       "way": 1103153986,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 2,
+     "restored": 0,
+     "ways": [
+      8021696
+     ],
+     "names": [],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 8220123907,
+     "sweref": [
+      572550.3,
+      6500958.8
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 594308241,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 7,
+     "restored": 0,
+     "ways": [
+      8237053,
+      35669333
+     ],
+     "names": [
+      "Laxholmsbron",
+      "Källvindsgatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 10079208722,
+     "sweref": [
+      568608.7,
+      6494883.6
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 760535019,
+       "class": "service"
+      },
+      {
+       "way": 1107682828,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 7,
+     "restored": 0,
+     "ways": [
+      8239721
+     ],
+     "names": [
+      "Pinnmogatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 8085844,
+     "sweref": [
+      567736.9,
+      6492562.5
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 98653673,
+       "class": "service"
+      },
+      {
+       "way": 98653659,
+       "class": "living_street"
+      },
+      {
+       "way": 198316174,
+       "class": "living_street"
+      }
+     ]
+    },
+    {
+     "edges": 2,
+     "restored": 0,
+     "ways": [
+      8267038
+     ],
+     "names": [
+      "Bryggaregatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 13820858,
+     "sweref": [
+      568948.7,
+      6494516.3
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 95595658,
+       "class": "living_street"
+      }
+     ]
+    },
+    {
+     "edges": 6,
+     "restored": 0,
+     "ways": [
+      23275783,
+      1423865500
+     ],
+     "names": [
+      "Tunnbindaregatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 11231112337,
+     "sweref": [
+      568640.3,
+      6495007.2
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": []
+    },
+    {
+     "edges": 6,
+     "restored": 0,
+     "ways": [
+      23276874
+     ],
+     "names": [],
+     "classes": [
+      "residential"
+     ],
+     "node": 1117486237,
+     "sweref": [
+      570741.1,
+      6493270.3
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 96437152,
+       "class": "service"
+      },
+      {
+       "way": 279819283,
+       "class": "service"
+      },
+      {
+       "way": 415871926,
+       "class": "living_street"
+      }
+     ]
+    },
+    {
+     "edges": 4,
+     "restored": 0,
+     "ways": [
+      24418704
+     ],
+     "names": [
+      "Rälsgatan"
+     ],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 265172058,
+     "sweref": [
+      569119.6,
+      6496386.6
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 93310243,
+       "class": "service"
+      },
+      {
+       "way": 93310240,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 10,
+     "restored": 0,
+     "ways": [
+      24507417,
+      175718854
+     ],
+     "names": [
+      "Bäraregatan",
+      "Snickaregatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 266516079,
+     "sweref": [
+      569910.3,
+      6492892.8
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 192583808,
+       "class": "service"
+      },
+      {
+       "way": 192583806,
+       "class": "service"
+      },
+      {
+       "way": 192583809,
+       "class": "service"
+      },
+      {
+       "way": 24507415,
+       "class": "service"
+      },
+      {
+       "way": 192583802,
+       "class": "service"
+      },
+      {
+       "way": 312441118,
+       "class": "service"
+      },
+      {
+       "way": 1108962653,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 4,
+     "restored": 0,
+     "ways": [
+      24507439
+     ],
+     "names": [
+      "Hyvlaregatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 270449148,
+     "sweref": [
+      570119,
+      6492571.4
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 270800582,
+       "class": "service"
+      },
+      {
+       "way": 24507415,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 14,
+     "restored": 0,
+     "ways": [
+      24507543
+     ],
+     "names": [
+      "Plåtslagaregatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 266517353,
+     "sweref": [
+      569952.3,
+      6493587.7
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 91765619,
+       "class": "service"
+      },
+      {
+       "way": 91765617,
+       "class": "service"
+      },
+      {
+       "way": 91932972,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 9,
+     "restored": 0,
+     "ways": [
+      24673919,
+      1086054597
+     ],
+     "names": [
+      "Sjöledsgatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 268184554,
+     "sweref": [
+      573691.4,
+      6496405.5
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 1111030453,
+       "class": "service"
+      },
+      {
+       "way": 1111029898,
+       "class": "service"
+      },
+      {
+       "way": 1111030171,
+       "class": "service"
+      }
+     ]
+    }
+   ]
+  },
+  "correctly excluded (bus island: reachable only through roads closed to buses)": {
+   "regions": 9,
+   "edges": 120,
+   "restoredEdges": 2,
+   "examples": [
+    {
+     "edges": 24,
+     "restored": 0,
+     "ways": [
+      4498925
+     ],
+     "names": [
+      "Navestadsgatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 1110679341,
+     "sweref": [
+      570961.4,
+      6492152.4
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 4498924,
+       "class": "service"
+      },
+      {
+       "way": 415363780,
+       "class": "service"
+      },
+      {
+       "way": 449064409,
+       "class": "service"
+      },
+      {
+       "way": 449064415,
+       "class": "service"
+      },
+      {
+       "way": 449064414,
+       "class": "service"
+      },
+      {
+       "way": 449064411,
+       "class": "service"
+      },
+      {
+       "way": 449064413,
+       "class": "service"
+      },
+      {
+       "way": 449064410,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 2,
+     "restored": 2,
+     "ways": [
+      89884762
+     ],
+     "names": [
+      "Blåeldsvägen"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 1041816752,
+     "sweref": [
+      570165.4,
+      6491147.4
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 1111771303,
+       "class": "service"
+      }
+     ],
+     "retainedButUnreachable": 2
+    },
+    {
+     "edges": 48,
+     "restored": 0,
+     "ways": [
+      91258086
+     ],
+     "names": [],
+     "classes": [
+      "residential"
+     ],
+     "node": 1059358122,
+     "sweref": [
+      569103.6,
+      6499303.6
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 91258087,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 5,
+     "restored": 0,
+     "ways": [
+      172419682
+     ],
+     "names": [],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 4926944595,
+     "sweref": [
+      571432.2,
+      6500476.8
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 502114828,
+       "class": "service"
+      },
+      {
+       "way": 502114835,
+       "class": "service"
+      },
+      {
+       "way": 502122828,
+       "class": "service"
+      },
+      {
+       "way": 502114822,
+       "class": "service"
+      },
+      {
+       "way": 502114818,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 2,
+     "restored": 0,
+     "ways": [
+      954899965
+     ],
+     "names": [],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 8838468149,
+     "sweref": [
+      570945.1,
+      6498691.8
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 93320320,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 2,
+     "restored": 0,
+     "ways": [
+      1050223617
+     ],
+     "names": [],
+     "classes": [
+      "residential"
+     ],
+     "node": 9651310536,
+     "sweref": [
+      571243.5,
+      6491659.1
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 145173981,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 16,
+     "restored": 0,
+     "ways": [
+      1059584521
+     ],
+     "names": [],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 9735083201,
+     "sweref": [
+      568787,
+      6496677.7
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 94953983,
+       "class": "service"
+      },
+      {
+       "way": 94954010,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 14,
+     "restored": 0,
+     "ways": [
+      1115174620
+     ],
+     "names": [],
+     "classes": [
+      "unclassified"
+     ],
+     "node": 1057521097,
+     "sweref": [
+      568157.6,
+      6501216.4
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 95557922,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 7,
+     "restored": 0,
+     "ways": [
+      1236596642
+     ],
+     "names": [
+      "Sommardalsvägen"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 2085665621,
+     "sweref": [
+      574710.1,
+      6496852.6
+     ],
+     "stops": [],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 1137249838,
+       "class": "service"
+      },
+      {
+       "way": 1246956872,
+       "class": "service"
+      },
+      {
+       "way": 1246956873,
+       "class": "service"
+      }
+     ]
+    }
+   ]
+  },
+  "legitimate public-transport access (restored: verified route 21 corridor)": {
+   "regions": 2,
+   "edges": 8,
+   "restoredEdges": 8,
+   "examples": [
+    {
+     "edges": 4,
+     "restored": 4,
+     "ways": [
+      26154805,
+      239468394,
+      450114916
+     ],
+     "names": [
+      "Kungsgatan"
+     ],
+     "classes": [
+      "secondary"
+     ],
+     "node": 286409009,
+     "sweref": [
+      568480.9,
+      6494919.1
+     ],
+     "stops": [],
+     "relations": [
+      {
+       "way": 26154805,
+       "services": [
+        "21"
+       ]
+      },
+      {
+       "way": 239468394,
+       "services": [
+        "21"
+       ]
+      },
+      {
+       "way": 450114916,
+       "services": [
+        "21"
+       ]
+      }
+     ],
+     "boundaryWays": []
+    },
+    {
+     "edges": 4,
+     "restored": 4,
+     "ways": [
+      118180748,
+      283456850
+     ],
+     "names": [
+      "Kungsgatan"
+     ],
+     "classes": [
+      "secondary"
+     ],
+     "node": 3183225928,
+     "sweref": [
+      568506.8,
+      6495071.2
+     ],
+     "stops": [
+      {
+       "node": 3183225928,
+       "name": "Skvallertorget"
+      },
+      {
+       "node": 2873168580,
+       "name": "Skvallertorget"
+      }
+     ],
+     "relations": [
+      {
+       "way": 118180748,
+       "services": [
+        "21"
+       ]
+      },
+      {
+       "way": 283456850,
+       "services": [
+        "21"
+       ]
+      }
+     ],
+     "boundaryWays": []
+    }
+   ]
+  },
+  "uncertain (mapped stop or unverified relation; onward road closed to buses)": {
+   "regions": 2,
+   "edges": 22,
+   "restoredEdges": 0,
+   "examples": [
+    {
+     "edges": 5,
+     "restored": 0,
+     "ways": [
+      99952393,
+      315670216
+     ],
+     "names": [
+      "S:t Persgatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 1155434887,
+     "sweref": [
+      568087.1,
+      6494627.2
+     ],
+     "stops": [],
+     "relations": [
+      {
+       "way": 99952393,
+       "services": [
+        "75",
+        "74",
+        "72",
+        "71",
+        "70",
+        "Campusbussen",
+        "141"
+       ]
+      },
+      {
+       "way": 315670216,
+       "services": [
+        "75",
+        "74",
+        "72",
+        "71",
+        "70",
+        "Campusbussen",
+        "141"
+       ]
+      }
+     ],
+     "boundaryWays": [
+      {
+       "way": 99952383,
+       "class": "service"
+      },
+      {
+       "way": 99952404,
+       "class": "service"
+      }
+     ]
+    },
+    {
+     "edges": 17,
+     "restored": 0,
+     "ways": [
+      284799167,
+      995916787,
+      995916788
+     ],
+     "names": [
+      "Slåttergatan"
+     ],
+     "classes": [
+      "residential"
+     ],
+     "node": 1185034920,
+     "sweref": [
+      566541.3,
+      6496455.6
+     ],
+     "stops": [
+      {
+       "node": 2920494853,
+       "name": "Hållplats"
+      },
+      {
+       "node": 13228582396,
+       "name": "Hållplats"
+      }
+     ],
+     "relations": [],
+     "boundaryWays": [
+      {
+       "way": 102327491,
+       "class": "service"
+      },
+      {
+       "way": 284799165,
+       "class": "living_street"
+      },
+      {
+       "way": 102410988,
+       "class": "service"
+      },
+      {
+       "way": 102410987,
+       "class": "service"
+      },
+      {
+       "way": 102410985,
+       "class": "service"
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "sevenMappedBusEnds": [
+  {
+   "edge": 1293,
+   "way": 4498925,
+   "name": "Navestadsgatan",
+   "class": "residential",
+   "endNode": 1077432785,
+   "sweref": [
+    570789.4,
+    6492010.1
+   ],
+   "retainedStep61b": false,
+   "reachableFromMainBusNetwork": false,
+   "canReturnToMain": false
+  },
+  {
+   "edge": 16369,
+   "way": 89884762,
+   "name": "Blåeldsvägen",
+   "class": "residential",
+   "endNode": 1041816796,
+   "sweref": [
+    570165.4,
+    6491137
+   ],
+   "retainedStep61b": true,
+   "reachableFromMainBusNetwork": false,
+   "canReturnToMain": false
+  },
+  {
+   "edge": 17538,
+   "way": 91258086,
+   "name": "",
+   "class": "residential",
+   "endNode": 1059358122,
+   "sweref": [
+    569103.6,
+    6499303.6
+   ],
+   "retainedStep61b": false,
+   "reachableFromMainBusNetwork": false,
+   "canReturnToMain": false
+  },
+  {
+   "edge": 58562,
+   "way": 954899965,
+   "name": "",
+   "class": "unclassified",
+   "endNode": 8838468150,
+   "sweref": [
+    570951.8,
+    6498678.9
+   ],
+   "retainedStep61b": false,
+   "reachableFromMainBusNetwork": false,
+   "canReturnToMain": false
+  },
+  {
+   "edge": 61935,
+   "way": 1050223617,
+   "name": "",
+   "class": "residential",
+   "endNode": 9651310537,
+   "sweref": [
+    571225.6,
+    6491646.1
+   ],
+   "retainedStep61b": false,
+   "reachableFromMainBusNetwork": false,
+   "canReturnToMain": false
+  },
+  {
+   "edge": 63097,
+   "way": 1059584521,
+   "name": "",
+   "class": "unclassified",
+   "endNode": 9735083202,
+   "sweref": [
+    568709.3,
+    6496821.8
+   ],
+   "retainedStep61b": false,
+   "reachableFromMainBusNetwork": false,
+   "canReturnToMain": false
+  },
+  {
+   "edge": 67625,
+   "way": 1115174620,
+   "name": "",
+   "class": "unclassified",
+   "endNode": 10199175827,
+   "sweref": [
+    568247.6,
+    6501099.5
+   ],
+   "retainedStep61b": false,
+   "reachableFromMainBusNetwork": false,
+   "canReturnToMain": false
+  }
+ ],
+ "namedBoundaries": {
+  "road 51": {
+   "way": 318001968,
+   "class": "primary",
+   "edges": 6,
+   "perPolicy": {
+    "compact": {
+     "candidates": 6,
+     "step61": 3,
+     "step61b": 3
+    },
+    "truck": {
+     "candidates": 6,
+     "step61": 3,
+     "step61b": 3
+    },
+    "bus": {
+     "candidates": 6,
+     "step61": 3,
+     "step61b": 3
+    }
+   }
+  },
+  "Gustaf Janzéns gata": {
+   "way": 26734855,
+   "class": "secondary",
+   "edges": 14,
+   "perPolicy": {
+    "compact": {
+     "candidates": 14,
+     "step61": 14,
+     "step61b": 14
+    },
+    "truck": {
+     "candidates": 14,
+     "step61": 7,
+     "step61b": 7
+    },
+    "bus": {
+     "candidates": 14,
+     "step61": 14,
+     "step61b": 14
+    }
+   }
+  },
+  "Platinagatan": {
+   "way": 4384905,
+   "class": "unclassified",
+   "edges": 34,
+   "perPolicy": {
+    "compact": {
+     "candidates": 34,
+     "step61": 34,
+     "step61b": 34
+    },
+    "truck": {
+     "candidates": 0,
+     "step61": 0,
+     "step61b": 0
+    },
+    "bus": {
+     "candidates": 34,
+     "step61": 17,
+     "step61b": 34
+    }
+   }
+  }
+ }
+}

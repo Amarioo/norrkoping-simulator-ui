@@ -1,6 +1,7 @@
 import { test, expect } from '@playwright/test';
-import { analyzeTraffic } from '../scripts/step61/analyze-traffic.mjs';
+import { analyzeTraffic } from '../scripts/step61b/analyze-traffic.mjs';
 
+// Step 6.1b: trucks stay out of the policy trap; buses may cross (route 21 corridor); nobody reverses.
 test('live cars cross Bergsbron and policy-restricted traffic avoids its northern trap', async ({
   page,
   request,
@@ -48,7 +49,11 @@ test('live cars cross Bergsbron and policy-restricted traffic avoids its norther
           );
           expect(report.forbiddenEntries).toHaveLength(0);
           expect(report.reversals).toHaveLength(0);
-          return report.end > 600 && report.crossings.length >= 3;
+          // Every bus that entered northbound must leave north, never reverse on the deck.
+          expect(report.busCrossings.length).toBeGreaterThanOrEqual(
+            report.busEntries.filter((e: any) => e.time < report.end - 60).length,
+          );
+          return report.end > 600 && report.carCrossings.length >= 3;
         },
         { timeout: 100000, intervals: [1000] },
       )

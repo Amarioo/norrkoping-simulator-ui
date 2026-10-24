@@ -1,0 +1,176 @@
+{
+    "note": "Deterministic RoadTraffic seed 1309; before = Step 6.1 policy, after = Step 6.1b. Different allowed sets change random spawns, so counts are behaviour evidence, not paired throughput.",
+    "static": {
+        "before": {
+            "compact": {
+                "candidates": 73332,
+                "retained": 73131,
+                "legacyRetained": 73142,
+                "removedVsLegacy": 11,
+                "mainNodes": 37104,
+                "busStopNodesInMain": 260,
+                "mappedEndEdgesLegacy": 2548,
+                "mappedEndEdgesRetained": 2547,
+                "turnaroundFacilitiesInMain": 0
+            },
+            "truck": {
+                "candidates": 6424,
+                "retained": 5807,
+                "legacyRetained": 5932,
+                "removedVsLegacy": 125,
+                "mainNodes": 4379,
+                "busStopNodesInMain": 64,
+                "mappedEndEdgesLegacy": 6,
+                "mappedEndEdgesRetained": 5,
+                "turnaroundFacilitiesInMain": 0
+            },
+            "bus": {
+                "candidates": 43987,
+                "retained": 42834,
+                "legacyRetained": 43813,
+                "removedVsLegacy": 979,
+                "mainNodes": 22812,
+                "busStopNodesInMain": 245,
+                "mappedEndEdgesLegacy": 612,
+                "mappedEndEdgesRetained": 605,
+                "turnaroundFacilitiesInMain": 0
+            }
+        },
+        "after": {
+            "compact": {
+                "candidates": 73332,
+                "retained": 73131,
+                "legacyRetained": 73142,
+                "removedVsLegacy": 11,
+                "mainNodes": 37104,
+                "busStopNodesInMain": 260,
+                "mappedEndEdgesLegacy": 2548,
+                "mappedEndEdgesRetained": 2547,
+                "turnaroundFacilitiesInMain": 244
+            },
+            "truck": {
+                "candidates": 6424,
+                "retained": 5807,
+                "legacyRetained": 5932,
+                "removedVsLegacy": 125,
+                "mainNodes": 4379,
+                "busStopNodesInMain": 64,
+                "mappedEndEdgesLegacy": 6,
+                "mappedEndEdgesRetained": 5,
+                "turnaroundFacilitiesInMain": 0
+            },
+            "bus": {
+                "candidates": 44017,
+                "retained": 43157,
+                "legacyRetained": 43813,
+                "removedVsLegacy": 684,
+                "mainNodes": 23118,
+                "busStopNodesInMain": 249,
+                "mappedEndEdgesLegacy": 612,
+                "mappedEndEdgesRetained": 606,
+                "turnaroundFacilitiesInMain": 186
+            }
+        }
+    },
+    "startupMedians": {
+        "before": {
+            "policyComputationMs": 23.9832,
+            "roadTrafficInitialiseMs": 42.0802,
+            "rounds": 7
+        },
+        "after": {
+            "policyComputationMs": 32.6,
+            "roadTrafficInitialiseMs": 30.5002,
+            "rounds": 7
+        }
+    },
+    "order": [
+        "after",
+        "before"
+    ],
+    "after": {
+        "simulatedSeconds": 3600.0,
+        "vehicles": 1000,
+        "initialiseMs": 83.2921,
+        "configureMs": 18.0184,
+        "tickMs": 1.397734956582633,
+        "transitions": 1383531,
+        "transitionsOutsidePolicy": 0,
+        "reversals": {
+            "bus": {
+                "mappedRoadEnd": 1311,
+                "turnaroundFacility": 55
+            },
+            "compact": {
+                "mappedRoadEnd": 24605
+            },
+            "estate": {
+                "mappedRoadEnd": 6336
+            },
+            "truck": {
+                "mappedRoadEnd": 117
+            }
+        },
+        "artificialReversalSamples": [],
+        "bergsbron": {
+            "truckNorthboundEntries": 0,
+            "carNorthboundEntries": 20,
+            "busNorthboundEntries": 3,
+            "busSouthboundEntries": 1,
+            "busGangfartsomradeNorthbound": 12,
+            "busGangfartsomradeSouthbound": 4
+        },
+        "dwellEpisodes": 1256,
+        "distinctStopNamesServed": 123,
+        "skvallertorgetDwells": 10,
+        "klockaretorpetDwells": 6,
+        "distinctEdgesVisited": {
+            "bus": 33401,
+            "compact": 71110,
+            "estate": 58919,
+            "truck": 5490
+        }
+    },
+    "before": {
+        "simulatedSeconds": 3600.0,
+        "vehicles": 1000,
+        "initialiseMs": 41.4395,
+        "configureMs": 2.1916,
+        "tickMs": 1.3653069901960784,
+        "transitions": 1444330,
+        "transitionsOutsidePolicy": 0,
+        "reversals": {
+            "bus": {
+                "mappedRoadEnd": 1235
+            },
+            "compact": {
+                "mappedRoadEnd": 25419
+            },
+            "estate": {
+                "mappedRoadEnd": 6503
+            },
+            "truck": {
+                "mappedRoadEnd": 131
+            }
+        },
+        "artificialReversalSamples": [],
+        "bergsbron": {
+            "truckNorthboundEntries": 0,
+            "carNorthboundEntries": 27,
+            "busNorthboundEntries": 0,
+            "busSouthboundEntries": 0,
+            "busGangfartsomradeNorthbound": 0,
+            "busGangfartsomradeSouthbound": 0
+        },
+        "dwellEpisodes": 1176,
+        "distinctStopNamesServed": 121,
+        "skvallertorgetDwells": 0,
+        "klockaretorpetDwells": 0,
+        "distinctEdgesVisited": {
+            "bus": 32614,
+            "compact": 71417,
+            "estate": 59331,
+            "truck": 5490
+        }
+    }
+}

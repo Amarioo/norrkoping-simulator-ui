@@ -2,6 +2,44 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Step 6.1b — bus reachability without reintroducing reversals (2026-10-24) — implemented, for review
+
+[Full report](step61b/README.md). Branch `step61b-bus-reachability` in both repositories, created from UI `1cdf45f` and
+backend `39a9709` (the Step 6.2 commits; both were clean and matched `origin/main`). Nothing committed or pushed.
+
+- **Root causes.**
+  - The importer's bus heuristic closes all `living_street`/`service` roads and ignores `bus`/`psv` tags.
+    Route 21 uses four unrestricted Kungsgatan `living_street` ways between Bergsbron and Skvallertorget.
+  - `throughRoadEdges` treated mapped turning circles with a driveway beyond them as policy dead ends.
+- **Fix (backend only).**
+  - Data-driven `road-access.json` with provenance:
+    - 4 `verified-service` ways (route 21, checked against transit.land and the operator index);
+    - 2 explicit-tag ways (`psv=yes`, `bus=designated`);
+    - 249 mapped turnaround facilities.
+  - Relation-only evidence is listed but not granted (13 ways).
+  - Pruning algorithm, truck/car policies, `fillPath` and all geometry/shared data are unchanged; nothing is
+    hardcoded in routing code.
+- **Results.**
+  - Skvallertorget is in the main bus network in both directions; route 21 legs Norr Tull ↔ Väster Tull follow
+    their mapped ways.
+  - Bus-stop nodes in the main network: 245 → 249 (legacy 251).
+  - Of the 979 edges Step 6.1 removed: 293 restored and usable, 643 correctly excluded, 22 uncertain, 2 retained
+    but unreachable.
+  - The seven Step 6.2 bus ends are islands with no lawful bus access.
+  - Trucks: 0 Bergsbron trap entries; 0 artificial reversals in any class (deterministic 3,600 s run and live
+    browser run). Buses now cross Bergsbron, use the gångfartsområde (living street) and dwell at Skvallertorget.
+- **Validation.**
+  - Backend: 60/60 tests.
+  - Frontend: type check and build clean. Vitest 209/210: an `infrastructure.test.ts` timeout under parallel
+    load; the file passes alone.
+  - E2E: 4/5. `simulation.spec.ts` second-tab timing fails identically with the baseline backend.
+- **Performance.** No systematic startup or tick change within measurement noise.
+- **Open.**
+  - GTFS shapes for the other services.
+  - Bus-only ways the importer drops (Resecentrum, Söder Tull, Drottninggatan): a topology change for a future
+    re-import.
+  - Slåttergatan B/D and S:t Persgatan.
+
 ## Step 6.2 — lighting inventory and rollout foundation (2026-10-23) — research complete, for review
 
 [Executive report and all deliverables](step62/README.md), [checkpoint readiness](step62/checkpoint-readiness.md),

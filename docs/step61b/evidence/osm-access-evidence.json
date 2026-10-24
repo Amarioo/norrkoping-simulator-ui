@@ -1,0 +1,1106 @@
+{
+ "license": "© OpenStreetMap contributors, ODbL-1.0",
+ "requests": {
+  "access": {
+   "url": "https://overpass-api.de/api/interpreter",
+   "query": "[out:json][timeout:120][bbox:58.555,16.065,58.65,16.295];\n(rel[route=bus];rel[route=trolleybus];)->.r;\n(way(r.r)[highway];way[highway][bus];way[highway][psv];way[highway=busway];way[highway][service=bus];way[highway][\"access:bus\"];way[highway][hgv];way[highway~\"^(living_street|service)$\"][access];way[highway][motor_vehicle];way[highway][motorcar];)->.w;\n(.r;.w;);out meta;",
+   "retrievedAt": "2026-10-24T08:53:45.832Z",
+   "osmBase": "2026-10-24T08:51:51Z"
+  },
+  "turning": {
+   "url": "https://overpass-api.de/api/interpreter",
+   "query": "[out:json][timeout:90][bbox:58.555,16.065,58.65,16.295];\n(node[highway~\"^(turning_circle|turning_loop)$\"];way[area=yes][highway~\"^(turning_circle|turning_loop)$\"];);out meta;",
+   "retrievedAt": "2026-10-24T09:03:57.624Z",
+   "osmBase": "2026-10-24T09:02:06Z"
+  },
+  "ways": "https://api.openstreetmap.org/api/0.6/ways.json (retrievedAt per way)"
+ },
+ "ways": [
+  {
+   "id": 26154805,
+   "version": 16,
+   "timestamp": "2025-08-21T10:39:27Z",
+   "retrievedAt": null,
+   "tags": {
+    "bridge": "yes",
+    "cycleway:both": "separate",
+    "hazmat": "no",
+    "highway": "secondary",
+    "lane_markings": "no",
+    "layer": "1",
+    "lit": "yes",
+    "maxaxleload": "10",
+    "maxspeed": "40",
+    "maxweight": "28",
+    "name": "Kungsgatan",
+    "sidewalk": "both",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 26154806,
+   "version": 21,
+   "timestamp": "2025-08-21T10:39:39Z",
+   "retrievedAt": null,
+   "tags": {
+    "cycleway:both": "separate",
+    "hazmat": "no",
+    "highway": "living_street",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxspeed": "walk",
+    "name": "Kungsgatan",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 1050773509,
+   "version": 3,
+   "timestamp": "2025-08-21T10:39:32Z",
+   "retrievedAt": null,
+   "tags": {
+    "cycleway:both": "separate",
+    "hazmat": "no",
+    "highway": "living_street",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxspeed": "walk",
+    "name": "Kungsgatan",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 444474485,
+   "version": 6,
+   "timestamp": "2025-08-21T10:39:35Z",
+   "retrievedAt": null,
+   "tags": {
+    "cycleway:both": "separate",
+    "hazmat": "no",
+    "highway": "living_street",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxspeed": "walk",
+    "name": "Kungsgatan",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 1212234765,
+   "version": 4,
+   "timestamp": "2025-01-26T12:04:02Z",
+   "retrievedAt": null,
+   "tags": {
+    "hazmat": "no",
+    "highway": "living_street",
+    "lanes": "2",
+    "lit": "yes",
+    "maxspeed": "walk",
+    "name": "Kungsgatan",
+    "postal_code": "60220",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 118180748,
+   "version": 12,
+   "timestamp": "2025-08-21T10:39:37Z",
+   "retrievedAt": null,
+   "tags": {
+    "cycleway:both": "separate",
+    "hazmat": "no",
+    "highway": "secondary",
+    "lanes": "2",
+    "lit": "yes",
+    "maxspeed": "40",
+    "name": "Kungsgatan",
+    "postal_code": "60220",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 391478867,
+   "version": 3,
+   "timestamp": "2025-11-10T12:23:22Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "psv": "yes",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 1313592331,
+   "version": 2,
+   "timestamp": "2024-09-20T13:52:28Z",
+   "retrievedAt": null,
+   "tags": {
+    "bus": "designated",
+    "highway": "service",
+    "name": "Östra Promenaden",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 286505037,
+   "version": 9,
+   "timestamp": "2025-11-07T16:14:00Z",
+   "retrievedAt": null,
+   "tags": {
+    "access": "no",
+    "bus": "yes",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+   }
+  },
+  {
+   "id": 297690892,
+   "version": 7,
+   "timestamp": "2025-11-07T16:14:00Z",
+   "retrievedAt": null,
+   "tags": {
+    "access": "no",
+    "bus": "yes",
+    "electrified": "contact_line",
+    "embedded_rails": "tram",
+    "frequency": "0",
+    "gauge": "1435",
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "railway": "tram",
+    "tracks": "1",
+    "tram": "designated",
+    "voltage": "750"
+   }
+  },
+  {
+   "id": 1050773511,
+   "version": 5,
+   "timestamp": "2026-09-03T05:48:13Z",
+   "retrievedAt": null,
+   "tags": {
+    "cycleway:both": "no",
+    "highway": "residential",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxspeed": "40",
+    "name": "Drottninggatan",
+    "sidewalk:both": "yes",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 287129554,
+   "version": 5,
+   "timestamp": "2024-06-03T18:05:26Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxlength": "13",
+    "maxspeed": "40",
+    "name": "Drottninggatan",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 287143362,
+   "version": 8,
+   "timestamp": "2024-06-05T13:19:20Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxlength": "13",
+    "maxspeed": "40",
+    "name": "Drottninggatan",
+    "sidewalk": "both",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 760535027,
+   "version": 3,
+   "timestamp": "2024-06-05T13:19:20Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "residential",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxlength": "13",
+    "maxspeed": "40",
+    "name": "Drottninggatan",
+    "sidewalk": "both",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 287098415,
+   "version": 11,
+   "timestamp": "2026-09-03T05:48:23Z",
+   "retrievedAt": null,
+   "tags": {
+    "cycleway:both": "no",
+    "highway": "residential",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxspeed": "40",
+    "name": "Drottninggatan",
+    "sidewalk": "both",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 1050773510,
+   "version": 4,
+   "timestamp": "2024-05-27T18:45:03Z",
+   "retrievedAt": null,
+   "tags": {
+    "cycleway:both": "no",
+    "highway": "residential",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxspeed": "40",
+    "name": "Drottninggatan",
+    "sidewalk": "both",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 4498925,
+   "version": 7,
+   "timestamp": "2016-10-23T12:33:42Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "residential",
+    "maxspeed": "30",
+    "name": "Navestadsgatan"
+   }
+  },
+  {
+   "id": 449064412,
+   "version": 2,
+   "timestamp": "2018-11-17T10:29:42Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "service"
+   }
+  },
+  {
+   "id": 415363780,
+   "version": 2,
+   "timestamp": "2021-11-15T11:49:04Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "service",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 4498924,
+   "version": 2,
+   "timestamp": "2011-01-19T19:04:47Z",
+   "retrievedAt": "2026-10-24T08:55:36.877Z",
+   "tags": {
+    "highway": "service"
+   }
+  },
+  {
+   "id": 89884762,
+   "version": 3,
+   "timestamp": "2022-10-19T10:30:51Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "residential",
+    "name": "Blåeldsvägen",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 1111771303,
+   "version": 1,
+   "timestamp": "2022-11-09T12:28:30Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "service",
+    "service": "driveway"
+   }
+  },
+  {
+   "id": 91258086,
+   "version": 2,
+   "timestamp": "2023-01-25T21:41:48Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "residential",
+    "maxspeed": "30"
+   }
+  },
+  {
+   "id": 91258087,
+   "version": 1,
+   "timestamp": "2010-12-23T15:07:24Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "service"
+   }
+  },
+  {
+   "id": 954899965,
+   "version": 2,
+   "timestamp": "2021-10-15T16:44:20Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "bridge": "yes",
+    "highway": "unclassified",
+    "layer": "1",
+    "maxspeed": "40"
+   }
+  },
+  {
+   "id": 93320320,
+   "version": 4,
+   "timestamp": "2022-09-07T16:18:36Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "service",
+    "maxspeed": "40"
+   }
+  },
+  {
+   "id": 1050223617,
+   "version": 1,
+   "timestamp": "2022-04-08T09:30:04Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "residential"
+   }
+  },
+  {
+   "id": 145173981,
+   "version": 4,
+   "timestamp": "2022-10-18T07:45:19Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "service",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 1059584521,
+   "version": 1,
+   "timestamp": "2022-05-12T13:31:51Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "unclassified",
+    "maxspeed": "40",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 94953983,
+   "version": 2,
+   "timestamp": "2022-05-12T13:31:51Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "service"
+   }
+  },
+  {
+   "id": 1115174620,
+   "version": 2,
+   "timestamp": "2022-11-18T10:00:35Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "unclassified"
+   }
+  },
+  {
+   "id": 95557922,
+   "version": 6,
+   "timestamp": "2023-10-30T10:09:23Z",
+   "retrievedAt": "2026-10-24T08:55:36.878Z",
+   "tags": {
+    "highway": "service"
+   }
+  },
+  {
+   "id": 284799165,
+   "version": 4,
+   "timestamp": "2022-08-20T21:33:47Z",
+   "retrievedAt": "2026-10-24T09:04:58.090Z",
+   "tags": {
+    "highway": "living_street",
+    "lit": "yes",
+    "maxspeed": "30",
+    "name": "Slåttergatan",
+    "surface": "paving_stones"
+   }
+  },
+  {
+   "id": 284799167,
+   "version": 7,
+   "timestamp": "2021-10-23T17:47:00Z",
+   "retrievedAt": "2026-10-24T09:04:58.090Z",
+   "tags": {
+    "highway": "residential",
+    "lit": "yes",
+    "maxspeed": "30",
+    "name": "Slåttergatan",
+    "postal_code": "60212"
+   }
+  },
+  {
+   "id": 995916787,
+   "version": 3,
+   "timestamp": "2026-10-17T13:22:16Z",
+   "retrievedAt": "2026-10-24T09:04:58.090Z",
+   "tags": {
+    "highway": "residential",
+    "lit": "yes",
+    "maxspeed": "30",
+    "name": "Slåttergatan",
+    "postal_code": "60212",
+    "sidewalk:both": "separate",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 995916788,
+   "version": 3,
+   "timestamp": "2025-10-12T22:07:10Z",
+   "retrievedAt": "2026-10-24T09:04:58.090Z",
+   "tags": {
+    "highway": "residential",
+    "lanes": "1",
+    "lit": "yes",
+    "maxspeed": "30",
+    "name": "Slåttergatan",
+    "postal_code": "60212",
+    "surface": "asphalt",
+    "traffic_calming": "choker"
+   }
+  },
+  {
+   "id": 99952393,
+   "version": 10,
+   "timestamp": "2025-11-05T12:57:45Z",
+   "retrievedAt": null,
+   "tags": {
+    "bus": "yes",
+    "cycleway:left": "separate",
+    "cycleway:right": "no",
+    "embedded_rails": "tram",
+    "highway": "residential",
+    "lane_markings": "no",
+    "lit": "yes",
+    "maxspeed": "40",
+    "name": "S:t Persgatan",
+    "sidewalk": "right",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 315670216,
+   "version": 3,
+   "timestamp": "2025-11-05T12:57:45Z",
+   "retrievedAt": null,
+   "tags": {
+    "bus": "yes",
+    "embedded_rails": "tram",
+    "highway": "residential",
+    "maxspeed": "40",
+    "name": "S:t Persgatan"
+   }
+  },
+  {
+   "id": 90929693,
+   "version": 14,
+   "timestamp": "2025-05-30T01:19:53Z",
+   "retrievedAt": "2026-10-24T08:59:09.332Z",
+   "tags": {
+    "alt_name": "Moa Martinssons gata",
+    "highway": "tertiary",
+    "maxspeed": "40",
+    "name": "Moa Martinsons gata",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 4384905,
+   "version": 14,
+   "timestamp": "2026-06-07T10:14:46Z",
+   "retrievedAt": "2026-10-24T08:59:09.331Z",
+   "tags": {
+    "highway": "unclassified",
+    "maxspeed": "40",
+    "name": "Platinagatan",
+    "name:etymology:wikidata": "Q880"
+   }
+  },
+  {
+   "id": 26734855,
+   "version": 13,
+   "timestamp": "2022-08-02T14:39:06Z",
+   "retrievedAt": "2026-10-24T08:59:09.332Z",
+   "tags": {
+    "highway": "secondary",
+    "maxspeed": "40",
+    "name": "Gustaf Janzéns gata",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 318001968,
+   "version": 9,
+   "timestamp": "2026-07-29T14:35:48Z",
+   "retrievedAt": "2026-10-24T08:59:09.332Z",
+   "tags": {
+    "agricultural": "no",
+    "bicycle": "no",
+    "change:lanes:backward": "no",
+    "change:lanes:forward": "no",
+    "foot": "no",
+    "highway": "primary",
+    "lanes": "2",
+    "maxspeed": "50",
+    "mofa": "no",
+    "moped": "no",
+    "overtaking": "no",
+    "ref": "51",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 139689593,
+   "version": 6,
+   "timestamp": "2022-02-20T15:58:49Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "id": 139828354,
+   "version": 6,
+   "timestamp": "2024-09-14T23:05:35Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes"
+   }
+  },
+  {
+   "id": 139919979,
+   "version": 6,
+   "timestamp": "2024-06-17T18:22:55Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "oneway": "yes",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 287611485,
+   "version": 5,
+   "timestamp": "2022-11-08T04:41:45Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "smoothness": "good",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 287611487,
+   "version": 6,
+   "timestamp": "2022-12-26T08:53:25Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "lanes": "1",
+    "name": "Nygatan",
+    "oneway": "yes",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 372856736,
+   "version": 7,
+   "timestamp": "2024-04-18T20:24:04Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "name": "Ensjövägen",
+    "surface": "fine_gravel"
+   }
+  },
+  {
+   "id": 391478868,
+   "version": 3,
+   "timestamp": "2024-06-17T18:22:55Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "oneway": "yes",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 410282222,
+   "version": 4,
+   "timestamp": "2022-08-16T15:28:21Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 410282224,
+   "version": 4,
+   "timestamp": "2022-08-16T15:28:15Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "surface": "asphalt"
+   }
+  },
+  {
+   "id": 712374013,
+   "version": 3,
+   "timestamp": "2022-11-08T04:40:06Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "lanes": "1",
+    "oneway": "yes",
+    "smoothness": "good",
+    "surface": "sett"
+   }
+  },
+  {
+   "id": 851404088,
+   "version": 2,
+   "timestamp": "2022-04-10T17:04:20Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service"
+   }
+  },
+  {
+   "id": 1050810163,
+   "version": 1,
+   "timestamp": "2022-04-10T17:04:19Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "oneway": "yes"
+   }
+  },
+  {
+   "id": 1087780574,
+   "version": 2,
+   "timestamp": "2022-11-08T04:40:44Z",
+   "retrievedAt": null,
+   "tags": {
+    "highway": "service",
+    "lanes": "2",
+    "smoothness": "good",
+    "surface": "sett"
+   }
+  }
+ ],
+ "busRelations": [
+  {
+   "id": 4117428,
+   "version": 35,
+   "timestamp": "2025-09-10T19:43:07Z",
+   "ref": "420",
+   "name": "Linje 420: Norrköping => Strömsfors => Sandviken => Djurparken => Vildmarkshotellet",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 4117429,
+   "version": 38,
+   "timestamp": "2026-08-17T08:20:38Z",
+   "ref": "420",
+   "name": "Linje 420: Vildmarkshotellet => Djurparken => Sandviken => Strömsfors => Norrköping",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556154,
+   "version": 26,
+   "timestamp": "2026-08-03T19:39:07Z",
+   "ref": "75",
+   "name": "Linje 75: Norrköping (Östra station) => Linköping (Mjärdevi)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556155,
+   "version": 26,
+   "timestamp": "2026-08-05T14:08:55Z",
+   "ref": "75",
+   "name": "Linje 75: Linköping (Mjärdevi) => Norrköping (Östra station)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556156,
+   "version": 22,
+   "timestamp": "2026-08-04T08:20:06Z",
+   "ref": "74",
+   "name": "Linje 74: Norrköping (Östra station) => Linköping (Saab)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556157,
+   "version": 20,
+   "timestamp": "2026-08-03T19:29:51Z",
+   "ref": "74",
+   "name": "Linje 74: Linköping (Saab) => Norrköping (Östra station)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556158,
+   "version": 41,
+   "timestamp": "2026-08-09T13:49:42Z",
+   "ref": "72",
+   "name": "Linje 72: Norrköping (Vrinnevisjukhuset) => Linköping (Ekholmen)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556159,
+   "version": 34,
+   "timestamp": "2026-08-09T13:49:42Z",
+   "ref": "72",
+   "name": "Linje 72: Linköping (Ekholmen) => Norrköping (Vrinnevisjukhuset)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556161,
+   "version": 37,
+   "timestamp": "2026-08-09T13:49:42Z",
+   "ref": "71",
+   "name": "Linje 71: Norrköping (Östra station) => Linköping (Ekholmen)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556162,
+   "version": 33,
+   "timestamp": "2026-08-09T13:49:42Z",
+   "ref": "71",
+   "name": "Linje 71: Linköping (Ekholmen) => Norrköping (Östra station)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556163,
+   "version": 44,
+   "timestamp": "2026-08-09T13:49:42Z",
+   "ref": "70",
+   "name": "Linje 70: Norrköping (Östra station) => Linköping (Garnisonen-US)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9556164,
+   "version": 43,
+   "timestamp": "2026-08-09T13:49:42Z",
+   "ref": "70",
+   "name": "Linje 70: Linköping (Garnisonen-US) => Norrköping (Östra station)",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 9903184,
+   "version": 27,
+   "timestamp": "2025-09-27T18:39:12Z",
+   "ref": "Campusbussen",
+   "name": "Campusbussen: Norrköping => Linköping",
+   "network": "Campusbussen"
+  },
+  {
+   "id": 9903185,
+   "version": 30,
+   "timestamp": "2026-08-03T14:33:14Z",
+   "ref": "Campusbussen",
+   "name": "Campusbussen: Linköping => Norrköping",
+   "network": "Campusbussen"
+  },
+  {
+   "id": 10744523,
+   "version": 212,
+   "timestamp": "2026-10-22T08:29:45Z",
+   "ref": "N32",
+   "name": "Flixbus N32 (Skandinaviska delen): Stockholm, Cityterminalen => Gedser Færgehavn",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10744524,
+   "version": 222,
+   "timestamp": "2026-09-27T21:42:24Z",
+   "ref": "N32",
+   "name": "Flixbus N32 (part Scandinavia): Gedser, Færgehavn => Stockholm, Cityterminalen",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10773930,
+   "version": 210,
+   "timestamp": "2026-09-27T21:42:24Z",
+   "ref": "N602",
+   "name": "Flixbus N602: Stockholm, Flughafen Arlanda Terminal 5 => Kopenhagen Ingerslevsgade",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10773931,
+   "version": 222,
+   "timestamp": "2026-09-27T21:42:24Z",
+   "ref": "N602",
+   "name": "Flixbus N602: Kopenhagen Ingerslevsgade => Stockholm, Flughafen Arlanda Terminal 2-3",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10795057,
+   "version": 256,
+   "timestamp": "2026-09-27T21:42:24Z",
+   "ref": "602",
+   "name": "Flixbus 602: Københavns Ingerslevsgade => Stockholm, Arlanda flygplats 2-3",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10795058,
+   "version": 250,
+   "timestamp": "2026-09-27T21:42:24Z",
+   "ref": "602",
+   "name": "Flixbus 602: Stockholm, Flughafen Arlanda Terminal 5 => Københavns Ingerslevsgade",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10797480,
+   "version": 159,
+   "timestamp": "2026-09-30T20:16:53Z",
+   "ref": "612",
+   "name": "Flixbus 612: Uppsala, Centralstation => Kalmar, Centralstation",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10799953,
+   "version": 170,
+   "timestamp": "2026-09-28T19:38:28Z",
+   "ref": "612",
+   "name": "Flixbus 612: Kalmar, Centralstation => Uppsala, Centralstation",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10802317,
+   "version": 238,
+   "timestamp": "2026-09-30T20:16:53Z",
+   "ref": "N601",
+   "name": "Flixbus N601: Uppsala, Centralstation => Göteborg, Nils Ericson Terminalen",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10802318,
+   "version": 290,
+   "timestamp": "2026-10-15T07:42:00Z",
+   "ref": "N601",
+   "name": "Flixbus N601: Göteborg, Nils Ericson Terminalen => Uppsala, Centralstation",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10802727,
+   "version": 292,
+   "timestamp": "2026-10-15T07:42:00Z",
+   "ref": "601",
+   "name": "Flixbus 601: Göteborg, Nils Ericson Terminalen => Uppsala, Centralstation",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10922793,
+   "version": 67,
+   "timestamp": "2026-07-17T06:38:46Z",
+   "ref": "607",
+   "name": "Flixbus 607: Stockholm, Cityterminalen => Jönköping, Resecentrum",
+   "network": "Flixbus"
+  },
+  {
+   "id": 10922794,
+   "version": 86,
+   "timestamp": "2026-07-30T10:16:46Z",
+   "ref": "607",
+   "name": "Flixbus 607: Jönköping, Resecentrum => Stockholm, Cityterminalen",
+   "network": "Flixbus"
+  },
+  {
+   "id": 14025628,
+   "version": 3,
+   "timestamp": "2026-07-21T11:14:47Z",
+   "ref": "129",
+   "name": "Linje 129: Ringdansen => Åselstad",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 14025629,
+   "version": 3,
+   "timestamp": "2026-07-21T11:14:47Z",
+   "ref": "123",
+   "name": "Linje 129: Åselstad => Ringdansen",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 14025630,
+   "version": 4,
+   "timestamp": "2023-10-01T14:29:24Z",
+   "ref": "21",
+   "name": "Linje 21: Söder Tull => Väster Tull => Skvallertorget => Resecentrum",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 14025631,
+   "version": 3,
+   "timestamp": "2023-10-01T14:29:24Z",
+   "ref": "21",
+   "name": "Linje 21: Resecentrum => Skvallertorget => Väster Tull => Söder Tull",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 14026383,
+   "version": 8,
+   "timestamp": "2026-06-10T17:46:13Z",
+   "ref": "429",
+   "name": "Linje 429: Braviken => Händelö => Resecentrum",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 14026384,
+   "version": 8,
+   "timestamp": "2026-06-10T17:46:13Z",
+   "ref": "429",
+   "name": "Linje 429: Resecentrum => Händelö => Braviken",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 14026386,
+   "version": 9,
+   "timestamp": "2026-07-23T09:31:54Z",
+   "ref": "141",
+   "name": "Linje 141: Resecentrum => Söder Tull => Mässhallen",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18012631,
+   "version": 12,
+   "timestamp": "2026-07-23T09:31:54Z",
+   "ref": "440",
+   "name": "Linje 440: Norrköping => Östra Husby => Arkösund",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18018729,
+   "version": 7,
+   "timestamp": "2026-07-30T09:34:03Z",
+   "ref": "444",
+   "name": "Linje 444: Norrköping => Ljunga => Djurön",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18019105,
+   "version": 15,
+   "timestamp": "2026-09-13T09:43:00Z",
+   "ref": "410",
+   "name": "Linje 410: Norrköping => Svärtinge => Finspång",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18027802,
+   "version": 11,
+   "timestamp": "2026-09-15T08:10:44Z",
+   "ref": "412",
+   "name": "Linje 412: Norrköping => Svärtinge",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18046144,
+   "version": 7,
+   "timestamp": "2026-03-08T16:11:40Z",
+   "ref": "13",
+   "name": "Linje 13: Navestad => Rambodal => Söder Tull => Resecentrum => Ingelsta => Loddby allé",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18046145,
+   "version": 10,
+   "timestamp": "2026-07-29T12:55:33Z",
+   "ref": "13",
+   "name": "Linje 13: Loddby allé => Ingelsta => Resecentrum => Söder Tull => Rambodal => Navestad",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18046146,
+   "version": 7,
+   "timestamp": "2026-08-03T19:27:44Z",
+   "ref": "11",
+   "name": "Linje 11: Vrinnevisjukhuset => Vilbergen => Söder Tull => Skarphagen => Himmelstalund",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18046436,
+   "version": 6,
+   "timestamp": "2026-08-03T19:27:44Z",
+   "ref": "11",
+   "name": "Linje 11: Himmelstalund => Skarphagen => Söder Tull => Vilbergen => Vrinnevisjukhuset",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18046437,
+   "version": 7,
+   "timestamp": "2026-08-03T19:27:44Z",
+   "ref": "10",
+   "name": "Linje 10: Vrinnevisjukhuset => Söder Tull => Resecentrum => Åby",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18046438,
+   "version": 7,
+   "timestamp": "2026-08-03T19:27:44Z",
+   "ref": "10",
+   "name": "Linje 10: Åby => Resecentrum => Söder Tull => Vrinnevisjukhuset",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18051281,
+   "version": 5,
+   "timestamp": "2026-03-08T16:11:40Z",
+   "ref": "12",
+   "name": "Linje 12: Lindö => Söder Tull => Resecentrum => Ingelsta => Jursla => Åby",
+   "network": "Östgötatrafiken"
+  },
+  {
+   "id": 18051282,
+   "version": 5,
+   "timestamp": "2026-03-08T16:11:40Z",
+   "ref": "12",
+   "name": "Linje 12: Åby => Jursla => Ingelsta => Resecentrum => Söder Tull => Lindö",
+   "network": "Östgötatrafiken"
+  }
+ ]
+}
