@@ -37,7 +37,9 @@ const ringArea = (ring: number[][]) => {
 const polygonArea = (rings: number[][][]) => ringArea(rings[0]) - rings.slice(1).reduce((s, r) => s + ringArea(r), 0);
 
 describe('ground-level infrastructure on the terrain', () => {
-  it('never draws an at-grade running surface below the terrain', () => {
+  // > 400 000 surface samples: ≈ 7.5 s on the GitHub runner and on a loaded local machine, so the
+  // default 5 s timeout fails there; the assertions are unchanged.
+  it('never draws an at-grade running surface below the terrain', { timeout: 60_000 }, () => {
     // Draped pieces (ordinary ways and bridge approaches) are the terrain plus a non-negative offset.
     let n = 0;
     for (const whole of cityMap.roads) {

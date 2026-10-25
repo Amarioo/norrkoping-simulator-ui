@@ -7,9 +7,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # terrain.test.ts checks that the UI ships the same elevation input as the backend
+      # (../norrkoping-simulator-backend/src/main/resources/terrain.json, as in the local layout).
+      - uses: actions/checkout@v4
+        with:
+          repository: Amarioo/norrkoping-simulator-backend
+          ref: main
+          path: norrkoping-simulator-backend
+      - run: mv norrkoping-simulator-backend ../norrkoping-simulator-backend
+      # The committed Lighting Phase L0 outputs record the Node version that generated them
+      # (scripts/lighting-city/build.ts) and are checked byte for byte; keep CI on that version.
       - uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '24.15.0'
           cache: npm
       - run: npx --yes npm@11.10.1 ci
       - run: npm run check
