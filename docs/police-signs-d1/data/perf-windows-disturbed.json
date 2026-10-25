@@ -1,0 +1,383 @@
+{
+ "note": "Follow-up (lit windows) vs D1 (main d3d228c): two 5-round series with scripts/vehicle-lights-f1/measure.mjs (production builds, traffic on, backend copy 8096). BOTH SERIES DISTURBED by other load on the machine (the user's own dev app on port 5173 with its browser, another session's Edge/Playwright): baseline p95 3-4 x the clean D1 series, map-ready spread up to 2.6 s, CPU 60-70 %. Not usable as evidence for the frame-time gates.",
+ "series": [
+  {
+   "file": "windows.json",
+   "frames": {
+    "day": {
+     "kungsgatan": {
+      "p95Delta": 0,
+      "p95DeltaRounds": [
+       0.1,
+       0.4,
+       -1,
+       -0.2,
+       0
+      ],
+      "medianDelta": 0,
+      "beforeP95": 3.6,
+      "afterP95": 3.7,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "stromparken": {
+      "p95Delta": 0.4,
+      "p95DeltaRounds": [
+       -0.1,
+       0.4,
+       1.1,
+       -3.1,
+       0.4
+      ],
+      "medianDelta": 0,
+      "beforeP95": 8.6,
+      "afterP95": 8.7,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "city": {
+      "p95Delta": 0.3,
+      "p95DeltaRounds": [
+       0.3,
+       0.5,
+       -19.4,
+       -2.1,
+       1
+      ],
+      "medianDelta": -0.1,
+      "beforeP95": 10.2,
+      "afterP95": 10.6,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "policeEmblem": {
+      "p95Delta": 0.4,
+      "p95DeltaRounds": [
+       0.4,
+       0.8,
+       -22.2,
+       -0.2,
+       3.6
+      ],
+      "medianDelta": 0,
+      "beforeP95": 6.8,
+      "afterP95": 7,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "night-off": {
+     "kungsgatan": {
+      "p95Delta": -1,
+      "p95DeltaRounds": [
+       -0.2,
+       -1.5,
+       -1.6,
+       -1,
+       2.2
+      ],
+      "medianDelta": -0.1,
+      "beforeP95": 4.7,
+      "afterP95": 4.5,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "stromparken": {
+      "p95Delta": -2.4,
+      "p95DeltaRounds": [
+       1.2,
+       -3.9,
+       -2.4,
+       -3.4,
+       14.3
+      ],
+      "medianDelta": -0.7,
+      "beforeP95": 11.8,
+      "afterP95": 10.7,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "city": {
+      "p95Delta": -2.5,
+      "p95DeltaRounds": [
+       -0.3,
+       -3.5,
+       -2.5,
+       -5.6,
+       21
+      ],
+      "medianDelta": -0.6,
+      "beforeP95": 13.3,
+      "afterP95": 10.5,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "policeEmblem": {
+      "p95Delta": -0.5,
+      "p95DeltaRounds": [
+       1.3,
+       -0.5,
+       -4.7,
+       0,
+       -7.4
+      ],
+      "medianDelta": 0,
+      "beforeP95": 7.5,
+      "afterP95": 7,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     }
+    }
+   },
+   "mapReadyDeltaMs": {
+    "median": 79.6,
+    "rounds": [
+     79.6,
+     63.2,
+     -199.2,
+     409.9,
+     2631.8
+    ]
+   },
+   "heapDeltaMB": {
+    "median": 0.01,
+    "rounds": [
+     -0.24,
+     -0.09,
+     0.05,
+     0.29,
+     0.01
+    ]
+   }
+  },
+  {
+   "file": "windows2.json",
+   "frames": {
+    "day": {
+     "kungsgatan": {
+      "p95Delta": 0.5,
+      "p95DeltaRounds": [
+       0.3,
+       0.6,
+       -0.6,
+       0.5,
+       4.5
+      ],
+      "medianDelta": -0.1,
+      "beforeP95": 5.1,
+      "afterP95": 5.4,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "stromparken": {
+      "p95Delta": -3.3,
+      "p95DeltaRounds": [
+       -3.3,
+       0.8,
+       -0.6,
+       -4.2,
+       -14.6
+      ],
+      "medianDelta": -1.5,
+      "beforeP95": 12.1,
+      "afterP95": 12.5,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "city": {
+      "p95Delta": -3.5,
+      "p95DeltaRounds": [
+       -4.3,
+       -5.3,
+       2.2,
+       -3.5,
+       0.6
+      ],
+      "medianDelta": -2.4,
+      "beforeP95": 21.7,
+      "afterP95": 17.9,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "policeEmblem": {
+      "p95Delta": -2.9,
+      "p95DeltaRounds": [
+       -4.2,
+       -5.4,
+       3.3,
+       -2.9,
+       0.2
+      ],
+      "medianDelta": -2.1,
+      "beforeP95": 13.8,
+      "afterP95": 11.1,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     }
+    },
+    "night-off": {
+     "kungsgatan": {
+      "p95Delta": -0.7,
+      "p95DeltaRounds": [
+       -0.7,
+       0.6,
+       1.5,
+       -4.6,
+       -3.2
+      ],
+      "medianDelta": -0.8,
+      "beforeP95": 6.2,
+      "afterP95": 6.4,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "stromparken": {
+      "p95Delta": -0.1,
+      "p95DeltaRounds": [
+       -3.1,
+       1,
+       3.7,
+       -0.1,
+       -1.4
+      ],
+      "medianDelta": -0.3,
+      "beforeP95": 12.9,
+      "afterP95": 16,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "city": {
+      "p95Delta": -0.1,
+      "p95DeltaRounds": [
+       -22.4,
+       13.3,
+       17.5,
+       -17.3,
+       -0.1
+      ],
+      "medianDelta": -1.2,
+      "beforeP95": 34.4,
+      "afterP95": 34.3,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     },
+     "policeEmblem": {
+      "p95Delta": -1.3,
+      "p95DeltaRounds": [
+       -2.7,
+       3,
+       -1,
+       -3.6,
+       -1.3
+      ],
+      "medianDelta": -0.5,
+      "beforeP95": 14.2,
+      "afterP95": 12.9,
+      "beams": [
+       null,
+       null,
+       null,
+       null,
+       null
+      ]
+     }
+    }
+   },
+   "mapReadyDeltaMs": {
+    "median": 88.1,
+    "rounds": [
+     362.2,
+     -606,
+     88.1,
+     -1381,
+     2319.1
+    ]
+   },
+   "heapDeltaMB": {
+    "median": 0.05,
+    "rounds": [
+     0.05,
+     0.19,
+     -0.12,
+     -0.11,
+     1.67
+    ]
+   }
+  }
+ ]
+}

@@ -5,22 +5,42 @@
   "frame": {
     "sceneContract": "scene = (SWEREF 99 TM − (569030, 6494989)) / (25 · 0.9996584126), x east, z south; scene y = RH2000 / 25",
     "towerLidar": {
-      "description": "origin = centre of the tower roof's extent; +u along the long axis towards the SSE gable; +v towards WSW; metres; heights RH2000",
-      "centreSweref99TM": [568305.61, 6495638.86],
-      "centreScene": [-28.9855, -26.0032],
+      "description": "origin = centre of the tower roof's extent; +u along the long axis towards the SSE gable; +v towards ENE; metres; heights RH2000",
+      "centreSweref99TM": [
+        568305.61,
+        6495638.86
+      ],
+      "centreScene": [
+        -28.9855,
+        -26.0032
+      ],
       "axisBearingDeg": 165.6,
       "source": "LIDAR"
     },
     "towerDrawn": {
       "description": "existing illustrative tower (src/lib/mapLandmarks.ts), group at the slab centre, rotation about +y; local +z out of the SSE gable",
-      "positionScene": [-29.25, -26.22],
+      "positionScene": [
+        -29.25,
+        -26.22
+      ],
       "rotationRad": 0.2775,
       "localZBearingDeg": 164.1,
-      "slabUnits": { "width": 0.51, "height": 1.82, "length": 2.65, "parapetTop": 1.95 },
+      "slabUnits": {
+        "width": 0.51,
+        "height": 1.82,
+        "length": 2.65,
+        "parapetTop": 1.95
+      },
       "offsetFromMeasuredCentreM": 8.6,
       "source": "MODEL"
     },
-    "signLocalUnits": { "x": 0, "y": 1.514, "z": 1.335, "width": 0.15, "height": 0.1984 }
+    "signLocalUnits": {
+      "x": 0,
+      "y": 1.658,
+      "z": 1.335,
+      "width": 0.1004,
+      "height": 0.1328
+    }
   },
   "sources": {
     "HEMSO": {
@@ -29,14 +49,32 @@
       "date": "image uploaded 2023-10 (upload path), read 2026-10-25",
       "licence": "© Hemsö; inspected and measured only, not copied or redistributed",
       "accuracy": "±1 px at edges (≈ ±0.09 m); near-frontal (≈ 10°)",
-      "facts": ["address Stockholmsvägen 4-6, 602 17 Norrköping", "one police emblem, centred high on the dark SSE gable"]
+      "facts": [
+        "address Stockholmsvägen 4-6, 602 17 Norrköping",
+        "one police emblem, centred high on the dark SSE gable"
+      ]
     },
     "PHOTO": {
       "what": "Wikimedia Commons photographs of Polishuset",
       "files": [
-        { "title": "Polishuset Norrköping 2008-05-10.jpg", "author": "Sakletare", "date": "2008-05-10", "licence": "public domain" },
-        { "title": "Polishuset Norrköping.jpg", "author": "Johan Jönsson (Julle)", "date": "2016-10-01", "licence": "CC BY-SA 4.0" },
-        { "title": "Norrköping juni 2018 51.jpg", "author": "Johan Jönsson (Julle)", "date": "2018-06-21", "licence": "CC BY-SA 4.0" }
+        {
+          "title": "Polishuset Norrköping 2008-05-10.jpg",
+          "author": "Sakletare",
+          "date": "2008-05-10",
+          "licence": "public domain"
+        },
+        {
+          "title": "Polishuset Norrköping.jpg",
+          "author": "Johan Jönsson (Julle)",
+          "date": "2016-10-01",
+          "licence": "CC BY-SA 4.0"
+        },
+        {
+          "title": "Norrköping juni 2018 51.jpg",
+          "author": "Johan Jönsson (Julle)",
+          "date": "2018-06-21",
+          "licence": "CC BY-SA 4.0"
+        }
       ],
       "use": "reference only, nothing copied",
       "accuracy": "proportions ±15 % (close, low viewpoints)"
@@ -60,24 +98,182 @@
       "what": "Polisen news item 'Polisens reception i Norrköping byter adress'",
       "url": "https://polisen.se/aktuellt/nyheter/ost/2026/januari/polisens-reception-i-norrkoping-byter-adress/",
       "date": "2026-01-19, read 2026-10-25",
-      "facts": ["reception moves to Luntgatan 32 on Monday 26 January", "weapons hand-in and found bicycles/e-scooters remain at Stockholmsvägen 4-6"]
+      "facts": [
+        "reception moves to Luntgatan 32 on Monday 26 January",
+        "weapons hand-in and found bicycles/e-scooters remain at Stockholmsvägen 4-6"
+      ]
+    },
+    "USER": {
+      "what": "User statement in the D1 review session",
+      "date": "2026-10-25",
+      "facts": [
+        "the police station is open around the clock, so its windows should be lit at night"
+      ]
     }
   },
   "values": [
-    { "name": "sign count", "value": 1, "kind": "observed", "source": ["HEMSO", "PHOTO"] },
-    { "name": "gable", "value": "SSE (bearing ≈ 165°, towards Stockholmsvägen)", "kind": "observed", "source": ["PHOTO", "LIDAR"] },
-    { "name": "tower length", "value": 54.38, "unit": "m", "kind": "measured", "source": "LIDAR" },
-    { "name": "tower width", "value": 13.42, "unit": "m", "kind": "measured", "source": "LIDAR" },
-    { "name": "parapet", "value": 49.5, "unit": "m RH2000", "kind": "measured", "source": "LIDAR", "note": "gable-edge returns median 49.31, p90 49.61" },
-    { "name": "ground in front of the gable", "value": 11.84, "unit": "m RH2000", "kind": "measured", "source": "LIDAR" },
-    { "name": "gable width (photo scale)", "value": 13.9, "unit": "m", "kind": "derived", "source": ["LIDAR", "EST"] },
-    { "name": "photo cos(view angle)", "value": 0.985, "kind": "derived", "source": ["HEMSO", "ARTWORK"] },
-    { "name": "sign width", "value": 3.75, "unit": "m", "kind": "derived", "source": ["HEMSO", "LIDAR"], "uncertainty": "±0.3 m" },
-    { "name": "sign height", "value": 4.96, "unit": "m", "kind": "derived", "source": ["HEMSO", "LIDAR"], "uncertainty": "±0.3 m" },
-    { "name": "sign centre below parapet", "value": 10.9, "unit": "m", "kind": "derived", "source": ["HEMSO", "LIDAR"], "uncertainty": "±1 m" },
-    { "name": "sign horizontal offset", "value": 0, "unit": "m", "kind": "observed", "source": "HEMSO" },
-    { "name": "sign standoff from wall", "value": 0.25, "unit": "m", "kind": "estimate", "source": "EST" },
-    { "name": "lit at night", "value": true, "kind": "estimate", "source": "EST", "note": "roadmap requirement; no night photograph found" },
-    { "name": "night emissive gain", "value": 1.1, "kind": "estimate", "source": "EST", "note": "× env.artificial (street lighting night level)" }
+    {
+      "name": "sign count",
+      "value": 1,
+      "kind": "observed",
+      "source": [
+        "HEMSO",
+        "PHOTO"
+      ]
+    },
+    {
+      "name": "gable",
+      "value": "SSE (bearing ≈ 165°, towards Stockholmsvägen)",
+      "kind": "observed",
+      "source": [
+        "PHOTO",
+        "LIDAR"
+      ]
+    },
+    {
+      "name": "tower length",
+      "value": 54.38,
+      "unit": "m",
+      "kind": "measured",
+      "source": "LIDAR"
+    },
+    {
+      "name": "tower width",
+      "value": 13.42,
+      "unit": "m",
+      "kind": "measured",
+      "source": "LIDAR"
+    },
+    {
+      "name": "tall gable part width",
+      "value": 8.82,
+      "unit": "m",
+      "kind": "measured",
+      "source": "LIDAR",
+      "note": "roof ≈ 49.1 m; lower strip on the ENE side ≈ 5 m wide, roof ≈ 45.5 m"
+    },
+    {
+      "name": "parapet",
+      "value": 49.5,
+      "unit": "m RH2000",
+      "kind": "measured",
+      "source": "LIDAR",
+      "note": "gable-edge returns median 49.31, p90 49.61"
+    },
+    {
+      "name": "ground in front of the gable",
+      "value": 11.84,
+      "unit": "m RH2000",
+      "kind": "measured",
+      "source": "LIDAR"
+    },
+    {
+      "name": "gable width (photo scale)",
+      "value": 9.3,
+      "unit": "m",
+      "kind": "derived",
+      "source": [
+        "LIDAR",
+        "EST"
+      ],
+      "note": "tall dark part of the tower: LiDAR 8.82 m (gableParts.tallPart) + ≈ 0.5 m edge allowance; D1 first used the full width 13.9 m (corrected 2026-10-25)"
+    },
+    {
+      "name": "photo cos(view angle)",
+      "value": 0.985,
+      "kind": "derived",
+      "source": [
+        "HEMSO",
+        "ARTWORK"
+      ]
+    },
+    {
+      "name": "sign width",
+      "value": 2.51,
+      "unit": "m",
+      "kind": "derived",
+      "source": [
+        "HEMSO",
+        "LIDAR"
+      ],
+      "uncertainty": "±0.25 m"
+    },
+    {
+      "name": "sign height",
+      "value": 3.32,
+      "unit": "m",
+      "kind": "derived",
+      "source": [
+        "HEMSO",
+        "LIDAR"
+      ],
+      "uncertainty": "±0.25 m"
+    },
+    {
+      "name": "sign centre below parapet",
+      "value": 7.3,
+      "unit": "m",
+      "kind": "derived",
+      "source": [
+        "HEMSO",
+        "LIDAR"
+      ],
+      "uncertainty": "±0.7 m"
+    },
+    {
+      "name": "sign horizontal offset",
+      "value": 0,
+      "unit": "m",
+      "kind": "observed",
+      "source": "HEMSO"
+    },
+    {
+      "name": "sign standoff from wall",
+      "value": 0.25,
+      "unit": "m",
+      "kind": "estimate",
+      "source": "EST"
+    },
+    {
+      "name": "lit at night",
+      "value": true,
+      "kind": "estimate",
+      "source": "EST",
+      "note": "roadmap requirement; no night photograph found"
+    },
+    {
+      "name": "night emissive gain",
+      "value": 1.1,
+      "kind": "estimate",
+      "source": "EST",
+      "note": "× env.artificial (street lighting night level)"
+    },
+    {
+      "name": "lit windows share",
+      "value": 0.3,
+      "kind": "estimate",
+      "source": [
+        "USER",
+        "EST"
+      ],
+      "note": "fixed pseudo-random pattern per long façade (seeds 1, 2), 11 × 16 window grid of the drawn tower"
+    },
+    {
+      "name": "window light colours",
+      "value": [
+        "#ffd9a3",
+        "#fff0d2",
+        "#e3ecff"
+      ],
+      "kind": "estimate",
+      "source": "EST"
+    },
+    {
+      "name": "window night emissive gain",
+      "value": 0.9,
+      "kind": "estimate",
+      "source": "EST",
+      "note": "× env.artificial; 0 by day"
+    }
   ]
 }

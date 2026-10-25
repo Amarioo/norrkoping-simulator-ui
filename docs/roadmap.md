@@ -165,7 +165,7 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
 - [ ] **D1 Polisens skyltar** vid polishuset (Stinsen 1, flytt 2026-01-26) — S — *genomförd 2026-10-25
   på grenen `claude/police-signs-d1`, godkänd 2026-10-25, committad och pushad till main:
   [docs/police-signs-d1/README.md](police-signs-d1/README.md). Polisemblemet på tornets sydöstra gavel i
-  uppmätt storlek (3,75 × 4,96 m), lyser på natten (uppskattning); 2026-01-26 flyttade bara receptionen
+  uppmätt storlek (2,51 × 3,32 m efter rättning; först 3,75 × 4,96 m), lyser på natten (uppskattning), tornets fönster delvis tända på natten (uppskattning); 2026-01-26 flyttade bara receptionen
   (Luntgatan 32, ej med).*
   - Befintlig `public/assets/polisen.svg`; licensvillkor i `DATA-LICENSE.md`.
 - [ ] **D2 Bensinstationer** — M

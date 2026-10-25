@@ -13,7 +13,7 @@
    568305.61,
    6495638.86
   ],
-  "units":"u along the long axis towards the SSE gable, v towards WSW; metres; heights RH2000 m"
+  "units":"u along the long axis towards the SSE gable, v towards ENE; metres; heights RH2000 m"
  },
  "gable":{
   "centreSweref":[
@@ -21,7 +21,35 @@
    6495612.52
   ],
   "normalBearingDeg":165.6,
-  "widthM":13.42
+  "widthM":13.42,
+  "widthNote":"full tower width; the dark gable with the emblem is only the tall part, see gableParts"
+ },
+ "gableParts":{
+  "bands":{
+   "lowerStripRH2000":[
+    44.0,
+    47.0
+   ],
+   "tallPartRH2000":[
+    47.5,
+    51.0
+   ]
+  },
+  "lowerStripEne":{
+   "n":37,
+   "roofP50":45.47,
+   "vP1":-0.66,
+   "vP99":7.69,
+   "widthP1P99":8.35
+  },
+  "tallPart":{
+   "n":143,
+   "roofP50":49.07,
+   "vP1":-6.0,
+   "vP99":2.83,
+   "widthP1P99":8.82
+  },
+  "window":"u > uP99 − 8 m (SSE end)"
  },
  "ground":{
   "aroundTower":{

@@ -12,7 +12,7 @@ CC BY 4.0 — the same tile Landmark B1 used. The raw tile stays local and is no
 Frame (TOWER FRAME):
   - horizontal: SWEREF 99 TM (EPSG:3006) metres; origin = centre of the tower roof's extent;
     +u along the long axis towards the south-south-east gable (the gable with the emblem),
-    +v = +u turned 90° clockwise seen from above (towards the west-south-west façade);
+    +v = +u turned 90° counter-clockwise seen from above (towards the east-north-east façade);
   - vertical: RH2000 metres (the scene's vertical datum: scene y = RH2000 / 25).
   Scene coordinates follow src/lib/data/norrkoping-map.json meta.reference:
   x = (E − E0) / (25·k), z = (N0 − N) / (25·k) (x east, z south, 1 unit = 25 m, k = grid scale factor).
@@ -71,7 +71,7 @@ def main(out):
     if ax[1] > 0:  # point the long axis to the south-south-east gable
         ax = -ax
     ux_e, ux_n = float(ax[0]), float(ax[1])
-    vx_e, vx_n = -ux_n, ux_e  # +u turned 90° clockwise (seen from above): towards WSW
+    vx_e, vx_n = -ux_n, ux_e  # +u turned 90° counter-clockwise (seen from above): towards ENE
     # Bearing clockwise from grid north (degrees).
     bearing = (math.degrees(math.atan2(ux_e, ux_n)) + 360) % 360
 
@@ -129,11 +129,29 @@ def main(out):
         'aroundTower': ground((np.abs(ea) < half_l + 30) & (np.abs(na) < 40)),
     }
 
+    # 3b) The SSE gable is NOT the full tower width: the tall dark part (roof ≈ 49 m) is narrower,
+    #     with a lower strip (roof ≈ 45–46.5 m) on the ENE side (+v). Within 8 m of the SSE end,
+    #     the across-extent (1st/99th percentile of v) of the returns of each height band. The tall
+    #     part's width is the scale of the photograph (its corner strips bound the dark gable).
+    end = u > extent['uP99'] - 8
+    def across(sel):
+        vv = v[sel]
+        return {'n': int(vv.size), 'vP1': r(np.percentile(vv, 1)), 'vP99': r(np.percentile(vv, 99)),
+                'widthP1P99': r(np.percentile(vv, 99) - np.percentile(vv, 1)),
+                'roofP50': r(np.median(zr[sel]))}
+    gable_parts = {
+        'tallPart': across(end & (zr >= 47.5)),
+        'lowerStripEne': across(end & (zr >= 44.0) & (zr < 47.0)),
+        'bands': {'tallPartRH2000': [47.5, ROOF_BAND[1]], 'lowerStripRH2000': [44.0, 47.0]},
+        'window': 'u > uP99 − 8 m (SSE end)',
+    }
+
     # 4) The gable: centre of its outer face at roof level, its outward normal (bearing) and width.
     gable = {
         'centreSweref': [r(ce + extent['uP99'] * ux_e), r(cn + extent['uP99'] * ux_n)],
         'normalBearingDeg': r(bearing, 1),
         'widthM': r(width),
+        'widthNote': 'full tower width; the dark gable with the emblem is only the tall part, see gableParts',
     }
 
     def scene(e, n):
@@ -162,7 +180,7 @@ def main(out):
             'centreScene': scene(ce, cn),
             'axisSweref': [round(ux_e, 6), round(ux_n, 6)],
             'axisBearingDeg': r(bearing, 1),
-            'units': 'u along the long axis towards the SSE gable, v towards WSW; metres; heights RH2000 m',
+            'units': 'u along the long axis towards the SSE gable, v towards ENE; metres; heights RH2000 m',
         },
         'tower': {
             'roofReturns': int(roof.sum()),
@@ -175,6 +193,7 @@ def main(out):
                         'can be up to ~0.5 m outside them',
         },
         'gable': gable,
+        'gableParts': gable_parts,
         'ground': grounds,
         'points': {'total': int(Z.size), 'ground': int(ground_all.sum())},
     }

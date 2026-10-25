@@ -3,6 +3,17 @@ import crypto from 'node:crypto';
 import { describe, expect, test } from 'vitest';
 import { FrontSide, InstancedMesh, Texture } from 'three';
 import outline from './emblem-outline.json';
+import {
+  FACADE_SEEDS,
+  GLOW_SCALE,
+  LIT_FRACTION,
+  WINDOW_COLOURS,
+  WINDOW_GRID,
+  WINDOW_NIGHT_GAIN,
+  litWindows,
+  paintWindowGlow,
+  windowGain,
+} from './windows';
 import { createPoliceSign, emblemGeometry } from './sign';
 import {
   EMBLEM_ASPECT,
@@ -33,15 +44,18 @@ describe('Police Signs D1: measurements', () => {
     expect(TOWER_MEASURED.parapetRH2000).toBeGreaterThanOrEqual(lidar.tower.heights.gableEdgeP50);
     expect(TOWER_MEASURED.parapetRH2000).toBeLessThanOrEqual(lidar.tower.heights.gableEdgeP90);
     // The photo's scale: the roof extent plus at most 1 m for the sparse edge returns.
-    expect(GABLE_WIDTH_M - TOWER_MEASURED.widthM).toBeGreaterThanOrEqual(0);
-    expect(GABLE_WIDTH_M - TOWER_MEASURED.widthM).toBeLessThanOrEqual(1);
+    // The photo's dark gable is the tall part only (not the full tower width).
+    expect(TOWER_MEASURED.gableTallWidthM).toBe(lidar.gableParts.tallPart.widthP1P99);
+    expect(GABLE_WIDTH_M - TOWER_MEASURED.gableTallWidthM).toBeGreaterThanOrEqual(0);
+    expect(GABLE_WIDTH_M - TOWER_MEASURED.gableTallWidthM).toBeLessThanOrEqual(1);
+    expect(GABLE_WIDTH_M).toBeLessThan(TOWER_MEASURED.widthM - 3);
   });
 
   test('sign size and height follow from the photo ratios', () => {
     expect(SIGN.widthM).toBeCloseTo((PHOTO.emblemWidthPx / PHOTO.gablePx) * GABLE_WIDTH_M, 2);
-    expect(SIGN.widthM).toBeCloseTo(3.75, 2);
-    expect(SIGN.heightM).toBeCloseTo(4.96, 2);
-    expect(SIGN.centreBelowParapetM).toBeCloseTo(10.9, 1);
+    expect(SIGN.widthM).toBeCloseTo(2.51, 2);
+    expect(SIGN.heightM).toBeCloseTo(3.32, 2);
+    expect(SIGN.centreBelowParapetM).toBeCloseTo(7.3, 1);
     // The sign keeps the artwork's proportions; the photo is near-frontal (within 15°).
     expect(SIGN.widthM / SIGN.heightM / EMBLEM_ASPECT).toBeCloseTo(1, 2);
     expect(PHOTO.cosView).toBeGreaterThan(Math.cos((15 * Math.PI) / 180));
@@ -159,5 +173,52 @@ describe('Police Signs D1: emblem outline', () => {
     expect(area).toBeGreaterThan(0.55);
     expect(area).toBeLessThan(0.9);
     g.dispose();
+  });
+});
+
+describe('Police station night: lit tower windows', () => {
+  test('deterministic, about the estimated share lit, different on the two façades', () => {
+    const [a, b] = FACADE_SEEDS.map((seed) => litWindows(seed));
+    expect(litWindows(FACADE_SEEDS[0])).toEqual(a);
+    const share = (l: boolean[][]) => l.flat().filter(Boolean).length / l.flat().length;
+    for (const f of [a, b]) {
+      expect(f.lit.length).toBe(WINDOW_GRID.rows);
+      expect(f.lit[0].length).toBe(WINDOW_GRID.cols);
+      expect(Math.abs(share(f.lit) - LIT_FRACTION)).toBeLessThan(0.08);
+      expect(f.colour.flat().every((c) => c >= 0 && c < WINDOW_COLOURS.length)).toBe(true);
+    }
+    expect(a.lit).not.toEqual(b.lit);
+  });
+
+  test('glow follows the night level: 0 by day, WINDOW_NIGHT_GAIN at full night', () => {
+    expect(windowGain(0)).toBe(0);
+    expect(windowGain(1)).toBe(WINDOW_NIGHT_GAIN);
+    expect(windowGain(0.5)).toBeCloseTo(WINDOW_NIGHT_GAIN / 2, 10);
+    expect(windowGain(-1)).toBe(0);
+    expect(windowGain(2)).toBe(WINDOW_NIGHT_GAIN);
+  });
+
+  test('emissive map paints exactly the lit windows of the grid, black elsewhere', () => {
+    const rects: { colour: string; x: number; y: number; w: number; h: number }[] = [];
+    const ctx = {
+      fillStyle: '',
+      fillRect(x: number, y: number, w: number, h: number) {
+        rects.push({ colour: this.fillStyle, x, y, w, h });
+      },
+    };
+    paintWindowGlow(ctx as unknown as CanvasRenderingContext2D, FACADE_SEEDS[0]);
+    const { lit } = litWindows(FACADE_SEEDS[0]);
+    const g = WINDOW_GRID;
+    const k = GLOW_SCALE;
+    expect(rects[0]).toEqual({ colour: '#000000', x: 0, y: 0, w: g.width * k, h: g.height * k });
+    expect(rects.length - 1).toBe(lit.flat().filter(Boolean).length);
+    for (const r of rects.slice(1)) {
+      const col = (r.x / k - g.x0) / g.dx,
+        row = (r.y / k - g.y0) / g.dy;
+      expect(Number.isInteger(col) && Number.isInteger(row)).toBe(true);
+      expect(lit[row][col]).toBe(true);
+      expect([r.w, r.h]).toEqual([g.w * k, g.h * k]);
+      expect(WINDOW_COLOURS as readonly string[]).toContain(r.colour);
+    }
   });
 });

@@ -6,8 +6,8 @@ Roadmap track D, step D1 ([roadmap](../roadmap.md) §4). Branch `claude/police-s
 ## Verdict
 
 The police station's one documented sign — the Swedish police emblem high on the tower's
-south-south-east gable, facing Stockholmsvägen — is now drawn at its photographed size (3.75 × 4.96 m)
-and position (centred, 10.9 m below the parapet), shows its own colours by day and glows at night
+south-south-east gable, facing Stockholmsvägen — is now drawn at its photographed size (2.51 × 3.32 m, corrected after the merge — see "Correction")
+and position (centred, 7.3 m below the parapet), shows its own colours by day and glows at night
 with the street lighting's night level. It adds no light source and no shader program (20 before and
 after), costs −1 draw call and +411 triangles, and leaves every other part of the city
 pixel-identical. Recommendation: **approve**; the night glow itself is an estimate (no night photo
@@ -27,13 +27,13 @@ found), and the tower it hangs on is the older illustrative model, ≈ 11 m too 
 
 | Before (`main`) | After (D1) |
 |---|---|
-| Badge 6.25 × 7.5 m (model dimensions, not measured) at 1.1 m in front of the gable, transparent double-sided rectangle drawn in 2 passes | Emblem 3.75 × 4.96 m, centred, 10.9 m below the parapet, 0.25 m in front of the wall: an **opaque emblem-shaped surface** (outline traced from the artwork) |
+| Badge 6.25 × 7.5 m (model dimensions, not measured) at 1.1 m in front of the gable, transparent double-sided rectangle drawn in 2 passes | Emblem 2.51 × 3.32 m (first merged as 3.75 × 4.96 m), centred, 7.3 m (first 10.9 m) below the parapet, 0.25 m in front of the wall: an **opaque emblem-shaped surface** (outline traced from the artwork) |
 | Dark at night (lit only by the sky/ambient) | Self-lit: artwork as colour **and** emissive map, emissive gain 1.1 × `env.artificial` (0 by day). No three.js light, no façade spill |
 | Program variant of the alpha-tested trees/signs | Shares the existing program of the tram/bus destination signs (opaque, front-sided, instanced, map + emissiveMap) — 20 programs, unchanged |
 
 Measured values (LiDAR, Lantmäteriet 2020): tower 54.4 × 13.4 m, parapet ≈ 49.5 m RH2000, ground in
 front of the gable 11.84 m → ≈ 37.7 m tall, long axis 165.6°. Sign size and height = photo ratios ×
-the LiDAR gable width. On the real building the emblem's centre is ≈ 38.6 m RH2000 (≈ 26.8 m above
+the LiDAR width of the tall dark gable (8.8 m + edge allowance = 9.3 m). On the real building the emblem's centre is ≈ 42.2 m RH2000 (≈ 30.4 m above
 the street). Because the drawn tower is ≈ 11 m taller, the sign keeps its real size and real distance
 below the parapet ([remaining-gaps.md](remaining-gaps.md) §3).
 
@@ -88,10 +88,65 @@ shader work.
 | `npm run build` | OK (same chunk-size warning as `main`) |
 | `npm test` (Vitest) | 443 / 444. The one failure is `terrain.test.ts` › "ships identical elevation input in backend and UI": it reads `../norrkoping-simulator-backend/…` relative to the working folder, which does not exist from a git worktree. The same comparison run with the absolute path is deep-equal, and `src/lib/data` is unchanged. Not caused by D1 |
 | `npm run test:e2e` (Playwright, dev server + isolated backend copy 8096) | **13 / 13** passed, including the new test and the usually flaky A2/A3, simulation and transit specs |
-| New Vitest `src/lib/landmarks/police/police.test.ts` (9) | LiDAR values = spec; size/height from photo ratios (3.75 / 4.96 / 10.9 m), sign keeps the artwork's proportions, view angle < 15°; placement centred on the SSE gable, 0.25 m in front, below the parapet, within the gable; gable bearing within 3° of the LiDAR; night level 0 → no glow, 1 → 1.1, clamped; no light objects; opaque, front-sided, single-instance InstancedMesh (program-sharing contract); outline matches the current SVG (SHA-256), UVs inside the texture, area 55–90 % |
+| New Vitest `src/lib/landmarks/police/police.test.ts` (9) | LiDAR values = spec; size/height from photo ratios (2.51 / 3.32 / 7.3 m after the correction), sign keeps the artwork's proportions, view angle < 15°; placement centred on the SSE gable, 0.25 m in front, below the parapet, within the gable; gable bearing within 3° of the LiDAR; night level 0 → no glow, 1 → 1.1, clamped; no light objects; opaque, front-sided, single-instance InstancedMesh (program-sharing contract); outline matches the current SVG (SHA-256), UVs inside the texture, area 55–90 % |
 | New Playwright `tests/police-signs.spec.ts` | one `police-sign` on the tower group; no glow by day; at night luma (perceived brightness, 0–255) of the sign 137.8 vs the gable wall beside it 0.1 (needs > 40 more); realtime lights unchanged; 20 programs day and night; glow off again by day |
 | Earlier phases unchanged | `git diff 8c5e437` touches only `.gitignore`, `DATA-LICENSE.md`, `Scene.svelte` (+2 lines), `mapView.ts` (+4), `mapLandmarks.ts` (badge → sign); `src/lib/data`, `src/lib/lighting`, `src/lib/landmarks/radhuset`, `transportModels.ts`, `publicTransport.ts`, `public/`, all earlier `docs/*` and their tests are unchanged; L2/L2bc data SHA-256 equal to `main` |
 | Reproducibility | `police_tower_lidar.py` rebuilt byte-identically (SHA-256 `8b836ff5…db0ec2`; Python 3.12.14, numpy 2.3.5, laspy 2.7.0); `emblem-outline.mjs` rebuilt byte-identically (`a826f3fb…4838d1`, Edge 156.0.4314.42) |
+
+## Correction: the emblem's scale (2026-10-25, committed and pushed to main)
+
+The tower session (Rätta polistornets mått efter laserdata) found, and a LiDAR cross-section in
+`police_tower_lidar.py` (new `gableParts`) confirms, that the dark SSE gable in the photograph is
+only the tower's **tall part**: 8.82 m between the 1st/99th-percentile returns (roof ≈ 49.1 m RH2000).
+The remaining ≈ 5 m on the ENE side is a lower white strip (roof ≈ 45.5 m). D1 had scaled the photo
+with the full tower width (13.9 m), so the emblem was ≈ 1.5 × too large and hung too low.
+
+| | D1 as merged | Corrected |
+|---|---|---|
+| Photo scale (gable width) | 13.9 m (full tower) | **9.3 m** (tall part 8.82 m + ≈ 0.5 m edge allowance; range 8.8–9.8) |
+| Emblem width × height | 3.75 × 4.96 m | **2.51 × 3.32 m** (±0.25 m) |
+| Centre below the parapet | 10.9 m | **7.3 m** (±0.7 m) |
+| Centre on the real building | — | ≈ 42.2 m RH2000, ≈ 30.4 m above the street |
+
+The LiDAR script's label for +v was also wrong (it points ENE, not WSW); no value depended on it.
+The new LiDAR file rebuilds byte-identically (SHA-256 `e24a31b1…982dc1`). Evidence (before = D1 on
+`main` | after = corrected sign + lit windows | difference): [evidence/correction/](evidence/correction/).
+Checks after the correction: type check 0, build OK, Vitest 446/447 (known worktree path), Playwright
+13/13 (new test: sign luma 153 vs wall 0.1 at night, long façade 38.1).
+
+| | |
+|---|---|
+| ![](evidence/correction/01-emblem-close-day.jpg) close, day | ![](evidence/correction/04-gable-front-night.jpg) gable, night |
+
+## Follow-up: lit windows at night (2026-10-25, committed and pushed to main)
+
+After D1 was merged the user pointed out that the station is open around the clock, so its windows
+should be lit at night. Now 30 % of the tower's windows on both long façades glow at night with the
+street lighting's night level (warm, neutral and cool white), in a fixed pseudo-random pattern per
+façade; by day nothing changes. Everything about which windows and how bright is an **estimate**
+([data-provenance.md](data-provenance.md), [remaining-gaps.md](remaining-gaps.md) §6). Code:
+[`windows.ts`](../../src/lib/landmarks/police/windows.ts); the tower slab is now a single-instance
+InstancedMesh with an emissive map per long façade, so it uses the existing instanced
+map + emissiveMap program (20 programs).
+
+Why the emblem looked dark in the user's screenshot: their running app (port 5173) is the main
+checkout, which is on branch `claude/landmark-b1` at `8c5e437` — before D1.
+
+| | vs D1 (`main` = `d3d228c`) |
+|---|---|
+| Day pictures | **pixel-identical** in all 9 day views |
+| Night pictures | changes only on the tower: long façade 6 287 px, gable view 2 180 px, view from the south 633 px; controls 0 px |
+| Programs, calls, triangles | 20 → 20; +0; +0 |
+| Memory | two 256 × 512 emissive maps ≈ 1.4 MB GPU; heap ±0.2 MB |
+| Frame times (correction + windows together, clean 5-round series) | day p95 Δ Kungsgatan 0.0, Strömparken +0.1, Innerstaden −0.1, police view +0.4 ms (gate 0.5); night 0.0, −0.3, +0.2, −0.1 ms (gate 1); map-ready −48 ms; heap +0.19 MB. Raw: [data/perf-correction-windows.json](data/perf-correction-windows.json). Earlier series disturbed by other load on the machine: [data/perf-windows-disturbed.json](data/perf-windows-disturbed.json) and the `disturbed` block (one of them showed Strömparken by day +1.25 ms pooled; a Strömparken-only repeat on a quiet machine gave −0.7 ms) |
+| Vitest | 446 / 447 (+3 new window tests; only the known worktree-path failure in `terrain.test.ts`) |
+| Playwright | 12 / 13 then A3 re-run 3 / 3; A3 "unchanged picture" is the known flaky check (1 / 3 on the D1 baseline). New assertions: long façade mean luma 38.1 at night (> 10), slab emissive 0 by day |
+
+Evidence (before = D1 | after | difference × 4): [evidence/windows/](evidence/windows/)
+
+| | |
+|---|---|
+| ![](evidence/windows/02-long-facade-night.jpg) long façade, night | ![](evidence/windows/03-aerial-south-night.jpg) from the south, like the user's view |
 
 ## Files
 

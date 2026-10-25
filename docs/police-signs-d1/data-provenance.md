@@ -24,14 +24,14 @@ the Luntgatan 32 reception is a different building and is not part of D1 (see
 |---|---|
 | Horizontal | SWEREF 99 TM (EPSG:3006) → scene: `(E − 569 030, 6 494 989 − N) / (25 · 0.9996584126)`; x east, z south; 1 scene unit = 25 ground metres (`src/lib/data/norrkoping-map.json` `meta.reference`) |
 | Vertical | RH2000 metres; scene y = RH2000 / 25 |
-| Tower frame (LiDAR) | origin = centre of the tower roof's extent, SWEREF E 568 305.61, N 6 495 638.86 (scene −28.9855, −26.0032); SSE gable centre E 568 312.38, N 6 495 612.52; +u along the long axis towards the SSE gable (bearing 165.6°), +v towards WSW; metres; heights RH2000 |
+| Tower frame (LiDAR) | origin = centre of the tower roof's extent, SWEREF E 568 305.61, N 6 495 638.86 (scene −28.9855, −26.0032); SSE gable centre E 568 312.38, N 6 495 612.52; +u along the long axis towards the SSE gable (bearing 165.6°), +v towards ENE; metres; heights RH2000 |
 | Drawn tower (`TOWER_MODEL`) | group at scene (−29.25, −26.22), rotation 0.2775 rad about +y, so local +z (out of the SSE gable) has bearing 164.1°; slab 0.51 × 1.82 × 2.65 units (12.75 × 45.5 × 66.25 m), parapet cap top 1.95 units (48.75 m) above the tower base. The base is the complex's footprint ground (as for every building attached with `onBuilding`) |
-| Sign | child of the tower group at local (0, 1.95 − 10.9/25, 1.325 + 0.25/25): centred on the SSE gable, 0.25 m in front of the wall, centre 10.9 m below the parapet top. Plane spans 3.75 × 4.96 m (the painted emblem's extent) |
+| Sign | child of the tower group at local (0, 1.95 − 7.3/25, 1.325 + 0.25/25): centred on the SSE gable, 0.25 m in front of the wall, centre 7.3 m below the parapet top. Plane spans 2.51 × 3.32 m (the painted emblem's extent) |
 
 The drawn tower is about 10 m taller and 12 m longer than the measured one (see the table below), so
 the sign keeps its real **size** and its real **distance below the parapet**, not its RH2000 height:
-on the real building the emblem's centre is at ≈ 38.6 m RH2000 (≈ 26.8 m above the ground in front);
-on the drawn tower it is ≈ 37.9 m above the tower base.
+on the real building the emblem's centre is at ≈ 42.2 m RH2000 (≈ 30.4 m above the ground in front);
+on the drawn tower it is ≈ 41.5 m above the tower base.
 
 ## Sources
 
@@ -49,15 +49,29 @@ on the drawn tower it is ≈ 37.9 m above the tower base.
 |---|---|---|
 | One emblem sign on the tower, on the SSE gable (towards Stockholmsvägen), centred | observed | HEMSO, PHOTO |
 | Tower 54.38 × 13.42 m (roof returns 1st–99th pct.), parapet ≈ 49.5 m RH2000, ground 11.84 m → ≈ 37.7 m tall | measured | LIDAR |
-| Gable width used as scale 13.9 m (13.42 + ≈ 0.5 m for sparse edge returns, range 13.4–14.4) | derived | LIDAR + EST |
+| The dark SSE gable is the tower's tall part only: 8.82 m (1st–99th pct. of returns ≥ 47.5 m within 8 m of the SSE end, roof ≈ 49.1 m); a lower strip ≈ 5 m wide (roof ≈ 45.5 m) on the ENE side | measured | LIDAR (`gableParts`) |
+| Gable width used as scale 9.3 m (8.82 + ≈ 0.5 m for sparse edge returns, range 8.8–9.8). D1 first used the full tower width 13.9 m — corrected | derived | LIDAR + EST |
 | Viewing angle of the HEMSO photo: cos = 0.985 (≈ 10°) from the emblem's apparent aspect (42.5 : 57 px) vs the artwork's painted aspect (0.757) | derived | HEMSO, ARTWORK |
-| Emblem 3.75 m wide × 4.96 m tall (±0.3 m) | derived | HEMSO px × LIDAR scale |
-| Emblem centre 10.9 m below the parapet top (±1 m) | derived | HEMSO px × LIDAR scale |
+| Emblem 2.51 m wide × 3.32 m tall (±0.25 m) | derived | HEMSO px × LIDAR scale |
+| Emblem centre 7.3 m below the parapet top (±0.7 m) | derived | HEMSO px × LIDAR scale |
 | Distance of the sign face in front of the wall: 0.25 m | **estimate** | EST |
 | Sign construction (relief letters / plate / light box) | **unknown** | — |
 | Lit at night | **estimate** (roadmap asks for it; no night photograph found) | EST |
 | Night brightness: emissive gain 1.1 × night level (the street lighting's `env.artificial`) | **estimate** | EST, tuned on the captures |
 | Older (2008/2016/2018) photo ratios: emblem ≈ 0.30–0.35 of the gable width (≈ 4.2–4.9 m), first gap to the parapet 1.4–1.6 emblem heights | measured, for comparison only (strong perspective; the emblem may have been replaced in the 2018 re-cladding) | PHOTO |
+
+## Follow-up: lit windows at night (2026-10-25)
+
+| Value | Kind | Source |
+|---|---|---|
+| The station is staffed around the clock, so windows are lit at night | user statement (2026-10-25); consistent with Polisen working day and night | USER |
+| Which windows are lit: 30 % of the tower's window grid (11 floors × 16 windows per long façade), a fixed pseudo-random pattern per façade (seeds 1 and 2) | **estimate** | EST |
+| Light colours: warm white `#ffd9a3`, neutral `#fff0d2`, cool `#e3ecff` | **estimate** | EST |
+| Glow: emissive gain 0.9 × night level (`env.artificial`); 0 by day | **estimate** | EST |
+| Window grid itself: the existing illustrative façade texture of the drawn tower (not measured) | model | MODEL |
+
+Nothing documents which rooms are in use at night, their blinds or the light colours. The pattern does
+not change during the night (no schedule). Code: [`windows.ts`](../../src/lib/landmarks/police/windows.ts).
 
 ## Derived file: the emblem outline
 

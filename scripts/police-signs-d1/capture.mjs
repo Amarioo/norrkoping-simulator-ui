@@ -30,6 +30,9 @@ const POSES = {
   'emblem-close': { camera: [70, 8, 37], target: [33, 0, 37] },
   district: { camera: [700, 260, 160], target: [0, 0, 25] },
   'police-preset': null, // the app's "Polisusets emblem" camera preset
+  // Window follow-up: a long façade (local +x side) and a high view from the south, like the user's.
+  'long-facade': { camera: [20, 190, 30], target: [0, 0, 25] },
+  'aerial-south': { camera: [380, 80, 200], target: [0, 0, 10] },
 };
 // Control views far from the police tower: must not change at all.
 const CONTROLS = {

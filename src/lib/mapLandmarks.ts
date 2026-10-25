@@ -19,6 +19,13 @@ import {
 import { cityMap, LANDMARKS, pointInRing, type Point } from './mapModel';
 import { createPoliceSign } from './landmarks/police/sign';
 import { TOWER_MODEL } from './landmarks/police/spec';
+import {
+  FACADE_SEEDS,
+  GLOW_SCALE,
+  WINDOW_GRID,
+  paintWindowGlow,
+  windowGain,
+} from './landmarks/police/windows';
 
 /** Architectural additions are illustrative; every anchor is in the mapped coordinate system. */
 export function createLandmarkDetails() {
@@ -217,27 +224,45 @@ export function createLandmarkDetails() {
   towerPolice.position.set(TOWER_MODEL.position[0], 0, TOWER_MODEL.position[1]);
   towerPolice.rotation.y = TOWER_MODEL.rotation;
   group.add(towerPolice);
-  const facade = texture(512, 1024, (c) => {
+  const g = WINDOW_GRID;
+  const facade = texture(g.width, g.height, (c) => {
     c.fillStyle = '#b9c0be';
-    c.fillRect(0, 0, 512, 1024);
-    for (let row = 0; row < 11; row++)
-      for (let col = 0; col < 16; col++) {
+    c.fillRect(0, 0, g.width, g.height);
+    for (let row = 0; row < g.rows; row++)
+      for (let col = 0; col < g.cols; col++) {
         c.fillStyle = (row + col) % 4 ? '#52636a' : '#83939a';
-        c.fillRect(col * 32 + 7, row * 90 + 12, 19, 64);
+        c.fillRect(g.x0 + col * g.dx, g.y0 + row * g.dy, g.w, g.h);
         c.fillStyle = '#e0dfd5';
-        c.fillRect(col * 32 + 1, row * 90 + 5, 4, 82);
+        c.fillRect(col * g.dx + 1, row * g.dy + 5, 4, 82);
       }
   });
-  const slab = box(towerPolice, 0, 0.98, 0, 0.51, 1.82, 2.65, '#b8bdba');
-  const slabMat = track(new MeshStandardMaterial({ map: facade, roughness: 0.78 }));
-  (slab as Mesh).material = [
-    slabMat,
-    slabMat,
-    mat('#b3b8b6'),
-    mat('#b3b8b6'),
-    mat('#40515a'),
-    mat('#40515a'),
-  ];
+  // Lit windows at night (estimate; src/lib/landmarks/police/windows.ts): one emissive map per long
+  // façade, gain 0 by day. A single-instance InstancedMesh: instanced, opaque map + emissiveMap is the
+  // program the police sign and the tram/bus destination signs already use (no new program).
+  const slabMats = FACADE_SEEDS.map((seed) =>
+    track(
+      new MeshStandardMaterial({
+        map: facade,
+        emissiveMap: texture(g.width * GLOW_SCALE, g.height * GLOW_SCALE, (c) =>
+          paintWindowGlow(c, seed),
+        ),
+        emissive: 0xffffff,
+        emissiveIntensity: 0,
+        roughness: 0.78,
+      }),
+    ),
+  );
+  const slab = new InstancedMesh(
+    track(new BoxGeometry(0.51, 1.82, 2.65)),
+    [slabMats[0], slabMats[1], mat('#b3b8b6'), mat('#b3b8b6'), mat('#40515a'), mat('#40515a')],
+    1,
+  );
+  slab.name = 'police-tower-slab';
+  slab.setMatrixAt(0, new Matrix4());
+  slab.position.set(0, 0.98, 0);
+  slab.castShadow = slab.receiveShadow = true;
+  slab.computeBoundingSphere();
+  towerPolice.add(slab);
   box(towerPolice, 0, 1.92, 0, 0.55, 0.06, 2.71, '#e2e1d7');
   for (let i = 0; i < 6; i++)
     box(towerPolice, 0, 1.98, -1.05 + i * 0.4, 0.22, 0.09, 0.2, '#7c8586');
@@ -445,6 +470,12 @@ export function createLandmarkDetails() {
     labels,
     /** Police Signs Phase D1: the emblem sign (night glow via `setNightLevel`). */
     policeSign,
+    /** Police station night: the emblem glows and part of the tower's windows are lit. */
+    setPoliceNightLevel(level: number) {
+      policeSign.setNightLevel(level);
+      const gain = windowGain(level);
+      for (const m of slabMats) m.emissiveIntensity = gain;
+    },
     dispose() {
       owned.forEach((r) => r.dispose());
       group.clear();

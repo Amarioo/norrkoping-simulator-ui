@@ -2,13 +2,30 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Police Signs D1 follow-up — emblem scale corrected, lit windows in the police tower (2026-10-25) — approved (user, 2026-10-25), committed and pushed, merged into `main`
+
+[Report section](police-signs-d1/README.md#follow-up-lit-windows-at-night-2026-10-25-not-committed). Branch
+`claude/police-signs-d1` on top of `main` = `d3d228c`. **Committed and pushed:** `main` fast-forwarded to this branch on `origin` (user, 2026-10-25).
+
+- **Correction:** the emblem was scaled with the full tower width (13.9 m); LiDAR shows the dark SSE
+  gable is only the tall part (8.82 m, + 0.5 m edge allowance = 9.3 m). Emblem 3.75 × 4.96 m → **2.51 × 3.32 m**,
+  centre 10.9 → **7.3 m** below the parapet. Found by the tower session; LiDAR script now reports `gableParts`.
+- **Result:** 30 % of the tower's windows (both long façades, fixed pattern) glow at night with
+  `env.artificial` (user: the station is staffed 24/7; which windows, colours and brightness are
+  estimates). Day pixel-identical; 20 programs; calls/triangles +0; ≈ 1.4 MB GPU textures.
+- **Measured (clean paired series, 5 rounds, vs D1):** p95 day ≤ +0.4 ms, night ≤ +0.2 ms, map-ready
+  −48 ms, heap +0.19 MB, calls/triangles +0, 20 programs. Two earlier series were disturbed by other
+  load (kept as raw data); their Strömparken-by-day outlier did not repeat on a quiet machine (−0.7 ms).
+- **Checks (after both changes):** type check 0; build OK; Vitest 446/447 (known worktree path);
+  Playwright 13/13.
+
 ## Police Signs Phase D1 — the police emblem on Polishuset (2026-10-25) — approved (user, 2026-10-25), committed and pushed, merged into `main`
 
 [Full report](police-signs-d1/README.md). Branch `claude/police-signs-d1` from `main` = `8c5e437`.
 **Committed and pushed:** `main` fast-forwarded to this branch on `origin` (user, 2026-10-25). Backend unchanged.
 
 - **Result:** the one documented sign — the police emblem centred high on the tower's SSE gable
-  (Stockholmsvägen side) — replaces the old 6.25 × 7.5 m badge: 3.75 × 4.96 m, 10.9 m below the
+  (Stockholmsvägen side) — replaces the old 6.25 × 7.5 m badge: 3.75 × 4.96 m (later corrected to 2.51 × 3.32 m, 7.3 m; entry above), 10.9 m below the
   parapet (Hemsö photo 2023 × LiDAR gable width), opaque emblem-shaped surface (outline traced from
   the artwork), self-lit at night at 1.1 × `env.artificial` (estimate: no night photo), off by day.
   Stinsen 1 = Stockholmsvägen 4–6; the 2026-01-26 move was the reception (Luntgatan 32, not in D1).

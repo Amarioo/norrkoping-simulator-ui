@@ -1,0 +1,304 @@
+{
+  "base": "http://127.0.0.1:5234/",
+  "date": "2026-10-21",
+  "timezoneId": "Europe/Stockholm",
+  "viewport": {
+    "width": 1400,
+    "height": 1000
+  },
+  "tower": {
+    "x": -29.25,
+    "z": -26.22,
+    "rotation": 0.2775
+  },
+  "poses": {
+    "gable-front": {
+      "camera": [
+        150,
+        25,
+        25
+      ],
+      "target": [
+        33,
+        0,
+        37
+      ]
+    },
+    "stockholmsvagen": {
+      "camera": [
+        230,
+        -60,
+        3
+      ],
+      "target": [
+        33,
+        0,
+        30
+      ]
+    },
+    "emblem-close": {
+      "camera": [
+        70,
+        8,
+        37
+      ],
+      "target": [
+        33,
+        0,
+        37
+      ]
+    },
+    "district": {
+      "camera": [
+        700,
+        260,
+        160
+      ],
+      "target": [
+        0,
+        0,
+        25
+      ]
+    },
+    "police-preset": null,
+    "long-facade": {
+      "camera": [
+        20,
+        190,
+        30
+      ],
+      "target": [
+        0,
+        0,
+        25
+      ]
+    },
+    "aerial-south": {
+      "camera": [
+        380,
+        80,
+        200
+      ],
+      "target": [
+        0,
+        0,
+        10
+      ]
+    }
+  },
+  "controls": {
+    "control-radhuset": {
+      "c": [
+        -2.6,
+        1.5,
+        -6.8
+      ],
+      "t": [
+        -1.13,
+        1.45,
+        -10.69
+      ]
+    },
+    "control-kungsgatan": {
+      "c": [
+        -25.5,
+        1.1,
+        -11.5
+      ],
+      "t": [
+        -22.3,
+        0.5,
+        -13.65
+      ]
+    }
+  },
+  "states": {
+    "day": 759,
+    "night": 1290
+  },
+  "errors": [],
+  "captures": {
+    "gable-front-day": {
+      "file": "gable-front-day.png",
+      "perf": {
+        "calls": 1760,
+        "triangles": 2759648,
+        "geometries": 4153
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "stockholmsvagen-day": {
+      "file": "stockholmsvagen-day.png",
+      "perf": {
+        "calls": 1591,
+        "triangles": 2664820,
+        "geometries": 4423
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "emblem-close-day": {
+      "file": "emblem-close-day.png",
+      "perf": {
+        "calls": 1722,
+        "triangles": 2706990,
+        "geometries": 4423
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "district-day": {
+      "file": "district-day.png",
+      "perf": {
+        "calls": 2201,
+        "triangles": 3288388,
+        "geometries": 4604
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "police-preset-day": {
+      "file": "police-preset-day.png",
+      "perf": {
+        "calls": 1635,
+        "triangles": 2682987,
+        "geometries": 4604
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "long-facade-day": {
+      "file": "long-facade-day.png",
+      "perf": {
+        "calls": 2043,
+        "triangles": 2710569,
+        "geometries": 5598
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "aerial-south-day": {
+      "file": "aerial-south-day.png",
+      "perf": {
+        "calls": 1748,
+        "triangles": 2968913,
+        "geometries": 5598
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "control-radhuset-day": {
+      "file": "control-radhuset-day.png",
+      "perf": {
+        "calls": 1649,
+        "triangles": 2492529,
+        "geometries": 5879
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "control-kungsgatan-day": {
+      "file": "control-kungsgatan-day.png",
+      "perf": {
+        "calls": 1762,
+        "triangles": 2565398,
+        "geometries": 6247
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "gable-front-night": {
+      "file": "gable-front-night.png",
+      "perf": {
+        "calls": 1761,
+        "triangles": 2804340,
+        "geometries": 6248
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "stockholmsvagen-night": {
+      "file": "stockholmsvagen-night.png",
+      "perf": {
+        "calls": 1592,
+        "triangles": 2709512,
+        "geometries": 6248
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "emblem-close-night": {
+      "file": "emblem-close-night.png",
+      "perf": {
+        "calls": 1723,
+        "triangles": 2751682,
+        "geometries": 6248
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "district-night": {
+      "file": "district-night.png",
+      "perf": {
+        "calls": 2202,
+        "triangles": 3333080,
+        "geometries": 6248
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "police-preset-night": {
+      "file": "police-preset-night.png",
+      "perf": {
+        "calls": 1636,
+        "triangles": 2727679,
+        "geometries": 6248
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "long-facade-night": {
+      "file": "long-facade-night.png",
+      "perf": {
+        "calls": 2044,
+        "triangles": 2755261,
+        "geometries": 6248
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "aerial-south-night": {
+      "file": "aerial-south-night.png",
+      "perf": {
+        "calls": 1749,
+        "triangles": 3013605,
+        "geometries": 6248
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "control-radhuset-night": {
+      "file": "control-radhuset-night.png",
+      "perf": {
+        "calls": 1650,
+        "triangles": 2537221,
+        "geometries": 6248
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "control-kungsgatan-night": {
+      "file": "control-kungsgatan-night.png",
+      "perf": {
+        "calls": 1763,
+        "triangles": 2610090,
+        "geometries": 6248
+      },
+      "programs": 20,
+      "artificial": 1
+    }
+  },
+  "browser": "156.0.4314.42",
+  "towerBaseScene": 0.35314948634977694
+}

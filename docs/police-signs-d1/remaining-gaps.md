@@ -39,8 +39,10 @@ by D1. Compared with the LiDAR (`data/police-tower-lidar.json`):
 | Long axis | bearing 164.1° | 165.6° | 1.5° |
 | Gable cladding | dark grey `#40515a` | dark (near-black) since the 2018 re-cladding | colour fine |
 
-Because of this, the sign keeps its real size and real distance below the parapet (10.9 m), not its
-real RH2000 height (≈ 38.6 m; on the drawn tower it hangs ≈ 10 m higher in absolute terms). Fixing
+Because of this, the sign keeps its real size and real distance below the parapet (7.3 m), not its
+real RH2000 height (≈ 42.2 m; on the drawn tower it hangs ≈ 11 m higher in absolute terms). The drawn
+gable is also 12.75 m wide where the real dark gable is ≈ 9.3 m, so the emblem looks relatively
+smaller on it than in the photograph until the tower is rebuilt. Fixing
 the tower (a measured model like B1's town hall) is a separate step; the sign would then move with
 the tower group automatically (`TOWER_MODEL`).
 
@@ -53,8 +55,9 @@ carries a second emblem is **unknown**, so nothing is placed there.
 
 ## 5. Measurement uncertainty
 
-- Size ±0.3 m, height below the parapet ±1 m: one near-frontal photograph at 1024 × 768 (≈ 0.09 m
-  per pixel), scaled by the LiDAR roof width (13.4–14.4 m because of sparse edge returns).
+- Size ±0.25 m, height below the parapet ±0.7 m: one near-frontal photograph at 1024 × 768 (≈ 0.06 m
+  per pixel), scaled by the LiDAR width of the tall dark gable (8.8–9.8 m because of sparse edge
+  returns). The first D1 version used the full tower width and was ≈ 1.5 × too large (corrected).
 - The sign's construction and depth are unknown; it is drawn as a flat surface 0.25 m in front of
   the wall (estimate).
 - The artwork is Polismyndigheten's current vector emblem; the physical sign is an older rendering of
@@ -62,3 +65,15 @@ carries a second emblem is **unknown**, so nothing is placed there.
 - The emblem in the 2008/2016 photographs appears somewhat larger relative to the gable (≈ 4.2–4.9 m
   wide); those photos are close and steep, and the sign may have been replaced in 2018. The 2023
   photo (after the re-cladding) is used.
+
+## 6. Lit windows (follow-up, estimate)
+
+- Only the tower's two long façades have lit windows. The low wings of the complex are generic OSM
+  buildings drawn with the city's shared building materials; lighting their windows would change
+  every building in the city (a citywide "lit windows" step, not part of D1).
+- The pattern (30 %), the colours and the brightness are estimates; the pattern is fixed all night
+  (no schedule, no rooms switching on and off).
+- The window grid is the old illustrative façade (16 × 11 windows on a 66 × 45.5 m façade); a
+  measured tower (the follow-up in §3) should bring a measured window grid, and `WINDOW_GRID` with it.
+- Day pictures are pixel-identical to D1; the emissive maps cost ≈ 1.4 MB of GPU memory (two
+  256 × 512 textures with mipmaps).

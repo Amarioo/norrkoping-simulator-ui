@@ -1,0 +1,433 @@
+{
+ "note": "Corrected sign + lit windows vs D1 on main (d3d228c). scripts/vehicle-lights-f1/measure.mjs: production builds by vite preview, uncapped Edge, 1280 × 900, DPR 1, traffic on (backend copy 8096, reset + paused), before/after alternating. fix3 is the clean series (CPU 22 % at start; baseline p95 equal to the clean D1 series). fix1/fix2 ran with other load on the machine (baseline p95 ≈ 1.5–2 × higher); their day Strömparken +1.25 ms pooled was checked by a Strömparken-only repeat on a quiet machine (−0.7 ms day, 0.0 night).",
+ "clean": {
+  "file": "fix3.json",
+  "frames": {
+   "day": {
+    "kungsgatan": {
+     "p95DeltaMedian": 0,
+     "p95DeltaRounds": [
+      0,
+      0,
+      0,
+      -0.2,
+      0
+     ],
+     "beforeP95": 3.2,
+     "afterP95": 3.1
+    },
+    "stromparken": {
+     "p95DeltaMedian": 0.1,
+     "p95DeltaRounds": [
+      0.4,
+      -3.1,
+      0.1,
+      0.2,
+      0.1
+     ],
+     "beforeP95": 6.1,
+     "afterP95": 6.5
+    },
+    "city": {
+     "p95DeltaMedian": -0.1,
+     "p95DeltaRounds": [
+      -0.1,
+      -0.1,
+      0.3,
+      -0.1,
+      -0.3
+     ],
+     "beforeP95": 7.3,
+     "afterP95": 7.3
+    },
+    "policeEmblem": {
+     "p95DeltaMedian": 0.4,
+     "p95DeltaRounds": [
+      0.4,
+      0.6,
+      0.7,
+      -0.3,
+      -0.1
+     ],
+     "beforeP95": 5,
+     "afterP95": 5.2
+    }
+   },
+   "night-off": {
+    "kungsgatan": {
+     "p95DeltaMedian": 0,
+     "p95DeltaRounds": [
+      -0.2,
+      0,
+      0.2,
+      0,
+      0
+     ],
+     "beforeP95": 3.1,
+     "afterP95": 3.1
+    },
+    "stromparken": {
+     "p95DeltaMedian": -0.3,
+     "p95DeltaRounds": [
+      -1,
+      -0.3,
+      -0.1,
+      -0.6,
+      0
+     ],
+     "beforeP95": 6.4,
+     "afterP95": 6.1
+    },
+    "city": {
+     "p95DeltaMedian": 0.2,
+     "p95DeltaRounds": [
+      -0.3,
+      0.4,
+      0.2,
+      1.1,
+      -0.1
+     ],
+     "beforeP95": 7.7,
+     "afterP95": 8
+    },
+    "policeEmblem": {
+     "p95DeltaMedian": -0.1,
+     "p95DeltaRounds": [
+      -0.1,
+      -0.3,
+      -0.1,
+      -0.4,
+      0.1
+     ],
+     "beforeP95": 5.2,
+     "afterP95": 5
+    }
+   }
+  },
+  "mapReadyDeltaMs": {
+   "median": -48.2,
+   "rounds": [
+    -3.7,
+    -11.9,
+    -48.2,
+    -90.8,
+    -96.9
+   ]
+  },
+  "heapDeltaMB": {
+   "median": 0.19,
+   "rounds": [
+    0.03,
+    0.27,
+    0.19,
+    0.2,
+    -0.21
+   ]
+  }
+ },
+ "stromparkenRepeat": {
+  "file": "fix-stromparken.json",
+  "frames": {
+   "day": {
+    "stromparken": {
+     "p95DeltaMedian": -0.7,
+     "p95DeltaRounds": [
+      -0.3,
+      -0.7,
+      -2,
+      -0.2,
+      -1.1
+     ],
+     "beforeP95": 7.7,
+     "afterP95": 6.2
+    }
+   },
+   "night-off": {
+    "stromparken": {
+     "p95DeltaMedian": 0,
+     "p95DeltaRounds": [
+      0.5,
+      -0.1,
+      -1.5,
+      0,
+      0.2
+     ],
+     "beforeP95": 7.3,
+     "afterP95": 6.2
+    }
+   }
+  },
+  "mapReadyDeltaMs": {
+   "median": -85,
+   "rounds": [
+    -97.7,
+    -1.8,
+    -85,
+    -158.4,
+    14.6
+   ]
+  },
+  "heapDeltaMB": {
+   "median": 0.05,
+   "rounds": [
+    0.01,
+    0.03,
+    0.06,
+    0.3,
+    0.05
+   ]
+  }
+ },
+ "disturbed": [
+  {
+   "file": "fix1.json",
+   "frames": {
+    "day": {
+     "kungsgatan": {
+      "p95DeltaMedian": -0.8,
+      "p95DeltaRounds": [
+       -1.5,
+       -0.9,
+       -0.8,
+       0.1,
+       -0.7
+      ],
+      "beforeP95": 5.5,
+      "afterP95": 4.8
+     },
+     "stromparken": {
+      "p95DeltaMedian": 0.3,
+      "p95DeltaRounds": [
+       4.4,
+       0.2,
+       0.3,
+       0.3,
+       -1.5
+      ],
+      "beforeP95": 11.8,
+      "afterP95": 12.1
+     },
+     "city": {
+      "p95DeltaMedian": -1.4,
+      "p95DeltaRounds": [
+       4.2,
+       -18.6,
+       0.6,
+       -2.1,
+       -1.4
+      ],
+      "beforeP95": 14.5,
+      "afterP95": 14
+     },
+     "policeEmblem": {
+      "p95DeltaMedian": -0.1,
+      "p95DeltaRounds": [
+       -0.1,
+       0.8,
+       -1,
+       3,
+       -2
+      ],
+      "beforeP95": 9.8,
+      "afterP95": 9.2
+     }
+    },
+    "night-off": {
+     "kungsgatan": {
+      "p95DeltaMedian": 0,
+      "p95DeltaRounds": [
+       0.8,
+       3.2,
+       0,
+       -0.8,
+       -0.4
+      ],
+      "beforeP95": 4.6,
+      "afterP95": 4.5
+     },
+     "stromparken": {
+      "p95DeltaMedian": -0.4,
+      "p95DeltaRounds": [
+       3.8,
+       2.9,
+       -1.1,
+       -0.4,
+       -2.2
+      ],
+      "beforeP95": 12.2,
+      "afterP95": 11.8
+     },
+     "city": {
+      "p95DeltaMedian": 2.1,
+      "p95DeltaRounds": [
+       2.1,
+       -1.6,
+       18.4,
+       2.1,
+       0.3
+      ],
+      "beforeP95": 14.4,
+      "afterP95": 14.6
+     },
+     "policeEmblem": {
+      "p95DeltaMedian": 0.2,
+      "p95DeltaRounds": [
+       8.1,
+       -0.1,
+       0.2,
+       0.5,
+       -0.4
+      ],
+      "beforeP95": 8.1,
+      "afterP95": 9.7
+     }
+    }
+   },
+   "mapReadyDeltaMs": {
+    "median": -88,
+    "rounds": [
+     -273.9,
+     153.4,
+     697.8,
+     -88,
+     -727.1
+    ]
+   },
+   "heapDeltaMB": {
+    "median": 0.04,
+    "rounds": [
+     0.13,
+     0.04,
+     0.15,
+     0.04,
+     0.03
+    ]
+   }
+  },
+  {
+   "file": "fix2.json",
+   "frames": {
+    "day": {
+     "kungsgatan": {
+      "p95DeltaMedian": 0.1,
+      "p95DeltaRounds": [
+       0.3,
+       0.3,
+       -1.2,
+       0.1,
+       -0.2
+      ],
+      "beforeP95": 4,
+      "afterP95": 4.1
+     },
+     "stromparken": {
+      "p95DeltaMedian": 3.8,
+      "p95DeltaRounds": [
+       3.8,
+       2.2,
+       5.2,
+       6.5,
+       -1.3
+      ],
+      "beforeP95": 8.2,
+      "afterP95": 13.3
+     },
+     "city": {
+      "p95DeltaMedian": 0.3,
+      "p95DeltaRounds": [
+       20.7,
+       2.2,
+       -2,
+       0.3,
+       -0.8
+      ],
+      "beforeP95": 11.5,
+      "afterP95": 12.5
+     },
+     "policeEmblem": {
+      "p95DeltaMedian": 0.7,
+      "p95DeltaRounds": [
+       2.7,
+       5.8,
+       -1.5,
+       0.1,
+       0.7
+      ],
+      "beforeP95": 7.3,
+      "afterP95": 8.6
+     }
+    },
+    "night-off": {
+     "kungsgatan": {
+      "p95DeltaMedian": 0,
+      "p95DeltaRounds": [
+       0,
+       0,
+       -0.2,
+       0.2,
+       -0.1
+      ],
+      "beforeP95": 4.2,
+      "afterP95": 4
+     },
+     "stromparken": {
+      "p95DeltaMedian": 0,
+      "p95DeltaRounds": [
+       -0.3,
+       3.2,
+       0.5,
+       -0.5,
+       0
+      ],
+      "beforeP95": 9.8,
+      "afterP95": 11.1
+     },
+     "city": {
+      "p95DeltaMedian": -0.7,
+      "p95DeltaRounds": [
+       -16,
+       3.4,
+       -4.7,
+       -0.7,
+       0.2
+      ],
+      "beforeP95": 13.1,
+      "afterP95": 11.7
+     },
+     "policeEmblem": {
+      "p95DeltaMedian": -1,
+      "p95DeltaRounds": [
+       0.1,
+       -1,
+       -4.9,
+       -1.4,
+       -0.2
+      ],
+      "beforeP95": 10.3,
+      "afterP95": 7.4
+     }
+    }
+   },
+   "mapReadyDeltaMs": {
+    "median": 93,
+    "rounds": [
+     497.1,
+     93,
+     -89.3,
+     1034.9,
+     50.1
+    ]
+   },
+   "heapDeltaMB": {
+    "median": 0.04,
+    "rounds": [
+     0.04,
+     0.17,
+     -0.18,
+     0.14,
+     0.04
+    ]
+   }
+  }
+ ]
+}
