@@ -31,6 +31,7 @@
   import l2Url from './data/streetlights-l2.json?url';
   import l2bcUrl from './data/streetlights-l2bc.json?url';
   import { advanceClock, lightingState } from './lighting/state.svelte';
+  import type { VehiclePose } from './lighting/vehicleLights';
   let {
     focus = 'overview',
     showLabels = true,
@@ -158,7 +159,12 @@
         return r.ok ? { ok: true } : { ok: false, stage: r.stage, conflictCount: r.conflictCount };
       },
       inspect: () => lighting.inspect(),
+      // Vehicle Lights Phase F1: beams on/off (before/after comparisons) and this frame's poses.
+      setVehicleBeams: (on: boolean) => lighting.setVehicleBeams(on),
+      setVehicleRange: (metresLimit: number) => lighting.setVehicleRange(metresLimit),
+      vehiclePoses: () => vehiclePoses.map((p) => ({ ...p })),
     };
+  const vehiclePoses: VehiclePose[] = [];
   const buildMs = performance.now() - buildStarted;
   // Ground, roads and buildings are built in workers and arrive after the first frames.
   let mapReadyMs: number | null = null;
@@ -228,6 +234,15 @@
     );
     signals.update(city.snapshot.simulationTime);
     transit.update(city.snapshot.vehicles, dt);
+    // Vehicle Lights Phase F1: lens glow and the nearest vehicles' beams, from this frame's smoothed
+    // poses (after the models moved, so beams and lenses stay together while paused or following).
+    const level = lighting.artificial;
+    transport.setNightLevel(level);
+    transit.setNightLevel(level);
+    vehiclePoses.length = 0;
+    for (const p of transport.poses()) vehiclePoses.push(p);
+    for (const p of transit.poses()) vehiclePoses.push(p);
+    if (camera.current) lighting.updateVehicles(vehiclePoses, camera.current);
   });
   function pick(e: IntersectionEvent<MouseEvent>) {
     const ids = e.object.userData.ids;

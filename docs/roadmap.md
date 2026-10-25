@@ -140,7 +140,10 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
 
 ### Spår F: fordon (stor effekt på natten, återanvänder L1)
 
-- [ ] **F1 Strålkastare och baklyktor på bilar, bussar, lastbilar** — M
+- [x] **F1 Strålkastare och baklyktor på bilar, bussar, lastbilar** — M — *genomförd och godkänd
+  2026-10-25, pushad till main: [docs/vehicle-lights-f1/README.md](vehicle-lights-f1/README.md).
+  Lysande lyktglas på alla fordon, ljuskägla för de 16 närmaste, allt ljus uppskattat; alla
+  prestandamål klarade.*
   - Lyktglas som lyser + en ljuskägla på vägen framför. Riktiga ljuskällor bara för de närmaste
     fordonen, av prestandaskäl.
 - [ ] **F2 Spårvagnar och tåg** — S

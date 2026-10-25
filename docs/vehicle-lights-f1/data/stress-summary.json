@@ -1,0 +1,159 @@
+{
+ "file": "work/vehicle-lights-f1/perf/stress.json",
+ "stress": true,
+ "vehicles": 202,
+ "rounds": 3,
+ "errors": [],
+ "frames": {
+  "day": {
+   "kungsgatan": {
+    "p95Delta": 0,
+    "p95DeltaRounds": [
+     0,
+     0,
+     0.1
+    ],
+    "medianDelta": 0,
+    "beforeP95": 3.3,
+    "afterP95": 3.4,
+    "beams": [
+     0,
+     0,
+     0
+    ]
+   },
+   "stromparken": {
+    "p95Delta": 0.7,
+    "p95DeltaRounds": [
+     -2.2,
+     0.7,
+     0.7
+    ],
+    "medianDelta": 0.1,
+    "beforeP95": 6.6,
+    "afterP95": 7.2,
+    "beams": [
+     0,
+     0,
+     0
+    ]
+   },
+   "city": {
+    "p95Delta": -0.6,
+    "p95DeltaRounds": [
+     -0.8,
+     -0.6,
+     0.8
+    ],
+    "medianDelta": 0.1,
+    "beforeP95": 9.5,
+    "afterP95": 8.7,
+    "beams": [
+     0,
+     0,
+     0
+    ]
+   },
+   "follow": {
+    "p95Delta": 0.1,
+    "p95DeltaRounds": [
+     0.4,
+     -0.1,
+     0.1
+    ],
+    "medianDelta": 0,
+    "beforeP95": 4,
+    "afterP95": 4,
+    "beams": [
+     0,
+     0,
+     0
+    ]
+   }
+  },
+  "night-off": {
+   "kungsgatan": {
+    "p95Delta": 0,
+    "p95DeltaRounds": [
+     0.1,
+     0,
+     -0.2
+    ],
+    "medianDelta": -0.1,
+    "beforeP95": 3.4,
+    "afterP95": 3.4,
+    "beams": [
+     3,
+     3,
+     3
+    ]
+   },
+   "stromparken": {
+    "p95Delta": -0.5,
+    "p95DeltaRounds": [
+     0.9,
+     -0.5,
+     -0.7
+    ],
+    "medianDelta": 0,
+    "beforeP95": 7.3,
+    "afterP95": 7.4,
+    "beams": [
+     16,
+     16,
+     16
+    ]
+   },
+   "city": {
+    "p95Delta": 0.6,
+    "p95DeltaRounds": [
+     1.5,
+     0.3,
+     0.6
+    ],
+    "medianDelta": 0.6,
+    "beforeP95": 8.5,
+    "afterP95": 9.6,
+    "beams": [
+     16,
+     16,
+     16
+    ]
+   },
+   "follow": {
+    "p95Delta": 0.1,
+    "p95DeltaRounds": [
+     0.1,
+     -0.5,
+     0.4
+    ],
+    "medianDelta": 0,
+    "beforeP95": 4,
+    "afterP95": 4.1,
+    "beams": [
+     3,
+     3,
+     3
+    ]
+   }
+  }
+ },
+ "mapReadyDeltaMs": {
+  "median": 1,
+  "rounds": [
+   104.4,
+   -107.5,
+   1
+  ]
+ },
+ "heapDeltaMB": {
+  "median": 0.18,
+  "rounds": [
+   0.18,
+   0.31,
+   0.04
+  ]
+ },
+ "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "browser": "156.0.4314.42"
+}

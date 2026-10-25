@@ -14,6 +14,10 @@
  * is logged, nothing (or the previous set) is rendered and describe() reports the rejection.
  * replaceStreetLighting() swaps a complete prepared set synchronously, or keeps the current one.
  *
+ * Vehicle lights (Vehicle Lights Phase F1, vehicleLights.ts): updateVehicles() is called every frame
+ * after the vehicle models moved; it picks the VEHICLE_MAX vehicles nearest the camera and writes
+ * their low beams into fixed uniforms (none by day). No lights, textures or programs are created.
+ *
  * Temporal smoothing: jumps of more than 20 simulated minutes (presets, date changes) blend the
  * environment over BLEND_SECONDS; floodlight groups ramp over RAMP_SECONDS. settle() ends both at
  * once (deterministic screenshots).
@@ -23,10 +27,13 @@ import {
   Color,
   DirectionalLight,
   Fog,
+  Frustum,
   Group,
   HemisphereLight,
   Matrix3,
+  Matrix4,
   Mesh,
+  Sphere,
   Vector3,
   type Camera,
   type DataTexture,
@@ -74,6 +81,16 @@ import {
   type RejectedStreetLighting,
 } from './streetLighting';
 import { createSky } from './sky';
+import {
+  beamEmitter,
+  BEAM_RANGE_M,
+  selectNearestVehicles,
+  VEHICLE_MAX,
+  VEHICLE_MAX_DISTANCE_M,
+  writeVehicleUniforms,
+  type SelectedVehicle,
+  type VehiclePose,
+} from './vehicleLights';
 import { dayPhase, localToUtc, solarPosition, sunDirection, utcToLocal } from './solar';
 
 export const BLEND_SECONDS = 1.2;
@@ -344,6 +361,21 @@ export function createCityLighting(options: {
   blendEnvironment(target, target, 1, shown);
   shownSun.copy(sunDir);
 
+  // Vehicle beams: the current selection (diagnostics) and a switch for tests / comparisons.
+  let vehicleSelection: SelectedVehicle[] = [];
+  let vehicleBeams = true;
+  let vehicleRangeM = VEHICLE_MAX_DISTANCE_M;
+  const cameraPosition = new Vector3();
+  const viewFrustum = new Frustum(),
+    viewProjection = new Matrix4(),
+    beamSphere = new Sphere(new Vector3(), BEAM_RANGE_M / metres);
+  /** True when the beam's reach (a sphere of BEAM_RANGE_M around the emitter) touches the view. */
+  const beamInView = (pose: VehiclePose) => {
+    const e = beamEmitter(pose, metres);
+    beamSphere.center.set(e.x, e.y, e.z);
+    return viewFrustum.intersectsSphere(beamSphere);
+  };
+
   const patch = (root: Object3D) => {
     root.traverse((o) => {
       const material = (o as Mesh).material as Material | Material[] | undefined;
@@ -525,6 +557,52 @@ export function createCityLighting(options: {
       street.visuals?.update(camera, env.artificial, viewportHeight, fog);
       stadium.update(camera, Math.max(weights.masts, weights.roofs));
     },
+    /**
+     * Per frame, after the vehicle models moved: beams of the nearest vehicles (smoothed render
+     * poses, so beams and lenses stay together), scaled by the night level. Allocation-light: the
+     * selection array is rebuilt, the uniforms are reused.
+     */
+    updateVehicles(poses: readonly VehiclePose[], camera: Camera) {
+      const level = shown.artificial;
+      if (!vehicleBeams || level <= 0.0005 || poses.length === 0) {
+        vehicleSelection = [];
+        uniforms.vehicleCount.value = 0;
+        return 0;
+      }
+      camera.updateMatrixWorld();
+      camera.getWorldPosition(cameraPosition);
+      viewFrustum.setFromProjectionMatrix(
+        viewProjection.multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse),
+      );
+      vehicleSelection = selectNearestVehicles(
+        poses,
+        cameraPosition,
+        metres,
+        VEHICLE_MAX,
+        vehicleRangeM,
+        beamInView,
+      );
+      return writeVehicleUniforms(uniforms, vehicleSelection, level, metres);
+    },
+    /** Switches the vehicle beams on or off (tests and before/after comparisons; default on). */
+    setVehicleBeams(on: boolean) {
+      vehicleBeams = on;
+      if (!on) {
+        vehicleSelection = [];
+        uniforms.vehicleCount.value = 0;
+      }
+    },
+    /**
+     * Selection distance limit in metres (default VEHICLE_MAX_DISTANCE_M). Measurement only: Infinity
+     * keeps all VEHICLE_MAX beams active wherever the camera is (worst-case shader cost).
+     */
+    setVehicleRange(metresLimit: number) {
+      vehicleRangeM = metresLimit;
+    },
+    /** Night level (env.artificial) currently shown: drives the vehicle lens glow. */
+    get artificial() {
+      return shown.artificial;
+    },
     describe() {
       const local = utcToLocal(utc);
       const index = street.prepared?.index.stats;
@@ -561,6 +639,17 @@ export function createCityLighting(options: {
           shadowMaps: 0,
         },
         stadiumEmitters: stadium.emitters.length,
+        vehicleLights: {
+          enabled: vehicleBeams,
+          max: VEHICLE_MAX,
+          active: uniforms.vehicleCount.value,
+          selected: vehicleSelection.map((s) => ({
+            id: s.pose.id,
+            kind: s.pose.kind,
+            distanceM: Math.round(s.distanceM * 10) / 10,
+            weight: Math.round(s.weight * 1000) / 1000,
+          })),
+        },
       };
     },
     dispose() {

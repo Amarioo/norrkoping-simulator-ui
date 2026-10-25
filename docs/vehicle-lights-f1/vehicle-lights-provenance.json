@@ -1,0 +1,85 @@
+{
+  "phase": "vehicle-lights-f1",
+  "summary": "Headlights, tail lights and low-beam cones of simulated cars, trucks and buses. No new dataset: every lighting value is an estimate; vehicle positions come from the simulation.",
+  "datasets": [],
+  "inputs": [
+    {
+      "name": "Vehicle poses",
+      "source": "norrkoping-simulator-backend simulation (SSE snapshot), smoothed per frame by src/lib/transportModels.ts and src/lib/publicTransport.ts",
+      "licence": "project code (simulated data, not observations)",
+      "acquired": "runtime (no stored data)",
+      "kind": "simulated",
+      "accuracy": "simulated traffic; not real vehicles"
+    },
+    {
+      "name": "Lamp positions on the vehicle models",
+      "source": "the drawn models in src/lib/transportModels.ts (compact, estate, truck) and src/lib/publicTransport.ts (bus)",
+      "licence": "project code",
+      "acquired": "read from the code 2026-10-25",
+      "kind": "derived from project models",
+      "values_m": {
+        "compact": { "front": 2.065, "height": 0.82 },
+        "estate": { "front": 2.415, "height": 0.82 },
+        "truck": { "front": 5.38, "height": 0.93 },
+        "bus": { "front": 6.085, "height": 0.84 }
+      },
+      "accuracy": "matches the drawn lenses (±0.05 m); the models themselves are generic, not specific vehicle makes"
+    }
+  ],
+  "estimates": [
+    {
+      "name": "BEAM_CANDELA",
+      "value": 30000,
+      "unit": "cd (both lamps together, peak)",
+      "basis": "typical order of magnitude of a dipped-beam hot spot (about 2 × 15 000 cd); no vehicle model, no regulation table, no compliance claimed",
+      "label": "estimate"
+    },
+    {
+      "name": "BEAM_SHAPE",
+      "value": {
+        "horizontalHalfAngleOuterDeg": 40,
+        "horizontalHalfAngleInnerDeg": 15,
+        "cutOffAboveHorizontal": "fades from −0.3° to +2.0° (sine −0.005 … 0.035)",
+        "groundFadeNearBumper": "sine of elevation −0.25 … −0.015, squared"
+      },
+      "basis": "generic European dipped-beam pattern (sharp cut-off just above the horizontal, wide spread, little light right in front of the bumper); symmetric (no kerb-side step)",
+      "label": "estimate"
+    },
+    {
+      "name": "BEAM_RANGE_M",
+      "value": 60,
+      "unit": "m",
+      "basis": "smooth range window; typical useful reach of dipped beams",
+      "label": "estimate"
+    },
+    {
+      "name": "BEAM_COLOR",
+      "value": [1, 0.95, 0.86],
+      "unit": "linear RGB",
+      "basis": "neutral-warm white between halogen and LED headlamps",
+      "label": "estimate"
+    },
+    {
+      "name": "Display calibration",
+      "value": "STREET_LUX_SCALE 0.035 per lux (the existing street-light calibration, unchanged)",
+      "basis": "perceptual calibration of Step 6 (docs/step6/lighting-architecture.md)",
+      "label": "perceptual calibration"
+    },
+    {
+      "name": "Lens glow",
+      "value": { "headlampNightGain": 3.2, "tailLampNightGain": 2.2 },
+      "unit": "emissive intensity added at full night (day values unchanged: cars/trucks 0.4, bus 0.5 / 0.3)",
+      "basis": "visual tuning; not photometry",
+      "label": "perceptual calibration"
+    },
+    {
+      "name": "Selection",
+      "value": { "VEHICLE_MAX": 16, "VEHICLE_MAX_DISTANCE_M": 600, "VEHICLE_FADE": 0.25 },
+      "basis": "performance budget (shader loop) and visibility; not a property of real vehicles",
+      "label": "rendering budget"
+    }
+  ],
+  "switching": "Lights follow the street-lighting night level env.artificial (1 − smoothstep(−3°, 2°, solar elevation)). Real vehicles in Sweden drive with dipped beams or daytime running lights at all times (Trafikförordningen); the day state here shows no beam, as specified for F1.",
+  "coordinates": "Scene units, x east, z south, 25 m per unit × grid scale factor 0.9996584126, origin E 569030 / N 6494989 (EPSG:3006, SCENE_REFERENCE); heights relative to the rendered RH2000-based ground. Vehicle heading 0 points along +z (scene south); forward = (sin h, cos h).",
+  "notInvented": ["vehicle makes or models", "real photometry", "vehicle registration or fleet data", "switching schedules"]
+}

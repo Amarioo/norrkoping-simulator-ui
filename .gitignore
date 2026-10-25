@@ -74,3 +74,7 @@ work/geodata/
 # Lighting Phase L2bc scratch (captures, perf runs, generation timings). Curated evidence is in
 # docs/lighting-city-l2bc/; reusable tools are in scripts/lighting-l2/.
 /work/lighting-city-l2bc/
+
+# Vehicle Lights Phase F1 scratch (main baseline app, captures, perf runs). Curated evidence is in
+# docs/vehicle-lights-f1/; reusable tools are in scripts/vehicle-lights-f1/.
+/work/vehicle-lights-f1/

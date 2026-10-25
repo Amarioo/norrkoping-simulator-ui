@@ -21,6 +21,12 @@ import {
 } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import type { Vehicle, Aircraft } from './city.svelte';
+import {
+  HEADLAMP_NIGHT_GAIN,
+  TAILLAMP_NIGHT_GAIN,
+  type LitVehicleKind,
+  type VehiclePose,
+} from './lighting/vehicleLights';
 
 type Part = { mesh: InstancedMesh; local: Matrix4; tint: boolean; wheel: boolean };
 /** Vehicle dimensions are in metres, converted once to the map's 1:25 scale. */
@@ -54,6 +60,8 @@ export function createTransportModels() {
     );
   const headlamp = lamp('#fff1ca'),
     tailLamp = lamp('#a32722');
+  // Vehicle Lights Phase F1: lens glow follows the night level (day look unchanged at level 0).
+  const DAY_EMISSIVE = 0.4;
   function local(x: number, y: number, z: number, ry = 0, rz = 0) {
     return new Matrix4().compose(
       new Vector3(x, y, z),
@@ -379,12 +387,26 @@ export function createTransportModels() {
       (c) => new Color(c),
     );
   let planePosition: Vector3 | undefined;
+  // Smoothed render poses of the cars and trucks drawn this frame (reused objects), for the beams.
+  const poses: VehiclePose[] = [];
+  let poseCount = 0;
+  const pushPose = (id: number, kind: LitVehicleKind, p: Vector3, heading: number) => {
+    const pose = (poses[poseCount] ??= { id, kind, x: 0, y: 0, z: 0, heading: 0 });
+    pose.id = id;
+    pose.kind = kind;
+    pose.x = p.x;
+    pose.y = p.y;
+    pose.z = p.z;
+    pose.heading = heading;
+    poseCount++;
+  };
   return {
     group,
     airplane,
     update(vehicles: Vehicle[], aircraft: Aircraft[], dt: number, time: number) {
       const live = new Set(vehicles.map((v) => v.id));
       for (const id of smoothed.keys()) if (!live.has(id)) smoothed.delete(id);
+      poseCount = 0;
       for (const [kind, parts] of types) {
         const list = vehicles.filter((v) => v.kind === kind);
         for (const part of parts) {
@@ -402,6 +424,7 @@ export function createTransportModels() {
             Math.atan2(Math.sin(v.heading - state.heading), Math.cos(v.heading - state.heading)) *
             (1 - Math.exp(-dt * 14));
           worldMatrix.compose(state.pos, q.setFromAxisAngle(axis, state.heading), scale);
+          pushPose(v.id, kind as LitVehicleKind, state.pos, state.heading);
           for (const part of parts) {
             matrix.multiplyMatrices(worldMatrix, part.local);
             part.mesh.setMatrixAt(i, matrix);
@@ -425,6 +448,16 @@ export function createTransportModels() {
         gear.visible = a.gear;
         for (const prop of props) prop.rotation.z = time * 45;
       }
+    },
+    /** Smoothed poses of this frame's cars and trucks (valid until the next update). */
+    poses(): readonly VehiclePose[] {
+      poses.length = poseCount;
+      return poses;
+    },
+    /** Night level 0…1 (env.artificial): headlamp and tail-lamp lens glow. */
+    setNightLevel(level: number) {
+      headlamp.emissiveIntensity = DAY_EMISSIVE + HEADLAMP_NIGHT_GAIN * level;
+      tailLamp.emissiveIntensity = DAY_EMISSIVE + TAILLAMP_NIGHT_GAIN * level;
     },
     positionOf(id: number) {
       return smoothed.get(id)?.pos;

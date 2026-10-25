@@ -2,6 +2,25 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Vehicle Lights Phase F1 — headlights and tail lights (2026-10-25) — approved (user, 2026-10-25), committed and pushed
+
+[Full report](vehicle-lights-f1/README.md). Branch `codex/vehicle-lights-f1` from `main` = `43e1a4d`.
+**Committed and pushed:** `main` fast-forwarded to this branch on `origin`. Backend unchanged.
+
+- **Result:** at night cars, trucks and buses show glowing headlamps and red tail lamps (all vehicles,
+  following the smoothed pose every frame); the ≤ 16 vehicles nearest the camera whose beam can reach
+  the view throw a dipped-beam pool (±40°, cut-off ≈ +2°, 60 m) in the existing shader patch (fixed
+  uniform array, no three.js lights, no new programs). Off by day (day pictures pixel-identical).
+  All values are estimates (`vehicleLights.ts`, provenance in docs). Trams/trains (F2) unchanged.
+- **Measured (paired production builds, traffic on via backend copy 8095, frozen world):** night p95
+  ≤ +0.8 ms, day ≤ +0.5 ms pooled (one worst-case series +0.7 ms by day, treated as noise), map-ready
+  +30 ms, heap +0.16 MB, calls/triangles +0, 20 programs.
+- **Checks:** type check 0; build OK; Vitest 423/423 first run (later runs 422/423: known 5 s timeout in
+  `infrastructure.test.ts`, same on `main`); Playwright 4 runs 10/11, 9/11, 10/11, 9/11 — new F1 test
+  always passes; failures only in the known flaky A2/A3 picture checks (4 px ±1, reproduced on `main`
+  7/10) and `simulation`/`transit` specs (`main` failed both).
+- **Local only:** `.claude/launch.json` + `f1-*`; `.gitignore` + `/work/vehicle-lights-f1/`.
+
 ## Lighting Phase L2bc — paths, squares, junctions and motorways (2026-10-25) — implemented, committed and pushed, for review
 
 [Full report](lighting-city-l2bc/README.md). L2b and L2c run together (user request). Branch

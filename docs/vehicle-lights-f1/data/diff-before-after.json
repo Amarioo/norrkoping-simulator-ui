@@ -1,0 +1,196 @@
+{
+  "beforeDir": "work/vehicle-lights-f1/captures/before",
+  "afterDir": "work/vehicle-lights-f1/captures/after",
+  "captures": {
+    "car-behind-day": {
+      "changedPixels": 0,
+      "pixels": 702240,
+      "lumaBefore": 132.16,
+      "lumaAfter": 132.16,
+      "calls": {
+        "before": 1835,
+        "after": 1835
+      },
+      "triangles": {
+        "before": 2602083,
+        "after": 2602083
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 0
+    },
+    "car-front-day": {
+      "changedPixels": 0,
+      "pixels": 702240,
+      "lumaBefore": 141.16,
+      "lumaAfter": 141.16,
+      "calls": {
+        "before": 1278,
+        "after": 1278
+      },
+      "triangles": {
+        "before": 1781038,
+        "after": 1781038
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 0
+    },
+    "car-side-day": {
+      "changedPixels": 0,
+      "pixels": 702240,
+      "lumaBefore": 116.94,
+      "lumaAfter": 116.94,
+      "calls": {
+        "before": 890,
+        "after": 890
+      },
+      "triangles": {
+        "before": 1569213,
+        "after": 1569213
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 0
+    },
+    "bus-behind-day": {
+      "changedPixels": 0,
+      "pixels": 702240,
+      "lumaBefore": 137.29,
+      "lumaAfter": 137.29,
+      "calls": {
+        "before": 441,
+        "after": 441
+      },
+      "triangles": {
+        "before": 922315,
+        "after": 922315
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 0
+    },
+    "bus-front-day": {
+      "changedPixels": 0,
+      "pixels": 702240,
+      "lumaBefore": 135.22,
+      "lumaAfter": 135.22,
+      "calls": {
+        "before": 5182,
+        "after": 5182
+      },
+      "triangles": {
+        "before": 7386499,
+        "after": 7386499
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 0
+    },
+    "car-behind-night": {
+      "changedPixels": 72035,
+      "pixels": 702240,
+      "lumaBefore": 22.43,
+      "lumaAfter": 23.41,
+      "calls": {
+        "before": 1836,
+        "after": 1836
+      },
+      "triangles": {
+        "before": 2646775,
+        "after": 2646775
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 2
+    },
+    "car-front-night": {
+      "changedPixels": 335637,
+      "pixels": 702240,
+      "lumaBefore": 32.56,
+      "lumaAfter": 39.16,
+      "calls": {
+        "before": 1279,
+        "after": 1279
+      },
+      "triangles": {
+        "before": 1825730,
+        "after": 1825730
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 1
+    },
+    "car-side-night": {
+      "changedPixels": 302865,
+      "pixels": 702240,
+      "lumaBefore": 26.95,
+      "lumaAfter": 33.08,
+      "calls": {
+        "before": 891,
+        "after": 891
+      },
+      "triangles": {
+        "before": 1613905,
+        "after": 1613905
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 2
+    },
+    "bus-behind-night": {
+      "changedPixels": 37929,
+      "pixels": 702240,
+      "lumaBefore": 8.5,
+      "lumaAfter": 9.36,
+      "calls": {
+        "before": 442,
+        "after": 442
+      },
+      "triangles": {
+        "before": 967007,
+        "after": 967007
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 1
+    },
+    "bus-front-night": {
+      "changedPixels": 310056,
+      "pixels": 702240,
+      "lumaBefore": 9.32,
+      "lumaAfter": 17.63,
+      "calls": {
+        "before": 5183,
+        "after": 5183
+      },
+      "triangles": {
+        "before": 7431191,
+        "after": 7431191
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": 1
+    }
+  }
+}

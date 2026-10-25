@@ -21,6 +21,9 @@
  * 2. Stadium floodlights: ≤ STADIUM_MAX spot emitters in the arena frame, evaluated only inside the
  *    stadium volume (soft box), with analytic roof occluders so floodlights do not shine through the
  *    stand roofs.
+ * 3. Vehicle low beams (Vehicle Lights Phase F1): ≤ VEHICLE_MAX emitters (the vehicles nearest the
+ *    camera, vehicleLights.ts) with a forward cone, a sharp cut-off above the horizontal and a range
+ *    window; vehicleCount is 0 by day, so the loop does no vehicle work then.
  *
  * Shader configuration never changes after the first compile: lamp count, time of day and
  * floodlight state are uniforms or texture contents (no program recompiles while scrubbing time).
@@ -39,6 +42,7 @@ import {
   Vector4,
   type Material,
 } from 'three';
+import { BEAM_COLOR, BEAM_SHAPE, VEHICLE_MAX, VEHICLE_VEC4 } from './vehicleLights';
 
 export const LAMP_TEXELS = 8;
 /**
@@ -136,6 +140,9 @@ export function createLightingUniforms() {
     stadiumBox: { value: new Vector4(70, 96, 30, 8) },
     stadiumLights: { value: Array.from({ length: STADIUM_MAX * 3 }, () => new Vector4()) },
     stadiumRoofs: { value: Array.from({ length: STADIUM_ROOFS * 2 }, () => new Vector4()) },
+    /** Vehicle Lights Phase F1: active beams (0 by day) and their emitters (vehicleLights.ts layout). */
+    vehicleCount: { value: 0 },
+    vehicleLights: { value: Array.from({ length: VEHICLE_MAX * VEHICLE_VEC4 }, () => new Vector4()) },
   };
 }
 export type LightingUniforms = ReturnType<typeof createLightingUniforms>;
@@ -240,6 +247,8 @@ uniform mat3 stadiumToWorld;
 uniform vec4 stadiumBox;
 uniform vec4 stadiumLights[ ${STADIUM_MAX * 3} ];
 uniform vec4 stadiumRoofs[ ${STADIUM_ROOFS * 2} ];
+uniform int vehicleCount;
+uniform vec4 vehicleLights[ ${VEHICLE_MAX * VEHICLE_VEC4} ];
 
 float cityOcclusion( ivec2 lamp, int s ) {
 	vec4 t = texelFetch( cityLampTex, lamp + ivec2( 3 + s / 4, 0 ), 0 );
@@ -303,6 +312,25 @@ vec3 stadiumLight( int j, vec3 p, out vec3 dir ) {
 	dir = normalize( stadiumToWorld * l );
 	return e.rgb * ( spot * open / d2 );
 }
+// Vehicle low beam k at world point P (vehicleLights.ts beamIlluminance is the CPU reference):
+// irradiance colour and the unit world direction to the emitter. Straight-line code like cityLamp.
+vec3 vehicleLight( int k, vec3 P, out vec3 dir ) {
+	vec4 a = vehicleLights[ k * 2 ];
+	vec4 b = vehicleLights[ k * 2 + 1 ];
+	vec3 Lm = ( a.xyz - P ) * cityMetres;
+	float d2 = max( dot( Lm, Lm ), 0.25 );
+	float d = sqrt( d2 );
+	dir = Lm / d;
+	float hd = max( length( Lm.xz ), 1e-3 );
+	float cosH = dot( -Lm.xz, b.xy ) / hd;
+	float e = -dir.y;
+	float horizontal = smoothstep( ${BEAM_SHAPE.cosOuter.toFixed(3)}, ${BEAM_SHAPE.cosInner.toFixed(3)}, cosH );
+	float floorFade = smoothstep( ${BEAM_SHAPE.floorLow.toFixed(3)}, ${BEAM_SHAPE.floorHigh.toFixed(3)}, e );
+	float vertical = floorFade * floorFade * ( 1.0 - smoothstep( ${BEAM_SHAPE.cutLow.toFixed(3)}, ${BEAM_SHAPE.cutHigh.toFixed(3)}, e ) );
+	float r = min( d / a.w, 1.0 );
+	float window = 1.0 - r * r * r * r;
+	return vec3( ${BEAM_COLOR.map((c) => c.toFixed(3)).join(', ')} ) * ( b.z * horizontal * vertical * window * window / d2 );
+}
 `;
 const FRAGMENT_MAIN = /* glsl */ `
 	{
@@ -347,13 +375,17 @@ const FRAGMENT_MAIN = /* glsl */ `
 				* ( 1.0 - smoothstep( stadiumBox.z, stadiumBox.z + 8.0, stadiumP.y ) );
 		}
 		int cityFloods = stadiumMask > 0.0 ? stadiumCount : 0;
-		for ( int n = 0; n < cityFloods + cityLamps; n ++ ) {
+		// Vehicle beams first (≤ VEHICLE_MAX, none by day), then floodlights, then the cell's lamps.
+		int cityCars = vehicleCount;
+		for ( int n = 0; n < cityCars + cityFloods + cityLamps; n ++ ) {
 			vec3 dir;
 			vec3 col;
-			if ( n < cityFloods ) {
-				col = stadiumLight( n, stadiumP, dir ) * ( stadiumLuxScale * stadiumLevel * stadiumMask );
+			if ( n < cityCars ) {
+				col = vehicleLight( n, vCityWorld, dir ) * cityLuxScale;
+			} else if ( n < cityCars + cityFloods ) {
+				col = stadiumLight( n - cityCars, stadiumP, dir ) * ( stadiumLuxScale * stadiumLevel * stadiumMask );
 			} else {
-				int at = cityListStart + n - cityFloods;
+				int at = cityListStart + n - cityCars - cityFloods;
 				int listRow = at / cityListWidth;
 				float id = texelFetch( cityListTex, ivec2( at - listRow * cityListWidth, listRow ), 0 ).r;
 				col =cityLamp( int( id ), vCityWorld, dir ) * ( cityLuxScale * cityLampLevel );
