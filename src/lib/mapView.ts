@@ -25,6 +25,7 @@ import { CITY_LAYERS, type CityLayer } from './cityMesh';
 import { requestCityLayers } from './cityMeshClient';
 import { layeredGround } from './groundLayers';
 import { createIdrottsparken } from './stadium/idrottsparken';
+import { createRadhuset } from './landmarks/radhuset/radhuset';
 
 export { Batch, fill, strip } from './cityMesh';
 
@@ -215,6 +216,9 @@ export function createMappedCity() {
   // Step 6: Idrottsparken (stands, roofs, masts, floodlight hooks) and its draped turf.
   const stadium = createIdrottsparken(terrain);
   group.add(stadium.group, stadium.turf);
+  // Landmark Phase B1: Rådhuset with its tower and Gull-Olle (replaces the OSM walls of way/285809156).
+  const radhuset = createRadhuset(terrain);
+  group.add(radhuset.group);
   return {
     group,
     labels: details.labels,
@@ -226,6 +230,7 @@ export function createMappedCity() {
     dispose() {
       disposed = true;
       stadium.dispose();
+      radhuset.dispose();
       details.dispose();
       places.dispose();
       bridges.dispose();

@@ -1,0 +1,93 @@
+{
+  "phase": "Landmark Phase B1, part 1 (geometry, daylight)",
+  "object": "Norrköpings rådhus (town hall) with tower and the gilded sculpture Gull-Olle (Sankt Olof)",
+  "model": "src/lib/landmarks/radhuset/spec.ts (values), src/lib/landmarks/radhuset/radhuset.ts (geometry)",
+  "frame": {
+    "description": "Building frame: horizontal ground metres, origin = measured tower centre, +u along the north façade towards the NE corner (OSM way/285809156 vertex 0 → 5), +v out of the north façade; heights RH2000 metres.",
+    "originScene": [-1.1325, -10.6945],
+    "originSweref99TM": [569001.7, 6495256.27],
+    "axisScene": [0.960852, -0.277062],
+    "sceneContract": "scene = (SWEREF 99 TM − (569030, 6494989)) / (25 · 0.9996584126), x east, z south; scene y = RH2000 / 25 (verticalOriginMetres 0)",
+    "source": "LIDAR (origin), OSM (axis)"
+  },
+  "sources": {
+    "OSM": {
+      "what": "Building footprint way/285809156 (name=Rådhuset)",
+      "file": "src/lib/data/norrkoping-map.json (unchanged)",
+      "snapshot": "2026-10-16T13:35:36Z",
+      "licence": "ODbL-1.0, © OpenStreetMap contributors",
+      "accuracy": "mapped from aerial imagery; typically ±1 m (here up to ≈ 1 m from the LiDAR eave line)"
+    },
+    "LIDAR": {
+      "what": "Lantmäteriet point cloud, STAC collection dsm-skoglig-copc (called Laserdata NH 2020 elsewhere in this project)",
+      "tile": "y20c012-64950_5675_25.copc.laz",
+      "tileSha256": "see docs/landmark-b1/data/radhuset-lidar.json source.tileSha256",
+      "acquired": "2020-02-03 (STAC item date), scan area 20C012",
+      "density": "nominal 1.2 points/m²",
+      "licence": "CC BY 4.0, ©Lantmäteriet (processed)",
+      "processing": "scripts/landmark-b1/radhuset_lidar.py → docs/landmark-b1/data/radhuset-lidar.json (deterministic, byte-identical rebuild verified)",
+      "accuracy": "heights ±0.1–0.2 m on hard surfaces; wall positions ±0.3–0.5 m (few returns on vertical faces); thin parts (statue top) may be under-sampled"
+    },
+    "KOMMUN": {
+      "what": "Norrköpings kommun, page 'Norrköpings rådhus'",
+      "url": "https://norrkoping.se/kommun-och-politik/om-norrkoping/norrkopings-radhus",
+      "pageUpdated": "2026-09-29",
+      "read": "2026-10-25",
+      "facts": ["Rådhusets torn är 68 meter högt.", "four and a half metre gilded granite sculpture at the top", "depicts Sankt Olof, 'Gull-Olle'", "inaugurated 28 November 1910, architect Isak Gustaf Clason"]
+    },
+    "WIKI": {
+      "what": "sv.wikipedia 'Norrköpings rådhus'",
+      "url": "https://sv.wikipedia.org/wiki/Norrk%C3%B6pings_r%C3%A5dhus",
+      "read": "2026-10-25",
+      "facts": ["built 1907–1910 in Helsingborg brick", "4.5 m gilded statue of Sankt Olof by Johan Axel Wetterlund, 1910", "byggnadsminne 1990"]
+    },
+    "PHOTO": {
+      "what": "Wikimedia Commons photographs, inspected as references only; nothing copied into the model",
+      "files": [
+        { "file": "Norrköpings Rådhus, norra fasaden mot Tyska Torget.jpg", "author": "Måns Hagberg", "date": "2015-09-04", "licence": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Norrk%C3%B6pings_R%C3%A5dhus,_norra_fasaden_mot_Tyska_Torget.jpg" },
+        { "file": "Norrköpings rådhus tower 20th of September 2016.jpg", "author": "Xamreb", "date": "2016-09-20", "licence": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Norrk%C3%B6pings_r%C3%A5dhus_tower_20th_of_September_2016.jpg" },
+        { "file": "Norrköpings rådhus (hösten 2025).jpg", "author": "OMXSHSB", "date": "2025-10-15", "licence": "CC0 1.0", "url": "https://commons.wikimedia.org/wiki/File:Norrk%C3%B6pings_r%C3%A5dhus_(h%C3%B6sten_2025).jpg" }
+      ]
+    },
+    "EST": { "what": "estimate by this project, no measurement" }
+  },
+  "values": [
+    { "id": "tower.top", "value": 73.15, "unit": "m RH2000", "kind": "measured", "source": "LIDAR", "evidence": "highest non-noise return within 9 m of the tower centre" },
+    { "id": "ground.towerFront", "value": 4.47, "unit": "m RH2000", "kind": "measured", "source": "LIDAR", "evidence": "class 2 median, 7–14 m in front of the tower (n = 263)" },
+    { "id": "tower.totalHeight", "value": 68.68, "unit": "m", "kind": "derived", "source": "LIDAR", "evidence": "73.15 − 4.47; KOMMUN states 68 m (difference 0.7 m)" },
+    { "id": "gullOlle.height", "value": 4.5, "unit": "m", "kind": "official", "source": "KOMMUN, WIKI" },
+    { "id": "gullOlle.base", "value": 68.65, "unit": "m RH2000", "kind": "derived", "source": "LIDAR + KOMMUN", "evidence": "tower.top − 4.5; matches the narrowing of the LiDAR slices at 68.5–69 m" },
+    { "id": "gullOlle.silhouette", "value": "standing robed figure with crown, ≤ 1.6 m wide", "kind": "estimate", "source": "EST (width bounded by LIDAR slices 69–70.5 m)", "evidence": "attributes, pose and facing not documented; not modelled" },
+    { "id": "tower.shaft", "value": { "u0": -5.3, "u1": 5.25, "v0": -5.6, "v1": 5.0 }, "unit": "m", "kind": "measured", "source": "LIDAR", "evidence": "returns on the shaft walls 40–54 m (u faces: 82 / 78 returns; v faces: fewer)" },
+    { "id": "tower.base", "value": { "u0": -5.25, "u1": 5.75, "v0": 4.8, "v1": 6.03 }, "unit": "m", "kind": "mapped", "source": "OSM", "evidence": "entrance projection of the north façade" },
+    { "id": "tower.cornice", "value": { "bottom": 57.3, "top": 58.3, "half": 5.75 }, "unit": "m RH2000 / m", "kind": "measured (bottom estimated)", "source": "LIDAR", "evidence": "172 returns at 58.0–58.5 m, half-width 5.71–5.79; no returns 55–57.5 m under the overhang" },
+    { "id": "tower.roof", "value": [[58.3, 5.0], [60.0, 4.5], [62.0, 3.75], [64.0, 3.1], [66.0, 2.3], [68.0, 1.6], [68.65, 1.1]], "unit": "[m RH2000, half-width m]", "kind": "measured", "source": "LIDAR", "evidence": "0.5 m slices, 2nd–98th percentile extents, both axes averaged" },
+    { "id": "tower.openings", "value": { "bottom": 52.2, "top": 56.0, "width": 1.1, "count": 3 }, "kind": "estimate", "source": "PHOTO 2016", "evidence": "scaled by the 10.6 m shaft width" },
+    { "id": "tower.clock", "value": { "centre": 47.5, "diameter": 3.6, "faces": 4 }, "kind": "estimate", "source": "PHOTO 2015/2016/2025", "evidence": "two faces visible per photograph; all four assumed" },
+    { "id": "tower.bands", "value": [24.2, 28.7, 33.2, 37.7, 42.2, 44.9, 51.5, 56.6], "unit": "m RH2000", "kind": "estimate", "source": "PHOTO" },
+    { "id": "wings.north", "value": { "u0": -33.4, "u1": 34.3, "v0": -15.2, "v1": 4.8 }, "unit": "m", "kind": "mapped", "source": "OSM" },
+    { "id": "wings.north.profile (courtyard side)", "value": [[0, 22.5], [0.9, 24.6], [2.4, 30.9], [10.0, 37.9]], "unit": "[inset m, m RH2000]", "kind": "measured", "source": "LIDAR", "evidence": "section 'north' in radhuset-lidar.json" },
+    { "id": "wings.north.profileNorth (square side)", "value": [[0, 22.5], [0.35, 24.6], [3.6, 30.9], [10.0, 37.9]], "unit": "[inset m, m RH2000]", "kind": "measured", "source": "LIDAR" },
+    { "id": "wings.west", "value": { "u0": -33.7, "u1": -19.4, "v0": -47.0, "v1": -15.2, "profile": [[0, 22.5], [1.2, 26.1], [7.15, 30.1]] }, "kind": "mapped + measured", "source": "OSM + LIDAR" },
+    { "id": "wings.east", "value": { "u0": 22.1, "u1": 33.8, "v0": -46.3, "v1": -15.4, "profile": [[0, 22.5], [1.2, 26.1], [5.85, 30.15]] }, "kind": "mapped + measured", "source": "OSM + LIDAR", "evidence": "outer wall 34.1 → 33.5 m in OSM, modelled straight at 33.8" },
+    { "id": "eave", "value": 22.5, "unit": "m RH2000", "kind": "measured", "source": "LIDAR", "evidence": "outermost roof returns of the courtyard side and side wings 22.5–22.7" },
+    { "id": "balustrade.top", "value": 23.6, "unit": "m RH2000", "kind": "measured", "source": "LIDAR + PHOTO 2015", "evidence": "north façade edge returns 23.6; not detected on the other façades, so not modelled there" },
+    { "id": "middle.tall", "value": { "u0": -7.4, "u1": 7.4, "v0": -21.1, "v1": -15.1, "eave": 30.6, "ridge": 36.1 }, "kind": "mapped + measured", "source": "OSM + LIDAR" },
+    { "id": "middle.strips", "value": { "top": 19.7 }, "kind": "measured", "source": "LIDAR" },
+    { "id": "middle.hall", "value": { "u0": -6.85, "u1": 7.63, "v0": -28.57, "v1": -21.1, "eave": 10.3, "ridge": 12.1 }, "kind": "mapped + measured", "source": "OSM + LIDAR" },
+    { "id": "projections", "value": { "west": { "ridge": 29.6 }, "east": { "ridge": 29.8 } }, "kind": "mapped + measured", "source": "OSM + LIDAR", "evidence": "cross gables over the courtyard projections" },
+    { "id": "roofFeatures", "value": "chimney stacks / ventilators at measured positions and heights (39.2, 38.6, 37.1, 31.5 m)", "kind": "measured position/height, estimated shape", "source": "LIDAR + PHOTO" },
+    { "id": "facade.colours", "value": "brown brick, light stone bands/plinth/cornice, slate-grey roofs, copper caps, gilded statue", "kind": "estimate", "source": "PHOTO + WIKI (Helsingborg brick)" },
+    { "id": "facade.windows", "value": "3 rows, 1.5 × 2.6 m, every 3.6 m", "kind": "estimate", "source": "EST" },
+    { "id": "entrance", "value": "portal 3.2 × 4.6 m centred under the tower", "kind": "estimate", "source": "EST (Commons file name 'norra fasadens portparti' confirms a north portal; position assumed)" }
+  ],
+  "fit": {
+    "test": "src/lib/landmarks/radhuset/radhuset.test.ts 'model against the LiDAR surface'",
+    "cells": 1782,
+    "medianAbsDeltaM": 0.34,
+    "p90AbsDeltaM": 1.47,
+    "meanDeltaM": -0.03,
+    "note": "1 m LiDAR surface cells inside the OSM footprint, ≥ 1.5 m from its outline"
+  },
+  "notUsed": ["no municipal building drawings", "no photogrammetry or textures from photographs", "no lighting data (part 2)"]
+}

@@ -1,0 +1,234 @@
+{
+  "beforeDir": "work/landmark-b1/captures/before",
+  "afterDir": "work/landmark-b1/captures/after",
+  "captures": {
+    "north-square-day": {
+      "changedPixels": 156364,
+      "pixels": 702240,
+      "lumaBefore": 127.75,
+      "lumaAfter": 127.3,
+      "calls": {
+        "before": 1289,
+        "after": 1286
+      },
+      "triangles": {
+        "before": 2550611,
+        "after": 2552089
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "northwest-street-day": {
+      "changedPixels": 242902,
+      "pixels": 702240,
+      "lumaBefore": 127.54,
+      "lumaAfter": 124.9,
+      "calls": {
+        "before": 2001,
+        "after": 1998
+      },
+      "triangles": {
+        "before": 2421688,
+        "after": 2423166
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "southeast-courtyard-day": {
+      "changedPixels": 175613,
+      "pixels": 702240,
+      "lumaBefore": 117.4,
+      "lumaAfter": 117.25,
+      "calls": {
+        "before": 2560,
+        "after": 2558
+      },
+      "triangles": {
+        "before": 3316521,
+        "after": 3318031
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "aerial-day": {
+      "changedPixels": 37436,
+      "pixels": 702240,
+      "lumaBefore": 105.17,
+      "lumaAfter": 104.87,
+      "calls": {
+        "before": 486,
+        "after": 483
+      },
+      "triangles": {
+        "before": 1360997,
+        "after": 1362475
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "tower-top-day": {
+      "changedPixels": 224302,
+      "pixels": 702240,
+      "lumaBefore": 109.19,
+      "lumaAfter": 107.99,
+      "calls": {
+        "before": 1305,
+        "after": 1302
+      },
+      "triangles": {
+        "before": 2809532,
+        "after": 2811010
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "skyline-day": {
+      "changedPixels": 4404,
+      "pixels": 702240,
+      "lumaBefore": 140.73,
+      "lumaAfter": 140.71,
+      "calls": {
+        "before": 1775,
+        "after": 1772
+      },
+      "triangles": {
+        "before": 2819032,
+        "after": 2820510
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "north-square-night": {
+      "changedPixels": 135171,
+      "pixels": 702240,
+      "lumaBefore": 15.27,
+      "lumaAfter": 15.45,
+      "calls": {
+        "before": 1290,
+        "after": 1287
+      },
+      "triangles": {
+        "before": 2595303,
+        "after": 2596781
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "northwest-street-night": {
+      "changedPixels": 228344,
+      "pixels": 702240,
+      "lumaBefore": 12.66,
+      "lumaAfter": 12.63,
+      "calls": {
+        "before": 2002,
+        "after": 1999
+      },
+      "triangles": {
+        "before": 2466380,
+        "after": 2467858
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "southeast-courtyard-night": {
+      "changedPixels": 153550,
+      "pixels": 702240,
+      "lumaBefore": 10.14,
+      "lumaAfter": 10.26,
+      "calls": {
+        "before": 2561,
+        "after": 2559
+      },
+      "triangles": {
+        "before": 3361213,
+        "after": 3362723
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "aerial-night": {
+      "changedPixels": 34469,
+      "pixels": 702240,
+      "lumaBefore": 13.23,
+      "lumaAfter": 13.34,
+      "calls": {
+        "before": 487,
+        "after": 484
+      },
+      "triangles": {
+        "before": 1405689,
+        "after": 1407167
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "tower-top-night": {
+      "changedPixels": 214605,
+      "pixels": 702240,
+      "lumaBefore": 8.39,
+      "lumaAfter": 8.9,
+      "calls": {
+        "before": 1306,
+        "after": 1303
+      },
+      "triangles": {
+        "before": 2854224,
+        "after": 2855702
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "skyline-night": {
+      "changedPixels": 3974,
+      "pixels": 702240,
+      "lumaBefore": 16.16,
+      "lumaAfter": 16.17,
+      "calls": {
+        "before": 1776,
+        "after": 1773
+      },
+      "triangles": {
+        "before": 2863724,
+        "after": 2865202
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    }
+  }
+}

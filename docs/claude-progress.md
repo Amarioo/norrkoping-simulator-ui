@@ -2,6 +2,27 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Landmark Phase B1 part 1 — Rådhuset and Gull-Olle, geometry by day (2026-10-25) — approved (user, 2026-10-25), committed and pushed to its branch
+
+[Full report](landmark-b1/README.md). Branch `claude/landmark-b1` from `main` = `951f3cd`. **Committed
+on the branch and the branch pushed to `origin`** (not merged into `main`). Backend unchanged. Part 2 (façade lighting) not started: no documentation of
+floodlighting found ([remaining-gaps.md](landmark-b1/remaining-gaps.md) §1).
+
+- **Result:** the OSM box (20 m, estimated) and the illustrative tower (≈ 83 m, in the courtyard) are
+  replaced by a measured model (`src/lib/landmarks/radhuset/`): U-shaped brick building on the OSM
+  footprint, eave 22.5 m RH2000, mansard/hip roofs and courtyard blocks from LiDAR, tower on the north
+  façade (10.6 m square, cornice 58 m, pyramid roof from slices), Gull-Olle 68.65–73.15 m RH2000 →
+  **68.7 m above Tyska torget** (municipality: 68 m; sculpture 4.5 m). Clocks, openings, bands,
+  windows, colours and the statue's silhouette are labelled estimates (Commons photos 2015/2016/2025).
+- **Data:** `scripts/landmark-b1/radhuset_lidar.py` → `docs/landmark-b1/data/radhuset-lidar.json`
+  (Lantmäteriet tile y20c012-64950_5675_25, 2020-02-03, CC BY 4.0; byte-identical rebuild). Fit:
+  median |Δ| 0.34 m, p90 1.47 m over 1 782 roof cells. OSM data unchanged (`DETAILED_BUILDING_IDS`).
+- **Measured (paired production builds, traffic on, 11 rounds):** p95 −0.1 … +0.2 ms day and night,
+  map-ready −5 ms, heap +0.14 MB, calls −3, triangles +1.2–1.5 k, 20 programs.
+- **Checks:** type check 0; build OK; Vitest 435/435; Playwright 11/12 then 12/12 (only the known A3
+  picture check, which fails 3/3 on `main` too); new e2e test passes.
+- **Local only:** `.claude/launch.json` + `b1-*` (4); `work/landmark-b1/` (baseline app, captures, perf).
+
 ## Vehicle Lights Phase F1 — headlights and tail lights (2026-10-25) — approved (user, 2026-10-25), committed and pushed
 
 [Full report](vehicle-lights-f1/README.md). Branch `codex/vehicle-lights-f1` from `main` = `43e1a4d`.

@@ -5,6 +5,7 @@ import training from './data/training-pitch.json';
 import { RIVERFRONT_IDS } from './riverfrontDetails';
 import { cityMap } from './mapModel';
 import { terrain } from './terrain';
+import { RADHUSET_ID } from './landmarks/radhuset/spec';
 
 /** Lowest ground under a mapped building (detailed models replace its OSM walls). */
 const footprint = (id: string) =>
@@ -15,6 +16,7 @@ export const DETAILED_BUILDING_IDS = new Set([
   'way/101513457',
   'way/91908192', // Teknikhallen (IFK Performance Center)
   'way/91908705', // Gamla tennishallen
+  RADHUSET_ID, // Rådhuset (Landmark Phase B1, src/lib/landmarks/radhuset/)
   ...data.roofs.map((r) => 'way/' + r.id),
 ]);
 

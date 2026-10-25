@@ -78,3 +78,7 @@ work/geodata/
 # Vehicle Lights Phase F1 scratch (main baseline app, captures, perf runs). Curated evidence is in
 # docs/vehicle-lights-f1/; reusable tools are in scripts/vehicle-lights-f1/.
 /work/vehicle-lights-f1/
+
+# Landmark Phase B1 scratch (main baseline app, captures, perf runs, rebuild check). Curated evidence is
+# in docs/landmark-b1/; reusable tools are in scripts/landmark-b1/.
+/work/landmark-b1/

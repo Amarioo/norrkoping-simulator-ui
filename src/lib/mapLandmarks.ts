@@ -140,54 +140,9 @@ export function createLandmarkDetails() {
 
   // Idrottsparken is built by src/lib/stadium/idrottsparken.ts (Step 6), added in mapView.ts.
 
-  // Rådhusets clock tower and copper spire, anchored within the mapped building.
+  // Rådhuset and its tower (with Gull-Olle) are built by src/lib/landmarks/radhuset/ (Landmark Phase
+  // B1), added in mapView.ts; the earlier illustrative clock tower that stood here was removed.
   let start = group.children.length;
-  const hall = at('Rådhuset').position,
-    tower = new Group();
-  tower.position.set(hall[0], 0, hall[1]);
-  group.add(tower);
-  box(tower, 0, 1.5, 0, 0.57, 2.5, 0.57, '#b49a6b');
-  box(tower, 0, 2.5, 0, 0.73, 0.1, 0.73, '#bba982');
-  cylinder(tower, 0, 2.78, 0, 0.36, 0.5, '#66887b', 0.23, 8);
-  cylinder(tower, 0, 3.17, 0, 0.24, 0.4, '#55756a', 0.01, 8);
-  const clock = texture(128, 128, (c) => {
-    c.fillStyle = '#d6bc70';
-    c.fillRect(0, 0, 128, 128);
-    c.fillStyle = '#243d3b';
-    c.beginPath();
-    c.arc(64, 64, 56, 0, Math.PI * 2);
-    c.fill();
-    c.strokeStyle = '#e6c97b';
-    c.lineWidth = 4;
-    for (let i = 0; i < 12; i++) {
-      const a = (i * Math.PI) / 6;
-      c.beginPath();
-      c.moveTo(64 + Math.sin(a) * 43, 64 + Math.cos(a) * 43);
-      c.lineTo(64 + Math.sin(a) * 49, 64 + Math.cos(a) * 49);
-      c.stroke();
-    }
-    c.beginPath();
-    c.moveTo(42, 46);
-    c.lineTo(64, 64);
-    c.lineTo(87, 37);
-    c.stroke();
-  });
-  for (let side = 0; side < 4; side++) {
-    const m = new Mesh(
-      track(new PlaneGeometry(0.45, 0.45)),
-      // Step 6: lit like the façade (darkens at night); no evidence of an illuminated clock face.
-      track(new MeshStandardMaterial({ map: clock, roughness: 0.6 })),
-    );
-    m.position.set(
-      Math.sin((side * Math.PI) / 2) * 0.291,
-      2.2,
-      Math.cos((side * Math.PI) / 2) * 0.291,
-    );
-    m.rotation.y = (side * Math.PI) / 2;
-    tower.add(m);
-  }
-
-  onBuilding(start, 'Rådhuset');
   // The churches receive recognisable towers/spires rather than generic cylinders.
   for (const [name, color, height] of [
     ['Matteus kyrka', '#985c47', 3.4],
