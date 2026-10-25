@@ -1,0 +1,393 @@
+{
+  "base": "http://127.0.0.1:5240/",
+  "date": "2026-10-21",
+  "timezoneId": "Europe/Stockholm",
+  "viewport": {
+    "width": 1400,
+    "height": 1000
+  },
+  "frame": {
+    "gableCentreScene": [
+      -28.7668,
+      -24.9247
+    ],
+    "axisSweref": [
+      0.280441,
+      -0.959871
+    ]
+  },
+  "poses": {
+    "gable-front": {
+      "camera": [
+        150,
+        25,
+        37
+      ],
+      "target": [
+        0,
+        0,
+        38
+      ]
+    },
+    "emblem-close": {
+      "camera": [
+        70,
+        8,
+        38.5
+      ],
+      "target": [
+        0,
+        0,
+        38.5
+      ]
+    },
+    "hemso-view": {
+      "camera": [
+        170,
+        55,
+        14
+      ],
+      "target": [
+        0,
+        4,
+        36
+      ]
+    },
+    "stockholmsvagen": {
+      "camera": [
+        230,
+        -60,
+        15
+      ],
+      "target": [
+        0,
+        0,
+        30
+      ]
+    },
+    "ene-side": {
+      "camera": [
+        -20,
+        150,
+        40
+      ],
+      "target": [
+        -25,
+        0,
+        32
+      ]
+    },
+    "wsw-side": {
+      "camera": [
+        -20,
+        -150,
+        40
+      ],
+      "target": [
+        -25,
+        0,
+        32
+      ]
+    },
+    "roof-oblique": {
+      "camera": [
+        70,
+        70,
+        115
+      ],
+      "target": [
+        -25,
+        2,
+        47
+      ]
+    },
+    "district": {
+      "camera": [
+        700,
+        260,
+        170
+      ],
+      "target": [
+        -25,
+        0,
+        30
+      ]
+    },
+    "police-preset": "policeEmblem",
+    "police-overview": "police"
+  },
+  "controls": {
+    "control-radhuset": {
+      "c": [
+        -2.6,
+        1.5,
+        -6.8
+      ],
+      "t": [
+        -1.13,
+        1.45,
+        -10.69
+      ]
+    },
+    "control-kungsgatan": {
+      "c": [
+        -25.5,
+        1.1,
+        -11.5
+      ],
+      "t": [
+        -22.3,
+        0.5,
+        -13.65
+      ]
+    }
+  },
+  "states": {
+    "day": 759,
+    "night": 1290
+  },
+  "errors": [],
+  "captures": {
+    "gable-front-day": {
+      "file": "gable-front-day.png",
+      "perf": {
+        "calls": 1724,
+        "triangles": 2753205,
+        "geometries": 4118
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "emblem-close-day": {
+      "file": "emblem-close-day.png",
+      "perf": {
+        "calls": 1636,
+        "triangles": 2696649,
+        "geometries": 4140
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "hemso-view-day": {
+      "file": "hemso-view-day.png",
+      "perf": {
+        "calls": 1856,
+        "triangles": 2816727,
+        "geometries": 4275
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "stockholmsvagen-day": {
+      "file": "stockholmsvagen-day.png",
+      "perf": {
+        "calls": 1625,
+        "triangles": 2710300,
+        "geometries": 4483
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "ene-side-day": {
+      "file": "ene-side-day.png",
+      "perf": {
+        "calls": 1959,
+        "triangles": 2716648,
+        "geometries": 5623
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "wsw-side-day": {
+      "file": "wsw-side-day.png",
+      "perf": {
+        "calls": 2270,
+        "triangles": 2658958,
+        "geometries": 6914
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "roof-oblique-day": {
+      "file": "roof-oblique-day.png",
+      "perf": {
+        "calls": 674,
+        "triangles": 1731338,
+        "geometries": 6914
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "district-day": {
+      "file": "district-day.png",
+      "perf": {
+        "calls": 2204,
+        "triangles": 3294115,
+        "geometries": 6914
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "police-preset-day": {
+      "file": "police-preset-day.png",
+      "perf": {
+        "calls": 1629,
+        "triangles": 2683027,
+        "geometries": 6914
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "police-overview-day": {
+      "file": "police-overview-day.png",
+      "perf": {
+        "calls": 210,
+        "triangles": 787989,
+        "geometries": 6914
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "control-radhuset-day": {
+      "file": "control-radhuset-day.png",
+      "perf": {
+        "calls": 1649,
+        "triangles": 2492529,
+        "geometries": 6914
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "control-kungsgatan-day": {
+      "file": "control-kungsgatan-day.png",
+      "perf": {
+        "calls": 1762,
+        "triangles": 2565398,
+        "geometries": 6914
+      },
+      "programs": 20,
+      "artificial": 0
+    },
+    "gable-front-night": {
+      "file": "gable-front-night.png",
+      "perf": {
+        "calls": 1725,
+        "triangles": 2797897,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "emblem-close-night": {
+      "file": "emblem-close-night.png",
+      "perf": {
+        "calls": 1637,
+        "triangles": 2741341,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "hemso-view-night": {
+      "file": "hemso-view-night.png",
+      "perf": {
+        "calls": 1857,
+        "triangles": 2861419,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "stockholmsvagen-night": {
+      "file": "stockholmsvagen-night.png",
+      "perf": {
+        "calls": 1626,
+        "triangles": 2754992,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "ene-side-night": {
+      "file": "ene-side-night.png",
+      "perf": {
+        "calls": 1960,
+        "triangles": 2761340,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "wsw-side-night": {
+      "file": "wsw-side-night.png",
+      "perf": {
+        "calls": 2271,
+        "triangles": 2703650,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "roof-oblique-night": {
+      "file": "roof-oblique-night.png",
+      "perf": {
+        "calls": 675,
+        "triangles": 1776030,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "district-night": {
+      "file": "district-night.png",
+      "perf": {
+        "calls": 2205,
+        "triangles": 3338807,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "police-preset-night": {
+      "file": "police-preset-night.png",
+      "perf": {
+        "calls": 1630,
+        "triangles": 2727719,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "police-overview-night": {
+      "file": "police-overview-night.png",
+      "perf": {
+        "calls": 211,
+        "triangles": 832681,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "control-radhuset-night": {
+      "file": "control-radhuset-night.png",
+      "perf": {
+        "calls": 1650,
+        "triangles": 2537221,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    },
+    "control-kungsgatan-night": {
+      "file": "control-kungsgatan-night.png",
+      "perf": {
+        "calls": 1763,
+        "triangles": 2610090,
+        "geometries": 6915
+      },
+      "programs": 20,
+      "artificial": 1
+    }
+  },
+  "browser": "156.0.4314.42"
+}

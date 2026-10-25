@@ -21,18 +21,28 @@ import {
   NIGHT_GAIN,
   PHOTO,
   SIGN,
+  TOWER,
   TOWER_MEASURED,
   TOWER_MODEL,
   signPlacement,
 } from './spec';
+import { PARTS } from './tower';
 
 /** LiDAR measurements of the tower (scripts/police-signs-d1/police_tower_lidar.py). */
 const lidar = JSON.parse(
   fs.readFileSync('docs/police-signs-d1/data/police-tower-lidar.json', 'utf8'),
 );
 const M = 25;
-/** The drawn slab (src/lib/mapLandmarks.ts): width 0.51, height 1.82 at y 0.98, length 2.65. */
-const SLAB = { halfWidth: 0.51 / 2, top: 0.98 + 1.82 / 2, capHalfLength: 2.71 / 2 };
+/**
+ * The drawn gable block (Police Tower D1b, src/lib/landmarks/police/tower.ts): the UPPER block of the
+ * measured tower, scene units in the tower frame. (Until D1b: the illustrative slab, half width
+ * 0.255, top 1.89, with a parapet cap overhanging the gable to 1.355.)
+ */
+const SLAB = {
+  halfWidth: PARTS.upper.c1 / M,
+  top: TOWER.upper.parapet / M,
+  gableZ: PARTS.upper.a1 / M,
+};
 
 describe('Police Signs D1: measurements', () => {
   test('tower values in spec.ts are the LiDAR output', () => {
@@ -68,9 +78,10 @@ describe('Police Signs D1: placement on the drawn tower', () => {
   const p = signPlacement(M);
   test('centred on the SSE gable, just in front of the wall, below the parapet', () => {
     expect(p.x).toBe(0);
-    // Face 0.25 m in front of the slab's gable wall, behind the parapet cap's overhang.
+    // Face 0.25 m in front of the slab's gable wall. (D1b: the parapet is flush with the walls, so
+    // the former "behind the cap's overhang" check is now: TOWER_MODEL's gable is the drawn wall.)
     expect((p.z - TOWER_MODEL.halfLength) * M).toBeCloseTo(SIGN.standoffM, 6);
-    expect(p.z).toBeLessThan(SLAB.capHalfLength);
+    expect(TOWER_MODEL.halfLength).toBeCloseTo(SLAB.gableZ, 12);
     // Centre 10.8 m below the parapet top; the whole sign below the slab top, within the gable width.
     expect((TOWER_MODEL.parapetTop - p.y) * M).toBeCloseTo(SIGN.centreBelowParapetM, 6);
     expect(p.y + p.height / 2).toBeLessThan(SLAB.top);

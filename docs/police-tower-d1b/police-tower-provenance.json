@@ -1,0 +1,260 @@
+{
+  "phase": "Police Tower Phase D1b",
+  "object": "Police tower of Polishuset (Stinsen 1, Stockholmsvägen 4–6, Norrköping), OSM relation/1356564",
+  "model": "src/lib/landmarks/police/spec.ts (TOWER, PLANT, DETAIL, EDGE_M, TOWER_MODEL), src/lib/landmarks/police/tower.ts (geometry), src/lib/mapLandmarks.ts (materials, placement)",
+  "frame": {
+    "sceneContract": "scene = (SWEREF 99 TM − (569030, 6494989)) / (25 · 0.9996584126), x east, z south; scene y = RH2000 / 25 (verticalOriginMetres 0)",
+    "towerFrame": {
+      "description": "origin = centre of the UPPER roof extent; a along the UPPER long axis towards the SSE gable (tower group local +z); c towards ENE (local +x); metres; heights RH2000",
+      "centreSweref99TM": [
+        568304.05,
+        6495635.95
+      ],
+      "centreScene": [
+        -29.0479,
+        -25.8868
+      ],
+      "axisSweref": [
+        0.280441,
+        -0.959871
+      ],
+      "axisBearingDeg": 163.71,
+      "gableCentreScene": [
+        -28.7668,
+        -24.9247
+      ],
+      "source": "LIDAR2"
+    },
+    "towerGroup": {
+      "positionScene": [
+        -29.0479,
+        -25.8868
+      ],
+      "positionY": 0,
+      "rotationRad": 0.284254,
+      "localYMeaning": "RH2000 / 25",
+      "before": {
+        "positionScene": [
+          -29.25,
+          -26.22
+        ],
+        "rotationRad": 0.2775,
+        "slabMetres": {
+          "width": 12.75,
+          "length": 66.25,
+          "parapetAboveBase": 47.625
+        },
+        "source": "MODEL (illustrative, D1 and earlier)"
+      }
+    }
+  },
+  "values": [
+    {
+      "name": "upper extent (a0, a1, c0, c1)",
+      "value": {
+        "a0": -25.05,
+        "a1": 25.05,
+        "c0": -4.28,
+        "c1": 4.28
+      },
+      "unit": "m",
+      "kind": "measured",
+      "source": "LIDAR2",
+      "note": "percentiles 1/99 along, 2/98 across"
+    },
+    {
+      "name": "upper roof",
+      "value": 49.02,
+      "unit": "m RH2000",
+      "kind": "measured",
+      "source": "LIDAR2"
+    },
+    {
+      "name": "parapet top",
+      "value": 49.35,
+      "unit": "m RH2000",
+      "kind": "measured",
+      "source": "LIDAR2",
+      "note": "edge returns p90 (p50 49.30, max 49.38)"
+    },
+    {
+      "name": "east strip extent (a1, c1)",
+      "value": [
+        20.54,
+        8.98
+      ],
+      "unit": "m",
+      "kind": "measured",
+      "source": "LIDAR2"
+    },
+    {
+      "name": "east strip roof (trough)",
+      "value": 45.32,
+      "unit": "m RH2000",
+      "kind": "measured",
+      "source": "LIDAR2"
+    },
+    {
+      "name": "east strip rim (inner edge, top)",
+      "value": [
+        7.5,
+        46.23
+      ],
+      "unit": "m, m RH2000",
+      "kind": "measured",
+      "source": "LIDAR2"
+    },
+    {
+      "name": "north block extent (a0, c0)",
+      "value": [
+        -30.29,
+        0.49
+      ],
+      "unit": "m",
+      "kind": "measured",
+      "source": "LIDAR2"
+    },
+    {
+      "name": "north block ENE face",
+      "value": 8.98,
+      "unit": "m (c)",
+      "kind": "derived",
+      "source": "LIDAR2",
+      "note": "in line with the east strip; own p98 8.59 from 75 returns"
+    },
+    {
+      "name": "north block roof",
+      "value": 46.26,
+      "unit": "m RH2000",
+      "kind": "measured",
+      "source": "LIDAR2"
+    },
+    {
+      "name": "recess (returns above 13.5 m between the east strip end and the SSE gable)",
+      "value": 0,
+      "kind": "measured",
+      "source": "LIDAR2, HEMSO, PHOTO"
+    },
+    {
+      "name": "ground in front of the SSE gable",
+      "value": 11.74,
+      "unit": "m RH2000",
+      "kind": "measured",
+      "source": "LIDAR2"
+    },
+    {
+      "name": "rooftop plant and mast",
+      "value": "10 clusters, mast top 64.12",
+      "kind": "measured",
+      "source": "LIDAR2"
+    },
+    {
+      "name": "wall allowance outside the percentile extents (EDGE_M)",
+      "value": 0.25,
+      "unit": "m",
+      "kind": "estimate"
+    },
+    {
+      "name": "parapet thickness",
+      "value": 0.3,
+      "unit": "m",
+      "kind": "estimate"
+    },
+    {
+      "name": "smallest plant box",
+      "value": 1,
+      "unit": "m",
+      "kind": "estimate"
+    },
+    {
+      "name": "mast width",
+      "value": 0.4,
+      "unit": "m",
+      "kind": "estimate"
+    },
+    {
+      "name": "window texture bay × storey",
+      "value": [
+        3.2,
+        3.4
+      ],
+      "unit": "m",
+      "kind": "estimate"
+    },
+    {
+      "name": "colours",
+      "value": {
+        "gable": "#40515a",
+        "wall": "#c3c7c4",
+        "roof": "#b3b8b6",
+        "coping": "#e2e1d7",
+        "plant": "#7c8586"
+      },
+      "kind": "estimate",
+      "source": "HEMSO, PHOTO; earlier model palette"
+    },
+    {
+      "name": "emblem sign (width, height, centre below parapet)",
+      "value": [
+        2.51,
+        3.32,
+        7.3
+      ],
+      "unit": "m",
+      "kind": "derived (D1, corrected on main aaa9b3d, unchanged by D1b)",
+      "source": "D1: HEMSO × dark gable width 9.3 m",
+      "note": "centre 42.05 m RH2000 on the measured tower; D1b first found the 13.9 m scale too wide (remaining-gaps.md §1)"
+    },
+    {
+      "name": "lit windows at night",
+      "value": {
+        "litFraction": 0.3,
+        "gain": 0.9,
+        "patterns": "ENE faces seed 1, WSW faces seed 2"
+      },
+      "kind": "estimate (D1 follow-up windows.ts, unchanged)",
+      "note": "mapped onto the measured façades via the façade geometry groups 0 (ENE) and 1 (WSW); textures repeat at the [EST] bay/storey size"
+    }
+  ],
+  "sources": {
+    "LIDAR2": {
+      "what": "Lantmäteriet point cloud, STAC collection dsm-skoglig-copc (Laserdata NH 2020)",
+      "tile": "y20c012-64950_5675_25.copc.laz",
+      "tileSha256": "529d84294de02fccb8e2f57eefdf8acdb2ff5a2b6975ef0e0cf2bd8ddb94e269",
+      "acquired": "2020-02-03 (STAC item date), scan area 20C012",
+      "density": "nominal 1.2 points/m²",
+      "licence": "CC BY 4.0, ©Lantmäteriet (processed)",
+      "processing": "scripts/police-tower-d1b/police_tower_parts.py → docs/police-tower-d1b/data/police-tower-parts.json (deterministic, byte-identical rebuild verified; Python 3.12.14, numpy 2.3.5, laspy 2.7.0)",
+      "accuracy": "heights ±0.1–0.2 m on hard surfaces; extents are percentiles, walls up to ≈ 0.5 m further out"
+    },
+    "LIDAR": {
+      "what": "D1 whole-roof measurement docs/police-signs-d1/data/police-tower-lidar.json (unchanged)",
+      "use": "cross-check and seed frame"
+    },
+    "HEMSO": {
+      "what": "Hemsö property page 'Stinsen 1 – Norrköpings Polisstation', photograph Stinsen-1-1240.jpg",
+      "url": "https://www.hemso.se/fastigheter/stinsen-1-norrkopings-polisstation/",
+      "date": "image 2023-10, inspected 2026-10-25",
+      "licence": "© Hemsö; inspected only, not copied or redistributed"
+    },
+    "PHOTO": {
+      "what": "Wikimedia Commons photographs",
+      "files": [
+        {
+          "title": "Polishuset Norrköping.jpg",
+          "author": "Johan Jönsson (Julle)",
+          "date": "2016-10-01",
+          "licence": "CC BY-SA 4.0"
+        },
+        {
+          "title": "Norrköping juni 2018 51.jpg",
+          "author": "Johan Jönsson (Julle)",
+          "date": "2018-06-21",
+          "licence": "CC BY-SA 4.0"
+        }
+      ],
+      "use": "reference only, nothing copied"
+    }
+  },
+  "baseline": "main aaa9b3d (D1 follow-up: emblem scale corrected, lit windows)"
+}

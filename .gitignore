@@ -86,3 +86,7 @@ work/geodata/
 # Police Signs Phase D1 scratch (main baseline app, captures, perf runs). Curated evidence is in
 # docs/police-signs-d1/; reusable tools are in scripts/police-signs-d1/.
 /work/police-signs-d1/
+
+# Police Tower Phase D1b scratch (main baseline app, captures, perf runs). Curated evidence is in
+# docs/police-tower-d1b/; reusable tools are in scripts/police-tower-d1b/.
+/work/police-tower-d1b/

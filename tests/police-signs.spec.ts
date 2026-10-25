@@ -75,7 +75,8 @@ test('Phase D1 police sign and windows: emblem on the SSE gable, glow and lit wi
     const p = sign.position as unknown as { clone(): V & { set(...v: number[]): V } };
     const at = (x: number, y: number, z: number) =>
       sign.localToWorld(p.clone().set(x, y, z)).toArray();
-    // Sign centre, a point on the gable wall 4.3 m to the side (sign half-width 1.3 m, drawn gable half-width 6.4 m)
+    // Sign centre, a point on the gable wall 3.2 m to the side (sign half-width 1.3 m; measured gable
+    // half-width 4.5 m since Police Tower D1b, 6.4 m on the earlier drawn slab, where this was 4.3 m)
     // just behind the sign's face, and a camera 70 m out of the gable, 8 m to the side.
     return {
       count: 1,
@@ -85,7 +86,7 @@ test('Phase D1 police sign and windows: emblem on the SSE gable, glow and lit wi
         ry: sign.parent!.rotation.y,
       },
       centre: at(0, 0, 0),
-      wall: at(4.3 / metres, 0, -0.2 / metres),
+      wall: at(3.2 / metres, 0, -0.2 / metres),
       camera: at(8 / metres, 0, 70 / metres),
       emissive: sign.material.emissiveIntensity,
       transparent: sign.material.transparent,
@@ -93,7 +94,11 @@ test('Phase D1 police sign and windows: emblem on the SSE gable, glow and lit wi
     };
   }, M);
   expect(found.count).toBe(1);
-  expect(found.tower).toEqual({ x: -29.25, z: -26.22, ry: 0.2775 });
+  // The tower group on the measured frame (Police Tower D1b; D1: the drawn slab at −29.25, −26.22,
+  // 0.2775 rad).
+  expect(found.tower!.x).toBeCloseTo(-29.0479, 6);
+  expect(found.tower!.z).toBeCloseTo(-25.8868, 6);
+  expect(found.tower!.ry).toBeCloseTo(0.284254, 5);
   expect(found.emissive).toBe(0);
   expect(found.transparent).toBe(false);
   expect(found.instances).toBe(1);
@@ -256,8 +261,13 @@ test('Phase D1 police sign and windows: emblem on the SSE gable, glow and lit wi
     s.updateMatrixWorld(true);
     const at = (x: number, y: number, z: number) =>
       s.localToWorld(s.position.clone().set(x, y, z)).toArray();
-    // The +x long façade (0.255 units from the slab axis): its centre and a camera 190 m out.
-    return { centre: at(0.255, 0, 0), camera: at(0.255 + 190 / metres, 0.1, 0.8) };
+    // The +x (ENE) long façade. Police Tower D1b: the slab is the measured tower's façade mesh in the
+    // tower frame (local y = RH2000 / 25), its ENE face at c = 9.23 m: a point at 30 m RH2000 and a
+    // camera 190 m out, 2.5 m higher (was: the drawn slab's face 0.255 units from its axis).
+    return {
+      centre: at(9.23 / metres, 30 / metres, 0),
+      camera: at((9.23 + 190) / metres, 32.5 / metres, 0.8),
+    };
   }, M);
   await page.evaluate(
     ({ c, t }) => {

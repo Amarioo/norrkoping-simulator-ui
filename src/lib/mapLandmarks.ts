@@ -13,12 +13,20 @@ import {
   SpriteMaterial,
   InstancedMesh,
   Matrix4,
+  RepeatWrapping,
   TextureLoader,
   type Object3D,
 } from 'three';
 import { cityMap, LANDMARKS, pointInRing, type Point } from './mapModel';
 import { createPoliceSign } from './landmarks/police/sign';
-import { TOWER_MODEL } from './landmarks/police/spec';
+import { METRES_PER_UNIT, TOWER_MODEL } from './landmarks/police/spec';
+import {
+  nearTower,
+  policeTowerGeometry,
+  TOWER_SURFACES,
+  towerOutline,
+  type TowerSurface,
+} from './landmarks/police/tower';
 import {
   FACADE_SEEDS,
   GLOW_SCALE,
@@ -216,13 +224,15 @@ export function createLandmarkDetails() {
 
   supported(start, 0.04);
   start = group.children.length;
-  // Police complex: mapped low wings/courtyards with a taller narrow slab,
-  // vertical concrete fins, rooftop plant and solar arrays from the reference.
+  // Police complex: mapped low wings (OSM) with the tower, its rooftop plant and the illustrative
+  // solar arrays. Police Tower Phase D1b: the tower is built from LiDAR (src/lib/landmarks/police/
+  // tower.ts) at absolute heights (RH2000 / 25), like Rådhuset, so it is not placed by onBuilding.
   const police = cityMap.buildings.find((b) => b.name === 'Polishuset')!;
   const towerPolice = new Group();
-  // SWEREF 99 TM scene frame (migrated from legacy -28.72, -26.66 / 0.26 rad).
+  towerPolice.name = 'police-tower';
   towerPolice.position.set(TOWER_MODEL.position[0], 0, TOWER_MODEL.position[1]);
   towerPolice.rotation.y = TOWER_MODEL.rotation;
+  towerPolice.userData.placed = true;
   group.add(towerPolice);
   const g = WINDOW_GRID;
   const facade = texture(g.width, g.height, (c) => {
@@ -236,36 +246,56 @@ export function createLandmarkDetails() {
         c.fillRect(col * g.dx + 1, row * g.dy + 5, 4, 82);
       }
   });
+  // The window texture repeats along the measured façades at its [EST] bay and storey size (tower.ts).
+  facade.wrapS = facade.wrapT = RepeatWrapping;
   // Lit windows at night (estimate; src/lib/landmarks/police/windows.ts): one emissive map per long
-  // façade, gain 0 by day. A single-instance InstancedMesh: instanced, opaque map + emissiveMap is the
-  // program the police sign and the tram/bus destination signs already use (no new program).
-  const slabMats = FACADE_SEEDS.map((seed) =>
-    track(
+  // façade side (material 0 = ENE faces, 1 = WSW faces; the geometry's groups), repeated exactly
+  // like the window texture, gain 0 by day. A single-instance InstancedMesh: instanced, opaque map +
+  // emissiveMap is the program the police sign and the tram/bus destination signs already use.
+  const slabMats = FACADE_SEEDS.map((seed) => {
+    const glow = texture(g.width * GLOW_SCALE, g.height * GLOW_SCALE, (c) =>
+      paintWindowGlow(c, seed),
+    );
+    glow.wrapS = glow.wrapT = RepeatWrapping;
+    return track(
       new MeshStandardMaterial({
         map: facade,
-        emissiveMap: texture(g.width * GLOW_SCALE, g.height * GLOW_SCALE, (c) =>
-          paintWindowGlow(c, seed),
-        ),
+        emissiveMap: glow,
         emissive: 0xffffff,
         emissiveIntensity: 0,
         roughness: 0.78,
       }),
-    ),
-  );
-  const slab = new InstancedMesh(
-    track(new BoxGeometry(0.51, 1.82, 2.65)),
-    [slabMats[0], slabMats[1], mat('#b3b8b6'), mat('#b3b8b6'), mat('#40515a'), mat('#40515a')],
-    1,
-  );
-  slab.name = 'police-tower-slab';
-  slab.setMatrixAt(0, new Matrix4());
-  slab.position.set(0, 0.98, 0);
-  slab.castShadow = slab.receiveShadow = true;
-  slab.computeBoundingSphere();
-  towerPolice.add(slab);
-  box(towerPolice, 0, 1.92, 0, 0.55, 0.06, 2.71, '#e2e1d7');
-  for (let i = 0; i < 6; i++)
-    box(towerPolice, 0, 1.98, -1.05 + i * 0.4, 0.22, 0.09, 0.2, '#7c8586');
+    );
+  });
+  const towerMaterials: Record<Exclude<TowerSurface, 'facade'>, MeshStandardMaterial> = {
+    gable: mat('#40515a'),
+    // Plain light walls: the recessed SSE end of the east strip (light in the 2023 photo) and the
+    // north block's sides [EST].
+    wall: mat('#c3c7c4'),
+    roof: mat('#b3b8b6'),
+    coping: mat('#e2e1d7'),
+    plant: mat('#7c8586'),
+  };
+  // Walls reach down to the lowest rendered ground under the tower's footprint (RH2000 m).
+  const towerBase = terrain.footprintGround([towerOutline()]) * METRES_PER_UNIT;
+  const tower = policeTowerGeometry(towerBase);
+  for (const surface of TOWER_SURFACES) {
+    const geometry = track(tower.geometries[surface]);
+    let m: Mesh;
+    if (surface === 'facade') {
+      // Named as the earlier slab (D1's lit-window tests address it by this name).
+      const slab = new InstancedMesh(geometry, slabMats, 1);
+      slab.setMatrixAt(0, new Matrix4());
+      slab.computeBoundingSphere();
+      slab.name = 'police-tower-slab';
+      m = slab;
+    } else {
+      m = new Mesh(geometry, towerMaterials[surface]);
+      m.name = 'police-tower-' + surface;
+    }
+    m.castShadow = m.receiveShadow = true;
+    towerPolice.add(m);
+  }
   // Official vector artwork with an emblem-only viewBox and explicit rasterization dimensions.
   const crest = track(new TextureLoader().load('/assets/polis-emblem.svg'));
   crest.colorSpace = SRGBColorSpace;
@@ -277,10 +307,13 @@ export function createLandmarkDetails() {
   for (let x = -31.85; x < -27.8; x += 0.22)
     for (let z = -27.48; z < -24.66; z += 0.19) {
       const p: Point = [x, z];
+      // The strip the earlier layout left free under its tower (kept: the arrays are illustrative),
+      // and nothing within 3 m of the measured tower's walls (panels are up to 4.3 m long).
       if (
         pointInRing(p, police.rings[0]) &&
         !police.rings.slice(1).some((r) => pointInRing(p, r)) &&
-        Math.abs(x + 29.25) > 0.5
+        Math.abs(x + 29.25) > 0.5 &&
+        !nearTower(x, z, 3)
       )
         panelPositions.push(p);
     }

@@ -1,0 +1,275 @@
+{
+ "note": "Pooled over series1.json + series2.json: per-round after−before p95 frame interval (ms), map-ready (ms), post-GC heap (MB). Method: scripts/vehicle-lights-f1/measure.mjs (unchanged), production builds by vite preview (before = main aaa9b3d (D1 follow-up)), traffic on (frozen), backend copy port 8097, views kungsgatan, stromparken, city, policeEmblem, police; day 12:39, night 21:30. The machine was quiet during these runs (no other dev server).",
+ "rounds": 8,
+ "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "browser": "156.0.4314.42",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+  "cores": 16
+ },
+ "views": {
+  "day kungsgatan": {
+   "p95DeltaRounds": [
+    0,
+    0.1,
+    -0.2,
+    0,
+    -0.2,
+    -0.5,
+    -0.1,
+    -0.1
+   ],
+   "beforeP95Rounds": [
+    3.2,
+    3,
+    3.1,
+    3,
+    3.1,
+    3.4,
+    3.2,
+    3.2
+   ],
+   "p95DeltaMedian": -0.1,
+   "beforeP95Median": 3.15
+  },
+  "day stromparken": {
+   "p95DeltaRounds": [
+    -0.3,
+    0.1,
+    -0.2,
+    -0.2,
+    0.2,
+    0.1,
+    0.2,
+    -0.2
+   ],
+   "beforeP95Rounds": [
+    6.4,
+    5.9,
+    6.1,
+    6.2,
+    5.9,
+    6.1,
+    5.8,
+    6
+   ],
+   "p95DeltaMedian": -0.05,
+   "beforeP95Median": 6.05
+  },
+  "day city": {
+   "p95DeltaRounds": [
+    -0.3,
+    0.4,
+    -0.1,
+    0,
+    0.4,
+    -0.7,
+    -0.2,
+    0.3
+   ],
+   "beforeP95Rounds": [
+    7.3,
+    6.9,
+    7.1,
+    7,
+    6.9,
+    7.7,
+    7.2,
+    6.8
+   ],
+   "p95DeltaMedian": -0.05,
+   "beforeP95Median": 7.05
+  },
+  "day policeEmblem": {
+   "p95DeltaRounds": [
+    -0.6,
+    0.2,
+    0.1,
+    -0.4,
+    -0.3,
+    -0.1,
+    -0.3,
+    -0.1
+   ],
+   "beforeP95Rounds": [
+    5.7,
+    5.1,
+    4.8,
+    5.1,
+    5.1,
+    5,
+    5,
+    4.7
+   ],
+   "p95DeltaMedian": -0.2,
+   "beforeP95Median": 5.05
+  },
+  "day police": {
+   "p95DeltaRounds": [
+    0.1,
+    0.1,
+    -0.2,
+    0,
+    -0.1,
+    -0.4,
+    -0.1,
+    0.1
+   ],
+   "beforeP95Rounds": [
+    2.8,
+    2.7,
+    2.9,
+    2.8,
+    2.8,
+    3,
+    2.8,
+    2.6
+   ],
+   "p95DeltaMedian": -0.05,
+   "beforeP95Median": 2.8
+  },
+  "night kungsgatan": {
+   "p95DeltaRounds": [
+    0.2,
+    0.2,
+    0.2,
+    0,
+    0.1,
+    -0.3,
+    0,
+    0
+   ],
+   "beforeP95Rounds": [
+    2.9,
+    2.9,
+    2.9,
+    3,
+    2.9,
+    3.2,
+    3,
+    3
+   ],
+   "p95DeltaMedian": 0.05,
+   "beforeP95Median": 2.95
+  },
+  "night stromparken": {
+   "p95DeltaRounds": [
+    -0.3,
+    -0.2,
+    0.1,
+    -0.4,
+    -0.1,
+    -0.3,
+    -0.8,
+    0.2
+   ],
+   "beforeP95Rounds": [
+    6.3,
+    6.2,
+    6,
+    6.2,
+    6,
+    6.2,
+    7.1,
+    5.8
+   ],
+   "p95DeltaMedian": -0.25,
+   "beforeP95Median": 6.2
+  },
+  "night city": {
+   "p95DeltaRounds": [
+    -1.3,
+    -0.7,
+    0.2,
+    -0.4,
+    0.1,
+    0.1,
+    -0.2,
+    -0.4
+   ],
+   "beforeP95Rounds": [
+    8.5,
+    8.2,
+    7.2,
+    7.3,
+    7.3,
+    7.4,
+    7.4,
+    7.4
+   ],
+   "p95DeltaMedian": -0.3,
+   "beforeP95Median": 7.4
+  },
+  "night policeEmblem": {
+   "p95DeltaRounds": [
+    -1.9,
+    -0.1,
+    0,
+    0.1,
+    0,
+    0.1,
+    -0.1,
+    0
+   ],
+   "beforeP95Rounds": [
+    6.8,
+    5,
+    4.9,
+    4.8,
+    4.9,
+    5.1,
+    5,
+    4.9
+   ],
+   "p95DeltaMedian": 0,
+   "beforeP95Median": 4.95
+  },
+  "night police": {
+   "p95DeltaRounds": [
+    -0.1,
+    0,
+    0,
+    0.1,
+    -0.1,
+    -0.1,
+    0.2,
+    0.1
+   ],
+   "beforeP95Rounds": [
+    3,
+    2.7,
+    2.8,
+    2.7,
+    2.8,
+    3,
+    2.7,
+    2.7
+   ],
+   "p95DeltaMedian": 0,
+   "beforeP95Median": 2.75
+  }
+ },
+ "mapReadyDeltaRounds": [
+  74,
+  14,
+  -84,
+  -13,
+  53,
+  -16,
+  34,
+  -13
+ ],
+ "heapDeltaRounds": [
+  0.031,
+  0.044,
+  -0.098,
+  0.175,
+  0.121,
+  0.039,
+  -0.091,
+  0.191
+ ],
+ "beforeP95": {},
+ "mapReadyDeltaMedian": 1,
+ "heapDeltaMedian": 0.041
+}

@@ -168,6 +168,11 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   uppmätt storlek (2,51 × 3,32 m efter rättning; först 3,75 × 4,96 m), lyser på natten (uppskattning), tornets fönster delvis tända på natten (uppskattning); 2026-01-26 flyttade bara receptionen
   (Luntgatan 32, ej med).*
   - Befintlig `public/assets/polisen.svg`; licensvillkor i `DATA-LICENSE.md`.
+  - **D1b Polistornet från laserdata** — *genomförd 2026-10-25, committad och pushad på grenen `claude/funny-hawking-afb6cd`
+    (ej i main), för granskning:
+    [docs/police-tower-d1b/README.md](police-tower-d1b/README.md). Tornet i uppmätt läge, form och höjd
+    (bröstning 49,35 m RH2000, 8,2 m lägre än förut); emblemet (rättad storlek) och de tända fönstren
+    följer med.*
 - [ ] **D2 Bensinstationer** — M
   - 32 OSM-objekt (`docs/step62/fuel-stations.md`). Tak, pumpar, belysning under taket, generiska
     skyltar (operatörernas logotyper är inte licensierade).

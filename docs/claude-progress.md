@@ -2,6 +2,31 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Police Tower Phase D1b — the police tower from LiDAR (2026-10-25) — committed and pushed on its branch, for review; `main` not fast-forwarded
+
+[Full report](police-tower-d1b/README.md). Branch `claude/funny-hawking-afb6cd`, up to date with `main` =
+`aaa9b3d` (D1 + its follow-up). **Committed and pushed on the branch (user, 2026-10-25); `main` not
+fast-forwarded.** Backend unchanged.
+
+- **Result:** the illustrative police slab (66 × 13 m, parapet 57.6 m RH2000) is replaced by a model
+  from the LiDAR (`src/lib/landmarks/police/tower.ts`, values in `spec.ts`): UPPER slab 50.6 × 9.06 m
+  with the dark SSE gable, roof 49.02 m, parapet 49.35 m; EAST strip one storey lower (45.32 m, rim
+  46.23 m) ending 4.5 m before the gable (the recess in the photos); NORTH end 46.26 m; 9 plant boxes
+  and the mast to 64.12 m. Frame: UPPER centre scene (−29.0479, −25.8868), bearing 163.71°, absolute
+  heights (scene y = RH2000/25). The emblem (D1's corrected size, 7.3 m below the parapet → 42.05 m)
+  and the lit windows (two patterns: ENE / WSW façade groups) moved onto the measured tower.
+- **Finding passed to D1 (fixed there, on `main`):** the dark gable is the ≈ 9 m UPPER block, not the
+  13.9 m tower width D1 had used as the photo scale; D1's +v axis label was WSW but points ENE.
+- **Data:** `scripts/police-tower-d1b/police_tower_parts.py` → `docs/police-tower-d1b/data/police-tower-parts.json`
+  (same tile as D1/B1; byte-identical rebuild).
+- **Measured (paired production builds vs `aaa9b3d`, quiet machine, 8 rounds):** p95 −0.3 … +0.05 ms
+  day and night, map-ready +1 ms, heap +0.04 MB, calls −6, triangles +40, 20 programs; control views
+  0 px; landmark build 11.7 ms before and after.
+- **Checks:** type check 0; build OK; Vitest 460/461 (only `terrain.test.ts`'s backend path in a
+  worktree); Playwright 12/14 — the A2 picture check and `simulation.spec.ts`, both flaky on `main`
+  too (alternating: A2 branch 3/3 vs main 1/3; simulation 1/3 vs 0/3). D1's tests green.
+- **Local only:** `.claude/launch.json` (`d1b-*`, ports 8097, 5240–5243); `work/police-tower-d1b/`.
+
 ## Police Signs D1 follow-up — emblem scale corrected, lit windows in the police tower (2026-10-25) — approved (user, 2026-10-25), committed and pushed, merged into `main`
 
 [Report section](police-signs-d1/README.md#follow-up-lit-windows-at-night-2026-10-25-not-committed). Branch
