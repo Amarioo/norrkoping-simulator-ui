@@ -2,11 +2,11 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Police Tower Phase D1b — the police tower from LiDAR (2026-10-25) — committed and pushed on its branch, for review; `main` not fast-forwarded
+## Police Tower Phase D1b — the police tower from LiDAR (2026-10-25) — committed and pushed, merged into `main`
 
 [Full report](police-tower-d1b/README.md). Branch `claude/funny-hawking-afb6cd`, up to date with `main` =
-`aaa9b3d` (D1 + its follow-up). **Committed and pushed on the branch (user, 2026-10-25); `main` not
-fast-forwarded.** Backend unchanged.
+`aaa9b3d` (D1 + its follow-up). **Committed and pushed:** `main` fast-forwarded to this branch on `origin`
+(user, 2026-10-25). Backend unchanged.
 
 - **Result:** the illustrative police slab (66 × 13 m, parapet 57.6 m RH2000) is replaced by a model
   from the LiDAR (`src/lib/landmarks/police/tower.ts`, values in `spec.ts`): UPPER slab 50.6 × 9.06 m

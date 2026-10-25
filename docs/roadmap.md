@@ -169,7 +169,7 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   (Luntgatan 32, ej med).*
   - Befintlig `public/assets/polisen.svg`; licensvillkor i `DATA-LICENSE.md`.
   - **D1b Polistornet från laserdata** — *genomförd 2026-10-25, committad och pushad på grenen `claude/funny-hawking-afb6cd`
-    (ej i main), för granskning:
+    och till main:
     [docs/police-tower-d1b/README.md](police-tower-d1b/README.md). Tornet i uppmätt läge, form och höjd
     (bröstning 49,35 m RH2000, 8,2 m lägre än förut); emblemet (rättad storlek) och de tända fönstren
     följer med.*

@@ -2,8 +2,8 @@
 
 Follow-up to [Police Signs D1](../police-signs-d1/README.md) ([its gap §3](../police-signs-d1/remaining-gaps.md)).
 Branch `claude/funny-hawking-afb6cd`, brought up to date with `main` = `aaa9b3d` (D1 with its
-follow-up: emblem scale corrected, lit windows). **Committed and pushed on this branch (user,
-2026-10-25); `main` not fast-forwarded.**
+follow-up: emblem scale corrected, lit windows). **Committed and pushed; `main` fast-forwarded to this
+branch on `origin` (user, 2026-10-25).**
 
 ## Verdict
 
