@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Police Signs Phase D1 — the police emblem on Polishuset (2026-10-25) — approved (user, 2026-10-25), committed and pushed on its branch
+## Police Signs Phase D1 — the police emblem on Polishuset (2026-10-25) — approved (user, 2026-10-25), committed and pushed, merged into `main`
 
 [Full report](police-signs-d1/README.md). Branch `claude/police-signs-d1` from `main` = `8c5e437`.
-**Committed and pushed** to `origin/claude/police-signs-d1` (user, 2026-10-25); not merged into `main`. Backend unchanged.
+**Committed and pushed:** `main` fast-forwarded to this branch on `origin` (user, 2026-10-25). Backend unchanged.
 
 - **Result:** the one documented sign — the police emblem centred high on the tower's SSE gable
   (Stockholmsvägen side) — replaces the old 6.25 × 7.5 m badge: 3.75 × 4.96 m, 10.9 m below the

@@ -1,7 +1,7 @@
 # Police Signs Phase D1 — the police emblem on Polishuset
 
 Roadmap track D, step D1 ([roadmap](../roadmap.md) §4). Branch `claude/police-signs-d1` from `main`
-= `8c5e437`. Approved by the user on 2026-10-25; **committed and pushed to `origin/claude/police-signs-d1`, not merged into `main`.**
+= `8c5e437`. Approved by the user on 2026-10-25; **committed and pushed; `main` fast-forwarded to this branch on `origin`.**
 
 ## Verdict
 
