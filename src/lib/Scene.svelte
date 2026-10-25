@@ -29,6 +29,7 @@
   } from './lighting/corridorRegistry';
   import type { CompactSet } from './lighting/compactSet';
   import l2Url from './data/streetlights-l2.json?url';
+  import l2bcUrl from './data/streetlights-l2bc.json?url';
   import { advanceClock, lightingState } from './lighting/state.svelte';
   let {
     focus = 'overview',
@@ -55,15 +56,22 @@
   // (development hook below) rebinds the same materials to the new controller's uniforms. The
   // controller's group lives in a stable root: Threlte keeps every object ever passed to <T is>
   // until the component unmounts, so swapping `is` would retain each replaced group.
-  // Lighting Phase L2a: the citywide street fixtures (≈ 14 000) are a separate compact file, fetched
+  // Lighting Phase L2a/L2bc: the citywide fixtures (streets ≈ 14 000; paths, squares, junctions and
+  // motorways ≈ 7 700) are two separate compact files, fetched in parallel
   // and swapped in after the controller exists (the bundled pilot + A1–A3 set renders until then);
   // map-ready waits for it. `?lighting=a3` (development / hook builds) keeps the A1–A3 set only, for
   // the earlier phases' tests.
   const hookEnabled = import.meta.env.DEV || import.meta.env.VITE_LIGHTING_HOOK === '1';
   const onlyA3 = hookEnabled && new URLSearchParams(location.search).get('lighting') === 'a3';
-  let l2Set: CompactSet | null = null;
+  let l2Set: CompactSet | null = null,
+    l2bcSet: CompactSet | null = null;
   const defaultRegistry = () =>
-    l2Set ? cityLightingRegistry(terrain, l2Set) : runtimeLightingRegistry(terrain);
+    l2Set ? cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined) : runtimeLightingRegistry(terrain);
+  const fetchSet = (url: string) =>
+    fetch(url).then((r) => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json() as Promise<CompactSet>;
+    });
   const createLighting = () => {
     const l = createCityLighting({
       terrain,
@@ -91,15 +99,12 @@
   $effect(() => lighting.set(lightingInput()));
   const l2Ready: Promise<void> = onlyA3
     ? Promise.resolve()
-    : fetch(l2Url)
-        .then((r) => {
-          if (!r.ok) throw new Error(`HTTP ${r.status}`);
-          return r.json() as Promise<CompactSet>;
-        })
-        .then((set) => {
-          const result = lighting.replaceStreetLighting(cityLightingRegistry(terrain, set));
+    : Promise.all([fetchSet(l2Url), fetchSet(l2bcUrl)])
+        .then(([a, bc]) => {
+          const result = lighting.replaceStreetLighting(cityLightingRegistry(terrain, a, bc));
           if (!result.ok) throw new Error(`citywide set rejected at ${result.stage}`);
-          l2Set = set;
+          l2Set = a;
+          l2bcSet = bc;
         })
         .catch((error) => console.error('[lighting] citywide street lighting not loaded:', error));
   // Development, or a test build made with VITE_LIGHTING_HOOK=1 (Lighting Phase L1 measurements of

@@ -227,6 +227,13 @@ export type CorridorPolicy = Omit<typeof A1_POLICY, 'version'> & {
   version: string;
   existingEstimatesAsAccepted?: boolean;
   stationSlotFamilies?: readonly string[];
+  /** Phase L2bc: motorways and their links are street-bracket roads (A1–L2a: unsupported class). */
+  includeMotorways?: boolean;
+  /**
+   * Phase L2bc: lit squares (closed area=yes ways) get park lanterns along their outline, inset
+   * `insetM` into the square (A1–L2a: no fixture, "positions cannot be derived").
+   */
+  squares?: { insetM: number };
 };
 /** A bounded corridor rollout: zones (EPSG:3006), generator identity, dataset and policy. */
 export interface CorridorSpec {
@@ -241,6 +248,16 @@ export interface CorridorSpec {
    * OSM tags themselves are never changed; lit=no always excludes the way.
    */
   litEvidence?: (way: SourceElement) => LitEvidence | null;
+  /**
+   * Phase L2bc: ways that may receive this rollout's estimates (default: every lit way). Other lit ways
+   * are context only: they still count as lit roads for the path rule and as dual-carriageway partners.
+   */
+  candidate?: (way: SourceElement) => boolean;
+  /**
+   * Phase L2bc: lit intervals along a partly lit way (metres from its first vertex); stations are then
+   * placed per interval (way-local rule within each interval). null = the whole way is lit.
+   */
+  litRanges?: (way: SourceElement) => [number, number][] | null;
 }
 export type LitEvidence = 'tag' | 'gap' | 'rule';
 const LIT_OBSERVED: Record<LitEvidence, string> = {
@@ -411,6 +428,10 @@ export function generateCorridor(
   spec: CorridorSpec = A1_SPEC,
 ): GeneratorOutput {
   const POL = spec.policy;
+  const groupOf = (highway: string): ClassGroup | null =>
+    POL.includeMotorways && (highway === 'motorway' || highway === 'motorway_link')
+      ? 'road'
+      : classGroup(highway);
   const litOf = (e: SourceElement): LitEvidence | null =>
     e.tags.lit === 'no'
       ? null
@@ -632,7 +653,7 @@ export function generateCorridor(
   // Lit roads (centrelines) for the "covered by road lighting" path rule.
   const litRoadLines = ways
     .filter(
-      ({ e }) => litOf(e) !== null && ['road', 'minor'].includes(classGroup(e.tags.highway) ?? ''),
+      ({ e }) => litOf(e) !== null && ['road', 'minor'].includes(groupOf(e.tags.highway) ?? ''),
     )
     .map(({ pts }) => pts);
   // Segments of the lit roads in a grid: the nearest one within roadCoverM is exactly the nearest
@@ -710,11 +731,11 @@ export function generateCorridor(
     }
     let near: { d: number; q: P; e: SourceElement } | null = null;
     for (const { e, pts } of ways) {
-      if (!classGroup(e.tags.highway)) continue;
+      if (!groupOf(e.tags.highway)) continue;
       const r = polylineDist(p, pts);
       if (!near || r.d < near.d) near = { ...r, e };
     }
-    const group: ClassGroup = near ? classGroup(near.e.tags.highway)! : 'minor';
+    const group: ClassGroup = near ? groupOf(near.e.tags.highway)! : 'minor';
     const type = TYPE_OF[group];
     const deck = deckAt(p, null);
     // Real positions are never moved; impossible ones are rejected with the reason.
@@ -815,7 +836,10 @@ export function generateCorridor(
       fixtures: 0,
     };
     coverage.set(e.id, cov);
-    const group = classGroup(t.highway);
+    const closed =
+      pts.length >= 4 && dist(pts[0], pts[pts.length - 1]) * M < 0.01;
+    const square = !!POL.squares && t.area === 'yes' && closed;
+    const group: ClassGroup | null = square ? 'path' : groupOf(t.highway);
     if (t.lit === 'no') {
       cov.status = 'explicit-unlit (lit=no): excluded';
       continue;
@@ -825,11 +849,15 @@ export function generateCorridor(
       cov.status = `lit=${t.lit ?? '(none)'}: not treated as lit`;
       continue;
     }
+    if (spec.candidate && !spec.candidate(e)) {
+      coverage.delete(e.id); // context only (an earlier rollout's way)
+      continue;
+    }
     if (t.highway === 'platform') {
       cov.status = 'lit platform: shelter/canopy luminaires not modelled (no fixture)';
       continue;
     }
-    if (t.area === 'yes') {
+    if (t.area === 'yes' && !square) {
       cov.status = 'lit area (square): positions cannot be derived from the outline (no fixture)';
       continue;
     }
@@ -837,13 +865,15 @@ export function generateCorridor(
       cov.status = `highway=${t.highway}: class not supported`;
       continue;
     }
-    const segs = mapSegments.get(e.id);
+    // Squares are areas, not rendered road segments: their outline is placed on directly.
+    const segs = square ? [{ width: 0, bridge: false } as MapRoad] : mapSegments.get(e.id);
     if (!segs?.length) {
       cov.status = 'not in the rendered map snapshot: alignment cannot be verified (no fixture)';
       continue;
     }
     // Source geometry must coincide with the rendered road (same OSM nodes, one week apart).
     let deviation = 0;
+    if (!square)
     for (const p of pts) {
       let d = Infinity;
       for (const s of segs) d = Math.min(d, segDist(p, s.a, s.b).d);
@@ -860,7 +890,7 @@ export function generateCorridor(
     const type = TYPE_OF[group];
     const T = input.types[type];
     const width = segs[0].width;
-    const bridge = t.bridge === 'yes' && segs.some((s) => s.bridge);
+    const bridge = !square && t.bridge === 'yes' && segs.some((s) => s.bridge);
     const oneway = t.oneway === 'yes' || isRing(e);
     const partners =
       group !== 'path' && t.oneway === 'yes' && !isRing(e) && t.name
@@ -874,8 +904,9 @@ export function generateCorridor(
           )
         : [];
     const stagger = group !== 'path' && !oneway && !bridge && width * M >= POL.staggerWidthM;
-    const offsetM =
-      group === 'path'
+    const offsetM = square
+      ? POL.squares!.insetM
+      : group === 'path'
         ? POL.pathOffsetM
         : (width * M) / 2 + (bridge ? POL.deckSetbackM : POL.kerbSetbackM);
     // Chainage table.
@@ -883,8 +914,20 @@ export function generateCorridor(
     for (let i = 1; i < pts.length; i++) cum.push(cum[i - 1] + dist(pts[i], pts[i - 1]) * M);
     const L = cum[cum.length - 1];
     const spacing = stagger ? T.spacingM / 2 : T.spacingM;
-    const N = Math.round(L / spacing);
-    cov.status = N ? 'estimated' : `shorter than half the ${spacing} m spacing (no station)`;
+    // Station chainages: way-local rule over the whole way, or within each lit interval (L2bc).
+    const ranges = spec.litRanges?.(e) ?? null;
+    const stations: { chain: number; spacing: number }[] = [];
+    for (const [a, b] of ranges ?? [[0, L] as [number, number]]) {
+      const lo = Math.max(0, a),
+        hi = Math.min(L, b),
+        n = Math.round((hi - lo) / spacing);
+      for (let k = 0; k < n; k++)
+        stations.push({ chain: lo + ((k + 0.5) * (hi - lo)) / n, spacing: (hi - lo) / n });
+    }
+    const N = stations.length;
+    cov.status = N
+      ? 'estimated'
+      : `shorter than half the ${spacing} m spacing (no station)`;
     const at = (c: number) => {
       const cc = Math.max(0, Math.min(L, c));
       let i = 1;
@@ -901,12 +944,21 @@ export function generateCorridor(
     };
     for (let i = 0; i < N; i++) {
       const id = `estimate:${spec.generator.version}:way/${e.id}:s${i}`;
-      const chain = ((i + 0.5) * L) / N;
+      const chain = stations[i].chain;
       const base0 = at(chain);
       // Preferred side (+1 = right of travel; normal (-dz, dx) in scene x east / z south).
       let side: 1 | -1 = 1,
-        sideName: 'outer' | 'right' | 'left' = 'right';
-      if (stagger) {
+        sideName: 'outer' | 'inner' | 'right' | 'left' = 'right';
+      if (square) {
+        // Into the square: the side whose inset point lies inside the outline.
+        const nrm = [-base0.dir[1], base0.dir[0]];
+        const probe: P = [
+          base0.p[0] + (nrm[0] * offsetM) / M,
+          base0.p[1] + (nrm[1] * offsetM) / M,
+        ];
+        side = inRing(probe, pts) ? 1 : -1;
+        sideName = 'inner';
+      } else if (stagger) {
         side = i % 2 ? 1 : -1;
         sideName = side > 0 ? 'right' : 'left';
       } else if (isRing(e)) {
@@ -978,7 +1030,8 @@ export function generateCorridor(
       }
       // A path station within 10 m of a lit road centreline is lit by that road (Step 6 rule,
       // applied per station: sidewalk-like stretches get none, park stretches get lanterns).
-      if (group === 'path') {
+      // (Squares are exempt: street lamps light their edge, not the square itself.)
+      if (group === 'path' && !square) {
         const d = nearestLitRoad(base0.p) * M;
         if (d < POL.roadCoverM) {
           reject(
@@ -994,7 +1047,7 @@ export function generateCorridor(
       }
       let placed = tryPlace(side);
       let fallback = false;
-      if ('fail' in placed && !stagger) {
+      if ('fail' in placed && !stagger && !square) {
         const other = tryPlace(side === 1 ? -1 : 1);
         if (!('fail' in other)) {
           placed = other;
@@ -1030,7 +1083,11 @@ export function generateCorridor(
           id,
           zone,
           method: `${lit === 'tag' ? 'lit=yes' : `lit by ${lit}`} on way/${e.id} (highway=${t.highway}${bridge ? ', bridge' : ''}${t.name ? `, ${t.name}` : ''}); station ${i + 1}/${N}, effective spacing ${(L / N).toFixed(1)} m (class ${spacing} m), ${placedSide} side${fallback ? ' (preferred side blocked)' : ''}, ${(offsetM + extra).toFixed(2)} m from the centreline${extra ? ` (setback +${extra} m)` : ''}`,
-          rule: stagger
+          rule: square
+            ? 'lit-square-perimeter'
+            : ranges
+              ? 'lit-way-junction-range'
+              : stagger
             ? 'lit-way-staggered'
             : isRing(e)
               ? 'lit-way-roundabout-outer'
@@ -1055,7 +1112,7 @@ export function generateCorridor(
             of: N,
             chainageM: round(chain, 2),
             wayLengthM: round(L, 2),
-            spacingM: round(L / N, 2),
+            spacingM: round(stations[i].spacing, 2),
             side: placedSide,
             sideFallback: fallback,
             shiftM: shift,

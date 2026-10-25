@@ -130,11 +130,13 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
     lyktor behövs: regel för överfulla rutor i korsningar (aldrig tyst bortfall), stolpar bara nära
     kameran, långt bort bara ljuspunkter/glöd.
   - Testas med den riktiga L0-mängden, mot prestandagränserna i `docs/step62/rollout-plan.md`.
-- [ ] **L2a Gator i hela tätorten** — M (inkl. Norrtull och resten av innerstaden) — *genomförd 2026-10-25,
-  väntar på granskning: [docs/lighting-city-l2/README.md](lighting-city-l2/README.md). 14 350 nya
+- [x] **L2a Gator i hela tätorten** — M (inkl. Norrtull och resten av innerstaden) — *genomförd 2026-10-25,
+  pushad till main: [docs/lighting-city-l2/README.md](lighting-city-l2/README.md). 14 350 nya
   gatulyktor, Norrtull tänd, alla prestanda- och minnesmål klarade.*
-- [ ] **L2b Gång- och cykelvägar, torg och parker** — S/M
-- [ ] **L2c Leder utanför tätort**: E4-trafikplatser, rondeller, signalkorsningar — S
+- [x] **L2b Gång- och cykelvägar, torg och parker** — S/M — *genomförd tillsammans med L2c 2026-10-25 (L2bc),
+  pushad till main: [docs/lighting-city-l2bc/README.md](lighting-city-l2bc/README.md). 7 723 nya
+  lyktor; totalt 22 346.*
+- [x] **L2c Leder utanför tätort**: E4-trafikplatser, rondeller, signalkorsningar — S — *se L2b (L2bc).*
 
 ### Spår F: fordon (stor effekt på natten, återanvänder L1)
 

@@ -12,7 +12,16 @@ import {
   type GeneratorOutput,
   type SourceExtract,
 } from '../../src/lib/lighting/corridorGenerator';
-import { L2_DATASET, L2_ROLLOUT, l2Spec, type L0Classification } from '../../src/lib/lighting/corridorL2';
+import {
+  L2_ROLLOUT,
+  L2BC_ROLLOUT,
+  l2Spec,
+  l2bcSpec,
+  type L0Classification,
+} from '../../src/lib/lighting/corridorL2';
+import type { CorridorSpec } from '../../src/lib/lighting/corridorGenerator';
+import { decodeCompactSet, type CompactSet } from '../../src/lib/lighting/compactSet';
+import { L2_IDENTITY_FOR_TESTS } from './identity';
 import { encodeCompactSet } from '../../src/lib/lighting/compactSet';
 import { loadInputs as loadA1Inputs } from '../lighting-a1/inputs';
 import { existingBeforeA3 } from '../lighting-a3/inputs';
@@ -37,6 +46,23 @@ export const L2_OUTPUT_FILES = {
   runtime: 'src/lib/data/streetlights-l2.json',
   provenance: 'docs/lighting-city-l2/data/streetlights-l2-provenance.json',
 } as const;
+/** Lighting Phase L2bc (paths, squares, junction ranges, motorways); existing = everything before. */
+export const L2BC_INPUT_FILES = {
+  ...L2_INPUT_FILES,
+  source: 'scripts/data/lighting-l2bc-source.json',
+  l2a: 'src/lib/data/streetlights-l2.json',
+} as const;
+export const L2BC_OUTPUT_FILES = {
+  runtime: 'src/lib/data/streetlights-l2bc.json',
+  provenance: 'docs/lighting-city-l2bc/data/streetlights-l2bc-provenance.json',
+} as const;
+interface RolloutConfig {
+  spec: CorridorSpec;
+  rollout: string;
+  datasetText: string;
+  inputFiles: Record<string, string> & { source: string; classification: string };
+  outputs: { runtime: string; provenance: string };
+}
 
 let cached: { input: GeneratorInput; l0: L0Classification } | null = null;
 export function loadL2Inputs() {
@@ -60,9 +86,59 @@ export function loadL2Inputs() {
   return cached;
 }
 export const generateL2 = (inputs = loadL2Inputs()) => generateCorridor(inputs.input, l2Spec(inputs.l0));
+export const toL2Files = (out: GeneratorOutput, inputs = loadL2Inputs()) =>
+  toRolloutFiles(out, inputs, {
+    spec: l2Spec(inputs.l0),
+    rollout: L2_ROLLOUT,
+    datasetText: 'OpenStreetMap (Overpass API), Lighting Phase L0 snapshot: lit car-road ways of the whole map',
+    inputFiles: L2_INPUT_FILES,
+    outputs: L2_OUTPUT_FILES,
+  });
 
-export function toL2Files(out: GeneratorOutput, inputs = loadL2Inputs()) {
-  const spec = l2Spec(inputs.l0);
+let cachedBc: { input: GeneratorInput; l0: L0Classification } | null = null;
+export function loadL2bcInputs() {
+  if (cachedBc) return cachedBc;
+  const l2 = loadL2Inputs();
+  const l2a = corridorRegistry(
+    decodeCompactSet(read(L2BC_INPUT_FILES.l2a) as CompactSet) as unknown as A1Data,
+    l2.input.reference,
+    L2_IDENTITY_FOR_TESTS,
+  ).fixtures.map((r) => ({
+    id: r.id,
+    x: r.position.scene.x,
+    z: r.position.scene.z,
+    type: r.photometry.fixtureType,
+    placement: r.placement,
+    element: r.source.element,
+  }));
+  cachedBc = {
+    input: {
+      ...l2.input,
+      source: read(L2BC_INPUT_FILES.source) as SourceExtract,
+      existing: [...l2.input.existing, ...l2a],
+    },
+    l0: l2.l0,
+  };
+  return cachedBc;
+}
+export const generateL2bc = (inputs = loadL2bcInputs()) =>
+  generateCorridor(inputs.input, l2bcSpec(inputs.l0));
+export const toL2bcFiles = (out: GeneratorOutput, inputs = loadL2bcInputs()) =>
+  toRolloutFiles(out, inputs, {
+    spec: l2bcSpec(inputs.l0),
+    rollout: L2BC_ROLLOUT,
+    datasetText:
+      'OpenStreetMap (Overpass API), Lighting Phase L0 snapshot: lit paths, squares, partly lit roads and lit motorways of the whole map',
+    inputFiles: L2BC_INPUT_FILES,
+    outputs: L2BC_OUTPUT_FILES,
+  });
+
+function toRolloutFiles(
+  out: GeneratorOutput,
+  inputs: { input: GeneratorInput; l0: L0Classification },
+  cfg: RolloutConfig,
+) {
+  const spec = cfg.spec;
   const meta = inputs.input.source.meta as SourceExtract['meta'] & {
     snapshot: { sha256: string; retrievedAt: string };
   };
@@ -74,21 +150,21 @@ export function toL2Files(out: GeneratorOutput, inputs = loadL2Inputs()) {
   );
   const sources = [
     {
-      id: L2_DATASET,
-      dataset: 'OpenStreetMap (Overpass API), Lighting Phase L0 snapshot: lit car-road ways of the whole map',
+      id: spec.dataset,
+      dataset: cfg.datasetText,
       license: 'ODbL-1.0 © OpenStreetMap contributors',
       osmBase: meta.osmBase,
     },
   ];
   const compact = encodeCompactSet(out.fixtures, {
     generator: spec.generator,
-    rollout: L2_ROLLOUT,
-    provenance: L2_OUTPUT_FILES.provenance,
+    rollout: cfg.rollout,
+    provenance: cfg.outputs.provenance,
     zone: 'L2',
     sources,
     types,
     corridor: { L2: { name: spec.zones.L2.name, ringEN: spec.zones.L2.ring } },
-    lit: `Phase L0 classification ${inputs.l0.meta.rule.version} (${L2_INPUT_FILES.classification}): OSM lit=yes, gap fill or municipal guideline rule`,
+    lit: `Phase L0 classification ${inputs.l0.meta.rule.version} (${cfg.inputFiles.classification}): OSM lit=yes, gap fill or municipal guideline rule`,
     units:
       'x, z: scene units (1 = 25 m, SWEREF 99 TM scene frame) × 1e4; heading: rad × 1e6; occlusion: cm; corridor ring: EPSG:3006 E/N metres',
     counts: out.counts,
@@ -129,10 +205,10 @@ export function toL2Files(out: GeneratorOutput, inputs = loadL2Inputs()) {
       },
       inferred,
       inputs: Object.fromEntries(
-        Object.entries(L2_INPUT_FILES).map(([k, f]) => [k, { file: f, sha256: sha(f) }]),
+        Object.entries(cfg.inputFiles).map(([k, f]) => [k, { file: f, sha256: sha(f) }]),
       ),
       source: {
-        file: L2_INPUT_FILES.source,
+        file: cfg.inputFiles.source,
         osmBase: meta.osmBase,
         snapshotSha256: meta.snapshot.sha256,
         retrievedAt: meta.snapshot.retrievedAt,

@@ -70,3 +70,7 @@ work/geodata/
 # Lighting Phase L2 scratch (captures, perf runs, generation timings). Curated evidence is in
 # docs/lighting-city-l2/; reusable tools are in scripts/lighting-l2/.
 /work/lighting-city-l2/
+
+# Lighting Phase L2bc scratch (captures, perf runs, generation timings). Curated evidence is in
+# docs/lighting-city-l2bc/; reusable tools are in scripts/lighting-l2/.
+/work/lighting-city-l2bc/

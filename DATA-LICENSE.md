@@ -67,3 +67,7 @@ Lit/dark decisions "by rule" follow the text of Norrköping's *Riktlinje för be
 ## Lighting Phase L2a (2026-10-25): citywide street lighting
 
 `scripts/data/lighting-l2-source.json`, `src/lib/data/streetlights-l2.json` (runtime, compact format) and `docs/lighting-city-l2/data/streetlights-l2-provenance.json` are derived from **© OpenStreetMap contributors**, ODbL 1.0 (the Lighting Phase L0 snapshot, OSM base 2026-10-24T19:51:21Z) and from the L0 classification (which also uses SCB Statistiska tätorter 2023, CC0, Källa: SCB, bearbetad). They are adapted databases under ODbL 1.0. Every fixture position, type and photometry is this project's estimate; see `docs/lighting-city-l2/data-provenance.md`.
+
+## Lighting Phase L2bc (2026-10-25): paths, squares, junctions and motorways
+
+`scripts/data/lighting-l2bc-source.json`, `src/lib/data/streetlights-l2bc.json` (compact runtime) and `docs/lighting-city-l2bc/data/streetlights-l2bc-provenance.json` are derived from **© OpenStreetMap contributors**, ODbL 1.0 (Lighting Phase L0 snapshot, OSM base 2026-10-24T19:51:21Z) and from the L0 classification (with SCB Statistiska tätorter 2023, CC0, Källa: SCB, bearbetad). Adapted databases under ODbL 1.0. Four fixtures are OSM street-lamp nodes at their mapped positions; all others are this project's estimates (`docs/lighting-city-l2bc/data-provenance.md`).

@@ -777,7 +777,7 @@ test('Phase A3 Kungstorget ring: illumination, unchanged reference view, swaps, 
   expect(errors).toEqual([]);
 });
 
-// Lighting Phase L2a: the default app loads the citywide street fixtures (pilot + A1–A3 + L2a) before
+// Lighting Phase L2a/L2bc: the default app loads the citywide fixtures (pilot + A1–A3 + L2a + L2bc) before
 // map-ready; they really light a residential area outside every earlier rollout (measured brightness,
 // no ambient change); swapping between the A1–A3 set and the city set returns to the same picture and
 // never adds shader programs; a rejected set changes nothing; recreation and context restoration keep
@@ -849,7 +849,10 @@ test('Phase L2a citywide street lighting: loaded at map-ready, lights Söderstad
   const start = await state();
   expect(start.status).toBe('ok');
   expect(start.rollouts['lighting-l2a-v1'].estimated).toBeGreaterThan(14000);
-  expect(start.fixtures).toBe(273 + start.rollouts['lighting-l2a-v1'].estimated);
+  // Phase L2bc: paths, squares, junction ranges and motorways load together with L2a.
+  const bc = start.rollouts['lighting-l2bc-v1'];
+  expect(bc.estimated + bc.mapped).toBeGreaterThan(7000);
+  expect(start.fixtures).toBe(273 + start.rollouts['lighting-l2a-v1'].estimated + bc.estimated + bc.mapped);
   expect(start.max).toBeLessThanOrEqual(32);
   const swaps: Awaited<ReturnType<typeof state>>[] = [];
   let a3Only: Buffer | null = null;

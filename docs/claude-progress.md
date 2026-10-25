@@ -2,6 +2,24 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Lighting Phase L2bc — paths, squares, junctions and motorways (2026-10-25) — implemented, committed and pushed, for review
+
+[Full report](lighting-city-l2bc/README.md). L2b and L2c run together (user request). Branch
+`codex/lighting-l2bc` from `main` = `0f86143`. **Committed and pushed:** `main` fast-forwarded to this branch on `origin`. Backend unchanged.
+
+- **Result:** 7 723 new fixtures (path lanterns 7 077, square perimeter 154 on 24 squares, motorway
+  brackets 437, junction-interval brackets 54, mapped OSM lamps 4); rendered total 22 346, max 16 per cell.
+- **Generator:** flags `includeMotorways`, `squares`; spec `candidate`, `litRanges` (all off for
+  earlier rollouts). A1/A2/A3 byte-identical; L2a runtime identical, its provenance changed only in
+  `meta.inputs.generator.sha256`.
+- **Data:** `scripts/data/lighting-l2bc-source.json` (6 655 ways, 25 lamps); runtime
+  `src/lib/data/streetlights-l2bc.json` (584 KB, fetched with L2a); provenance in docs.
+- **Measured (two paired production series, pooled):** p95 −0.3…+0.45 ms, map-ready −1 ms, heap
+  +4.1 MB (L2a + L2bc +12 MB), calls ≤ +3, triangles ≤ +51 k, 20 programs.
+- **Checks:** type check 0; build OK; Vitest 411/411 ×3 (one earlier run 1 unexplained failure, not
+  reproduced); Playwright 10/10.
+- **Local only:** `.claude/launch.json` + `l2bc-*`; `.gitignore` + `/work/lighting-city-l2bc/`.
+
 ## Lighting Phase L2a — street lighting in the whole city (2026-10-25) — implemented, committed and pushed, for review
 
 [Full report](lighting-city-l2/README.md). Branch `codex/lighting-l2` from `main` = `e93f7b4` (L0 + L1

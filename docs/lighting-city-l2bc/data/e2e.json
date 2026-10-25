@@ -1,0 +1,202 @@
+{
+ "start": {
+  "fixtures": 22346,
+  "status": "ok",
+  "rollouts": {
+   "lighting-a1-v1": {
+    "mapped": 10,
+    "estimated": 117
+   },
+   "lighting-a2-v1": {
+    "mapped": 0,
+    "estimated": 35
+   },
+   "lighting-a3-v1": {
+    "mapped": 0,
+    "estimated": 6
+   },
+   "lighting-l2a-v1": {
+    "mapped": 0,
+    "estimated": 14350
+   },
+   "lighting-l2bc-v1": {
+    "mapped": 4,
+    "estimated": 7719
+   },
+   "step6-pilot-v1": {
+    "mapped": 10,
+    "estimated": 95
+   }
+  },
+  "max": 16,
+  "exposure": 1.25,
+  "geometries": 4098,
+  "textures": 223,
+  "programs": 20
+ },
+ "swaps": [
+  {
+   "fixtures": 273,
+   "status": "ok",
+   "rollouts": {
+    "lighting-a1-v1": {
+     "mapped": 10,
+     "estimated": 117
+    },
+    "lighting-a2-v1": {
+     "mapped": 0,
+     "estimated": 35
+    },
+    "lighting-a3-v1": {
+     "mapped": 0,
+     "estimated": 6
+    },
+    "step6-pilot-v1": {
+     "mapped": 10,
+     "estimated": 95
+    }
+   },
+   "max": 15,
+   "exposure": 1.25,
+   "geometries": 4091,
+   "textures": 223,
+   "programs": 20
+  },
+  {
+   "fixtures": 22346,
+   "status": "ok",
+   "rollouts": {
+    "lighting-a1-v1": {
+     "mapped": 10,
+     "estimated": 117
+    },
+    "lighting-a2-v1": {
+     "mapped": 0,
+     "estimated": 35
+    },
+    "lighting-a3-v1": {
+     "mapped": 0,
+     "estimated": 6
+    },
+    "lighting-l2a-v1": {
+     "mapped": 0,
+     "estimated": 14350
+    },
+    "lighting-l2bc-v1": {
+     "mapped": 4,
+     "estimated": 7719
+    },
+    "step6-pilot-v1": {
+     "mapped": 10,
+     "estimated": 95
+    }
+   },
+   "max": 16,
+   "exposure": 1.25,
+   "geometries": 4098,
+   "textures": 223,
+   "programs": 20
+  },
+  {
+   "fixtures": 273,
+   "status": "ok",
+   "rollouts": {
+    "lighting-a1-v1": {
+     "mapped": 10,
+     "estimated": 117
+    },
+    "lighting-a2-v1": {
+     "mapped": 0,
+     "estimated": 35
+    },
+    "lighting-a3-v1": {
+     "mapped": 0,
+     "estimated": 6
+    },
+    "step6-pilot-v1": {
+     "mapped": 10,
+     "estimated": 95
+    }
+   },
+   "max": 15,
+   "exposure": 1.25,
+   "geometries": 4091,
+   "textures": 223,
+   "programs": 20
+  },
+  {
+   "fixtures": 22346,
+   "status": "ok",
+   "rollouts": {
+    "lighting-a1-v1": {
+     "mapped": 10,
+     "estimated": 117
+    },
+    "lighting-a2-v1": {
+     "mapped": 0,
+     "estimated": 35
+    },
+    "lighting-a3-v1": {
+     "mapped": 0,
+     "estimated": 6
+    },
+    "lighting-l2a-v1": {
+     "mapped": 0,
+     "estimated": 14350
+    },
+    "lighting-l2bc-v1": {
+     "mapped": 4,
+     "estimated": 7719
+    },
+    "step6-pilot-v1": {
+     "mapped": 10,
+     "estimated": 95
+    }
+   },
+   "max": 16,
+   "exposure": 1.25,
+   "geometries": 4098,
+   "textures": 223,
+   "programs": 20
+  }
+ ],
+ "restoredState": {
+  "fixtures": 22346,
+  "status": "ok",
+  "rollouts": {
+   "lighting-a1-v1": {
+    "mapped": 10,
+    "estimated": 117
+   },
+   "lighting-a2-v1": {
+    "mapped": 0,
+    "estimated": 35
+   },
+   "lighting-a3-v1": {
+    "mapped": 0,
+    "estimated": 6
+   },
+   "lighting-l2a-v1": {
+    "mapped": 0,
+    "estimated": 14350
+   },
+   "lighting-l2bc-v1": {
+    "mapped": 4,
+    "estimated": 7719
+   },
+   "step6-pilot-v1": {
+    "mapped": 10,
+    "estimated": 95
+   }
+  },
+  "max": 16,
+  "exposure": 1.25,
+  "geometries": 2729,
+  "textures": 135,
+  "programs": 18
+ },
+ "luma": {
+  "lit": 12.492476390137059,
+  "dark": 4.707856598309087
+ }
+}

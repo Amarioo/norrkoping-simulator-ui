@@ -1,6 +1,11 @@
 // Lighting Phase L2: the OSM source extract for the citywide street rollout (L2a).
 //
-//   node scripts/lighting-l2/extract-source.mjs
+//   node scripts/lighting-l2/extract-source.mjs        # L2a → scripts/data/lighting-l2-source.json
+//   node scripts/lighting-l2/extract-source.mjs bc     # L2bc → scripts/data/lighting-l2bc-source.json
+//
+// L2bc: every way of a generator class (car roads, motorways, paths) that L0 classified lit or
+// partly lit, their same-name one-way partners, and every street_lamp node (all of them; the
+// generator matches lamps already rendered by identity).
 //
 // Input:  the pinned L0 snapshot work/lighting-city-l0/raw/osm-city.json (ignored scratch; SHA-256
 //         must equal scripts/lighting-city/sources.json, else nothing is written) and the committed L0
@@ -19,7 +24,9 @@ import fs from 'node:fs';
 const SOURCES = JSON.parse(fs.readFileSync('scripts/lighting-city/sources.json', 'utf8')).sources;
 const L0 = 'docs/lighting-city-l0/data/city-lighting-l0.json';
 const L0_SOURCE = 'scripts/data/lighting-city-source.json';
-const OUT = 'scripts/data/lighting-l2-source.json';
+const MODE = process.argv[2] ?? 'a';
+if (!['a', 'bc'].includes(MODE)) throw new Error(`unknown mode ${MODE}`);
+const OUT = MODE === 'bc' ? 'scripts/data/lighting-l2bc-source.json' : 'scripts/data/lighting-l2-source.json';
 const CAR = new Set([
   'trunk', 'trunk_link', 'primary', 'primary_link', 'secondary', 'secondary_link', 'tertiary',
   'tertiary_link', 'residential', 'unclassified', 'living_street', 'pedestrian', 'service',
@@ -43,11 +50,15 @@ const tags = (t = {}) =>
       .map((k) => [k, t[k]]),
   );
 const ways = osm.elements.filter((e) => e.type === 'way' && e.tags?.highway && e.geometry?.length >= 2);
-const lit = ways.filter((e) => CAR.has(e.tags.highway) && statusOf.get(e.id) === 'lit');
+const BC = new Set([...CAR, 'motorway', 'motorway_link', 'footway', 'cycleway', 'path', 'steps', 'bridleway', 'platform']);
+const lit =
+  MODE === 'bc'
+    ? ways.filter((e) => BC.has(e.tags.highway) && ['lit', 'partial'].includes(statusOf.get(e.id)))
+    : ways.filter((e) => CAR.has(e.tags.highway) && statusOf.get(e.id) === 'lit');
 const litNames = new Set(lit.filter((e) => e.tags.oneway === 'yes' && e.tags.name).map((e) => e.tags.name));
 const keep = new Set(lit.map((e) => e.id));
 for (const e of ways)
-  if (CAR.has(e.tags.highway) && e.tags.oneway === 'yes' && litNames.has(e.tags.name)) keep.add(e.id);
+  if ((MODE === 'bc' ? BC : CAR).has(e.tags.highway) && e.tags.oneway === 'yes' && litNames.has(e.tags.name)) keep.add(e.id);
 
 // Nearest way of a lamp node, in the L0 extract (EPSG:3006), any class.
 const src = JSON.parse(fs.readFileSync(L0_SOURCE, 'utf8'));
@@ -86,7 +97,7 @@ for (const e of ways)
 const lampsSkipped = [];
 for (const n of nodeEN.values()) {
   const cls = nearestClass(n.lat, n.lon);
-  if (!CAR.has(cls)) {
+  if (MODE !== 'bc' && !CAR.has(cls)) {
     lampsSkipped.push({ node: n.id, nearestClass: cls });
     continue;
   }
@@ -121,7 +132,10 @@ const out = {
       sha256: crypto.createHash('sha256').update(l0Text).digest('hex'),
       rule: l0.meta.rule.version,
     },
-    scope: 'car-road ways classified wholly lit by L0, their same-name one-way partners, and street_lamp nodes nearest to a car road',
+    scope:
+      MODE === 'bc'
+        ? 'ways of every generator class (car roads, motorways, paths) classified lit or partly lit by L0, their same-name one-way partners, and every street_lamp node'
+        : 'car-road ways classified wholly lit by L0, their same-name one-way partners, and street_lamp nodes nearest to a car road',
     lampsLeftForL2b: lampsSkipped,
     counts: {
       ways: elements.filter((e) => e.type === 'way').length,

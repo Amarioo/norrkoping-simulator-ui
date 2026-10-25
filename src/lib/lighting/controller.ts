@@ -58,7 +58,7 @@ import a1Data from '../data/streetlights-a1.json';
 import a2Data from '../data/streetlights-a2.json';
 import a3Data from '../data/streetlights-a3.json';
 import { decodeCompactSet, type CompactSet } from './compactSet';
-import { L2_DATASET, L2_GENERATOR } from './corridorL2';
+import { L2_DATASET, L2_GENERATOR, L2BC_DATASET, L2BC_GENERATOR } from './corridorL2';
 import {
   A2_IDENTITY,
   A3_IDENTITY,
@@ -107,9 +107,20 @@ export function l2LightingRegistry(terrain: TerrainService, data: CompactSet) {
     generator: L2_GENERATOR,
   });
 }
-/** The citywide rendered set: pilot + A1 + A2 + A3 + L2a. */
-export function cityLightingRegistry(terrain: TerrainService, l2: CompactSet) {
-  return mergeRegistries(runtimeLightingRegistry(terrain), l2LightingRegistry(terrain, l2));
+/** Lighting Phase L2bc paths, squares, junction ranges and motorways (streetlights-l2bc.json). */
+export function l2bcLightingRegistry(terrain: TerrainService, data: CompactSet) {
+  return corridorRegistry(decodeCompactSet(data) as unknown as A1Data, terrain.data.reference, {
+    dataset: L2BC_DATASET,
+    generator: L2BC_GENERATOR,
+  });
+}
+/** The citywide rendered set: pilot + A1 + A2 + A3 + L2a (+ L2bc when given). */
+export function cityLightingRegistry(terrain: TerrainService, l2: CompactSet, l2bc?: CompactSet) {
+  return mergeRegistries(
+    runtimeLightingRegistry(terrain),
+    l2LightingRegistry(terrain, l2),
+    ...(l2bc ? [l2bcLightingRegistry(terrain, l2bc)] : []),
+  );
 }
 /** The accepted Phase A1 rendered set (pilot + A1, 232 fixtures): the A1 tests and A2 comparisons. */
 export function a1RuntimeLightingRegistry(terrain: TerrainService) {
