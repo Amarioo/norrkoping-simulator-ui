@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Landmark Phase B1 part 1 — Rådhuset and Gull-Olle, geometry by day (2026-10-25) — approved (user, 2026-10-25), committed and pushed to its branch
+## Landmark Phase B1 part 1 — Rådhuset and Gull-Olle, geometry by day (2026-10-25) — approved (user, 2026-10-25), committed and pushed, merged into `main`
 
 [Full report](landmark-b1/README.md). Branch `claude/landmark-b1` from `main` = `951f3cd`. **Committed
-on the branch and the branch pushed to `origin`** (not merged into `main`). Backend unchanged. Part 2 (façade lighting) not started: no documentation of
+and pushed:** `main` fast-forwarded to this branch on `origin` (user, 2026-10-25). Backend unchanged. Part 2 (façade lighting) not started: no documentation of
 floodlighting found ([remaining-gaps.md](landmark-b1/remaining-gaps.md) §1).
 
 - **Result:** the OSM box (20 m, estimated) and the illustrative tower (≈ 83 m, in the courtyard) are

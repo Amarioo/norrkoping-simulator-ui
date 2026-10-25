@@ -151,7 +151,7 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
 ### Spår B: landmärken
 
 - [ ] **B1 Rådhuset och Gull-Olle** — L — *del 1 (geometri, dagsljus) genomförd 2026-10-25 på grenen
-  `claude/landmark-b1`, godkänd 2026-10-25, committad och grenen pushad (ej ihopslagen med main): [docs/landmark-b1/README.md](landmark-b1/README.md).
+  `claude/landmark-b1`, godkänd 2026-10-25, committad och pushad till main: [docs/landmark-b1/README.md](landmark-b1/README.md).
   Uppmätt modell ur laserdata: tornet 68,7 m över torget med Gull-Olle överst; del 2 (fasadbelysning)
   ej påbörjad, ingen dokumentation av belysningen hittad.*
   - Först geometrin (tornet 68 m, förgylld skulptur 4,5 m enligt kommunen), dagsljus. Sedan

@@ -1,7 +1,7 @@
 # Landmark Phase B1 — Rådhuset and Gull-Olle (part 1: geometry by day)
 
-Branch `claude/landmark-b1` from `main` = `951f3cd`. Part 1 approved by the user 2026-10-25; committed on the
-branch and the branch pushed to `origin` (not merged into `main`). Backend unchanged.
+Branch `claude/landmark-b1` from `main` = `951f3cd`. Part 1 approved by the user 2026-10-25; committed, pushed
+and merged: `main` fast-forwarded to this branch on `origin`. Backend unchanged.
 
 Norrköping's town hall (I. G. Clason, 1907–1910) is now a measured model instead of a generic OSM box
 with an illustrative tower: the U-shaped brick building with its mansard roofs, the courtyard blocks,
