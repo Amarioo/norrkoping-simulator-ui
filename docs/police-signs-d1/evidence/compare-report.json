@@ -1,0 +1,272 @@
+{
+  "beforeDir": "work/police-signs-d1/captures/before",
+  "afterDir": "work/police-signs-d1/captures/after",
+  "captures": {
+    "gable-front-day": {
+      "changedPixels": 1231,
+      "pixels": 702240,
+      "lumaBefore": 141.2,
+      "lumaAfter": 141.15,
+      "calls": {
+        "before": 1761,
+        "after": 1760
+      },
+      "triangles": {
+        "before": 2759237,
+        "after": 2759648
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "stockholmsvagen-day": {
+      "changedPixels": 446,
+      "pixels": 702240,
+      "lumaBefore": 142.53,
+      "lumaAfter": 142.51,
+      "calls": {
+        "before": 1592,
+        "after": 1591
+      },
+      "triangles": {
+        "before": 2664409,
+        "after": 2664820
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "emblem-close-day": {
+      "changedPixels": 11418,
+      "pixels": 702240,
+      "lumaBefore": 132.73,
+      "lumaAfter": 132.19,
+      "calls": {
+        "before": 1723,
+        "after": 1722
+      },
+      "triangles": {
+        "before": 2706579,
+        "after": 2706990
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "district-day": {
+      "changedPixels": 48,
+      "pixels": 702240,
+      "lumaBefore": 131.02,
+      "lumaAfter": 131.02,
+      "calls": {
+        "before": 2202,
+        "after": 2201
+      },
+      "triangles": {
+        "before": 3287977,
+        "after": 3288388
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "police-preset-day": {
+      "changedPixels": 4157,
+      "pixels": 702240,
+      "lumaBefore": 136.59,
+      "lumaAfter": 136.42,
+      "calls": {
+        "before": 1636,
+        "after": 1635
+      },
+      "triangles": {
+        "before": 2682576,
+        "after": 2682987
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "control-radhuset-day": {
+      "changedPixels": 0,
+      "pixels": 702240,
+      "lumaBefore": 128.56,
+      "lumaAfter": 128.56,
+      "calls": {
+        "before": 1649,
+        "after": 1649
+      },
+      "triangles": {
+        "before": 2492529,
+        "after": 2492529
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "control-kungsgatan-day": {
+      "changedPixels": 0,
+      "pixels": 702240,
+      "lumaBefore": 120.21,
+      "lumaAfter": 120.21,
+      "calls": {
+        "before": 1762,
+        "after": 1762
+      },
+      "triangles": {
+        "before": 2565398,
+        "after": 2565398
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "gable-front-night": {
+      "changedPixels": 1043,
+      "pixels": 702240,
+      "lumaBefore": 14.67,
+      "lumaAfter": 14.77,
+      "calls": {
+        "before": 1762,
+        "after": 1761
+      },
+      "triangles": {
+        "before": 2803929,
+        "after": 2804340
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "stockholmsvagen-night": {
+      "changedPixels": 342,
+      "pixels": 702240,
+      "lumaBefore": 12.42,
+      "lumaAfter": 12.45,
+      "calls": {
+        "before": 1593,
+        "after": 1592
+      },
+      "triangles": {
+        "before": 2709101,
+        "after": 2709512
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "emblem-close-night": {
+      "changedPixels": 10921,
+      "pixels": 702240,
+      "lumaBefore": 11.21,
+      "lumaAfter": 12.21,
+      "calls": {
+        "before": 1724,
+        "after": 1723
+      },
+      "triangles": {
+        "before": 2751271,
+        "after": 2751682
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "district-night": {
+      "changedPixels": 28,
+      "pixels": 702240,
+      "lumaBefore": 14.27,
+      "lumaAfter": 14.27,
+      "calls": {
+        "before": 2203,
+        "after": 2202
+      },
+      "triangles": {
+        "before": 3332669,
+        "after": 3333080
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "police-preset-night": {
+      "changedPixels": 3799,
+      "pixels": 702240,
+      "lumaBefore": 12.19,
+      "lumaAfter": 12.55,
+      "calls": {
+        "before": 1637,
+        "after": 1636
+      },
+      "triangles": {
+        "before": 2727268,
+        "after": 2727679
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "control-radhuset-night": {
+      "changedPixels": 0,
+      "pixels": 702240,
+      "lumaBefore": 11.25,
+      "lumaAfter": 11.25,
+      "calls": {
+        "before": 1650,
+        "after": 1650
+      },
+      "triangles": {
+        "before": 2537221,
+        "after": 2537221
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    },
+    "control-kungsgatan-night": {
+      "changedPixels": 0,
+      "pixels": 702240,
+      "lumaBefore": 7.33,
+      "lumaAfter": 7.33,
+      "calls": {
+        "before": 1763,
+        "after": 1763
+      },
+      "triangles": {
+        "before": 2610090,
+        "after": 2610090
+      },
+      "programs": {
+        "before": 20,
+        "after": 20
+      },
+      "beams": null
+    }
+  }
+}

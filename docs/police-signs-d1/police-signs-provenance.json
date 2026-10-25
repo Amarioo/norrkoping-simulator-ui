@@ -1,0 +1,83 @@
+{
+  "phase": "Police Signs Phase D1",
+  "object": "Police emblem sign on Polishuset (Stinsen 1, Stockholmsvägen 4–6, Norrköping), SSE gable of the tower",
+  "model": "src/lib/landmarks/police/spec.ts (values), src/lib/landmarks/police/sign.ts (geometry, material), src/lib/landmarks/police/emblem-outline.json (outline)",
+  "frame": {
+    "sceneContract": "scene = (SWEREF 99 TM − (569030, 6494989)) / (25 · 0.9996584126), x east, z south; scene y = RH2000 / 25",
+    "towerLidar": {
+      "description": "origin = centre of the tower roof's extent; +u along the long axis towards the SSE gable; +v towards WSW; metres; heights RH2000",
+      "centreSweref99TM": [568305.61, 6495638.86],
+      "centreScene": [-28.9855, -26.0032],
+      "axisBearingDeg": 165.6,
+      "source": "LIDAR"
+    },
+    "towerDrawn": {
+      "description": "existing illustrative tower (src/lib/mapLandmarks.ts), group at the slab centre, rotation about +y; local +z out of the SSE gable",
+      "positionScene": [-29.25, -26.22],
+      "rotationRad": 0.2775,
+      "localZBearingDeg": 164.1,
+      "slabUnits": { "width": 0.51, "height": 1.82, "length": 2.65, "parapetTop": 1.95 },
+      "offsetFromMeasuredCentreM": 8.6,
+      "source": "MODEL"
+    },
+    "signLocalUnits": { "x": 0, "y": 1.514, "z": 1.335, "width": 0.15, "height": 0.1984 }
+  },
+  "sources": {
+    "HEMSO": {
+      "what": "Hemsö Fastighets AB property page 'Stinsen 1 – Norrköpings Polisstation' and its photograph Stinsen-1-1240.jpg (1024 × 768)",
+      "url": "https://www.hemso.se/fastigheter/stinsen-1-norrkopings-polisstation/",
+      "date": "image uploaded 2023-10 (upload path), read 2026-10-25",
+      "licence": "© Hemsö; inspected and measured only, not copied or redistributed",
+      "accuracy": "±1 px at edges (≈ ±0.09 m); near-frontal (≈ 10°)",
+      "facts": ["address Stockholmsvägen 4-6, 602 17 Norrköping", "one police emblem, centred high on the dark SSE gable"]
+    },
+    "PHOTO": {
+      "what": "Wikimedia Commons photographs of Polishuset",
+      "files": [
+        { "title": "Polishuset Norrköping 2008-05-10.jpg", "author": "Sakletare", "date": "2008-05-10", "licence": "public domain" },
+        { "title": "Polishuset Norrköping.jpg", "author": "Johan Jönsson (Julle)", "date": "2016-10-01", "licence": "CC BY-SA 4.0" },
+        { "title": "Norrköping juni 2018 51.jpg", "author": "Johan Jönsson (Julle)", "date": "2018-06-21", "licence": "CC BY-SA 4.0" }
+      ],
+      "use": "reference only, nothing copied",
+      "accuracy": "proportions ±15 % (close, low viewpoints)"
+    },
+    "LIDAR": {
+      "what": "Lantmäteriet point cloud, STAC collection dsm-skoglig-copc (Laserdata NH 2020)",
+      "tile": "y20c012-64950_5675_25.copc.laz",
+      "tileSha256": "529d84294de02fccb8e2f57eefdf8acdb2ff5a2b6975ef0e0cf2bd8ddb94e269",
+      "acquired": "2020-02-03 (STAC item date), scan area 20C012",
+      "density": "nominal 1.2 points/m²",
+      "licence": "CC BY 4.0, ©Lantmäteriet (processed)",
+      "processing": "scripts/police-signs-d1/police_tower_lidar.py → docs/police-signs-d1/data/police-tower-lidar.json (deterministic, byte-identical rebuild verified; Python 3.12.14, numpy 2.3.5, laspy 2.7.0)",
+      "accuracy": "heights ±0.1–0.2 m on hard surfaces; extents from 1st/99th percentiles, walls up to ≈ 0.5 m further out"
+    },
+    "ARTWORK": {
+      "what": "public/assets/polis-emblem.svg (Polismyndigheten), unchanged; see DATA-LICENSE.md",
+      "sha256": "see src/lib/landmarks/police/emblem-outline.json sourceSha256",
+      "use": "sign picture (colour and emissive map) and outline"
+    },
+    "POLISEN": {
+      "what": "Polisen news item 'Polisens reception i Norrköping byter adress'",
+      "url": "https://polisen.se/aktuellt/nyheter/ost/2026/januari/polisens-reception-i-norrkoping-byter-adress/",
+      "date": "2026-01-19, read 2026-10-25",
+      "facts": ["reception moves to Luntgatan 32 on Monday 26 January", "weapons hand-in and found bicycles/e-scooters remain at Stockholmsvägen 4-6"]
+    }
+  },
+  "values": [
+    { "name": "sign count", "value": 1, "kind": "observed", "source": ["HEMSO", "PHOTO"] },
+    { "name": "gable", "value": "SSE (bearing ≈ 165°, towards Stockholmsvägen)", "kind": "observed", "source": ["PHOTO", "LIDAR"] },
+    { "name": "tower length", "value": 54.38, "unit": "m", "kind": "measured", "source": "LIDAR" },
+    { "name": "tower width", "value": 13.42, "unit": "m", "kind": "measured", "source": "LIDAR" },
+    { "name": "parapet", "value": 49.5, "unit": "m RH2000", "kind": "measured", "source": "LIDAR", "note": "gable-edge returns median 49.31, p90 49.61" },
+    { "name": "ground in front of the gable", "value": 11.84, "unit": "m RH2000", "kind": "measured", "source": "LIDAR" },
+    { "name": "gable width (photo scale)", "value": 13.9, "unit": "m", "kind": "derived", "source": ["LIDAR", "EST"] },
+    { "name": "photo cos(view angle)", "value": 0.985, "kind": "derived", "source": ["HEMSO", "ARTWORK"] },
+    { "name": "sign width", "value": 3.75, "unit": "m", "kind": "derived", "source": ["HEMSO", "LIDAR"], "uncertainty": "±0.3 m" },
+    { "name": "sign height", "value": 4.96, "unit": "m", "kind": "derived", "source": ["HEMSO", "LIDAR"], "uncertainty": "±0.3 m" },
+    { "name": "sign centre below parapet", "value": 10.9, "unit": "m", "kind": "derived", "source": ["HEMSO", "LIDAR"], "uncertainty": "±1 m" },
+    { "name": "sign horizontal offset", "value": 0, "unit": "m", "kind": "observed", "source": "HEMSO" },
+    { "name": "sign standoff from wall", "value": 0.25, "unit": "m", "kind": "estimate", "source": "EST" },
+    { "name": "lit at night", "value": true, "kind": "estimate", "source": "EST", "note": "roadmap requirement; no night photograph found" },
+    { "name": "night emissive gain", "value": 1.1, "kind": "estimate", "source": "EST", "note": "× env.artificial (street lighting night level)" }
+  ]
+}

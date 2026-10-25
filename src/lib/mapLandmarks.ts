@@ -7,7 +7,6 @@ import {
   MeshStandardMaterial,
   BoxGeometry,
   CylinderGeometry,
-  PlaneGeometry,
   CanvasTexture,
   SRGBColorSpace,
   Sprite,
@@ -18,6 +17,8 @@ import {
   type Object3D,
 } from 'three';
 import { cityMap, LANDMARKS, pointInRing, type Point } from './mapModel';
+import { createPoliceSign } from './landmarks/police/sign';
+import { TOWER_MODEL } from './landmarks/police/spec';
 
 /** Architectural additions are illustrative; every anchor is in the mapped coordinate system. */
 export function createLandmarkDetails() {
@@ -213,8 +214,8 @@ export function createLandmarkDetails() {
   const police = cityMap.buildings.find((b) => b.name === 'Polishuset')!;
   const towerPolice = new Group();
   // SWEREF 99 TM scene frame (migrated from legacy -28.72, -26.66 / 0.26 rad).
-  towerPolice.position.set(-29.25, 0, -26.22);
-  towerPolice.rotation.y = 0.2775;
+  towerPolice.position.set(TOWER_MODEL.position[0], 0, TOWER_MODEL.position[1]);
+  towerPolice.rotation.y = TOWER_MODEL.rotation;
   group.add(towerPolice);
   const facade = texture(512, 1024, (c) => {
     c.fillStyle = '#b9c0be';
@@ -243,20 +244,10 @@ export function createLandmarkDetails() {
   // Official vector artwork with an emblem-only viewBox and explicit rasterization dimensions.
   const crest = track(new TextureLoader().load('/assets/polis-emblem.svg'));
   crest.colorSpace = SRGBColorSpace;
-  const badge = new Mesh(
-    track(new PlaneGeometry(0.25, 0.3)),
-    track(
-      new MeshStandardMaterial({
-        map: crest,
-        transparent: true,
-        alphaTest: 0.02,
-        side: 2,
-        roughness: 0.5,
-      }),
-    ),
-  );
-  badge.position.set(0, 1.55, 1.37);
-  towerPolice.add(badge);
+  // Police Signs Phase D1: the emblem sign at its photographed size and height on the SSE gable,
+  // self-lit at night (src/lib/landmarks/police/; replaces the earlier 6.25 × 7.5 m badge).
+  const policeSign = track(createPoliceSign(crest));
+  towerPolice.add(policeSign.mesh);
   const panelPositions: Point[] = [];
   for (let x = -31.85; x < -27.8; x += 0.22)
     for (let z = -27.48; z < -24.66; z += 0.19) {
@@ -452,6 +443,8 @@ export function createLandmarkDetails() {
   return {
     group,
     labels,
+    /** Police Signs Phase D1: the emblem sign (night glow via `setNightLevel`). */
+    policeSign,
     dispose() {
       owned.forEach((r) => r.dispose());
       group.clear();

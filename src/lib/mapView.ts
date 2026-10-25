@@ -223,6 +223,10 @@ export function createMappedCity() {
     group,
     labels: details.labels,
     stadium,
+    /** Police Signs Phase D1: night level 0…1 (env.artificial) for the self-lit police emblem. */
+    setNightLevel(level: number) {
+      details.policeSign.setNightLevel(level);
+    },
     /** Materials of the worker-built layers (their meshes arrive after `ready`). */
     layerMaterials: Object.values(materials).map((m) => m.material),
     /** Resolves when the worker-built ground, roads and buildings are in the scene. */

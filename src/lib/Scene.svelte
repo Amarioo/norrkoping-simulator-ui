@@ -239,6 +239,8 @@
     const level = lighting.artificial;
     transport.setNightLevel(level);
     transit.setNightLevel(level);
+    // Police Signs Phase D1: the police emblem glows at the same night level.
+    view.setNightLevel(level);
     vehiclePoses.length = 0;
     for (const p of transport.poses()) vehiclePoses.push(p);
     for (const p of transit.poses()) vehiclePoses.push(p);

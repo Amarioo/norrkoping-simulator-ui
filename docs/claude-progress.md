@@ -2,6 +2,26 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Police Signs Phase D1 — the police emblem on Polishuset (2026-10-25) — approved (user, 2026-10-25), committed and pushed on its branch
+
+[Full report](police-signs-d1/README.md). Branch `claude/police-signs-d1` from `main` = `8c5e437`.
+**Committed and pushed** to `origin/claude/police-signs-d1` (user, 2026-10-25); not merged into `main`. Backend unchanged.
+
+- **Result:** the one documented sign — the police emblem centred high on the tower's SSE gable
+  (Stockholmsvägen side) — replaces the old 6.25 × 7.5 m badge: 3.75 × 4.96 m, 10.9 m below the
+  parapet (Hemsö photo 2023 × LiDAR gable width), opaque emblem-shaped surface (outline traced from
+  the artwork), self-lit at night at 1.1 × `env.artificial` (estimate: no night photo), off by day.
+  Stinsen 1 = Stockholmsvägen 4–6; the 2026-01-26 move was the reception (Luntgatan 32, not in D1).
+- **Data:** `scripts/police-signs-d1/police_tower_lidar.py` → `docs/police-signs-d1/data/police-tower-lidar.json`
+  (tower 54.4 × 13.4 m, ≈ 37.7 m tall; drawn tower ≈ 11 m taller — follow-up); `emblem-outline.mjs`
+  → `src/lib/landmarks/police/emblem-outline.json`. Both byte-identical on rebuild.
+- **Measured (paired production builds, traffic on, 8 rounds pooled):** p95 day ≤ +0.45 ms, night
+  ≤ +0.5 ms, map-ready +39 ms, heap +0.13 MB, calls −1, triangles +411, 20 programs (shares the
+  tram/bus destination-sign program). Control views pixel-identical.
+- **Checks:** type check 0; build OK; Vitest 443/444 (only `terrain.test.ts`'s backend path, absent
+  in a worktree; comparison equal with the absolute path); Playwright 13/13; new tests pass.
+- **Local only:** `.claude/launch.json` (`d1-*`); `work/police-signs-d1/`.
+
 ## Landmark Phase B1 part 1 — Rådhuset and Gull-Olle, geometry by day (2026-10-25) — approved (user, 2026-10-25), committed and pushed, merged into `main`
 
 [Full report](landmark-b1/README.md). Branch `claude/landmark-b1` from `main` = `951f3cd`. **Committed

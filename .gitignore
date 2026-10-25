@@ -82,3 +82,7 @@ work/geodata/
 # Landmark Phase B1 scratch (main baseline app, captures, perf runs, rebuild check). Curated evidence is
 # in docs/landmark-b1/; reusable tools are in scripts/landmark-b1/.
 /work/landmark-b1/
+
+# Police Signs Phase D1 scratch (main baseline app, captures, perf runs). Curated evidence is in
+# docs/police-signs-d1/; reusable tools are in scripts/police-signs-d1/.
+/work/police-signs-d1/
