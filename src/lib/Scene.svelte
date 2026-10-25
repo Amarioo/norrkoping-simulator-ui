@@ -16,6 +16,7 @@
     a2LightingRegistry,
     a2RuntimeLightingRegistry,
     a3LightingRegistry,
+    cityLightingRegistry,
     createCityLighting,
     pilotLightingRegistry,
     runtimeLightingRegistry,
@@ -26,6 +27,8 @@
     type A1Data,
     type CorridorIdentity,
   } from './lighting/corridorRegistry';
+  import type { CompactSet } from './lighting/compactSet';
+  import l2Url from './data/streetlights-l2.json?url';
   import { advanceClock, lightingState } from './lighting/state.svelte';
   let {
     focus = 'overview',
@@ -52,8 +55,23 @@
   // (development hook below) rebinds the same materials to the new controller's uniforms. The
   // controller's group lives in a stable root: Threlte keeps every object ever passed to <T is>
   // until the component unmounts, so swapping `is` would retain each replaced group.
+  // Lighting Phase L2a: the citywide street fixtures (≈ 14 000) are a separate compact file, fetched
+  // and swapped in after the controller exists (the bundled pilot + A1–A3 set renders until then);
+  // map-ready waits for it. `?lighting=a3` (development / hook builds) keeps the A1–A3 set only, for
+  // the earlier phases' tests.
+  const hookEnabled = import.meta.env.DEV || import.meta.env.VITE_LIGHTING_HOOK === '1';
+  const onlyA3 = hookEnabled && new URLSearchParams(location.search).get('lighting') === 'a3';
+  let l2Set: CompactSet | null = null;
+  const defaultRegistry = () =>
+    l2Set ? cityLightingRegistry(terrain, l2Set) : runtimeLightingRegistry(terrain);
   const createLighting = () => {
-    const l = createCityLighting({ terrain, stadium: view.stadium, renderer, scene });
+    const l = createCityLighting({
+      terrain,
+      stadium: view.stadium,
+      renderer,
+      scene,
+      registry: defaultRegistry(),
+    });
     for (const root of [view.group, transport.group, transit.group, signals.group]) l.patch(root);
     l.patchMaterials(view.layerMaterials);
     return l;
@@ -71,9 +89,22 @@
   lighting.set(lightingInput());
   lighting.settle();
   $effect(() => lighting.set(lightingInput()));
+  const l2Ready: Promise<void> = onlyA3
+    ? Promise.resolve()
+    : fetch(l2Url)
+        .then((r) => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json() as Promise<CompactSet>;
+        })
+        .then((set) => {
+          const result = lighting.replaceStreetLighting(cityLightingRegistry(terrain, set));
+          if (!result.ok) throw new Error(`citywide set rejected at ${result.stage}`);
+          l2Set = set;
+        })
+        .catch((error) => console.error('[lighting] citywide street lighting not loaded:', error));
   // Development, or a test build made with VITE_LIGHTING_HOOK=1 (Lighting Phase L1 measurements of
   // large sets on a production bundle). Unset in normal builds, so the hook is removed there.
-  if (import.meta.env.DEV || import.meta.env.VITE_LIGHTING_HOOK === '1')
+  if (hookEnabled)
     (globalThis as unknown as { __cityLighting: unknown }).__cityLighting = {
       state: lightingState,
       settle: () => lighting.settle(),
@@ -96,8 +127,7 @@
         lighting.settle();
         return lighting.describe();
       },
-      reloadStreetLighting: () =>
-        lighting.replaceStreetLighting(runtimeLightingRegistry(terrain)).ok,
+      reloadStreetLighting: () => lighting.replaceStreetLighting(defaultRegistry()).ok,
       // Lighting Phase A1/A2/A3 checks: swap complete sets (pilot only, pilot + A1, pilot + A1 + A2,
       // pilot + A1 + A2 + A3), submit arbitrary (e.g. deliberately invalid) registries, and list the
       // rendered fixtures.
@@ -109,6 +139,8 @@
         a1Runtime: () => a1RuntimeLightingRegistry(terrain),
         a2Runtime: () => a2RuntimeLightingRegistry(terrain),
         runtime: () => runtimeLightingRegistry(terrain),
+        // Phase L2a: the default set (pilot + A1–A3 + L2a once loaded).
+        city: () => defaultRegistry(),
         // Phase L1: any set in the A1–A3 runtime format (e.g. the stress set) on top of the runtime set.
         runtimePlus: (data: A1Data, identity: CorridorIdentity) =>
           mergeRegistries(
@@ -133,7 +165,7 @@
     if (camera.current) renderer.compileAsync(scene, camera.current).catch(() => {});
   };
   $effect(precompile);
-  view.ready.then(
+  Promise.all([view.ready, l2Ready]).then(
     () => {
       precompile();
       mapReadyMs = performance.now() - buildStarted;

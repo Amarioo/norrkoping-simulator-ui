@@ -26,7 +26,10 @@ export interface PreparedStreetLighting {
   ok: true;
   /** Fixtures in canonical-ID order; lamp i, fixture i and payload index i agree. */
   fixtures: FixtureRecord[];
-  /** Registry records in the same canonical order (diagnostics; Phase A1). */
+  /**
+   * Registry records in the same canonical order (diagnostics, inspect(); Phase A1). Empty unless
+   * PrepareOptions.keepRecords (Phase L2: ≈ 0.5 KB per fixture, not needed for rendering).
+   */
   records: RegistryFixture[];
   /** Fixture counts per rollout (generator version) and placement (Phase A1). */
   rollouts: Record<string, { mapped: number; estimated: number }>;
@@ -50,6 +53,8 @@ export interface PrepareOptions {
   maxTextureSize: number;
   chunkCells?: number;
   unlitElements?: ReadonlySet<string>;
+  /** Keep the registry records on the prepared set (development diagnostics). */
+  keepRecords?: boolean;
 }
 
 const now = () => (typeof performance === 'undefined' ? Date.now() : performance.now());
@@ -123,7 +128,7 @@ export function prepareStreetLighting(
   return {
     ok: true,
     fixtures,
-    records,
+    records: options.keepRecords ? records : [],
     rollouts,
     lamps,
     index: built.index,

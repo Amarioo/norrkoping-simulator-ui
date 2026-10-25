@@ -63,3 +63,7 @@ Idrottsparken heights and floodlight-mast positions (`src/lib/stadium/spec.ts`) 
 - pixel values of **NASA Black Marble 2016** (NASA GIBS, layer `VIIRS_Black_Marble`), no use restriction; courtesy of NASA. Used only as a plausibility check.
 
 Lit/dark decisions "by rule" follow the text of Norrköping's *Riktlinje för belysning* (2023-06-07); the document itself is not redistributed. Lamp positions are estimates (see `docs/lighting-city-l0/data-provenance.md`).
+
+## Lighting Phase L2a (2026-10-25): citywide street lighting
+
+`scripts/data/lighting-l2-source.json`, `src/lib/data/streetlights-l2.json` (runtime, compact format) and `docs/lighting-city-l2/data/streetlights-l2-provenance.json` are derived from **© OpenStreetMap contributors**, ODbL 1.0 (the Lighting Phase L0 snapshot, OSM base 2026-10-24T19:51:21Z) and from the L0 classification (which also uses SCB Statistiska tätorter 2023, CC0, Källa: SCB, bearbetad). They are adapted databases under ODbL 1.0. Every fixture position, type and photometry is this project's estimate; see `docs/lighting-city-l2/data-provenance.md`.

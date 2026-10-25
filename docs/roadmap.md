@@ -124,14 +124,15 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   - Generatorn `lighting-city-v1` enligt 2.3: per väg "upplyst/mörk + orsak", sedan lyktpositioner.
   - Satellitkontroll (Black Marble) per ruta.
   - Leverans: interaktiv 2D-karta + statistik. **Här godkänner du regeln för hela staden på en gång.**
-- [ ] **L1 Skalbar rendering** — M — *genomförd 2026-10-24, väntar på granskning:
-  [docs/lighting-city-l1/README.md](lighting-city-l1/README.md). 25 314 lyktor utan mätbar bildtid;
-  minnet (+25 MB) klarar inte målet, åtgärdas med kompakt dataformat i L2.*
+- [x] **L1 Skalbar rendering** — M — *genomförd 2026-10-24 (pushad till main; användaren gick vidare
+  till L2): [docs/lighting-city-l1/README.md](lighting-city-l1/README.md). Minnesmålet nås i L2a.*
   - Renderaren klarar idag max 16 lyktor per 25 m-ruta och ritar varje stolpe. Med ca 30 000
     lyktor behövs: regel för överfulla rutor i korsningar (aldrig tyst bortfall), stolpar bara nära
     kameran, långt bort bara ljuspunkter/glöd.
   - Testas med den riktiga L0-mängden, mot prestandagränserna i `docs/step62/rollout-plan.md`.
-- [ ] **L2a Gator i hela tätorten** — M (inkl. Norrtull och resten av innerstaden)
+- [ ] **L2a Gator i hela tätorten** — M (inkl. Norrtull och resten av innerstaden) — *genomförd 2026-10-25,
+  väntar på granskning: [docs/lighting-city-l2/README.md](lighting-city-l2/README.md). 14 350 nya
+  gatulyktor, Norrtull tänd, alla prestanda- och minnesmål klarade.*
 - [ ] **L2b Gång- och cykelvägar, torg och parker** — S/M
 - [ ] **L2c Leder utanför tätort**: E4-trafikplatser, rondeller, signalkorsningar — S
 

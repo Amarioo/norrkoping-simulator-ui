@@ -235,7 +235,19 @@ export interface CorridorSpec {
   zones: Record<string, { name: string; ring: [number, number][] }>;
   zoneOrder: readonly string[];
   policy: CorridorPolicy;
+  /**
+   * Phase L2: evidence that a way is lit, replacing "lit=yes" (A1–A3, the default): 'tag' (OSM
+   * lit=yes), 'gap' (gap fill between lit pieces) or 'rule' (municipal guideline), else null. The
+   * OSM tags themselves are never changed; lit=no always excludes the way.
+   */
+  litEvidence?: (way: SourceElement) => LitEvidence | null;
 }
+export type LitEvidence = 'tag' | 'gap' | 'rule';
+const LIT_OBSERVED: Record<LitEvidence, string> = {
+  tag: 'the way is lit (lit=yes)',
+  gap: 'the way lies between lit pieces of the same street (gap fill, Phase L0)',
+  rule: 'the way is lit by the municipal lighting guideline (rule, Phase L0)',
+};
 export const A1_SPEC: CorridorSpec = {
   generator: A1_GENERATOR,
   dataset: A1_DATASET,
@@ -346,6 +358,48 @@ function rayHit(o: P, dir: P, edges: [number[], number[]][], max: number) {
   return best;
 }
 const round = (v: number, d: number) => Number(v.toFixed(d));
+
+/**
+ * Uniform-grid index of items by axis-aligned bounding box (Lighting Phase L2: citywide runs). A
+ * query returns the indices of every item whose box overlaps the query box, ascending, so a scan
+ * over the result visits items in their original order: filters that only drop items which cannot
+ * pass a distance/containment test give exactly the same first match / minimum as a full scan.
+ */
+class BoxGrid {
+  private cells = new Map<string, number[]>();
+  constructor(private cell: number) {}
+  add(i: number, x0: number, z0: number, x1: number, z1: number) {
+    const c = this.cell;
+    for (let x = Math.floor(x0 / c); x <= Math.floor(x1 / c); x++)
+      for (let z = Math.floor(z0 / c); z <= Math.floor(z1 / c); z++) {
+        const k = `${x},${z}`;
+        let l = this.cells.get(k);
+        if (!l) this.cells.set(k, (l = []));
+        l.push(i);
+      }
+  }
+  query(x0: number, z0: number, x1: number, z1: number): number[] {
+    const c = this.cell,
+      out = new Set<number>();
+    for (let x = Math.floor(x0 / c); x <= Math.floor(x1 / c); x++)
+      for (let z = Math.floor(z0 / c); z <= Math.floor(z1 / c); z++)
+        for (const i of this.cells.get(`${x},${z}`) ?? []) out.add(i);
+    return [...out].sort((a, b) => a - b);
+  }
+}
+const bboxOf = (pts: readonly (readonly number[])[]) => {
+  let x0 = Infinity,
+    z0 = Infinity,
+    x1 = -Infinity,
+    z1 = -Infinity;
+  for (const p of pts) {
+    x0 = Math.min(x0, p[0]);
+    z0 = Math.min(z0, p[1]);
+    x1 = Math.max(x1, p[0]);
+    z1 = Math.max(z1, p[1]);
+  }
+  return [x0, z0, x1, z1] as const;
+};
 /** Horizontal emitter position (scene units) of a fixture (fixtures.ts lens offset along the arm). */
 function emitterXZ(type: string, x: number, z: number, heading: number | null, metres: number): P {
   const [ex, , ez] = emitterPosition({ type, x, z, heading } as FixtureRecord, 0, metres);
@@ -357,6 +411,14 @@ export function generateCorridor(
   spec: CorridorSpec = A1_SPEC,
 ): GeneratorOutput {
   const POL = spec.policy;
+  const litOf = (e: SourceElement): LitEvidence | null =>
+    e.tags.lit === 'no'
+      ? null
+      : spec.litEvidence
+        ? spec.litEvidence(e)
+        : e.tags.lit === 'yes'
+          ? 'tag'
+          : null;
   // Only the affine part of the reference is used (geo/sweref99tm.js).
   const ref = input.reference as unknown as Parameters<typeof sceneToSweref>[0];
   const M = input.reference.metresPerUnit;
@@ -413,14 +475,39 @@ export function generateCorridor(
     .map((e) => ({ e, pts: e.geometry!.map(([la, lo]) => toScene(la, lo)) }));
   const existingIds = new Set(input.existing.map((f) => f.id));
 
+  // Spatial indexes (Phase L2). Each query returns candidates in their original order and only drops
+  // items that cannot pass the test that follows, so results equal a full scan (A1–A3 unchanged).
+  const GRID = 2; // scene units (50 m)
+  const buildingGrid = new BoxGrid(GRID);
+  buildings.forEach((b, i) => b.rings[0]?.length && buildingGrid.add(i, ...bboxOf(b.rings[0])));
+  const edgeGrid = new BoxGrid(GRID);
+  edges.forEach(([a, b], i) => edgeGrid.add(i, ...bboxOf([a, b])));
+  const segmentGrid = (list: MapRoad[], pad: (r: MapRoad) => number) => {
+    const g = new BoxGrid(GRID);
+    list.forEach((r, i) => {
+      const [x0, z0, x1, z1] = bboxOf([r.a, r.b]);
+      const m = pad(r);
+      g.add(i, x0 - m, z0 - m, x1 + m, z1 + m);
+    });
+    return g;
+  };
+  const carGrid = segmentGrid(carRoads, (r) => r.width / 2 + POL.carriagewayClearanceM / M);
+  const tramGrid = segmentGrid(trams, () => POL.tramClearanceM / M);
+  const railGrid = segmentGrid(rails, () => POL.railClearanceM / M);
+  const waterGrid = new BoxGrid(GRID);
+  water.forEach((w, i) => w.rings[0]?.length && waterGrid.add(i, ...bboxOf(w.rings[0])));
+  const platformGrid = new BoxGrid(GRID);
+  platforms.forEach((pl, i) => pl.ring.length && platformGrid.add(i, ...bboxOf(pl.ring)));
+  const deckRoads = roads.filter((r) => r.bridge && r.kind !== 'tram' && r.kind !== 'rail');
+  const nearby = (g: BoxGrid, p: readonly number[], r = 0) => g.query(p[0] - r, p[1] - r, p[0] + r, p[1] + r);
+
   const inPolygon = (p: readonly number[], rings: number[][][]) =>
     rings.length > 0 && inRing(p, rings[0]) && !rings.slice(1).some((r) => inRing(p, r));
   const onBridgeRing = (p: readonly number[]) => bridges.find((b) => inRing(p, b.ring)) ?? null;
   /** Deck segment under a point: own way first, else the nearest bridge road segment (Step 6). */
   const deckAt = (p: readonly number[], way: number | null) => {
     let best: { d: number; r: MapRoad; t: number } | null = null;
-    for (const r of roads) {
-      if (!r.bridge || r.kind === 'tram' || r.kind === 'rail') continue;
+    for (const r of deckRoads) {
       const { d, t } = segDist(p, r.a, r.b);
       const own = way !== null && r.way === way;
       if (d > r.width / 2 + 1.0 / M) continue;
@@ -433,22 +520,37 @@ export function generateCorridor(
   };
   /** First placement conflict of a fixture position, or null. */
   const conflict = (p: readonly number[], support: 'ground' | 'deck', ownWay: number | null) => {
-    for (const b of buildings)
+    for (const i of nearby(buildingGrid, p)) {
+      const b = buildings[i];
       if (b.rings[0].length >= 3 && inPolygon(p, b.rings)) return `building ${b.id}`;
-    for (const [a, b] of edges)
+    }
+    for (const i of nearby(edgeGrid, p, POL.buildingClearanceM / M)) {
+      const [a, b] = edges[i];
       if (segDist(p, a, b).d < POL.buildingClearanceM / M) return 'building wall clearance';
-    for (const r of carRoads) {
+    }
+    for (const i of nearby(carGrid, p)) {
+      const r = carRoads[i];
       if (support === 'deck' && r.way === ownWay) continue;
       if (segDist(p, r.a, r.b).d < r.width / 2 + POL.carriagewayClearanceM / M)
         return `carriageway way/${r.way}`;
     }
-    for (const r of trams)
+    for (const i of nearby(tramGrid, p)) {
+      const r = trams[i];
       if (segDist(p, r.a, r.b).d < POL.tramClearanceM / M) return `tram clearance way/${r.way}`;
-    for (const r of rails)
+    }
+    for (const i of nearby(railGrid, p)) {
+      const r = rails[i];
       if (segDist(p, r.a, r.b).d < POL.railClearanceM / M) return `rail clearance way/${r.way}`;
-    for (const pl of platforms) if (inRing(p, pl.ring)) return `${pl.kind} platform ${pl.id}`;
+    }
+    for (const i of nearby(platformGrid, p)) {
+      const pl = platforms[i];
+      if (inRing(p, pl.ring)) return `${pl.kind} platform ${pl.id}`;
+    }
     if (support === 'ground') {
-      for (const w of water) if (inPolygon(p, w.rings)) return `water ${w.id}`;
+      for (const i of nearby(waterGrid, p)) {
+        const w = water[i];
+        if (inPolygon(p, w.rings)) return `water ${w.id}`;
+      }
       const br = onBridgeRing(p);
       if (br) return `under bridge deck ${br.name}`;
     } else {
@@ -462,7 +564,8 @@ export function generateCorridor(
     .map((o) => [o.a, o.b] as [number[], number[]])
     .sort((u, v) => cmp(u.join(), v.join()));
   const occlusion = (p: P, rangeM: number, ground: boolean) => {
-    const local = (ground ? [...edges, ...deckEdges] : edges).filter(
+    const near = nearby(edgeGrid, p, rangeM / M + 1e-9).map((i) => edges[i]);
+    const local = (ground ? [...near, ...deckEdges] : near).filter(
       ([a, b]) => segDist(p, a, b).d <= rangeM / M + 1e-9,
     ) as [number[], number[]][];
     return Array.from({ length: SECTORS }, (_, s) => {
@@ -529,12 +632,23 @@ export function generateCorridor(
   // Lit roads (centrelines) for the "covered by road lighting" path rule.
   const litRoadLines = ways
     .filter(
-      ({ e }) =>
-        e.tags.lit === 'yes' && ['road', 'minor'].includes(classGroup(e.tags.highway) ?? ''),
+      ({ e }) => litOf(e) !== null && ['road', 'minor'].includes(classGroup(e.tags.highway) ?? ''),
     )
     .map(({ pts }) => pts);
-  const nearestLitRoad = (p: P) =>
-    litRoadLines.reduce((d, pts) => Math.min(d, polylineDist(p, pts).d), Infinity);
+  // Segments of the lit roads in a grid: the nearest one within roadCoverM is exactly the nearest
+  // overall whenever that distance matters (the rule only compares it with roadCoverM).
+  const litSegments: [P, P][] = [];
+  for (const pts of litRoadLines) for (let i = 1; i < pts.length; i++) litSegments.push([pts[i - 1], pts[i]]);
+  const litGrid = new BoxGrid(GRID);
+  litSegments.forEach((s, i) => litGrid.add(i, ...bboxOf(s)));
+  const nearestLitRoad = (p: P) => {
+    let d = Infinity;
+    for (const i of nearby(litGrid, p, POL.roadCoverM / M)) {
+      const [a, b] = litSegments[i];
+      d = Math.min(d, segDist(p, a, b).d);
+    }
+    return d;
+  };
 
   // ---- 1. Mapped lamps. ----
   interface Accepted {
@@ -558,6 +672,23 @@ export function generateCorridor(
           : 'existing',
       element: f.element ?? null,
     }));
+  // Accepted fixtures in a grid (insertion order = index), queried within the largest suppression
+  // radius: the first match in insertion order equals Array.find over the whole list.
+  const acceptedGrid = new BoxGrid(GRID);
+  const reachM = Math.max(
+    POL.anySeparationM,
+    ...Object.values(input.types).flatMap((t) => [
+      t.suppressM,
+      POL.estimateSeparationFactor * t.spacingM,
+    ]),
+  );
+  const indexAccepted = (k: number) =>
+    acceptedGrid.add(k, accepted[k].p[0], accepted[k].p[1], accepted[k].p[0], accepted[k].p[1]);
+  accepted.forEach((_, k) => indexAccepted(k));
+  const accept = (a: Accepted) => {
+    accepted.push(a);
+    indexAccepted(accepted.length - 1);
+  };
   const fixtures: A1Fixture[] = [];
   const provenance: A1Provenance[] = [];
   for (const n of elements) {
@@ -635,7 +766,7 @@ export function generateCorridor(
         ...(c ? [`clearance warning: ${c}`] : []),
       ],
     });
-    accepted.push({ id, p, group, kind: 'mapped', element: `node/${n.id}` });
+    accept({ id, p, group, kind: 'mapped', element: `node/${n.id}` });
   }
 
   // ---- 2. Estimate candidates along lit=yes ways. ----
@@ -689,7 +820,8 @@ export function generateCorridor(
       cov.status = 'explicit-unlit (lit=no): excluded';
       continue;
     }
-    if (t.lit !== 'yes') {
+    const lit = litOf(e);
+    if (!lit) {
       cov.status = `lit=${t.lit ?? '(none)'}: not treated as lit`;
       continue;
     }
@@ -738,7 +870,7 @@ export function generateCorridor(
               o.e.tags.oneway === 'yes' &&
               o.e.tags.name === t.name &&
               !isRing(o.e) &&
-              o.e.tags.lit === 'yes',
+              litOf(o.e) !== null,
           )
         : [];
     const stagger = group !== 'path' && !oneway && !bridge && width * M >= POL.staggerWidthM;
@@ -897,7 +1029,7 @@ export function generateCorridor(
         prov: {
           id,
           zone,
-          method: `lit=yes on way/${e.id} (highway=${t.highway}${bridge ? ', bridge' : ''}${t.name ? `, ${t.name}` : ''}); station ${i + 1}/${N}, effective spacing ${(L / N).toFixed(1)} m (class ${spacing} m), ${placedSide} side${fallback ? ' (preferred side blocked)' : ''}, ${(offsetM + extra).toFixed(2)} m from the centreline${extra ? ` (setback +${extra} m)` : ''}`,
+          method: `${lit === 'tag' ? 'lit=yes' : `lit by ${lit}`} on way/${e.id} (highway=${t.highway}${bridge ? ', bridge' : ''}${t.name ? `, ${t.name}` : ''}); station ${i + 1}/${N}, effective spacing ${(L / N).toFixed(1)} m (class ${spacing} m), ${placedSide} side${fallback ? ' (preferred side blocked)' : ''}, ${(offsetM + extra).toFixed(2)} m from the centreline${extra ? ` (setback +${extra} m)` : ''}`,
           rule: stagger
             ? 'lit-way-staggered'
             : isRing(e)
@@ -932,7 +1064,7 @@ export function generateCorridor(
           orientation: 'estimated',
           mapDeviationM: round(deviation, 3),
           uncertaintyM: round(spacing / 2, 1),
-          observed: ['the way is lit (lit=yes)'],
+          observed: [LIT_OBSERVED[lit]],
           inferred: [
             'pole position',
             'spacing',
@@ -953,14 +1085,16 @@ export function generateCorridor(
     const T = input.types[c.type];
     const element = c.prov.source.element;
     const asEstimate = (a: Accepted) => a.kind === 'estimated' || a.kind === 'existing-estimate';
-    const by = accepted.find(
-      (a) =>
-        (!asEstimate(a) && a.group === c.group && dist(a.p, c.p) * M < T.suppressM) ||
-        (asEstimate(a) &&
-          a.group === c.group &&
-          dist(a.p, c.p) * M < POL.estimateSeparationFactor * T.spacingM) ||
-        dist(a.p, c.p) * M < POL.anySeparationM,
-    );
+    const by = nearby(acceptedGrid, c.p, reachM / M + 1e-9)
+      .map((k) => accepted[k])
+      .find(
+        (a) =>
+          (!asEstimate(a) && a.group === c.group && dist(a.p, c.p) * M < T.suppressM) ||
+          (asEstimate(a) &&
+            a.group === c.group &&
+            dist(a.p, c.p) * M < POL.estimateSeparationFactor * T.spacingM) ||
+          dist(a.p, c.p) * M < POL.anySeparationM,
+      );
     if (by) {
       const reason =
         by.kind === 'mapped'
@@ -979,7 +1113,7 @@ export function generateCorridor(
       );
       continue;
     }
-    accepted.push({ id: c.id, p: c.p, group: c.group, kind: 'estimated', element });
+    accept({ id: c.id, p: c.p, group: c.group, kind: 'estimated', element });
     fixtures.push(
       fixtureOf({
         id: c.id,

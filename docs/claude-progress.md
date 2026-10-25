@@ -2,6 +2,25 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Lighting Phase L2a — street lighting in the whole city (2026-10-25) — implemented, committed and pushed, for review
+
+[Full report](lighting-city-l2/README.md). Branch `codex/lighting-l2` from `main` = `e93f7b4` (L0 + L1
+pushed there). **Committed and pushed:** `main` fast-forwarded to this branch on `origin`. Backend unchanged (`main` = `origin/main` = `3673568`, nothing to commit).
+
+- **Result:** 14 350 new estimated street brackets on every car road L0 judged lit (tag 5 110, rule
+  9 224, gap 16), placed with the A1–A3 policy unchanged; rendered total 14 623; Norrtull lit.
+- **Generator:** spatial indexes (whole city in 0.7 s); A1/A2/A3 regenerate byte-identically; new
+  `litEvidence` option (L0 evidence instead of only lit=yes; OSM tags untouched).
+- **Data:** `scripts/data/lighting-l2-source.json` (pinned L0 snapshot, 3 402 ways); runtime
+  `src/lib/data/streetlights-l2.json` in compact format `lighting-compact-v1` (1.08 MB, separate asset
+  fetched before map-ready); provenance `docs/lighting-city-l2/data/` (4.3 MB, compact rows).
+- **Memory fix for L1's gap:** registry records kept only in development (`keepRecords`).
+- **Measured (paired production, main vs L2a):** p95 −0.1…+0.3 ms, map-ready +23 ms, heap +7.9 MB,
+  calls ≤ +7, triangles ≤ +50 k, 20 programs — all gates met.
+- **Checks:** type check 0 errors; build OK; Vitest 405/405; Playwright 10/10 (new L2a test; A-phase
+  tests open with `lighting=a3`).
+- **Local only:** `.claude/launch.json` + `l2-*`; `.gitignore` + `/work/lighting-city-l2/`.
+
 ## Lighting Phase L1 — scalable rendering (2026-10-24) — implemented, committed and pushed, for review
 
 [Full report](lighting-city-l1/README.md). Branch `codex/lighting-phase-a2`, on top of L0. **Committed** in the commit after L0 `d5f242b`; `main` was fast-forwarded to this branch and pushed to `origin` (with Phase 0–A3 and L0). Baseline for comparisons: committed A3 `53468b0`

@@ -57,6 +57,8 @@ import lightingData from '../data/streetlights.json';
 import a1Data from '../data/streetlights-a1.json';
 import a2Data from '../data/streetlights-a2.json';
 import a3Data from '../data/streetlights-a3.json';
+import { decodeCompactSet, type CompactSet } from './compactSet';
+import { L2_DATASET, L2_GENERATOR } from './corridorL2';
 import {
   A2_IDENTITY,
   A3_IDENTITY,
@@ -94,6 +96,20 @@ export function a2LightingRegistry(terrain: TerrainService) {
 /** The bundled Lighting Phase A3 corridor (generated, src/lib/data/streetlights-a3.json). */
 export function a3LightingRegistry(terrain: TerrainService) {
   return corridorRegistry(a3Data as unknown as A1Data, terrain.data.reference, A3_IDENTITY);
+}
+/**
+ * Lighting Phase L2a street fixtures of the whole map, from the compact runtime file
+ * (src/lib/data/streetlights-l2.json, loaded separately: see Scene.svelte).
+ */
+export function l2LightingRegistry(terrain: TerrainService, data: CompactSet) {
+  return corridorRegistry(decodeCompactSet(data) as unknown as A1Data, terrain.data.reference, {
+    dataset: L2_DATASET,
+    generator: L2_GENERATOR,
+  });
+}
+/** The citywide rendered set: pilot + A1 + A2 + A3 + L2a. */
+export function cityLightingRegistry(terrain: TerrainService, l2: CompactSet) {
+  return mergeRegistries(runtimeLightingRegistry(terrain), l2LightingRegistry(terrain, l2));
 }
 /** The accepted Phase A1 rendered set (pilot + A1, 232 fixtures): the A1 tests and A2 comparisons. */
 export function a1RuntimeLightingRegistry(terrain: TerrainService) {
@@ -140,6 +156,8 @@ export function createCityLighting(options: {
   strict?: boolean;
   /** Page side in cells (lightIndex.ts default). */
   chunkCells?: number;
+  /** Keep registry records for inspect() (default: development and tests). */
+  keepRecords?: boolean;
 }) {
   const { terrain, stadium, renderer, scene } = options;
   const metres = terrain.data.reference.metresPerUnit;
@@ -225,6 +243,7 @@ export function createCityLighting(options: {
     const prepared = prepareStreetLighting(registry, terrain, {
       maxTextureSize,
       chunkCells: options.chunkCells,
+      keepRecords: options.keepRecords ?? import.meta.env.DEV,
     });
     if (!prepared.ok) {
       lastRejection = prepared;
