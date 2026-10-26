@@ -199,6 +199,31 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
 - [ ] **C2 Elljusspåret** (ca 2,4–2,5 km) — M
   - Kräver C1. Ca 80–120 uppskattade stolpar om inget register finns. Släckt sent på natten.
 
+### Spår P: prestanda
+
+Mål (förslag, beslutas av dig): minst 60 fps i helskärm på din dator (RTX 5070 Ti, 2560×1440,
+164 Hz), natt med trafik. Varje steg mäts parvis mot föregående godkända läge som tidigare
+(`docs/step62/rollout-plan.md`).
+
+- [x] **P0 Helskärm och fps-räknare** — S — *genomförd 2026-10-26 på grenen `claude/fullscreen-fps`,
+  godkänd 2026-10-26, ej committad: [docs/fullscreen-fps/README.md](fullscreen-fps/README.md). Helskärmsknapp (F, Esc),
+  fps-räknare (P, avslagen som standard) med bildtid, p95, CPU-tid, ritanrop, trianglar,
+  shaderprogram och upplösning; kroken `__fpsStats`; baslinjetabell i helskärm för P1.*
+- [ ] **P1 Mätning och profilering: var går tiden?** — M
+  - Fasta vyer och tider (P0:s baslinje), med och utan trafik, i helskärm.
+  - CPU eller GPU: jämför CPU-tid per bild (räknaren) med bildtiden; GPU-tid med
+    `EXT_disjoint_timer_query_webgl2` där den finns (av som standard, bara vid mätning).
+  - Uppdelning per del: byggnader, mark/vägar, ljus per pixel (shader-patchen), lyktstolpar,
+    trafik och kollektivtrafik, etiketter, landmärken. Slå av en del i taget via utvecklarkrokar
+    och mät skillnaden; upplösningsskalning visar om bildpunkterna (fill rate) är flaskhalsen.
+  - Leverans: en rangordnad lista över kostnader med siffror, inget optimerat ännu.
+- [ ] **P2 Riktade åtgärder** — M/L — de dyraste posterna från P1 först (t.ex. färre ritanrop
+  genom sammanslagning/instansiering, avståndsnivåer (LOD), billigare ljus per pixel långt bort).
+  Varje åtgärd parvis mätt; bilden ska vara oförändrad eller avvikelser godkända.
+- [ ] **P3 Anpassningsbar kvalitet** — M — kvalitetsval Låg/Medel/Hög (upplösning, `dpr`,
+  kantutjämning, siktavstånd, mängd detaljer) och dynamisk upplösning som sänker
+  renderingsupplösningen när bildtiden går över målet. Kräver beslut om svagare datorer ska stödjas.
+
 ## 5. Rekommenderad ordning
 
 **L0 → L1 → L2a → L2b → F1 → L2c → B1 → D1 → E1 → E2 → B2 → D2 → F2 → C1 → C2**

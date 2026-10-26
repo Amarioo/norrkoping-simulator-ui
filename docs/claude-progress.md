@@ -2,6 +2,29 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Performance Phase P0 — fullscreen map and fps counter (2026-10-26) — approved (user, 2026-10-26, after testing it locally), not committed
+
+[Full report](fullscreen-fps/README.md). Branch `claude/fullscreen-fps` from `main` = `60c3297`.
+**Nothing committed or pushed.** Backend unchanged. First step of the new track P (roadmap).
+
+- **Result:** fullscreen button on the map toolbar ("Helskärm" / "Avsluta helskärm"; `F`, Esc; CSS
+  fill-the-window fallback where the API is refused), renderer size and camera aspect follow the panel,
+  `dpr` 1 unchanged. Fps counter (off by default; "FPS" button or `P`; stored in `localStorage`):
+  fps, mean and p95 frame time over 2 s, refreshed twice a second; expanded: CPU ms per frame, draw
+  calls, triangles, programs, resolution. Hook `__fpsStats` in dev / `VITE_LIGHTING_HOOK=1` builds.
+- **Baseline for the performance work (fullscreen, 202 vehicles, uncapped):** 2560×1440 and 1920×1080
+  cost the same; CPU time ≈ frame time → CPU / draw-call bound. Whole-city overview ≈ 7 900 calls,
+  59 fps, p95 34 ms (does not hold 60); Innerstaden ≈ 145 fps; street views 265–420 fps.
+- **Gates (paired vs `main`, 3 rounds, counter off):** p95 −0.5 … +0.2 ms, day ≤ +0.2 ms, map-ready
+  +35 ms, heap +0.11 MB, calls/triangles +0, 20 programs; scene pixels as `main` (≤ 1/255 noise).
+  Counter on: median +0.0 … +0.3 ms, p95 ≤ +0.4 ms.
+- **Checks:** type check 0; build OK; Vitest 480/481 (known worktree path in `terrain.test.ts`);
+  Playwright new spec 3/3 every run; whole suite 17/19, 17/19, 18/19 — A3 (known) and L2a
+  context-restoration picture (passes alone 3/3, in a suite copy 19/19; `main` 16/16 in one run).
+- **Questions for the user:** screen / refresh rate (measured: 2560×1440 @ 164 Hz primary, 1920×1080
+  secondary), fps target (recommend ≥ 60 fps fullscreen at night with traffic), weaker computers.
+- **Local only:** `.claude/launch.json` (`p0-*`, ports 8095, 5194, 5270–5273); `work/fullscreen-fps/`.
+
 ## Lighting Phase L2d — site lighting on private land (2026-10-26) — approved (user, 2026-10-26, recommended decisions), committed and pushed, merged into `main`
 
 [Full report](lighting-city-l2d/README.md). Branch `claude/lighting-l2d` from `main` = `705d4f3`.

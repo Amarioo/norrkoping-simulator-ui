@@ -7,6 +7,9 @@
   import { terrain } from './lib/terrain';
   import { formatClock, lightingState, setClock } from './lib/lighting/state.svelte';
   import { dayPhase, localToUtc, presets, solarPosition } from './lib/lighting/solar';
+  import FpsProbe from './lib/perf/FpsProbe.svelte';
+  import FpsCounter from './lib/perf/FpsCounter.svelte';
+  import { fpsCounter, setFpsVisible } from './lib/perf/fpsMonitor.svelte';
   let focus = $state('city'),
     labels = $state(true),
     follow = $state(''),
@@ -59,6 +62,59 @@
     webgl = !!c.getContext('webgl2');
     return city.connect();
   });
+  // Phase P0: fullscreen map. The Fullscreen API on the map panel; where it is missing or refused
+  // (e.g. iPhone Safari, a permissions policy) the panel fills the window with CSS instead. Threlte
+  // resizes the renderer and the camera aspect from the panel's size (window resize + ResizeObserver).
+  // dpr stays 1 (resolution and quality belong to the performance work).
+  let panel = $state<HTMLDivElement>();
+  let fullscreen = $state(false),
+    filled = $state(false);
+  const mapExpanded = $derived(fullscreen || filled);
+  async function toggleFullscreen() {
+    if (fullscreen) {
+      await document.exitFullscreen?.().catch(() => {});
+      return;
+    }
+    if (filled) {
+      filled = false;
+      return;
+    }
+    if (panel && document.fullscreenEnabled && typeof panel.requestFullscreen === 'function') {
+      try {
+        await panel.requestFullscreen({ navigationUI: 'hide' });
+        return;
+      } catch {
+        // Refused (no user activation, policy): fall back to filling the window.
+      }
+    }
+    filled = true;
+  }
+  const isFormField = (t: EventTarget | null) =>
+    t instanceof HTMLElement &&
+    (t.isContentEditable || !!t.closest('input, select, textarea, [contenteditable]'));
+  function mapKeys(e: KeyboardEvent) {
+    const key = e.key.toLowerCase();
+    // Esc leaves either mode. Browsers already leave native fullscreen on Esc themselves; this also
+    // covers browsers/automation that pass the key to the page instead.
+    if (key === 'escape' && (fullscreen || filled)) {
+      if (fullscreen) document.exitFullscreen?.().catch(() => {});
+      else filled = false;
+      return;
+    }
+    if (e.defaultPrevented || e.repeat || e.ctrlKey || e.metaKey || e.altKey || e.shiftKey) return;
+    if (isFormField(e.target)) return;
+    if (key === 'f') {
+      e.preventDefault();
+      toggleFullscreen();
+    } else if (key === 'p') {
+      e.preventDefault();
+      setFpsVisible(!fpsCounter.visible);
+    }
+  }
+  const fullscreenChange = () => (fullscreen = !!panel && document.fullscreenElement === panel);
+  $effect(() => {
+    document.documentElement.classList.toggle('map-filled', filled);
+  });
   function jump(value: string) {
     follow = '';
     focus = value;
@@ -83,6 +139,8 @@
     content="Utforska Norrköping i 3D med simulerad vägtrafik och flyg mellan Kungsängen och Bråvalla F13."
   /></svelte:head
 >
+<svelte:window onkeydown={mapKeys} />
+<svelte:document onfullscreenchange={fullscreenChange} />
 <div class="sim-shell">
   <header class="sim-header">
     <a href="/" class="sim-brand"
@@ -297,11 +355,15 @@
       </div>
       <div
         class="map-panel simulator-map"
+        class:map-filled-panel={filled}
+        bind:this={panel}
         data-camera-travel={travel.toFixed(2)}
         data-map-ready={mapReady}
+        data-fullscreen={fullscreen ? 'native' : filled ? 'window' : 'off'}
       >
         {#if webgl}<Canvas shadows={false} dpr={1}
-            ><Scene {focus} showLabels={labels} bind:follow bind:travel bind:mapReady /></Canvas
+            ><Scene {focus} showLabels={labels} bind:follow bind:travel bind:mapReady /><FpsProbe
+            /></Canvas
           >{#if !mapReady}<div class="map-loading" role="status">
               <i></i>Bygger kartan…
             </div>{/if}{:else}<div class="map-fallback">
@@ -317,8 +379,27 @@
               >{/each}</select
           ><label class="label-toggle"
             ><input type="checkbox" bind:checked={labels} /> Landmärken</label
+          ><span class="toolbar-divider" aria-hidden="true"></span><button
+            type="button"
+            class="map-tool fps-toggle"
+            aria-pressed={fpsCounter.visible}
+            aria-label="Fps-räknare"
+            title={(fpsCounter.visible ? 'Dölj' : 'Visa') + ' fps-räknaren (P)'}
+            onclick={() => setFpsVisible(!fpsCounter.visible)}>FPS</button
+          ><button
+            type="button"
+            class="map-tool fullscreen-toggle"
+            aria-label={mapExpanded ? 'Avsluta helskärm' : 'Helskärm'}
+            title={(mapExpanded ? 'Avsluta helskärm' : 'Helskärm') + ' (F)'}
+            onclick={toggleFullscreen}
+            ><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"
+              >{#if mapExpanded}<path d="M6 1v5H1M10 1v5h5M6 15v-5H1M10 15v-5h5" />{:else}<path
+                  d="M1 6V1h5M15 6V1h-5M1 10v5h5M15 10v5h-5"
+                />{/if}</svg
+            ></button
           >
         </div>
+        {#if fpsCounter.visible}<FpsCounter />{/if}
         <div class="map-status">
           {follow ? 'FÖLJER ' + (follow === 'plane' ? 'NK-01' : 'FORDON ' + follow) : 'FRI KAMERA'}
           <i></i>

@@ -1,0 +1,98 @@
+{
+ "day/kungsgatan": {
+  "calls": 290,
+  "triangles": 945452
+ },
+ "day/stromparken": {
+  "calls": 2052,
+  "triangles": 3287282
+ },
+ "day/idrottsparkenPitch": {
+  "calls": 2372,
+  "triangles": 3762023
+ },
+ "day/parken": {
+  "calls": 257,
+  "triangles": 941296
+ },
+ "day/city": {
+  "calls": 2773,
+  "triangles": 4933896
+ },
+ "day/police": {
+  "calls": 215,
+  "triangles": 789533
+ },
+ "day/stationYard": {
+  "calls": 206,
+  "triangles": 725799
+ },
+ "day/ingelsta": {
+  "calls": 257,
+  "triangles": 780973
+ },
+ "night-off/kungsgatan": {
+  "calls": 291,
+  "triangles": 997150
+ },
+ "night-off/stromparken": {
+  "calls": 2053,
+  "triangles": 3338980
+ },
+ "night-off/idrottsparkenPitch": {
+  "calls": 2373,
+  "triangles": 3813721
+ },
+ "night-off/parken": {
+  "calls": 258,
+  "triangles": 992994
+ },
+ "night-off/city": {
+  "calls": 2774,
+  "triangles": 4985594
+ },
+ "night-off/police": {
+  "calls": 216,
+  "triangles": 841231
+ },
+ "night-off/stationYard": {
+  "calls": 207,
+  "triangles": 777497
+ },
+ "night-off/ingelsta": {
+  "calls": 258,
+  "triangles": 832671
+ },
+ "night-match/kungsgatan": {
+  "calls": 291,
+  "triangles": 997150
+ },
+ "night-match/stromparken": {
+  "calls": 2053,
+  "triangles": 3338980
+ },
+ "night-match/idrottsparkenPitch": {
+  "calls": 2373,
+  "triangles": 3813721
+ },
+ "night-match/parken": {
+  "calls": 258,
+  "triangles": 992994
+ },
+ "night-match/city": {
+  "calls": 2774,
+  "triangles": 4985594
+ },
+ "night-match/police": {
+  "calls": 216,
+  "triangles": 841231
+ },
+ "night-match/stationYard": {
+  "calls": 207,
+  "triangles": 777497
+ },
+ "night-match/ingelsta": {
+  "calls": 258,
+  "triangles": 832671
+ }
+}

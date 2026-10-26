@@ -94,3 +94,7 @@ work/geodata/
 # Lighting Phase L2d scratch (raw OSM download, main baseline app, captures, perf runs). Curated
 # evidence is in docs/lighting-city-l2d/; reusable tools are in scripts/lighting-l2d/.
 /work/lighting-city-l2d/
+
+# Phase P0 (fullscreen + fps counter) scratch (main baseline app, captures, perf runs). Curated
+# evidence is in docs/fullscreen-fps/; reusable tools are in scripts/fullscreen-fps/.
+/work/fullscreen-fps/
