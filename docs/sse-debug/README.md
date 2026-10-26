@@ -2,7 +2,7 @@
 
 Branch `claude/sse-debug-29a00e`, started from `main` = `9cb9a3e` and brought up to `main` =
 `753475e` (Performance P1 merged) by a fast-forward; the uncommitted changes were kept and re-applied.
-**Committed and pushed on this branch** (user, 2026-10-26); not merged into `main`. Backend unchanged. A developer tool, separate from the performance track; no
+**Committed and pushed:** `277e999`; `main` fast-forwarded to this branch on `origin` (user, 2026-10-26). Backend unchanged. A developer tool, separate from the performance track; no
 geodata, no coordinate changes, no earlier phase's output touched (P1's files are not modified).
 
 ## How to open it

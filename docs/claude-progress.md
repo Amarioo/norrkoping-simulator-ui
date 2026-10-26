@@ -2,11 +2,11 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## SSE debug panel — read every server-sent event (2026-10-26) — approved (user, 2026-10-26), committed and pushed on branch `claude/sse-debug-29a00e`, not merged into `main`
+## SSE debug panel — read every server-sent event (2026-10-26) — approved (user, 2026-10-26), committed and pushed, merged into `main`
 
 [Full report](sse-debug/README.md). Worktree branch `claude/sse-debug-29a00e` from `main` = `9cb9a3e`,
 fast-forwarded to `main` = `753475e` (P1 merged) with the uncommitted work re-applied.
-**Committed and pushed** on its own branch (user, 2026-10-26); not merged. Backend unchanged. Touches no P1 files.
+**Committed and pushed:** `277e999`; `main` fast-forwarded to this branch on `origin` (user, 2026-10-26). Backend unchanged. Touches no P1 files.
 - **After the P1 merge (re-run):** check 0; build OK (no debug code in `dist/`); Vitest 500/501 (known
   `terrain.test.ts`); Playwright 21/21; new screenshots in `sse-debug/evidence/after-p1-merge/`.
 
