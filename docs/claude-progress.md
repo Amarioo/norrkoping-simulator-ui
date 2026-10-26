@@ -2,9 +2,9 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Performance Phase P1 — measurement and profiling: where does the time go? (2026-10-26) — approved (user, 2026-10-26), committed on `claude/perf-p1`, not pushed
+## Performance Phase P1 — measurement and profiling: where does the time go? (2026-10-26) — approved (user, 2026-10-26), committed and pushed, merged into `main`
 
-[Full report](perf-p1/README.md). Branch `claude/perf-p1` from `main` = `9cb9a3e`. **Approved by the user; committed on the branch, not pushed, not merged.** Backend unchanged. No optimisation.
+[Full report](perf-p1/README.md). Branch `claude/perf-p1` from `main` = `9cb9a3e`. **Committed and pushed:** `13a3afe`; `main` fast-forwarded to this branch on `origin` (user, 2026-10-26). Backend unchanged. No optimisation.
 
 - **Result:** the whole-city overview (night, traffic, fullscreen 2560×1440: 59 fps, p95 34 ms) is CPU-bound in
   three.js's draw-call work: ≈ 16.5 ms per frame for ≈ 7 900 calls; app code (traffic, lighting, Svelte,

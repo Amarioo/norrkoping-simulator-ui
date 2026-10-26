@@ -1,6 +1,6 @@
 # Phase P1 — measurement and profiling: where does the time go? (2026-10-26)
 
-Branch `claude/perf-p1` from `main` = `9cb9a3e`. **Approved by the user (2026-10-26); committed on the branch, not pushed.** Backend unchanged. Second step of the
+Branch `claude/perf-p1` from `main` = `9cb9a3e`. **Approved by the user (2026-10-26); committed (`13a3afe`), pushed, `main` fast-forwarded on `origin`.** Backend unchanged. Second step of the
 performance track (roadmap, track P). **Nothing is optimised in P1**: it adds measurement hooks (development
 and `VITE_LIGHTING_HOOK=1` builds only) and scripts, and delivers numbers and a ranked cost list for P2. No
 geodata, no coordinates, no earlier phase's output touched (no provenance file needed).

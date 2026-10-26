@@ -210,7 +210,7 @@ Mål (satt av dig 2026-10-26): minst 60 fps utan hack i helskärm på din dator 
   fps-räknare (P, avslagen som standard) med bildtid, p95, CPU-tid, ritanrop, trianglar,
   shaderprogram och upplösning; kroken `__fpsStats`; baslinjetabell i helskärm för P1.*
 - [x] **P1 Mätning och profilering: var går tiden?** — M — *genomförd 2026-10-26 på grenen `claude/perf-p1`,
-  godkänd 2026-10-26, committad på grenen (inte pushad): [docs/perf-p1/README.md](perf-p1/README.md). Översikten är CPU-bunden i three.js ritanrop
+  godkänd 2026-10-26, committad och pushad till main: [docs/perf-p1/README.md](perf-p1/README.md). Översikten är CPU-bunden i three.js ritanrop
   (≈ 16,5 ms för ≈ 7 900 ritanrop; appens egen kod < 0,4 ms; upplösningen spelar ingen roll; ljus per
   pixel ≈ 0 i översikten). Dyrast i översikten: träd 5,0 ms, byggnader 4,7, mark 4,6, vägar/broar 4,5,
   trafikens ritning 2,4, kartdetaljer 2,3, trafikuppdatering 1,6 ms. Målet bedöms nåbart (uppskattning).*
