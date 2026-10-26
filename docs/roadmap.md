@@ -138,7 +138,7 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   lyktor; totalt 22 346.*
 - [x] **L2c Leder utanför tätort**: E4-trafikplatser, rondeller, signalkorsningar — S — *se L2b (L2bc).*
 - [x] **L2d Belysning på privat mark** (parkeringar, bangården, industri-, hamn- och handelsmark) — S/M —
-  *genomförd 2026-10-26 på grenen `claude/lighting-l2d`, godkänd 2026-10-26 med rekommenderade beslut, committad på grenen men **inte pushad**:
+  *genomförd 2026-10-26 på grenen `claude/lighting-l2d`, godkänd 2026-10-26 med rekommenderade beslut, committad och pushad till main:
   [docs/lighting-city-l2d/README.md](lighting-city-l2d/README.md). Egen kategori (`lighting-l2d-v1`),
   skild från gatubelysningen; 3 503 uppskattade armaturer, två nya armaturtyper (uppskattad fotometri).
   Föreslagen i L0 (privata ytor var satellitbildens största avvikelser).*

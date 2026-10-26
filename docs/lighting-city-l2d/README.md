@@ -1,6 +1,6 @@
 # Lighting Phase L2d — site lighting on private land (parking, rail yard, industry, retail)
 
-2026-10-26 · branch `claude/lighting-l2d` (from `main` = `705d4f3`) · approved by the user 2026-10-26 with the recommended decisions; committed on the branch, **not pushed** · backend unchanged.
+2026-10-26 · branch `claude/lighting-l2d` (from `main` = `705d4f3`) · approved by the user 2026-10-26 with the recommended decisions; committed and pushed; `main` fast-forwarded to this branch on `origin` · backend unchanged.
 
 ## Verdict
 

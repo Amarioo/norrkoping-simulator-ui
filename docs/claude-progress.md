@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Lighting Phase L2d — site lighting on private land (2026-10-26) — approved (user, 2026-10-26, recommended decisions), committed on the branch, not pushed
+## Lighting Phase L2d — site lighting on private land (2026-10-26) — approved (user, 2026-10-26, recommended decisions), committed and pushed, merged into `main`
 
 [Full report](lighting-city-l2d/README.md). Branch `claude/lighting-l2d` from `main` = `705d4f3`.
-**Committed on `claude/lighting-l2d`, not pushed or merged.** Backend unchanged.
+**Committed and pushed:** `main` fast-forwarded to `claude/lighting-l2d` on `origin` (user, 2026-10-26). Backend unchanged.
 
 - **Result:** 3 503 estimated fixtures as a category of their own (rule `lighting-l2d-v1`, IDs
   `estimate:lighting-l2d-v1:…`, `describe().siteLighting`, `?lighting=no-l2d` leaves it out): rail-yard
