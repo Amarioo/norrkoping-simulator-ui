@@ -33,6 +33,8 @@
   import l2dUrl from './data/streetlights-l2d.json?url';
   import { advanceClock, lightingState } from './lighting/state.svelte';
   import type { VehiclePose } from './lighting/vehicleLights';
+  import { perfFlags } from './perf/perfFlags';
+  import { installPerfProbe } from './perf/perfProbe';
   let {
     focus = 'overview',
     showLabels = true,
@@ -182,6 +184,17 @@
       vehiclePoses: () => vehiclePoses.map((p) => ({ ...p })),
     };
   const vehiclePoses: VehiclePose[] = [];
+  // Phase P1 (measurement only): parts of the scene, per-frame log, GPU timer, CPU-job switches
+  // (perf/perfProbe.ts, scripts/perf-p1/). Development and hook builds only, like the hook above.
+  if (hookEnabled)
+    installPerfProbe({
+      view,
+      transport,
+      transit,
+      signals,
+      lightingGroup: () => lighting.group,
+      snapshot: () => city.snapshot,
+    });
   const buildMs = performance.now() - buildStarted;
   // Ground, roads and buildings are built in workers and arrive after the first frames.
   let mapReadyMs: number | null = null;
@@ -232,7 +245,8 @@
   });
   useTask((dt) => {
     advanceClock(dt);
-    if (camera.current) lighting.update(dt, camera.current, renderer.domElement.height);
+    if (camera.current && !(hookEnabled && !perfFlags.lightingUpdate))
+      lighting.update(dt, camera.current, renderer.domElement.height);
     if (import.meta.env.DEV) {
       (globalThis as unknown as { __cityPerformance: unknown }).__cityPerformance = {
         buildMs,
@@ -243,14 +257,16 @@
         frameMs: dt * 1000,
       };
     }
-    transport.update(
-      city.snapshot.vehicles,
-      city.snapshot.aircraft,
-      dt,
-      city.snapshot.simulationTime,
-    );
-    signals.update(city.snapshot.simulationTime);
-    transit.update(city.snapshot.vehicles, dt);
+    if (!(hookEnabled && !perfFlags.trafficUpdate)) {
+      transport.update(
+        city.snapshot.vehicles,
+        city.snapshot.aircraft,
+        dt,
+        city.snapshot.simulationTime,
+      );
+      signals.update(city.snapshot.simulationTime);
+      transit.update(city.snapshot.vehicles, dt);
+    }
     // Vehicle Lights Phase F1: lens glow and the nearest vehicles' beams, from this frame's smoothed
     // poses (after the models moved, so beams and lenses stay together while paused or following).
     const level = lighting.artificial;
@@ -261,7 +277,8 @@
     vehiclePoses.length = 0;
     for (const p of transport.poses()) vehiclePoses.push(p);
     for (const p of transit.poses()) vehiclePoses.push(p);
-    if (camera.current) lighting.updateVehicles(vehiclePoses, camera.current);
+    if (camera.current && !(hookEnabled && !perfFlags.vehicleLights))
+      lighting.updateVehicles(vehiclePoses, camera.current);
   });
   function pick(e: IntersectionEvent<MouseEvent>) {
     const ids = e.object.userData.ids;

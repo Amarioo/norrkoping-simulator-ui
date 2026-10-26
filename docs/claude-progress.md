@@ -2,6 +2,27 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Performance Phase P1 — measurement and profiling: where does the time go? (2026-10-26) — approved (user, 2026-10-26), committed on `claude/perf-p1`, not pushed
+
+[Full report](perf-p1/README.md). Branch `claude/perf-p1` from `main` = `9cb9a3e`. **Approved by the user; committed on the branch, not pushed, not merged.** Backend unchanged. No optimisation.
+
+- **Result:** the whole-city overview (night, traffic, fullscreen 2560×1440: 59 fps, p95 34 ms) is CPU-bound in
+  three.js's draw-call work: ≈ 16.5 ms per frame for ≈ 7 900 calls; app code (traffic, lighting, Svelte,
+  Threlte) < 0.4 ms; resolution 1280×720 … 3840×2160 costs the same; night lighting per pixel ≈ 0 there
+  (street views 0.4–0.8 ms, mostly vehicle beams). p95 34 ms = frames at 14–18 ms just missing the 60 Hz tick.
+- **Ranked (overview, ms per frame saved when hidden, median of 3):** trees 5.0 (784 calls, 784 materials),
+  buildings 4.7, terrain 4.6, roads/bridges 4.5 (layers cut into ≤ 3 000-triangle pieces per 500 m cell),
+  traffic drawing 2.4 (316 never-culled instanced meshes), map details 2.3 (airfield), traffic update 1.6,
+  water 0.8, rest ≤ 0.6. Profile: uniform uploads on material switches 5.2 ms, buffer/VAO binding 5.2 ms.
+  Street view (Kungsgatan night): traffic drawing 1.9, traffic update 1.6, vehicle beams 0.9 ms.
+- **P2 proposal:** trees → layer merge → map details → traffic → lighting uniforms in a UBO; estimated
+  8–11 ms off the overview (estimate) → target looks reachable.
+- **Tools:** hook `__perfP1` (`src/lib/perf/perfProbe.ts`, dev / `VITE_LIGHTING_HOOK=1` only; branch `dist/`
+  byte-identical to `main`), `scripts/perf-p1/`, raw data `docs/perf-p1/data/`.
+- **Checks:** type check 0; build OK; Vitest 480/481 (known worktree path in `terrain.test.ts`); Playwright
+  18/19 (A3 picture after context restoration; 3/3 alone) then 19/19.
+- **Local only:** `.claude/launch.json` (`p1-*`, ports 8095, 5194, 5280); `work/perf-p1/`.
+
 ## Performance Phase P0 — fullscreen map and fps counter (2026-10-26) — approved (user, 2026-10-26, after testing it locally), committed and pushed, merged into `main`
 
 [Full report](fullscreen-fps/README.md). Branch `claude/fullscreen-fps` from `main` = `60c3297`.

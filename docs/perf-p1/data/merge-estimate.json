@@ -1,0 +1,167 @@
+{
+ "note": "Phase P1 scene structure and merge estimates (whole scene, counts; merged numbers are estimates for P2, before frustum culling). Overview view, traffic on, hook build.",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+  "cores": 16,
+  "memoryGB": 66,
+  "platform": "win32 10.0.26300"
+ },
+ "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+ "notes": [],
+ "layers": [
+  {
+   "layer": "city-markings",
+   "meshes": 484,
+   "triangles": 414905,
+   "materials": 1,
+   "cells500m": 465,
+   "piecesPerCellMedian": 1,
+   "piecesPerCellMax": 3,
+   "mergedPerCellCalls": 465,
+   "merged1kmCalls": 147,
+   "merged2kmCalls": 45
+  },
+  {
+   "layer": "city-banks",
+   "meshes": 315,
+   "triangles": 40186,
+   "materials": 1,
+   "cells500m": 300,
+   "piecesPerCellMedian": 1,
+   "piecesPerCellMax": 4,
+   "mergedPerCellCalls": 300,
+   "merged1kmCalls": 122,
+   "merged2kmCalls": 44
+  },
+  {
+   "layer": "city-land",
+   "meshes": 1719,
+   "triangles": 4220081,
+   "materials": 1,
+   "cells500m": 593,
+   "piecesPerCellMedian": 3,
+   "piecesPerCellMax": 11,
+   "mergedPerCellCalls": 593,
+   "merged1kmCalls": 160,
+   "merged2kmCalls": 47
+  },
+  {
+   "layer": "city-water",
+   "meshes": 324,
+   "triangles": 143980,
+   "materials": 1,
+   "cells500m": 299,
+   "piecesPerCellMedian": 1,
+   "piecesPerCellMax": 3,
+   "mergedPerCellCalls": 299,
+   "merged1kmCalls": 127,
+   "merged2kmCalls": 44
+  },
+  {
+   "layer": "city-roads",
+   "meshes": 1422,
+   "triangles": 3332633,
+   "materials": 1,
+   "cells500m": 540,
+   "piecesPerCellMedian": 2,
+   "piecesPerCellMax": 13,
+   "mergedPerCellCalls": 540,
+   "merged1kmCalls": 150,
+   "merged2kmCalls": 46
+  },
+  {
+   "layer": "city-surveyed",
+   "meshes": 0,
+   "triangles": 0,
+   "materials": 0,
+   "cells500m": 0,
+   "piecesPerCellMedian": 0,
+   "piecesPerCellMax": 0,
+   "mergedPerCellCalls": 0,
+   "merged1kmCalls": 0,
+   "merged2kmCalls": 0
+  },
+  {
+   "layer": "city-walls",
+   "meshes": 427,
+   "triangles": 162814,
+   "materials": 1,
+   "cells500m": 418,
+   "piecesPerCellMedian": 1,
+   "piecesPerCellMax": 2,
+   "mergedPerCellCalls": 418,
+   "merged1kmCalls": 144,
+   "merged2kmCalls": 45
+  },
+  {
+   "layer": "city-roofs",
+   "meshes": 419,
+   "triangles": 85549,
+   "materials": 1,
+   "cells500m": 418,
+   "piecesPerCellMedian": 1,
+   "piecesPerCellMax": 2,
+   "mergedPerCellCalls": 418,
+   "merged1kmCalls": 144,
+   "merged2kmCalls": 45
+  },
+  {
+   "layer": "city-cornices",
+   "meshes": 427,
+   "triangles": 162814,
+   "materials": 1,
+   "cells500m": 419,
+   "piecesPerCellMedian": 1,
+   "piecesPerCellMax": 2,
+   "mergedPerCellCalls": 419,
+   "merged1kmCalls": 144,
+   "merged2kmCalls": 45
+  }
+ ],
+ "trees": {
+  "instancedMeshes": 810,
+  "cells20units": 405,
+  "materials": 810,
+  "distinctLooks": 2,
+  "instances": 33225,
+  "cells1km": 144,
+  "mergedPer1kmCalls": 288,
+  "cells2km": 45,
+  "mergedPer2kmCalls": 90
+ },
+ "details": [
+  {
+   "group": "buildingDetails",
+   "meshes": 278,
+   "instanced": 0,
+   "materials": 278,
+   "distinctLooks": 278,
+   "textured": 211,
+   "triangles": 85839
+  },
+  {
+   "group": "bridges",
+   "meshes": 47,
+   "instanced": 0,
+   "materials": 47,
+   "distinctLooks": 47,
+   "textured": 13,
+   "triangles": 286152
+  },
+  {
+   "group": "mapDetails",
+   "meshes": 1005,
+   "instanced": 4,
+   "materials": 55,
+   "distinctLooks": 55,
+   "textured": 29,
+   "triangles": 29269
+  }
+ ],
+ "trafficInstancedMeshes": {
+  "total": 319,
+  "frustumCulledFalse": 316,
+  "emptyNow": 0
+ },
+ "errors": []
+}

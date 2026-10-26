@@ -201,25 +201,30 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
 
 ### Spår P: prestanda
 
-Mål (förslag, beslutas av dig): minst 60 fps i helskärm på din dator (RTX 5070 Ti, 2560×1440,
-164 Hz), natt med trafik. Varje steg mäts parvis mot föregående godkända läge som tidigare
+Mål (satt av dig 2026-10-26): minst 60 fps utan hack i helskärm på din dator (RTX 5070 Ti, 2560×1440,
+164 Hz), natt med trafik, även i vyn över hela staden: p95 av bildtiden ≤ 16,7 ms. Varje steg mäts parvis mot föregående godkända läge som tidigare
 (`docs/step62/rollout-plan.md`).
 
 - [x] **P0 Helskärm och fps-räknare** — S — *genomförd 2026-10-26 på grenen `claude/fullscreen-fps`,
   godkänd 2026-10-26, committad och pushad till main: [docs/fullscreen-fps/README.md](fullscreen-fps/README.md). Helskärmsknapp (F, Esc),
   fps-räknare (P, avslagen som standard) med bildtid, p95, CPU-tid, ritanrop, trianglar,
   shaderprogram och upplösning; kroken `__fpsStats`; baslinjetabell i helskärm för P1.*
-- [ ] **P1 Mätning och profilering: var går tiden?** — M
-  - Fasta vyer och tider (P0:s baslinje), med och utan trafik, i helskärm.
-  - CPU eller GPU: jämför CPU-tid per bild (räknaren) med bildtiden; GPU-tid med
-    `EXT_disjoint_timer_query_webgl2` där den finns (av som standard, bara vid mätning).
-  - Uppdelning per del: byggnader, mark/vägar, ljus per pixel (shader-patchen), lyktstolpar,
-    trafik och kollektivtrafik, etiketter, landmärken. Slå av en del i taget via utvecklarkrokar
-    och mät skillnaden; upplösningsskalning visar om bildpunkterna (fill rate) är flaskhalsen.
-  - Leverans: en rangordnad lista över kostnader med siffror, inget optimerat ännu.
-- [ ] **P2 Riktade åtgärder** — M/L — de dyraste posterna från P1 först (t.ex. färre ritanrop
-  genom sammanslagning/instansiering, avståndsnivåer (LOD), billigare ljus per pixel långt bort).
-  Varje åtgärd parvis mätt; bilden ska vara oförändrad eller avvikelser godkända.
+- [x] **P1 Mätning och profilering: var går tiden?** — M — *genomförd 2026-10-26 på grenen `claude/perf-p1`,
+  godkänd 2026-10-26, committad på grenen (inte pushad): [docs/perf-p1/README.md](perf-p1/README.md). Översikten är CPU-bunden i three.js ritanrop
+  (≈ 16,5 ms för ≈ 7 900 ritanrop; appens egen kod < 0,4 ms; upplösningen spelar ingen roll; ljus per
+  pixel ≈ 0 i översikten). Dyrast i översikten: träd 5,0 ms, byggnader 4,7, mark 4,6, vägar/broar 4,5,
+  trafikens ritning 2,4, kartdetaljer 2,3, trafikuppdatering 1,6 ms. Målet bedöms nåbart (uppskattning).*
+- [ ] **P2 Riktade åtgärder** — M/L — i den ordning P1 föreslår, varje steg parvis mätt, bilden oförändrad
+  eller avvikelser godkända:
+  - **P2a Träd:** gemensamma material för stammar och kronor (i dag 784 egna material) och grövre rutor.
+    Uppskattad vinst 3,5–4,5 ms i översikten, ingen bildändring.
+  - **P2b Mark, vägar, vatten och OSM-byggnader:** slå ihop bitarna (≤ 3 000 trianglar) inom varje 500 m-ruta,
+    mät sedan 1 km-rutor. Uppskattad vinst 5–8 ms.
+  - **P2c Kartdetaljer (flygfältet):** slå ihop per material, instansiera kantljusen. Uppskattat 1,5–2 ms.
+  - **P2d Trafik:** färre meshar per fordonstyp, gallring utanför bild, ladda bara upp det som rört sig.
+    Uppskattat 1,5–2,5 ms i översikten, 1–2 ms i gatuvyer.
+  - **P2e Vid behov:** ljus-patchens uniform-listor i en gemensam buffert (UBO), frysta matriser för
+    statiska objekt, texturatlas för detaljbyggnader och broar.
 - [ ] **P3 Anpassningsbar kvalitet** — M — kvalitetsval Låg/Medel/Hög (upplösning, `dpr`,
   kantutjämning, siktavstånd, mängd detaljer) och dynamisk upplösning som sänker
   renderingsupplösningen när bildtiden går över målet. Kräver beslut om svagare datorer ska stödjas.
