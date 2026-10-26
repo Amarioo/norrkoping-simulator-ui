@@ -1,0 +1,172 @@
+{
+  "note": "V8 sampling profiler (100 µs) for 10 s, Innerstaden view, live traffic, uncapped headless Edge 1280×900.",
+  "runs": [
+    {
+      "label": "closed",
+      "round": 1,
+      "events": 0,
+      "debugMsPerSecond": 0,
+      "scriptMsPerSecond": 965.8045000000005,
+      "recalcStyleMsPerSecond": 0.8115,
+      "layoutMsPerSecond": 1.2909000000000002,
+      "taskMsPerSecond": 1048.2446000000002,
+      "topDebugFunctions": []
+    },
+    {
+      "label": "open",
+      "round": 1,
+      "events": 103,
+      "debugMsPerSecond": 2.0562,
+      "scriptMsPerSecond": 923.3054,
+      "recalcStyleMsPerSecond": 1.5669,
+      "layoutMsPerSecond": 4.3552,
+      "taskMsPerSecond": 1051.7799,
+      "topDebugFunctions": [
+        [
+          "F@0:393",
+          8.98
+        ],
+        [
+          "J@4:9116",
+          2.21
+        ],
+        [
+          "c@4:1526",
+          2.18
+        ],
+        [
+          "eventNames@0:4036",
+          2
+        ],
+        [
+          "record@0:2417",
+          1.59
+        ],
+        [
+          "ie@0:5014",
+          1.21
+        ]
+      ]
+    },
+    {
+      "label": "open-raw",
+      "round": 1,
+      "events": 331,
+      "debugMsPerSecond": 5.9751,
+      "scriptMsPerSecond": 909.9002000000012,
+      "recalcStyleMsPerSecond": 2.2040999999999995,
+      "layoutMsPerSecond": 6.1957,
+      "taskMsPerSecond": 1059.4251,
+      "topDebugFunctions": [
+        [
+          "F@0:393",
+          27.87
+        ],
+        [
+          "ae@0:5042",
+          7.15
+        ],
+        [
+          "record@0:2417",
+          6.83
+        ],
+        [
+          "connect@4:2579",
+          3.32
+        ],
+        [
+          "feed@0:5502",
+          2.76
+        ],
+        [
+          "Q@4:9907",
+          2.48
+        ]
+      ]
+    },
+    {
+      "label": "closed",
+      "round": 2,
+      "events": 0,
+      "debugMsPerSecond": 0,
+      "scriptMsPerSecond": 971.9965000000005,
+      "recalcStyleMsPerSecond": 0.387,
+      "layoutMsPerSecond": 0.9027999999999998,
+      "taskMsPerSecond": 1020.7695999999999,
+      "topDebugFunctions": []
+    },
+    {
+      "label": "open",
+      "round": 2,
+      "events": 103,
+      "debugMsPerSecond": 1.6054,
+      "scriptMsPerSecond": 951.8648000000003,
+      "recalcStyleMsPerSecond": 1.0050000000000001,
+      "layoutMsPerSecond": 3.0428,
+      "taskMsPerSecond": 1033.1968,
+      "topDebugFunctions": [
+        [
+          "F@0:393",
+          9.49
+        ],
+        [
+          "J@4:9116",
+          1.58
+        ],
+        [
+          "Q@4:9907",
+          1.16
+        ],
+        [
+          "record@0:2417",
+          1.09
+        ],
+        [
+          "U@4:724",
+          0.6
+        ],
+        [
+          "trim@0:3305",
+          0.55
+        ]
+      ]
+    },
+    {
+      "label": "open-raw",
+      "round": 2,
+      "events": 325,
+      "debugMsPerSecond": 4.4195,
+      "scriptMsPerSecond": 942.6007999999998,
+      "recalcStyleMsPerSecond": 1.1509,
+      "layoutMsPerSecond": 3.9269999999999996,
+      "taskMsPerSecond": 1021.0699000000001,
+      "topDebugFunctions": [
+        [
+          "F@0:393",
+          24.56
+        ],
+        [
+          "connect@4:2579",
+          3.29
+        ],
+        [
+          "record@0:2417",
+          3.27
+        ],
+        [
+          "Q@4:9907",
+          2.72
+        ],
+        [
+          "ae@0:5042",
+          1.62
+        ],
+        [
+          "line@3:317",
+          1.11
+        ]
+      ]
+    }
+  ],
+  "errors": []
+}

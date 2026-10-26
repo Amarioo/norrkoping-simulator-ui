@@ -2,6 +2,36 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## SSE debug panel — read every server-sent event (2026-10-26) — approved (user, 2026-10-26), committed and pushed on branch `claude/sse-debug-29a00e`, not merged into `main`
+
+[Full report](sse-debug/README.md). Worktree branch `claude/sse-debug-29a00e` from `main` = `9cb9a3e`,
+fast-forwarded to `main` = `753475e` (P1 merged) with the uncommitted work re-applied.
+**Committed and pushed** on its own branch (user, 2026-10-26); not merged. Backend unchanged. Touches no P1 files.
+- **After the P1 merge (re-run):** check 0; build OK (no debug code in `dist/`); Vitest 500/501 (known
+  `terrain.test.ts`); Playwright 21/21; new screenshots in `sse-debug/evidence/after-p1-merge/`.
+
+- **Result:** debug panel (key `L` or `?sse-debug`; `?sse-debug=raw` adds raw readers) in dev builds and
+  `VITE_SSE_DEBUG=1` builds only: every SSE event newest first (time, stream, event name, `lastEventId`,
+  bytes, data), connection steps (create/attach/open/reconnect/error/close), per-stream table (status
+  incl. "öppen, tyst N s", events/s, kB/s, totals, errors, reconnections, last id), filters (stream,
+  event name, text, hide connection steps), expand with pretty JSON, copy entry, pause/resume, clear,
+  export JSON. Optional raw `fetch()` reader per stream sees every event name, comments and `retry:`
+  (EventSource cannot). Log capped at 1 000 entries / 32 MB of data.
+- **Wiring:** `tapEventSource(new EventSource(url), [names])` in `city.svelte.ts` and `world.svelte.ts`
+  (one line each); listeners exist only while the panel is open. Normal `dist/` has no debug code.
+- **Backend findings (measured, raw reader):** only `city` (~10/s × 53 kB), `world` (~10/s × 2 kB),
+  `telemetry` (~2/s × 5 kB); no comments/heartbeats/other names; `retry: 1500` in every event. The UI
+  only opens the city stream (`world.connect()` is never called). **Existing bug, not fixed:** when the
+  backend stops, the stream goes silent through the Vite dev proxy with no error; the app stays
+  "connected" and does not reconnect after a backend restart until the page is reloaded.
+- **Cost (V8 profiler, live traffic):** closed 0.00 ms/s; open ≈ 2 ms/s script + ≈ 3 ms/s layout
+  (≈ 0.5 % of the main thread); open + raw ≈ 5 + 4 ms/s. Frame-time runs were too noisy on the shared
+  machine to resolve this (kept as raw data).
+- **Checks:** type check 0; build OK; Vitest 500/501 (known worktree path in `terrain.test.ts`), new unit
+  tests 20/20; new Playwright spec 2/2 (×5 10/10, ×3 6/6); whole suite 21/21 in the final run (20/21 before: only A3). A3 picture check
+  is flaky on unchanged `main` too (2/3 failures on a `main` copy).
+- **Local only:** worktree `.claude/launch.json` (`sse-*`, ports 8101, 5281–5285); `work/sse-debug/`.
+
 ## Performance Phase P1 — measurement and profiling: where does the time go? (2026-10-26) — approved (user, 2026-10-26), committed and pushed, merged into `main`
 
 [Full report](perf-p1/README.md). Branch `claude/perf-p1` from `main` = `9cb9a3e`. **Committed and pushed:** `13a3afe`; `main` fast-forwarded to this branch on `origin` (user, 2026-10-26). Backend unchanged. No optimisation.

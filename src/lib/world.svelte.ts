@@ -1,4 +1,5 @@
 import type { Drone, Telemetry, Vec3, WorldSnapshot } from './types';
+import { tapEventSource } from './debug/sseTap';
 class WorldStore {
   snapshot = $state.raw<WorldSnapshot>({
     sequence: 0,
@@ -36,8 +37,9 @@ class WorldStore {
     let spatial: EventSource;
     let telemetry: EventSource;
     const open = () => {
-      spatial = new EventSource('/api/sse/world');
-      telemetry = new EventSource('/api/sse/telemetry');
+      // tapEventSource: SSE debug log (no-op unless the debug panel records; src/lib/debug).
+      spatial = tapEventSource(new EventSource('/api/sse/world'), ['world']);
+      telemetry = tapEventSource(new EventSource('/api/sse/telemetry'), ['telemetry']);
       spatial.addEventListener('world', (event: MessageEvent<string>) => {
         try {
           const data = JSON.parse(event.data) as WorldSnapshot;

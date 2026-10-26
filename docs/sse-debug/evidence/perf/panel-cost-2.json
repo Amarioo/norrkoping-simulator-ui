@@ -1,0 +1,868 @@
+{
+  "note": "Production builds; uncapped Edge (--disable-gpu-vsync --disable-frame-rate-limit); 1280×900, DPR 1; live backend traffic through the vite preview proxy; fresh browser per run; variant order rotates each round. Day (12:39).",
+  "host": {
+    "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor           ",
+    "cores": 16,
+    "memoryGB": 66
+  },
+  "viewport": {
+    "width": 1280,
+    "height": 900
+  },
+  "views": [
+    "kungsgatan",
+    "stromparken",
+    "city"
+  ],
+  "samplesPerView": 240,
+  "variants": {
+    "base": {
+      "port": "5283",
+      "query": ""
+    },
+    "closed": {
+      "port": "5284",
+      "query": ""
+    },
+    "open": {
+      "port": "5284",
+      "query": "&sse-debug"
+    },
+    "open-raw": {
+      "port": "5284",
+      "query": "&sse-debug=raw"
+    }
+  },
+  "runs": [
+    {
+      "label": "base",
+      "round": 1,
+      "panelShown": 0,
+      "hook": "undefined",
+      "frames": {
+        "kungsgatan": {
+          "median": 7.699999999998909,
+          "p95": 12.699999999998909,
+          "max": 30.299999999999272
+        },
+        "stromparken": {
+          "median": 19.400000000001455,
+          "p95": 34.89999999999782,
+          "max": 300.59999999999854
+        },
+        "city": {
+          "median": 21.599999999998545,
+          "p95": 30,
+          "max": 52.099999999998545
+        }
+      },
+      "sse": null,
+      "heapMB": 129.23012,
+      "vehicles": 203
+    },
+    {
+      "label": "closed",
+      "round": 1,
+      "panelShown": 0,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 6.700000000000728,
+          "p95": 11.5,
+          "max": 17.600000000000364
+        },
+        "stromparken": {
+          "median": 17.900000000001455,
+          "p95": 36.19999999999709,
+          "max": 55.79999999999927
+        },
+        "city": {
+          "median": 24.900000000001455,
+          "p95": 34.599999999998545,
+          "max": 61.79999999999927
+        }
+      },
+      "sse": {
+        "recording": false,
+        "stored": 0,
+        "storedMB": 0,
+        "channels": []
+      },
+      "heapMB": 131.339272,
+      "vehicles": 203
+    },
+    {
+      "label": "open",
+      "round": 1,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 15.599999999998545,
+          "p95": 34.30000000000291,
+          "max": 105.20000000000073
+        },
+        "stromparken": {
+          "median": 29.5,
+          "p95": 57.900000000001455,
+          "max": 232
+        },
+        "city": {
+          "median": 25.700000000004366,
+          "p95": 42.400000000001455,
+          "max": 49.5
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 316,
+        "storedMB": 17.258303,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 315,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 525.1625
+          }
+        ]
+      },
+      "heapMB": 130.740752,
+      "vehicles": 203
+    },
+    {
+      "label": "open-raw",
+      "round": 1,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 5.799999999999272,
+          "p95": 11.200000000000728,
+          "max": 33
+        },
+        "stromparken": {
+          "median": 21.200000000000728,
+          "p95": 35.70000000000073,
+          "max": 56.599999999998545
+        },
+        "city": {
+          "median": 27.69999999999709,
+          "p95": 44.29999999999927,
+          "max": 64.29999999999927
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 828,
+        "storedMB": 28.86577,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 258,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 524.0107421875
+          },
+          {
+            "channel": "/api/simulator/stream [rå]",
+            "events": 255,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 524.0107421875
+          },
+          {
+            "channel": "/api/sse/telemetry [rå]",
+            "events": 52,
+            "eventsPerSecond": 2,
+            "kBPerSecond": 10.9232421875
+          },
+          {
+            "channel": "/api/sse/world [rå]",
+            "events": 253,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 20.501171875
+          }
+        ]
+      },
+      "heapMB": 131.652592,
+      "vehicles": 203
+    },
+    {
+      "label": "closed",
+      "round": 2,
+      "panelShown": 0,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 6.899999999999636,
+          "p95": 11.099999999998545,
+          "max": 13.800000000001091
+        },
+        "stromparken": {
+          "median": 22.69999999999709,
+          "p95": 30.700000000000728,
+          "max": 36.20000000000073
+        },
+        "city": {
+          "median": 23.399999999997817,
+          "p95": 30.5,
+          "max": 35.400000000001455
+        }
+      },
+      "sse": {
+        "recording": false,
+        "stored": 0,
+        "storedMB": 0,
+        "channels": []
+      },
+      "heapMB": 130.021644,
+      "vehicles": 203
+    },
+    {
+      "label": "open",
+      "round": 2,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 8.400000000001455,
+          "p95": 15.199999999998909,
+          "max": 31.100000000000364
+        },
+        "stromparken": {
+          "median": 22.299999999999272,
+          "p95": 35.400000000001455,
+          "max": 66.80000000000291
+        },
+        "city": {
+          "median": 39.20000000000073,
+          "p95": 68.20000000000437,
+          "max": 115.20000000000437
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 293,
+        "storedMB": 15.991763,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 292,
+            "eventsPerSecond": 9.6,
+            "kBPerSecond": 514.0181640625
+          }
+        ]
+      },
+      "heapMB": 131.305968,
+      "vehicles": 203
+    },
+    {
+      "label": "open-raw",
+      "round": 2,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 10.299999999999272,
+          "p95": 25.099999999998545,
+          "max": 34
+        },
+        "stromparken": {
+          "median": 25.900000000001455,
+          "p95": 43,
+          "max": 53.70000000000073
+        },
+        "city": {
+          "median": 34.5,
+          "p95": 55.89999999999418,
+          "max": 86.09999999999854
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 949,
+        "storedMB": 33.517712,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 321,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 524.391015625
+          },
+          {
+            "channel": "/api/simulator/stream [rå]",
+            "events": 315,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 524.391015625
+          },
+          {
+            "channel": "/api/sse/telemetry [rå]",
+            "events": 63,
+            "eventsPerSecond": 1.8,
+            "kBPerSecond": 9.83828125
+          },
+          {
+            "channel": "/api/sse/world [rå]",
+            "events": 314,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 20.5076171875
+          }
+        ]
+      },
+      "heapMB": 133.234328,
+      "vehicles": 203
+    },
+    {
+      "label": "base",
+      "round": 2,
+      "panelShown": 0,
+      "hook": "undefined",
+      "frames": {
+        "kungsgatan": {
+          "median": 12.399999999997817,
+          "p95": 17.700000000000728,
+          "max": 34.5
+        },
+        "stromparken": {
+          "median": 42.900000000001455,
+          "p95": 65.09999999999854,
+          "max": 143.20000000000073
+        },
+        "city": {
+          "median": 60.400000000001455,
+          "p95": 86.30000000000291,
+          "max": 181.20000000000437
+        }
+      },
+      "sse": null,
+      "heapMB": 130.72414,
+      "vehicles": 203
+    },
+    {
+      "label": "open",
+      "round": 3,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 15,
+          "p95": 34.39999999999782,
+          "max": 71.10000000000218
+        },
+        "stromparken": {
+          "median": 50.5,
+          "p95": 92.30000000000291,
+          "max": 129
+        },
+        "city": {
+          "median": 82,
+          "p95": 154,
+          "max": 379.5
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 553,
+        "storedMB": 30.306641,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 552,
+            "eventsPerSecond": 9.2,
+            "kBPerSecond": 491.92421875
+          }
+        ]
+      },
+      "heapMB": 131.537256,
+      "vehicles": 203
+    },
+    {
+      "label": "open-raw",
+      "round": 3,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 13.700000000000728,
+          "p95": 36.099999999998545,
+          "max": 75.10000000000218
+        },
+        "stromparken": {
+          "median": 36,
+          "p95": 63.099999999998545,
+          "max": 73.09999999999854
+        },
+        "city": {
+          "median": 63.69999999999709,
+          "p95": 107.69999999999709,
+          "max": 237.59999999999854
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 943,
+        "storedMB": 33.504448,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 435,
+            "eventsPerSecond": 9.4,
+            "kBPerSecond": 502.9865234375
+          },
+          {
+            "channel": "/api/simulator/stream [rå]",
+            "events": 429,
+            "eventsPerSecond": 9.6,
+            "kBPerSecond": 513.6943359375
+          },
+          {
+            "channel": "/api/sse/telemetry [rå]",
+            "events": 85,
+            "eventsPerSecond": 1.8,
+            "kBPerSecond": 10.008984375
+          },
+          {
+            "channel": "/api/sse/world [rå]",
+            "events": 423,
+            "eventsPerSecond": 9,
+            "kBPerSecond": 19.3337890625
+          }
+        ]
+      },
+      "heapMB": 132.777572,
+      "vehicles": 203
+    },
+    {
+      "label": "base",
+      "round": 3,
+      "panelShown": 0,
+      "hook": "undefined",
+      "frames": {
+        "kungsgatan": {
+          "median": 13.299999999999272,
+          "p95": 32.69999999999709,
+          "max": 49.099999999998545
+        },
+        "stromparken": {
+          "median": 30.599999999998545,
+          "p95": 51.599999999998545,
+          "max": 69.79999999999927
+        },
+        "city": {
+          "median": 46,
+          "p95": 69.40000000000146,
+          "max": 86.59999999999854
+        }
+      },
+      "sse": null,
+      "heapMB": 131.81154,
+      "vehicles": 203
+    },
+    {
+      "label": "closed",
+      "round": 3,
+      "panelShown": 0,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 20.099999999998545,
+          "p95": 45.599999999998545,
+          "max": 70.09999999999854
+        },
+        "stromparken": {
+          "median": 39,
+          "p95": 80.40000000000146,
+          "max": 123.19999999999709
+        },
+        "city": {
+          "median": 48,
+          "p95": 96.29999999999563,
+          "max": 126.70000000000437
+        }
+      },
+      "sse": {
+        "recording": false,
+        "stored": 0,
+        "storedMB": 0,
+        "channels": []
+      },
+      "heapMB": 129.742564,
+      "vehicles": 203
+    },
+    {
+      "label": "open-raw",
+      "round": 4,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 20.69999999999709,
+          "p95": 40.80000000000291,
+          "max": 98.5
+        },
+        "stromparken": {
+          "median": 46.200000000004366,
+          "p95": 98.70000000000437,
+          "max": 178.20000000000437
+        },
+        "city": {
+          "median": 64.5,
+          "p95": 119.40000000000146,
+          "max": 209.79999999999563
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 932,
+        "storedMB": 33.513363,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 514,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 527.0841796875
+          },
+          {
+            "channel": "/api/simulator/stream [rå]",
+            "events": 508,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 527.0841796875
+          },
+          {
+            "channel": "/api/sse/telemetry [rå]",
+            "events": 99,
+            "eventsPerSecond": 1.8,
+            "kBPerSecond": 10.0033203125
+          },
+          {
+            "channel": "/api/sse/world [rå]",
+            "events": 491,
+            "eventsPerSecond": 9.6,
+            "kBPerSecond": 19.34375
+          }
+        ]
+      },
+      "heapMB": 134.161228,
+      "vehicles": 203
+    },
+    {
+      "label": "base",
+      "round": 4,
+      "panelShown": 0,
+      "hook": "undefined",
+      "frames": {
+        "kungsgatan": {
+          "median": 21.099999999998545,
+          "p95": 34.599999999998545,
+          "max": 51.39999999999782
+        },
+        "stromparken": {
+          "median": 39.10000000000582,
+          "p95": 59.099999999998545,
+          "max": 71.20000000000437
+        },
+        "city": {
+          "median": 43.400000000001455,
+          "p95": 60.400000000001455,
+          "max": 71.09999999999854
+        }
+      },
+      "sse": null,
+      "heapMB": 131.426008,
+      "vehicles": 203
+    },
+    {
+      "label": "closed",
+      "round": 4,
+      "panelShown": 0,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 19.799999999999272,
+          "p95": 34.20000000000073,
+          "max": 38.20000000000073
+        },
+        "stromparken": {
+          "median": 34,
+          "p95": 51.900000000001455,
+          "max": 63.79999999999927
+        },
+        "city": {
+          "median": 40.299999999995634,
+          "p95": 56.099999999998545,
+          "max": 71.5
+        }
+      },
+      "sse": {
+        "recording": false,
+        "stored": 0,
+        "storedMB": 0,
+        "channels": []
+      },
+      "heapMB": 131.569156,
+      "vehicles": 203
+    },
+    {
+      "label": "open",
+      "round": 4,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 15,
+          "p95": 34.10000000000218,
+          "max": 49.5
+        },
+        "stromparken": {
+          "median": 39.5,
+          "p95": 65.20000000000073,
+          "max": 81.29999999999563
+        },
+        "city": {
+          "median": 49,
+          "p95": 80.09999999999854,
+          "max": 127.90000000000146
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 412,
+        "storedMB": 22.724307,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 411,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 529.1056640625
+          }
+        ]
+      },
+      "heapMB": 131.681888,
+      "vehicles": 203
+    },
+    {
+      "label": "base",
+      "round": 5,
+      "panelShown": 0,
+      "hook": "undefined",
+      "frames": {
+        "kungsgatan": {
+          "median": 17,
+          "p95": 34.10000000000218,
+          "max": 51.89999999999782
+        },
+        "stromparken": {
+          "median": 36.099999999998545,
+          "p95": 52.700000000004366,
+          "max": 69.20000000000073
+        },
+        "city": {
+          "median": 46,
+          "p95": 67.09999999999854,
+          "max": 88.70000000000437
+        }
+      },
+      "sse": null,
+      "heapMB": 129.647204,
+      "vehicles": 203
+    },
+    {
+      "label": "closed",
+      "round": 5,
+      "panelShown": 0,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 14.599999999998545,
+          "p95": 33.79999999999927,
+          "max": 48.20000000000073
+        },
+        "stromparken": {
+          "median": 38.900000000001455,
+          "p95": 69.09999999999854,
+          "max": 110.70000000000073
+        },
+        "city": {
+          "median": 44.69999999999709,
+          "p95": 66.79999999999563,
+          "max": 87.59999999999854
+        }
+      },
+      "sse": {
+        "recording": false,
+        "stored": 0,
+        "storedMB": 0,
+        "channels": []
+      },
+      "heapMB": 129.813812,
+      "vehicles": 203
+    },
+    {
+      "label": "open",
+      "round": 5,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 14.299999999999272,
+          "p95": 33.099999999998545,
+          "max": 42.79999999999927
+        },
+        "stromparken": {
+          "median": 31,
+          "p95": 51,
+          "max": 69.19999999999709
+        },
+        "city": {
+          "median": 43.80000000000291,
+          "p95": 68.5,
+          "max": 86.59999999999854
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 377,
+        "storedMB": 20.791181,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 376,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 529.8296875
+          }
+        ]
+      },
+      "heapMB": 131.334252,
+      "vehicles": 203
+    },
+    {
+      "label": "open-raw",
+      "round": 5,
+      "panelShown": 1,
+      "hook": "object",
+      "frames": {
+        "kungsgatan": {
+          "median": 12.599999999998545,
+          "p95": 29.69999999999709,
+          "max": 35.599999999998545
+        },
+        "stromparken": {
+          "median": 32.60000000000218,
+          "p95": 53.900000000001455,
+          "max": 79.20000000000073
+        },
+        "city": {
+          "median": 38.099999999998545,
+          "p95": 61.900000000001455,
+          "max": 71.69999999999709
+        }
+      },
+      "sse": {
+        "recording": true,
+        "stored": 958,
+        "storedMB": 33.552779,
+        "channels": [
+          {
+            "channel": "/api/simulator/stream",
+            "events": 366,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 528.5265625
+          },
+          {
+            "channel": "/api/simulator/stream [rå]",
+            "events": 360,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 528.5265625
+          },
+          {
+            "channel": "/api/sse/telemetry [rå]",
+            "events": 72,
+            "eventsPerSecond": 2,
+            "kBPerSecond": 11.179296875
+          },
+          {
+            "channel": "/api/sse/world [rå]",
+            "events": 357,
+            "eventsPerSecond": 9.8,
+            "kBPerSecond": 19.088671875
+          }
+        ]
+      },
+      "heapMB": 131.62178,
+      "vehicles": 203
+    }
+  ],
+  "errors": [],
+  "summary": {
+    "base": {
+      "runs": 5,
+      "heapMB": 130.72414,
+      "views": {
+        "kungsgatan": {
+          "medianMs": 13.299999999999272,
+          "p95Ms": 32.69999999999709
+        },
+        "stromparken": {
+          "medianMs": 36.099999999998545,
+          "p95Ms": 52.700000000004366
+        },
+        "city": {
+          "medianMs": 46,
+          "p95Ms": 67.09999999999854
+        }
+      }
+    },
+    "closed": {
+      "runs": 5,
+      "heapMB": 130.021644,
+      "views": {
+        "kungsgatan": {
+          "medianMs": 14.599999999998545,
+          "p95Ms": 33.79999999999927
+        },
+        "stromparken": {
+          "medianMs": 34,
+          "p95Ms": 51.900000000001455
+        },
+        "city": {
+          "medianMs": 40.299999999995634,
+          "p95Ms": 56.099999999998545
+        }
+      }
+    },
+    "open": {
+      "runs": 5,
+      "heapMB": 131.334252,
+      "views": {
+        "kungsgatan": {
+          "medianMs": 15,
+          "p95Ms": 34.10000000000218
+        },
+        "stromparken": {
+          "medianMs": 31,
+          "p95Ms": 57.900000000001455
+        },
+        "city": {
+          "medianMs": 43.80000000000291,
+          "p95Ms": 68.5
+        }
+      }
+    },
+    "open-raw": {
+      "runs": 5,
+      "heapMB": 132.777572,
+      "views": {
+        "kungsgatan": {
+          "medianMs": 12.599999999998545,
+          "p95Ms": 29.69999999999709
+        },
+        "stromparken": {
+          "medianMs": 32.60000000000218,
+          "p95Ms": 53.900000000001455
+        },
+        "city": {
+          "medianMs": 38.099999999998545,
+          "p95Ms": 61.900000000001455
+        }
+      }
+    }
+  }
+}

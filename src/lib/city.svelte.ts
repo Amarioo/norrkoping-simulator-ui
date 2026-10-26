@@ -1,4 +1,5 @@
 import { terrain } from './terrain';
+import { tapEventSource } from './debug/sseTap';
 import type { Vec3, Activity } from './types';
 export interface TrafficSettings {
   compact: number;
@@ -82,7 +83,8 @@ class CityStore {
     };
     const open = () => {
       close();
-      stream = new EventSource('/api/simulator/stream');
+      // tapEventSource: SSE debug log (no-op unless the debug panel records; src/lib/debug).
+      stream = tapEventSource(new EventSource('/api/simulator/stream'), ['city']);
       stream.addEventListener('city', (e: MessageEvent<string>) => {
         try {
           const value = JSON.parse(e.data) as CitySnapshot;

@@ -10,6 +10,12 @@
   import FpsProbe from './lib/perf/FpsProbe.svelte';
   import FpsCounter from './lib/perf/FpsCounter.svelte';
   import { fpsCounter, setFpsVisible } from './lib/perf/fpsMonitor.svelte';
+  import type { Component } from 'svelte';
+  // SSE debug panel (L key / ?sse-debug): only in dev and VITE_SSE_DEBUG=1 builds, loaded on demand.
+  let SseDebugHost = $state.raw<Component | null>(null);
+  // Same condition as sseDebugAvailable (sseTap.ts), written out so the build drops the chunk.
+  if (import.meta.env.DEV || import.meta.env.VITE_SSE_DEBUG === '1')
+    import('./lib/debug/SseDebugHost.svelte').then((m) => (SseDebugHost = m.default));
   let focus = $state('city'),
     labels = $state(true),
     follow = $state(''),
@@ -483,3 +489,4 @@
     </main>
   </div>
 </div>
+{#if SseDebugHost}<SseDebugHost />{/if}

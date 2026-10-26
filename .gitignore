@@ -102,3 +102,7 @@ work/geodata/
 # Phase P1 (measurement and profiling) scratch (main reference app, hook builds, raw runs, profiles).
 # Curated data is in docs/perf-p1/data/; reusable tools are in scripts/perf-p1/.
 /work/perf-p1/
+
+# SSE debug tool scratch (production builds for the cost runs, captures). Curated evidence is in
+# docs/sse-debug/; reusable tools are in scripts/sse-debug/.
+/work/sse-debug/

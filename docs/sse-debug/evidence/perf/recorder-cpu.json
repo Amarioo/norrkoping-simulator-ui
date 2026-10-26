@@ -1,0 +1,172 @@
+{
+  "note": "V8 sampling profiler (100 µs) for 10 s, Innerstaden view, live traffic, uncapped headless Edge 1280×900.",
+  "runs": [
+    {
+      "label": "closed",
+      "round": 1,
+      "events": 0,
+      "debugMsPerSecond": 0,
+      "scriptMsPerSecond": 964.090400000001,
+      "recalcStyleMsPerSecond": 0.8111,
+      "layoutMsPerSecond": 0.9594999999999999,
+      "taskMsPerSecond": 1045.4759000000001,
+      "topDebugFunctions": []
+    },
+    {
+      "label": "open",
+      "round": 1,
+      "events": 103,
+      "debugMsPerSecond": 3.1274999999999995,
+      "scriptMsPerSecond": 926.7659000000003,
+      "recalcStyleMsPerSecond": 1.4372000000000003,
+      "layoutMsPerSecond": 4.439,
+      "taskMsPerSecond": 1047.2208999999998,
+      "topDebugFunctions": [
+        [
+          "ee@0:376",
+          9.39
+        ],
+        [
+          "Q@4:9845",
+          8.55
+        ],
+        [
+          "c@4:1526",
+          2.49
+        ],
+        [
+          "ie@0:4969",
+          1.96
+        ],
+        [
+          "ke@4:10016",
+          1.42
+        ],
+        [
+          "Ne@4:10332",
+          0.85
+        ]
+      ]
+    },
+    {
+      "label": "open-raw",
+      "round": 1,
+      "events": 328,
+      "debugMsPerSecond": 11.024400000000002,
+      "scriptMsPerSecond": 916.1175000000006,
+      "recalcStyleMsPerSecond": 1.7578,
+      "layoutMsPerSecond": 5.9277,
+      "taskMsPerSecond": 1040.3451,
+      "topDebugFunctions": [
+        [
+          "ee@0:376",
+          38.68
+        ],
+        [
+          "feed@0:5457",
+          24.94
+        ],
+        [
+          "Q@4:9845",
+          17.55
+        ],
+        [
+          "ke@4:10016",
+          7.58
+        ],
+        [
+          "record@0:2371",
+          4.63
+        ],
+        [
+          "J@4:9113",
+          2.43
+        ]
+      ]
+    },
+    {
+      "label": "closed",
+      "round": 2,
+      "events": 0,
+      "debugMsPerSecond": 0,
+      "scriptMsPerSecond": 961.671,
+      "recalcStyleMsPerSecond": 0.6527999999999999,
+      "layoutMsPerSecond": 0.8604,
+      "taskMsPerSecond": 1044.4692,
+      "topDebugFunctions": []
+    },
+    {
+      "label": "open",
+      "round": 2,
+      "events": 104,
+      "debugMsPerSecond": 3.8318999999999996,
+      "scriptMsPerSecond": 925.8892000000005,
+      "recalcStyleMsPerSecond": 1.5826,
+      "layoutMsPerSecond": 5.0194,
+      "taskMsPerSecond": 1052.789,
+      "topDebugFunctions": [
+        [
+          "ee@0:376",
+          12.93
+        ],
+        [
+          "Q@4:9845",
+          10.66
+        ],
+        [
+          "ke@4:10016",
+          3.68
+        ],
+        [
+          "(anon)@4:13021",
+          2.46
+        ],
+        [
+          "channels@0:3444",
+          1.46
+        ],
+        [
+          "ie@0:4969",
+          1.17
+        ]
+      ]
+    },
+    {
+      "label": "open-raw",
+      "round": 2,
+      "events": 328,
+      "debugMsPerSecond": 11.386499999999998,
+      "scriptMsPerSecond": 920.2510000000008,
+      "recalcStyleMsPerSecond": 1.6753,
+      "layoutMsPerSecond": 5.7976,
+      "taskMsPerSecond": 1044.6825000000001,
+      "topDebugFunctions": [
+        [
+          "ee@0:376",
+          39.43
+        ],
+        [
+          "feed@0:5457",
+          22.19
+        ],
+        [
+          "Q@4:9845",
+          18.43
+        ],
+        [
+          "ke@4:10016",
+          13.59
+        ],
+        [
+          "H@4:724",
+          3.7
+        ],
+        [
+          "record@0:2371",
+          3.35
+        ]
+      ]
+    }
+  ],
+  "errors": []
+}
