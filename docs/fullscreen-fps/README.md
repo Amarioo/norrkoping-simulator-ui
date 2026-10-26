@@ -1,7 +1,7 @@
 # Phase P0 — fullscreen map and fps counter (2026-10-26)
 
 Branch `claude/fullscreen-fps` from `main` = `60c3297`. **Approved by the user (2026-10-26, after testing
-it locally). Not committed.** Backend unchanged.
+it locally); committed (`3d61999`), pushed, `main` fast-forwarded on `origin`.** Backend unchanged.
 First step of the performance track (roadmap, track P). No geodata, no coordinate changes, no
 earlier phase's output touched.
 

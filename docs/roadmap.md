@@ -206,7 +206,7 @@ Mål (förslag, beslutas av dig): minst 60 fps i helskärm på din dator (RTX 50
 (`docs/step62/rollout-plan.md`).
 
 - [x] **P0 Helskärm och fps-räknare** — S — *genomförd 2026-10-26 på grenen `claude/fullscreen-fps`,
-  godkänd 2026-10-26, ej committad: [docs/fullscreen-fps/README.md](fullscreen-fps/README.md). Helskärmsknapp (F, Esc),
+  godkänd 2026-10-26, committad och pushad till main: [docs/fullscreen-fps/README.md](fullscreen-fps/README.md). Helskärmsknapp (F, Esc),
   fps-räknare (P, avslagen som standard) med bildtid, p95, CPU-tid, ritanrop, trianglar,
   shaderprogram och upplösning; kroken `__fpsStats`; baslinjetabell i helskärm för P1.*
 - [ ] **P1 Mätning och profilering: var går tiden?** — M

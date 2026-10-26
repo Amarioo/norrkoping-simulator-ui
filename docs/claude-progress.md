@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Performance Phase P0 — fullscreen map and fps counter (2026-10-26) — approved (user, 2026-10-26, after testing it locally), not committed
+## Performance Phase P0 — fullscreen map and fps counter (2026-10-26) — approved (user, 2026-10-26, after testing it locally), committed and pushed, merged into `main`
 
 [Full report](fullscreen-fps/README.md). Branch `claude/fullscreen-fps` from `main` = `60c3297`.
-**Nothing committed or pushed.** Backend unchanged. First step of the new track P (roadmap).
+**Committed and pushed:** `3d61999`; `main` fast-forwarded to this branch on `origin` (user, 2026-10-26). Backend unchanged. First step of the new track P (roadmap).
 
 - **Result:** fullscreen button on the map toolbar ("Helskärm" / "Avsluta helskärm"; `F`, Esc; CSS
   fill-the-window fallback where the API is refused), renderer size and camera aspect follow the panel,
