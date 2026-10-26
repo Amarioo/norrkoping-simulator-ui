@@ -145,12 +145,47 @@ const SHAPES: Record<string, (h: number, arm: number) => TypeShape> = {
       ])!,
     lensGeometry: () => at(new CylinderGeometry(0.15, 0.1, 0.42, 8, 1, true), 0, h - 0.3, 0),
   }),
+  // Lighting Phase L2d (estimates): a site pole with a short arm and a flat LED head (lots, private
+  // site roads), and a yard mast with a square crown of four floodlights (rail yard).
+  sitePole: (h, arm) => ({
+    armM: arm,
+    lens: [0, h - 0.1, arm + 0.2],
+    body: () =>
+      mergeGeometries([
+        at(new CylinderGeometry(0.07, 0.11, h, 8), 0, h / 2, 0),
+        at(new BoxGeometry(0.07, 0.07, arm + 0.1), 0, h - 0.04, (arm + 0.1) / 2),
+        at(new BoxGeometry(0.42, 0.08, 0.62), 0, h - 0.04, arm + 0.2),
+        at(new CylinderGeometry(0.18, 0.22, 0.5, 8), 0, 0.25, 0),
+      ])!,
+    lensGeometry: () => at(new PlaneGeometry(0.36, 0.54), 0, h - 0.09, arm + 0.2, Math.PI / 2),
+  }),
+  mast: (h) => ({
+    armM: 0,
+    lens: [0, h - 0.35, 0],
+    body: () =>
+      mergeGeometries([
+        at(new CylinderGeometry(0.12, 0.26, h - 0.6, 8), 0, (h - 0.6) / 2, 0),
+        at(new BoxGeometry(1.5, 0.12, 1.5), 0, h - 0.6, 0),
+        ...[[-0.55, -0.55], [0.55, -0.55], [-0.55, 0.55], [0.55, 0.55]].map(([x, z]) =>
+          at(new BoxGeometry(0.42, 0.36, 0.42), x, h - 0.35, z),
+        ),
+        at(new CylinderGeometry(0.4, 0.45, 0.6, 8), 0, 0.3, 0),
+      ])!,
+    lensGeometry: () =>
+      mergeGeometries(
+        [[-0.55, -0.55], [0.55, -0.55], [-0.55, 0.55], [0.55, 0.55]].map(([x, z]) =>
+          at(new PlaneGeometry(0.36, 0.36), x, h - 0.54, z, Math.PI / 2),
+        ),
+      )!,
+  }),
 };
 const TYPE_SHAPE: Record<string, () => TypeShape> = {
   'street-bracket-8m': () => SHAPES.bracket(8, 1.4),
   'street-bracket-6m': () => SHAPES.bracket(6, 0.9),
   'park-lantern-4m': () => SHAPES.lantern(4.2, 0),
   'entrance-post-4m': () => SHAPES.lantern(4, 0),
+  'site-pole-10m': () => SHAPES.sitePole(10, 0.5),
+  'yard-mast-18m': () => SHAPES.mast(18, 0),
 };
 /** Fixture types the renderer has geometry for (registry validation). */
 export const FIXTURE_TYPES = Object.keys(TYPE_SHAPE);
@@ -245,6 +280,12 @@ const LOD_SHAPES: Record<string, () => BufferGeometry> = {
   bracket6: () => lodBracket(6, 0.9),
   lantern42: () => lodLantern(4.2),
   lantern4: () => lodLantern(4),
+  sitePole10: () => lodBracket(10, 0.5),
+  mast18: () =>
+    mergeGeometries([
+      at(new CylinderGeometry(0.14, 0.24, 18 - 0.6, 4, 1, true), 0, (18 - 0.6) / 2, 0),
+      at(new BoxGeometry(1.6, 0.5, 1.6), 0, 18 - 0.4, 0),
+    ])!,
 };
 function lodBracket(h: number, arm: number) {
   return mergeGeometries([
@@ -263,6 +304,8 @@ const TYPE_LOD: Record<string, keyof typeof LOD_SHAPES> = {
   'street-bracket-6m': 'bracket6',
   'park-lantern-4m': 'lantern42',
   'entrance-post-4m': 'lantern4',
+  'site-pole-10m': 'sitePole10',
+  'yard-mast-18m': 'mast18',
 };
 
 /** Side of the square tiles fixtures are bucketed into for gathering (scene units, 200 m). */

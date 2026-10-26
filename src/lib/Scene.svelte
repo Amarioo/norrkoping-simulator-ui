@@ -30,6 +30,7 @@
   import type { CompactSet } from './lighting/compactSet';
   import l2Url from './data/streetlights-l2.json?url';
   import l2bcUrl from './data/streetlights-l2bc.json?url';
+  import l2dUrl from './data/streetlights-l2d.json?url';
   import { advanceClock, lightingState } from './lighting/state.svelte';
   import type { VehiclePose } from './lighting/vehicleLights';
   let {
@@ -62,12 +63,20 @@
   // and swapped in after the controller exists (the bundled pilot + A1–A3 set renders until then);
   // map-ready waits for it. `?lighting=a3` (development / hook builds) keeps the A1–A3 set only, for
   // the earlier phases' tests.
+  // Lighting Phase L2d: site lighting (parking lots, rail yard, private site roads, ≈ 3 500 estimated
+  // fixtures) is a third file, fetched with the other two; `?lighting=no-l2d` (development / hook
+  // builds) leaves that category out (the set of main before L2d).
   const hookEnabled = import.meta.env.DEV || import.meta.env.VITE_LIGHTING_HOOK === '1';
-  const onlyA3 = hookEnabled && new URLSearchParams(location.search).get('lighting') === 'a3';
+  const lightingParam = hookEnabled ? new URLSearchParams(location.search).get('lighting') : null;
+  const onlyA3 = lightingParam === 'a3';
+  const withSites = lightingParam !== 'no-l2d';
   let l2Set: CompactSet | null = null,
-    l2bcSet: CompactSet | null = null;
+    l2bcSet: CompactSet | null = null,
+    l2dSet: CompactSet | null = null;
   const defaultRegistry = () =>
-    l2Set ? cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined) : runtimeLightingRegistry(terrain);
+    l2Set
+      ? cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, l2dSet ?? undefined)
+      : runtimeLightingRegistry(terrain);
   const fetchSet = (url: string) =>
     fetch(url).then((r) => {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -100,12 +109,15 @@
   $effect(() => lighting.set(lightingInput()));
   const l2Ready: Promise<void> = onlyA3
     ? Promise.resolve()
-    : Promise.all([fetchSet(l2Url), fetchSet(l2bcUrl)])
-        .then(([a, bc]) => {
-          const result = lighting.replaceStreetLighting(cityLightingRegistry(terrain, a, bc));
+    : Promise.all([fetchSet(l2Url), fetchSet(l2bcUrl), withSites ? fetchSet(l2dUrl) : null])
+        .then(([a, bc, d]) => {
+          const result = lighting.replaceStreetLighting(
+            cityLightingRegistry(terrain, a, bc, d ?? undefined),
+          );
           if (!result.ok) throw new Error(`citywide set rejected at ${result.stage}`);
           l2Set = a;
           l2bcSet = bc;
+          l2dSet = d;
         })
         .catch((error) => console.error('[lighting] citywide street lighting not loaded:', error));
   // Development, or a test build made with VITE_LIGHTING_HOOK=1 (Lighting Phase L1 measurements of
@@ -147,6 +159,11 @@
         runtime: () => runtimeLightingRegistry(terrain),
         // Phase L2a: the default set (pilot + A1–A3 + L2a once loaded).
         city: () => defaultRegistry(),
+        // Phase L2d: the city set without the site-lighting category (streets, paths, squares).
+        cityStreets: () =>
+          l2Set
+            ? cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined)
+            : runtimeLightingRegistry(terrain),
         // Phase L1: any set in the A1–A3 runtime format (e.g. the stress set) on top of the runtime set.
         runtimePlus: (data: A1Data, identity: CorridorIdentity) =>
           mergeRegistries(

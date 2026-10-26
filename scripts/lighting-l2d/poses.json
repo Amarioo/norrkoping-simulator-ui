@@ -1,0 +1,8 @@
+{
+  "police-overview": { "position": [-26.937, 9.987, -18.654], "target": [-29.869, 0.53, -26.103] },
+  "police-lots-elevated": { "position": [-21.5, 3.2, -37.0], "target": [-29.5, 0.4, -29.0] },
+  "station-yard": { "position": [2.692, 15.31, -32.081], "target": [-2.0, 0.12, -44.0] },
+  "station-yard-low": { "position": [-6.0, 2.2, -33.5], "target": [-1.0, 0.3, -46.0] },
+  "ingelsta": { "position": [-58.376, 25.133, -98.632], "target": [-66.0, 0.611, -118.0] },
+  "city-overview": { "position": [31.33, 114, 97.47], "target": [-3.86, 0, 8.08] }
+}

@@ -1,0 +1,194 @@
+{
+ "police-overview-day": {
+  "calls": [
+   210,
+   214,
+   4
+  ],
+  "triangles": [
+   787989,
+   789531,
+   1542
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "police-lots-elevated-day": {
+  "calls": [
+   1663,
+   1669,
+   6
+  ],
+  "triangles": [
+   3017654,
+   3023612,
+   5958
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "station-yard-day": {
+  "calls": [
+   206,
+   210,
+   4
+  ],
+  "triangles": [
+   733396,
+   736506,
+   3110
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "station-yard-low-day": {
+  "calls": [
+   1368,
+   1374,
+   6
+  ],
+  "triangles": [
+   2068398,
+   2075690,
+   7292
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "ingelsta-day": {
+  "calls": [
+   265,
+   266,
+   1
+  ],
+  "triangles": [
+   794599,
+   795307,
+   708
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "city-overview-day": {
+  "calls": [
+   2765,
+   2765,
+   0
+  ],
+  "triangles": [
+   4943210,
+   4943210,
+   0
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "police-overview-night": {
+  "calls": [
+   211,
+   215,
+   4
+  ],
+  "triangles": [
+   832681,
+   841229,
+   8548
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "police-lots-elevated-night": {
+  "calls": [
+   1664,
+   1670,
+   6
+  ],
+  "triangles": [
+   3062346,
+   3075310,
+   12964
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "station-yard-night": {
+  "calls": [
+   207,
+   211,
+   4
+  ],
+  "triangles": [
+   778088,
+   788204,
+   10116
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "station-yard-low-night": {
+  "calls": [
+   1369,
+   1375,
+   6
+  ],
+  "triangles": [
+   2113090,
+   2127388,
+   14298
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "ingelsta-night": {
+  "calls": [
+   266,
+   267,
+   1
+  ],
+  "triangles": [
+   839291,
+   847005,
+   7714
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ },
+ "city-overview-night": {
+  "calls": [
+   2766,
+   2766,
+   0
+  ],
+  "triangles": [
+   4987902,
+   4994908,
+   7006
+  ],
+  "programs": [
+   20,
+   20
+  ]
+ }
+}

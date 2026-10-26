@@ -1,0 +1,20 @@
+{
+  "note": "Pinned raw input of Lighting Phase L2d. The raw file lives in ignored scratch (work/lighting-city-l2d/raw/); extract-source.mjs refuses any file whose SHA-256 differs. A re-download is a NEW snapshot and needs a new entry.",
+  "sources": {
+    "osm": {
+      "dataset": "OpenStreetMap via Overpass API",
+      "file": "work/lighting-city-l2d/raw/osm-sites.json",
+      "url": "https://overpass-api.de/api/interpreter",
+      "method": "POST",
+      "query": "[out:json][timeout:300][bbox:58.555,16.065,58.65,16.295];\n(\nnwr[amenity=parking];\nnwr[landuse~\"^(railway|industrial|port|retail|commercial)$\"];\nway[railway][service~\"^(yard|siding|spur)$\"];\nway[highway=service];\nnode[railway~\"^(station|halt)$\"];\nnwr[man_made=mast];\nnwr[\"tower:type\"=lighting];\nnwr[light_source];\nnode[highway=street_lamp];\n);\nout meta geom;",
+      "retrievedAt": "2026-10-26T12:53:55.758Z",
+      "osmBase": "2026-10-26T12:52:45Z",
+      "bytes": 3677892,
+      "sha256": "2e4765e4e9cf15981a525eacb830e38647ac84a1879a98621297252986644c21",
+      "elements": 4431,
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors",
+      "accuracy": "Mapped geometry, typically metre-level in the city. Parking outlines are often drawn from aerial imagery; whether a lot or yard is actually lit is almost never tagged (0 of 609 parking outlines carry lit=*). Edit timestamps are not survey dates."
+    }
+  }
+}

@@ -1,0 +1,411 @@
+{
+ "rule": "lighting-l2d-v1",
+ "snapshot": {
+  "osmBase": "2026-10-26T12:52:45Z",
+  "sha256": "2e4765e4e9cf15981a525eacb830e38647ac84a1879a98621297252986644c21"
+ },
+ "counts": {
+  "fixtures": 3503,
+  "mapped": 0,
+  "estimated": 3503,
+  "candidates": 4285,
+  "rejected": 1574,
+  "rule:yard-track-mast": 95,
+  "rule:lot-perimeter": 1501,
+  "rule:lot-grid": 63,
+  "rule:site-road-one-side": 1844,
+  "type:site-pole-10m": 3408,
+  "type:yard-mast-18m": 95,
+  "rejected:suppressed-by-estimate": 782,
+  "rejected:no-valid-position": 352,
+  "rejected:covered-by-street-lighting": 440,
+  "lot:no outline (mapped as a point or an open way): no position can be derived": 28,
+  "service-road:outside industrial / port / retail / commercial / railway land: stays dark (L0)": 1936,
+  "lot:smaller than # m²: no fixture of its own": 224,
+  "service-road:parking aisle outside mapped lots and site land: stays dark (L0)": 259,
+  "service-road:lit site road": 543,
+  "lot:lit lot": 328,
+  "service-road:parking aisle inside a lit lot: lit by the lot": 378,
+  "yard-track:service=spur: industrial spur, not a yard (no fixture)": 42,
+  "yard-track:railway=abandoned: not an active main-line track (no fixture)": 12,
+  "yard-track:railway=disused: not an active main-line track (no fixture)": 105,
+  "yard-track:lit yard track": 99,
+  "service-road:service=driveway: private access, stays dark (L0)": 123,
+  "yard-track:# % on landuse=railway land: not part of a rail yard (no fixture)": 21,
+  "service-road:lit site road; shorter than half the # m spacing (no station)": 29,
+  "lot:street-side parking (parking=street_side): lit by the street lighting": 42,
+  "lot:not an open-air lot (parking=-, building): no fixture": 1,
+  "service-road:service=emergency_access: private access, stays dark (L0)": 2,
+  "yard-track:railway=tram: not an active main-line track (no fixture)": 42,
+  "service-road:explicit-unlit (lit=no): excluded": 5,
+  "service-road:tunnel: not modelled for site lighting (no fixture)": 1,
+  "lot:not an open-air lot (parking=multi-storey, building): no fixture": 9,
+  "lot:street-side parking (parking=lane): lit by the street lighting": 4,
+  "service-road:not in the rendered map snapshot: alignment cannot be verified (no fixture)": 4,
+  "yard-track:lit yard track; shorter than half the # m spacing (no station)": 1,
+  "service-road:source geometry differs from the rendered road by # m (no fixture)": 1,
+  "lot:not an open-air lot (parking=surface, building): no fixture": 1
+ },
+ "sitesByKind": {
+  "lot": {
+   "decided": 637,
+   "lit": 328,
+   "fixtures": 1564,
+   "size": 823863
+  },
+  "service-road": {
+   "decided": 3281,
+   "lit": 572,
+   "fixtures": 1844,
+   "size": 75465
+  },
+  "yard-track": {
+   "decided": 322,
+   "lit": 100,
+   "fixtures": 95,
+   "size": 23381
+  }
+ },
+ "largestLands": [
+  {
+   "element": "way/172419674",
+   "name": "Holmen Timber Braviken",
+   "landuse": "industrial",
+   "fixtures": 166
+  },
+  {
+   "element": "way/27787360",
+   "name": "",
+   "landuse": "retail",
+   "fixtures": 130
+  },
+  {
+   "element": "way/89568443",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 124
+  },
+  {
+   "element": "way/41773484",
+   "name": "Bravikens pappersbruk",
+   "landuse": "industrial",
+   "fixtures": 121
+  },
+  {
+   "element": "way/94253955",
+   "name": "",
+   "landuse": "railway",
+   "fixtures": 121
+  },
+  {
+   "element": "relation/14568093",
+   "name": "Ingelsta handelscentrum",
+   "landuse": "retail",
+   "fixtures": 93
+  },
+  {
+   "element": "way/278621005",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 78
+  },
+  {
+   "element": "way/954846963",
+   "name": "",
+   "landuse": "commercial",
+   "fixtures": 78
+  },
+  {
+   "element": "way/96410180",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 76
+  },
+  {
+   "element": "way/97727784",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 65
+  },
+  {
+   "element": "way/1352963732",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 54
+  },
+  {
+   "element": "way/41015737",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 52
+  },
+  {
+   "element": "way/1059550730",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 51
+  },
+  {
+   "element": "relation/12888989",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 47
+  },
+  {
+   "element": "way/92426199",
+   "name": "Agroetanol",
+   "landuse": "industrial",
+   "fixtures": 44
+  },
+  {
+   "element": "way/31608112",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 41
+  },
+  {
+   "element": "way/89678323",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 40
+  },
+  {
+   "element": "way/95586546",
+   "name": "Ekbacken Handelsplats",
+   "landuse": "retail",
+   "fixtures": 39
+  },
+  {
+   "element": "way/778839509",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 38
+  },
+  {
+   "element": "way/1059523391",
+   "name": "",
+   "landuse": "industrial",
+   "fixtures": 37
+  }
+ ],
+ "satellite": {
+  "note": "Black Marble 2016 (visualised 8-bit, saturated in the core) per 15″ pixel inside the map clip, with L0 lit centreline km (recomputed as in scripts/lighting-city/build.ts) and the number of L2d fixtures. A plausibility check only: the image predates LED retrofits and cannot separate sites inside a pixel.",
+  "pixels": 1265,
+  "fixturesInClipPixels": 3503,
+  "brightThreshold": 128,
+  "brightButStreetDark": 124,
+  "brightButStreetDarkWithL2d": 26,
+  "darkPixels": 195,
+  "darkPixelsWithL2d": 3,
+  "darkPixelsL2dFixtures": 10,
+  "meanL2dPerPixelBySatelliteBand": [
+   {
+    "lum": "0–40",
+    "pixels": 195,
+    "meanL2d": 0.05
+   },
+   {
+    "lum": "40–80",
+    "pixels": 311,
+    "meanL2d": 0.44
+   },
+   {
+    "lum": "80–128",
+    "pixels": 197,
+    "meanL2d": 1.45
+   },
+   {
+    "lum": "128–200",
+    "pixels": 169,
+    "meanL2d": 2.21
+   },
+   {
+    "lum": "200–256",
+    "pixels": 393,
+    "meanL2d": 6.87
+   }
+  ],
+  "brightestStreetDarkPixels": [
+   {
+    "row": 1,
+    "col": 44,
+    "centre": [
+     572432.2,
+     6501058.1
+    ],
+    "lum": 255,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Marbystrand"
+   },
+   {
+    "row": 1,
+    "col": 45,
+    "centre": [
+     572674.1,
+     6501062.6
+    ],
+    "lum": 255,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Marbystrand"
+   },
+   {
+    "row": 1,
+    "col": 46,
+    "centre": [
+     572915.9,
+     6501067.1
+    ],
+    "lum": 255,
+    "litKm": 0,
+    "l2d": 3,
+    "district": "Marbystrand"
+   },
+   {
+    "row": 1,
+    "col": 47,
+    "centre": [
+     573157.7,
+     6501071.7
+    ],
+    "lum": 255,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Marbystrand"
+   },
+   {
+    "row": 1,
+    "col": 48,
+    "centre": [
+     573399.6,
+     6501076.2
+    ],
+    "lum": 255,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Marbystrand"
+   },
+   {
+    "row": 5,
+    "col": 23,
+    "centre": [
+     567386,
+     6499111.4
+    ],
+    "lum": 255,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Ingelsta"
+   },
+   {
+    "row": 5,
+    "col": 24,
+    "centre": [
+     567627.9,
+     6499115.6
+    ],
+    "lum": 255,
+    "litKm": 0,
+    "l2d": 14,
+    "district": "Ingelsta"
+   },
+   {
+    "row": 8,
+    "col": 36,
+    "centre": [
+     570556.4,
+     6497775.4
+    ],
+    "lum": 255,
+    "litKm": 0,
+    "l2d": 13,
+    "district": "Slottshagen"
+   },
+   {
+    "row": 10,
+    "col": 39,
+    "centre": [
+     571299.5,
+     6496860.8
+    ],
+    "lum": 255,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Sylten"
+   },
+   {
+    "row": 21,
+    "col": 41,
+    "centre": [
+     571877.5,
+     6491767
+    ],
+    "lum": 249.9,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Brånnestad"
+   },
+   {
+    "row": 10,
+    "col": 38,
+    "centre": [
+     571057.4,
+     6496856.4
+    ],
+    "lum": 249.6,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Slottshagen"
+   },
+   {
+    "row": 3,
+    "col": 40,
+    "centre": [
+     571482,
+     6500112.5
+    ],
+    "lum": 249.4,
+    "litKm": 0,
+    "l2d": 22,
+    "district": "Slottshagen"
+   },
+   {
+    "row": 5,
+    "col": 20,
+    "centre": [
+     566660.1,
+     6499098.9
+    ],
+    "lum": 247.1,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Ingelsta"
+   },
+   {
+    "row": 3,
+    "col": 41,
+    "centre": [
+     571723.9,
+     6500116.9
+    ],
+    "lum": 241.5,
+    "litKm": 0,
+    "l2d": 11,
+    "district": "Slottshagen"
+   },
+   {
+    "row": 19,
+    "col": 2,
+    "centre": [
+     562408.9,
+     6492532.3
+    ],
+    "lum": 241.3,
+    "litKm": 0,
+    "l2d": 0,
+    "district": "Klockaretorpet"
+   }
+  ]
+ }
+}

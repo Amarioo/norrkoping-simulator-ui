@@ -305,6 +305,10 @@ export const CITY_VIEWS: Record<string, CityFocus> = {
     position: [-8.73, 1.1, -18.3] as [number, number, number],
   },
   police: focus('Polishuset', centerOf(named('Polishuset')), 10),
+  // Lighting Phase L2d views: the rail yard north of Norrköping C (landuse=railway, OSM way 94253955)
+  // and the Ingelsta retail / industrial area (brightest satellite pixels without street lighting).
+  stationYard: focus('Bangården vid Norrköping C', [-2, -44], 16),
+  ingelsta: focus('Ingelsta handel och industri', [-66, -118], 26),
   kungsgatan: focus('Kungsgatan', [-22.29, -13.65], 14),
   soderleden: focus('Söderleden', [15.22, 65.89], 20),
   parken: focus('Parken', stadiumCenter, 11),

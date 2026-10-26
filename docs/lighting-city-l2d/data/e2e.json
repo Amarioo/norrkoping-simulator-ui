@@ -1,0 +1,20 @@
+{
+ "start": {
+  "fixtures": 25849,
+  "siteLighting": {
+   "category": "site",
+   "rollout": "lighting-l2d-v1",
+   "shown": true,
+   "fixtures": 3503,
+   "streetFixtures": 22346
+  },
+  "programs": 20
+ },
+ "luma": {
+  "lit": 31.202898686882545,
+  "dark": 8.548657973325339,
+  "litFrame": 21.106606264308954,
+  "darkFrame": 13.007387998738091,
+  "dayDiff": 0.2547274980571075
+ }
+}

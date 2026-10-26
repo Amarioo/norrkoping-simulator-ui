@@ -2,6 +2,30 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Lighting Phase L2d — site lighting on private land (2026-10-26) — approved (user, 2026-10-26, recommended decisions), committed on the branch, not pushed
+
+[Full report](lighting-city-l2d/README.md). Branch `claude/lighting-l2d` from `main` = `705d4f3`.
+**Committed on `claude/lighting-l2d`, not pushed or merged.** Backend unchanged.
+
+- **Result:** 3 503 estimated fixtures as a category of their own (rule `lighting-l2d-v1`, IDs
+  `estimate:lighting-l2d-v1:…`, `describe().siteLighting`, `?lighting=no-l2d` leaves it out): rail-yard
+  masts 95 (Norrköping C yard), parking-lot perimeter 1 501 + interior grid 63 (328 lots ≥ 500 m²),
+  private site roads on industrial / port / retail / commercial land 1 844. Two new types with
+  estimated photometry: `site-pole-10m`, `yard-mast-18m` (4 000 K). The lots and yard around
+  Polishuset are lit at night (e2e luma 8.5 → 31.2).
+- **Generator:** sister `siteGenerator.ts` (corridorGenerator.ts untouched, so L2a/L2bc provenance
+  stays valid); new pinned OSM snapshot 2026-10-26 (`scripts/lighting-l2d/sources.json`), extract and
+  outputs rebuild byte-identically. Satellite check: L2d density rises with Black Marble brightness.
+- **Measured (paired production builds vs `705d4f3`, 4 rounds, 8 views incl. Polishuset, bangården,
+  Ingelsta):** p95 −0.5 … +0.05 ms, day ≤ −0.05 ms, map-ready −46 ms, heap +1.9 MB, calls ≤ +6,
+  triangles ≤ +14.3 k, 20 programs.
+- **Checks:** type check 0; build OK; Vitest 468/469 ×2 (only the known worktree path in
+  `terrain.test.ts`); Playwright 15/16 then 16/16 (the new test's day-program check fixed); A1–A3,
+  L0, L1, L2a/L2bc harnesses pass and 38 earlier output files are byte-identical.
+- **Decisions for the user:** grid vs edge-only lots, all-night vs schedules, yard masts, 500 m²
+  minimum, 4 000 K, open industrial/port yards (recommend LiDAR mast detection next).
+- **Local only:** `.claude/launch.json` (`l2d-*`, ports 8098, 5260, 5262–5264); `work/lighting-city-l2d/`.
+
 ## Police Tower Phase D1b — the police tower from LiDAR (2026-10-25) — committed and pushed, merged into `main`
 
 [Full report](police-tower-d1b/README.md). Branch `claude/funny-hawking-afb6cd`, up to date with `main` =
