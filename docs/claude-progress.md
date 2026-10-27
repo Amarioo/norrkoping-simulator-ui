@@ -2,6 +2,25 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Performance Phase P2a — trees: shared materials and coarser cells (2026-10-27) — approved (user, 2026-10-27), committed on the branch (not pushed)
+
+[Full report](perf-p2a/README.md). Branch `claude/perf-p2a` from `main` = `753475e`. **Committed on `claude/perf-p2a`, not pushed** (user, 2026-10-27). Backend unchanged.
+
+- **Change:** `src/lib/mapView.ts` — all trees share one trunk and one crown material and geometry
+  (were 405 + 405 of each) and are drawn per 2 km cell (`TREE_DRAW_CELL = 80`; 45 + 45 instanced meshes);
+  a tree's look still comes from its index in its 500 m cell.
+- **Picture:** identical — SHA-256 over all 33 225 instance matrices + colours equal to `main` for 500 m /
+  1 km / 2 km cells; 0 differing pixels in 6 views × 3 variants.
+- **Paired vs `main` (5 rounds, CPU median):** overview night −7.7 ms (25.0 → 16.7), day −7.9; Innerstaden
+  −2.3; Norra Promenaden −2.3; Kungsgatan −0.3. Overview tree calls 784 → 88, material switches 1 211 → 429.
+  500 m cells with shared materials −5.5, 1 km −7.2, 2 km −7.7 (chosen).
+- **Caveat:** the machine was ≈ 1.5× slower than in P1 (P1's own build also 25 ms today; cause not found),
+  so absolute ms are not comparable with P1; paired differences are.
+- **Checks:** type check 0; build OK and byte-reproducible, no hook in `dist/`; Vitest 480/481 (known
+  `terrain.test.ts` worktree path); Playwright 18/19 (A3, flaky on `main` too: 2/5 vs branch 3/5 alone),
+  rerun 19/19.
+- **Local only:** `.claude/launch.json` (`p2a-*`, ports 5291–5294), `work/perf-p2a/`.
+
 ## SSE reconnect — the app recovers by itself after a backend restart (2026-10-26) — merged into main
 
 [Full report](sse-reconnect/README.md). Branch `claude/sse-reconnect` (worktree `sse-debug-29a00e`) from

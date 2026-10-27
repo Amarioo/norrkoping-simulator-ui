@@ -57,6 +57,15 @@ function windowTexture() {
 }
 /** Legacy trunk base (on the flat-scene grass); with the DTM trunks start on the ground. */
 const TREE_BASE = 0.025;
+/**
+ * Performance P2a: trees are drawn per TREE_DRAW_CELL × TREE_DRAW_CELL scene units (25 m per unit),
+ * sharing one trunk and one crown material and geometry. A tree's look (size, lobe angle, colour)
+ * still depends on its index within its 20-unit (500 m) planting cell, as before, so the picture is
+ * unchanged; only the batching changed.
+ */
+export const TREE_DRAW_CELL = 80;
+const TREE_LOOK_CELL = 20;
+const CROWN_TONES = ['#527b3b', '#648849', '#719452', '#5b8044'].map((c) => new Color(c));
 export function createMappedCity() {
   const group = new Group(),
     resources: { dispose(): void }[] = [];
@@ -139,33 +148,34 @@ export function createMappedCity() {
       }
   });
   const positions = [...cityMap.trees, ...createParkTrees()].filter(isDetailPlantingClear);
-  const treeCells = new Map<string, Point[]>();
+  // A tree's index within its 500 m planting cell sets its look; draw cells group several of them.
+  const lookIndex = new Map<string, number>();
+  const treeCells = new Map<string, { point: Point; index: number }[]>();
   for (const point of positions) {
-    const key = Math.floor(point[0] / 20) + ',' + Math.floor(point[1] / 20);
+    const look =
+      Math.floor(point[0] / TREE_LOOK_CELL) + ',' + Math.floor(point[1] / TREE_LOOK_CELL);
+    const index = lookIndex.get(look) ?? 0;
+    lookIndex.set(look, index + 1);
+    const key = Math.floor(point[0] / TREE_DRAW_CELL) + ',' + Math.floor(point[1] / TREE_DRAW_CELL);
     if (!treeCells.has(key)) treeCells.set(key, []);
-    treeCells.get(key)!.push(point);
+    treeCells.get(key)!.push({ point, index });
   }
-  // Small spatial batches can be culled instead of drawing every tree in the region.
-  for (const localPositions of treeCells.values()) {
-    const trunks = own(
-      new InstancedMesh(
-        own(new CylinderGeometry(0.7, 1, 1, 7)),
-        own(new MeshStandardMaterial({ color: '#766048' })),
-        localPositions.length,
-      ),
-    );
-    const leaves = own(
-      new InstancedMesh(
-        own(new IcosahedronGeometry(1, 0)),
-        own(new MeshStandardMaterial({ vertexColors: false, color: '#ffffff', roughness: 1 })),
-        localPositions.length * 4,
-      ),
-    );
+  // Shared by every draw cell: one material switch per frame for all trunks and one for all crowns.
+  const trunkGeometry = own(new CylinderGeometry(0.7, 1, 1, 7));
+  const trunkMaterial = own(new MeshStandardMaterial({ color: '#766048' }));
+  const crownGeometry = own(new IcosahedronGeometry(1, 0));
+  const crownMaterial = own(
+    new MeshStandardMaterial({ vertexColors: false, color: '#ffffff', roughness: 1 }),
+  );
+  // Spatial batches can still be culled instead of drawing every tree in the region.
+  for (const localTrees of treeCells.values()) {
+    const trunks = own(new InstancedMesh(trunkGeometry, trunkMaterial, localTrees.length));
+    const leaves = own(new InstancedMesh(crownGeometry, crownMaterial, localTrees.length * 4));
     const mat = new Matrix4(),
       q = new Quaternion(),
       v = new Vector3(),
       s = new Vector3();
-    localPositions.forEach(([x, z], i) => {
+    localTrees.forEach(({ point: [x, z], index: i }, slot) => {
       const profile = treeProfile([x, z], i),
         { radius, crownY, crownHeight, trunkRadius } = profile;
       const trunkHeight = crownY - 0.025;
@@ -174,7 +184,7 @@ export function createMappedCity() {
         q,
         s.set(trunkRadius, trunkHeight, trunkRadius),
       );
-      trunks.setMatrixAt(i, mat);
+      trunks.setMatrixAt(slot, mat);
       // Four smaller lobes leave a scalloped outline and visible gaps between neighbouring trees.
       for (let j = 0; j < 4; j++) {
         const angle = (j * Math.PI * 2) / 3 + (i % 7) * 0.4;
@@ -192,11 +202,8 @@ export function createMappedCity() {
             radius * (outer ? 0.65 : 0.62),
           ),
         );
-        leaves.setMatrixAt(i * 4 + j, mat);
-        leaves.setColorAt(
-          i * 4 + j,
-          new Color(['#527b3b', '#648849', '#719452', '#5b8044'][(i + j) % 4]),
-        );
+        leaves.setMatrixAt(slot * 4 + j, mat);
+        leaves.setColorAt(slot * 4 + j, CROWN_TONES[(i + j) % 4]);
       }
     });
     trunks.castShadow = leaves.castShadow = true;

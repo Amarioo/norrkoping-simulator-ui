@@ -1,0 +1,343 @@
+{
+ "note": "Phase P2a tree identity: per build, all tree meshes read from the running app (traffic off); sha256 over every instance matrix + colour (sorted, 1e-6). Pixel diff vs the first build: share of pixels differing by > 8/255 in any channel, fullscreen 2560x1440.",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "cores": 16,
+  "memoryGB": 66,
+  "platform": "win32 10.0.26300"
+ },
+ "builds": {
+  "main": {
+   "trunks": {
+    "meshes": 405,
+    "materials": 405,
+    "geometries": 405,
+    "instances": 6645,
+    "maxInstancesPerMesh": 289,
+    "materialLooks": [
+     "{\"type\":\"MeshStandardMaterial\",\"color\":\"766048\",\"roughness\":1,\"metalness\":0,\"vertexColors\":false,\"emissive\":\"000000\"}"
+    ],
+    "geometryShapes": [
+     "{\"type\":\"CylinderGeometry\",\"radiusTop\":0.7,\"radiusBottom\":1,\"height\":1,\"radialSegments\":7,\"heightSegments\":1,\"openEnded\":false,\"thetaStart\":0,\"thetaLength\":6.283185307179586}"
+    ],
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "maxBoundingRadius": 16.831598559790102,
+    "sha256": "5a28365e0d76a675fe5e9a18cb835cd71b2a7da44c068c1ee2f9bfd09a336ef9"
+   },
+   "crowns": {
+    "meshes": 405,
+    "materials": 405,
+    "geometries": 405,
+    "instances": 26580,
+    "maxInstancesPerMesh": 1156,
+    "materialLooks": [
+     "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"roughness\":1,\"metalness\":0,\"vertexColors\":false,\"emissive\":\"000000\"}"
+    ],
+    "geometryShapes": [
+     "{\"type\":\"IcosahedronGeometry\",\"radius\":1,\"detail\":0}"
+    ],
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "maxBoundingRadius": 16.621639367026663,
+    "sha256": "7d18f1c28b842899c15c1a7deec53d9d75d7d0a216b1366e5d770ef8b338c6da"
+   }
+  },
+  "c20": {
+   "trunks": {
+    "meshes": 405,
+    "materials": 1,
+    "geometries": 1,
+    "instances": 6645,
+    "maxInstancesPerMesh": 289,
+    "materialLooks": [
+     "{\"type\":\"MeshStandardMaterial\",\"color\":\"766048\",\"roughness\":1,\"metalness\":0,\"vertexColors\":false,\"emissive\":\"000000\"}"
+    ],
+    "geometryShapes": [
+     "{\"type\":\"CylinderGeometry\",\"radiusTop\":0.7,\"radiusBottom\":1,\"height\":1,\"radialSegments\":7,\"heightSegments\":1,\"openEnded\":false,\"thetaStart\":0,\"thetaLength\":6.283185307179586}"
+    ],
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "maxBoundingRadius": 16.831598559790102,
+    "sha256": "5a28365e0d76a675fe5e9a18cb835cd71b2a7da44c068c1ee2f9bfd09a336ef9"
+   },
+   "crowns": {
+    "meshes": 405,
+    "materials": 1,
+    "geometries": 1,
+    "instances": 26580,
+    "maxInstancesPerMesh": 1156,
+    "materialLooks": [
+     "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"roughness\":1,\"metalness\":0,\"vertexColors\":false,\"emissive\":\"000000\"}"
+    ],
+    "geometryShapes": [
+     "{\"type\":\"IcosahedronGeometry\",\"radius\":1,\"detail\":0}"
+    ],
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "maxBoundingRadius": 16.621639367026663,
+    "sha256": "7d18f1c28b842899c15c1a7deec53d9d75d7d0a216b1366e5d770ef8b338c6da"
+   }
+  },
+  "c40": {
+   "trunks": {
+    "meshes": 144,
+    "materials": 1,
+    "geometries": 1,
+    "instances": 6645,
+    "maxInstancesPerMesh": 596,
+    "materialLooks": [
+     "{\"type\":\"MeshStandardMaterial\",\"color\":\"766048\",\"roughness\":1,\"metalness\":0,\"vertexColors\":false,\"emissive\":\"000000\"}"
+    ],
+    "geometryShapes": [
+     "{\"type\":\"CylinderGeometry\",\"radiusTop\":0.7,\"radiusBottom\":1,\"height\":1,\"radialSegments\":7,\"heightSegments\":1,\"openEnded\":false,\"thetaStart\":0,\"thetaLength\":6.283185307179586}"
+    ],
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "maxBoundingRadius": 32.72769522589319,
+    "sha256": "5a28365e0d76a675fe5e9a18cb835cd71b2a7da44c068c1ee2f9bfd09a336ef9"
+   },
+   "crowns": {
+    "meshes": 144,
+    "materials": 1,
+    "geometries": 1,
+    "instances": 26580,
+    "maxInstancesPerMesh": 2384,
+    "materialLooks": [
+     "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"roughness\":1,\"metalness\":0,\"vertexColors\":false,\"emissive\":\"000000\"}"
+    ],
+    "geometryShapes": [
+     "{\"type\":\"IcosahedronGeometry\",\"radius\":1,\"detail\":0}"
+    ],
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "maxBoundingRadius": 32.51595045692601,
+    "sha256": "7d18f1c28b842899c15c1a7deec53d9d75d7d0a216b1366e5d770ef8b338c6da"
+   }
+  },
+  "c80": {
+   "trunks": {
+    "meshes": 45,
+    "materials": 1,
+    "geometries": 1,
+    "instances": 6645,
+    "maxInstancesPerMesh": 1147,
+    "materialLooks": [
+     "{\"type\":\"MeshStandardMaterial\",\"color\":\"766048\",\"roughness\":1,\"metalness\":0,\"vertexColors\":false,\"emissive\":\"000000\"}"
+    ],
+    "geometryShapes": [
+     "{\"type\":\"CylinderGeometry\",\"radiusTop\":0.7,\"radiusBottom\":1,\"height\":1,\"radialSegments\":7,\"heightSegments\":1,\"openEnded\":false,\"thetaStart\":0,\"thetaLength\":6.283185307179586}"
+    ],
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "maxBoundingRadius": 61.97256144116565,
+    "sha256": "5a28365e0d76a675fe5e9a18cb835cd71b2a7da44c068c1ee2f9bfd09a336ef9"
+   },
+   "crowns": {
+    "meshes": 45,
+    "materials": 1,
+    "geometries": 1,
+    "instances": 26580,
+    "maxInstancesPerMesh": 4588,
+    "materialLooks": [
+     "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"roughness\":1,\"metalness\":0,\"vertexColors\":false,\"emissive\":\"000000\"}"
+    ],
+    "geometryShapes": [
+     "{\"type\":\"IcosahedronGeometry\",\"radius\":1,\"detail\":0}"
+    ],
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "maxBoundingRadius": 61.770374000012026,
+    "sha256": "7d18f1c28b842899c15c1a7deec53d9d75d7d0a216b1366e5d770ef8b338c6da"
+   }
+  }
+ },
+ "pixels": {
+  "c20/day/norraPromenaden": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c20/night/norraPromenaden": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c20/day/sodraPromenaden": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c20/day/city": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c20/day/overview": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c20/night/overview": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c40/day/norraPromenaden": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c40/night/norraPromenaden": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c40/day/sodraPromenaden": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c40/day/city": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c40/day/overview": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c40/night/overview": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c80/day/norraPromenaden": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c80/night/norraPromenaden": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c80/day/sodraPromenaden": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c80/day/city": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c80/day/overview": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  },
+  "c80/night/overview": {
+   "pixels": 3686400,
+   "differing": 0,
+   "share": 0
+  }
+ },
+ "errors": [],
+ "shots": {
+  "main": {
+   "day/norraPromenaden": "main-day-norraPromenaden.png",
+   "night/norraPromenaden": "main-night-norraPromenaden.png",
+   "day/sodraPromenaden": "main-day-sodraPromenaden.png",
+   "day/city": "main-day-city.png",
+   "day/overview": "main-day-overview.png",
+   "night/overview": "main-night-overview.png"
+  },
+  "c20": {
+   "day/norraPromenaden": "c20-day-norraPromenaden.png",
+   "night/norraPromenaden": "c20-night-norraPromenaden.png",
+   "day/sodraPromenaden": "c20-day-sodraPromenaden.png",
+   "day/city": "c20-day-city.png",
+   "day/overview": "c20-day-overview.png",
+   "night/overview": "c20-night-overview.png"
+  },
+  "c40": {
+   "day/norraPromenaden": "c40-day-norraPromenaden.png",
+   "night/norraPromenaden": "c40-night-norraPromenaden.png",
+   "day/sodraPromenaden": "c40-day-sodraPromenaden.png",
+   "day/city": "c40-day-city.png",
+   "day/overview": "c40-day-overview.png",
+   "night/overview": "c40-night-overview.png"
+  },
+  "c80": {
+   "day/norraPromenaden": "c80-day-norraPromenaden.png",
+   "night/norraPromenaden": "c80-night-norraPromenaden.png",
+   "day/sodraPromenaden": "c80-day-sodraPromenaden.png",
+   "day/city": "c80-day-city.png",
+   "day/overview": "c80-day-overview.png",
+   "night/overview": "c80-night-overview.png"
+  }
+ },
+ "identical": {
+  "c20": true,
+  "c40": true,
+  "c80": true
+ }
+}

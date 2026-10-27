@@ -218,6 +218,9 @@ Mål (satt av dig 2026-10-26): minst 60 fps utan hack i helskärm på din dator 
   eller avvikelser godkända:
   - **P2a Träd:** gemensamma material för stammar och kronor (i dag 784 egna material) och grövre rutor.
     Uppskattad vinst 3,5–4,5 ms i översikten, ingen bildändring.
+    *Gjord 2026-10-27 (godkänd 2026-10-27, committad på grenen, ej pushad), [rapport](perf-p2a/README.md): 2 material i stället för 810,
+    2 km-rutor; bilden pixelidentisk med main; översikten −7,7 ms CPU parvis mot main (25,0 → 16,7 ms på dagens
+    långsammare dator, ≈ 31 %), gatuvyer −0,3 … −2,3 ms.*
   - **P2b Mark, vägar, vatten och OSM-byggnader:** slå ihop bitarna (≤ 3 000 trianglar) inom varje 500 m-ruta,
     mät sedan 1 km-rutor. Uppskattad vinst 5–8 ms.
   - **P2c Kartdetaljer (flygfältet):** slå ihop per material, instansiera kantljusen. Uppskattat 1,5–2 ms.

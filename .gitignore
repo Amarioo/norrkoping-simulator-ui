@@ -110,3 +110,7 @@ work/geodata/
 # SSE reconnect fix scratch (untouched main copy for the before/after test run, probe logs).
 # Curated evidence is in docs/sse-reconnect/.
 /work/sse-reconnect/
+
+# Phase P2a (trees) scratch (hook builds of main and the cell variants, raw paired runs).
+# Curated data is in docs/perf-p2a/data/; reusable tools are in scripts/perf-p2a/.
+/work/perf-p2a/
