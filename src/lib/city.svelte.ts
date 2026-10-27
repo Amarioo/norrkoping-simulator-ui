@@ -1,5 +1,6 @@
 import { terrain } from './terrain';
 import { tapEventSource } from './debug/sseTap';
+import { watchStream, type StreamWatch } from './sseWatchdog';
 import type { Vec3, Activity } from './types';
 export interface TrafficSettings {
   compact: number;
@@ -76,15 +77,15 @@ class CityStore {
   selectedId = $state<number | null>(null);
   selected = $derived(this.snapshot.vehicles.find((v) => v.id === this.selectedId));
   connect() {
-    let stream: EventSource;
+    let watch: StreamWatch<EventSource> | undefined;
     const close = () => {
-      stream?.close();
+      watch?.stop();
+      watch = undefined;
       this.connected = false;
     };
-    const open = () => {
-      close();
+    const create = () => {
       // tapEventSource: SSE debug log (no-op unless the debug panel records; src/lib/debug).
-      stream = tapEventSource(new EventSource('/api/simulator/stream'), ['city']);
+      const stream = tapEventSource(new EventSource('/api/simulator/stream'), ['city']);
       stream.addEventListener('city', (e: MessageEvent<string>) => {
         try {
           const value = JSON.parse(e.data) as CitySnapshot;
@@ -105,6 +106,18 @@ class CityStore {
       stream.onerror = () => {
         this.connected = false;
       };
+      return stream;
+    };
+    const open = () => {
+      close();
+      // Reconnects when the stream goes silent or the browser gives up (src/lib/sseWatchdog.ts).
+      watch = watchStream({
+        open: create,
+        events: ['city'],
+        onDown: () => {
+          this.connected = false;
+        },
+      });
     };
     if (navigator.onLine) open();
     window.addEventListener('online', open);

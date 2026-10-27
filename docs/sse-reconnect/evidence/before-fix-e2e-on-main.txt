@@ -1,0 +1,17 @@
+[1/2] tests\sse-reconnect.spec.ts:88:3 › city stream reconnects by itself after the backend was away (proxy)
+  1) tests\sse-reconnect.spec.ts:88:3 › city stream reconnects by itself after the backend was away (proxy) 
+    Error: expect(locator).toContainText(expected) failed
+    Expected substring: "Ansluter till simulatorn…"
+    Received string:    "Simulatorn är anslutenLOKAL SIMULERING"
+           - unexpected value "Simulatorn är anslutenLOKAL SIMULERING"
+    work\sse-reconnect\main-results\sse-reconnect-city-stream--865e8-the-backend-was-away-proxy-\test-failed-1.png
+[2/2] tests\sse-reconnect.spec.ts:88:3 › city stream reconnects by itself after the backend was away (silent)
+  2) tests\sse-reconnect.spec.ts:88:3 › city stream reconnects by itself after the backend was away (silent) 
+    Error: expect(locator).toContainText(expected) failed
+    Expected substring: "Ansluter till simulatorn…"
+    Received string:    "Simulatorn är anslutenLOKAL SIMULERING"
+           - unexpected value "Simulatorn är anslutenLOKAL SIMULERING"
+    work\sse-reconnect\main-results\sse-reconnect-city-stream--ef826-he-backend-was-away-silent-\test-failed-1.png
+  2 failed
+    tests\sse-reconnect.spec.ts:88:3 › city stream reconnects by itself after the backend was away (proxy) 
+    tests\sse-reconnect.spec.ts:88:3 › city stream reconnects by itself after the backend was away (silent) 

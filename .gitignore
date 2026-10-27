@@ -106,3 +106,7 @@ work/geodata/
 # SSE debug tool scratch (production builds for the cost runs, captures). Curated evidence is in
 # docs/sse-debug/; reusable tools are in scripts/sse-debug/.
 /work/sse-debug/
+
+# SSE reconnect fix scratch (untouched main copy for the before/after test run, probe logs).
+# Curated evidence is in docs/sse-reconnect/.
+/work/sse-reconnect/

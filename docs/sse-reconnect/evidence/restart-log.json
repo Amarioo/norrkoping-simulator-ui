@@ -1,0 +1,59 @@
+{
+  "note": "Real backend behind the Vite dev proxy, stopped and restarted by hand during the run. Times in s since page load; backend = direct request to the backend answers 200.",
+  "navigations": 1,
+  "backendDownAt": 11.43,
+  "appNoticedAt": 16.54,
+  "noticeDelayS": 5.11,
+  "backendBackAt": 36.57,
+  "appReconnectedAt": 41.79,
+  "reconnectDelayS": 5.22,
+  "transitions": [
+    {
+      "t": 0,
+      "app": "connecting",
+      "banner": true,
+      "backend": true,
+      "streamRequests": 0
+    },
+    {
+      "t": 3.71,
+      "app": "connected",
+      "banner": false,
+      "backend": true,
+      "streamRequests": 0
+    },
+    {
+      "t": 11.43,
+      "app": "connected",
+      "banner": false,
+      "backend": false,
+      "streamRequests": 0
+    },
+    {
+      "t": 16.54,
+      "app": "connecting",
+      "banner": true,
+      "backend": false,
+      "streamRequests": 2
+    },
+    {
+      "t": 36.57,
+      "app": "connecting",
+      "banner": true,
+      "backend": true,
+      "streamRequests": 6
+    },
+    {
+      "t": 41.79,
+      "app": "connected",
+      "banner": false,
+      "backend": true,
+      "streamRequests": 6
+    }
+  ],
+  "screenshots": [
+    "01-connected.jpg",
+    "02-backend-stopped-connecting.jpg",
+    "03-reconnected.jpg"
+  ]
+}

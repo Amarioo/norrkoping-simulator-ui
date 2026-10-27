@@ -1,5 +1,6 @@
 import type { Drone, Telemetry, Vec3, WorldSnapshot } from './types';
 import { tapEventSource } from './debug/sseTap';
+import { watchStream, type StreamWatch } from './sseWatchdog';
 class WorldStore {
   snapshot = $state.raw<WorldSnapshot>({
     sequence: 0,
@@ -34,12 +35,11 @@ class WorldStore {
   placingZone = $state(false);
   showRoutes = $state(true);
   connect() {
-    let spatial: EventSource;
-    let telemetry: EventSource;
-    const open = () => {
+    let spatialWatch: StreamWatch<EventSource> | undefined;
+    let telemetryWatch: StreamWatch<EventSource> | undefined;
+    const createSpatial = () => {
       // tapEventSource: SSE debug log (no-op unless the debug panel records; src/lib/debug).
-      spatial = tapEventSource(new EventSource('/api/sse/world'), ['world']);
-      telemetry = tapEventSource(new EventSource('/api/sse/telemetry'), ['telemetry']);
+      const spatial = tapEventSource(new EventSource('/api/sse/world'), ['world']);
       spatial.addEventListener('world', (event: MessageEvent<string>) => {
         try {
           const data = JSON.parse(event.data) as WorldSnapshot;
@@ -52,6 +52,13 @@ class WorldStore {
           this.worldConnected = false;
         }
       });
+      spatial.onerror = () => {
+        this.worldConnected = false;
+      };
+      return spatial;
+    };
+    const createTelemetry = () => {
+      const telemetry = tapEventSource(new EventSource('/api/sse/telemetry'), ['telemetry']);
       telemetry.addEventListener('telemetry', (event: MessageEvent<string>) => {
         try {
           const data = JSON.parse(event.data) as Telemetry;
@@ -63,16 +70,32 @@ class WorldStore {
           this.telemetryConnected = false;
         }
       });
-      spatial.onerror = () => {
-        this.worldConnected = false;
-      };
       telemetry.onerror = () => {
         this.telemetryConnected = false;
       };
+      return telemetry;
+    };
+    // Each stream reconnects when it goes silent or the browser gives up (src/lib/sseWatchdog.ts).
+    const open = () => {
+      spatialWatch = watchStream({
+        open: createSpatial,
+        events: ['world'],
+        onDown: () => {
+          this.worldConnected = false;
+        },
+      });
+      telemetryWatch = watchStream({
+        open: createTelemetry,
+        events: ['telemetry'],
+        onDown: () => {
+          this.telemetryConnected = false;
+        },
+      });
     };
     const offline = () => {
-      spatial?.close();
-      telemetry?.close();
+      spatialWatch?.stop();
+      telemetryWatch?.stop();
+      spatialWatch = telemetryWatch = undefined;
       this.worldConnected = false;
       this.telemetryConnected = false;
     };

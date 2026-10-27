@@ -2,6 +2,25 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## SSE reconnect — the app recovers by itself after a backend restart (2026-10-26) — not committed, awaiting the user's review
+
+[Full report](sse-reconnect/README.md). Branch `claude/sse-reconnect` (worktree `sse-debug-29a00e`) from
+`main` = `ad2967d`. **Nothing committed.** Backend unchanged.
+
+- **Bug (measured through the Vite dev proxy):** when the backend stops, the open stream goes silent
+  with no error and stays silent after a restart; new connections get 502 while it is away, after
+  which EventSource gives up for good. The app kept showing "Simulatorn är ansluten" until reload.
+- **Fix:** `src/lib/sseWatchdog.ts` `watchStream()` around each EventSource (city; world/telemetry):
+  no event for 5 s or a CLOSED EventSource → `connected = false` and a new EventSource, at once,
+  then after 1, 2, 4, 8, then every 10 s, until events arrive. The backend publishes every 100/500 ms,
+  also while paused.
+- **Real backend (stop/restart by hand):** noticed 5.1 s after the stop ("Ansluter…" + banner),
+  reconnected 5.2 s after the backend answered again, no page reload (`docs/sse-reconnect/evidence/`).
+- **Checks:** type check 0; build OK; Vitest 511/512 (known `terrain.test.ts` worktree path), new unit
+  tests 11/11; new Playwright spec 2/2 (0/2 on unchanged `main`: it catches the bug); whole suite
+  22/23 (only the known flaky A3; alone 2/2).
+- **Local only:** `.claude/launch.json`; `work/sse-reconnect/`.
+
 ## SSE debug panel — read every server-sent event (2026-10-26) — approved (user, 2026-10-26), committed and pushed, merged into `main`
 
 [Full report](sse-debug/README.md). Worktree branch `claude/sse-debug-29a00e` from `main` = `9cb9a3e`,
