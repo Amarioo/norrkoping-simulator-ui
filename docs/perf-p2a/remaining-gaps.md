@@ -16,3 +16,9 @@
    `main` 2/5, branch 3/5 alone). Known since P0/P1; not investigated here.
 6. **Source maps of hook builds are not reproducible** (`three.core-*.js.map` differs between two
    rebuilds of the same code). Code files are; production builds (no source maps) are byte-identical.
+7. **`tests/simulation.spec.ts` is time-sensitive (follow-up).** Line 36 gives a second tab 5 s to load the
+   whole city and show the vehicle count; here it takes ≈ 5–6 s, so the test fails on `main` (`d009736`) too
+   (6/14 pass) and more often with P2a (1/14; second tab median +0.4 s in a diagnostic copy, sign
+   mixed). The cause of the possible P2a share was not found; production start-up shows no clear difference.
+   It passed every time before the rebase (2/2 full suites), and pre-SSE code fails now too, so something in
+   the environment changed as well. To be investigated separately; the test was not changed.

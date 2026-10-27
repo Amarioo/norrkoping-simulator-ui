@@ -1,6 +1,8 @@
 # Performance Phase P2a — trees: shared materials and coarser cells (2026-10-27)
 
-Branch `claude/perf-p2a` from `main` = `753475e`. **Approved (user, 2026-10-27); committed on this branch, not pushed.** Backend unchanged.
+Branch `claude/perf-p2a` from `main` = `753475e`, rebased onto `main` = `d009736` (SSE debug panel and SSE
+reconnect had landed meanwhile; no code overlap). **Approved (user, 2026-10-27), committed and pushed; `main`
+fast-forwarded to this branch on `origin` (user, 2026-10-27).** Backend unchanged.
 First targeted step of P2 (roadmap track P), in the order P1 proposed.
 
 ## Result
@@ -86,12 +88,34 @@ not measured there.
 | A3 alone, 5× on `main` code / 5× on branch | `main` 2/5 pass, branch 3/5 pass → flaky on both, not caused by this change |
 | Playwright run 2 | 19/19 |
 
+**After the rebase onto `d009736`** (the timings above were measured before it; the rebase added no tree or
+rendering code): type check 0; build OK, no `__perfP1` in `dist/`; Vitest 511/512 (same known `terrain.test.ts`);
+Playwright 22/23 and 21/23. The failures are A3 (flaky, as above) and **`tests/simulation.spec.ts`** (line 36:
+a second tab must show 60 vehicles within 5 s). That test now fails on `main`'s code too, and the second tab
+needs ≈ 5–6 s here (see gap 7):
+
+| code (same dev server and backend, same session) | `simulation.spec` passes |
+|---|---|
+| `main` (`d009736`) | 6 of 14 |
+| branch | 1 of 14 |
+| later: pre-SSE files + `main` trees / + branch trees | 0 of 3 / 0 of 3 |
+| later: branch with a fresh backend, then a fresh dev server | 0 of 3, 0 of 3 |
+
+The second tab's time to "60" inside the test (diagnostic copy with a longer wait, not committed):
+`main` median 5.3 s, branch 5.6 s; paired difference median ≈ +0.4 s but 3 of 10 pairs negative. No cause was
+found: `createMappedCity()` takes the same time (≈ 0.57 s both), and the branch renders the start view faster
+(6.5 vs 7.8 ms CPU per frame). Production start-up, paired over 8 rounds (`data/startup.json`, machine ≈ 30 %
+busy): first stream request −50 ms, map ready +0.2 s first tab / ±0 second tab, spread ±0.5 s. The user chose
+to push and follow up the test separately.
+
 ## Files
 
 - `src/lib/mapView.ts` — shared tree materials and geometries, `TREE_DRAW_CELL = 80`, look index per
   500 m cell, crown colours created once.
-- `scripts/perf-p2a/` — `build-variants.mjs`, `tree-identity.mjs`, `paired.mjs`, `summarize.mjs`.
-- `docs/perf-p2a/data/` — `paired.json` + summary, `tree-identity.json`, `p1-build-check.json` + summary.
+- `scripts/perf-p2a/` — `build-variants.mjs`, `tree-identity.mjs`, `paired.mjs`, `summarize.mjs`,
+  `startup.mjs` (paired start-up timing).
+- `docs/perf-p2a/data/` — `paired.json` + summary, `tree-identity.json`, `p1-build-check.json` + summary,
+  `startup.json`.
 - `docs/perf-p2a/evidence/` — `01` `main` and `02` branch, Norra Promenaden by day (identical files),
   `03` overview at night and `04` Innerstaden by day (branch). Traffic off (hence the "Ansluter till
   Ktor" banner).

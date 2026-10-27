@@ -16,7 +16,9 @@ const branch = fs.readFileSync(FILE, 'utf8');
 const before = sha(branch);
 const source = (variant) => {
   if (variant === 'main')
-    return execFileSync('git', ['show', `main:${FILE}`], { encoding: 'utf8' });
+    return execFileSync('git', ['show', `${process.env.BASE_REF ?? 'main'}:${FILE}`], {
+      encoding: 'utf8',
+    });
   const cell = Number(variant.slice(1));
   const out = branch.replace(
     /export const TREE_DRAW_CELL = \d+;/,

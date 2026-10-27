@@ -2,9 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Performance Phase P2a — trees: shared materials and coarser cells (2026-10-27) — approved (user, 2026-10-27), committed on the branch (not pushed)
+## Performance Phase P2a — trees: shared materials and coarser cells (2026-10-27) — approved (user, 2026-10-27), committed and pushed, merged into `main`
 
-[Full report](perf-p2a/README.md). Branch `claude/perf-p2a` from `main` = `753475e`. **Committed on `claude/perf-p2a`, not pushed** (user, 2026-10-27). Backend unchanged.
+[Full report](perf-p2a/README.md). Branch `claude/perf-p2a` from `main` = `753475e`, rebased onto `d009736`.
+**Committed and pushed;** `main` fast-forwarded to this branch on `origin` (user, 2026-10-27). Backend unchanged.
 
 - **Change:** `src/lib/mapView.ts` — all trees share one trunk and one crown material and geometry
   (were 405 + 405 of each) and are drawn per 2 km cell (`TREE_DRAW_CELL = 80`; 45 + 45 instanced meshes);
@@ -18,7 +19,9 @@ This file is the recovery checkpoint. Newest status first.
   so absolute ms are not comparable with P1; paired differences are.
 - **Checks:** type check 0; build OK and byte-reproducible, no hook in `dist/`; Vitest 480/481 (known
   `terrain.test.ts` worktree path); Playwright 18/19 (A3, flaky on `main` too: 2/5 vs branch 3/5 alone),
-  rerun 19/19.
+  rerun 19/19. After the rebase: Vitest 511/512; Playwright 22/23, 21/23 — A3 and
+  `simulation.spec` (second tab must show vehicles within 5 s; fails on `main` too, 6/14 pass vs branch
+  1/14; follow-up, gap 7).
 - **Local only:** `.claude/launch.json` (`p2a-*`, ports 5291–5294), `work/perf-p2a/`.
 
 ## SSE reconnect — the app recovers by itself after a backend restart (2026-10-26) — merged into main

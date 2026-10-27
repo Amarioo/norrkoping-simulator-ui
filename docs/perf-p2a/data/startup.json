@@ -1,0 +1,318 @@
+{
+ "note": "Phase P2a start-up: ms from navigation to map ready, first stream request and \"Simulatorn är ansluten\"; first tab and a second tab in the same context. 1440x1040, traffic on, hook builds, Edge headless (Playwright suite flags).",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "cores": 16,
+  "memoryGB": 66,
+  "platform": "win32 10.0.26300"
+ },
+ "builds": [
+  "main",
+  "c80"
+ ],
+ "runs": [
+  {
+   "round": 1,
+   "build": "main",
+   "load": {
+    "busyPercent": 38,
+    "coresBusy": 6.1
+   },
+   "first": {
+    "mapReady": 5935,
+    "stream": 3403,
+    "connected": 5982
+   },
+   "second": {
+    "mapReady": 5613,
+    "stream": 3563,
+    "connected": 5616
+   }
+  },
+  {
+   "round": 1,
+   "build": "c80",
+   "load": {
+    "busyPercent": 30.9,
+    "coresBusy": 4.9
+   },
+   "first": {
+    "mapReady": 6242,
+    "stream": 3487,
+    "connected": 6306
+   },
+   "second": {
+    "mapReady": 5807,
+    "stream": 3547,
+    "connected": 5809
+   }
+  },
+  {
+   "round": 2,
+   "build": "c80",
+   "load": {
+    "busyPercent": 32.7,
+    "coresBusy": 5.2
+   },
+   "first": {
+    "mapReady": 5872,
+    "stream": 3348,
+    "connected": 5920
+   },
+   "second": {
+    "mapReady": 5717,
+    "stream": 3539,
+    "connected": 5719
+   }
+  },
+  {
+   "round": 2,
+   "build": "main",
+   "load": {
+    "busyPercent": 26.8,
+    "coresBusy": 4.3
+   },
+   "first": {
+    "mapReady": 6043,
+    "stream": 3440,
+    "connected": 6082
+   },
+   "second": {
+    "mapReady": 6212,
+    "stream": 3556,
+    "connected": 6276
+   }
+  },
+  {
+   "round": 3,
+   "build": "main",
+   "load": {
+    "busyPercent": 28.5,
+    "coresBusy": 4.6
+   },
+   "first": {
+    "mapReady": 5828,
+    "stream": 3457,
+    "connected": 5830
+   },
+   "second": {
+    "mapReady": 5690,
+    "stream": 3576,
+    "connected": 5692
+   }
+  },
+  {
+   "round": 3,
+   "build": "c80",
+   "load": {
+    "busyPercent": 27.2,
+    "coresBusy": 4.3
+   },
+   "first": {
+    "mapReady": 6186,
+    "stream": 3404,
+    "connected": 6243
+   },
+   "second": {
+    "mapReady": 5747,
+    "stream": 3529,
+    "connected": 5750
+   }
+  },
+  {
+   "round": 4,
+   "build": "c80",
+   "load": {
+    "busyPercent": 29.8,
+    "coresBusy": 4.8
+   },
+   "first": {
+    "mapReady": 6067,
+    "stream": 3375,
+    "connected": 6120
+   },
+   "second": {
+    "mapReady": 5731,
+    "stream": 3520,
+    "connected": 5733
+   }
+  },
+  {
+   "round": 4,
+   "build": "main",
+   "load": {
+    "busyPercent": 29.7,
+    "coresBusy": 4.8
+   },
+   "first": {
+    "mapReady": 5215,
+    "stream": 3378,
+    "connected": 5217
+   },
+   "second": {
+    "mapReady": 5818,
+    "stream": 3626,
+    "connected": 5820
+   }
+  },
+  {
+   "round": 5,
+   "build": "main",
+   "load": {
+    "busyPercent": 27.3,
+    "coresBusy": 4.4
+   },
+   "first": {
+    "mapReady": 5924,
+    "stream": 3454,
+    "connected": 5926
+   },
+   "second": {
+    "mapReady": 5743,
+    "stream": 3583,
+    "connected": 5745
+   }
+  },
+  {
+   "round": 5,
+   "build": "c80",
+   "load": {
+    "busyPercent": 30.3,
+    "coresBusy": 4.8
+   },
+   "first": {
+    "mapReady": 5763,
+    "stream": 3341,
+    "connected": 5765
+   },
+   "second": {
+    "mapReady": 5977,
+    "stream": 3490,
+    "connected": 5979
+   }
+  },
+  {
+   "round": 6,
+   "build": "c80",
+   "load": {
+    "busyPercent": 33.7,
+    "coresBusy": 5.4
+   },
+   "first": {
+    "mapReady": 5883,
+    "stream": 3441,
+    "connected": 5884
+   },
+   "second": {
+    "mapReady": 5785,
+    "stream": 3483,
+    "connected": 5787
+   }
+  },
+  {
+   "round": 6,
+   "build": "main",
+   "load": {
+    "busyPercent": 34.8,
+    "coresBusy": 5.6
+   },
+   "first": {
+    "mapReady": 5714,
+    "stream": 3356,
+    "connected": 5762
+   },
+   "second": {
+    "mapReady": 5838,
+    "stream": 3154,
+    "connected": 5872
+   }
+  },
+  {
+   "round": 7,
+   "build": "main",
+   "load": {
+    "busyPercent": 30.8,
+    "coresBusy": 4.9
+   },
+   "first": {
+    "mapReady": 5913,
+    "stream": 3323,
+    "connected": 5985
+   },
+   "second": {
+    "mapReady": 5373,
+    "stream": 3135,
+    "connected": 5375
+   }
+  },
+  {
+   "round": 7,
+   "build": "c80",
+   "load": {
+    "busyPercent": 31.9,
+    "coresBusy": 5.1
+   },
+   "first": {
+    "mapReady": 5605,
+    "stream": 3275,
+    "connected": 5607
+   },
+   "second": {
+    "mapReady": 5859,
+    "stream": 3063,
+    "connected": 5897
+   }
+  },
+  {
+   "round": 8,
+   "build": "c80",
+   "load": {
+    "busyPercent": 31,
+    "coresBusy": 5
+   },
+   "first": {
+    "mapReady": 6142,
+    "stream": 3274,
+    "connected": 6183
+   },
+   "second": {
+    "mapReady": 5466,
+    "stream": 3131,
+    "connected": 5467
+   }
+  },
+  {
+   "round": 8,
+   "build": "main",
+   "load": {
+    "busyPercent": 32.1,
+    "coresBusy": 5.1
+   },
+   "first": {
+    "mapReady": 5731,
+    "stream": 3328,
+    "connected": 5774
+   },
+   "second": {
+    "mapReady": 5628,
+    "stream": 3113,
+    "connected": 5630
+   }
+  }
+ ],
+ "errors": [],
+ "medians": {
+  "main/first/mapReady": 5870.5,
+  "main/first/stream": 3390.5,
+  "main/first/connected": 5878,
+  "main/second/mapReady": 5716.5,
+  "main/second/stream": 3559.5,
+  "main/second/connected": 5718.5,
+  "c80/first/mapReady": 5975,
+  "c80/first/stream": 3361.5,
+  "c80/first/connected": 6020,
+  "c80/second/mapReady": 5766,
+  "c80/second/stream": 3505,
+  "c80/second/connected": 5768.5
+ }
+}
