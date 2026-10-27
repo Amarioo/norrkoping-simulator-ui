@@ -1,7 +1,7 @@
 # SSE reconnect — the app recovers by itself after a backend restart (2026-10-26)
 
-Branch `claude/sse-reconnect` from `main` = `ad2967d`. **Not committed.** Backend unchanged. Fixes the
-bug found with the SSE debug panel ([sse-debug](../sse-debug/README.md), gap 4): after the backend
+Branch `claude/sse-reconnect` from `main` = `ad2967d`. Committed as `95047a6`, pushed, and
+fast-forwarded into `main` on the user's request. Backend unchanged. Fixes the bug found with the SSE debug panel ([sse-debug](../sse-debug/README.md), gap 4): after the backend
 was stopped, the app kept saying "Simulatorn är ansluten" and never reconnected after a restart
 until the page was reloaded. No geodata, no coordinates, no earlier phase's output touched.
 

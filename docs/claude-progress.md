@@ -2,10 +2,11 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## SSE reconnect — the app recovers by itself after a backend restart (2026-10-26) — not committed, awaiting the user's review
+## SSE reconnect — the app recovers by itself after a backend restart (2026-10-26) — merged into main
 
 [Full report](sse-reconnect/README.md). Branch `claude/sse-reconnect` (worktree `sse-debug-29a00e`) from
-`main` = `ad2967d`. **Nothing committed.** Backend unchanged.
+`main` = `ad2967d`. Committed as `95047a6` on `claude/sse-reconnect`, pushed, and fast-forwarded
+into `main` (`origin/main` = `95047a6`) on the user's request. Backend unchanged.
 
 - **Bug (measured through the Vite dev proxy):** when the backend stops, the open stream goes silent
   with no error and stays silent after a restart; new connections get 502 while it is away, after
