@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Stream early start — the simulator stream opens at start, not after the city (2026-10-29) — approved (user, 2026-10-29), committed, not pushed
+## Stream early start — the simulator stream opens at start, not after the city (2026-10-29) — approved (user, 2026-10-29), committed and pushed, merged into `main`
 
 [Full report](stream-early-start/README.md). Branch `claude/elastic-khorana-d0b0c1` from `main` = `e1a2838`.
-**Committed on the branch, not pushed or merged.** Backend unchanged. Follow-up of perf-p2a gap 7 (`simulation.spec` line 36, second tab 5 s);
+**Committed and pushed:** `0e81d01`; `main` fast-forwarded to this branch on `origin` (user, 2026-10-29). Backend unchanged. Follow-up of perf-p2a gap 7 (`simulation.spec` line 36, second tab 5 s);
 the test is unchanged. Fix approved by the user ("Ja, inför fixen", relayed by the top session).
 
 - **Cause (2026-10-27):** the app opened the stream in App `onMount`, after the map data was parsed and the

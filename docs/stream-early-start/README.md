@@ -1,7 +1,7 @@
 # Stream early start — the simulator stream opens at start, not after the city (2026-10-29)
 
-Branch `claude/elastic-khorana-d0b0c1` from `main` = `e1a2838`. Approved by the user (2026-10-29); **committed on
-the branch, not pushed or merged.** Backend unchanged. Follows
+Branch `claude/elastic-khorana-d0b0c1` from `main` = `e1a2838`. Approved by the user (2026-10-29); committed as
+`0e81d01`, pushed, and fast-forwarded into `main` on the user's request. Backend unchanged. Follows
 up [perf-p2a](../perf-p2a/README.md) gap 7: `tests/simulation.spec.ts` line 36 (a second tab must show the
 vehicle count within Playwright's default 5 s) failed on `main` about half the time. The test is unchanged.
 No geodata, coordinates or earlier phase output touched.
