@@ -1,5 +1,5 @@
 import { terrain } from './terrain';
-import { tapEventSource } from './debug/sseTap';
+import { takeCityStream } from './cityStreamStart';
 import { watchStream, type StreamWatch } from './sseWatchdog';
 import type { Vec3, Activity } from './types';
 export interface TrafficSettings {
@@ -84,9 +84,10 @@ class CityStore {
       this.connected = false;
     };
     const create = () => {
-      // tapEventSource: SSE debug log (no-op unless the debug panel records; src/lib/debug).
-      const stream = tapEventSource(new EventSource('/api/simulator/stream'), ['city']);
-      stream.addEventListener('city', (e: MessageEvent<string>) => {
+      // The first stream is usually opened by main.ts (cityStreamStart.ts); it is tapped for the
+      // SSE debug log there.
+      const { source: stream, last } = takeCityStream();
+      const onCity = (e: MessageEvent<string>) => {
         try {
           const value = JSON.parse(e.data) as CitySnapshot;
           if (!Array.isArray(value.vehicles) || !Array.isArray(value.aircraft))
@@ -102,7 +103,9 @@ class CityStore {
           this.error = 'Kunde inte läsa simulatorns data.';
           this.connected = false;
         }
-      });
+      };
+      stream.addEventListener('city', onCity);
+      if (last) onCity(last);
       stream.onerror = () => {
         this.connected = false;
       };

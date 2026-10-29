@@ -1,8 +1,10 @@
 import { startCityLayers } from './lib/cityMeshClient';
+import { startCityStream } from './lib/cityStreamStart';
 import './style.css';
 // Start downloading the map data and the geometry workers before the main thread loads
 // the app, so they run in parallel. App waits for the same data (see lib/cityData.ts).
 startCityLayers();
+startCityStream();
 const target = document.getElementById('app')!;
 Promise.all([import('svelte'), import('./App.svelte')]).then(
   ([{ mount }, { default: App }]) => {

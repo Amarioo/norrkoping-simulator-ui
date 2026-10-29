@@ -1,0 +1,14 @@
+variant      n  pass@5s     esCreate     reqSent respHandled   wDoneLast  metricsDom   metrics60   afterLoadfirstLongTask     buildMs
+main        10  5/10        2938.5        3673        5087        3683      2977.5      5089.5        5033        2739       810.5
+old         10  3/10          2928        3668        5227        3695      2984.5      5229.5        5168        2751         839
+early       10  10/10           53          54          69        3744      2987.5      2987.5      2932.5      2759.5       818.5
+paired old − main: median 247.5 ms, 3/10 negative, [1156, 90, 541, -860, -268, 139, -604, 358, 570, 356]
+paired early − main: median -2040 ms, 10/10 negative, [-1802, -2022, -1865, -2058, -2245, -2192, -2253, -2014, -1741, -2232]
+variant      n  pass@5s     esCreate     reqSent respHandled   wDoneLast  metricsDom   metrics60   afterLoadfirstLongTask     buildMs
+main         8  8/8         2366.5        3140        3184        3565        2419      3187.5      3123.5      2172.5      1182.5
+fix          8  8/8             61        61.5          77      3470.5        2478        2478        2419        2239      1046.5
+paired fix − main: median -741.5 ms, 8/8 negative, [-684, -772, -641, -419, -753, -882, -790, -730]
+variant      n  pass@5s     esCreate     reqSent respHandled   wDoneLast  metricsDom   metrics60   afterLoadfirstLongTask     buildMs
+main         3  1/3           3079        3811        5461        3830        3120        5464        5407        2902        1555
+main-blank   4  4/4           1785      2513.5      2562.5      3005.5        1825        2566      2510.5      1608.5       846.5
+paired main-blank − main: median -2861 ms, 3/3 negative, [-2963, -2861, -2297]

@@ -2,6 +2,26 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Stream early start — the simulator stream opens at start, not after the city (2026-10-29) — approved (user, 2026-10-29), committed, not pushed
+
+[Full report](stream-early-start/README.md). Branch `claude/elastic-khorana-d0b0c1` from `main` = `e1a2838`.
+**Committed on the branch, not pushed or merged.** Backend unchanged. Follow-up of perf-p2a gap 7 (`simulation.spec` line 36, second tab 5 s);
+the test is unchanged. Fix approved by the user ("Ja, inför fixen", relayed by the top session).
+
+- **Cause (2026-10-27):** the app opened the stream in App `onMount`, after the map data was parsed and the
+  scene built (≈ 2.9 s); the request was sent ≈ 3.7 s and its reply handled ≈ 5.1 s, each behind a main-thread
+  block (first-frame shaders, worker layers). The first tab drawing in parallel slows the second tab's WebGL
+  start through the shared GPU process (first tab blanked: 2.5 s). P2a is not the cause (old trees +0.25 s,
+  sign mixed).
+- **Fix:** `src/lib/cityStreamStart.ts` opens the stream in `main.ts` and keeps the latest snapshot;
+  `city.svelte.ts` takes it over once, reconnects as before.
+- **Measured:** second tab to "60": 5.03 → 2.93 s (2026-10-27, paired −2.04 s, 10/10); 3.12 → 2.42 s
+  (2026-10-29, real `src/`, −0.74 s, 8/8). Unchanged spec 10/10 on fix and on `main` (2026-10-29; `main` 1/3 on
+  2026-10-27). Real backend: connects, reconnects after a restart without reload.
+- **Checks:** type check 0; build OK, byte-reproducible; Vitest 515/516 (known `terrain.test.ts` worktree path),
+  new 4/4; Playwright 22/23 (`bridge-traffic` browser-launch error, alone 1/1).
+- **Local only:** `.claude/launch.json` (`st-*`), `work/second-tab/`.
+
 ## Performance Phase P2a — trees: shared materials and coarser cells (2026-10-27) — approved (user, 2026-10-27), committed and pushed, merged into `main`
 
 [Full report](perf-p2a/README.md). Branch `claude/perf-p2a` from `main` = `753475e`, rebased onto `d009736`.
