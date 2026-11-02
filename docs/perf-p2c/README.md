@@ -1,7 +1,7 @@
 # Performance Phase P2c — map details: airfield pavements and edge lights merged (2026-11-02)
 
 Worked directly on local `main` (= `origin/main` `8bc891e`), as agreed with the user on 2026-11-02:
-tested locally by the user and **committed on local `main`** (2026-11-02); not pushed. Backend unchanged. Third targeted
+tested locally by the user, **committed (`a2240e5`) and pushed to `origin/main`** (2026-11-02). Backend unchanged. Third targeted
 step of P2 (roadmap track P).
 
 ## Result

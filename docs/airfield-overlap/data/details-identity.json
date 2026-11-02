@@ -1,0 +1,379 @@
+{
+ "note": "Phase P2c map details identity: per build, every visible mesh under the landmark details group (traffic off), world-space triangles grouped by material look; order-independent fingerprint over positions and uvs (1e-5). Pixel diff vs the first build, fullscreen 2560x1440: pixels differing by > 8/255 in any channel, and by any amount.",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "cores": 16,
+  "memoryGB": 66,
+  "platform": "win32 10.0.26300"
+ },
+ "builds": {
+  "main": {
+   "meshes": 77,
+   "materials": {
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"40515a\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 4,
+     "fingerprint": "9b648ea8-fa5ffa43-f0270998"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"405967\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":false,\"receiveShadow\":false}": {
+     "meshes": 1,
+     "triangles": 1500,
+     "fingerprint": "13c8f9cf-830eb844-40c7b740"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"545a5a\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":-44,\"side\":0,\"castShadow\":false,\"receiveShadow\":true}": {
+     "meshes": 2,
+     "triangles": 18971,
+     "fingerprint": "372b7c97-e45c7e21-4bf746e3"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"556468\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 1,
+     "triangles": 64,
+     "fingerprint": "460d170c-b35dc99e-c64463b6"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"5c824b\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 12,
+     "triangles": 768,
+     "fingerprint": "82da3960-1e9875d3-8dff15a9"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"5f7d70\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 3,
+     "triangles": 48,
+     "fingerprint": "80b41f68-95602071-597f701d"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"674b42\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 2,
+     "triangles": 128,
+     "fingerprint": "0123e010-064d494c-4c8a52a1"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"73bac2\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "8acf5bec-621bab82-cc28b002"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"7c8586\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 110,
+     "fingerprint": "a3dd2b54-1bca1dbb-23fad092"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"8c9f55\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 12,
+     "triangles": 768,
+     "fingerprint": "0f6c76b0-2b0f4196-ace3019d"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"985c47\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "c00a6e90-726e1eab-0d15045e"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"9e6651\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 2,
+     "triangles": 128,
+     "fingerprint": "05bd1b00-b697c3ea-23058707"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"a49557\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 6,
+     "triangles": 384,
+     "fingerprint": "02a77a80-0c2bac31-948b62d4"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"a96c4e\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 2,
+     "triangles": 128,
+     "fingerprint": "839fd568-24961d3a-d8660646"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b1aaa0\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "40be6b60-cb624727-038937da"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b1b1a2\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 3,
+     "triangles": 36,
+     "fingerprint": "78afcd54-ca04b709-af2080c8"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b3b8b6\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 6,
+     "fingerprint": "68ee0c70-119217c4-a64c4d5f"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b5a47e\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 6,
+     "triangles": 72,
+     "fingerprint": "18bec6a8-17c1fdf9-9d9fbc1b"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b9ae92\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "583539c0-82e16e0b-05b050a0"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"bad4ce\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "4d0b36fc-7ec060eb-fa9788c6"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"bca85a\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":-60,\"side\":0,\"castShadow\":false,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 1981,
+     "fingerprint": "014ad95d-dc0c06eb-63f92777"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"c3c7c4\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "5a68fba6-277b4b30-0ae657ce"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"d4cdb6\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 6,
+     "triangles": 384,
+     "fingerprint": "2809cb70-943de31c-9821dc8c"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"d7c78e\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "aabd9184-bfbd4f12-e98c6d72"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"e2e1d7\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 18,
+     "fingerprint": "4a302c91-8728b8dd-40e0c1a6"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"e5e6ca\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":false,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 2760,
+     "fingerprint": "2e1e7600-fcd6a662-01cbfc69"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"emissive\":\"000000\",\"roughness\":1,\"metalness\":0,\"map\":true,\"emissiveMap\":false,\"polygonOffset\":-44,\"side\":0,\"castShadow\":false,\"receiveShadow\":true}": {
+     "meshes": 4,
+     "triangles": 456,
+     "fingerprint": "d1ed4a69-32f45900-a40fb761"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"emissive\":\"ffffff\",\"roughness\":0.5,\"metalness\":0,\"map\":true,\"emissiveMap\":true,\"polygonOffset\":null,\"side\":0,\"castShadow\":false,\"receiveShadow\":false}": {
+     "meshes": 1,
+     "triangles": 415,
+     "fingerprint": "15ed627a-d1006dc1-8b91afc3"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"emissive\":\"ffffff\",\"roughness\":0.78,\"metalness\":0,\"map\":true,\"emissiveMap\":true,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}+{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"emissive\":\"ffffff\",\"roughness\":0.78,\"metalness\":0,\"map\":true,\"emissiveMap\":true,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 10,
+     "fingerprint": "326f89c5-acfe1d9c-1c6031c4"
+    }
+   }
+  },
+  "fix": {
+   "meshes": 76,
+   "materials": {
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"40515a\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 4,
+     "fingerprint": "9b648ea8-fa5ffa43-f0270998"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"405967\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":false,\"receiveShadow\":false}": {
+     "meshes": 1,
+     "triangles": 1500,
+     "fingerprint": "13c8f9cf-830eb844-40c7b740"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"545a5a\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":-44,\"side\":0,\"castShadow\":false,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 10564,
+     "fingerprint": "d30400f4-f6e9e630-eb4ad4b6"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"556468\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 1,
+     "triangles": 64,
+     "fingerprint": "460d170c-b35dc99e-c64463b6"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"5c824b\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 12,
+     "triangles": 768,
+     "fingerprint": "82da3960-1e9875d3-8dff15a9"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"5f7d70\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 3,
+     "triangles": 48,
+     "fingerprint": "80b41f68-95602071-597f701d"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"674b42\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 2,
+     "triangles": 128,
+     "fingerprint": "0123e010-064d494c-4c8a52a1"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"73bac2\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "8acf5bec-621bab82-cc28b002"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"7c8586\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 110,
+     "fingerprint": "a3dd2b54-1bca1dbb-23fad092"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"8c9f55\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 12,
+     "triangles": 768,
+     "fingerprint": "0f6c76b0-2b0f4196-ace3019d"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"985c47\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "c00a6e90-726e1eab-0d15045e"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"9e6651\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 2,
+     "triangles": 128,
+     "fingerprint": "05bd1b00-b697c3ea-23058707"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"a49557\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 6,
+     "triangles": 384,
+     "fingerprint": "02a77a80-0c2bac31-948b62d4"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"a96c4e\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 2,
+     "triangles": 128,
+     "fingerprint": "839fd568-24961d3a-d8660646"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b1aaa0\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "40be6b60-cb624727-038937da"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b1b1a2\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 3,
+     "triangles": 36,
+     "fingerprint": "78afcd54-ca04b709-af2080c8"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b3b8b6\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 6,
+     "fingerprint": "68ee0c70-119217c4-a64c4d5f"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b5a47e\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 6,
+     "triangles": 72,
+     "fingerprint": "18bec6a8-17c1fdf9-9d9fbc1b"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"b9ae92\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "583539c0-82e16e0b-05b050a0"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"bad4ce\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "4d0b36fc-7ec060eb-fa9788c6"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"bca85a\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":-60,\"side\":0,\"castShadow\":false,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 1981,
+     "fingerprint": "014ad95d-dc0c06eb-63f92777"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"c3c7c4\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "5a68fba6-277b4b30-0ae657ce"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"d4cdb6\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":false}": {
+     "meshes": 6,
+     "triangles": 384,
+     "fingerprint": "2809cb70-943de31c-9821dc8c"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"d7c78e\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 12,
+     "fingerprint": "aabd9184-bfbd4f12-e98c6d72"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"e2e1d7\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 18,
+     "fingerprint": "4a302c91-8728b8dd-40e0c1a6"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"e5e6ca\",\"emissive\":\"000000\",\"roughness\":0.82,\"metalness\":0,\"map\":false,\"emissiveMap\":false,\"polygonOffset\":null,\"side\":0,\"castShadow\":false,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 2760,
+     "fingerprint": "2e1e7600-fcd6a662-01cbfc69"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"emissive\":\"000000\",\"roughness\":1,\"metalness\":0,\"map\":true,\"emissiveMap\":false,\"polygonOffset\":-48,\"side\":0,\"castShadow\":false,\"receiveShadow\":true}": {
+     "meshes": 4,
+     "triangles": 456,
+     "fingerprint": "d1ed4a69-32f45900-a40fb761"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"emissive\":\"ffffff\",\"roughness\":0.5,\"metalness\":0,\"map\":true,\"emissiveMap\":true,\"polygonOffset\":null,\"side\":0,\"castShadow\":false,\"receiveShadow\":false}": {
+     "meshes": 1,
+     "triangles": 415,
+     "fingerprint": "15ed627a-d1006dc1-8b91afc3"
+    },
+    "{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"emissive\":\"ffffff\",\"roughness\":0.78,\"metalness\":0,\"map\":true,\"emissiveMap\":true,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}+{\"type\":\"MeshStandardMaterial\",\"color\":\"ffffff\",\"emissive\":\"ffffff\",\"roughness\":0.78,\"metalness\":0,\"map\":true,\"emissiveMap\":true,\"polygonOffset\":null,\"side\":0,\"castShadow\":true,\"receiveShadow\":true}": {
+     "meshes": 1,
+     "triangles": 10,
+     "fingerprint": "326f89c5-acfe1d9c-1c6031c4"
+    }
+   }
+  }
+ },
+ "pixels": {
+  "fix/day/overview": {
+   "pixels": 3686400,
+   "differingOver8": 95,
+   "differingAny": 422,
+   "maxDiff": 81
+  },
+  "fix/night/overview": {
+   "pixels": 3686400,
+   "differingOver8": 4,
+   "differingAny": 113,
+   "maxDiff": 10
+  },
+  "fix/day/city": {
+   "pixels": 3686400,
+   "differingOver8": 27,
+   "differingAny": 351,
+   "maxDiff": 41
+  },
+  "fix/night/city": {
+   "pixels": 3686400,
+   "differingOver8": 0,
+   "differingAny": 45,
+   "maxDiff": 3
+  },
+  "fix/day/airport": {
+   "pixels": 3686400,
+   "differingOver8": 1827,
+   "differingAny": 3378,
+   "maxDiff": 99
+  },
+  "fix/night/airport": {
+   "pixels": 3686400,
+   "differingOver8": 398,
+   "differingAny": 1792,
+   "maxDiff": 19
+  },
+  "fix/day/f13": {
+   "pixels": 3686400,
+   "differingOver8": 414,
+   "differingAny": 2960,
+   "maxDiff": 99
+  }
+ },
+ "errors": [],
+ "shots": {
+  "main": {
+   "day/overview": "main-day-overview.png",
+   "night/overview": "main-night-overview.png",
+   "day/city": "main-day-city.png",
+   "night/city": "main-night-city.png",
+   "day/airport": "main-day-airport.png",
+   "night/airport": "main-night-airport.png",
+   "day/f13": "main-day-f13.png"
+  },
+  "fix": {
+   "day/overview": "fix-day-overview.png",
+   "night/overview": "fix-night-overview.png",
+   "day/city": "fix-day-city.png",
+   "night/city": "fix-night-city.png",
+   "day/airport": "fix-day-airport.png",
+   "night/airport": "fix-night-airport.png",
+   "day/f13": "fix-day-f13.png"
+  }
+ },
+ "identical": {
+  "fix": false
+ }
+}

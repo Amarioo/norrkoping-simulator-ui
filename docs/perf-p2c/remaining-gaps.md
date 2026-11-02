@@ -14,8 +14,8 @@
    with the same depth rank (`layeredSurface(…, LAYER_RANK.asphalt)` for both), so they fight pixel by
    pixel (hatched patterns), and the round taxiway joint caps (instanced cylinders) show as dark blobs
    on the threshold markings. Identical on `main` (16 close-ups, 0 differing pixels). Not fixed in P2c;
-   a fix (runway surface drawn above taxiway asphalt, caps not on the runway) changes the picture on
-   purpose and needs the user's decision.
+   **fixed afterwards** (user's decision, 2026-11-02): see
+   [docs/airfield-overlap/](../airfield-overlap/README.md).
 6. **Next steps by measurement:** the remaining frame time is GPU time. P2d (traffic) is mostly CPU
    work and may also show little here; a GPU profile of the overview (what fills the 6.4 ms) would
    show whether further P2 steps are worth it, or whether P3 (quality settings) matters more.

@@ -1,6 +1,6 @@
 import { LEGACY_LEVELS, terrain } from './terrain';
 import { LAYER_RANK, layeredSurface } from './groundLayers';
-import { groundRectangle } from './placeBuilder';
+import { groundDisc, groundRectangle } from './placeBuilder';
 import {
   Group,
   Mesh,
@@ -370,6 +370,18 @@ export function createLandmarkDetails() {
       taxiPavement.push(groundRectangle(cx, cz, angle, taxi.width, length));
       taxiLines.push(groundRectangle(cx, cz, angle, 0.009, length));
     }
+  // Rounded joins at every taxiway node, as wide as the widest taxiway there. They lie on the terrain
+  // like the pavement (before: flat 0.025-high cylinders at the node's ground height, whose top
+  // stuck out of sloping ground, e.g. as dark blobs on the runway thresholds).
+  const taxiJoins = new Map<string, { point: Point; width: number }>();
+  for (const taxi of cityMap.airways.filter((a) => a.kind === 'taxiway'))
+    for (const point of taxi.points) {
+      const key = point.join(',');
+      if (!taxiJoins.has(key) || taxiJoins.get(key)!.width < taxi.width)
+        taxiJoins.set(key, { point, width: taxi.width });
+    }
+  for (const { point, width } of taxiJoins.values())
+    taxiPavement.push(groundDisc(point[0], point[1], width / 2));
   for (const [geometries, color] of [
     [taxiPavement, '#545a5a'],
     [taxiLines, '#bca85a'],
@@ -383,30 +395,6 @@ export function createLandmarkDetails() {
   // Taxiway pavement, centre lines and runway surface lie on the DTM, above the apron land cover.
   layeredSurface(mat('#545a5a'), LAYER_RANK.asphalt);
   layeredSurface(mat('#bca85a'), LAYER_RANK.marking);
-  const taxiJoins = new Map<string, { point: Point; width: number }>();
-  for (const taxi of cityMap.airways.filter((a) => a.kind === 'taxiway'))
-    for (const point of taxi.points) {
-      const key = point.join(',');
-      if (!taxiJoins.has(key) || taxiJoins.get(key)!.width < taxi.width)
-        taxiJoins.set(key, { point, width: taxi.width });
-    }
-  const taxiCaps = track(
-    new InstancedMesh(
-      track(new CylinderGeometry(0.5, 0.5, 0.025, 12)),
-      mat('#545a5a'),
-      taxiJoins.size,
-    ),
-  );
-  const taxiMatrix = new Matrix4();
-  let taxiIndex = 0;
-  for (const { point, width } of taxiJoins.values()) {
-    taxiMatrix.makeScale(width, 1, width);
-    taxiMatrix.setPosition(point[0], 0.06, point[1]);
-    taxiCaps.setMatrixAt(taxiIndex++, taxiMatrix);
-  }
-  taxiCaps.receiveShadow = true;
-  group.add(taxiCaps);
-  supported(start, 0.0725);
   start = group.children.length;
   for (const runway of cityMap.airways.filter((a) => a.kind === 'runway')) {
     const a = runway.points[0],
@@ -447,7 +435,10 @@ export function createLandmarkDetails() {
       groundRectangle(air.position.x, air.position.z, air.rotation.y, runway.width, length),
       track(new MeshStandardMaterial({ map: markings, roughness: 1 })),
     );
-    layeredSurface(surface.material as MeshStandardMaterial, LAYER_RANK.asphalt);
+    // One rank above the taxiway asphalt (which shares the plane where taxiways run onto the runway,
+    // and fought it pixel by pixel at the same rank): the runway and its markings win. Rank 12 is
+    // also the footpath rank; paths never cross a runway.
+    layeredSurface(surface.material as MeshStandardMaterial, LAYER_RANK.asphalt + 1);
     for (const side of [-1, 1])
       for (let d = -length / 2 + 0.5; d < length / 2; d += 2.4)
         box(air, side * (runway.width / 2 + 0.08), 0.03, d, 0.035, 0.035, 0.035, '#e5e6ca');

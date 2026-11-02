@@ -2,10 +2,28 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Performance Phase P2c — map details: airfield pavements and edge lights merged (2026-11-02) — tested locally and approved by the user (2026-11-02), committed on local `main`, not pushed
+## Airfield overlap fix — clean runway ends where taxiways join (2026-11-02) — tested locally and approved by the user (2026-11-02), committed and pushed to `origin/main`
+
+[Full report](airfield-overlap/README.md). Worked directly on local `main` (= `origin/main` `a2240e5`).
+**Committed and pushed to `origin/main`** (user, 2026-11-02). Backend unchanged. Fixes the blotches the user found while testing P2c
+(older bug, P2c gap 5).
+
+- **Cause:** runway surface and taxiway asphalt coplanar at the same depth rank (z-fighting), and the
+  taxiway joins were flat 0.6 m cylinders whose tops stuck out of sloping ground (blobs, floating slabs).
+- **Fix:** `src/lib/mapLandmarks.ts` — runway one rank above taxiway asphalt (`LAYER_RANK.asphalt + 1`);
+  joins are terrain-draped discs (`groundDisc()`, new in `src/lib/placeBuilder.ts`) merged into the
+  taxiway pavement. Taxiway centre lines still lead onto the runway (kept, user).
+- **Proof:** 16 close-ups of all 8 runway ends before/after (evidence 01–04): clean thresholds. Map
+  details: 27 of 29 material looks identical to `origin/main`; only taxiway asphalt and runway surfaces
+  changed; pixel changes only at the two airfields.
+- **Checks:** type check 0; build OK, byte-reproducible, no hook in `dist/`; Vitest 516/517 (known
+  `police.test.ts` CRLF); Playwright 24/24 twice.
+- **Local only:** `.claude/launch.json` (`p2c-main-dev` 5303, `runwayfix-*` 5304–5305), `work/perf-p2c/`.
+
+## Performance Phase P2c — map details: airfield pavements and edge lights merged (2026-11-02) — tested locally and approved by the user (2026-11-02), committed (`a2240e5`) and pushed to `origin/main`
 
 [Full report](perf-p2c/README.md). Worked directly on local `main` (= `origin/main` `8bc891e`; no branch,
-as agreed 2026-11-02). **Committed on local `main`; not pushed.** Backend unchanged.
+as agreed 2026-11-02). **Committed as `a2240e5` and pushed to `origin/main`** (user, 2026-11-02). Backend unchanged.
 - **User's local test:** blotchy taxiway pavement over the runway ends. Close-ups of all 8 runway ends
   (16 views) are identical on `main` and P2c (0 pixels over 8/255): an older bug, not caused by P2c; the
   user chose to commit P2c first and fix it next (P2c gap 5).

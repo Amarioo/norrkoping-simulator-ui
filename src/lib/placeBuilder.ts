@@ -72,6 +72,36 @@ export function groundRectangle(
   geometry.computeVertexNormals();
   return geometry;
 }
+/**
+ * A flat disc (a `segments`-sided polygon of the given radius) laid exactly on the rendered terrain
+ * like groundRectangle: coplanar with the land cover in every terrain triangle, ordered by depth rank
+ * only. UVs map the disc's bounding square to 0…1. Used for the rounded joins of taxiway segments.
+ */
+export function groundDisc(cx: number, cz: number, radius: number, segments = 12) {
+  const position: number[] = [],
+    uv: number[] = [];
+  const vertex = ([x, z]: [number, number], ground: { at(x: number, z: number): number }) => {
+    position.push(x, ground.at(x, z), z);
+    uv.push((x - cx) / (2 * radius) + 0.5, (cz - z) / (2 * radius) + 0.5);
+  };
+  const rim = (i: number): [number, number] => {
+    const a = (i / segments) * Math.PI * 2;
+    return [cx + Math.cos(a) * radius, cz + Math.sin(a) * radius];
+  };
+  for (let i = 0; i < segments; i++)
+    terrain.drape([cx, cz], rim(i), rim(i + 1), (p, q, r, ground) => {
+      // Counter-clockwise seen from above, so single-sided materials face up.
+      const up = (q[1] - p[1]) * (r[0] - p[0]) - (q[0] - p[0]) * (r[1] - p[1]) > 0;
+      vertex(p, ground);
+      vertex(up ? q : r, ground);
+      vertex(up ? r : q, ground);
+    });
+  const geometry = new BufferGeometry();
+  geometry.setAttribute('position', new Float32BufferAttribute(position, 3));
+  geometry.setAttribute('uv', new Float32BufferAttribute(uv, 2));
+  geometry.computeVertexNormals();
+  return geometry;
+}
 /** Build in local coordinates, then merge static geometry by material to keep draw calls bounded. */
 export class PlaceBuilder {
   group = new Group();
