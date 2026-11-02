@@ -117,3 +117,6 @@ work/geodata/
 # Phase P2b (worker layers) scratch (hook builds, raw runs, screenshots). Curated data is in
 # docs/perf-p2b/data/; reusable tools are in scripts/perf-p2b/.
 /work/perf-p2b/
+# Phase P2c (map details) scratch (hook builds, raw runs, screenshots). Curated data is in
+# docs/perf-p2c/data/; reusable tools are in scripts/perf-p2c/.
+/work/perf-p2c/

@@ -1,0 +1,70 @@
+{
+ "note": "Phase P2c: 8 runway ends x 2 camera views (dev servers, day, traffic off, 1400x1000), main (origin/main 8bc891e) vs P2c; scripts/perf-p2c/airfield-closeups.mjs",
+ "shots": [
+  {
+   "view": "end1-oblique.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end1-top.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end2-oblique.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end2-top.png",
+   "identicalFile": false
+  },
+  {
+   "view": "end3-oblique.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end3-top.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end4-oblique.png",
+   "identicalFile": false
+  },
+  {
+   "view": "end4-top.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end5-oblique.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end5-top.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end6-oblique.png",
+   "identicalFile": false
+  },
+  {
+   "view": "end6-top.png",
+   "identicalFile": false
+  },
+  {
+   "view": "end7-oblique.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end7-top.png",
+   "identicalFile": true
+  },
+  {
+   "view": "end8-oblique.png",
+   "identicalFile": false
+  },
+  {
+   "view": "end8-top.png",
+   "identicalFile": true
+  }
+ ],
+ "pixelsOver8": "0 pixels differ by more than 8/255 in all 16 views (the 5 non-identical files differ only by screenshot noise)"
+}

@@ -1,0 +1,5616 @@
+{
+ "note": "Phase P2c paired timing: 600 frames per view and build, builds in rotated order each round; fullscreen 2560x1440, traffic on, hook builds, Edge headless with vsync and the frame-rate limit off, Europe/Stockholm 2026-10-21, stadium off. A round waits for background CPU <= 18 %.",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "cores": 16,
+  "memoryGB": 66,
+  "platform": "win32 10.0.26300"
+ },
+ "builds": [
+  "main",
+  "p2c"
+ ],
+ "views": [
+  "night/overview",
+  "day/overview",
+  "night/airport",
+  "night/f13",
+  "night/city"
+ ],
+ "frames": 600,
+ "runs": [
+  {
+   "round": 1,
+   "build": "main",
+   "order": [
+    "main",
+    "p2c"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 151.80265654648963,
+     "meanMs": 6.587499999999997,
+     "medianMs": 6.5,
+     "p95Ms": 8.100000000000364,
+     "maxMs": 13.399999999999636,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.368333332836628,
+      "median": 6.399999976158142,
+      "p95": 7.5,
+      "max": 11.100000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3484999996423721,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.0198333331942555,
+      "median": 6,
+      "p95": 7.199999988079071,
+      "max": 10.5
+     },
+     "gpu": null,
+     "snapshotFrames": 39,
+     "cpuSnapshotFrames": {
+      "n": 39,
+      "mean": 6.648717949023614,
+      "median": 6.5,
+      "p95": 8.5,
+      "max": 11.100000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 561,
+      "mean": 6.348841354171222,
+      "median": 6.399999976158142,
+      "p95": 7.5,
+      "max": 10.800000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 39,
+      "mean": 0.4461538485991649,
+      "median": 0.40000003576278687,
+      "p95": 0.9000000357627869,
+      "max": 1
+     },
+     "tasksOtherFrames": {
+      "n": 561,
+      "mean": 0.3417112293940389,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.21666666716337205,
+      "median": 0.20000004768371582,
+      "p95": 1.600000023841858,
+      "max": 3.8000000715255737
+     },
+     "calls": 2910,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2910,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 158.5120997569481,
+     "meanMs": 6.308666666666668,
+     "medianMs": 6.100000000002183,
+     "p95Ms": 7.899999999997817,
+     "maxMs": 9.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.1035000002384185,
+      "median": 6,
+      "p95": 7.200000047683716,
+      "max": 8.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.332166668176651,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.771333332061768,
+      "median": 5.699999988079071,
+      "p95": 6.900000035762787,
+      "max": 8.199999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 38,
+     "cpuSnapshotFrames": {
+      "n": 38,
+      "mean": 6.28947367636781,
+      "median": 6.100000023841858,
+      "p95": 8.099999964237213,
+      "max": 8.5
+     },
+     "cpuOtherFrames": {
+      "n": 562,
+      "mean": 6.090925267688744,
+      "median": 6,
+      "p95": 7.199999988079071,
+      "max": 8.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 38,
+      "mean": 0.36052631390722173,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "tasksOtherFrames": {
+      "n": 562,
+      "mean": 0.3302491120596373,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.20566666642824807,
+      "median": 0.19999998807907104,
+      "p95": 1.300000011920929,
+      "max": 2.1000000834465027
+     },
+     "calls": 2909,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2909,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 272.66530334015,
+     "meanMs": 3.6675,
+     "medianMs": 3.399999999997817,
+     "p95Ms": 6.30000000000291,
+     "maxMs": 9.099999999998545,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.506666665772597,
+      "median": 3.300000011920929,
+      "p95": 6.199999988079071,
+      "max": 9.099999964237213
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.31349999964237213,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.193166666130225,
+      "median": 3,
+      "p95": 5.899999976158142,
+      "max": 8.799999952316284
+     },
+     "gpu": null,
+     "snapshotFrames": 22,
+     "cpuSnapshotFrames": {
+      "n": 22,
+      "mean": 3.3863636417822405,
+      "median": 3.400000035762787,
+      "p95": 4.5,
+      "max": 6.100000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 578,
+      "mean": 3.51124567360614,
+      "median": 3.299999952316284,
+      "p95": 6.299999952316284,
+      "max": 9.099999964237213
+     },
+     "tasksSnapshotFrames": {
+      "n": 22,
+      "mean": 0.39545454762198706,
+      "median": 0.40000003576278687,
+      "p95": 0.5999999642372131,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 578,
+      "mean": 0.31038062238363245,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.16250000089406968,
+      "median": 0.19999992847442627,
+      "p95": 3.300000011920929,
+      "max": 5.400000035762787
+     },
+     "calls": 1226,
+     "triangles": 3862499,
+     "capture": {
+      "drawCalls": 1226,
+      "triangles": 3862499,
+      "materialSwitches": 119,
+      "layers": {
+       "mapDetails": {
+        "calls": 543,
+        "triangles": 19682,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 319.1828917969992,
+     "meanMs": 3.133000000000005,
+     "medianMs": 3.099999999998545,
+     "p95Ms": 4.099999999998545,
+     "maxMs": 6.200000000004366,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.9858333339293797,
+      "median": 3,
+      "p95": 3.700000047683716,
+      "max": 6.099999964237213
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3226666669050852,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.6631666670242944,
+      "median": 2.699999988079071,
+      "p95": 3.300000011920929,
+      "max": 5.799999952316284
+     },
+     "gpu": null,
+     "snapshotFrames": 19,
+     "cpuSnapshotFrames": {
+      "n": 19,
+      "mean": 3.1947368383407593,
+      "median": 3.299999952316284,
+      "p95": 3.799999952316284,
+      "max": 3.799999952316284
+     },
+     "cpuOtherFrames": {
+      "n": 581,
+      "mean": 2.979001721909042,
+      "median": 3,
+      "p95": 3.700000047683716,
+      "max": 6.099999964237213
+     },
+     "tasksSnapshotFrames": {
+      "n": 19,
+      "mean": 0.4105263070056313,
+      "median": 0.3999999761581421,
+      "p95": 0.699999988079071,
+      "max": 0.699999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 581,
+      "mean": 0.3197934600859624,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14966666609048843,
+      "median": 0.10000002384185791,
+      "p95": 1.0999999642372131,
+      "max": 3
+     },
+     "calls": 1029,
+     "triangles": 2266193,
+     "capture": {
+      "drawCalls": 1029,
+      "triangles": 2266193,
+      "materialSwitches": 81,
+      "layers": {
+       "mapDetails": {
+        "calls": 371,
+        "triangles": 20518,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 152.36160487557135,
+     "meanMs": 6.5633333333333335,
+     "medianMs": 6.599999999998545,
+     "p95Ms": 7.400000000001455,
+     "maxMs": 11.700000000004366,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.375333333909512,
+      "median": 6.399999976158142,
+      "p95": 7.200000047683716,
+      "max": 9.199999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.32166666666666666,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1.300000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.053666667242845,
+      "median": 6.099999964237213,
+      "p95": 6.900000035762787,
+      "max": 7.899999976158142
+     },
+     "gpu": null,
+     "snapshotFrames": 38,
+     "cpuSnapshotFrames": {
+      "n": 38,
+      "mean": 5.689473687033904,
+      "median": 5.600000023841858,
+      "p95": 7,
+      "max": 9.199999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 562,
+      "mean": 6.4217081854776135,
+      "median": 6.400000035762787,
+      "p95": 7.200000047683716,
+      "max": 8
+     },
+     "tasksSnapshotFrames": {
+      "n": 38,
+      "mean": 0.4236842080166465,
+      "median": 0.3999999761581421,
+      "p95": 0.9000000357627869,
+      "max": 1.300000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 562,
+      "mean": 0.3147686834437143,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.18733333279689154,
+      "median": 0.09999996423721313,
+      "p95": 1.899999976158142,
+      "max": 4.199999988079071
+     },
+     "calls": 1313,
+     "triangles": 7060819,
+     "capture": {
+      "drawCalls": 1313,
+      "triangles": 7060819,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 165,
+        "triangles": 22141,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 7.4,
+    "coresBusy": 1.2
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 1,
+   "build": "p2c",
+   "order": [
+    "main",
+    "p2c"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 157.50098438115236,
+     "meanMs": 6.349166666666667,
+     "medianMs": 6.299999999999272,
+     "p95Ms": 7.5,
+     "maxMs": 8.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.170666666328907,
+      "median": 6.199999988079071,
+      "p95": 7.299999952316284,
+      "max": 8.600000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3079999995231628,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.862666666805744,
+      "median": 5.899999976158142,
+      "p95": 6.899999976158142,
+      "max": 8.199999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 38,
+     "cpuSnapshotFrames": {
+      "n": 38,
+      "mean": 5.747368423562301,
+      "median": 5.699999988079071,
+      "p95": 6.899999976158142,
+      "max": 7
+     },
+     "cpuOtherFrames": {
+      "n": 562,
+      "mean": 6.199288255697468,
+      "median": 6.199999988079071,
+      "p95": 7.299999952316284,
+      "max": 8.600000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 38,
+      "mean": 0.3973684232485922,
+      "median": 0.3999999761581421,
+      "p95": 0.6000000238418579,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 562,
+      "mean": 0.30195729471610533,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1823333336909612,
+      "median": 0.19999992847442627,
+      "p95": 1.699999988079071,
+      "max": 3.300000011920929
+     },
+     "calls": 2005,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2005,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 186.32961709263694,
+     "meanMs": 5.366833333333331,
+     "medianMs": 5.299999999999272,
+     "p95Ms": 6.69999999999709,
+     "maxMs": 9.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.186333332657814,
+      "median": 5.199999988079071,
+      "p95": 6.300000011920929,
+      "max": 8.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3228333320220311,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.863500000635783,
+      "median": 4.800000011920929,
+      "p95": 5.900000035762787,
+      "max": 8
+     },
+     "gpu": null,
+     "snapshotFrames": 32,
+     "cpuSnapshotFrames": {
+      "n": 32,
+      "mean": 5.409375002607703,
+      "median": 5.299999952316284,
+      "p95": 7.399999976158142,
+      "max": 7.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 568,
+      "mean": 5.173767604773313,
+      "median": 5.199999988079071,
+      "p95": 6.299999952316284,
+      "max": 8.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 32,
+      "mean": 0.3750000037252903,
+      "median": 0.3999999761581421,
+      "p95": 0.5999999642372131,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 568,
+      "mean": 0.3198943646021292,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.18333333402872085,
+      "median": 0.19999998807907104,
+      "p95": 1.300000011920929,
+      "max": 3.0000000596046448
+     },
+     "calls": 2004,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2004,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 283.40654669122875,
+     "meanMs": 3.5284999999999975,
+     "medianMs": 2.6999999999970896,
+     "p95Ms": 7,
+     "maxMs": 13.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.3790000002582867,
+      "median": 2.599999964237213,
+      "p95": 6.899999976158142,
+      "max": 13.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.32716666559378305,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.051833334664504,
+      "median": 2.199999988079071,
+      "p95": 6.5,
+      "max": 13.400000035762787
+     },
+     "gpu": null,
+     "snapshotFrames": 21,
+     "cpuSnapshotFrames": {
+      "n": 21,
+      "mean": 3.009523814632779,
+      "median": 2.600000023841858,
+      "p95": 5.600000023841858,
+      "max": 6.5
+     },
+     "cpuOtherFrames": {
+      "n": 579,
+      "mean": 3.392400690928642,
+      "median": 2.5,
+      "p95": 6.899999976158142,
+      "max": 13.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 21,
+      "mean": 0.40952381065913607,
+      "median": 0.40000003576278687,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "tasksOtherFrames": {
+      "n": 579,
+      "mean": 0.3241796188815682,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14999999970197678,
+      "median": 0.19999998807907104,
+      "p95": 4.500000059604645,
+      "max": 9.899999916553497
+     },
+     "calls": 689,
+     "triangles": 3866707,
+     "capture": {
+      "drawCalls": 689,
+      "triangles": 3866707,
+      "materialSwitches": 119,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23890,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 369.79969183359015,
+     "meanMs": 2.7041666666666666,
+     "medianMs": 2.5,
+     "p95Ms": 5.099999999998545,
+     "maxMs": 6.80000000000291,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.577666667004426,
+      "median": 2.400000035762787,
+      "p95": 4.800000011920929,
+      "max": 6.800000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.307666665216287,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.2700000017881394,
+      "median": 2.100000023841858,
+      "p95": 4.5,
+      "max": 6.5
+     },
+     "gpu": null,
+     "snapshotFrames": 16,
+     "cpuSnapshotFrames": {
+      "n": 16,
+      "mean": 2.5499999970197678,
+      "median": 2.399999976158142,
+      "p95": 3.800000011920929,
+      "max": 3.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 584,
+      "mean": 2.57842465796291,
+      "median": 2.400000035762787,
+      "p95": 4.899999976158142,
+      "max": 6.800000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 16,
+      "mean": 0.3999999985098839,
+      "median": 0.3999999761581421,
+      "p95": 0.6000000238418579,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 584,
+      "mean": 0.30513698485207885,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.12899999966224035,
+      "median": 0.10000002384185791,
+      "p95": 2.8999999165534973,
+      "max": 5.300000071525574
+     },
+     "calls": 664,
+     "triangles": 2269665,
+     "capture": {
+      "drawCalls": 664,
+      "triangles": 2269665,
+      "materialSwitches": 81,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23990,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 153.20192013073225,
+     "meanMs": 6.527333333333336,
+     "medianMs": 6.5,
+     "p95Ms": 7.400000000001455,
+     "maxMs": 9.39999999999418,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.345333332121372,
+      "median": 6.300000011920929,
+      "p95": 7.300000011920929,
+      "max": 8.400000035762787
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.30783333440621696,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.037499997715155,
+      "median": 6,
+      "p95": 7,
+      "max": 8.100000023841858
+     },
+     "gpu": null,
+     "snapshotFrames": 39,
+     "cpuSnapshotFrames": {
+      "n": 39,
+      "mean": 5.512820506707216,
+      "median": 5.399999976158142,
+      "p95": 6.899999976158142,
+      "max": 7
+     },
+     "cpuOtherFrames": {
+      "n": 561,
+      "mean": 6.403208555278506,
+      "median": 6.399999976158142,
+      "p95": 7.300000011920929,
+      "max": 8.400000035762787
+     },
+     "tasksSnapshotFrames": {
+      "n": 39,
+      "mean": 0.3717948717948718,
+      "median": 0.3999999761581421,
+      "p95": 0.6000000238418579,
+      "max": 0.699999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 561,
+      "mean": 0.3033868104166313,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.18216666787862779,
+      "median": 0.10000002384185791,
+      "p95": 1.9000000357627869,
+      "max": 3.5
+     },
+     "calls": 1217,
+     "triangles": 7067276,
+     "capture": {
+      "drawCalls": 1217,
+      "triangles": 7067276,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 69,
+        "triangles": 28598,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 16.6,
+    "coresBusy": 2.7
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 2,
+   "build": "p2c",
+   "order": [
+    "p2c",
+    "main"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 151.61086544535692,
+     "meanMs": 6.595833333333333,
+     "medianMs": 6.5,
+     "p95Ms": 7.899999999999636,
+     "maxMs": 12.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.403333333830039,
+      "median": 6.300000011920929,
+      "p95": 7.400000035762787,
+      "max": 12.100000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2964999986688296,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1.199999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.106833335161209,
+      "median": 6.099999964237213,
+      "p95": 7.100000023841858,
+      "max": 11.699999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 39,
+     "cpuSnapshotFrames": {
+      "n": 39,
+      "mean": 6.084615386449373,
+      "median": 6,
+      "p95": 7.5,
+      "max": 9.300000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 561,
+      "mean": 6.425490196482171,
+      "median": 6.300000011920929,
+      "p95": 7.400000035762787,
+      "max": 12.100000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 39,
+      "mean": 0.41025641025641024,
+      "median": 0.3999999761581421,
+      "p95": 0.699999988079071,
+      "max": 1.199999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 561,
+      "mean": 0.2885917989327946,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.9000000357627869
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.18983333279689152,
+      "median": 0.10000002384185791,
+      "p95": 1.7999999523162842,
+      "max": 5.400000035762787
+     },
+     "calls": 2005,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2005,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 184.04907975460122,
+     "meanMs": 5.433333333333334,
+     "medianMs": 5.30000000000291,
+     "p95Ms": 6.80000000000291,
+     "maxMs": 9,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.240666666229566,
+      "median": 5.199999988079071,
+      "p95": 6.300000011920929,
+      "max": 8
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3405000005165736,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1.100000023841858
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.900166665712993,
+      "median": 4.899999976158142,
+      "p95": 5.899999976158142,
+      "max": 7.600000023841858
+     },
+     "gpu": null,
+     "snapshotFrames": 32,
+     "cpuSnapshotFrames": {
+      "n": 32,
+      "mean": 5.4468750059604645,
+      "median": 5.400000035762787,
+      "p95": 6.5,
+      "max": 7
+     },
+     "cpuOtherFrames": {
+      "n": 568,
+      "mean": 5.229049294977121,
+      "median": 5.199999988079071,
+      "p95": 6.300000011920929,
+      "max": 8
+     },
+     "tasksSnapshotFrames": {
+      "n": 32,
+      "mean": 0.4031250011175871,
+      "median": 0.3999999761581421,
+      "p95": 0.5999999642372131,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 568,
+      "mean": 0.3369718314686292,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1.100000023841858
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.19483333379030227,
+      "median": 0.19999998807907104,
+      "p95": 1.5000000596046448,
+      "max": 3.1999999284744263
+     },
+     "calls": 2004,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2004,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 288.975581563358,
+     "meanMs": 3.460499999999999,
+     "medianMs": 2.6999999999970896,
+     "p95Ms": 6.900000000001455,
+     "maxMs": 11.900000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.312166666487853,
+      "median": 2.599999964237213,
+      "p95": 6.700000047683716,
+      "max": 11.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.33233333309491475,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.979833333392938,
+      "median": 2.199999988079071,
+      "p95": 6.400000035762787,
+      "max": 11.5
+     },
+     "gpu": null,
+     "snapshotFrames": 21,
+     "cpuSnapshotFrames": {
+      "n": 21,
+      "mean": 3.6000000011353266,
+      "median": 3,
+      "p95": 6.199999988079071,
+      "max": 6.700000047683716
+     },
+     "cpuOtherFrames": {
+      "n": 579,
+      "mean": 3.301727115490276,
+      "median": 2.5,
+      "p95": 6.799999952316284,
+      "max": 11.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 21,
+      "mean": 0.4190476224535987,
+      "median": 0.40000003576278687,
+      "p95": 0.6000000238418579,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 579,
+      "mean": 0.32918825524252726,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1485000001390775,
+      "median": 0.19999992847442627,
+      "p95": 4.5,
+      "max": 7.599999964237213
+     },
+     "calls": 689,
+     "triangles": 3866707,
+     "capture": {
+      "drawCalls": 689,
+      "triangles": 3866707,
+      "materialSwitches": 119,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23890,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 353.2112792135161,
+     "meanMs": 2.8311666666666677,
+     "medianMs": 2.599999999998545,
+     "p95Ms": 4.799999999995634,
+     "maxMs": 6.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.685666667819023,
+      "median": 2.5,
+      "p95": 4.599999964237213,
+      "max": 6.399999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.33100000162919363,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1.9000000357627869
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.3546666661898294,
+      "median": 2.199999988079071,
+      "p95": 4.300000011920929,
+      "max": 6.099999964237213
+     },
+     "gpu": null,
+     "snapshotFrames": 17,
+     "cpuSnapshotFrames": {
+      "n": 17,
+      "mean": 2.7176470651346096,
+      "median": 2.700000047683716,
+      "p95": 3.800000011920929,
+      "max": 3.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 583,
+      "mean": 2.6847341347926683,
+      "median": 2.5,
+      "p95": 4.600000023841858,
+      "max": 6.399999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 17,
+      "mean": 0.48823529832503376,
+      "median": 0.5,
+      "p95": 0.800000011920929,
+      "max": 0.800000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 583,
+      "mean": 0.3264150958936374,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1.9000000357627869
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14333333214124044,
+      "median": 0.10000008344650269,
+      "p95": 2.299999952316284,
+      "max": 4.200000047683716
+     },
+     "calls": 664,
+     "triangles": 2269665,
+     "capture": {
+      "drawCalls": 664,
+      "triangles": 2269665,
+      "materialSwitches": 81,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23990,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 162.25425241353196,
+     "meanMs": 6.163166666666669,
+     "medianMs": 6.19999999999709,
+     "p95Ms": 6.700000000004366,
+     "maxMs": 9.80000000000291,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.007666665911675,
+      "median": 6,
+      "p95": 6.5,
+      "max": 7.600000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2533333331346512,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.754333332777024,
+      "median": 5.800000011920929,
+      "p95": 6.300000011920929,
+      "max": 7.300000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 36,
+     "cpuSnapshotFrames": {
+      "n": 36,
+      "mean": 5.394444450736046,
+      "median": 5.300000011920929,
+      "p95": 6.100000023841858,
+      "max": 7.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 564,
+      "mean": 6.046808509433523,
+      "median": 6.099999964237213,
+      "p95": 6.5,
+      "max": 7.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 36,
+      "mean": 0.3361111134290695,
+      "median": 0.30000001192092896,
+      "p95": 0.7999999523162842,
+      "max": 0.800000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 564,
+      "mean": 0.24804964503075214,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1548333340883255,
+      "median": 0.09999996423721313,
+      "p95": 1.5,
+      "max": 3.699999988079071
+     },
+     "calls": 1217,
+     "triangles": 7067276,
+     "capture": {
+      "drawCalls": 1217,
+      "triangles": 7067276,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 69,
+        "triangles": 28598,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 11.9,
+    "coresBusy": 1.9
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 2,
+   "build": "main",
+   "order": [
+    "p2c",
+    "main"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 159.7444089456869,
+     "meanMs": 6.26,
+     "medianMs": 6.200000000000728,
+     "p95Ms": 7.100000000000364,
+     "maxMs": 10.899999999999636,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.098000000119209,
+      "median": 6.100000023841858,
+      "p95": 6.800000011920929,
+      "max": 10.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2726666665077209,
+      "median": 0.2999999523162842,
+      "p95": 0.40000003576278687,
+      "max": 1
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.825333333611488,
+      "median": 5.800000011920929,
+      "p95": 6.5,
+      "max": 10.300000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 37,
+     "cpuSnapshotFrames": {
+      "n": 37,
+      "mean": 5.675675678897548,
+      "median": 5.5,
+      "p95": 7.100000023841858,
+      "max": 8.400000035762787
+     },
+     "cpuOtherFrames": {
+      "n": 563,
+      "mean": 6.125754884462373,
+      "median": 6.100000023841858,
+      "p95": 6.800000011920929,
+      "max": 10.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 37,
+      "mean": 0.3432432364773106,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 563,
+      "mean": 0.2680284194582097,
+      "median": 0.2999999523162842,
+      "p95": 0.40000003576278687,
+      "max": 1
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1616666665673256,
+      "median": 0.09999996423721313,
+      "p95": 1.699999988079071,
+      "max": 3.599999964237213
+     },
+     "calls": 2910,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2910,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 191.57088122605364,
+     "meanMs": 5.22,
+     "medianMs": 5.099999999998545,
+     "p95Ms": 6.69999999999709,
+     "maxMs": 11.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.0576666659116745,
+      "median": 5,
+      "p95": 6.200000047683716,
+      "max": 11.299999952316284
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2518333335717519,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.8058333323399225,
+      "median": 4.699999988079071,
+      "p95": 5.899999976158142,
+      "max": 10.800000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 31,
+     "cpuSnapshotFrames": {
+      "n": 31,
+      "mean": 5.135483859046813,
+      "median": 5.099999964237213,
+      "p95": 5.899999976158142,
+      "max": 6.200000047683716
+     },
+     "cpuOtherFrames": {
+      "n": 569,
+      "mean": 5.053427064879707,
+      "median": 4.900000035762787,
+      "p95": 6.200000047683716,
+      "max": 11.299999952316284
+     },
+     "tasksSnapshotFrames": {
+      "n": 31,
+      "mean": 0.32258064131582936,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 569,
+      "mean": 0.2479789108299832,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.16250000069538753,
+      "median": 0.10000008344650269,
+      "p95": 1.300000011920929,
+      "max": 4.699999988079071
+     },
+     "calls": 2909,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2909,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 304.67678870664713,
+     "meanMs": 3.2821666666666656,
+     "medianMs": 2.400000000001455,
+     "p95Ms": 6.5,
+     "maxMs": 7.100000000002183,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.1675000009934107,
+      "median": 2.300000011920929,
+      "p95": 6.399999976158142,
+      "max": 6.900000035762787
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24133333295583725,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.9261666680375735,
+      "median": 2.100000023841858,
+      "p95": 6.100000023841858,
+      "max": 6.699999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 19,
+     "cpuSnapshotFrames": {
+      "n": 19,
+      "mean": 2.936842099616402,
+      "median": 2.399999976158142,
+      "p95": 5.800000011920929,
+      "max": 5.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 581,
+      "mean": 3.175043030470456,
+      "median": 2.300000011920929,
+      "p95": 6.399999976158142,
+      "max": 6.900000035762787
+     },
+     "tasksSnapshotFrames": {
+      "n": 19,
+      "mean": 0.30526315852215413,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 581,
+      "mean": 0.23924268461545856,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.11499999900658925,
+      "median": 0.10000002384185791,
+      "p95": 4.100000023841858,
+      "max": 5.099999964237213
+     },
+     "calls": 1226,
+     "triangles": 3862499,
+     "capture": {
+      "drawCalls": 1226,
+      "triangles": 3862499,
+      "materialSwitches": 119,
+      "layers": {
+       "mapDetails": {
+        "calls": 543,
+        "triangles": 19682,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 388.2238757683588,
+     "meanMs": 2.5758333333333394,
+     "medianMs": 2.2000000000043656,
+     "p95Ms": 4.299999999995634,
+     "maxMs": 6.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.463833332359791,
+      "median": 2.199999988079071,
+      "p95": 4.199999988079071,
+      "max": 6.100000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24300000021855037,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.2208333321412406,
+      "median": 1.9000000357627869,
+      "p95": 3.900000035762787,
+      "max": 5.800000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 15,
+     "cpuSnapshotFrames": {
+      "n": 15,
+      "mean": 2.313333336512248,
+      "median": 2.200000047683716,
+      "p95": 2.799999952316284,
+      "max": 2.799999952316284
+     },
+     "cpuOtherFrames": {
+      "n": 585,
+      "mean": 2.467692306612292,
+      "median": 2.100000023841858,
+      "p95": 4.199999988079071,
+      "max": 6.100000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 15,
+      "mean": 0.29333332777023313,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 585,
+      "mean": 0.24170940207619954,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1113333343466123,
+      "median": 0.09999996423721313,
+      "p95": 2.100000023841858,
+      "max": 4.199999988079071
+     },
+     "calls": 1029,
+     "triangles": 2266193,
+     "capture": {
+      "drawCalls": 1029,
+      "triangles": 2266193,
+      "materialSwitches": 81,
+      "layers": {
+       "mapDetails": {
+        "calls": 371,
+        "triangles": 20518,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 160.97011321564622,
+     "meanMs": 6.212333333333336,
+     "medianMs": 6.19999999999709,
+     "p95Ms": 6.799999999995634,
+     "maxMs": 7.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.0588333346446355,
+      "median": 6.099999964237213,
+      "p95": 6.599999964237213,
+      "max": 7.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24850000123182933,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.810333333412806,
+      "median": 5.800000011920929,
+      "p95": 6.300000011920929,
+      "max": 7.300000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 36,
+     "cpuSnapshotFrames": {
+      "n": 36,
+      "mean": 5.45555556151602,
+      "median": 5.5,
+      "p95": 6,
+      "max": 6
+     },
+     "cpuOtherFrames": {
+      "n": 564,
+      "mean": 6.097340426546462,
+      "median": 6.100000023841858,
+      "p95": 6.599999964237213,
+      "max": 7.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 36,
+      "mean": 0.32777777976459926,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 564,
+      "mean": 0.24343971749569507,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15216666529575984,
+      "median": 0.09999996423721313,
+      "p95": 1.2999999523162842,
+      "max": 3.900000035762787
+     },
+     "calls": 1313,
+     "triangles": 7060819,
+     "capture": {
+      "drawCalls": 1313,
+      "triangles": 7060819,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 165,
+        "triangles": 22141,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 6.7,
+    "coresBusy": 1.1
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 3,
+   "build": "main",
+   "order": [
+    "main",
+    "p2c"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 133.54700854700857,
+     "meanMs": 7.487999999999999,
+     "medianMs": 7.400000000001455,
+     "p95Ms": 9.199999999998909,
+     "maxMs": 12.099999999998545,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 7.254166668057442,
+      "median": 7.199999988079071,
+      "p95": 8.600000023841858,
+      "max": 11.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.35999999970197677,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.9000000357627869
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.8941666683554645,
+      "median": 6.899999976158142,
+      "p95": 8.299999952316284,
+      "max": 11.099999964237213
+     },
+     "gpu": null,
+     "snapshotFrames": 44,
+     "cpuSnapshotFrames": {
+      "n": 44,
+      "mean": 7.265909091992811,
+      "median": 7.100000023841858,
+      "p95": 8.199999988079071,
+      "max": 10
+     },
+     "cpuOtherFrames": {
+      "n": 556,
+      "mean": 7.253237411487016,
+      "median": 7.200000047683716,
+      "p95": 8.600000023841858,
+      "max": 11.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 44,
+      "mean": 0.43863635984334076,
+      "median": 0.5,
+      "p95": 0.699999988079071,
+      "max": 0.7999999523162842
+     },
+     "tasksOtherFrames": {
+      "n": 556,
+      "mean": 0.35377697839582567,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.9000000357627869
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.22799999852975208,
+      "median": 0.2999999523162842,
+      "p95": 1.9000000357627869,
+      "max": 4.200000047683716
+     },
+     "calls": 2910,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2901,
+      "triangles": 10289676,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 153.17063208414172,
+     "meanMs": 6.528666666666668,
+     "medianMs": 6.399999999997817,
+     "p95Ms": 8.299999999999272,
+     "maxMs": 11,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.322333335181077,
+      "median": 6.199999988079071,
+      "p95": 7.5,
+      "max": 11
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3491666690508525,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.973166666130225,
+      "median": 5.899999976158142,
+      "p95": 7.199999988079071,
+      "max": 10.300000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 39,
+     "cpuSnapshotFrames": {
+      "n": 39,
+      "mean": 6.7358974401767435,
+      "median": 6.800000011920929,
+      "p95": 8.100000023841858,
+      "max": 8.399999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 561,
+      "mean": 6.293582889379239,
+      "median": 6.199999988079071,
+      "p95": 7.5,
+      "max": 11
+     },
+     "tasksSnapshotFrames": {
+      "n": 39,
+      "mean": 0.38461538767203307,
+      "median": 0.3999999761581421,
+      "p95": 0.5999999642372131,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 561,
+      "mean": 0.34670231962798964,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.2079999981323878,
+      "median": 0.19999998807907104,
+      "p95": 1.300000011920929,
+      "max": 3
+     },
+     "calls": 2900,
+     "triangles": 10237978,
+     "capture": {
+      "drawCalls": 2900,
+      "triangles": 10237978,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 267.8810608090005,
+     "meanMs": 3.733000000000005,
+     "medianMs": 3.400000000001455,
+     "p95Ms": 5.799999999999272,
+     "maxMs": 8.099999999998545,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.5831666657328607,
+      "median": 3.300000011920929,
+      "p95": 5.699999988079071,
+      "max": 8
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.32983333299557366,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.253333332737287,
+      "median": 3,
+      "p95": 5.399999976158142,
+      "max": 7.700000047683716
+     },
+     "gpu": null,
+     "snapshotFrames": 22,
+     "cpuSnapshotFrames": {
+      "n": 22,
+      "mean": 3.4772727218541233,
+      "median": 3.400000035762787,
+      "p95": 4.100000023841858,
+      "max": 5.099999964237213
+     },
+     "cpuOtherFrames": {
+      "n": 578,
+      "mean": 3.587197231070806,
+      "median": 3.300000011920929,
+      "p95": 5.699999988079071,
+      "max": 8
+     },
+     "tasksSnapshotFrames": {
+      "n": 22,
+      "mean": 0.4181818203492598,
+      "median": 0.40000003576278687,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 578,
+      "mean": 0.3264705878021808,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14616666754086813,
+      "median": 0.19999992847442627,
+      "p95": 2.699999988079071,
+      "max": 5.200000047683716
+     },
+     "calls": 1226,
+     "triangles": 3862499,
+     "capture": {
+      "drawCalls": 1226,
+      "triangles": 3862499,
+      "materialSwitches": 119,
+      "layers": {
+       "mapDetails": {
+        "calls": 543,
+        "triangles": 19682,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 348.14900777532904,
+     "meanMs": 2.8723333333333234,
+     "medianMs": 2.8999999999941792,
+     "p95Ms": 3.2000000000043656,
+     "maxMs": 5.200000000004366,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.732333333293597,
+      "median": 2.799999952316284,
+      "p95": 3.099999964237213,
+      "max": 3.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3238333334525426,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.4084999998410543,
+      "median": 2.5,
+      "p95": 2.699999988079071,
+      "max": 3.099999964237213
+     },
+     "gpu": null,
+     "snapshotFrames": 17,
+     "cpuSnapshotFrames": {
+      "n": 17,
+      "mean": 2.9058823410202477,
+      "median": 3,
+      "p95": 3.199999988079071,
+      "max": 3.199999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 583,
+      "mean": 2.727272727579441,
+      "median": 2.799999952316284,
+      "p95": 3,
+      "max": 3.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 17,
+      "mean": 0.43529410923228545,
+      "median": 0.40000003576278687,
+      "p95": 0.6000000238418579,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 583,
+      "mean": 0.32058319076256725,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5999999642372131
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1394999999801318,
+      "median": 0.10000002384185791,
+      "p95": 0.8999999165534973,
+      "max": 1.899999976158142
+     },
+     "calls": 977,
+     "triangles": 2262453,
+     "capture": {
+      "drawCalls": 977,
+      "triangles": 2262453,
+      "materialSwitches": 77,
+      "layers": {
+       "mapDetails": {
+        "calls": 371,
+        "triangles": 20518,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 143.76422666826403,
+     "meanMs": 6.9558333333333335,
+     "medianMs": 6.900000000001455,
+     "p95Ms": 8.30000000000291,
+     "maxMs": 11.80000000000291,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.744499999284744,
+      "median": 6.699999988079071,
+      "p95": 8,
+      "max": 11.599999964237213
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3251666643222173,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.419333334962527,
+      "median": 6.399999976158142,
+      "p95": 7.699999988079071,
+      "max": 11
+     },
+     "gpu": null,
+     "snapshotFrames": 42,
+     "cpuSnapshotFrames": {
+      "n": 42,
+      "mean": 6.2976190476190474,
+      "median": 6.199999988079071,
+      "p95": 8.199999988079071,
+      "max": 9.200000047683716
+     },
+     "cpuOtherFrames": {
+      "n": 558,
+      "mean": 6.778136199947753,
+      "median": 6.700000047683716,
+      "p95": 8,
+      "max": 11.599999964237213
+     },
+     "tasksSnapshotFrames": {
+      "n": 42,
+      "mean": 0.3642857088929131,
+      "median": 0.30000001192092896,
+      "p95": 0.6000000238418579,
+      "max": 0.699999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 558,
+      "mean": 0.3222222201072187,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.21566666742165883,
+      "median": 0.10000008344650269,
+      "p95": 1.8999999165534973,
+      "max": 4.399999976158142
+     },
+     "calls": 1356,
+     "triangles": 7064175,
+     "capture": {
+      "drawCalls": 1356,
+      "triangles": 7064175,
+      "materialSwitches": 378,
+      "layers": {
+       "mapDetails": {
+        "calls": 165,
+        "triangles": 22141,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 13.5,
+    "coresBusy": 2.2
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 3,
+   "build": "p2c",
+   "order": [
+    "main",
+    "p2c"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 165.96592166408493,
+     "meanMs": 6.025333333333335,
+     "medianMs": 6,
+     "p95Ms": 6.899999999999636,
+     "maxMs": 9.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.867166665792465,
+      "median": 5.899999976158142,
+      "p95": 6.600000023841858,
+      "max": 9.600000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2594999997814496,
+      "median": 0.2999999523162842,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.607666666011015,
+      "median": 5.600000023841858,
+      "p95": 6.300000011920929,
+      "max": 9.100000023841858
+     },
+     "gpu": null,
+     "snapshotFrames": 36,
+     "cpuSnapshotFrames": {
+      "n": 36,
+      "mean": 5.188888880941603,
+      "median": 5.199999988079071,
+      "p95": 5.900000035762787,
+      "max": 6.699999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 564,
+      "mean": 5.910460992485073,
+      "median": 5.899999976158142,
+      "p95": 6.600000023841858,
+      "max": 9.600000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 36,
+      "mean": 0.31111110581292045,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 564,
+      "mean": 0.25620567386454723,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1586666675408681,
+      "median": 0.10000002384185791,
+      "p95": 1.6999999284744263,
+      "max": 3.600000023841858
+     },
+     "calls": 2005,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2005,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 195.64366766662326,
+     "meanMs": 5.111333333333332,
+     "medianMs": 5.099999999998545,
+     "p95Ms": 5.900000000001455,
+     "maxMs": 9.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.960999999344349,
+      "median": 4.900000035762787,
+      "p95": 5.800000011920929,
+      "max": 8.800000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24283333301544188,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.718166666328907,
+      "median": 4.699999988079071,
+      "p95": 5.5,
+      "max": 8.300000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 30,
+     "cpuSnapshotFrames": {
+      "n": 30,
+      "mean": 4.3033333400885265,
+      "median": 4.199999988079071,
+      "p95": 5.100000023841858,
+      "max": 7.599999964237213
+     },
+     "cpuOtherFrames": {
+      "n": 570,
+      "mean": 4.995614034042024,
+      "median": 5,
+      "p95": 5.800000011920929,
+      "max": 8.800000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 30,
+      "mean": 0.2933333396911621,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 570,
+      "mean": 0.2401754379272461,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15150000065565108,
+      "median": 0.09999996423721313,
+      "p95": 1.6000000834465027,
+      "max": 3.600000023841858
+     },
+     "calls": 2004,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2004,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 245.75056317837394,
+     "meanMs": 4.069166666666667,
+     "medianMs": 2.100000000002183,
+     "p95Ms": 10.599999999998545,
+     "maxMs": 13.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.9293333335717517,
+      "median": 2,
+      "p95": 10.5,
+      "max": 12.899999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2533333323399226,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.6760000012318295,
+      "median": 1.7999999523162842,
+      "p95": 10.200000047683716,
+      "max": 12.600000023841858
+     },
+     "gpu": null,
+     "snapshotFrames": 24,
+     "cpuSnapshotFrames": {
+      "n": 24,
+      "mean": 2.841666673620542,
+      "median": 2.100000023841858,
+      "p95": 8.700000047683716,
+      "max": 10.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 576,
+      "mean": 3.974652777736386,
+      "median": 2,
+      "p95": 10.5,
+      "max": 12.899999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 24,
+      "mean": 0.3291666731238365,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 576,
+      "mean": 0.2501736098072595,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1409999997417132,
+      "median": 0.10000008344650269,
+      "p95": 8.600000023841858,
+      "max": 10
+     },
+     "calls": 741,
+     "triangles": 3870447,
+     "capture": {
+      "drawCalls": 741,
+      "triangles": 3870447,
+      "materialSwitches": 123,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23890,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 330.6696059520529,
+     "meanMs": 3.0241666666666664,
+     "medianMs": 1.6999999999970896,
+     "p95Ms": 8.900000000001455,
+     "maxMs": 9.69999999999709,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.9233333332339924,
+      "median": 1.600000023841858,
+      "p95": 8.799999952316284,
+      "max": 9.600000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2315000002582868,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.6918333329757056,
+      "median": 1.399999976158142,
+      "p95": 8.5,
+      "max": 9.400000035762787
+     },
+     "gpu": null,
+     "snapshotFrames": 18,
+     "cpuSnapshotFrames": {
+      "n": 18,
+      "mean": 2.0388888816038766,
+      "median": 1.699999988079071,
+      "p95": 8.399999976158142,
+      "max": 8.399999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 582,
+      "mean": 2.950687285346264,
+      "median": 1.600000023841858,
+      "p95": 8.799999952316284,
+      "max": 9.600000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 18,
+      "mean": 0.29999999205271405,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 582,
+      "mean": 0.22938144381103648,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.10550000001986821,
+      "median": 0.09999996423721313,
+      "p95": 7.300000011920929,
+      "max": 8.400000095367432
+     },
+     "calls": 612,
+     "triangles": 2265925,
+     "capture": {
+      "drawCalls": 612,
+      "triangles": 2265925,
+      "materialSwitches": 77,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23990,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 154.62721954488072,
+     "meanMs": 6.467166666666659,
+     "medianMs": 6.400000000001455,
+     "p95Ms": 7.100000000005821,
+     "maxMs": 8.299999999995634,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.309666668375333,
+      "median": 6.300000011920929,
+      "p95": 7,
+      "max": 7.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2418333351612091,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.067833333214124,
+      "median": 6.099999964237213,
+      "p95": 6.699999988079071,
+      "max": 7.200000047683716
+     },
+     "gpu": null,
+     "snapshotFrames": 38,
+     "cpuSnapshotFrames": {
+      "n": 38,
+      "mean": 5.607894734332436,
+      "median": 5.600000023841858,
+      "p95": 6.399999976158142,
+      "max": 6.399999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 562,
+      "mean": 6.357117439716312,
+      "median": 6.300000011920929,
+      "p95": 7,
+      "max": 7.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 38,
+      "mean": 0.29210526535385534,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 562,
+      "mean": 0.23843416550405508,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15799999833106995,
+      "median": 0.10000002384185791,
+      "p95": 1.4999999403953552,
+      "max": 4
+     },
+     "calls": 1217,
+     "triangles": 7067276,
+     "capture": {
+      "drawCalls": 1217,
+      "triangles": 7067276,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 69,
+        "triangles": 28598,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 20.3,
+    "coresBusy": 3.3
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 4,
+   "build": "p2c",
+   "order": [
+    "p2c",
+    "main"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 150.73483230749898,
+     "meanMs": 6.63416666666667,
+     "medianMs": 6.600000000000364,
+     "p95Ms": 7.699999999998909,
+     "maxMs": 10.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.457166667083899,
+      "median": 6.5,
+      "p95": 7.399999976158142,
+      "max": 9.700000047683716
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2631666660308838,
+      "median": 0.2999999523162842,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.194000001053015,
+      "median": 6.199999988079071,
+      "p95": 7.100000023841858,
+      "max": 9.5
+     },
+     "gpu": null,
+     "snapshotFrames": 39,
+     "cpuSnapshotFrames": {
+      "n": 39,
+      "mean": 5.853846158736792,
+      "median": 5.800000011920929,
+      "p95": 7.900000035762787,
+      "max": 8.399999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 561,
+      "mean": 6.499108734509099,
+      "median": 6.5,
+      "p95": 7.399999976158142,
+      "max": 9.700000047683716
+     },
+     "tasksSnapshotFrames": {
+      "n": 39,
+      "mean": 0.34871795085760265,
+      "median": 0.30000001192092896,
+      "p95": 0.6000000238418579,
+      "max": 0.800000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 561,
+      "mean": 0.25721925050817074,
+      "median": 0.20000004768371582,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.17516666620969773,
+      "median": 0.09999996423721313,
+      "p95": 1.5999999642372131,
+      "max": 3.699999988079071
+     },
+     "calls": 2005,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2005,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 179.39364946480902,
+     "meanMs": 5.574333333333331,
+     "medianMs": 5.5,
+     "p95Ms": 6.80000000000291,
+     "maxMs": 13,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.391333331664403,
+      "median": 5.300000011920929,
+      "p95": 6.5,
+      "max": 10.899999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2874999985098839,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.10383333315452,
+      "median": 5.099999964237213,
+      "p95": 6.299999952316284,
+      "max": 10.399999976158142
+     },
+     "gpu": null,
+     "snapshotFrames": 33,
+     "cpuSnapshotFrames": {
+      "n": 33,
+      "mean": 5.427272722576603,
+      "median": 5.199999988079071,
+      "p95": 7.300000011920929,
+      "max": 10.899999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 567,
+      "mean": 5.389241621082212,
+      "median": 5.300000011920929,
+      "p95": 6.5,
+      "max": 10.099999964237213
+     },
+     "tasksSnapshotFrames": {
+      "n": 33,
+      "mean": 0.3575757561307965,
+      "median": 0.30000001192092896,
+      "p95": 0.6000000238418579,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 567,
+      "mean": 0.2834215152621059,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.18266666829586028,
+      "median": 0.19999998807907104,
+      "p95": 1.5,
+      "max": 2.899999976158142
+     },
+     "calls": 2004,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2004,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 254.90695895997928,
+     "meanMs": 3.923000000000005,
+     "medianMs": 2.900000000001455,
+     "p95Ms": 8,
+     "maxMs": 9.599999999998545,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.774666667083899,
+      "median": 2.800000011920929,
+      "p95": 7.899999976158142,
+      "max": 9.300000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3276666670044263,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.7999999523162842
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.447000000079473,
+      "median": 2.5,
+      "p95": 7.600000023841858,
+      "max": 9
+     },
+     "gpu": null,
+     "snapshotFrames": 23,
+     "cpuSnapshotFrames": {
+      "n": 23,
+      "mean": 3.839130437892416,
+      "median": 3,
+      "p95": 7,
+      "max": 7.899999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 577,
+      "mean": 3.7720970540360725,
+      "median": 2.800000011920929,
+      "p95": 7.900000035762787,
+      "max": 9.300000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 23,
+      "mean": 0.43043478157209314,
+      "median": 0.40000003576278687,
+      "p95": 0.5999999642372131,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 577,
+      "mean": 0.3235701910337914,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.7999999523162842
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14816666622956595,
+      "median": 0.19999998807907104,
+      "p95": 5.5,
+      "max": 7.100000023841858
+     },
+     "calls": 741,
+     "triangles": 3870447,
+     "capture": {
+      "drawCalls": 741,
+      "triangles": 3870447,
+      "materialSwitches": 123,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23890,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 342.2703936109526,
+     "meanMs": 2.921666666666667,
+     "medianMs": 2.400000000001455,
+     "p95Ms": 6,
+     "maxMs": 7.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.792333334783713,
+      "median": 2.300000011920929,
+      "p95": 5.600000023841858,
+      "max": 7.300000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3201666663090388,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.4721666684746744,
+      "median": 2,
+      "p95": 5.399999976158142,
+      "max": 7
+     },
+     "gpu": null,
+     "snapshotFrames": 17,
+     "cpuSnapshotFrames": {
+      "n": 17,
+      "mean": 3.23529412465937,
+      "median": 2.5,
+      "p95": 5.5,
+      "max": 5.5
+     },
+     "cpuOtherFrames": {
+      "n": 583,
+      "mean": 2.7794168108936854,
+      "median": 2.300000011920929,
+      "p95": 5.699999988079071,
+      "max": 7.300000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 17,
+      "mean": 0.38235294468262615,
+      "median": 0.40000003576278687,
+      "p95": 0.6000000238418579,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 583,
+      "mean": 0.31835334429814516,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5999999642372131
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.13033333192269006,
+      "median": 0.10000002384185791,
+      "p95": 3.699999988079071,
+      "max": 6.299999952316284
+     },
+     "calls": 612,
+     "triangles": 2265925,
+     "capture": {
+      "drawCalls": 612,
+      "triangles": 2265925,
+      "materialSwitches": 77,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23990,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 142.0051121840385,
+     "meanMs": 7.042000000000007,
+     "medianMs": 7,
+     "p95Ms": 7.80000000000291,
+     "maxMs": 9.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.84399999866883,
+      "median": 6.800000011920929,
+      "p95": 7.600000023841858,
+      "max": 9.199999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.32316666503747304,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.520833333631357,
+      "median": 6.5,
+      "p95": 7.300000011920929,
+      "max": 8.800000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 41,
+     "cpuSnapshotFrames": {
+      "n": 41,
+      "mean": 6.09756097124844,
+      "median": 6.100000023841858,
+      "p95": 6.800000011920929,
+      "max": 6.899999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 559,
+      "mean": 6.89874776275512,
+      "median": 6.899999976158142,
+      "p95": 7.699999988079071,
+      "max": 9.199999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 41,
+      "mean": 0.38048779673692656,
+      "median": 0.3999999761581421,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 559,
+      "mean": 0.31896243176434674,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5999999642372131
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1980000013113022,
+      "median": 0.10000002384185791,
+      "p95": 1.800000011920929,
+      "max": 3.099999964237213
+     },
+     "calls": 1217,
+     "triangles": 7067276,
+     "capture": {
+      "drawCalls": 1217,
+      "triangles": 7067276,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 69,
+        "triangles": 28598,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 26.7,
+    "coresBusy": 4.3
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 4,
+   "build": "main",
+   "order": [
+    "p2c",
+    "main"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 142.7755568246717,
+     "meanMs": 7.003999999999996,
+     "medianMs": 6.699999999998909,
+     "p95Ms": 9.400000000001455,
+     "maxMs": 16.69999999999891,
+     "over16_7": 0.0016666666666666668,
+     "cpu": {
+      "n": 600,
+      "mean": 6.7733333331346515,
+      "median": 6.5,
+      "p95": 9.100000023841858,
+      "max": 15.399999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3506666652361552,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.8999999761581421
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.422666667898496,
+      "median": 6.199999988079071,
+      "p95": 8.699999988079071,
+      "max": 14.800000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 41,
+     "cpuSnapshotFrames": {
+      "n": 41,
+      "mean": 7.453658535713103,
+      "median": 6.899999976158142,
+      "p95": 11.5,
+      "max": 12.900000035762787
+     },
+     "cpuOtherFrames": {
+      "n": 559,
+      "mean": 6.723434704680775,
+      "median": 6.5,
+      "p95": 9,
+      "max": 15.399999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 41,
+      "mean": 0.4219512168954058,
+      "median": 0.3999999761581421,
+      "p95": 0.699999988079071,
+      "max": 0.699999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 559,
+      "mean": 0.34543828130408133,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.8999999761581421
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.2286666668454806,
+      "median": 0.20000004768371582,
+      "p95": 1.600000023841858,
+      "max": 3.100000023841858
+     },
+     "calls": 2910,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2910,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 152.73782552249068,
+     "meanMs": 6.547166666666666,
+     "medianMs": 6.299999999999272,
+     "p95Ms": 8.400000000001455,
+     "maxMs": 12,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.342999998629093,
+      "median": 6.100000023841858,
+      "p95": 7.700000047683716,
+      "max": 10.399999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3431666658322016,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.999833332796891,
+      "median": 5.800000011920929,
+      "p95": 7.300000011920929,
+      "max": 9.699999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 38,
+     "cpuSnapshotFrames": {
+      "n": 38,
+      "mean": 6.734210522551286,
+      "median": 6.399999976158142,
+      "p95": 8.900000035762787,
+      "max": 10
+     },
+     "cpuOtherFrames": {
+      "n": 562,
+      "mean": 6.316548041495564,
+      "median": 6.100000023841858,
+      "p95": 7.599999964237213,
+      "max": 10.399999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 38,
+      "mean": 0.3578947311953494,
+      "median": 0.3999999761581421,
+      "p95": 0.5,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 562,
+      "mean": 0.34217081799625926,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.19950000137090684,
+      "median": 0.19999998807907104,
+      "p95": 1.399999976158142,
+      "max": 2.299999952316284
+     },
+     "calls": 2909,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2909,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 280.6229830223097,
+     "meanMs": 3.5634999999999977,
+     "medianMs": 3.5,
+     "p95Ms": 4.5,
+     "maxMs": 7.299999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.412500000794729,
+      "median": 3.400000035762787,
+      "p95": 4,
+      "max": 5.300000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.32099999994039535,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.0915000008543334,
+      "median": 3.100000023841858,
+      "p95": 3.600000023841858,
+      "max": 4.900000035762787
+     },
+     "gpu": null,
+     "snapshotFrames": 21,
+     "cpuSnapshotFrames": {
+      "n": 21,
+      "mean": 3.604761901355925,
+      "median": 3.5,
+      "p95": 4.400000035762787,
+      "max": 5
+     },
+     "cpuOtherFrames": {
+      "n": 579,
+      "mean": 3.4055267712406954,
+      "median": 3.400000035762787,
+      "p95": 4,
+      "max": 5.300000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 21,
+      "mean": 0.39523809864407494,
+      "median": 0.40000003576278687,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 579,
+      "mean": 0.3183074264122826,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15149999916553497,
+      "median": 0.10000002384185791,
+      "p95": 1,
+      "max": 2.100000023841858
+     },
+     "calls": 1278,
+     "triangles": 3866239,
+     "capture": {
+      "drawCalls": 1278,
+      "triangles": 3866239,
+      "materialSwitches": 123,
+      "layers": {
+       "mapDetails": {
+        "calls": 543,
+        "triangles": 19682,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 344.9068751437115,
+     "meanMs": 2.899333333333331,
+     "medianMs": 2.8000000000029104,
+     "p95Ms": 3.5,
+     "maxMs": 6.099999999998545,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.7646666649977365,
+      "median": 2.700000047683716,
+      "p95": 3.199999988079071,
+      "max": 4.299999952316284
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3206666662295659,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.4439999987681706,
+      "median": 2.400000035762787,
+      "p95": 2.800000011920929,
+      "max": 4
+     },
+     "gpu": null,
+     "snapshotFrames": 17,
+     "cpuSnapshotFrames": {
+      "n": 17,
+      "mean": 2.8764705903389873,
+      "median": 2.800000011920929,
+      "p95": 4.100000023841858,
+      "max": 4.100000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 583,
+      "mean": 2.7614065162313537,
+      "median": 2.700000047683716,
+      "p95": 3.199999988079071,
+      "max": 4.299999952316284
+     },
+     "tasksSnapshotFrames": {
+      "n": 17,
+      "mean": 0.3529411799767438,
+      "median": 0.30000001192092896,
+      "p95": 0.6000000238418579,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 583,
+      "mean": 0.3197255569093223,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5999999642372131
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.13366666833559673,
+      "median": 0.10000002384185791,
+      "p95": 0.7000000476837158,
+      "max": 2.5000000596046448
+     },
+     "calls": 977,
+     "triangles": 2262453,
+     "capture": {
+      "drawCalls": 977,
+      "triangles": 2262453,
+      "materialSwitches": 77,
+      "layers": {
+       "mapDetails": {
+        "calls": 371,
+        "triangles": 20518,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 156.48227838197312,
+     "meanMs": 6.390500000000005,
+     "medianMs": 6.399999999994179,
+     "p95Ms": 7.19999999999709,
+     "maxMs": 8.80000000000291,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.209666666984558,
+      "median": 6.199999988079071,
+      "p95": 7,
+      "max": 8.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.32566666771968206,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.883999999264876,
+      "median": 5.899999976158142,
+      "p95": 6.699999988079071,
+      "max": 8.399999976158142
+     },
+     "gpu": null,
+     "snapshotFrames": 38,
+     "cpuSnapshotFrames": {
+      "n": 38,
+      "mean": 5.457894731509058,
+      "median": 5.400000035762787,
+      "p95": 6.300000011920929,
+      "max": 6.400000035762787
+     },
+     "cpuOtherFrames": {
+      "n": 562,
+      "mean": 6.260498221340553,
+      "median": 6.199999988079071,
+      "p95": 7,
+      "max": 8.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 38,
+      "mean": 0.3815789457998778,
+      "median": 0.3999999761581421,
+      "p95": 0.6000000238418579,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 562,
+      "mean": 0.3218861222267151,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.18216666638851164,
+      "median": 0.10000002384185791,
+      "p95": 1.7000000476837158,
+      "max": 4.300000071525574
+     },
+     "calls": 1313,
+     "triangles": 7060819,
+     "capture": {
+      "drawCalls": 1313,
+      "triangles": 7060819,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 165,
+        "triangles": 22141,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 11,
+    "coresBusy": 1.8
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 5,
+   "build": "main",
+   "order": [
+    "main",
+    "p2c"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 153.15890236119975,
+     "meanMs": 6.529166666666667,
+     "medianMs": 6.5,
+     "p95Ms": 7.299999999999272,
+     "maxMs": 9.600000000000364,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.3573333342870075,
+      "median": 6.399999976158142,
+      "p95": 7,
+      "max": 9.399999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.258833333949248,
+      "median": 0.2999999523162842,
+      "p95": 0.3999999761581421,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.09850000033776,
+      "median": 6.100000023841858,
+      "p95": 6.800000011920929,
+      "max": 9
+     },
+     "gpu": null,
+     "snapshotFrames": 39,
+     "cpuSnapshotFrames": {
+      "n": 39,
+      "mean": 5.605128207267859,
+      "median": 5.599999964237213,
+      "p95": 6.300000011920929,
+      "max": 6.300000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 561,
+      "mean": 6.409625669320424,
+      "median": 6.399999976158142,
+      "p95": 7,
+      "max": 9.399999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 39,
+      "mean": 0.3307692316862253,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 561,
+      "mean": 0.25383244266272015,
+      "median": 0.2999999523162842,
+      "p95": 0.30000001192092896,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.17216666569312414,
+      "median": 0.09999996423721313,
+      "p95": 1.699999988079071,
+      "max": 3.5000000596046448
+     },
+     "calls": 2901,
+     "triangles": 10289676,
+     "capture": {
+      "drawCalls": 2901,
+      "triangles": 10289676,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 186.87513626312037,
+     "meanMs": 5.3511666666666615,
+     "medianMs": 5.299999999999272,
+     "p95Ms": 6.400000000001455,
+     "maxMs": 10.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.192500000993411,
+      "median": 5.199999988079071,
+      "p95": 6.099999964237213,
+      "max": 10.599999964237213
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2561666680375735,
+      "median": 0.20000004768371582,
+      "p95": 0.40000003576278687,
+      "max": 0.9000000357627869
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.936333332955837,
+      "median": 4.899999976158142,
+      "p95": 5.800000011920929,
+      "max": 10.199999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 32,
+     "cpuSnapshotFrames": {
+      "n": 32,
+      "mean": 5.121875002980232,
+      "median": 4.899999976158142,
+      "p95": 7,
+      "max": 9
+     },
+     "cpuOtherFrames": {
+      "n": 568,
+      "mean": 5.196478874120913,
+      "median": 5.199999988079071,
+      "p95": 6,
+      "max": 10.599999964237213
+     },
+     "tasksSnapshotFrames": {
+      "n": 32,
+      "mean": 0.33125000447034836,
+      "median": 0.30000001192092896,
+      "p95": 0.6000000238418579,
+      "max": 0.9000000357627869
+     },
+     "tasksOtherFrames": {
+      "n": 568,
+      "mean": 0.2519366209146003,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1564999990661939,
+      "median": 0.09999996423721313,
+      "p95": 1.4999999403953552,
+      "max": 2.599999964237213
+     },
+     "calls": 2900,
+     "triangles": 10237978,
+     "capture": {
+      "drawCalls": 2900,
+      "triangles": 10237978,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 280.04667444574096,
+     "meanMs": 3.5708333333333333,
+     "medianMs": 2.5,
+     "p95Ms": 7.400000000001455,
+     "maxMs": 9,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.44499999910593,
+      "median": 2.399999976158142,
+      "p95": 7.300000011920929,
+      "max": 8.899999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24299999912579853,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.201999999980132,
+      "median": 2.199999988079071,
+      "p95": 7.100000023841858,
+      "max": 8.699999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 21,
+     "cpuSnapshotFrames": {
+      "n": 21,
+      "mean": 2.96666666723433,
+      "median": 2.599999964237213,
+      "p95": 6.199999988079071,
+      "max": 7
+     },
+     "cpuOtherFrames": {
+      "n": 579,
+      "mean": 3.4623488764276984,
+      "median": 2.399999976158142,
+      "p95": 7.300000011920929,
+      "max": 8.899999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 21,
+      "mean": 0.29999999489103046,
+      "median": 0.30000001192092896,
+      "p95": 0.3999999761581421,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 579,
+      "mean": 0.2409326417664378,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1303333342075348,
+      "median": 0.10000008344650269,
+      "p95": 5.000000059604645,
+      "max": 6.900000035762787
+     },
+     "calls": 1226,
+     "triangles": 3862499,
+     "capture": {
+      "drawCalls": 1226,
+      "triangles": 3862499,
+      "materialSwitches": 119,
+      "layers": {
+       "mapDetails": {
+        "calls": 543,
+        "triangles": 19682,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 357.2704537334767,
+     "meanMs": 2.7989999999999964,
+     "medianMs": 2.099999999998545,
+     "p95Ms": 5.900000000001455,
+     "maxMs": 7.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.6793333341677985,
+      "median": 2,
+      "p95": 5.800000011920929,
+      "max": 7.199999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.23650000005960464,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.442833334108194,
+      "median": 1.800000011920929,
+      "p95": 5.599999964237213,
+      "max": 7
+     },
+     "gpu": null,
+     "snapshotFrames": 17,
+     "cpuSnapshotFrames": {
+      "n": 17,
+      "mean": 2.6999999985975376,
+      "median": 2.199999988079071,
+      "p95": 5.699999988079071,
+      "max": 5.699999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 583,
+      "mean": 2.678730704158698,
+      "median": 2,
+      "p95": 5.800000011920929,
+      "max": 7.199999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 17,
+      "mean": 0.29999999439015107,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 583,
+      "mean": 0.23464837072235029,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.11616666585206986,
+      "median": 0.10000002384185791,
+      "p95": 3.900000035762787,
+      "max": 5.5
+     },
+     "calls": 977,
+     "triangles": 2262453,
+     "capture": {
+      "drawCalls": 977,
+      "triangles": 2262453,
+      "materialSwitches": 77,
+      "layers": {
+       "mapDetails": {
+        "calls": 371,
+        "triangles": 20518,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 145.4474934548629,
+     "meanMs": 6.875333333333328,
+     "medianMs": 6.80000000000291,
+     "p95Ms": 7.700000000004366,
+     "maxMs": 9.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.685500000814597,
+      "median": 6.699999988079071,
+      "p95": 7.599999964237213,
+      "max": 9.099999964237213
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.29466666767994565,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.390833333134651,
+      "median": 6.399999976158142,
+      "p95": 7.199999988079071,
+      "max": 8.699999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 41,
+     "cpuSnapshotFrames": {
+      "n": 41,
+      "mean": 5.912195125731026,
+      "median": 5.900000035762787,
+      "p95": 6.5,
+      "max": 6.699999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 559,
+      "mean": 6.742218247466522,
+      "median": 6.699999988079071,
+      "p95": 7.599999964237213,
+      "max": 9.099999964237213
+     },
+     "tasksSnapshotFrames": {
+      "n": 41,
+      "mean": 0.35365853658536583,
+      "median": 0.30000001192092896,
+      "p95": 0.5999999642372131,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 559,
+      "mean": 0.29033989375307223,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1904999992251396,
+      "median": 0.10000002384185791,
+      "p95": 1.7000000476837158,
+      "max": 4.699999988079071
+     },
+     "calls": 1313,
+     "triangles": 7060819,
+     "capture": {
+      "drawCalls": 1313,
+      "triangles": 7060819,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 165,
+        "triangles": 22141,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 4.9,
+    "coresBusy": 0.8
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 5,
+   "build": "p2c",
+   "order": [
+    "main",
+    "p2c"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 154.43617924892536,
+     "meanMs": 6.475166666666667,
+     "medianMs": 6.399999999999636,
+     "p95Ms": 7.5,
+     "maxMs": 11.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.279333333075047,
+      "median": 6.299999952316284,
+      "p95": 7.299999952316284,
+      "max": 11
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2996666659911474,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.8999999761581421
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.979666667083899,
+      "median": 6,
+      "p95": 7,
+      "max": 10.599999964237213
+     },
+     "gpu": null,
+     "snapshotFrames": 38,
+     "cpuSnapshotFrames": {
+      "n": 38,
+      "mean": 5.913157899128763,
+      "median": 5.800000011920929,
+      "p95": 7.800000011920929,
+      "max": 8.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 562,
+      "mean": 6.304092526117678,
+      "median": 6.299999952316284,
+      "p95": 7.299999952316284,
+      "max": 11
+     },
+     "tasksSnapshotFrames": {
+      "n": 38,
+      "mean": 0.38421052223757696,
+      "median": 0.3999999761581421,
+      "p95": 0.5,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 562,
+      "mean": 0.2939501774904991,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.8999999761581421
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.19500000019868216,
+      "median": 0.19999998807907104,
+      "p95": 1.600000023841858,
+      "max": 3.9999999403953552
+     },
+     "calls": 2005,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2005,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 177.04859984065618,
+     "meanMs": 5.648166666666669,
+     "medianMs": 5.5,
+     "p95Ms": 7,
+     "maxMs": 13.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.45449999888738,
+      "median": 5.400000035762787,
+      "p95": 6.400000035762787,
+      "max": 11.300000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.31366666515668234,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.140833333730698,
+      "median": 5.100000023841858,
+      "p95": 6.100000023841858,
+      "max": 10.900000035762787
+     },
+     "gpu": null,
+     "snapshotFrames": 33,
+     "cpuSnapshotFrames": {
+      "n": 33,
+      "mean": 5.7151515212926,
+      "median": 5.5,
+      "p95": 7.299999952316284,
+      "max": 11.300000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 567,
+      "mean": 5.439329804461679,
+      "median": 5.399999976158142,
+      "p95": 6.400000035762787,
+      "max": 10.399999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 33,
+      "mean": 0.4000000032511624,
+      "median": 0.3999999761581421,
+      "p95": 0.6000000238418579,
+      "max": 0.800000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 567,
+      "mean": 0.30864197352155387,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1946666677792867,
+      "median": 0.19999998807907104,
+      "p95": 1.399999976158142,
+      "max": 4.599999964237213
+     },
+     "calls": 2004,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2004,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 271.83762232693044,
+     "meanMs": 3.6786666666666616,
+     "medianMs": 2.7000000000007276,
+     "p95Ms": 7.600000000002183,
+     "maxMs": 9.700000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.528666665752729,
+      "median": 2.600000023841858,
+      "p95": 7.5,
+      "max": 9.599999964237213
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3175000000993411,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.2111666656533875,
+      "median": 2.300000011920929,
+      "p95": 7.199999988079071,
+      "max": 9.299999952316284
+     },
+     "gpu": null,
+     "snapshotFrames": 22,
+     "cpuSnapshotFrames": {
+      "n": 22,
+      "mean": 3.59545453841036,
+      "median": 3,
+      "p95": 6.599999964237213,
+      "max": 6.699999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 578,
+      "mean": 3.5261245667934418,
+      "median": 2.600000023841858,
+      "p95": 7.5,
+      "max": 9.599999964237213
+     },
+     "tasksSnapshotFrames": {
+      "n": 22,
+      "mean": 0.4272727234797044,
+      "median": 0.5,
+      "p95": 0.6000000238418579,
+      "max": 0.7000000476837158
+     },
+     "tasksOtherFrames": {
+      "n": 578,
+      "mean": 0.3133217995554518,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15850000083446503,
+      "median": 0.19999998807907104,
+      "p95": 5.099999964237213,
+      "max": 8.400000035762787
+     },
+     "calls": 689,
+     "triangles": 3866707,
+     "capture": {
+      "drawCalls": 689,
+      "triangles": 3866707,
+      "materialSwitches": 119,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23890,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 341.8413855970835,
+     "meanMs": 2.9253333333333287,
+     "medianMs": 2.599999999998545,
+     "p95Ms": 5.099999999998545,
+     "maxMs": 7.599999999998545,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.782833334604899,
+      "median": 2.5,
+      "p95": 4.900000035762787,
+      "max": 7.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3165000006556511,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.466333333949248,
+      "median": 2.199999988079071,
+      "p95": 4.600000023841858,
+      "max": 7.199999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 18,
+     "cpuSnapshotFrames": {
+      "n": 18,
+      "mean": 2.8166666626930237,
+      "median": 2.699999988079071,
+      "p95": 4.300000011920929,
+      "max": 4.300000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 582,
+      "mean": 2.7817869430145445,
+      "median": 2.5,
+      "p95": 4.900000035762787,
+      "max": 7.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 18,
+      "mean": 0.37777777512868244,
+      "median": 0.3999999761581421,
+      "p95": 0.5999999642372131,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 582,
+      "mean": 0.31460481175442334,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14349999874830247,
+      "median": 0.10000002384185791,
+      "p95": 2.600000023841858,
+      "max": 5.299999952316284
+     },
+     "calls": 664,
+     "triangles": 2269665,
+     "capture": {
+      "drawCalls": 664,
+      "triangles": 2269665,
+      "materialSwitches": 81,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23990,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 155.19114375872962,
+     "meanMs": 6.443666666666662,
+     "medianMs": 6.400000000001455,
+     "p95Ms": 7.30000000000291,
+     "maxMs": 9.299999999995634,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.243333336611589,
+      "median": 6.200000047683716,
+      "p95": 7,
+      "max": 8.199999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.32100000192721684,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.922333334684372,
+      "median": 5.900000035762787,
+      "p95": 6.700000047683716,
+      "max": 7.800000011920929
+     },
+     "gpu": null,
+     "snapshotFrames": 38,
+     "cpuSnapshotFrames": {
+      "n": 38,
+      "mean": 5.531578951760342,
+      "median": 5.5,
+      "p95": 6.700000047683716,
+      "max": 7.100000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 562,
+      "mean": 6.29145907793605,
+      "median": 6.300000011920929,
+      "p95": 7,
+      "max": 8.199999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 38,
+      "mean": 0.3736842117811504,
+      "median": 0.30000001192092896,
+      "p95": 0.6000000238418579,
+      "max": 0.7000000476837158
+     },
+     "tasksOtherFrames": {
+      "n": 562,
+      "mean": 0.31743772439260926,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.19966666340827943,
+      "median": 0.10000008344650269,
+      "p95": 1.6999999284744263,
+      "max": 3.300000011920929
+     },
+     "calls": 1217,
+     "triangles": 7067276,
+     "capture": {
+      "drawCalls": 1217,
+      "triangles": 7067276,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 69,
+        "triangles": 28598,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 30.8,
+    "coresBusy": 4.9
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 6,
+   "build": "p2c",
+   "order": [
+    "p2c",
+    "main"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 151.63385478531168,
+     "meanMs": 6.5948333333333355,
+     "medianMs": 6.5,
+     "p95Ms": 7.899999999999636,
+     "maxMs": 10,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.390666667322318,
+      "median": 6.300000011920929,
+      "p95": 7.5,
+      "max": 9.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3210000005364418,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.9000000357627869
+     },
+     "render": {
+      "n": 600,
+      "mean": 6.069666666785876,
+      "median": 6,
+      "p95": 7.199999988079071,
+      "max": 9.100000023841858
+     },
+     "gpu": null,
+     "snapshotFrames": 39,
+     "cpuSnapshotFrames": {
+      "n": 39,
+      "mean": 6.028205131873106,
+      "median": 6,
+      "p95": 6.899999976158142,
+      "max": 6.900000035762787
+     },
+     "cpuOtherFrames": {
+      "n": 561,
+      "mean": 6.415864528075471,
+      "median": 6.399999976158142,
+      "p95": 7.5,
+      "max": 9.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 39,
+      "mean": 0.45128205495002943,
+      "median": 0.5,
+      "p95": 0.7000000476837158,
+      "max": 0.9000000357627869
+     },
+     "tasksOtherFrames": {
+      "n": 561,
+      "mean": 0.31194295932052396,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.9000000357627869
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.2049999993046125,
+      "median": 0.19999992847442627,
+      "p95": 1.7000000476837158,
+      "max": 3.099999964237213
+     },
+     "calls": 2005,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2005,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 188.23529411764707,
+     "meanMs": 5.3125,
+     "medianMs": 5.299999999999272,
+     "p95Ms": 6.599999999998545,
+     "maxMs": 8.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.121333333651225,
+      "median": 5.199999988079071,
+      "p95": 6,
+      "max": 8.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3386666664481163,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.782666667203109,
+      "median": 4.800000011920929,
+      "p95": 5.600000023841858,
+      "max": 8.199999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 31,
+     "cpuSnapshotFrames": {
+      "n": 31,
+      "mean": 5.277419357530532,
+      "median": 5.200000047683716,
+      "p95": 6.100000023841858,
+      "max": 6.100000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 569,
+      "mean": 5.11282952567186,
+      "median": 5.199999988079071,
+      "p95": 5.900000035762787,
+      "max": 8.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 31,
+      "mean": 0.36129031835063813,
+      "median": 0.30000001192092896,
+      "p95": 0.6000000238418579,
+      "max": 0.699999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 569,
+      "mean": 0.3374340949033392,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.18816666632890702,
+      "median": 0.19999998807907104,
+      "p95": 1.2999999523162842,
+      "max": 2.699999988079071
+     },
+     "calls": 2004,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2004,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 70,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 261.3240418118467,
+     "meanMs": 3.8266666666666667,
+     "medianMs": 2.7000000000007276,
+     "p95Ms": 8.400000000001455,
+     "maxMs": 9.700000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.6753333329161006,
+      "median": 2.599999964237213,
+      "p95": 8.199999988079071,
+      "max": 9.600000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3319999994834264,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.3433333334326742,
+      "median": 2.200000047683716,
+      "p95": 7.900000035762787,
+      "max": 9.399999976158142
+     },
+     "gpu": null,
+     "snapshotFrames": 22,
+     "cpuSnapshotFrames": {
+      "n": 22,
+      "mean": 3.8863636444915426,
+      "median": 2.700000047683716,
+      "p95": 7.699999988079071,
+      "max": 7.899999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 578,
+      "mean": 3.667301037319804,
+      "median": 2.599999964237213,
+      "p95": 8.299999952316284,
+      "max": 9.600000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 22,
+      "mean": 0.395454539494081,
+      "median": 0.3999999761581421,
+      "p95": 0.5999999642372131,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 578,
+      "mean": 0.32958477477713854,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15100000043710074,
+      "median": 0.19999998807907104,
+      "p95": 5.900000035762787,
+      "max": 7.100000083446503
+     },
+     "calls": 689,
+     "triangles": 3866707,
+     "capture": {
+      "drawCalls": 689,
+      "triangles": 3866707,
+      "materialSwitches": 119,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23890,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 332.1891263425969,
+     "meanMs": 3.0103333333333406,
+     "medianMs": 2.6999999999970896,
+     "p95Ms": 5.399999999994179,
+     "maxMs": 7.69999999999709,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 2.862999999324481,
+      "median": 2.5,
+      "p95": 5.200000047683716,
+      "max": 7.599999964237213
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.31899999926487604,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.544000000059605,
+      "median": 2.199999988079071,
+      "p95": 4.900000035762787,
+      "max": 7.399999976158142
+     },
+     "gpu": null,
+     "snapshotFrames": 18,
+     "cpuSnapshotFrames": {
+      "n": 18,
+      "mean": 2.894444445768992,
+      "median": 2.700000047683716,
+      "p95": 5.800000011920929,
+      "max": 5.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 582,
+      "mean": 2.8620274906715575,
+      "median": 2.5,
+      "p95": 5.200000047683716,
+      "max": 7.599999964237213
+     },
+     "tasksSnapshotFrames": {
+      "n": 18,
+      "mean": 0.37222221824857926,
+      "median": 0.3999999761581421,
+      "p95": 0.5999999642372131,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 582,
+      "mean": 0.3173539512550708,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14783333400885265,
+      "median": 0.19999998807907104,
+      "p95": 3,
+      "max": 5.899999916553497
+     },
+     "calls": 664,
+     "triangles": 2269665,
+     "capture": {
+      "drawCalls": 664,
+      "triangles": 2269665,
+      "materialSwitches": 81,
+      "layers": {
+       "mapDetails": {
+        "calls": 6,
+        "triangles": 23990,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 153.3703126198206,
+     "meanMs": 6.520166666666665,
+     "medianMs": 6.5,
+     "p95Ms": 7.5,
+     "maxMs": 9.900000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.304999997814496,
+      "median": 6.300000011920929,
+      "p95": 7.300000011920929,
+      "max": 9.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3334999977548917,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.9000000357627869
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.971500000059605,
+      "median": 6,
+      "p95": 7,
+      "max": 9.299999952316284
+     },
+     "gpu": null,
+     "snapshotFrames": 39,
+     "cpuSnapshotFrames": {
+      "n": 39,
+      "mean": 5.530769227406918,
+      "median": 5.400000035762787,
+      "p95": 6.800000011920929,
+      "max": 7.399999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 561,
+      "mean": 6.358823527308071,
+      "median": 6.399999976158142,
+      "p95": 7.300000011920929,
+      "max": 9.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 39,
+      "mean": 0.4358974358974359,
+      "median": 0.40000003576278687,
+      "p95": 0.699999988079071,
+      "max": 0.9000000357627869
+     },
+     "tasksOtherFrames": {
+      "n": 561,
+      "mean": 0.326381459274394,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.7999999523162842
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.21516666889190675,
+      "median": 0.10000008344650269,
+      "p95": 2,
+      "max": 6
+     },
+     "calls": 1269,
+     "triangles": 7071016,
+     "capture": {
+      "drawCalls": 1269,
+      "triangles": 7071016,
+      "materialSwitches": 378,
+      "layers": {
+       "mapDetails": {
+        "calls": 69,
+        "triangles": 28598,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 9.4,
+    "coresBusy": 1.5
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 6,
+   "build": "main",
+   "order": [
+    "p2c",
+    "main"
+   ],
+   "results": {
+    "night/overview": {
+     "fps": 161.8908855431439,
+     "meanMs": 6.177000000000001,
+     "medianMs": 6.199999999998909,
+     "p95Ms": 6.800000000001091,
+     "maxMs": 8,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.01349999944369,
+      "median": 6,
+      "p95": 6.600000023841858,
+      "max": 8
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2588333351413409,
+      "median": 0.2999999523162842,
+      "p95": 0.3999999761581421,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.754666664302349,
+      "median": 5.800000011920929,
+      "p95": 6.399999976158142,
+      "max": 7.699999988079071
+     },
+     "gpu": null,
+     "snapshotFrames": 37,
+     "cpuSnapshotFrames": {
+      "n": 37,
+      "mean": 5.38648648841961,
+      "median": 5.300000011920929,
+      "p95": 6.200000047683716,
+      "max": 6.399999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 563,
+      "mean": 6.05470692645593,
+      "median": 6.099999964237213,
+      "p95": 6.600000023841858,
+      "max": 8
+     },
+     "tasksSnapshotFrames": {
+      "n": 37,
+      "mean": 0.33513513610169693,
+      "median": 0.30000001192092896,
+      "p95": 0.6000000238418579,
+      "max": 0.699999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 563,
+      "mean": 0.2538188295720102,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.16316666722297668,
+      "median": 0.09999990463256836,
+      "p95": 1.600000023841858,
+      "max": 2.9999999403953552
+     },
+     "calls": 2910,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2910,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "day/overview": {
+     "fps": 193.25538699391265,
+     "meanMs": 5.174499999999995,
+     "medianMs": 5.100000000002183,
+     "p95Ms": 6.200000000000728,
+     "maxMs": 8.100000000002183,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.018333334128062,
+      "median": 5,
+      "p95": 5.699999988079071,
+      "max": 7.800000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2594999996821086,
+      "median": 0.2999999523162842,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.758833334445954,
+      "median": 4.700000047683716,
+      "p95": 5.400000035762787,
+      "max": 7.5
+     },
+     "gpu": null,
+     "snapshotFrames": 30,
+     "cpuSnapshotFrames": {
+      "n": 30,
+      "mean": 4.913333348433176,
+      "median": 4.800000011920929,
+      "p95": 5.699999988079071,
+      "max": 5.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 570,
+      "mean": 5.023859649164635,
+      "median": 5,
+      "p95": 5.699999988079071,
+      "max": 7.800000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 30,
+      "mean": 0.31666667262713116,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 570,
+      "mean": 0.2564912274218442,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15533333251873652,
+      "median": 0.10000002384185791,
+      "p95": 1.100000023841858,
+      "max": 1.9000000357627869
+     },
+     "calls": 2909,
+     "triangles": 10238362,
+     "capture": {
+      "drawCalls": 2909,
+      "triangles": 10238362,
+      "materialSwitches": 428,
+      "layers": {
+       "mapDetails": {
+        "calls": 975,
+        "triangles": 28648,
+        "materialSwitches": 25
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 10,
+        "triangles": 20,
+        "materialSwitches": 10
+       }
+      }
+     }
+    },
+    "night/airport": {
+     "fps": 237.3605506764776,
+     "meanMs": 4.212999999999999,
+     "medianMs": 3.7000000000007276,
+     "p95Ms": 7.899999999997817,
+     "maxMs": 11.700000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.042000000278155,
+      "median": 3.600000023841858,
+      "p95": 7.699999988079071,
+      "max": 10
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3353333337108294,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.7066666665673256,
+      "median": 3.299999952316284,
+      "p95": 7.5,
+      "max": 9.700000047683716
+     },
+     "gpu": null,
+     "snapshotFrames": 25,
+     "cpuSnapshotFrames": {
+      "n": 25,
+      "mean": 4.588000001907349,
+      "median": 4,
+      "p95": 8.800000011920929,
+      "max": 10
+     },
+     "cpuOtherFrames": {
+      "n": 575,
+      "mean": 4.018260869772538,
+      "median": 3.599999964237213,
+      "p95": 7.699999988079071,
+      "max": 9.900000035762787
+     },
+     "tasksSnapshotFrames": {
+      "n": 25,
+      "mean": 0.42799999952316287,
+      "median": 0.3999999761581421,
+      "p95": 0.699999988079071,
+      "max": 1.300000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 575,
+      "mean": 0.33130434824072796,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.17683333297570547,
+      "median": 0.19999998807907104,
+      "p95": 4.800000071525574,
+      "max": 7.5
+     },
+     "calls": 1226,
+     "triangles": 3862499,
+     "capture": {
+      "drawCalls": 1226,
+      "triangles": 3862499,
+      "materialSwitches": 119,
+      "layers": {
+       "mapDetails": {
+        "calls": 543,
+        "triangles": 19682,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/f13": {
+     "fps": 316.90698779908047,
+     "meanMs": 3.155500000000005,
+     "medianMs": 3.099999999998545,
+     "p95Ms": 3.900000000001455,
+     "maxMs": 5.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.0165000007549923,
+      "median": 3,
+      "p95": 3.400000035762787,
+      "max": 4.899999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3308333365122477,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.6856666642427443,
+      "median": 2.699999988079071,
+      "p95": 3.100000023841858,
+      "max": 4.599999964237213
+     },
+     "gpu": null,
+     "snapshotFrames": 19,
+     "cpuSnapshotFrames": {
+      "n": 19,
+      "mean": 3.0842105244335376,
+      "median": 3.100000023841858,
+      "p95": 3.800000011920929,
+      "max": 3.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 581,
+      "mean": 3.01428571512695,
+      "median": 3,
+      "p95": 3.400000035762787,
+      "max": 4.899999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 19,
+      "mean": 0.3526315877312108,
+      "median": 0.3999999761581421,
+      "p95": 0.6000000238418579,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 581,
+      "mean": 0.33012048492333157,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5999999642372131
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.13849999924500783,
+      "median": 0.10000002384185791,
+      "p95": 0.9000000357627869,
+      "max": 1.5
+     },
+     "calls": 1029,
+     "triangles": 2266193,
+     "capture": {
+      "drawCalls": 1029,
+      "triangles": 2266193,
+      "materialSwitches": 81,
+      "layers": {
+       "mapDetails": {
+        "calls": 371,
+        "triangles": 20518,
+        "materialSwitches": 5
+       },
+       "police": {
+        "calls": 0,
+        "triangles": 0,
+        "materialSwitches": 0
+       },
+       "labels": {
+        "calls": 1,
+        "triangles": 2,
+        "materialSwitches": 1
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 161.71634952293658,
+     "meanMs": 6.1836666666666735,
+     "medianMs": 6.19999999999709,
+     "p95Ms": 6.900000000001455,
+     "maxMs": 7.69999999999709,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.005166664024194,
+      "median": 6,
+      "p95": 6.699999988079071,
+      "max": 7.600000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3076666655143102,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.7999999523162842
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.697499998509884,
+      "median": 5.699999988079071,
+      "p95": 6.399999976158142,
+      "max": 7.200000047683716
+     },
+     "gpu": null,
+     "snapshotFrames": 36,
+     "cpuSnapshotFrames": {
+      "n": 36,
+      "mean": 5.344444440470801,
+      "median": 5.399999976158142,
+      "p95": 5.799999952316284,
+      "max": 6
+     },
+     "cpuOtherFrames": {
+      "n": 564,
+      "mean": 6.04734042297441,
+      "median": 6.099999964237213,
+      "p95": 6.699999988079071,
+      "max": 7.600000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 36,
+      "mean": 0.39166667064030963,
+      "median": 0.3999999761581421,
+      "p95": 0.6000000238418579,
+      "max": 0.7000000476837158
+     },
+     "tasksOtherFrames": {
+      "n": 564,
+      "mean": 0.3023049630594592,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.7999999523162842
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.17833333591620126,
+      "median": 0.10000002384185791,
+      "p95": 1.600000023841858,
+      "max": 3.599999964237213
+     },
+     "calls": 1313,
+     "triangles": 7060819,
+     "capture": {
+      "drawCalls": 1313,
+      "triangles": 7060819,
+      "materialSwitches": 374,
+      "layers": {
+       "mapDetails": {
+        "calls": 165,
+        "triangles": 22141,
+        "materialSwitches": 24
+       },
+       "police": {
+        "calls": 8,
+        "triangles": 575,
+        "materialSwitches": 8
+       },
+       "labels": {
+        "calls": 21,
+        "triangles": 42,
+        "materialSwitches": 21
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 25.8,
+    "coresBusy": 4.1
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  }
+ ],
+ "errors": []
+}

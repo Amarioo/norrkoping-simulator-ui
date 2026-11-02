@@ -15,8 +15,11 @@ import {
   Matrix4,
   RepeatWrapping,
   TextureLoader,
+  type BufferGeometry,
+  type Material,
   type Object3D,
 } from 'three';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { cityMap, LANDMARKS, pointInRing, type Point } from './mapModel';
 import { createPoliceSign } from './landmarks/police/sign';
 import { METRES_PER_UNIT, TOWER_MODEL } from './landmarks/police/spec';
@@ -117,11 +120,23 @@ export function createLandmarkDetails() {
     return m;
   };
   /**
+   * Static pieces that share a material, already in world space, as one mesh (one draw call).
+   * Performance P2c: the vertices are copied unchanged; only the number of meshes changes.
+   */
+  const merged = (geometries: BufferGeometry[], material: Material) => {
+    const geometry = track(mergeGeometries(geometries));
+    for (const g of geometries) g.dispose();
+    geometry.computeBoundingSphere();
+    return new Mesh(geometry, material);
+  };
+  /**
    * Small fittings along kilometre-long pavements (runway edge lights): instead of one height per
    * group, every vertex is laid on the terrain (legacy level `standsOn` = the ground). Bakes the
    * objects added since `start` into world space; the placement loop below leaves them alone.
+   * Performance P2c: the baked pieces are merged per material (230 edge lights → one mesh).
    */
   const drape = (start: number, standsOn: number) => {
+    const baked = new Map<Material, BufferGeometry[]>();
     for (const root of group.children.slice(start)) {
       if (root.userData.placed) continue;
       root.updateMatrixWorld(true);
@@ -130,22 +145,26 @@ export function createLandmarkDetails() {
         if (o instanceof Mesh) meshes.push(o);
       });
       for (const m of meshes) {
-        const geometry = track(m.geometry.clone().applyMatrix4(m.matrixWorld));
+        const geometry = m.geometry.clone().applyMatrix4(m.matrixWorld);
         const position = geometry.getAttribute('position');
         for (let i = 0; i < position.count; i++)
           position.setY(
             i,
             terrain.placeLegacy(position.getX(i), position.getZ(i), position.getY(i), standsOn),
           );
-        geometry.computeBoundingSphere();
-        const baked = new Mesh(geometry, m.material);
-        baked.receiveShadow = true;
-        baked.userData.placed = true;
-        group.add(baked);
+        const material = m.material as Material;
+        if (!baked.has(material)) baked.set(material, []);
+        baked.get(material)!.push(geometry);
       }
       root.userData.removed = true;
     }
     for (const root of group.children.filter((c) => c.userData.removed)) group.remove(root);
+    for (const [material, geometries] of baked) {
+      const mesh = merged(geometries, material);
+      mesh.receiveShadow = true;
+      mesh.userData.placed = true;
+      group.add(mesh);
+    }
   };
   const onBuilding = (start: number, name: string) =>
     supported(
@@ -336,6 +355,10 @@ export function createLandmarkDetails() {
   // Runways and taxiways use their real mapped orientation and widths. Their pavement (taxiway top
   // 0.0725, runway surface 0.09 in the legacy scene) is the measured ground.
   start = group.children.length;
+  // Performance P2c: all taxiway pavement is one mesh and all centre lines another (were one mesh
+  // per segment); the rectangles are the same.
+  const taxiPavement: BufferGeometry[] = [],
+    taxiLines: BufferGeometry[] = [];
   for (const taxi of cityMap.airways.filter((a) => a.kind === 'taxiway'))
     for (let i = 1; i < taxi.points.length; i++) {
       const a = taxi.points[i - 1],
@@ -344,8 +367,18 @@ export function createLandmarkDetails() {
       if (length < 0.005) continue;
       const angle = Math.atan2(b[0] - a[0], b[1] - a[1]),
         [cx, cz] = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
-      pavement(groundRectangle(cx, cz, angle, taxi.width, length), mat('#545a5a'));
-      pavement(groundRectangle(cx, cz, angle, 0.009, length), mat('#bca85a'));
+      taxiPavement.push(groundRectangle(cx, cz, angle, taxi.width, length));
+      taxiLines.push(groundRectangle(cx, cz, angle, 0.009, length));
+    }
+  for (const [geometries, color] of [
+    [taxiPavement, '#545a5a'],
+    [taxiLines, '#bca85a'],
+  ] as const)
+    if (geometries.length) {
+      const m = merged(geometries, mat(color));
+      m.receiveShadow = true;
+      m.userData.placed = true;
+      group.add(m);
     }
   // Taxiway pavement, centre lines and runway surface lie on the DTM, above the apron land cover.
   layeredSurface(mat('#545a5a'), LAYER_RANK.asphalt);

@@ -2,6 +2,26 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Performance Phase P2c — map details: airfield pavements and edge lights merged (2026-11-02) — tested locally and approved by the user (2026-11-02), committed on local `main`, not pushed
+
+[Full report](perf-p2c/README.md). Worked directly on local `main` (= `origin/main` `8bc891e`; no branch,
+as agreed 2026-11-02). **Committed on local `main`; not pushed.** Backend unchanged.
+- **User's local test:** blotchy taxiway pavement over the runway ends. Close-ups of all 8 runway ends
+  (16 views) are identical on `main` and P2c (0 pixels over 8/255): an older bug, not caused by P2c; the
+  user chose to commit P2c first and fix it next (P2c gap 5).
+
+- **Change:** `src/lib/mapLandmarks.ts` — 678 taxiway rectangles → 2 meshes, 230 runway edge lights → 1
+  mesh (same vertices, `mergeGeometries`). Map details 982 → 77 meshes; same 29 223 triangles, same
+  world-space fingerprint per material look. Five of six screenshots byte-identical files to `main`, the
+  sixth differs by 1/255 noise only.
+- **Measured (paired vs `main`, 6 rounds):** draw calls overview 2 910 → 2 005, Kungsängen 1 226 → 689.
+  CPU −0.65 ms Kungsängen, −0.45 F13, −0.05/−0.30 overview night/day; **frame time unchanged** (±0.4 ms):
+  GPU time ≈ frame time in these views since P2b (GPU-timer run, 4 rounds). P1's −1.5…−2 ms estimate was
+  for the CPU-bound overview before P2a/P2b.
+- **Checks:** type check 0; build OK, byte-reproducible, no hook in `dist/`; Vitest 516/517 (known
+  `police.test.ts` CRLF); Playwright 24/24 twice.
+- **Local only:** `.claude/launch.json` (`p2c-*`, ports 5301–5302), `work/perf-p2c/`.
+
 ## Performance Phase P2b — ground, roads, water and OSM buildings: one mesh per 1 km cell (2026-11-02) — approved (user, 2026-11-02), committed and pushed, merged into `main`
 
 [Full report](perf-p2b/README.md). Branch `claude/perf-p2b` from `main` = `ac25d7e`. **Committed and pushed:** `f57e149`; `main` fast-forwarded to

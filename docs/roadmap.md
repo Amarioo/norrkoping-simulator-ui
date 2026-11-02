@@ -229,6 +229,10 @@ Mål (satt av dig 2026-10-26): minst 60 fps utan hack i helskärm på din dator 
     i översikten nått. Skärmbildsjämförelserna i belysningstesterna tål nu 1/255-brus (godkänt 2026-11-02);
     hela testsviten 24/24 två gånger.*
   - **P2c Kartdetaljer (flygfältet):** slå ihop per material, instansiera kantljusen. Uppskattat 1,5–2 ms.
+    *Gjord 2026-11-02 direkt på main, testad lokalt och committad (ej pushad), [rapport](perf-p2c/README.md):
+    kartdetaljer 982 → 77 bitar, samma trianglar, bilden oförändrad; ritanrop i översikten 2 910 → 2 005,
+    processortid −0,5 … −0,75 ms vid flygplatserna, men bildtiden oförändrad: sedan P2b begränsar
+    grafikkortet dessa vyer.*
   - **P2d Trafik:** färre meshar per fordonstyp, gallring utanför bild, ladda bara upp det som rört sig.
     Uppskattat 1,5–2,5 ms i översikten, 1–2 ms i gatuvyer.
   - **P2e Vid behov:** ljus-patchens uniform-listor i en gemensam buffert (UBO), frysta matriser för
