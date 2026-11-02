@@ -2,9 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Performance Phase P2b — ground, roads, water and OSM buildings: one mesh per 1 km cell (2026-11-02) — waiting for the user's review, not committed
+## Performance Phase P2b — ground, roads, water and OSM buildings: one mesh per 1 km cell (2026-11-02) — approved (user, 2026-11-02), committed and pushed, merged into `main`
 
-[Full report](perf-p2b/README.md). Branch `claude/perf-p2b` from `main` = `ac25d7e`. **Nothing committed.**
+[Full report](perf-p2b/README.md). Branch `claude/perf-p2b` from `main` = `ac25d7e`. **Committed and pushed:** `f57e149`; `main` fast-forwarded to
+this branch on `origin` (user, 2026-11-02).
 Backend unchanged.
 
 - **Change:** `src/lib/cityMesh.ts` — the worker layers are cut into 1 km cells (`CITY_CELL = 40`), one mesh

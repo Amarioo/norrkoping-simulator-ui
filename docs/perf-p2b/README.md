@@ -1,6 +1,7 @@
 # Performance Phase P2b — ground, roads, water and OSM buildings: one mesh per 1 km cell (2026-11-02)
 
-Branch `claude/perf-p2b` from `main` = `ac25d7e`. **Not committed** (waiting for the user's review).
+Branch `claude/perf-p2b` from `main` = `ac25d7e`. **Approved (user, 2026-11-02), committed (`f57e149`) and pushed;
+`main` fast-forwarded to this branch on `origin` (user, 2026-11-02).**
 Includes a test fix the user approved on 2026-11-02 (screenshot comparisons tolerate 1/255 noise; see
 "Tests" below).
 Backend unchanged. Second targeted step of P2 (roadmap track P), in the order P1 proposed.
