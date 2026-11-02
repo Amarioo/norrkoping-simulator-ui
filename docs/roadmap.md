@@ -223,6 +223,11 @@ Mål (satt av dig 2026-10-26): minst 60 fps utan hack i helskärm på din dator 
     långsammare dator, ≈ 31 %), gatuvyer −0,3 … −2,3 ms.*
   - **P2b Mark, vägar, vatten och OSM-byggnader:** slå ihop bitarna (≤ 3 000 trianglar) inom varje 500 m-ruta,
     mät sedan 1 km-rutor. Uppskattad vinst 5–8 ms.
+    *Gjord 2026-11-02 på grenen `claude/perf-p2b`, väntar på granskning, ej committad, [rapport](perf-p2b/README.md):
+    en mesh per lager och 1 km-ruta (5 537 → 1 143); samma trianglar; översikten −5,7 ms natt / −7,1 ms dag CPU
+    (12,0 → 6,0 ms), kartan klar ≈ 0,7–0,9 s snabbare; gatuvyer +0,2–0,7 ms grafikkortstid. Målet p95 ≤ 16,7 ms
+    i översikten nått. Skärmbildsjämförelserna i belysningstesterna tål nu 1/255-brus (godkänt 2026-11-02);
+    hela testsviten 24/24 två gånger.*
   - **P2c Kartdetaljer (flygfältet):** slå ihop per material, instansiera kantljusen. Uppskattat 1,5–2 ms.
   - **P2d Trafik:** färre meshar per fordonstyp, gallring utanför bild, ladda bara upp det som rört sig.
     Uppskattat 1,5–2,5 ms i översikten, 1–2 ms i gatuvyer.

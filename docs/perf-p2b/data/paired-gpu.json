@@ -1,0 +1,5089 @@
+{
+ "note": "Phase P2b paired timing: 600 frames per view and build, builds in rotated order each round; fullscreen 2560x1440, traffic on, hook builds, Edge headless with vsync and the frame-rate limit off, Europe/Stockholm 2026-10-21, stadium off. A round waits for background CPU <= 18 %. GPU timer on.",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "cores": 16,
+  "memoryGB": 66,
+  "platform": "win32 10.0.26300"
+ },
+ "builds": [
+  "main",
+  "c20",
+  "c40",
+  "c80"
+ ],
+ "views": [
+  "night/kungsgatan",
+  "night/city",
+  "night/norraPromenaden",
+  "night/overview"
+ ],
+ "frames": 600,
+ "runs": [
+  {
+   "round": 1,
+   "build": "main",
+   "order": [
+    "main",
+    "c20",
+    "c40",
+    "c80"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 304.30592889384786,
+     "meanMs": 3.286166666666668,
+     "medianMs": 2.5,
+     "p95Ms": 6.199999999998909,
+     "maxMs": 7.899999999999636,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.1678333322207135,
+      "median": 2.399999976158142,
+      "p95": 6.100000023841858,
+      "max": 7.300000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24066666632890701,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.9271666658918063,
+      "median": 2.100000023841858,
+      "p95": 5.899999976158142,
+      "max": 7
+     },
+     "gpu": {
+      "n": 590,
+      "mean": 3.2583258576271175,
+      "median": 3.241856,
+      "p95": 3.417344,
+      "max": 3.74368
+     },
+     "snapshotFrames": 20,
+     "cpuSnapshotFrames": {
+      "n": 20,
+      "mean": 2.7099999994039536,
+      "median": 2.5,
+      "p95": 3.100000023841858,
+      "max": 5.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 580,
+      "mean": 3.1836206885247393,
+      "median": 2.399999976158142,
+      "p95": 6.100000023841858,
+      "max": 7.300000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 20,
+      "mean": 0.3000000029802322,
+      "median": 0.30000001192092896,
+      "p95": 0.3999999761581421,
+      "max": 0.3999999761581421
+     },
+     "tasksOtherFrames": {
+      "n": 580,
+      "mean": 0.23862068920299925,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1240000010530154,
+      "median": 0.10000002384185791,
+      "p95": 3.899999976158142,
+      "max": 4.599999964237213
+     },
+     "calls": 631,
+     "triangles": 1740139,
+     "capture": {
+      "drawCalls": 631,
+      "triangles": 1740139,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 59,
+        "triangles": 153416,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 94,
+        "triangles": 253857,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 5,
+        "triangles": 1977,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 43,
+        "triangles": 43888,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 167.86034019695623,
+     "meanMs": 5.95733333333333,
+     "medianMs": 5.700000000000728,
+     "p95Ms": 7.599999999998545,
+     "maxMs": 14.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.771666665971279,
+      "median": 5.599999964237213,
+      "p95": 7,
+      "max": 12.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2608333338300387,
+      "median": 0.2999999523162842,
+      "p95": 0.3999999761581421,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.510833332141241,
+      "median": 5.300000011920929,
+      "p95": 6.699999988079071,
+      "max": 11.800000011920929
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.815580853333335,
+      "median": 5.7168,
+      "p95": 6.43296,
+      "max": 8.303456
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 6.20000000170299,
+      "median": 5.899999976158142,
+      "p95": 7.299999952316284,
+      "max": 12.5
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.745132742518872,
+      "median": 5.5,
+      "p95": 6.900000035762787,
+      "max": 10.899999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.3514285734721592,
+      "median": 0.30000001192092896,
+      "p95": 0.6000000238418579,
+      "max": 0.699999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.25522123933893387,
+      "median": 0.2999999523162842,
+      "p95": 0.3999999761581421,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.18800000071525574,
+      "median": 0.19999998807907104,
+      "p95": 1.100000023841858,
+      "max": 2.700000047683716
+     },
+     "calls": 3179,
+     "triangles": 5992106,
+     "capture": {
+      "drawCalls": 3179,
+      "triangles": 5992106,
+      "materialSwitches": 374,
+      "layers": {
+       "terrain": {
+        "calls": 788,
+        "triangles": 1842628,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 947,
+        "triangles": 2255317,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 103,
+        "triangles": 23355,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 496,
+        "triangles": 269531,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 221.25525481230184,
+     "meanMs": 4.519666666666666,
+     "medianMs": 4.399999999997817,
+     "p95Ms": 5.5,
+     "maxMs": 7.19999999999709,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.383833334644636,
+      "median": 4.300000011920929,
+      "p95": 5,
+      "max": 5.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2516666660706202,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.8999999761581421
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.1321666685740155,
+      "median": 4.099999964237213,
+      "p95": 4.700000047683716,
+      "max": 5.5
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 4.263938453333333,
+      "median": 4.2688,
+      "p95": 4.586304,
+      "max": 5.053984
+     },
+     "snapshotFrames": 27,
+     "cpuSnapshotFrames": {
+      "n": 27,
+      "mean": 4.648148150355728,
+      "median": 4.599999964237213,
+      "p95": 5.200000047683716,
+      "max": 5.699999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 573,
+      "mean": 4.3713787098205525,
+      "median": 4.300000011920929,
+      "p95": 5,
+      "max": 5.600000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 27,
+      "mean": 0.30370370767734667,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 573,
+      "mean": 0.24921465887449173,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.8999999761581421
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.13599999874830246,
+      "median": 0.10000002384185791,
+      "p95": 0.800000011920929,
+      "max": 1.800000011920929
+     },
+     "calls": 2594,
+     "triangles": 4215221,
+     "capture": {
+      "drawCalls": 2594,
+      "triangles": 4215221,
+      "materialSwitches": 211,
+      "layers": {
+       "terrain": {
+        "calls": 610,
+        "triangles": 1316807,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 611,
+        "triangles": 1247576,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 85,
+        "triangles": 37997,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 395,
+        "triangles": 155229,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 83.61553576654538,
+     "meanMs": 11.959500000000007,
+     "medianMs": 11.5,
+     "p95Ms": 14.400000000001455,
+     "maxMs": 30,
+     "over16_7": 0.016666666666666666,
+     "cpu": {
+      "n": 600,
+      "mean": 11.667833334108193,
+      "median": 11.300000011920929,
+      "p95": 13.599999964237213,
+      "max": 26.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.3316666668653488,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 11.336166667242844,
+      "median": 11,
+      "p95": 13.199999988079071,
+      "max": 26
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 9.573860853333336,
+      "median": 9.378176,
+      "p95": 10.876288,
+      "max": 19.077472
+     },
+     "snapshotFrames": 70,
+     "cpuSnapshotFrames": {
+      "n": 70,
+      "mean": 12.33571428486279,
+      "median": 12,
+      "p95": 13.900000035762787,
+      "max": 23.5
+     },
+     "cpuOtherFrames": {
+      "n": 530,
+      "mean": 11.579622642499096,
+      "median": 11.200000047683716,
+      "p95": 13.5,
+      "max": 26.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 70,
+      "mean": 0.40428571360451837,
+      "median": 0.3999999761581421,
+      "p95": 0.699999988079071,
+      "max": 0.800000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 530,
+      "mean": 0.3220754720130057,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.28916666587193807,
+      "median": 0.2999999523162842,
+      "p95": 1.800000011920929,
+      "max": 6.100000023841858
+     },
+     "calls": 7211,
+     "triangles": 10244288,
+     "capture": {
+      "drawCalls": 7211,
+      "triangles": 10244288,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 1992,
+        "triangles": 4202668,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 1877,
+        "triangles": 3725824,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 310,
+        "triangles": 135820,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 1246,
+        "triangles": 408632,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 6.7,
+    "coresBusy": 1.1
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 1,
+   "build": "c20",
+   "order": [
+    "main",
+    "c20",
+    "c40",
+    "c80"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 271.21095692265976,
+     "meanMs": 3.6871666666666654,
+     "medianMs": 2.2000000000007276,
+     "p95Ms": 8.600000000000364,
+     "maxMs": 9.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.5491666654745737,
+      "median": 2.100000023841858,
+      "p95": 8.400000035762787,
+      "max": 9.400000035762787
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.23966666787862778,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.309499997595946,
+      "median": 1.899999976158142,
+      "p95": 8.199999988079071,
+      "max": 9.100000023841858
+     },
+     "gpu": {
+      "n": 590,
+      "mean": 3.655234874576269,
+      "median": 3.659264,
+      "p95": 3.85296,
+      "max": 3.981824
+     },
+     "snapshotFrames": 22,
+     "cpuSnapshotFrames": {
+      "n": 22,
+      "mean": 2.7818181731484155,
+      "median": 2.300000011920929,
+      "p95": 7.599999964237213,
+      "max": 7.599999964237213
+     },
+     "cpuOtherFrames": {
+      "n": 578,
+      "mean": 3.57837370151467,
+      "median": 2.100000023841858,
+      "p95": 8.5,
+      "max": 9.400000035762787
+     },
+     "tasksSnapshotFrames": {
+      "n": 22,
+      "mean": 0.30454544858499005,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 578,
+      "mean": 0.23719723331887005,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.13816666781902312,
+      "median": 0.10000002384185791,
+      "p95": 6.5,
+      "max": 8
+     },
+     "calls": 516,
+     "triangles": 1812673,
+     "capture": {
+      "drawCalls": 516,
+      "triangles": 1812673,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 16,
+        "triangles": 159640,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 26,
+        "triangles": 320167,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 5,
+        "triangles": 1977,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 39,
+        "triangles": 43888,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 168.7668766876689,
+     "meanMs": 5.925333333333328,
+     "medianMs": 5.900000000001455,
+     "p95Ms": 6.599999999998545,
+     "maxMs": 9.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.760499999225139,
+      "median": 5.800000011920929,
+      "p95": 6.400000035762787,
+      "max": 9.199999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24733333379030228,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.8999999761581421
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.513166665434837,
+      "median": 5.599999964237213,
+      "p95": 6.199999988079071,
+      "max": 8.800000011920929
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.851980426666672,
+      "median": 5.865376,
+      "p95": 5.972,
+      "max": 6.263232
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 5.154285715307508,
+      "median": 5,
+      "p95": 6.600000023841858,
+      "max": 7.399999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.798053096458975,
+      "median": 5.800000011920929,
+      "p95": 6.400000035762787,
+      "max": 9.199999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.3142857125827244,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.2431858412987363,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.8999999761581421
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.16483333418766657,
+      "median": 0.09999996423721313,
+      "p95": 1.800000011920929,
+      "max": 4.800000011920929
+     },
+     "calls": 2075,
+     "triangles": 6067328,
+     "capture": {
+      "drawCalls": 2118,
+      "triangles": 6070684,
+      "materialSwitches": 378,
+      "layers": {
+       "terrain": {
+        "calls": 287,
+        "triangles": 1901507,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 349,
+        "triangles": 2270495,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 102,
+        "triangles": 23355,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 492,
+        "triangles": 270696,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 209.84890878567427,
+     "meanMs": 4.765333333333334,
+     "medianMs": 4.200000000000728,
+     "p95Ms": 7.19999999999709,
+     "maxMs": 8.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.6071666671832405,
+      "median": 4,
+      "p95": 7,
+      "max": 8.099999964237213
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2373333332935969,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.369833333889644,
+      "median": 3.699999988079071,
+      "p95": 6.800000011920929,
+      "max": 7.899999976158142
+     },
+     "gpu": {
+      "n": 598,
+      "mean": 4.708430715719062,
+      "median": 4.616128,
+      "p95": 5.217888,
+      "max": 5.375872
+     },
+     "snapshotFrames": 29,
+     "cpuSnapshotFrames": {
+      "n": 29,
+      "mean": 4.262068964284042,
+      "median": 4,
+      "p95": 5.699999988079071,
+      "max": 5.900000035762787
+     },
+     "cpuOtherFrames": {
+      "n": 571,
+      "mean": 4.624693520745546,
+      "median": 3.900000035762787,
+      "p95": 7.099999964237213,
+      "max": 8.099999964237213
+     },
+     "tasksSnapshotFrames": {
+      "n": 29,
+      "mean": 0.28620688668612776,
+      "median": 0.30000001192092896,
+      "p95": 0.3999999761581421,
+      "max": 0.3999999761581421
+     },
+     "tasksOtherFrames": {
+      "n": 571,
+      "mean": 0.23485113881306557,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15749999950329463,
+      "median": 0.30000001192092896,
+      "p95": 3.5,
+      "max": 4.699999988079071
+     },
+     "calls": 1935,
+     "triangles": 4275798,
+     "capture": {
+      "drawCalls": 1935,
+      "triangles": 4275798,
+      "materialSwitches": 211,
+      "layers": {
+       "terrain": {
+        "calls": 261,
+        "triangles": 1351334,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 309,
+        "triangles": 1273626,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 85,
+        "triangles": 37997,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 387,
+        "triangles": 155229,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 119.79395439843474,
+     "meanMs": 8.347666666666663,
+     "medianMs": 8.200000000000728,
+     "p95Ms": 10.099999999998545,
+     "maxMs": 12.299999999995634,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 8.118166668315729,
+      "median": 8.099999964237213,
+      "p95": 9.400000035762787,
+      "max": 11.300000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.28033333232005436,
+      "median": 0.2999999523162842,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 7.837833335995674,
+      "median": 7.800000011920929,
+      "p95": 9.100000023841858,
+      "max": 11
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 6.952739840000002,
+      "median": 6.882432,
+      "p95": 7.460896,
+      "max": 9.130688
+     },
+     "snapshotFrames": 49,
+     "cpuSnapshotFrames": {
+      "n": 49,
+      "mean": 8.567346939018794,
+      "median": 8.400000035762787,
+      "p95": 10,
+      "max": 10.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 551,
+      "mean": 8.078221417382062,
+      "median": 8,
+      "p95": 9.399999976158142,
+      "max": 11.300000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 49,
+      "mean": 0.3387755131234928,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 551,
+      "mean": 0.27513611478944006,
+      "median": 0.2999999523162842,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.23066666503747305,
+      "median": 0.19999998807907104,
+      "p95": 1.5999999642372131,
+      "max": 3.1999999284744263
+     },
+     "calls": 5190,
+     "triangles": 10250826,
+     "capture": {
+      "drawCalls": 5190,
+      "triangles": 10250826,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 880,
+        "triangles": 4209145,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 979,
+        "triangles": 3725885,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 307,
+        "triangles": 135820,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 1238,
+        "triangles": 408632,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 5.3,
+    "coresBusy": 0.9
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 1,
+   "build": "c40",
+   "order": [
+    "main",
+    "c20",
+    "c40",
+    "c80"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 242.96416278598906,
+     "meanMs": 4.115833333333334,
+     "medianMs": 2,
+     "p95Ms": 11.099999999998545,
+     "maxMs": 12.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.9798333329955735,
+      "median": 1.9000000357627869,
+      "p95": 10.900000035762787,
+      "max": 12
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2541666656732559,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.7256666673223178,
+      "median": 1.699999988079071,
+      "p95": 10.700000047683716,
+      "max": 11.799999952316284
+     },
+     "gpu": {
+      "n": 589,
+      "mean": 4.083437147707979,
+      "median": 4.091936,
+      "p95": 4.248672,
+      "max": 4.376288
+     },
+     "snapshotFrames": 24,
+     "cpuSnapshotFrames": {
+      "n": 24,
+      "mean": 3.583333325882753,
+      "median": 2.199999988079071,
+      "p95": 10.199999988079071,
+      "max": 10.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 576,
+      "mean": 3.9963541666252747,
+      "median": 1.9000000357627869,
+      "p95": 10.900000035762787,
+      "max": 12
+     },
+     "tasksSnapshotFrames": {
+      "n": 24,
+      "mean": 0.34166665623585385,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 576,
+      "mean": 0.2505208327331477,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1346666669845581,
+      "median": 0.19999992847442627,
+      "p95": 9.200000047683716,
+      "max": 10.600000023841858
+     },
+     "calls": 492,
+     "triangles": 2526565,
+     "capture": {
+      "drawCalls": 492,
+      "triangles": 2526565,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 13,
+        "triangles": 456052,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 18,
+        "triangles": 679066,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 4,
+        "triangles": 4181,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 27,
+        "triangles": 100265,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 166.1175558570281,
+     "meanMs": 6.019833333333335,
+     "medianMs": 6,
+     "p95Ms": 6.599999999998545,
+     "maxMs": 7.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.8686666662494344,
+      "median": 5.899999976158142,
+      "p95": 6.400000035762787,
+      "max": 7.100000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2453333326180776,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 1.199999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.623333333631357,
+      "median": 5.699999988079071,
+      "p95": 6.199999988079071,
+      "max": 6.900000035762787
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.946451893333337,
+      "median": 5.960128,
+      "p95": 6.060256,
+      "max": 6.196768
+     },
+     "snapshotFrames": 36,
+     "cpuSnapshotFrames": {
+      "n": 36,
+      "mean": 5.216666668653488,
+      "median": 5.300000011920929,
+      "p95": 5.700000047683716,
+      "max": 6
+     },
+     "cpuOtherFrames": {
+      "n": 564,
+      "mean": 5.91028368737258,
+      "median": 5.900000035762787,
+      "p95": 6.400000035762787,
+      "max": 7.100000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 36,
+      "mean": 0.29444444676240283,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 564,
+      "mean": 0.24219858065141853,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 1.199999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15166666706403095,
+      "median": 0.09999996423721313,
+      "p95": 1.300000011920929,
+      "max": 2.600000023841858
+     },
+     "calls": 1313,
+     "triangles": 7060819,
+     "capture": {
+      "drawCalls": 1313,
+      "triangles": 7060819,
+      "materialSwitches": 374,
+      "layers": {
+       "terrain": {
+        "calls": 115,
+        "triangles": 2414979,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 129,
+        "triangles": 2688315,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 46,
+        "triangles": 34951,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 178,
+        "triangles": 321299,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 200.7561816174256,
+     "meanMs": 4.981166666666668,
+     "medianMs": 4.900000000001455,
+     "p95Ms": 7.700000000000728,
+     "maxMs": 9.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.832333332300186,
+      "median": 4.199999988079071,
+      "p95": 7.5,
+      "max": 9.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24216666489839553,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7999999523162842
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.590166667401791,
+      "median": 3.899999976158142,
+      "p95": 7.300000011920929,
+      "max": 9.399999976158142
+     },
+     "gpu": {
+      "n": 598,
+      "mean": 4.926779986622077,
+      "median": 4.919968,
+      "p95": 5.470688,
+      "max": 5.664864
+     },
+     "snapshotFrames": 30,
+     "cpuSnapshotFrames": {
+      "n": 30,
+      "mean": 4.173333328962326,
+      "median": 3.300000011920929,
+      "p95": 6.800000011920929,
+      "max": 6.899999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 570,
+      "mean": 4.867017543002179,
+      "median": 4.900000035762787,
+      "p95": 7.599999964237213,
+      "max": 9.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 30,
+      "mean": 0.3099999904632568,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 570,
+      "mean": 0.238596489868666,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.7999999523162842
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15483333438634872,
+      "median": 0.5,
+      "p95": 4.899999976158142,
+      "max": 7
+     },
+     "calls": 1318,
+     "triangles": 4951081,
+     "capture": {
+      "drawCalls": 1318,
+      "triangles": 4951081,
+      "materialSwitches": 215,
+      "layers": {
+       "terrain": {
+        "calls": 92,
+        "triangles": 1639881,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 103,
+        "triangles": 1606777,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 37,
+        "triangles": 45092,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 141,
+        "triangles": 197979,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 166.69908037673997,
+     "meanMs": 5.998833333333332,
+     "medianMs": 6,
+     "p95Ms": 6.700000000000728,
+     "maxMs": 8.900000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.835499999920527,
+      "median": 5.899999976158142,
+      "p95": 6.5,
+      "max": 8.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2476666662096977,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.5878333337108295,
+      "median": 5.600000023841858,
+      "p95": 6.300000011920929,
+      "max": 8.300000011920929
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.930046933333333,
+      "median": 5.948672,
+      "p95": 6.024768,
+      "max": 6.221312
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 5.225714288439069,
+      "median": 5.100000023841858,
+      "p95": 6,
+      "max": 7.399999976158142
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.873274336029998,
+      "median": 5.899999976158142,
+      "p95": 6.5,
+      "max": 8.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.2999999965940203,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.24442477848677507,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1631666667262713,
+      "median": 0.09999996423721313,
+      "p95": 1.600000023841858,
+      "max": 3.1000000834465027
+     },
+     "calls": 2910,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2910,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 280,
+        "triangles": 4231779,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 289,
+        "triangles": 3737515,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 123,
+        "triangles": 138643,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 423,
+        "triangles": 410395,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 9,
+    "coresBusy": 1.4
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 1,
+   "build": "c80",
+   "order": [
+    "main",
+    "c20",
+    "c40",
+    "c80"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 239.942413820683,
+     "meanMs": 4.167666666666667,
+     "medianMs": 1.7000000000007276,
+     "p95Ms": 11.899999999999636,
+     "maxMs": 13,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.041666667461396,
+      "median": 1.699999988079071,
+      "p95": 11.800000011920929,
+      "max": 12.900000035762787
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2325000003973643,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.809166667064031,
+      "median": 1.4000000357627869,
+      "p95": 11.599999964237213,
+      "max": 12.699999988079071
+     },
+     "gpu": {
+      "n": 590,
+      "mean": 4.135258088135594,
+      "median": 4.141824,
+      "p95": 4.340192,
+      "max": 4.444608
+     },
+     "snapshotFrames": 24,
+     "cpuSnapshotFrames": {
+      "n": 24,
+      "mean": 2.1833333298563957,
+      "median": 1.800000011920929,
+      "p95": 2.199999988079071,
+      "max": 10.5
+     },
+     "cpuOtherFrames": {
+      "n": 576,
+      "mean": 4.119097223194937,
+      "median": 1.699999988079071,
+      "p95": 11.800000011920929,
+      "max": 12.900000035762787
+     },
+     "tasksSnapshotFrames": {
+      "n": 24,
+      "mean": 0.2874999965230624,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 576,
+      "mean": 0.2302083338921269,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1249999992052714,
+      "median": 0.10000002384185791,
+      "p95": 10.300000011920929,
+      "max": 11.900000095367432
+     },
+     "calls": 485,
+     "triangles": 4107569,
+     "capture": {
+      "drawCalls": 485,
+      "triangles": 4107569,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 13,
+        "triangles": 1111930,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 14,
+        "triangles": 1523536,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 7,
+        "triangles": 9681,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 21,
+        "triangles": 175421,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 163.9344262295082,
+     "meanMs": 6.1,
+     "medianMs": 6.099999999998545,
+     "p95Ms": 6.799999999999272,
+     "maxMs": 11,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.9266666675607365,
+      "median": 6,
+      "p95": 6.5,
+      "max": 8.099999964237213
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2701666667064031,
+      "median": 0.20000004768371582,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.656500000854333,
+      "median": 5.699999988079071,
+      "p95": 6.300000011920929,
+      "max": 7.5
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 6.0215099733333375,
+      "median": 6.021056,
+      "p95": 6.204544,
+      "max": 6.78864
+     },
+     "snapshotFrames": 36,
+     "cpuSnapshotFrames": {
+      "n": 36,
+      "mean": 5.30555555721124,
+      "median": 5.199999988079071,
+      "p95": 6,
+      "max": 8.099999964237213
+     },
+     "cpuOtherFrames": {
+      "n": 564,
+      "mean": 5.966312057583044,
+      "median": 6,
+      "p95": 6.5,
+      "max": 7.199999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 36,
+      "mean": 0.34166667030917275,
+      "median": 0.30000001192092896,
+      "p95": 0.5999999642372131,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 564,
+      "mean": 0.26560283668920504,
+      "median": 0.20000004768371582,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.17349999904632568,
+      "median": 0.09999996423721313,
+      "p95": 1.4999999403953552,
+      "max": 3.5
+     },
+     "calls": 1039,
+     "triangles": 8473903,
+     "capture": {
+      "drawCalls": 1039,
+      "triangles": 8473903,
+      "materialSwitches": 374,
+      "layers": {
+       "terrain": {
+        "calls": 49,
+        "triangles": 3284696,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 50,
+        "triangles": 3151190,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 23,
+        "triangles": 75639,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 72,
+        "triangles": 361103,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 209.34370747705952,
+     "meanMs": 4.776833333333331,
+     "medianMs": 4.69999999999709,
+     "p95Ms": 7.599999999998545,
+     "maxMs": 7.900000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.637000000377496,
+      "median": 4.5,
+      "p95": 7.5,
+      "max": 7.899999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.23866666714350382,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.3983333332339924,
+      "median": 4.300000011920929,
+      "p95": 7.199999988079071,
+      "max": 7.699999988079071
+     },
+     "gpu": {
+      "n": 597,
+      "mean": 4.717925949748745,
+      "median": 4.715744,
+      "p95": 4.912768,
+      "max": 5.127904
+     },
+     "snapshotFrames": 28,
+     "cpuSnapshotFrames": {
+      "n": 28,
+      "mean": 3.1821428558656146,
+      "median": 2.599999964237213,
+      "p95": 6.199999988079071,
+      "max": 6.5
+     },
+     "cpuOtherFrames": {
+      "n": 572,
+      "mean": 4.70821678367528,
+      "median": 5.5,
+      "p95": 7.5,
+      "max": 7.899999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 28,
+      "mean": 0.30357142431395395,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 572,
+      "mean": 0.23548951119809716,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1399999996026357,
+      "median": 1.5,
+      "p95": 5.300000011920929,
+      "max": 6.399999976158142
+     },
+     "calls": 1013,
+     "triangles": 5552681,
+     "capture": {
+      "drawCalls": 1013,
+      "triangles": 5552681,
+      "materialSwitches": 211,
+      "layers": {
+       "terrain": {
+        "calls": 29,
+        "triangles": 2000143,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 30,
+        "triangles": 1811677,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 13,
+        "triangles": 46047,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 48,
+        "triangles": 237202,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 170.86715079026058,
+     "meanMs": 5.8525,
+     "medianMs": 5.899999999997817,
+     "p95Ms": 6.5,
+     "maxMs": 7.100000000002183,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.708000000814597,
+      "median": 5.799999952316284,
+      "p95": 6.200000047683716,
+      "max": 6.900000035762787
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24533333172400792,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.462666669090589,
+      "median": 5.5,
+      "p95": 6,
+      "max": 6.700000047683716
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.778465813333329,
+      "median": 5.801344,
+      "p95": 5.89952,
+      "max": 6.096064
+     },
+     "snapshotFrames": 34,
+     "cpuSnapshotFrames": {
+      "n": 34,
+      "mean": 5.067647060927222,
+      "median": 5.100000023841858,
+      "p95": 5.600000023841858,
+      "max": 5.900000035762787
+     },
+     "cpuOtherFrames": {
+      "n": 566,
+      "mean": 5.746466431832566,
+      "median": 5.800000011920929,
+      "p95": 6.300000011920929,
+      "max": 6.900000035762787
+     },
+     "tasksSnapshotFrames": {
+      "n": 34,
+      "mean": 0.2970588172183317,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 566,
+      "mean": 0.24222614708300613,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14483333249886832,
+      "median": 0.09999996423721313,
+      "p95": 1.4000000357627869,
+      "max": 2.800000011920929
+     },
+     "calls": 2154,
+     "triangles": 10332791,
+     "capture": {
+      "drawCalls": 2154,
+      "triangles": 10332791,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 91,
+        "triangles": 4260155,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 90,
+        "triangles": 3747020,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 43,
+        "triangles": 142711,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 135,
+        "triangles": 411177,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 6.7,
+    "coresBusy": 1.1
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 2,
+   "build": "c20",
+   "order": [
+    "c20",
+    "main",
+    "c80",
+    "c40"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 289.421639091216,
+     "meanMs": 3.4551666666666674,
+     "medianMs": 2.399999999999636,
+     "p95Ms": 7.5,
+     "maxMs": 9,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.32849999944369,
+      "median": 2.300000011920929,
+      "p95": 7.300000011920929,
+      "max": 9
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2419999991854032,
+      "median": 0.19999998807907104,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.0865000002582867,
+      "median": 2.099999964237213,
+      "p95": 7.100000023841858,
+      "max": 8.700000047683716
+     },
+     "gpu": {
+      "n": 588,
+      "mean": 3.41490144217687,
+      "median": 3.397952,
+      "p95": 3.740352,
+      "max": 4.288288
+     },
+     "snapshotFrames": 20,
+     "cpuSnapshotFrames": {
+      "n": 20,
+      "mean": 3.29499998986721,
+      "median": 2.599999964237213,
+      "p95": 7,
+      "max": 7.099999964237213
+     },
+     "cpuOtherFrames": {
+      "n": 580,
+      "mean": 3.3296551721877066,
+      "median": 2.300000011920929,
+      "p95": 7.399999976158142,
+      "max": 9
+     },
+     "tasksSnapshotFrames": {
+      "n": 20,
+      "mean": 0.3499999940395355,
+      "median": 0.3999999761581421,
+      "p95": 0.5,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 580,
+      "mean": 0.23827586143181242,
+      "median": 0.19999998807907104,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1260000005364418,
+      "median": 0.10000002384185791,
+      "p95": 5.199999928474426,
+      "max": 7.100000083446503
+     },
+     "calls": 516,
+     "triangles": 1812673,
+     "capture": {
+      "drawCalls": 516,
+      "triangles": 1812673,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 16,
+        "triangles": 159640,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 26,
+        "triangles": 320167,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 5,
+        "triangles": 1977,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 39,
+        "triangles": 43888,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 170.18862572684725,
+     "meanMs": 5.8758333333333335,
+     "medianMs": 5.899999999997817,
+     "p95Ms": 6.600000000002183,
+     "maxMs": 11.099999999998545,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.708166667123636,
+      "median": 5.699999988079071,
+      "p95": 6.399999976158142,
+      "max": 8.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2485000005364418,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.459666666587194,
+      "median": 5.5,
+      "p95": 6.100000023841858,
+      "max": 8.199999988079071
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.7968426133333315,
+      "median": 5.790592,
+      "p95": 5.974272,
+      "max": 6.694656
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 5.214285715988704,
+      "median": 5.100000023841858,
+      "p95": 5.599999964237213,
+      "max": 8.699999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.7387610623266845,
+      "median": 5.799999952316284,
+      "p95": 6.399999976158142,
+      "max": 8.399999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.3114285741533552,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.24460177031238522,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1671666661898295,
+      "median": 0.10000002384185791,
+      "p95": 1.5,
+      "max": 2.6000000834465027
+     },
+     "calls": 2127,
+     "triangles": 6071068,
+     "capture": {
+      "drawCalls": 2127,
+      "triangles": 6071068,
+      "materialSwitches": 378,
+      "layers": {
+       "terrain": {
+        "calls": 287,
+        "triangles": 1901507,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 349,
+        "triangles": 2270495,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 102,
+        "triangles": 23355,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 492,
+        "triangles": 270696,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 232.80176929344637,
+     "meanMs": 4.295500000000005,
+     "medianMs": 4,
+     "p95Ms": 6,
+     "maxMs": 8,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.1523333338896435,
+      "median": 3.899999976158142,
+      "p95": 5.899999976158142,
+      "max": 7
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24200000236431757,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.910333331525326,
+      "median": 3.600000023841858,
+      "p95": 5.599999964237213,
+      "max": 6.800000011920929
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 4.197474559999999,
+      "median": 4.154496,
+      "p95": 4.664032,
+      "max": 4.756128
+     },
+     "snapshotFrames": 25,
+     "cpuSnapshotFrames": {
+      "n": 25,
+      "mean": 4.232000000476837,
+      "median": 4.099999964237213,
+      "p95": 5.700000047683716,
+      "max": 6.200000047683716
+     },
+     "cpuOtherFrames": {
+      "n": 575,
+      "mean": 4.148869565777157,
+      "median": 3.899999976158142,
+      "p95": 5.899999976158142,
+      "max": 7
+     },
+     "tasksSnapshotFrames": {
+      "n": 25,
+      "mean": 0.3080000019073486,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 575,
+      "mean": 0.2391304371667945,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14416666607062023,
+      "median": 0.19999998807907104,
+      "p95": 2.099999964237213,
+      "max": 3.100000023841858
+     },
+     "calls": 1987,
+     "triangles": 4279538,
+     "capture": {
+      "drawCalls": 1987,
+      "triangles": 4279538,
+      "materialSwitches": 215,
+      "layers": {
+       "terrain": {
+        "calls": 261,
+        "triangles": 1351334,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 309,
+        "triangles": 1273626,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 85,
+        "triangles": 37997,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 387,
+        "triangles": 155229,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 114.78859766596526,
+     "meanMs": 8.71166666666666,
+     "medianMs": 8.5,
+     "p95Ms": 11.099999999998545,
+     "maxMs": 15.700000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 8.477833334505558,
+      "median": 8.300000011920929,
+      "p95": 10.399999976158142,
+      "max": 15.400000035762787
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.29483333220084507,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 8.183000002304713,
+      "median": 8,
+      "p95": 10.099999964237213,
+      "max": 15.200000047683716
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 6.957504480000005,
+      "median": 6.776608,
+      "p95": 7.822016,
+      "max": 12.829568
+     },
+     "snapshotFrames": 51,
+     "cpuSnapshotFrames": {
+      "n": 51,
+      "mean": 8.699999999766256,
+      "median": 8.5,
+      "p95": 10.5,
+      "max": 12.199999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 549,
+      "mean": 8.457194901120685,
+      "median": 8.299999952316284,
+      "p95": 10.399999976158142,
+      "max": 15.400000035762787
+     },
+     "tasksSnapshotFrames": {
+      "n": 51,
+      "mean": 0.36862745588900997,
+      "median": 0.3999999761581421,
+      "p95": 0.6000000238418579,
+      "max": 0.699999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 549,
+      "mean": 0.2879781403828188,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.2298333322008451,
+      "median": 0.19999998807907104,
+      "p95": 1.4999999403953552,
+      "max": 4.599999964237213
+     },
+     "calls": 5199,
+     "triangles": 10251210,
+     "capture": {
+      "drawCalls": 5199,
+      "triangles": 10251210,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 880,
+        "triangles": 4209145,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 979,
+        "triangles": 3725885,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 307,
+        "triangles": 135820,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 1238,
+        "triangles": 408632,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 13.9,
+    "coresBusy": 2.2
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 2,
+   "build": "main",
+   "order": [
+    "c20",
+    "main",
+    "c80",
+    "c40"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 317.4267273304411,
+     "meanMs": 3.1503333333333345,
+     "medianMs": 2.5,
+     "p95Ms": 5.5,
+     "maxMs": 7.299999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.0286666667461395,
+      "median": 2.5,
+      "p95": 5.300000011920929,
+      "max": 7.100000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2398333328962326,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 2.7888333338499067,
+      "median": 2.199999988079071,
+      "p95": 5.099999964237213,
+      "max": 6.900000035762787
+     },
+     "gpu": {
+      "n": 590,
+      "mean": 3.1233231186440698,
+      "median": 3.123776,
+      "p95": 3.279648,
+      "max": 3.5704
+     },
+     "snapshotFrames": 19,
+     "cpuSnapshotFrames": {
+      "n": 19,
+      "mean": 2.8210526359708687,
+      "median": 2.600000023841858,
+      "p95": 4.5,
+      "max": 4.5
+     },
+     "cpuOtherFrames": {
+      "n": 581,
+      "mean": 3.0354561100933517,
+      "median": 2.400000035762787,
+      "p95": 5.300000011920929,
+      "max": 7.100000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 19,
+      "mean": 0.30000000250966924,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 581,
+      "mean": 0.2378657481756555,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.12199999988079072,
+      "median": 0.10000002384185791,
+      "p95": 3.099999964237213,
+      "max": 4.800000011920929
+     },
+     "calls": 631,
+     "triangles": 1740139,
+     "capture": {
+      "drawCalls": 631,
+      "triangles": 1740139,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 59,
+        "triangles": 153416,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 94,
+        "triangles": 253857,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 5,
+        "triangles": 1977,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 43,
+        "triangles": 43888,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 174.76915906906302,
+     "meanMs": 5.721833333333331,
+     "medianMs": 5.5,
+     "p95Ms": 6.900000000001455,
+     "maxMs": 9.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.554333331882954,
+      "median": 5.400000035762787,
+      "p95": 6.300000011920929,
+      "max": 7.400000035762787
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.25350000033775966,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.5999999642372131
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.300833331545194,
+      "median": 5.199999988079071,
+      "p95": 6.099999964237213,
+      "max": 7.100000023841858
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.641023039999999,
+      "median": 5.604832,
+      "p95": 6.09376,
+      "max": 6.482272
+     },
+     "snapshotFrames": 34,
+     "cpuSnapshotFrames": {
+      "n": 34,
+      "mean": 5.876470585079754,
+      "median": 5.800000011920929,
+      "p95": 6.799999952316284,
+      "max": 7.400000035762787
+     },
+     "cpuOtherFrames": {
+      "n": 566,
+      "mean": 5.534982330807527,
+      "median": 5.400000035762787,
+      "p95": 6.300000011920929,
+      "max": 7.399999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 34,
+      "mean": 0.3235294100116281,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 566,
+      "mean": 0.24929328668243894,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.5999999642372131
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.16750000149011612,
+      "median": 0.19999992847442627,
+      "p95": 0.8999999761581421,
+      "max": 1.5999999642372131
+     },
+     "calls": 3179,
+     "triangles": 5992106,
+     "capture": {
+      "drawCalls": 3179,
+      "triangles": 5992106,
+      "materialSwitches": 374,
+      "layers": {
+       "terrain": {
+        "calls": 788,
+        "triangles": 1842628,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 947,
+        "triangles": 2255317,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 103,
+        "triangles": 23355,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 496,
+        "triangles": 269531,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 203.76974019358127,
+     "meanMs": 4.9075,
+     "medianMs": 4.700000000000728,
+     "p95Ms": 6,
+     "maxMs": 11.100000000002183,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.7586666684349375,
+      "median": 4.600000023841858,
+      "p95": 5.5,
+      "max": 8.900000035762787
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24983333498239518,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.508833333452543,
+      "median": 4.399999976158142,
+      "p95": 5.199999988079071,
+      "max": 8.100000023841858
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 4.723203893333332,
+      "median": 4.69408,
+      "p95": 5.095584,
+      "max": 6.905408
+     },
+     "snapshotFrames": 29,
+     "cpuSnapshotFrames": {
+      "n": 29,
+      "mean": 5.086206908883719,
+      "median": 4.900000035762787,
+      "p95": 6,
+      "max": 8.900000035762787
+     },
+     "cpuOtherFrames": {
+      "n": 571,
+      "mean": 4.742031524874492,
+      "median": 4.600000023841858,
+      "p95": 5.400000035762787,
+      "max": 7.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 29,
+      "mean": 0.3206896555834803,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 571,
+      "mean": 0.2462346777189425,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1488333315650622,
+      "median": 0.10000002384185791,
+      "p95": 0.9000000357627869,
+      "max": 3.800000011920929
+     },
+     "calls": 2646,
+     "triangles": 4218961,
+     "capture": {
+      "drawCalls": 2646,
+      "triangles": 4218961,
+      "materialSwitches": 215,
+      "layers": {
+       "terrain": {
+        "calls": 610,
+        "triangles": 1316807,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 611,
+        "triangles": 1247576,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 85,
+        "triangles": 37997,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 395,
+        "triangles": 155229,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 86.12398983736924,
+     "meanMs": 11.611166666666662,
+     "medianMs": 11.30000000000291,
+     "p95Ms": 13.400000000001455,
+     "maxMs": 29,
+     "over16_7": 0.005,
+     "cpu": {
+      "n": 600,
+      "mean": 11.338333333233992,
+      "median": 11.199999988079071,
+      "p95": 12.800000011920929,
+      "max": 16.69999998807907
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2990000013510386,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.9000000357627869
+     },
+     "render": {
+      "n": 600,
+      "mean": 11.039333331882954,
+      "median": 10.800000011920929,
+      "p95": 12.5,
+      "max": 15.799999952316284
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 9.071107680000008,
+      "median": 8.941792,
+      "p95": 10.177504,
+      "max": 12.624736
+     },
+     "snapshotFrames": 69,
+     "cpuSnapshotFrames": {
+      "n": 69,
+      "mean": 11.860869564008022,
+      "median": 11.599999964237213,
+      "p95": 14,
+      "max": 16.69999998807907
+     },
+     "cpuOtherFrames": {
+      "n": 531,
+      "mean": 11.270433145054316,
+      "median": 11.099999964237213,
+      "p95": 12.699999988079071,
+      "max": 15.300000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 69,
+      "mean": 0.35797101691149286,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.9000000357627869
+     },
+     "tasksOtherFrames": {
+      "n": 531,
+      "mean": 0.2913371010239739,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.2728333334128062,
+      "median": 0.2999999523162842,
+      "p95": 1.5,
+      "max": 4.5
+     },
+     "calls": 7220,
+     "triangles": 10244672,
+     "capture": {
+      "drawCalls": 7220,
+      "triangles": 10244672,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 1992,
+        "triangles": 4202668,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 1877,
+        "triangles": 3725824,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 310,
+        "triangles": 135820,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 1246,
+        "triangles": 408632,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 5.9,
+    "coresBusy": 1
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 2,
+   "build": "c80",
+   "order": [
+    "c20",
+    "main",
+    "c80",
+    "c40"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 244.32951907806319,
+     "meanMs": 4.092833333333335,
+     "medianMs": 1.8000000000010914,
+     "p95Ms": 11.5,
+     "maxMs": 12.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.965666666328907,
+      "median": 1.7000000476837158,
+      "p95": 11.5,
+      "max": 12.100000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2386666652560234,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.7270000010728834,
+      "median": 1.5,
+      "p95": 11.199999988079071,
+      "max": 11.899999976158142
+     },
+     "gpu": {
+      "n": 590,
+      "mean": 4.058499796610173,
+      "median": 4.064736,
+      "p95": 4.266304,
+      "max": 4.447552
+     },
+     "snapshotFrames": 24,
+     "cpuSnapshotFrames": {
+      "n": 24,
+      "mean": 2.5333333387970924,
+      "median": 1.9000000357627869,
+      "p95": 8.800000011920929,
+      "max": 9.699999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 576,
+      "mean": 4.025347221642733,
+      "median": 1.7000000476837158,
+      "p95": 11.5,
+      "max": 12.100000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 24,
+      "mean": 0.30416666716337204,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 576,
+      "mean": 0.23593749850988388,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.12516666700442633,
+      "median": 0.10000008344650269,
+      "p95": 9.800000011920929,
+      "max": 10.500000059604645
+     },
+     "calls": 485,
+     "triangles": 4107569,
+     "capture": {
+      "drawCalls": 485,
+      "triangles": 4107569,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 13,
+        "triangles": 1111930,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 14,
+        "triangles": 1523536,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 7,
+        "triangles": 9681,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 21,
+        "triangles": 175421,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 161.60745549061343,
+     "meanMs": 6.187833333333328,
+     "medianMs": 6.200000000000728,
+     "p95Ms": 6.700000000000728,
+     "maxMs": 7.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 6.033333333730698,
+      "median": 6.099999964237213,
+      "p95": 6.5,
+      "max": 7.100000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.239333333671093,
+      "median": 0.19999998807907104,
+      "p95": 0.3999999761581421,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.794000000059604,
+      "median": 5.800000011920929,
+      "p95": 6.299999952316284,
+      "max": 6.900000035762787
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 6.114022453333335,
+      "median": 6.111648,
+      "p95": 6.231776,
+      "max": 6.399424
+     },
+     "snapshotFrames": 37,
+     "cpuSnapshotFrames": {
+      "n": 37,
+      "mean": 5.37567567986411,
+      "median": 5.400000035762787,
+      "p95": 5.900000035762787,
+      "max": 6.200000047683716
+     },
+     "cpuOtherFrames": {
+      "n": 563,
+      "mean": 6.076554174215713,
+      "median": 6.099999964237213,
+      "p95": 6.5,
+      "max": 7.100000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 37,
+      "mean": 0.2864864903527337,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 563,
+      "mean": 0.23623445836519474,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15616666634877524,
+      "median": 0.09999996423721313,
+      "p95": 1.2999999523162842,
+      "max": 3.200000047683716
+     },
+     "calls": 1039,
+     "triangles": 8473903,
+     "capture": {
+      "drawCalls": 1039,
+      "triangles": 8473903,
+      "materialSwitches": 374,
+      "layers": {
+       "terrain": {
+        "calls": 49,
+        "triangles": 3284696,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 50,
+        "triangles": 3151190,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 23,
+        "triangles": 75639,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 72,
+        "triangles": 361103,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 216.42679363705233,
+     "meanMs": 4.620499999999999,
+     "medianMs": 4.900000000001455,
+     "p95Ms": 7.100000000002183,
+     "maxMs": 8.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.484833333790302,
+      "median": 5,
+      "p95": 7,
+      "max": 7.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.234666668176651,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.250166665613651,
+      "median": 4.699999988079071,
+      "p95": 6.799999952316284,
+      "max": 7.5
+     },
+     "gpu": {
+      "n": 598,
+      "mean": 4.565671759197323,
+      "median": 4.571968,
+      "p95": 4.73696,
+      "max": 4.847424
+     },
+     "snapshotFrames": 27,
+     "cpuSnapshotFrames": {
+      "n": 27,
+      "mean": 4.281481482364513,
+      "median": 5.200000047683716,
+      "p95": 6.5,
+      "max": 6.699999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 573,
+      "mean": 4.494415358203036,
+      "median": 3.200000047683716,
+      "p95": 7,
+      "max": 7.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 27,
+      "mean": 0.28888888712282534,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 573,
+      "mean": 0.23211169450903021,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.13633333285649618,
+      "median": 2.5,
+      "p95": 4.699999988079071,
+      "max": 5.300000071525574
+     },
+     "calls": 1065,
+     "triangles": 5556421,
+     "capture": {
+      "drawCalls": 1065,
+      "triangles": 5556421,
+      "materialSwitches": 215,
+      "layers": {
+       "terrain": {
+        "calls": 29,
+        "triangles": 2000143,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 30,
+        "triangles": 1811677,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 13,
+        "triangles": 46047,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 48,
+        "triangles": 237202,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 169.1618032648227,
+     "meanMs": 5.911500000000003,
+     "medianMs": 5.900000000001455,
+     "p95Ms": 6.5,
+     "maxMs": 9.599999999998545,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.758666667342186,
+      "median": 5.800000011920929,
+      "p95": 6.300000011920929,
+      "max": 9.300000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2455000020066897,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 1
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.513166665335496,
+      "median": 5.5,
+      "p95": 6.099999964237213,
+      "max": 9
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.842104426666665,
+      "median": 5.858176,
+      "p95": 5.943392,
+      "max": 6.285408
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 4.9457142846924915,
+      "median": 5,
+      "p95": 5.599999964237213,
+      "max": 5.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.809026549453229,
+      "median": 5.800000011920929,
+      "p95": 6.300000011920929,
+      "max": 9.300000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.30000000510896957,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 1
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.2421238956198228,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1529999993244807,
+      "median": 0.09999996423721313,
+      "p95": 1.600000023841858,
+      "max": 4
+     },
+     "calls": 2154,
+     "triangles": 10332791,
+     "capture": {
+      "drawCalls": 2154,
+      "triangles": 10332791,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 91,
+        "triangles": 4260155,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 90,
+        "triangles": 3747020,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 43,
+        "triangles": 142711,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 135,
+        "triangles": 411177,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 2.7,
+    "coresBusy": 0.4
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 2,
+   "build": "c40",
+   "order": [
+    "c20",
+    "main",
+    "c80",
+    "c40"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 259.12329950334697,
+     "meanMs": 3.859166666666667,
+     "medianMs": 1.8999999999996362,
+     "p95Ms": 10.600000000000364,
+     "maxMs": 12.199999999998909,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.72399999966224,
+      "median": 1.800000011920929,
+      "p95": 10.5,
+      "max": 11.399999976158142
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2321666657924652,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.491833333869775,
+      "median": 1.5,
+      "p95": 10.300000011920929,
+      "max": 11.299999952316284
+     },
+     "gpu": {
+      "n": 590,
+      "mean": 3.8296608000000023,
+      "median": 3.837312,
+      "p95": 4.086432,
+      "max": 4.198656
+     },
+     "snapshotFrames": 23,
+     "cpuSnapshotFrames": {
+      "n": 23,
+      "mean": 2.66086956469909,
+      "median": 1.899999976158142,
+      "p95": 8.800000011920929,
+      "max": 10.5
+     },
+     "cpuOtherFrames": {
+      "n": 577,
+      "mean": 3.766377815960598,
+      "median": 1.7999999523162842,
+      "p95": 10.5,
+      "max": 11.399999976158142
+     },
+     "tasksSnapshotFrames": {
+      "n": 23,
+      "mean": 0.29999999896339746,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 577,
+      "mean": 0.22946273743383186,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.12966666698455812,
+      "median": 0.10000002384185791,
+      "p95": 8.900000035762787,
+      "max": 10.200000047683716
+     },
+     "calls": 492,
+     "triangles": 2526565,
+     "capture": {
+      "drawCalls": 492,
+      "triangles": 2526565,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 13,
+        "triangles": 456052,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 18,
+        "triangles": 679066,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 4,
+        "triangles": 4181,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 27,
+        "triangles": 100265,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 164.095831965868,
+     "meanMs": 6.094000000000002,
+     "medianMs": 6.099999999998545,
+     "p95Ms": 6.600000000002183,
+     "maxMs": 7.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.936333333949248,
+      "median": 6,
+      "p95": 6.400000035762787,
+      "max": 7
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2413333327571551,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.695000001192093,
+      "median": 5.700000047683716,
+      "p95": 6.199999988079071,
+      "max": 6.699999988079071
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 6.0172780800000005,
+      "median": 6.030016,
+      "p95": 6.121792,
+      "max": 6.396864
+     },
+     "snapshotFrames": 36,
+     "cpuSnapshotFrames": {
+      "n": 36,
+      "mean": 5.208333331677649,
+      "median": 5.199999988079071,
+      "p95": 5.700000047683716,
+      "max": 5.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 564,
+      "mean": 5.9828014192006265,
+      "median": 6,
+      "p95": 6.5,
+      "max": 7
+     },
+     "tasksSnapshotFrames": {
+      "n": 36,
+      "mean": 0.2916666683223512,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 564,
+      "mean": 0.23812056665724896,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15499999940395356,
+      "median": 0.09999996423721313,
+      "p95": 1.5,
+      "max": 2.700000047683716
+     },
+     "calls": 1313,
+     "triangles": 7060819,
+     "capture": {
+      "drawCalls": 1313,
+      "triangles": 7060819,
+      "materialSwitches": 374,
+      "layers": {
+       "terrain": {
+        "calls": 115,
+        "triangles": 2414979,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 129,
+        "triangles": 2688315,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 46,
+        "triangles": 34951,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 178,
+        "triangles": 321299,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 212.93963161443727,
+     "meanMs": 4.6961666666666675,
+     "medianMs": 4.700000000000728,
+     "p95Ms": 7,
+     "maxMs": 7.600000000002183,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.545999998251597,
+      "median": 4,
+      "p95": 6.899999976158142,
+      "max": 7.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2436666656533877,
+      "median": 0.19999998807907104,
+      "p95": 0.3999999761581421,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.302333332598209,
+      "median": 3.699999988079071,
+      "p95": 6.699999988079071,
+      "max": 7.299999952316284
+     },
+     "gpu": {
+      "n": 598,
+      "mean": 4.642410113712372,
+      "median": 4.657504,
+      "p95": 4.808288,
+      "max": 4.957216
+     },
+     "snapshotFrames": 28,
+     "cpuSnapshotFrames": {
+      "n": 28,
+      "mean": 3.610714282308306,
+      "median": 3,
+      "p95": 5.699999988079071,
+      "max": 6.200000047683716
+     },
+     "cpuOtherFrames": {
+      "n": 572,
+      "mean": 4.591783215115954,
+      "median": 4.699999988079071,
+      "p95": 6.899999976158142,
+      "max": 7.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 28,
+      "mean": 0.3071428601230894,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 572,
+      "mean": 0.24055943935067503,
+      "median": 0.19999998807907104,
+      "p95": 0.3999999761581421,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15000000168879826,
+      "median": 1.100000023841858,
+      "p95": 4.399999976158142,
+      "max": 5.399999976158142
+     },
+     "calls": 1318,
+     "triangles": 4951081,
+     "capture": {
+      "drawCalls": 1318,
+      "triangles": 4951081,
+      "materialSwitches": 215,
+      "layers": {
+       "terrain": {
+        "calls": 92,
+        "triangles": 1639881,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 103,
+        "triangles": 1606777,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 37,
+        "triangles": 45092,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 141,
+        "triangles": 197979,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 168.65302451090628,
+     "meanMs": 5.929333333333331,
+     "medianMs": 5.900000000001455,
+     "p95Ms": 6.599999999998545,
+     "maxMs": 12,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.772666666905085,
+      "median": 5.800000011920929,
+      "p95": 6.400000035762787,
+      "max": 11.900000035762787
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2531666665275892,
+      "median": 0.2999999523162842,
+      "p95": 0.30000001192092896,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.519500000377496,
+      "median": 5.5,
+      "p95": 6.199999988079071,
+      "max": 11.400000035762787
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.863725120000003,
+      "median": 5.875488,
+      "p95": 5.956224,
+      "max": 6.11456
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 5.040000004427774,
+      "median": 5,
+      "p95": 5.5,
+      "max": 5.800000011920929
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.818053097324034,
+      "median": 5.800000011920929,
+      "p95": 6.400000035762787,
+      "max": 11.900000035762787
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.2885714326586042,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.2509734509265528,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15833333313465117,
+      "median": 0.10000002384185791,
+      "p95": 1.699999988079071,
+      "max": 4.300000011920929
+     },
+     "calls": 2910,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2910,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 280,
+        "triangles": 4231779,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 289,
+        "triangles": 3737515,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 123,
+        "triangles": 138643,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 423,
+        "triangles": 410395,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 4.5,
+    "coresBusy": 0.7
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 3,
+   "build": "c40",
+   "order": [
+    "c40",
+    "c80",
+    "main",
+    "c20"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 260.3149811271639,
+     "meanMs": 3.8414999999999995,
+     "medianMs": 2,
+     "p95Ms": 9.899999999999636,
+     "maxMs": 10.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.7053333338101706,
+      "median": 1.9000000357627869,
+      "p95": 9.700000047683716,
+      "max": 10.300000011920929
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.23733333388964334,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.467999999920527,
+      "median": 1.699999988079071,
+      "p95": 9.5,
+      "max": 10.100000023841858
+     },
+     "gpu": {
+      "n": 590,
+      "mean": 3.8103550915254174,
+      "median": 3.823328,
+      "p95": 3.966592,
+      "max": 4.337184
+     },
+     "snapshotFrames": 23,
+     "cpuSnapshotFrames": {
+      "n": 23,
+      "mean": 3.2826086982436804,
+      "median": 2.100000023841858,
+      "p95": 8.5,
+      "max": 9.199999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 577,
+      "mean": 3.722183709231365,
+      "median": 1.9000000357627869,
+      "p95": 9.799999952316284,
+      "max": 10.300000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 23,
+      "mean": 0.3217391216236612,
+      "median": 0.30000001192092896,
+      "p95": 0.3999999761581421,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 577,
+      "mean": 0.2339688050891539,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.13583333283662796,
+      "median": 0.10000008344650269,
+      "p95": 8,
+      "max": 8.899999976158142
+     },
+     "calls": 492,
+     "triangles": 2526565,
+     "capture": {
+      "drawCalls": 492,
+      "triangles": 2526565,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 13,
+        "triangles": 456052,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 18,
+        "triangles": 679066,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 4,
+        "triangles": 4181,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 27,
+        "triangles": 100265,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 166.4909262445197,
+     "meanMs": 6.006333333333332,
+     "medianMs": 6,
+     "p95Ms": 6.5,
+     "maxMs": 7.30000000000291,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.85766666640838,
+      "median": 5.899999976158142,
+      "p95": 6.300000011920929,
+      "max": 7
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24616666704416276,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 0.800000011920929
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.611499999364217,
+      "median": 5.699999988079071,
+      "p95": 6.100000023841858,
+      "max": 6.800000011920929
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.931815200000006,
+      "median": 5.943872,
+      "p95": 6.0216,
+      "max": 6.214688
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 5.2742857217788695,
+      "median": 5.200000047683716,
+      "p95": 5.800000011920929,
+      "max": 6
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.893805308996049,
+      "median": 5.899999976158142,
+      "p95": 6.300000011920929,
+      "max": 7
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.30857143231800627,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.800000011920929
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.24230088512454412,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14966666688521704,
+      "median": 0.09999996423721313,
+      "p95": 1.300000011920929,
+      "max": 2.600000023841858
+     },
+     "calls": 1365,
+     "triangles": 7064559,
+     "capture": {
+      "drawCalls": 1365,
+      "triangles": 7064559,
+      "materialSwitches": 378,
+      "layers": {
+       "terrain": {
+        "calls": 115,
+        "triangles": 2414979,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 129,
+        "triangles": 2688315,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 46,
+        "triangles": 34951,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 178,
+        "triangles": 321299,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 227.69534363022288,
+     "meanMs": 4.391833333333331,
+     "medianMs": 4.30000000000291,
+     "p95Ms": 6.399999999997817,
+     "maxMs": 7.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.254833333293597,
+      "median": 3.899999976158142,
+      "p95": 6.300000011920929,
+      "max": 7.199999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2408333334326744,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.013999999860922,
+      "median": 3.599999964237213,
+      "p95": 6.099999964237213,
+      "max": 6.899999976158142
+     },
+     "gpu": {
+      "n": 597,
+      "mean": 4.334484475711893,
+      "median": 4.343296,
+      "p95": 4.483936,
+      "max": 4.617824
+     },
+     "snapshotFrames": 27,
+     "cpuSnapshotFrames": {
+      "n": 27,
+      "mean": 3.5407407504540904,
+      "median": 3,
+      "p95": 5.400000035762787,
+      "max": 5.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 573,
+      "mean": 4.288481674893364,
+      "median": 4.299999952316284,
+      "p95": 6.300000011920929,
+      "max": 7.199999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 27,
+      "mean": 0.30740741005650274,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 573,
+      "mean": 0.2376963350577296,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.13833333333333334,
+      "median": 1.100000023841858,
+      "p95": 3.800000011920929,
+      "max": 4.599999964237213
+     },
+     "calls": 1266,
+     "triangles": 4947341,
+     "capture": {
+      "drawCalls": 1266,
+      "triangles": 4947341,
+      "materialSwitches": 211,
+      "layers": {
+       "terrain": {
+        "calls": 92,
+        "triangles": 1639881,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 103,
+        "triangles": 1606777,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 37,
+        "triangles": 45092,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 141,
+        "triangles": 197979,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 167.9919363870535,
+     "meanMs": 5.952666666666664,
+     "medianMs": 5.900000000001455,
+     "p95Ms": 6.69999999999709,
+     "maxMs": 8.19999999999709,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.791499997576078,
+      "median": 5.800000011920929,
+      "p95": 6.399999976158142,
+      "max": 7.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2559999983509382,
+      "median": 0.2999999523162842,
+      "p95": 0.3999999761581421,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.53549999922514,
+      "median": 5.599999964237213,
+      "p95": 6.100000023841858,
+      "max": 7.5
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.883026293333328,
+      "median": 5.898528,
+      "p95": 5.978688,
+      "max": 6.229536
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 5.259999993869236,
+      "median": 5.199999988079071,
+      "p95": 6,
+      "max": 6.699999988079071
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.824424776566767,
+      "median": 5.800000011920929,
+      "p95": 6.399999976158142,
+      "max": 7.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.2914285659790039,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.253805308320881,
+      "median": 0.2999999523162842,
+      "p95": 0.30000001192092896,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.160333335796992,
+      "median": 0.09999996423721313,
+      "p95": 1.600000023841858,
+      "max": 2.699999988079071
+     },
+     "calls": 2910,
+     "triangles": 10290060,
+     "capture": {
+      "drawCalls": 2910,
+      "triangles": 10290060,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 280,
+        "triangles": 4231779,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 289,
+        "triangles": 3737515,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 123,
+        "triangles": 138643,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 423,
+        "triangles": 410395,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 4.3,
+    "coresBusy": 0.7
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 3,
+   "build": "c80",
+   "order": [
+    "c40",
+    "c80",
+    "main",
+    "c20"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 294.362949516754,
+     "meanMs": 3.3971666666666684,
+     "medianMs": 1.7000000000007276,
+     "p95Ms": 9,
+     "maxMs": 9.700000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.2800000007947285,
+      "median": 1.600000023841858,
+      "p95": 8.899999976158142,
+      "max": 9.600000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.23333333363135655,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5999999642372131
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.046666667163372,
+      "median": 1.399999976158142,
+      "p95": 8.699999988079071,
+      "max": 9.400000035762787
+     },
+     "gpu": {
+      "n": 590,
+      "mean": 3.3668474033898326,
+      "median": 3.362848,
+      "p95": 3.513248,
+      "max": 3.587232
+     },
+     "snapshotFrames": 21,
+     "cpuSnapshotFrames": {
+      "n": 21,
+      "mean": 2.276190473919823,
+      "median": 1.7999999523162842,
+      "p95": 6.100000023841858,
+      "max": 8.099999964237213
+     },
+     "cpuOtherFrames": {
+      "n": 579,
+      "mean": 3.316407600215062,
+      "median": 1.600000023841858,
+      "p95": 8.900000035762787,
+      "max": 9.600000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 21,
+      "mean": 0.31904761564163936,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.5999999642372131
+     },
+     "tasksOtherFrames": {
+      "n": 579,
+      "mean": 0.2302245254755432,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5999999642372131
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.11866666585206985,
+      "median": 0.10000002384185791,
+      "p95": 7.399999976158142,
+      "max": 8.399999976158142
+     },
+     "calls": 485,
+     "triangles": 4107569,
+     "capture": {
+      "drawCalls": 485,
+      "triangles": 4107569,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 13,
+        "triangles": 1111930,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 14,
+        "triangles": 1523536,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 7,
+        "triangles": 9681,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 21,
+        "triangles": 175421,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 165.0664392417949,
+     "meanMs": 6.058166666666663,
+     "medianMs": 6.099999999998545,
+     "p95Ms": 6.599999999998545,
+     "maxMs": 8.400000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.894499998490016,
+      "median": 5.900000035762787,
+      "p95": 6.399999976158142,
+      "max": 7
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.23599999884764353,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.658499999642372,
+      "median": 5.699999988079071,
+      "p95": 6.100000023841858,
+      "max": 6.800000011920929
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.981180746666664,
+      "median": 5.986464,
+      "p95": 6.086336,
+      "max": 6.208768
+     },
+     "snapshotFrames": 36,
+     "cpuSnapshotFrames": {
+      "n": 36,
+      "mean": 5.211111110117701,
+      "median": 5.199999988079071,
+      "p95": 5.699999988079071,
+      "max": 7
+     },
+     "cpuOtherFrames": {
+      "n": 564,
+      "mean": 5.9381205658329295,
+      "median": 6,
+      "p95": 6.399999976158142,
+      "max": 6.800000011920929
+     },
+     "tasksSnapshotFrames": {
+      "n": 36,
+      "mean": 0.2666666689846251,
+      "median": 0.2999999523162842,
+      "p95": 0.40000003576278687,
+      "max": 0.5
+     },
+     "tasksOtherFrames": {
+      "n": 564,
+      "mean": 0.23404255181762343,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.16366666813691458,
+      "median": 0.09999996423721313,
+      "p95": 1.300000011920929,
+      "max": 3.100000023841858
+     },
+     "calls": 1039,
+     "triangles": 8473903,
+     "capture": {
+      "drawCalls": 1039,
+      "triangles": 8473903,
+      "materialSwitches": 374,
+      "layers": {
+       "terrain": {
+        "calls": 49,
+        "triangles": 3284696,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 50,
+        "triangles": 3151190,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 23,
+        "triangles": 75639,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 72,
+        "triangles": 361103,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 230.89355806972964,
+     "meanMs": 4.331000000000004,
+     "medianMs": 4.400000000001455,
+     "p95Ms": 6.700000000000728,
+     "maxMs": 7.19999999999709,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.199500000576179,
+      "median": 4.199999988079071,
+      "p95": 6.599999964237213,
+      "max": 7.100000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.23816666742165885,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.9613333331545193,
+      "median": 4,
+      "p95": 6.300000011920929,
+      "max": 6.900000035762787
+     },
+     "gpu": {
+      "n": 597,
+      "mean": 4.27615019095477,
+      "median": 4.29872,
+      "p95": 4.398624,
+      "max": 4.813152
+     },
+     "snapshotFrames": 26,
+     "cpuSnapshotFrames": {
+      "n": 26,
+      "mean": 2.842307698268157,
+      "median": 2.400000035762787,
+      "p95": 5.399999976158142,
+      "max": 5.5
+     },
+     "cpuOtherFrames": {
+      "n": 574,
+      "mean": 4.260975610088388,
+      "median": 4.899999976158142,
+      "p95": 6.599999964237213,
+      "max": 7.100000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 26,
+      "mean": 0.30384615980661833,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 574,
+      "mean": 0.23519163814986624,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.699999988079071
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.13199999948342642,
+      "median": 1.9999999403953552,
+      "p95": 4.600000023841858,
+      "max": 5.300000071525574
+     },
+     "calls": 1013,
+     "triangles": 5552681,
+     "capture": {
+      "drawCalls": 1013,
+      "triangles": 5552681,
+      "materialSwitches": 211,
+      "layers": {
+       "terrain": {
+        "calls": 29,
+        "triangles": 2000143,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 30,
+        "triangles": 1811677,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 13,
+        "triangles": 46047,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 48,
+        "triangles": 237202,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 171.50697461696785,
+     "meanMs": 5.830666666666663,
+     "medianMs": 5.80000000000291,
+     "p95Ms": 6.5,
+     "maxMs": 8.900000000001455,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.673333334028721,
+      "median": 5.699999988079071,
+      "p95": 6.200000047683716,
+      "max": 8.600000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2528333342075348,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.8999999761581421
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.420499999821186,
+      "median": 5.5,
+      "p95": 6,
+      "max": 8.400000035762787
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.756363519999995,
+      "median": 5.770208,
+      "p95": 5.854944,
+      "max": 6.114976
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 4.97714285339628,
+      "median": 5,
+      "p95": 5.5,
+      "max": 5.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.716460177961704,
+      "median": 5.699999988079071,
+      "p95": 6.299999952316284,
+      "max": 8.600000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.29714286157063075,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.2500884962292899,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.8999999761581421
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.1584999993443489,
+      "median": 0.09999996423721313,
+      "p95": 1.600000023841858,
+      "max": 3.400000035762787
+     },
+     "calls": 2154,
+     "triangles": 10332791,
+     "capture": {
+      "drawCalls": 2154,
+      "triangles": 10332791,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 91,
+        "triangles": 4260155,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 90,
+        "triangles": 3747020,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 43,
+        "triangles": 142711,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 135,
+        "triangles": 411177,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 6.2,
+    "coresBusy": 1
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 3,
+   "build": "main",
+   "order": [
+    "c40",
+    "c80",
+    "main",
+    "c20"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 290.6695087685301,
+     "meanMs": 3.4403333333333346,
+     "medianMs": 2.599999999998545,
+     "p95Ms": 6.600000000000364,
+     "maxMs": 7.5,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.3093333334724107,
+      "median": 2.5,
+      "p95": 6.400000035762787,
+      "max": 7.200000047683716
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24016666601101558,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.069166667461395,
+      "median": 2.200000047683716,
+      "p95": 6.199999988079071,
+      "max": 7
+     },
+     "gpu": {
+      "n": 589,
+      "mean": 3.410713100169782,
+      "median": 3.401248,
+      "p95": 3.5776,
+      "max": 3.70384
+     },
+     "snapshotFrames": 20,
+     "cpuSnapshotFrames": {
+      "n": 20,
+      "mean": 3.4300000071525574,
+      "median": 2.699999988079071,
+      "p95": 5.700000047683716,
+      "max": 6.100000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 580,
+      "mean": 3.305172413690337,
+      "median": 2.5,
+      "p95": 6.5,
+      "max": 7.200000047683716
+     },
+     "tasksSnapshotFrames": {
+      "n": 20,
+      "mean": 0.28500000536441805,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 580,
+      "mean": 0.23862068879193274,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.12866666654745737,
+      "median": 0.10000002384185791,
+      "p95": 4.100000023841858,
+      "max": 4.900000095367432
+     },
+     "calls": 631,
+     "triangles": 1740139,
+     "capture": {
+      "drawCalls": 631,
+      "triangles": 1740139,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 59,
+        "triangles": 153416,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 94,
+        "triangles": 253857,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 5,
+        "triangles": 1977,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 43,
+        "triangles": 43888,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 172.4831828896683,
+     "meanMs": 5.7976666666666645,
+     "medianMs": 5.599999999998545,
+     "p95Ms": 7,
+     "maxMs": 8.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.629333333869775,
+      "median": 5.5,
+      "p95": 6.400000035762787,
+      "max": 7.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24616666694482167,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.40000003576278687
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.383166666924954,
+      "median": 5.300000011920929,
+      "p95": 6.100000023841858,
+      "max": 7.5
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.724198826666667,
+      "median": 5.69408,
+      "p95": 6.197184,
+      "max": 6.49312
+     },
+     "snapshotFrames": 34,
+     "cpuSnapshotFrames": {
+      "n": 34,
+      "mean": 5.92647059174145,
+      "median": 5.800000011920929,
+      "p95": 6.900000035762787,
+      "max": 7.5
+     },
+     "cpuOtherFrames": {
+      "n": 566,
+      "mean": 5.611484099297979,
+      "median": 5.5,
+      "p95": 6.399999976158142,
+      "max": 7.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 34,
+      "mean": 0.2970588224775651,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 566,
+      "mean": 0.24310954099409152,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.40000003576278687
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.16816666613022485,
+      "median": 0.10000008344650269,
+      "p95": 1,
+      "max": 2.100000023841858
+     },
+     "calls": 3179,
+     "triangles": 5992106,
+     "capture": {
+      "drawCalls": 3179,
+      "triangles": 5992106,
+      "materialSwitches": 374,
+      "layers": {
+       "terrain": {
+        "calls": 788,
+        "triangles": 1842628,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 947,
+        "triangles": 2255317,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 103,
+        "triangles": 23355,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 496,
+        "triangles": 269531,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 215.93608291945566,
+     "meanMs": 4.631000000000004,
+     "medianMs": 4.5,
+     "p95Ms": 5.700000000000728,
+     "maxMs": 7.200000000000728,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.485499998430411,
+      "median": 4.399999976158142,
+      "p95": 5.100000023841858,
+      "max": 6
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24616666475931803,
+      "median": 0.20000004768371582,
+      "p95": 0.3999999761581421,
+      "max": 1
+     },
+     "render": {
+      "n": 600,
+      "mean": 4.239333333671093,
+      "median": 4.199999988079071,
+      "p95": 4.800000011920929,
+      "max": 5.800000011920929
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 4.483595253333329,
+      "median": 4.495328,
+      "p95": 4.745088,
+      "max": 5.158368
+     },
+     "snapshotFrames": 28,
+     "cpuSnapshotFrames": {
+      "n": 28,
+      "mean": 4.785714281456811,
+      "median": 4.699999988079071,
+      "p95": 5.5,
+      "max": 5.799999952316284
+     },
+     "cpuOtherFrames": {
+      "n": 572,
+      "mean": 4.470804194366182,
+      "median": 4.399999976158142,
+      "p95": 5.100000023841858,
+      "max": 6
+     },
+     "tasksSnapshotFrames": {
+      "n": 28,
+      "mean": 0.32142857355730875,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 1
+     },
+     "tasksOtherFrames": {
+      "n": 572,
+      "mean": 0.2424825153775982,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.14566666821638743,
+      "median": 0.10000002384185791,
+      "p95": 0.8000000715255737,
+      "max": 1.699999988079071
+     },
+     "calls": 2594,
+     "triangles": 4215221,
+     "capture": {
+      "drawCalls": 2594,
+      "triangles": 4215221,
+      "materialSwitches": 211,
+      "layers": {
+       "terrain": {
+        "calls": 610,
+        "triangles": 1316807,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 611,
+        "triangles": 1247576,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 85,
+        "triangles": 37997,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 395,
+        "triangles": 155229,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 82.87750704458807,
+     "meanMs": 12.066000000000004,
+     "medianMs": 11.700000000000728,
+     "p95Ms": 14.100000000002183,
+     "maxMs": 30,
+     "over16_7": 0.0016666666666666668,
+     "cpu": {
+      "n": 600,
+      "mean": 11.779499998788038,
+      "median": 11.599999964237213,
+      "p95": 13.400000035762787,
+      "max": 16.299999952316284
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2968333331743876,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.699999988079071
+     },
+     "render": {
+      "n": 600,
+      "mean": 11.482666665613651,
+      "median": 11.299999952316284,
+      "p95": 13,
+      "max": 15.899999976158142
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 9.272781226666659,
+      "median": 9.129056,
+      "p95": 10.515936,
+      "max": 11.987424
+     },
+     "snapshotFrames": 72,
+     "cpuSnapshotFrames": {
+      "n": 72,
+      "mean": 12.16944444593456,
+      "median": 11.800000011920929,
+      "p95": 13.699999988079071,
+      "max": 16.299999952316284
+     },
+     "cpuOtherFrames": {
+      "n": 528,
+      "mean": 11.726325755995331,
+      "median": 11.5,
+      "p95": 13.300000011920929,
+      "max": 15.700000047683716
+     },
+     "tasksSnapshotFrames": {
+      "n": 72,
+      "mean": 0.345833334657881,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.699999988079071
+     },
+     "tasksOtherFrames": {
+      "n": 528,
+      "mean": 0.2901515147902749,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.287666667898496,
+      "median": 0.2999999523162842,
+      "p95": 1.4999999403953552,
+      "max": 3.3000000715255737
+     },
+     "calls": 7220,
+     "triangles": 10244672,
+     "capture": {
+      "drawCalls": 7220,
+      "triangles": 10244672,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 1992,
+        "triangles": 4202668,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 1877,
+        "triangles": 3725824,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 310,
+        "triangles": 135820,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 1246,
+        "triangles": 408632,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 4.6,
+    "coresBusy": 0.7
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  },
+  {
+   "round": 3,
+   "build": "c20",
+   "order": [
+    "c40",
+    "c80",
+    "main",
+    "c20"
+   ],
+   "results": {
+    "night/kungsgatan": {
+     "fps": 271.19869824624845,
+     "meanMs": 3.6873333333333327,
+     "medianMs": 2.2999999999992724,
+     "p95Ms": 8.700000000000728,
+     "maxMs": 10,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 3.558333332935969,
+      "median": 2.199999988079071,
+      "p95": 8.599999964237213,
+      "max": 9.600000023841858
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2376666659116745,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.3206666670242946,
+      "median": 1.9000000357627869,
+      "p95": 8.399999976158142,
+      "max": 9.400000035762787
+     },
+     "gpu": {
+      "n": 590,
+      "mean": 3.6660897627118616,
+      "median": 3.680864,
+      "p95": 4.001056,
+      "max": 4.1424
+     },
+     "snapshotFrames": 22,
+     "cpuSnapshotFrames": {
+      "n": 22,
+      "mean": 2.963636363094503,
+      "median": 2.400000035762787,
+      "p95": 6,
+      "max": 9.299999952316284
+     },
+     "cpuOtherFrames": {
+      "n": 578,
+      "mean": 3.5809688577396233,
+      "median": 2.199999988079071,
+      "p95": 8.599999964237213,
+      "max": 9.600000023841858
+     },
+     "tasksSnapshotFrames": {
+      "n": 22,
+      "mean": 0.304545443166386,
+      "median": 0.30000001192092896,
+      "p95": 0.3999999761581421,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 578,
+      "mean": 0.23512110691582042,
+      "median": 0.19999998807907104,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.12916666706403096,
+      "median": 0.10000002384185791,
+      "p95": 6.600000023841858,
+      "max": 8.100000023841858
+     },
+     "calls": 516,
+     "triangles": 1812673,
+     "capture": {
+      "drawCalls": 516,
+      "triangles": 1812673,
+      "materialSwitches": 133,
+      "layers": {
+       "terrain": {
+        "calls": 16,
+        "triangles": 159640,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 26,
+        "triangles": 320167,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 5,
+        "triangles": 1977,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 39,
+        "triangles": 43888,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/city": {
+     "fps": 168.7146753648455,
+     "meanMs": 5.927166666666666,
+     "medianMs": 5.900000000001455,
+     "p95Ms": 6.5,
+     "maxMs": 7.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 5.7668333337704345,
+      "median": 5.800000011920929,
+      "p95": 6.300000011920929,
+      "max": 7.5
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24833333283662795,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7999999523162842
+     },
+     "render": {
+      "n": 600,
+      "mean": 5.518500000933806,
+      "median": 5.5,
+      "p95": 6.099999964237213,
+      "max": 7.300000011920929
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 5.854208533333337,
+      "median": 5.862432,
+      "p95": 5.956032,
+      "max": 6.05456
+     },
+     "snapshotFrames": 35,
+     "cpuSnapshotFrames": {
+      "n": 35,
+      "mean": 5.085714282308306,
+      "median": 5.099999964237213,
+      "p95": 5.400000035762787,
+      "max": 5.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 565,
+      "mean": 5.809026549347734,
+      "median": 5.800000011920929,
+      "p95": 6.300000011920929,
+      "max": 7.5
+     },
+     "tasksSnapshotFrames": {
+      "n": 35,
+      "mean": 0.29999999489103046,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.40000003576278687
+     },
+     "tasksOtherFrames": {
+      "n": 565,
+      "mean": 0.24513274315184197,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.7999999523162842
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.16016666620969772,
+      "median": 0.10000002384185791,
+      "p95": 1.5999999642372131,
+      "max": 2.700000047683716
+     },
+     "calls": 2075,
+     "triangles": 6067328,
+     "capture": {
+      "drawCalls": 2075,
+      "triangles": 6067328,
+      "materialSwitches": 374,
+      "layers": {
+       "terrain": {
+        "calls": 287,
+        "triangles": 1901507,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 349,
+        "triangles": 2270495,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 102,
+        "triangles": 23355,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 492,
+        "triangles": 270696,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/norraPromenaden": {
+     "fps": 232.1442389538034,
+     "meanMs": 4.307666666666664,
+     "medianMs": 3.7999999999992724,
+     "p95Ms": 6.80000000000291,
+     "maxMs": 7.799999999999272,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 4.158166665931542,
+      "median": 3.699999988079071,
+      "p95": 6.600000023841858,
+      "max": 7.699999988079071
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.24799999882777532,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.6000000238418579
+     },
+     "render": {
+      "n": 600,
+      "mean": 3.9101666671037676,
+      "median": 3.5,
+      "p95": 6.399999976158142,
+      "max": 7.5
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 4.233362933333336,
+      "median": 4.184544,
+      "p95": 4.69728,
+      "max": 4.820864
+     },
+     "snapshotFrames": 25,
+     "cpuSnapshotFrames": {
+      "n": 25,
+      "mean": 4.5079999971389775,
+      "median": 4.399999976158142,
+      "p95": 5.699999988079071,
+      "max": 6.299999952316284
+     },
+     "cpuOtherFrames": {
+      "n": 575,
+      "mean": 4.142956521096437,
+      "median": 3.699999988079071,
+      "p95": 6.600000023841858,
+      "max": 7.699999988079071
+     },
+     "tasksSnapshotFrames": {
+      "n": 25,
+      "mean": 0.3239999985694885,
+      "median": 0.30000001192092896,
+      "p95": 0.5,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 575,
+      "mean": 0.24469565101291824,
+      "median": 0.20000004768371582,
+      "p95": 0.30000001192092896,
+      "max": 0.5
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.15083333402872084,
+      "median": 0.19999998807907104,
+      "p95": 2.799999952316284,
+      "max": 4.199999988079071
+     },
+     "calls": 1935,
+     "triangles": 4275798,
+     "capture": {
+      "drawCalls": 1935,
+      "triangles": 4275798,
+      "materialSwitches": 211,
+      "layers": {
+       "terrain": {
+        "calls": 261,
+        "triangles": 1351334,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 309,
+        "triangles": 1273626,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 85,
+        "triangles": 37997,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 387,
+        "triangles": 155229,
+        "materialSwitches": 3
+       }
+      }
+     }
+    },
+    "night/overview": {
+     "fps": 116.91120593908921,
+     "meanMs": 8.553500000000003,
+     "medianMs": 8.299999999999272,
+     "p95Ms": 10.299999999999272,
+     "maxMs": 13.100000000002183,
+     "over16_7": 0,
+     "cpu": {
+      "n": 600,
+      "mean": 8.331333333651225,
+      "median": 8.199999988079071,
+      "p95": 9.5,
+      "max": 12
+     },
+     "tasks": {
+      "n": 600,
+      "mean": 0.2828333334128062,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.7000000476837158
+     },
+     "render": {
+      "n": 600,
+      "mean": 8.048500000238418,
+      "median": 7.899999976158142,
+      "p95": 9.100000023841858,
+      "max": 11.5
+     },
+     "gpu": {
+      "n": 600,
+      "mean": 6.906419573333334,
+      "median": 6.842688,
+      "p95": 7.40688,
+      "max": 10.114368
+     },
+     "snapshotFrames": 51,
+     "cpuSnapshotFrames": {
+      "n": 51,
+      "mean": 8.699999999766256,
+      "median": 8.5,
+      "p95": 9.700000047683716,
+      "max": 11.600000023841858
+     },
+     "cpuOtherFrames": {
+      "n": 549,
+      "mean": 8.2970856105695,
+      "median": 8.100000023841858,
+      "p95": 9.400000035762787,
+      "max": 12
+     },
+     "tasksSnapshotFrames": {
+      "n": 51,
+      "mean": 0.3450980408518922,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.6000000238418579
+     },
+     "tasksOtherFrames": {
+      "n": 549,
+      "mean": 0.2770491802627272,
+      "median": 0.30000001192092896,
+      "p95": 0.40000003576278687,
+      "max": 0.7000000476837158
+     },
+     "outsideFrame": {
+      "n": 600,
+      "mean": 0.21949999968210857,
+      "median": 0.19999998807907104,
+      "p95": 1.300000011920929,
+      "max": 3.4000000953674316
+     },
+     "calls": 5199,
+     "triangles": 10251210,
+     "capture": {
+      "drawCalls": 5199,
+      "triangles": 10251210,
+      "materialSwitches": 429,
+      "layers": {
+       "terrain": {
+        "calls": 880,
+        "triangles": 4209145,
+        "materialSwitches": 2
+       },
+       "roads": {
+        "calls": 979,
+        "triangles": 3725885,
+        "materialSwitches": 2
+       },
+       "water": {
+        "calls": 307,
+        "triangles": 135820,
+        "materialSwitches": 1
+       },
+       "buildings": {
+        "calls": 1238,
+        "triangles": 408632,
+        "materialSwitches": 3
+       }
+      }
+     }
+    }
+   },
+   "load": {
+    "busyPercent": 4.1,
+    "coresBusy": 0.7
+   },
+   "gpu": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+   "vehicles": 202
+  }
+ ],
+ "errors": []
+}

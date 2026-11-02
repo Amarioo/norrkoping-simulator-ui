@@ -52,8 +52,19 @@ const rankUv = (rank: number) => [
 const SEAL_VERTICES = 9000;
 const CHUNK_KEY_OFFSET = 32768;
 /**
+ * Performance P2b: the worker-built layers are cut into CITY_CELL × CITY_CELL scene units
+ * (25 m per unit, so 40 = 1 km), and each cell is one geometry (one draw call per layer and cell).
+ * Before P2b they were cut into 500 m cells and each cell again into pieces of at most 3 000
+ * triangles. The triangles themselves are unchanged; only how they are grouped into meshes changed.
+ * 1 km was chosen by measurement (docs/perf-p2b): almost all of the 2 km gain in the overview,
+ * less extra GPU work in street views (larger cells are culled less precisely).
+ */
+export const CITY_CELL = 40;
+/**
  * Collects non-indexed triangles straight into typed arrays. The city emits millions of
  * triangles, so this avoids per-triangle Vector3/array allocations and number[] growth.
+ * With a cell size it groups triangles by cell (each cell one geometry); without one
+ * (`new Batch(0)`) it seals a geometry every 3 000 triangles.
  */
 export class Batch {
   private chunks = new Map<number, Batch>();
@@ -63,7 +74,10 @@ export class Batch {
   private normals = new Float32Array(0);
   private colors = new Float32Array(0);
   private uvs = new Float32Array(0);
-  constructor(private cellSize = 20) {}
+  constructor(
+    private cellSize = CITY_CELL,
+    private seal = true,
+  ) {}
   geometries(): BufferGeometry[] {
     if (!this.cellSize) {
       const result = [...this.sealed];
@@ -77,7 +91,11 @@ export class Batch {
   }
   private reserve(vertices: number) {
     if (vertices <= this.positions.length / 3) return;
-    const capacity = Math.min(SEAL_VERTICES, Math.max(96, (this.positions.length / 3) * 4));
+    const current = this.positions.length / 3;
+    // Grow 4× while small; past the old piece size an unsealed cell grows 2× to limit its peak memory.
+    const capacity = this.seal
+      ? Math.min(SEAL_VERTICES, Math.max(96, current * 4))
+      : Math.max(96, current < SEAL_VERTICES ? current * 4 : current * 2);
     const grow = (old: Float32Array, size: number) => {
       const next = new Float32Array(capacity * size);
       next.set(old.subarray(0, this.count * size));
@@ -105,7 +123,7 @@ export class Batch {
         (Math.floor((a[2] + b[2] + c[2]) / (3 * this.cellSize)) + CHUNK_KEY_OFFSET);
       let chunk = this.chunks.get(key);
       if (!chunk) {
-        chunk = new Batch(0);
+        chunk = new Batch(0, false);
         this.chunks.set(key, chunk);
       }
       chunk.triangle(a, b, c, color, uv);
@@ -144,7 +162,7 @@ export class Batch {
       uvs[t + 1] = uv[i][1];
     }
     this.count += 3;
-    if (this.count >= SEAL_VERTICES) this.sealed.push(this.geometry());
+    if (this.seal && this.count >= SEAL_VERTICES) this.sealed.push(this.geometry());
   }
   quad(a: number[], b: number[], c: number[], d: number[], color: Color, u = 1, v = 1) {
     this.triangle(a, b, c, color, [

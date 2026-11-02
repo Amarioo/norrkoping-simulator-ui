@@ -2,6 +2,31 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Performance Phase P2b — ground, roads, water and OSM buildings: one mesh per 1 km cell (2026-11-02) — waiting for the user's review, not committed
+
+[Full report](perf-p2b/README.md). Branch `claude/perf-p2b` from `main` = `ac25d7e`. **Nothing committed.**
+Backend unchanged.
+
+- **Change:** `src/lib/cityMesh.ts` — the worker layers are cut into 1 km cells (`CITY_CELL = 40`), one mesh
+  per layer and cell (was 500 m cells, each cut into ≤ 3 000-triangle pieces): 5 537 → 1 143 meshes.
+- **Geometry:** identical (same 8 562 962 triangles, same exact-value fingerprint per layer as `main`).
+  Picture: 0–5 of 3.7 M pixels differ by > 8/255 per view (coplanar surfaces, new draw order); `main` vs
+  itself 0.
+- **Measured (paired vs `main`, 5 rounds, CPU median):** overview night −5.7 ms (12.0 → 6.0), day −7.1
+  (11.8 → 4.8); CPU p95 overview 15.1 → 6.6 ms; draw calls 7 220 → 2 910. Street views CPU −0.2 … −0.8,
+  but GPU frame time +0.71 ms Kungsgatan, +0.21 Innerstaden (GPU-timer run, 3 rounds). Map ready −0.69 s
+  (first tab) / −0.87 s (second tab), heap −22 MB (6 rounds). Roadmap target (overview p95 ≤ 16.7 ms) met.
+  500 m (−4.2) and 2 km (−6.1, more street-view cost) also measured.
+- **Checks:** type check 0; build OK, byte-reproducible, no hook in `dist/`; Vitest 516/517 (`police.test.ts`:
+  CRLF on disk in this checkout, passes in a fresh `main` worktree). Before the test fix: Playwright 21/23
+  and 19/23 — only byte-identical-screenshot assertions in `lighting.spec.ts` (renderer deterministic on
+  both, 30/30; page screenshots vary by 1/255 in 1–4 pixels, more often on the branch).
+- **Test fix (approved by the user, 2026-11-02):** `tests/samePicture.ts` `expectSamePicture()` — same
+  picture = byte-identical or ≤ 1/255 in ≤ 0.1 % of the pixels — replaces the 21 byte-identical
+  comparisons in `lighting.spec.ts` / `lighting-l2d.spec.ts`; `tests/same-picture.spec.ts` proves it still
+  rejects real changes. Lighting files ×4: `main` 9/9 ×4, branch 9/9 ×4. **Full suite 24/24 twice.**
+- **Local only:** `.claude/launch.json` (`p2b-*`, ports 5295–5299), `work/perf-p2b/` (the temporary `main` worktree used for the comparison was removed again).
+
 ## Stream early start — the simulator stream opens at start, not after the city (2026-10-29) — approved (user, 2026-10-29), committed and pushed, merged into `main`
 
 [Full report](stream-early-start/README.md). Branch `claude/elastic-khorana-d0b0c1` from `main` = `e1a2838`.

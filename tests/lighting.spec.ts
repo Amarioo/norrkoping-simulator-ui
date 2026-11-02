@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { test, expect } from '@playwright/test';
+import { expectSamePicture } from './samePicture';
 
 // Step 6: time of day, presets, floodlights and pilot views (dev server: __cityLighting is DEV-only).
 type Lighting = {
@@ -279,7 +280,7 @@ test('street lighting survives rebuilds, controller recreation and context resto
   // The recreated controller rebound the shared map/stadium materials patched by its predecessor.
   expect(series.at(-1)!.rebound).toBeGreaterThan(100);
   const afterCycles = await shot();
-  expect(afterCycles.equals(before)).toBe(true);
+  await expectSamePicture(page, afterCycles, before);
   await page.evaluate(async () => {
     const canvas = document.querySelector('.map-panel canvas') as HTMLCanvasElement;
     const gl = canvas.getContext('webgl2')!;
@@ -296,7 +297,7 @@ test('street lighting survives rebuilds, controller recreation and context resto
   });
   await page.waitForTimeout(3000);
   const afterRestore = await shot();
-  expect(afterRestore.equals(before)).toBe(true);
+  await expectSamePicture(page, afterRestore, before);
   expect((await resources()).status).toBe('ok');
   fs.mkdirSync('test-results/lighting-phase0', { recursive: true });
   fs.writeFileSync(
@@ -413,7 +414,7 @@ test('Phase A1 corridor: illumination, set swaps, rejection, recreation and cont
   const lit = await luma(full),
     dark = await luma(pilotOnly!);
   expect(lit).toBeGreaterThan(dark * 1.15);
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   // A rejected set (33 = MAX_PER_CELL + 1 lamps in one corridor cell, Phase L1) changes nothing on screen.
   const rejected = await call<{ ok: boolean; stage: string }>(`(() => {
     const r = ${hook}.registries.runtime();
@@ -423,11 +424,11 @@ test('Phase A1 corridor: illumination, set swaps, rejection, recreation and cont
   })()`);
   expect(rejected).toMatchObject({ ok: false, stage: 'capacity' });
   expect((await state()).status).toBe('rendering-previous');
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   // Recreation and WebGL context restoration with the expanded set.
   await call(`${hook}.recreate()`);
   await frames();
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   await page.evaluate(async () => {
     const canvas = document.querySelector('.map-panel canvas') as HTMLCanvasElement;
     const extension = canvas.getContext('webgl2')!.getExtension('WEBGL_lose_context')!;
@@ -442,7 +443,7 @@ test('Phase A1 corridor: illumination, set swaps, rejection, recreation and cont
     await restored;
   });
   await page.waitForTimeout(3000);
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   // After restoration only the programs this view needs are recompiled (never more than at start).
   const restoredState = await state();
   expect(restoredState).toMatchObject({ fixtures: 273, status: 'ok' });
@@ -574,8 +575,8 @@ test('Phase A2 corridor: illumination, unchanged reference view, swaps, rejectio
   const lit = await luma(full),
     dark = await luma(a1Only!);
   expect(lit).toBeGreaterThan(dark * 1.15);
-  expect(awayA1!.equals(awayFull)).toBe(true);
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, awayA1!, awayFull);
+  await expectSamePicture(page, await shot(), full);
   // A rejected set (33 = MAX_PER_CELL + 1 lamps in one A2 cell, Phase L1) changes nothing on screen.
   const rejected = await call<{ ok: boolean; stage: string }>(`(() => {
     const r = ${hook}.registries.runtime();
@@ -585,11 +586,11 @@ test('Phase A2 corridor: illumination, unchanged reference view, swaps, rejectio
   })()`);
   expect(rejected).toMatchObject({ ok: false, stage: 'capacity' });
   expect((await state()).status).toBe('rendering-previous');
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   // Recreation and WebGL context restoration with the combined set.
   await call(`${hook}.recreate()`);
   await frames();
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   await page.evaluate(async () => {
     const canvas = document.querySelector('.map-panel canvas') as HTMLCanvasElement;
     const extension = canvas.getContext('webgl2')!.getExtension('WEBGL_lose_context')!;
@@ -604,7 +605,7 @@ test('Phase A2 corridor: illumination, unchanged reference view, swaps, rejectio
     await restored;
   });
   await page.waitForTimeout(3000);
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   const restoredState = await state();
   expect(restoredState).toMatchObject({ fixtures: 273, status: 'ok' });
   expect(restoredState.programs).toBeLessThanOrEqual(start.programs);
@@ -735,8 +736,8 @@ test('Phase A3 Kungstorget ring: illumination, unchanged reference view, swaps, 
   const lit = await luma(full),
     dark = await luma(a2Only!);
   expect(lit).toBeGreaterThan(dark * 1.15);
-  expect(awayA2!.equals(awayFull)).toBe(true);
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, awayA2!, awayFull);
+  await expectSamePicture(page, await shot(), full);
   // A rejected set (33 = MAX_PER_CELL + 1 lamps in one A3 cell, Phase L1) changes nothing on screen.
   const rejected = await call<{ ok: boolean; stage: string }>(`(() => {
     const r = ${hook}.registries.runtime();
@@ -746,11 +747,11 @@ test('Phase A3 Kungstorget ring: illumination, unchanged reference view, swaps, 
   })()`);
   expect(rejected).toMatchObject({ ok: false, stage: 'capacity' });
   expect((await state()).status).toBe('rendering-previous');
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   // Recreation and WebGL context restoration with the combined set.
   await call(`${hook}.recreate()`);
   await frames();
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   await page.evaluate(async () => {
     const canvas = document.querySelector('.map-panel canvas') as HTMLCanvasElement;
     const extension = canvas.getContext('webgl2')!.getExtension('WEBGL_lose_context')!;
@@ -765,7 +766,7 @@ test('Phase A3 Kungstorget ring: illumination, unchanged reference view, swaps, 
     await restored;
   });
   await page.waitForTimeout(3000);
-  expect((await shot()).equals(full)).toBe(true);
+  await expectSamePicture(page, await shot(), full);
   const restoredState = await state();
   expect(restoredState).toMatchObject({ fixtures: 273, status: 'ok' });
   expect(restoredState.programs).toBeLessThanOrEqual(start.programs);
@@ -881,7 +882,7 @@ test('Phase L2a citywide street lighting: loaded at map-ready, lights Söderstad
   const lit = await luma(city),
     dark = await luma(a3Only!);
   expect(lit).toBeGreaterThan(dark * 1.3);
-  expect((await shot()).equals(city)).toBe(true);
+  await expectSamePicture(page, await shot(), city);
   // A rejected set (33 lamps in one cell) changes nothing on screen.
   const rejected = await call<{ ok: boolean; stage: string }>(`(() => {
     const r = ${hook}.registries.city();
@@ -891,12 +892,12 @@ test('Phase L2a citywide street lighting: loaded at map-ready, lights Söderstad
   })()`);
   expect(rejected).toMatchObject({ ok: false, stage: 'capacity' });
   expect((await state()).status).toBe('rendering-previous');
-  expect((await shot()).equals(city)).toBe(true);
+  await expectSamePicture(page, await shot(), city);
   // Recreation and WebGL context restoration keep the city set.
   await call(`${hook}.recreate()`);
   await frames();
   expect((await state()).fixtures).toBe(start.fixtures);
-  expect((await shot()).equals(city)).toBe(true);
+  await expectSamePicture(page, await shot(), city);
   await page.evaluate(async () => {
     const canvas = document.querySelector('.map-panel canvas') as HTMLCanvasElement;
     const extension = canvas.getContext('webgl2')!.getExtension('WEBGL_lose_context')!;
@@ -909,7 +910,7 @@ test('Phase L2a citywide street lighting: loaded at map-ready, lights Söderstad
     await restored;
   });
   await page.waitForTimeout(3000);
-  expect((await shot()).equals(city)).toBe(true);
+  await expectSamePicture(page, await shot(), city);
   const restoredState = await state();
   expect(restoredState).toMatchObject({ fixtures: start.fixtures, status: 'ok' });
   expect(restoredState.programs).toBeLessThanOrEqual(start.programs);

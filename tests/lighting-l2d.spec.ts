@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import { test, expect, type Page } from '@playwright/test';
+import { expectSamePicture } from './samePicture';
 
 // Lighting Phase L2d: site lighting (parking lots, the rail yard, private site roads) loads with the
 // citywide street set before map-ready as its own category (describe().siteLighting); at night the
@@ -124,7 +125,7 @@ test('Phase L2d site lighting: own category, lights the lots at Polishuset at ni
   expect(litFrame).toBeGreaterThan(darkFrame);
   // Back to the full set: the same picture as before the swap, no new programs.
   expect(await call(`${hook}.replaceStreetLighting(${hook}.registries.city())`)).toEqual({ ok: true });
-  expect((await shot(page)).equals(withSites)).toBe(true);
+  await expectSamePicture(page, await shot(page), withSites);
   const back = await state(page);
   expect(back.fixtures).toBe(start.fixtures);
   expect(back.programs).toBe(20);

@@ -9,20 +9,43 @@ describe('city mesh', () => {
   });
 
   it('seals full buffers and trims partly filled ones to their exact size', () => {
-    const batch = new Batch(),
+    // Without a cell size a batch is cut every 3 000 triangles.
+    const batch = new Batch(0),
       color = new Color('#336699');
-    // 3 001 triangles in one cell (one more than a sealed geometry holds), one in another.
     for (let i = 0; i < 3001; i++) {
       const x = (i % 10) * 0.1;
       batch.triangle([x, 0, 1], [x + 1, 0, 1], [x, 1, 2], color);
     }
-    batch.triangle([100, 0, 100], [101, 0, 100], [100, 1, 101], color);
     const counts = batch.geometries().map((g) => {
       const position = g.attributes.position.array as Float32Array;
       expect(position.buffer.byteLength).toBe(position.byteLength);
       return g.attributes.position.count;
     });
-    expect(counts.sort((a, b) => a - b)).toEqual([3, 3, 9000]);
+    expect(counts.sort((a, b) => a - b)).toEqual([3, 9000]);
+  });
+
+  it('draws each cell as one geometry, in the order its triangles were added (P2b)', () => {
+    const batch = new Batch(),
+      color = new Color('#336699');
+    // 20 001 triangles in one cell (more than six old 3 000-triangle pieces), one in another.
+    const xs: number[] = [];
+    for (let i = 0; i < 20001; i++) {
+      const x = (i % 97) * 0.1;
+      xs.push(x);
+      batch.triangle([x, 0, 1], [x + 1, 0, 1], [x, 1, 2], color);
+    }
+    batch.triangle([100, 0, 100], [101, 0, 100], [100, 1, 101], color);
+    const geometries = batch.geometries();
+    const counts = geometries.map((g) => {
+      const position = g.attributes.position.array as Float32Array;
+      expect(position.buffer.byteLength).toBe(position.byteLength);
+      return g.attributes.position.count;
+    });
+    expect(counts.sort((a, b) => a - b)).toEqual([3, 60003]);
+    const big = geometries.find((g) => g.attributes.position.count === 60003)!;
+    const position = big.attributes.position.array as Float32Array;
+    xs.forEach((x, i) => expect(position[i * 9]).toBeCloseTo(x, 5));
+    expect(big.boundingSphere).not.toBeNull();
   });
 
   it('moves geometry across a worker boundary without copying it', () => {

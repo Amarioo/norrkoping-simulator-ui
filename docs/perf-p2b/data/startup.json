@@ -1,0 +1,262 @@
+{
+ "note": "Phase P2b start-up: ms from navigation to map ready, first stream request and \"Simulatorn är ansluten\"; first tab and a second tab in the same context. 1440x1040, traffic on, hook builds, Edge headless (Playwright suite flags).",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "cores": 16,
+  "memoryGB": 66,
+  "platform": "win32 10.0.26300"
+ },
+ "builds": [
+  "main",
+  "c40"
+ ],
+ "runs": [
+  {
+   "round": 1,
+   "build": "main",
+   "load": {
+    "busyPercent": 4.5,
+    "coresBusy": 0.7
+   },
+   "first": {
+    "mapReady": 4667,
+    "heapMB": 1399.150094985962,
+    "stream": 31,
+    "connected": 4719
+   },
+   "second": {
+    "mapReady": 4506,
+    "stream": 28,
+    "connected": 4547
+   }
+  },
+  {
+   "round": 1,
+   "build": "c40",
+   "load": {
+    "busyPercent": 5.8,
+    "coresBusy": 0.9
+   },
+   "first": {
+    "mapReady": 3719,
+    "heapMB": 1368.8995265960693,
+    "stream": 28,
+    "connected": 3752
+   },
+   "second": {
+    "mapReady": 3712,
+    "stream": 22,
+    "connected": 3736
+   }
+  },
+  {
+   "round": 2,
+   "build": "c40",
+   "load": {
+    "busyPercent": 5.3,
+    "coresBusy": 0.8
+   },
+   "first": {
+    "mapReady": 3947,
+    "heapMB": 1379.8381748199463,
+    "stream": 27,
+    "connected": 3953
+   },
+   "second": {
+    "mapReady": 3596,
+    "stream": 24,
+    "connected": 3623
+   }
+  },
+  {
+   "round": 2,
+   "build": "main",
+   "load": {
+    "busyPercent": 7.6,
+    "coresBusy": 1.2
+   },
+   "first": {
+    "mapReady": 4594,
+    "heapMB": 1397.5833959579468,
+    "stream": 28,
+    "connected": 4626
+   },
+   "second": {
+    "mapReady": 4425,
+    "stream": 26,
+    "connected": 4467
+   }
+  },
+  {
+   "round": 3,
+   "build": "main",
+   "load": {
+    "busyPercent": 4,
+    "coresBusy": 0.6
+   },
+   "first": {
+    "mapReady": 4568,
+    "heapMB": 1392.2622575759888,
+    "stream": 26,
+    "connected": 4598
+   },
+   "second": {
+    "mapReady": 4492,
+    "stream": 25,
+    "connected": 4533
+   }
+  },
+  {
+   "round": 3,
+   "build": "c40",
+   "load": {
+    "busyPercent": 2.9,
+    "coresBusy": 0.5
+   },
+   "first": {
+    "mapReady": 4017,
+    "heapMB": 1379.4611110687256,
+    "stream": 26,
+    "connected": 4023
+   },
+   "second": {
+    "mapReady": 3627,
+    "stream": 24,
+    "connected": 3652
+   }
+  },
+  {
+   "round": 4,
+   "build": "c40",
+   "load": {
+    "busyPercent": 7.1,
+    "coresBusy": 1.1
+   },
+   "first": {
+    "mapReady": 3984,
+    "heapMB": 1376.609845161438,
+    "stream": 27,
+    "connected": 3990
+   },
+   "second": {
+    "mapReady": 3583,
+    "stream": 26,
+    "connected": 3608
+   }
+  },
+  {
+   "round": 4,
+   "build": "main",
+   "load": {
+    "busyPercent": 6.4,
+    "coresBusy": 1
+   },
+   "first": {
+    "mapReady": 4634,
+    "heapMB": 1380.4817848205566,
+    "stream": 26,
+    "connected": 4686
+   },
+   "second": {
+    "mapReady": 4454,
+    "stream": 24,
+    "connected": 4501
+   }
+  },
+  {
+   "round": 5,
+   "build": "main",
+   "load": {
+    "busyPercent": 4.4,
+    "coresBusy": 0.7
+   },
+   "first": {
+    "mapReady": 4549,
+    "heapMB": 1395.6890726089478,
+    "stream": 26,
+    "connected": 4595
+   },
+   "second": {
+    "mapReady": 4452,
+    "stream": 28,
+    "connected": 4456
+   }
+  },
+  {
+   "round": 5,
+   "build": "c40",
+   "load": {
+    "busyPercent": 5.2,
+    "coresBusy": 0.8
+   },
+   "first": {
+    "mapReady": 3712,
+    "heapMB": 1369.694993019104,
+    "stream": 29,
+    "connected": 3743
+   },
+   "second": {
+    "mapReady": 3569,
+    "stream": 27,
+    "connected": 3592
+   }
+  },
+  {
+   "round": 6,
+   "build": "c40",
+   "load": {
+    "busyPercent": 6.5,
+    "coresBusy": 1
+   },
+   "first": {
+    "mapReady": 3715,
+    "heapMB": 1368.224889755249,
+    "stream": 28,
+    "connected": 3741
+   },
+   "second": {
+    "mapReady": 3631,
+    "stream": 28,
+    "connected": 3657
+   }
+  },
+  {
+   "round": 6,
+   "build": "main",
+   "load": {
+    "busyPercent": 2.9,
+    "coresBusy": 0.5
+   },
+   "first": {
+    "mapReady": 4438,
+    "heapMB": 1396.5683097839355,
+    "stream": 26,
+    "connected": 4442
+   },
+   "second": {
+    "mapReady": 4561,
+    "stream": 35,
+    "connected": 4646
+   }
+  }
+ ],
+ "errors": [],
+ "medians": {
+  "main/first/mapReady": 4581,
+  "main/first/heapMB": 1396.1286911964417,
+  "main/first/stream": 26,
+  "main/first/connected": 4612,
+  "main/second/mapReady": 4473,
+  "main/second/heapMB": null,
+  "main/second/stream": 27,
+  "main/second/connected": 4517,
+  "c40/first/mapReady": 3833,
+  "c40/first/heapMB": 1373.152419090271,
+  "c40/first/stream": 27.5,
+  "c40/first/connected": 3852.5,
+  "c40/second/mapReady": 3611.5,
+  "c40/second/heapMB": null,
+  "c40/second/stream": 25,
+  "c40/second/connected": 3637.5
+ }
+}

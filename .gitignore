@@ -114,3 +114,6 @@ work/geodata/
 # Phase P2a (trees) scratch (hook builds of main and the cell variants, raw paired runs).
 # Curated data is in docs/perf-p2a/data/; reusable tools are in scripts/perf-p2a/.
 /work/perf-p2a/
+# Phase P2b (worker layers) scratch (hook builds, raw runs, screenshots). Curated data is in
+# docs/perf-p2b/data/; reusable tools are in scripts/perf-p2b/.
+/work/perf-p2b/

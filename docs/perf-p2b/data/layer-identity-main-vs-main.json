@@ -1,0 +1,369 @@
+{
+ "note": "Phase P2b layer identity: per build, all worker-built layer meshes read from the running app (traffic off); order-independent fingerprint over every triangle's exact float32 values (positions, normals, colours, uvs). Pixel diff vs the first build, fullscreen 2560x1440: pixels differing by > 8/255 in any channel, and by any amount.",
+ "host": {
+  "cpu": "AMD Ryzen 7 9800X3D 8-Core Processor",
+  "cores": 16,
+  "memoryGB": 66,
+  "platform": "win32 10.0.26300"
+ },
+ "builds": {
+  "main": {
+   "markings": {
+    "meshes": 484,
+    "materials": 1,
+    "triangles": 414905,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 14.407,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "35152406-989789d3-8e566b5e"
+   },
+   "banks": {
+    "meshes": 315,
+    "materials": 1,
+    "triangles": 40186,
+    "maxTrianglesPerMesh": 1280,
+    "maxBoundingRadius": 47.95,
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "b27035d9-c7f1f5bb-33f95407"
+   },
+   "land": {
+    "meshes": 1719,
+    "materials": 1,
+    "triangles": 4220081,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 18.185,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "4000ba5a-2e628c50-5d5e5d51"
+   },
+   "water": {
+    "meshes": 324,
+    "materials": 1,
+    "triangles": 143980,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 63.4,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "8acc6e0f-b7fa6914-96370095"
+   },
+   "roads": {
+    "meshes": 1422,
+    "materials": 1,
+    "triangles": 3332633,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 14.757,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "281feb26-a92b03cc-a18bb9b0"
+   },
+   "surveyed": {
+    "meshes": 0,
+    "materials": 0,
+    "triangles": 0,
+    "maxTrianglesPerMesh": 0,
+    "maxBoundingRadius": 0,
+    "castShadow": [],
+    "receiveShadow": [],
+    "frustumCulled": [],
+    "fingerprint": "00000000-00000000-00000000"
+   },
+   "walls": {
+    "meshes": 427,
+    "materials": 1,
+    "triangles": 162814,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 18.073,
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "846b1867-fa59d84c-a9dc4d07"
+   },
+   "roofs": {
+    "meshes": 419,
+    "materials": 1,
+    "triangles": 85549,
+    "maxTrianglesPerMesh": 2295,
+    "maxBoundingRadius": 16.746,
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "8d6be272-792f921a-83e56ff4"
+   },
+   "cornices": {
+    "meshes": 427,
+    "materials": 1,
+    "triangles": 162814,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 18.076,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "20ca50d7-52f38b19-6604e8c2"
+   }
+  },
+  "main2": {
+   "markings": {
+    "meshes": 484,
+    "materials": 1,
+    "triangles": 414905,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 14.407,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "35152406-989789d3-8e566b5e"
+   },
+   "banks": {
+    "meshes": 315,
+    "materials": 1,
+    "triangles": 40186,
+    "maxTrianglesPerMesh": 1280,
+    "maxBoundingRadius": 47.95,
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "b27035d9-c7f1f5bb-33f95407"
+   },
+   "land": {
+    "meshes": 1719,
+    "materials": 1,
+    "triangles": 4220081,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 18.185,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "4000ba5a-2e628c50-5d5e5d51"
+   },
+   "water": {
+    "meshes": 324,
+    "materials": 1,
+    "triangles": 143980,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 63.4,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "8acc6e0f-b7fa6914-96370095"
+   },
+   "roads": {
+    "meshes": 1422,
+    "materials": 1,
+    "triangles": 3332633,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 14.757,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "281feb26-a92b03cc-a18bb9b0"
+   },
+   "surveyed": {
+    "meshes": 0,
+    "materials": 0,
+    "triangles": 0,
+    "maxTrianglesPerMesh": 0,
+    "maxBoundingRadius": 0,
+    "castShadow": [],
+    "receiveShadow": [],
+    "frustumCulled": [],
+    "fingerprint": "00000000-00000000-00000000"
+   },
+   "walls": {
+    "meshes": 427,
+    "materials": 1,
+    "triangles": 162814,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 18.073,
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "846b1867-fa59d84c-a9dc4d07"
+   },
+   "roofs": {
+    "meshes": 419,
+    "materials": 1,
+    "triangles": 85549,
+    "maxTrianglesPerMesh": 2295,
+    "maxBoundingRadius": 16.746,
+    "castShadow": [
+     true
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "8d6be272-792f921a-83e56ff4"
+   },
+   "cornices": {
+    "meshes": 427,
+    "materials": 1,
+    "triangles": 162814,
+    "maxTrianglesPerMesh": 3000,
+    "maxBoundingRadius": 18.076,
+    "castShadow": [
+     false
+    ],
+    "receiveShadow": [
+     true
+    ],
+    "frustumCulled": [
+     true
+    ],
+    "fingerprint": "20ca50d7-52f38b19-6604e8c2"
+   }
+  }
+ },
+ "pixels": {
+  "main2/day/overview": {
+   "pixels": 3686400,
+   "differingOver8": 0,
+   "differingAny": 0,
+   "maxDiff": 0
+  },
+  "main2/night/overview": {
+   "pixels": 3686400,
+   "differingOver8": 0,
+   "differingAny": 11,
+   "maxDiff": 1
+  },
+  "main2/day/city": {
+   "pixels": 3686400,
+   "differingOver8": 0,
+   "differingAny": 0,
+   "maxDiff": 0
+  },
+  "main2/night/city": {
+   "pixels": 3686400,
+   "differingOver8": 0,
+   "differingAny": 22,
+   "maxDiff": 1
+  },
+  "main2/night/kungsgatan": {
+   "pixels": 3686400,
+   "differingOver8": 0,
+   "differingAny": 0,
+   "maxDiff": 0
+  },
+  "main2/day/norraPromenaden": {
+   "pixels": 3686400,
+   "differingOver8": 0,
+   "differingAny": 0,
+   "maxDiff": 0
+  }
+ },
+ "errors": [],
+ "shots": {
+  "main": {
+   "day/overview": "main-day-overview.png",
+   "night/overview": "main-night-overview.png",
+   "day/city": "main-day-city.png",
+   "night/city": "main-night-city.png",
+   "night/kungsgatan": "main-night-kungsgatan.png",
+   "day/norraPromenaden": "main-day-norraPromenaden.png"
+  },
+  "main2": {
+   "day/overview": "main2-day-overview.png",
+   "night/overview": "main2-night-overview.png",
+   "day/city": "main2-day-city.png",
+   "night/city": "main2-night-city.png",
+   "night/kungsgatan": "main2-night-kungsgatan.png",
+   "day/norraPromenaden": "main2-day-norraPromenaden.png"
+  }
+ },
+ "identical": {
+  "main2": true
+ }
+}
