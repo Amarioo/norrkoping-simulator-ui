@@ -120,3 +120,5 @@ work/geodata/
 # Phase P2c (map details) scratch (hook builds, raw runs, screenshots). Curated data is in
 # docs/perf-p2c/data/; reusable tools are in scripts/perf-p2c/.
 /work/perf-p2c/
+# Airport Lighting Phase E1 scratch (screenshots, raw runs). Curated data is in docs/airport-lighting-e1/.
+/work/airport-e1/

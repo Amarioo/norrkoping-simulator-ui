@@ -2,6 +2,24 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Airport Lighting Phase E1 — runway lights at Norrköping-Kungsängen (2026-11-03) — tested locally and approved by the user (2026-11-03), committed and pushed to `origin/main`
+
+[Full report](airport-lighting-e1/README.md). Worked directly on local `main` (= `origin/main` `ff96ae0`).
+**Committed and pushed to `origin/main`** (user, 2026-11-03). Backend unchanged.
+
+- **Result:** 470 lights on RWY 09/27 from AIRAC AIP AMDT 6/2026 (effective 2026-10-29, read 2026-11-03):
+  edge (72, white/yellow caution zone), threshold/end rows (32, green out / red in), Calvert CAT I approach
+  540 m / 900 m (268), PAPI left side 3° (8), TWY B and C edge (90, blue). Nothing on grass 11/29 or
+  Bråvalla. ICAO Annex 14 estimates where the AIP is silent, labelled ([provenance](airport-lighting-e1/data-provenance.md)).
+- **Behaviour:** colour by viewing direction (CPU, 0.017 ms/frame when moving); PAPI RRWW on the 3° slope,
+  WWWW above, RRRR below. Own switch in "Tid och ljus" (auto = night level, on, off) and runway in use
+  (27 default, estimate). Earlier illustrative boxes removed on 09/27 only.
+- **Measured (paired vs `origin/main`, 5 rounds):** frame time −0.23 … +0.04 ms (noise), +5…6 draw calls,
+  no new shader program (glow reuses the street-light halo program).
+- **Checks:** type check 0; build OK, byte-reproducible, no hook in `dist/`; Vitest 526/527 (new 10/10; known
+  `police.test.ts` CRLF); Playwright 25/25 twice. Layout data byte-identical on rebuild.
+- **Local only:** `.claude/launch.json` (`e1-main` 5311, `e1-new` 5312), `work/airport-e1/`.
+
 ## Airfield overlap fix — clean runway ends where taxiways join (2026-11-02) — tested locally and approved by the user (2026-11-02), committed and pushed to `origin/main`
 
 [Full report](airfield-overlap/README.md). Worked directly on local `main` (= `origin/main` `a2240e5`).

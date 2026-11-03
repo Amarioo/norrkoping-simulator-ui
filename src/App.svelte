@@ -270,6 +270,23 @@
           Strålkastarna styrs separat från tiden; ingen match antas. Lyktplaceringar är kartlagda
           (OSM) eller uppskattade från lit=yes.
         </p>
+        <label class="slider-label" for="airport-lights"><span>Banljus Kungsängen</span></label
+        ><select id="airport-lights" bind:value={lightingState.airport}
+          ><option value="auto">Tänds när det är mörkt</option><option value="on">Alltid på</option
+          ><option value="off">Av</option></select
+        >
+        <label class="slider-label" for="airport-runway"><span>Bana i bruk</span></label><select
+          id="airport-runway"
+          bind:value={lightingState.runway}
+          ><option value="27">27 (landning västerut)</option><option value="09"
+            >09 (landning österut)</option
+          ></select
+        >
+        <p class="micro-note">
+          Bana 09/27 enligt AIP (AMDT 6/2026): inflygningsljus, tröskel-, kant- och slutljus, PAPI
+          och taxibanorna B och C. Antal och avstånd är uppskattade enligt ICAO där AIP inte anger
+          dem. Gräsbanan 11/29 är obelyst.
+        </p>
       </section>
       <section class="sim-card flight-card">
         <div class="card-heading">

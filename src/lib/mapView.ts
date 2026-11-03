@@ -26,6 +26,7 @@ import { requestCityLayers } from './cityMeshClient';
 import { layeredGround } from './groundLayers';
 import { createIdrottsparken } from './stadium/idrottsparken';
 import { createRadhuset } from './landmarks/radhuset/radhuset';
+import { createRunwayLights } from './airport/runwayLightsView';
 
 export { Batch, fill, strip } from './cityMesh';
 
@@ -226,6 +227,9 @@ export function createMappedCity() {
   // Landmark Phase B1: Rådhuset with its tower and Gull-Olle (replaces the OSM walls of way/285809156).
   const radhuset = createRadhuset(terrain);
   group.add(radhuset.group);
+  // Airport Lighting Phase E1: ESSP RWY 09/27 approach, runway and taxiway lights (own switch).
+  const airport = createRunwayLights(terrain, cityMap.airways, cityMap.meta.metresPerUnit);
+  group.add(airport.group);
   return {
     group,
     labels: details.labels,
@@ -234,6 +238,8 @@ export function createMappedCity() {
      * Police Signs Phase D1: night level 0…1 (env.artificial) for the self-lit police emblem and the
      * police tower's lit windows.
      */
+    /** Airport Lighting Phase E1: the airport lights (update per frame from the scene). */
+    airport,
     setNightLevel(level: number) {
       details.setPoliceNightLevel(level);
     },
@@ -245,6 +251,7 @@ export function createMappedCity() {
       disposed = true;
       stadium.dispose();
       radhuset.dispose();
+      airport.dispose();
       details.dispose();
       places.dispose();
       bridges.dispose();

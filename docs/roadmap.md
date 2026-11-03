@@ -184,7 +184,10 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
 
 ### Spår E: flygplatsen (ESSP Kungsängen)
 
-- [ ] **E1 Banljus** — M
+- [ ] **E1 Banljus** — M — *genomförd 2026-11-03 direkt på main, väntar på lokal test, ej committad:
+  [docs/airport-lighting-e1/README.md](airport-lighting-e1/README.md). 470 ljus på bana 09/27 enligt AIP AMDT 6/2026
+  (inflygning, tröskel, kant, slut, PAPI, taxibanorna B och C), egen strömbrytare och bana i bruk; detaljer
+  enligt ICAO där AIP saknar dem (uppskattning); ingen mätbar prestandakostnad.*
   - Bana 09/27: kantljus, tröskel-/slutljus, inflygningsljus, PAPI enligt AIP
     (`docs/step62/airport-lighting-plan.md`). Bana 11/29 obelyst. Egen strömbrytare, oberoende av stadens.
 - [ ] **E2 Flygplansljus** — S/M

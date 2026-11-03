@@ -1,6 +1,6 @@
 <script lang="ts">
   import { onDestroy } from 'svelte';
-  import { Group } from 'three';
+  import { Group, type Fog } from 'three';
   import { T, useTask, useThrelte } from '@threlte/core';
   import { interactivity, type IntersectionEvent } from '@threlte/extras';
   import { createMappedCity } from './mapView';
@@ -129,6 +129,8 @@
       state: lightingState,
       settle: () => lighting.settle(),
       describe: () => lighting.describe(),
+      /** Airport Lighting Phase E1: the ESSP runway lights (counts, level, runway in use). */
+      airport: () => view.airport.describe(),
       get uniforms() {
         return lighting.uniforms;
       },
@@ -274,6 +276,16 @@
     transit.setNightLevel(level);
     // Police Signs Phase D1: the police emblem glows at the same night level.
     view.setNightLevel(level);
+    // Airport Lighting Phase E1: the runway lights follow their own switch (auto = the night level).
+    if (camera.current)
+      view.airport.update(
+        camera.current,
+        level,
+        lightingState.airport,
+        lightingState.runway,
+        renderer.domElement.height,
+        scene.fog as Fog | null,
+      );
     vehiclePoses.length = 0;
     for (const p of transport.poses()) vehiclePoses.push(p);
     for (const p of transit.poses()) vehiclePoses.push(p);

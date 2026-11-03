@@ -1,0 +1,69 @@
+{
+ "phase": "Airport Lighting Phase E1",
+ "rule": "airport-lighting-e1-v1",
+ "sources": [
+  {
+   "id": "aip",
+   "title": "LFV eAIP Sweden, ES-AD 2 ESSP NORRKÖPING-KUNGSÄNGEN §§ 2.12, 2.14, 2.15",
+   "issue": "AIRAC AIP AMDT 6/2026",
+   "effective": "2026-10-29",
+   "published": "2026-09-24",
+   "read": "2026-11-03",
+   "url": "https://aro.lfv.se/content/eaip/default_offline.html",
+   "use": "facts only; no AIP text, chart or image committed",
+   "accuracy": "published infrastructure, not live availability; NOTAMs not reconciled; AMDT 7/2026 (effective 2026-11-26) not checked"
+  },
+  {
+   "id": "osm",
+   "title": "OpenStreetMap map snapshot",
+   "timestamp": "2026-10-16T13:35:36Z",
+   "file": "src/lib/data/norrkoping-map.json",
+   "licence": "ODbL-1.0",
+   "ways": { "runway 09/27": 7840051, "taxiway B": [30732715, 104245427], "taxiway C": 30732713 },
+   "accuracy": "runway ends within 0.024 m of the AIP threshold coordinates (EPSG:3006 via src/lib/geo/sweref99tm.js)"
+  },
+  {
+   "id": "icao",
+   "title": "ICAO Annex 14 Vol I, chapter 5.3 (design rules)",
+   "use": "rules referenced by number for estimates; not copied; edition not pinned",
+   "accuracy": "limits and typical layouts, not this airport's installation"
+  }
+ ],
+ "coordinates": {
+  "crs": "EPSG:3006 (SWEREF 99 TM)",
+  "scene": "x east, z south, 1 unit = 25 m, origin E 569030 N 6494989 (src/lib/geo/sweref99tm.js)",
+  "heights": "lights on the rendered DTM ground (RH2000) plus estimated mounting heights; AIP elevations not used"
+ },
+ "values": {
+  "source": {
+   "runway": { "lengthM": 2205, "widthM": 45 },
+   "approach": { "09": "CALVERT CAT I 540 m LIH", "27": "CALVERT CAT I 900 m LIH" },
+   "threshold": "green",
+   "papi": "left side, 3.00°, MEHT 56 ft",
+   "edge": "2205 m / 60 m, white, caution zone yellow, LIH",
+   "end": "red",
+   "taxiwayEdge": ["B", "C"],
+   "none": ["TDZ", "runway centreline", "wing bars", "stopway lights", "aerodrome beacon", "RWY 11/29 lighting"]
+  },
+  "estimate": {
+   "edgeOffsetM": 1.5,
+   "cautionZoneM": 600,
+   "rowSpacingM": 3,
+   "approachPattern": "barrettes of 5 lights (4 m) every 30 m, one 30 m crossbar at 300 m (ICAO CAT I)",
+   "papiUnitSettingsDeg": [3.5, 3.1667, 2.8333, 2.5],
+   "papiDistanceM": 345,
+   "papiInnerOffsetM": 15,
+   "papiUnitSpacingM": 9,
+   "taxiwayEdgeSpacingM": 60,
+   "taxiwayEdgeOffsetM": 1,
+   "mountingHeightM": { "edge": 0.35, "threshold": 0.3, "approach": 0.8, "papi": 0.9, "taxiway": 0.3 },
+   "beam": "main ±30°, fading to ±60°; side spill edge 0.35, threshold 0.25, approach 0.15, PAPI 0",
+   "colours": "approximate linear RGB",
+   "runwayInUseDefault": "27",
+   "switch": "auto follows the street lights' night level (simulator rule)"
+  },
+  "notModelled": ["runway guard lights", "lit windsock", "lit anemometer", "apron floodlights", "obstacle lights"]
+ },
+ "counts": { "total": 470, "edge": 72, "threshold": 32, "approach": 268, "papi": 8, "taxiway": 90 },
+ "reproduce": "node scripts/airport-e1/layout-summary.mjs <out.json> (byte-identical: docs/airport-lighting-e1/data/layout.json)"
+}

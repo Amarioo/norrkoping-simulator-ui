@@ -439,9 +439,14 @@ export function createLandmarkDetails() {
     // and fought it pixel by pixel at the same rank): the runway and its markings win. Rank 12 is
     // also the footpath rank; paths never cross a runway.
     layeredSurface(surface.material as MeshStandardMaterial, LAYER_RANK.asphalt + 1);
-    for (const side of [-1, 1])
-      for (let d = -length / 2 + 0.5; d < length / 2; d += 2.4)
-        box(air, side * (runway.width / 2 + 0.08), 0.03, d, 0.035, 0.035, 0.035, '#e5e6ca');
+    // Airport Lighting Phase E1: the lit RWY 09/27 has its AIP-based lights (src/lib/airport/), so its
+    // earlier illustrative edge boxes are gone. The other runways (grass 11/29, unlit per the AIP;
+    // the historic Bråvalla runways) keep their unlit marker boxes.
+    const lit = runway.ref === '09/27' && !runway.historic;
+    if (!lit)
+      for (const side of [-1, 1])
+        for (let d = -length / 2 + 0.5; d < length / 2; d += 2.4)
+          box(air, side * (runway.width / 2 + 0.08), 0.03, d, 0.035, 0.035, 0.035, '#e5e6ca');
   }
 
   drape(start, 0.09);

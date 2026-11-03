@@ -237,7 +237,7 @@ export function fixtureLamps(fixtures: FixtureRecord[], terrain: TerrainService)
   });
 }
 
-const HALO_VERTEX = /* glsl */ `
+export const HALO_VERTEX = /* glsl */ `
 uniform float haloSize;
 uniform float haloMinPx;
 uniform float viewportHeight;
@@ -260,7 +260,7 @@ void main() {
 	vFog = smoothstep( fogNear, fogFar, -centre.z );
 }
 `;
-const HALO_FRAGMENT = /* glsl */ `
+export const HALO_FRAGMENT = /* glsl */ `
 uniform float haloLevel;
 varying vec2 vUv;
 varying vec3 vColor;

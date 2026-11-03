@@ -110,6 +110,7 @@ export function installPerfProbe(input: PerfProbeInput) {
       else if (child.name === 'idrottsparken' || child.name === 'idrottsparken-turf')
         owner.set(child, 'stadium');
       else if (child.name === 'radhuset') owner.set(child, 'radhuset');
+      else if (child.name === 'airport-lights') owner.set(child, 'lights');
       else if ((child as { isInstancedMesh?: boolean }).isInstancedMesh && !child.name)
         owner.set(child, 'trees');
       else if (child.children.includes(input.view.labels)) details = child;

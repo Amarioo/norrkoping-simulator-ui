@@ -1,0 +1,10066 @@
+{
+ "rule": "airport-lighting-e1-v1",
+ "aip": {
+  "issue": "AIRAC AIP AMDT 6/2026",
+  "effective": "2026-10-29",
+  "chapter": "ES-AD 2 ESSP NORRKÖPING-KUNGSÄNGEN"
+ },
+ "source": {
+  "lengthM": 2205,
+  "widthM": 45,
+  "edgeSpacingM": 60,
+  "approachLengthM": {
+   "27": 900,
+   "09": 540
+  },
+  "papiDegrees": 3,
+  "papiMehtFt": 56
+ },
+ "estimates": {
+  "edgeOffsetM": 1.5,
+  "cautionZoneM": 600,
+  "rowSpacingM": 3,
+  "approachSpacingM": 30,
+  "barretteLights": 5,
+  "barretteLengthM": 4,
+  "crossbarAtM": 300,
+  "crossbarLengthM": 30,
+  "crossbarSpacingM": 2,
+  "papiUnitSettingsDeg": [
+   3.5,
+   3.1666666666666665,
+   2.8333333333333335,
+   2.5
+  ],
+  "papiInnerOffsetM": 15,
+  "papiUnitSpacingM": 9,
+  "taxiwayEdgeSpacingM": 60,
+  "taxiwayEdgeOffsetM": 1,
+  "heightM": {
+   "edge": 0.35,
+   "threshold": 0.3,
+   "approach": 0.8,
+   "papi": 0.9,
+   "taxiway": 0.3
+  },
+  "spill": {
+   "edge": 0.35,
+   "threshold": 0.25,
+   "approach": 0.15,
+   "papi": 0,
+   "taxiway": 0
+  }
+ },
+ "thresholdCheck": {
+  "27": {
+   "aipScene": [
+    191.356,
+    14.3129
+   ],
+   "osmEnd": [
+    191.357,
+    14.313
+   ],
+   "distanceM": 0.0244
+  },
+  "09": {
+   "aipScene": [
+    103.1629,
+    14.6068
+   ],
+   "osmEnd": [
+    103.163,
+    14.606
+   ],
+   "distanceM": 0.0202
+  }
+ },
+ "counts": {
+  "total": 470,
+  "byGroup": {
+   "edge": 72,
+   "threshold": 32,
+   "approach": 268,
+   "papi": 8,
+   "taxiway": 90
+  }
+ },
+ "lights": [
+  {
+   "id": "airport-lighting-e1-v1:edge:n1",
+   "group": "edge",
+   "position": [
+    105.5434,
+    13.6381
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s1",
+   "group": "edge",
+   "position": [
+    105.5498,
+    15.5581
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n2",
+   "group": "edge",
+   "position": [
+    107.9271,
+    13.6302
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s2",
+   "group": "edge",
+   "position": [
+    107.9334,
+    15.5502
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n3",
+   "group": "edge",
+   "position": [
+    110.3107,
+    13.6222
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s3",
+   "group": "edge",
+   "position": [
+    110.3171,
+    15.5422
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n4",
+   "group": "edge",
+   "position": [
+    112.6943,
+    13.6143
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s4",
+   "group": "edge",
+   "position": [
+    112.7007,
+    15.5343
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n5",
+   "group": "edge",
+   "position": [
+    115.0779,
+    13.6064
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s5",
+   "group": "edge",
+   "position": [
+    115.0843,
+    15.5264
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n6",
+   "group": "edge",
+   "position": [
+    117.4615,
+    13.5985
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s6",
+   "group": "edge",
+   "position": [
+    117.4679,
+    15.5185
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n7",
+   "group": "edge",
+   "position": [
+    119.8452,
+    13.5906
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s7",
+   "group": "edge",
+   "position": [
+    119.8515,
+    15.5106
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n8",
+   "group": "edge",
+   "position": [
+    122.2288,
+    13.5827
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s8",
+   "group": "edge",
+   "position": [
+    122.2352,
+    15.5026
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n9",
+   "group": "edge",
+   "position": [
+    124.6124,
+    13.5747
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s9",
+   "group": "edge",
+   "position": [
+    124.6188,
+    15.4947
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n10",
+   "group": "edge",
+   "position": [
+    126.996,
+    13.5668
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s10",
+   "group": "edge",
+   "position": [
+    127.0024,
+    15.4868
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n11",
+   "group": "edge",
+   "position": [
+    129.3796,
+    13.5589
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s11",
+   "group": "edge",
+   "position": [
+    129.386,
+    15.4789
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n12",
+   "group": "edge",
+   "position": [
+    131.7633,
+    13.551
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s12",
+   "group": "edge",
+   "position": [
+    131.7696,
+    15.471
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n13",
+   "group": "edge",
+   "position": [
+    134.1469,
+    13.5431
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s13",
+   "group": "edge",
+   "position": [
+    134.1533,
+    15.463
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n14",
+   "group": "edge",
+   "position": [
+    136.5305,
+    13.5351
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s14",
+   "group": "edge",
+   "position": [
+    136.5369,
+    15.4551
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n15",
+   "group": "edge",
+   "position": [
+    138.9141,
+    13.5272
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s15",
+   "group": "edge",
+   "position": [
+    138.9205,
+    15.4472
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n16",
+   "group": "edge",
+   "position": [
+    141.2978,
+    13.5193
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s16",
+   "group": "edge",
+   "position": [
+    141.3041,
+    15.4393
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n17",
+   "group": "edge",
+   "position": [
+    143.6814,
+    13.5114
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s17",
+   "group": "edge",
+   "position": [
+    143.6878,
+    15.4314
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n18",
+   "group": "edge",
+   "position": [
+    146.065,
+    13.5035
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s18",
+   "group": "edge",
+   "position": [
+    146.0714,
+    15.4235
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n19",
+   "group": "edge",
+   "position": [
+    148.4486,
+    13.4955
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s19",
+   "group": "edge",
+   "position": [
+    148.455,
+    15.4155
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n20",
+   "group": "edge",
+   "position": [
+    150.8322,
+    13.4876
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s20",
+   "group": "edge",
+   "position": [
+    150.8386,
+    15.4076
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n21",
+   "group": "edge",
+   "position": [
+    153.2159,
+    13.4797
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s21",
+   "group": "edge",
+   "position": [
+    153.2222,
+    15.3997
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n22",
+   "group": "edge",
+   "position": [
+    155.5995,
+    13.4718
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s22",
+   "group": "edge",
+   "position": [
+    155.6059,
+    15.3918
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n23",
+   "group": "edge",
+   "position": [
+    157.9831,
+    13.4639
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s23",
+   "group": "edge",
+   "position": [
+    157.9895,
+    15.3839
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n24",
+   "group": "edge",
+   "position": [
+    160.3667,
+    13.456
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s24",
+   "group": "edge",
+   "position": [
+    160.3731,
+    15.3759
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n25",
+   "group": "edge",
+   "position": [
+    162.7504,
+    13.448
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s25",
+   "group": "edge",
+   "position": [
+    162.7567,
+    15.368
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n26",
+   "group": "edge",
+   "position": [
+    165.134,
+    13.4401
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s26",
+   "group": "edge",
+   "position": [
+    165.1404,
+    15.3601
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n27",
+   "group": "edge",
+   "position": [
+    167.5176,
+    13.4322
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s27",
+   "group": "edge",
+   "position": [
+    167.524,
+    15.3522
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n28",
+   "group": "edge",
+   "position": [
+    169.9012,
+    13.4243
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s28",
+   "group": "edge",
+   "position": [
+    169.9076,
+    15.3443
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n29",
+   "group": "edge",
+   "position": [
+    172.2848,
+    13.4164
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s29",
+   "group": "edge",
+   "position": [
+    172.2912,
+    15.3363
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n30",
+   "group": "edge",
+   "position": [
+    174.6685,
+    13.4084
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s30",
+   "group": "edge",
+   "position": [
+    174.6748,
+    15.3284
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n31",
+   "group": "edge",
+   "position": [
+    177.0521,
+    13.4005
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s31",
+   "group": "edge",
+   "position": [
+    177.0585,
+    15.3205
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n32",
+   "group": "edge",
+   "position": [
+    179.4357,
+    13.3926
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s32",
+   "group": "edge",
+   "position": [
+    179.4421,
+    15.3126
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n33",
+   "group": "edge",
+   "position": [
+    181.8193,
+    13.3847
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s33",
+   "group": "edge",
+   "position": [
+    181.8257,
+    15.3047
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n34",
+   "group": "edge",
+   "position": [
+    184.2029,
+    13.3768
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s34",
+   "group": "edge",
+   "position": [
+    184.2093,
+    15.2968
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n35",
+   "group": "edge",
+   "position": [
+    186.5866,
+    13.3688
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s35",
+   "group": "edge",
+   "position": [
+    186.5929,
+    15.2888
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:n36",
+   "group": "edge",
+   "position": [
+    188.9702,
+    13.3609
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:edge:s36",
+   "group": "edge",
+   "position": [
+    188.9766,
+    15.2809
+   ],
+   "heightM": 0.35,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "yellow",
+     "inUse": "both",
+     "spill": 0.35
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "both",
+     "spill": 0.35
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-0",
+   "group": "threshold",
+   "position": [
+    103.166,
+    15.506
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-0",
+   "group": "threshold",
+   "position": [
+    191.36,
+    15.213
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-1",
+   "group": "threshold",
+   "position": [
+    103.1656,
+    15.386
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-1",
+   "group": "threshold",
+   "position": [
+    191.3596,
+    15.093
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-2",
+   "group": "threshold",
+   "position": [
+    103.1652,
+    15.266
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-2",
+   "group": "threshold",
+   "position": [
+    191.3592,
+    14.973
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-3",
+   "group": "threshold",
+   "position": [
+    103.1648,
+    15.146
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-3",
+   "group": "threshold",
+   "position": [
+    191.3588,
+    14.853
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-4",
+   "group": "threshold",
+   "position": [
+    103.1644,
+    15.026
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-4",
+   "group": "threshold",
+   "position": [
+    191.3584,
+    14.733
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-5",
+   "group": "threshold",
+   "position": [
+    103.164,
+    14.906
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-5",
+   "group": "threshold",
+   "position": [
+    191.358,
+    14.613
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-6",
+   "group": "threshold",
+   "position": [
+    103.1636,
+    14.786
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-6",
+   "group": "threshold",
+   "position": [
+    191.3576,
+    14.493
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-7",
+   "group": "threshold",
+   "position": [
+    103.1632,
+    14.666
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-7",
+   "group": "threshold",
+   "position": [
+    191.3572,
+    14.373
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-8",
+   "group": "threshold",
+   "position": [
+    103.1628,
+    14.546
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-8",
+   "group": "threshold",
+   "position": [
+    191.3568,
+    14.253
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-9",
+   "group": "threshold",
+   "position": [
+    103.1624,
+    14.426
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-9",
+   "group": "threshold",
+   "position": [
+    191.3564,
+    14.133
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-10",
+   "group": "threshold",
+   "position": [
+    103.162,
+    14.306
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-10",
+   "group": "threshold",
+   "position": [
+    191.356,
+    14.013
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-11",
+   "group": "threshold",
+   "position": [
+    103.1616,
+    14.186
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-11",
+   "group": "threshold",
+   "position": [
+    191.3556,
+    13.893
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-12",
+   "group": "threshold",
+   "position": [
+    103.1612,
+    14.066
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-12",
+   "group": "threshold",
+   "position": [
+    191.3552,
+    13.773
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-13",
+   "group": "threshold",
+   "position": [
+    103.1608,
+    13.946
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-13",
+   "group": "threshold",
+   "position": [
+    191.3548,
+    13.653
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-14",
+   "group": "threshold",
+   "position": [
+    103.1604,
+    13.826
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-14",
+   "group": "threshold",
+   "position": [
+    191.3544,
+    13.533
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:09-15",
+   "group": "threshold",
+   "position": [
+    103.16,
+    13.706
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "09",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "27",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:threshold:27-15",
+   "group": "threshold",
+   "position": [
+    191.354,
+    13.413
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "green",
+     "inUse": "27",
+     "spill": 0.25
+    },
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "red",
+     "inUse": "09",
+     "spill": 0.25
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-30-0",
+   "group": "approach",
+   "position": [
+    101.9633,
+    14.69
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-30-1",
+   "group": "approach",
+   "position": [
+    101.9631,
+    14.65
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-30-2",
+   "group": "approach",
+   "position": [
+    101.963,
+    14.61
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-30-3",
+   "group": "approach",
+   "position": [
+    101.9629,
+    14.57
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-30-4",
+   "group": "approach",
+   "position": [
+    101.9627,
+    14.53
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-60-0",
+   "group": "approach",
+   "position": [
+    100.7633,
+    14.694
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-60-1",
+   "group": "approach",
+   "position": [
+    100.7631,
+    14.654
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-60-2",
+   "group": "approach",
+   "position": [
+    100.763,
+    14.614
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-60-3",
+   "group": "approach",
+   "position": [
+    100.7629,
+    14.574
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-60-4",
+   "group": "approach",
+   "position": [
+    100.7627,
+    14.534
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-90-0",
+   "group": "approach",
+   "position": [
+    99.5633,
+    14.698
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-90-1",
+   "group": "approach",
+   "position": [
+    99.5632,
+    14.658
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-90-2",
+   "group": "approach",
+   "position": [
+    99.563,
+    14.618
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-90-3",
+   "group": "approach",
+   "position": [
+    99.5629,
+    14.578
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-90-4",
+   "group": "approach",
+   "position": [
+    99.5628,
+    14.538
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-120-0",
+   "group": "approach",
+   "position": [
+    98.3633,
+    14.7019
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-120-1",
+   "group": "approach",
+   "position": [
+    98.3632,
+    14.6619
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-120-2",
+   "group": "approach",
+   "position": [
+    98.363,
+    14.6219
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-120-3",
+   "group": "approach",
+   "position": [
+    98.3629,
+    14.5819
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-120-4",
+   "group": "approach",
+   "position": [
+    98.3628,
+    14.5419
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-150-0",
+   "group": "approach",
+   "position": [
+    97.1633,
+    14.7059
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-150-1",
+   "group": "approach",
+   "position": [
+    97.1632,
+    14.6659
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-150-2",
+   "group": "approach",
+   "position": [
+    97.163,
+    14.6259
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-150-3",
+   "group": "approach",
+   "position": [
+    97.1629,
+    14.5859
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-150-4",
+   "group": "approach",
+   "position": [
+    97.1628,
+    14.5459
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-180-0",
+   "group": "approach",
+   "position": [
+    95.9633,
+    14.7099
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-180-1",
+   "group": "approach",
+   "position": [
+    95.9632,
+    14.6699
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-180-2",
+   "group": "approach",
+   "position": [
+    95.963,
+    14.6299
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-180-3",
+   "group": "approach",
+   "position": [
+    95.9629,
+    14.5899
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-180-4",
+   "group": "approach",
+   "position": [
+    95.9628,
+    14.5499
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-210-0",
+   "group": "approach",
+   "position": [
+    94.7633,
+    14.7139
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-210-1",
+   "group": "approach",
+   "position": [
+    94.7632,
+    14.6739
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-210-2",
+   "group": "approach",
+   "position": [
+    94.763,
+    14.6339
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-210-3",
+   "group": "approach",
+   "position": [
+    94.7629,
+    14.5939
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-210-4",
+   "group": "approach",
+   "position": [
+    94.7628,
+    14.5539
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-240-0",
+   "group": "approach",
+   "position": [
+    93.5633,
+    14.7179
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-240-1",
+   "group": "approach",
+   "position": [
+    93.5632,
+    14.6779
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-240-2",
+   "group": "approach",
+   "position": [
+    93.5631,
+    14.6379
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-240-3",
+   "group": "approach",
+   "position": [
+    93.5629,
+    14.5979
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-240-4",
+   "group": "approach",
+   "position": [
+    93.5628,
+    14.5579
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-270-0",
+   "group": "approach",
+   "position": [
+    92.3633,
+    14.7219
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-270-1",
+   "group": "approach",
+   "position": [
+    92.3632,
+    14.6819
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-270-2",
+   "group": "approach",
+   "position": [
+    92.3631,
+    14.6419
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-270-3",
+   "group": "approach",
+   "position": [
+    92.3629,
+    14.6019
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-270-4",
+   "group": "approach",
+   "position": [
+    92.3628,
+    14.5619
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-300-0",
+   "group": "approach",
+   "position": [
+    91.1633,
+    14.7259
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-300-1",
+   "group": "approach",
+   "position": [
+    91.1632,
+    14.6859
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-300-2",
+   "group": "approach",
+   "position": [
+    91.1631,
+    14.6459
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-300-3",
+   "group": "approach",
+   "position": [
+    91.1629,
+    14.6059
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-300-4",
+   "group": "approach",
+   "position": [
+    91.1628,
+    14.5659
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-330-0",
+   "group": "approach",
+   "position": [
+    89.9633,
+    14.7299
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-330-1",
+   "group": "approach",
+   "position": [
+    89.9632,
+    14.6899
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-330-2",
+   "group": "approach",
+   "position": [
+    89.9631,
+    14.6499
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-330-3",
+   "group": "approach",
+   "position": [
+    89.9629,
+    14.6099
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-330-4",
+   "group": "approach",
+   "position": [
+    89.9628,
+    14.5699
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-360-0",
+   "group": "approach",
+   "position": [
+    88.7633,
+    14.7338
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-360-1",
+   "group": "approach",
+   "position": [
+    88.7632,
+    14.6938
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-360-2",
+   "group": "approach",
+   "position": [
+    88.7631,
+    14.6538
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-360-3",
+   "group": "approach",
+   "position": [
+    88.7629,
+    14.6138
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-360-4",
+   "group": "approach",
+   "position": [
+    88.7628,
+    14.5738
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-390-0",
+   "group": "approach",
+   "position": [
+    87.5634,
+    14.7378
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-390-1",
+   "group": "approach",
+   "position": [
+    87.5632,
+    14.6978
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-390-2",
+   "group": "approach",
+   "position": [
+    87.5631,
+    14.6578
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-390-3",
+   "group": "approach",
+   "position": [
+    87.563,
+    14.6178
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-390-4",
+   "group": "approach",
+   "position": [
+    87.5628,
+    14.5778
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-420-0",
+   "group": "approach",
+   "position": [
+    86.3634,
+    14.7418
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-420-1",
+   "group": "approach",
+   "position": [
+    86.3632,
+    14.7018
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-420-2",
+   "group": "approach",
+   "position": [
+    86.3631,
+    14.6618
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-420-3",
+   "group": "approach",
+   "position": [
+    86.363,
+    14.6218
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-420-4",
+   "group": "approach",
+   "position": [
+    86.3628,
+    14.5818
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-450-0",
+   "group": "approach",
+   "position": [
+    85.1634,
+    14.7458
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-450-1",
+   "group": "approach",
+   "position": [
+    85.1632,
+    14.7058
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-450-2",
+   "group": "approach",
+   "position": [
+    85.1631,
+    14.6658
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-450-3",
+   "group": "approach",
+   "position": [
+    85.163,
+    14.6258
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-450-4",
+   "group": "approach",
+   "position": [
+    85.1628,
+    14.5858
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-480-0",
+   "group": "approach",
+   "position": [
+    83.9634,
+    14.7498
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-480-1",
+   "group": "approach",
+   "position": [
+    83.9632,
+    14.7098
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-480-2",
+   "group": "approach",
+   "position": [
+    83.9631,
+    14.6698
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-480-3",
+   "group": "approach",
+   "position": [
+    83.963,
+    14.6298
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-480-4",
+   "group": "approach",
+   "position": [
+    83.9628,
+    14.5898
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-510-0",
+   "group": "approach",
+   "position": [
+    82.7634,
+    14.7538
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-510-1",
+   "group": "approach",
+   "position": [
+    82.7632,
+    14.7138
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-510-2",
+   "group": "approach",
+   "position": [
+    82.7631,
+    14.6738
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-510-3",
+   "group": "approach",
+   "position": [
+    82.763,
+    14.6338
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-510-4",
+   "group": "approach",
+   "position": [
+    82.7628,
+    14.5938
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-540-0",
+   "group": "approach",
+   "position": [
+    81.5634,
+    14.7578
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-540-1",
+   "group": "approach",
+   "position": [
+    81.5633,
+    14.7178
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-540-2",
+   "group": "approach",
+   "position": [
+    81.5631,
+    14.6778
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-540-3",
+   "group": "approach",
+   "position": [
+    81.563,
+    14.6378
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-540-4",
+   "group": "approach",
+   "position": [
+    81.5629,
+    14.5978
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x-15",
+   "group": "approach",
+   "position": [
+    91.1651,
+    15.2459
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x-13",
+   "group": "approach",
+   "position": [
+    91.1648,
+    15.1659
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x-11",
+   "group": "approach",
+   "position": [
+    91.1645,
+    15.0859
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x-9",
+   "group": "approach",
+   "position": [
+    91.1643,
+    15.0059
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x-7",
+   "group": "approach",
+   "position": [
+    91.164,
+    14.9259
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x-5",
+   "group": "approach",
+   "position": [
+    91.1637,
+    14.8459
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x-3",
+   "group": "approach",
+   "position": [
+    91.1635,
+    14.7659
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x3",
+   "group": "approach",
+   "position": [
+    91.1627,
+    14.5259
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x5",
+   "group": "approach",
+   "position": [
+    91.1624,
+    14.4459
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x7",
+   "group": "approach",
+   "position": [
+    91.1621,
+    14.3659
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x9",
+   "group": "approach",
+   "position": [
+    91.1619,
+    14.2859
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x11",
+   "group": "approach",
+   "position": [
+    91.1616,
+    14.2059
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x13",
+   "group": "approach",
+   "position": [
+    91.1613,
+    14.1259
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x15",
+   "group": "approach",
+   "position": [
+    91.1611,
+    14.0459
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-30-0",
+   "group": "approach",
+   "position": [
+    192.5573,
+    14.389
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-30-1",
+   "group": "approach",
+   "position": [
+    192.5571,
+    14.349
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-30-2",
+   "group": "approach",
+   "position": [
+    192.557,
+    14.309
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-30-3",
+   "group": "approach",
+   "position": [
+    192.5569,
+    14.269
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-30-4",
+   "group": "approach",
+   "position": [
+    192.5567,
+    14.229
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-60-0",
+   "group": "approach",
+   "position": [
+    193.7573,
+    14.385
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-60-1",
+   "group": "approach",
+   "position": [
+    193.7571,
+    14.345
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-60-2",
+   "group": "approach",
+   "position": [
+    193.757,
+    14.305
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-60-3",
+   "group": "approach",
+   "position": [
+    193.7569,
+    14.265
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-60-4",
+   "group": "approach",
+   "position": [
+    193.7567,
+    14.225
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-90-0",
+   "group": "approach",
+   "position": [
+    194.9572,
+    14.381
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-90-1",
+   "group": "approach",
+   "position": [
+    194.9571,
+    14.341
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-90-2",
+   "group": "approach",
+   "position": [
+    194.957,
+    14.301
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-90-3",
+   "group": "approach",
+   "position": [
+    194.9568,
+    14.261
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-90-4",
+   "group": "approach",
+   "position": [
+    194.9567,
+    14.221
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-120-0",
+   "group": "approach",
+   "position": [
+    196.1572,
+    14.3771
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-120-1",
+   "group": "approach",
+   "position": [
+    196.1571,
+    14.3371
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-120-2",
+   "group": "approach",
+   "position": [
+    196.157,
+    14.2971
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-120-3",
+   "group": "approach",
+   "position": [
+    196.1568,
+    14.2571
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-120-4",
+   "group": "approach",
+   "position": [
+    196.1567,
+    14.2171
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-150-0",
+   "group": "approach",
+   "position": [
+    197.3572,
+    14.3731
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-150-1",
+   "group": "approach",
+   "position": [
+    197.3571,
+    14.3331
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-150-2",
+   "group": "approach",
+   "position": [
+    197.357,
+    14.2931
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-150-3",
+   "group": "approach",
+   "position": [
+    197.3568,
+    14.2531
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-150-4",
+   "group": "approach",
+   "position": [
+    197.3567,
+    14.2131
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-180-0",
+   "group": "approach",
+   "position": [
+    198.5572,
+    14.3691
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-180-1",
+   "group": "approach",
+   "position": [
+    198.5571,
+    14.3291
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-180-2",
+   "group": "approach",
+   "position": [
+    198.557,
+    14.2891
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-180-3",
+   "group": "approach",
+   "position": [
+    198.5568,
+    14.2491
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-180-4",
+   "group": "approach",
+   "position": [
+    198.5567,
+    14.2091
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-210-0",
+   "group": "approach",
+   "position": [
+    199.7572,
+    14.3651
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-210-1",
+   "group": "approach",
+   "position": [
+    199.7571,
+    14.3251
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-210-2",
+   "group": "approach",
+   "position": [
+    199.757,
+    14.2851
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-210-3",
+   "group": "approach",
+   "position": [
+    199.7568,
+    14.2451
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-210-4",
+   "group": "approach",
+   "position": [
+    199.7567,
+    14.2051
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-240-0",
+   "group": "approach",
+   "position": [
+    200.9572,
+    14.3611
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-240-1",
+   "group": "approach",
+   "position": [
+    200.9571,
+    14.3211
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-240-2",
+   "group": "approach",
+   "position": [
+    200.9569,
+    14.2811
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-240-3",
+   "group": "approach",
+   "position": [
+    200.9568,
+    14.2411
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-240-4",
+   "group": "approach",
+   "position": [
+    200.9567,
+    14.2011
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-270-0",
+   "group": "approach",
+   "position": [
+    202.1572,
+    14.3571
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-270-1",
+   "group": "approach",
+   "position": [
+    202.1571,
+    14.3171
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-270-2",
+   "group": "approach",
+   "position": [
+    202.1569,
+    14.2771
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-270-3",
+   "group": "approach",
+   "position": [
+    202.1568,
+    14.2371
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-270-4",
+   "group": "approach",
+   "position": [
+    202.1567,
+    14.1971
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-300-0",
+   "group": "approach",
+   "position": [
+    203.3572,
+    14.3531
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-300-1",
+   "group": "approach",
+   "position": [
+    203.3571,
+    14.3131
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-300-2",
+   "group": "approach",
+   "position": [
+    203.3569,
+    14.2731
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-300-3",
+   "group": "approach",
+   "position": [
+    203.3568,
+    14.2331
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-300-4",
+   "group": "approach",
+   "position": [
+    203.3567,
+    14.1931
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-330-0",
+   "group": "approach",
+   "position": [
+    204.5572,
+    14.3491
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-330-1",
+   "group": "approach",
+   "position": [
+    204.5571,
+    14.3091
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-330-2",
+   "group": "approach",
+   "position": [
+    204.5569,
+    14.2691
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-330-3",
+   "group": "approach",
+   "position": [
+    204.5568,
+    14.2291
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-330-4",
+   "group": "approach",
+   "position": [
+    204.5567,
+    14.1891
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-360-0",
+   "group": "approach",
+   "position": [
+    205.7572,
+    14.3452
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-360-1",
+   "group": "approach",
+   "position": [
+    205.7571,
+    14.3052
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-360-2",
+   "group": "approach",
+   "position": [
+    205.7569,
+    14.2652
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-360-3",
+   "group": "approach",
+   "position": [
+    205.7568,
+    14.2252
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-360-4",
+   "group": "approach",
+   "position": [
+    205.7567,
+    14.1852
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-390-0",
+   "group": "approach",
+   "position": [
+    206.9572,
+    14.3412
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-390-1",
+   "group": "approach",
+   "position": [
+    206.957,
+    14.3012
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-390-2",
+   "group": "approach",
+   "position": [
+    206.9569,
+    14.2612
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-390-3",
+   "group": "approach",
+   "position": [
+    206.9568,
+    14.2212
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-390-4",
+   "group": "approach",
+   "position": [
+    206.9566,
+    14.1812
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-420-0",
+   "group": "approach",
+   "position": [
+    208.1572,
+    14.3372
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-420-1",
+   "group": "approach",
+   "position": [
+    208.157,
+    14.2972
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-420-2",
+   "group": "approach",
+   "position": [
+    208.1569,
+    14.2572
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-420-3",
+   "group": "approach",
+   "position": [
+    208.1568,
+    14.2172
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-420-4",
+   "group": "approach",
+   "position": [
+    208.1566,
+    14.1772
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-450-0",
+   "group": "approach",
+   "position": [
+    209.3572,
+    14.3332
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-450-1",
+   "group": "approach",
+   "position": [
+    209.357,
+    14.2932
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-450-2",
+   "group": "approach",
+   "position": [
+    209.3569,
+    14.2532
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-450-3",
+   "group": "approach",
+   "position": [
+    209.3568,
+    14.2132
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-450-4",
+   "group": "approach",
+   "position": [
+    209.3566,
+    14.1732
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-480-0",
+   "group": "approach",
+   "position": [
+    210.5572,
+    14.3292
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-480-1",
+   "group": "approach",
+   "position": [
+    210.557,
+    14.2892
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-480-2",
+   "group": "approach",
+   "position": [
+    210.5569,
+    14.2492
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-480-3",
+   "group": "approach",
+   "position": [
+    210.5568,
+    14.2092
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-480-4",
+   "group": "approach",
+   "position": [
+    210.5566,
+    14.1692
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-510-0",
+   "group": "approach",
+   "position": [
+    211.7572,
+    14.3252
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-510-1",
+   "group": "approach",
+   "position": [
+    211.757,
+    14.2852
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-510-2",
+   "group": "approach",
+   "position": [
+    211.7569,
+    14.2452
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-510-3",
+   "group": "approach",
+   "position": [
+    211.7568,
+    14.2052
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-510-4",
+   "group": "approach",
+   "position": [
+    211.7566,
+    14.1652
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-540-0",
+   "group": "approach",
+   "position": [
+    212.9571,
+    14.3212
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-540-1",
+   "group": "approach",
+   "position": [
+    212.957,
+    14.2812
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-540-2",
+   "group": "approach",
+   "position": [
+    212.9569,
+    14.2412
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-540-3",
+   "group": "approach",
+   "position": [
+    212.9567,
+    14.2012
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-540-4",
+   "group": "approach",
+   "position": [
+    212.9566,
+    14.1612
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-570-0",
+   "group": "approach",
+   "position": [
+    214.1571,
+    14.3173
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-570-1",
+   "group": "approach",
+   "position": [
+    214.157,
+    14.2773
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-570-2",
+   "group": "approach",
+   "position": [
+    214.1569,
+    14.2373
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-570-3",
+   "group": "approach",
+   "position": [
+    214.1567,
+    14.1973
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-570-4",
+   "group": "approach",
+   "position": [
+    214.1566,
+    14.1573
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-600-0",
+   "group": "approach",
+   "position": [
+    215.3571,
+    14.3133
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-600-1",
+   "group": "approach",
+   "position": [
+    215.357,
+    14.2733
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-600-2",
+   "group": "approach",
+   "position": [
+    215.3569,
+    14.2333
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-600-3",
+   "group": "approach",
+   "position": [
+    215.3567,
+    14.1933
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-600-4",
+   "group": "approach",
+   "position": [
+    215.3566,
+    14.1533
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-630-0",
+   "group": "approach",
+   "position": [
+    216.5571,
+    14.3093
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-630-1",
+   "group": "approach",
+   "position": [
+    216.557,
+    14.2693
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-630-2",
+   "group": "approach",
+   "position": [
+    216.5569,
+    14.2293
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-630-3",
+   "group": "approach",
+   "position": [
+    216.5567,
+    14.1893
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-630-4",
+   "group": "approach",
+   "position": [
+    216.5566,
+    14.1493
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-660-0",
+   "group": "approach",
+   "position": [
+    217.7571,
+    14.3053
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-660-1",
+   "group": "approach",
+   "position": [
+    217.757,
+    14.2653
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-660-2",
+   "group": "approach",
+   "position": [
+    217.7569,
+    14.2253
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-660-3",
+   "group": "approach",
+   "position": [
+    217.7567,
+    14.1853
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-660-4",
+   "group": "approach",
+   "position": [
+    217.7566,
+    14.1453
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-690-0",
+   "group": "approach",
+   "position": [
+    218.9571,
+    14.3013
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-690-1",
+   "group": "approach",
+   "position": [
+    218.957,
+    14.2613
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-690-2",
+   "group": "approach",
+   "position": [
+    218.9568,
+    14.2213
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-690-3",
+   "group": "approach",
+   "position": [
+    218.9567,
+    14.1813
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-690-4",
+   "group": "approach",
+   "position": [
+    218.9566,
+    14.1413
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-720-0",
+   "group": "approach",
+   "position": [
+    220.1571,
+    14.2973
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-720-1",
+   "group": "approach",
+   "position": [
+    220.157,
+    14.2573
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-720-2",
+   "group": "approach",
+   "position": [
+    220.1568,
+    14.2173
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-720-3",
+   "group": "approach",
+   "position": [
+    220.1567,
+    14.1773
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-720-4",
+   "group": "approach",
+   "position": [
+    220.1566,
+    14.1373
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-750-0",
+   "group": "approach",
+   "position": [
+    221.3571,
+    14.2933
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-750-1",
+   "group": "approach",
+   "position": [
+    221.357,
+    14.2533
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-750-2",
+   "group": "approach",
+   "position": [
+    221.3568,
+    14.2133
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-750-3",
+   "group": "approach",
+   "position": [
+    221.3567,
+    14.1733
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-750-4",
+   "group": "approach",
+   "position": [
+    221.3566,
+    14.1333
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-780-0",
+   "group": "approach",
+   "position": [
+    222.5571,
+    14.2893
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-780-1",
+   "group": "approach",
+   "position": [
+    222.557,
+    14.2493
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-780-2",
+   "group": "approach",
+   "position": [
+    222.5568,
+    14.2093
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-780-3",
+   "group": "approach",
+   "position": [
+    222.5567,
+    14.1693
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-780-4",
+   "group": "approach",
+   "position": [
+    222.5566,
+    14.1293
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-810-0",
+   "group": "approach",
+   "position": [
+    223.7571,
+    14.2854
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-810-1",
+   "group": "approach",
+   "position": [
+    223.757,
+    14.2454
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-810-2",
+   "group": "approach",
+   "position": [
+    223.7568,
+    14.2054
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-810-3",
+   "group": "approach",
+   "position": [
+    223.7567,
+    14.1654
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-810-4",
+   "group": "approach",
+   "position": [
+    223.7566,
+    14.1254
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-840-0",
+   "group": "approach",
+   "position": [
+    224.9571,
+    14.2814
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-840-1",
+   "group": "approach",
+   "position": [
+    224.9569,
+    14.2414
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-840-2",
+   "group": "approach",
+   "position": [
+    224.9568,
+    14.2014
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-840-3",
+   "group": "approach",
+   "position": [
+    224.9567,
+    14.1614
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-840-4",
+   "group": "approach",
+   "position": [
+    224.9565,
+    14.1214
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-870-0",
+   "group": "approach",
+   "position": [
+    226.1571,
+    14.2774
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-870-1",
+   "group": "approach",
+   "position": [
+    226.1569,
+    14.2374
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-870-2",
+   "group": "approach",
+   "position": [
+    226.1568,
+    14.1974
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-870-3",
+   "group": "approach",
+   "position": [
+    226.1567,
+    14.1574
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-870-4",
+   "group": "approach",
+   "position": [
+    226.1565,
+    14.1174
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-900-0",
+   "group": "approach",
+   "position": [
+    227.3571,
+    14.2734
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-900-1",
+   "group": "approach",
+   "position": [
+    227.3569,
+    14.2334
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-900-2",
+   "group": "approach",
+   "position": [
+    227.3568,
+    14.1934
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-900-3",
+   "group": "approach",
+   "position": [
+    227.3567,
+    14.1534
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-900-4",
+   "group": "approach",
+   "position": [
+    227.3565,
+    14.1134
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x-15",
+   "group": "approach",
+   "position": [
+    203.3589,
+    14.8731
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x-13",
+   "group": "approach",
+   "position": [
+    203.3587,
+    14.7931
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x-11",
+   "group": "approach",
+   "position": [
+    203.3584,
+    14.7131
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x-9",
+   "group": "approach",
+   "position": [
+    203.3581,
+    14.6331
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x-7",
+   "group": "approach",
+   "position": [
+    203.3579,
+    14.5531
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x-5",
+   "group": "approach",
+   "position": [
+    203.3576,
+    14.4731
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x-3",
+   "group": "approach",
+   "position": [
+    203.3573,
+    14.3931
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x3",
+   "group": "approach",
+   "position": [
+    203.3565,
+    14.1531
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x5",
+   "group": "approach",
+   "position": [
+    203.3563,
+    14.0731
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x7",
+   "group": "approach",
+   "position": [
+    203.356,
+    13.9931
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x9",
+   "group": "approach",
+   "position": [
+    203.3557,
+    13.9131
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x11",
+   "group": "approach",
+   "position": [
+    203.3555,
+    13.8331
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x13",
+   "group": "approach",
+   "position": [
+    203.3552,
+    13.7531
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x15",
+   "group": "approach",
+   "position": [
+    203.3549,
+    13.6731
+   ],
+   "heightM": 0.8,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:papi:09-A",
+   "group": "papi",
+   "position": [
+    116.9533,
+    13.0602
+   ],
+   "heightM": 0.9,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "papiDeg": 3.5
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:papi:09-B",
+   "group": "papi",
+   "position": [
+    116.9521,
+    12.7002
+   ],
+   "heightM": 0.9,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "papiDeg": 3.1666666666666665
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:papi:09-C",
+   "group": "papi",
+   "position": [
+    116.9509,
+    12.3402
+   ],
+   "heightM": 0.9,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "papiDeg": 2.8333333333333335
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:papi:09-D",
+   "group": "papi",
+   "position": [
+    116.9497,
+    11.9802
+   ],
+   "heightM": 0.9,
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "papiDeg": 2.5
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:papi:27-A",
+   "group": "papi",
+   "position": [
+    177.5667,
+    15.8588
+   ],
+   "heightM": 0.9,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "papiDeg": 3.5
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:papi:27-B",
+   "group": "papi",
+   "position": [
+    177.5679,
+    16.2188
+   ],
+   "heightM": 0.9,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "papiDeg": 3.1666666666666665
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:papi:27-C",
+   "group": "papi",
+   "position": [
+    177.5691,
+    16.5788
+   ],
+   "heightM": 0.9,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "papiDeg": 2.8333333333333335
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:papi:27-D",
+   "group": "papi",
+   "position": [
+    177.5703,
+    16.9388
+   ],
+   "heightM": 0.9,
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "papiDeg": 2.5
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-6-0-l",
+   "group": "taxiway",
+   "position": [
+    190.5323,
+    13.2068
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-7-0-l",
+   "group": "taxiway",
+   "position": [
+    190.575,
+    13.0473
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-7-0-r",
+   "group": "taxiway",
+   "position": [
+    191.375,
+    13.0367
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-8-0-l",
+   "group": "taxiway",
+   "position": [
+    190.5561,
+    11.5713
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-8-0-r",
+   "group": "taxiway",
+   "position": [
+    191.3539,
+    11.5127
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-9-0-l",
+   "group": "taxiway",
+   "position": [
+    190.5478,
+    11.4327
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-9-0-r",
+   "group": "taxiway",
+   "position": [
+    191.3362,
+    11.2973
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-10-0-l",
+   "group": "taxiway",
+   "position": [
+    190.5364,
+    11.3339
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-10-0-r",
+   "group": "taxiway",
+   "position": [
+    191.2916,
+    11.0701
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-11-0-l",
+   "group": "taxiway",
+   "position": [
+    190.4969,
+    11.2172
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-11-0-r",
+   "group": "taxiway",
+   "position": [
+    191.2291,
+    10.8948
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-12-0-l",
+   "group": "taxiway",
+   "position": [
+    190.4546,
+    11.1102
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-12-0-r",
+   "group": "taxiway",
+   "position": [
+    191.1314,
+    10.6838
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-13-0-l",
+   "group": "taxiway",
+   "position": [
+    190.395,
+    11.0086
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-13-0-r",
+   "group": "taxiway",
+   "position": [
+    191.007,
+    10.4934
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-14-0-l",
+   "group": "taxiway",
+   "position": [
+    190.2877,
+    10.8743
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-14-0-r",
+   "group": "taxiway",
+   "position": [
+    190.8163,
+    10.2737
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-15-0-l",
+   "group": "taxiway",
+   "position": [
+    190.1683,
+    10.7613
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-15-0-r",
+   "group": "taxiway",
+   "position": [
+    190.5857,
+    10.0787
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-16-0-l",
+   "group": "taxiway",
+   "position": [
+    190.0753,
+    10.7004
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-16-0-r",
+   "group": "taxiway",
+   "position": [
+    190.4007,
+    9.9696
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-17-0-l",
+   "group": "taxiway",
+   "position": [
+    189.9334,
+    10.637
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-17-0-r",
+   "group": "taxiway",
+   "position": [
+    190.2326,
+    9.895
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-18-0-l",
+   "group": "taxiway",
+   "position": [
+    189.8826,
+    10.6163
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-18-0-r",
+   "group": "taxiway",
+   "position": [
+    190.1594,
+    9.8657
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-19-0-l",
+   "group": "taxiway",
+   "position": [
+    189.83,
+    10.59
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-19-0-r",
+   "group": "taxiway",
+   "position": [
+    189.968,
+    9.802
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-20-0-l",
+   "group": "taxiway",
+   "position": [
+    189.7132,
+    10.5672
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-20-0-r",
+   "group": "taxiway",
+   "position": [
+    189.7648,
+    9.7688
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-21-0-l",
+   "group": "taxiway",
+   "position": [
+    189.554,
+    10.556
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-21-0-r",
+   "group": "taxiway",
+   "position": [
+    189.552,
+    9.756
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-21-1-l",
+   "group": "taxiway",
+   "position": [
+    187.4005,
+    10.5615
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-21-1-r",
+   "group": "taxiway",
+   "position": [
+    187.3985,
+    9.7615
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-22-0-l",
+   "group": "taxiway",
+   "position": [
+    185.2803,
+    10.5655
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-22-0-r",
+   "group": "taxiway",
+   "position": [
+    185.2117,
+    9.7685
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-23-0-l",
+   "group": "taxiway",
+   "position": [
+    185.131,
+    10.5738
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-23-0-r",
+   "group": "taxiway",
+   "position": [
+    184.943,
+    9.7962
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-24-0-l",
+   "group": "taxiway",
+   "position": [
+    185.0431,
+    10.589
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-24-0-r",
+   "group": "taxiway",
+   "position": [
+    184.7249,
+    9.855
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-25-0-l",
+   "group": "taxiway",
+   "position": [
+    184.8805,
+    10.6567
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-25-0-r",
+   "group": "taxiway",
+   "position": [
+    184.4815,
+    9.9633
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-26-0-l",
+   "group": "taxiway",
+   "position": [
+    184.8232,
+    10.6892
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-26-0-r",
+   "group": "taxiway",
+   "position": [
+    184.3928,
+    10.0148
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-27-0-l",
+   "group": "taxiway",
+   "position": [
+    184.7346,
+    10.7393
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-27-0-r",
+   "group": "taxiway",
+   "position": [
+    184.1994,
+    10.1447
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-28-0-l",
+   "group": "taxiway",
+   "position": [
+    184.5594,
+    10.8962
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-28-0-r",
+   "group": "taxiway",
+   "position": [
+    183.9946,
+    10.3298
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-28-1-l",
+   "group": "taxiway",
+   "position": [
+    183.1384,
+    12.3132
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-28-1-r",
+   "group": "taxiway",
+   "position": [
+    182.5736,
+    11.7468
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:C-29-0-r",
+   "group": "taxiway",
+   "position": [
+    181.1482,
+    13.1682
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-14-0-l",
+   "group": "taxiway",
+   "position": [
+    105.4418,
+    15.7821
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-15-0-l",
+   "group": "taxiway",
+   "position": [
+    105.4094,
+    15.8505
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-16-0-l",
+   "group": "taxiway",
+   "position": [
+    105.3768,
+    15.9344
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-16-0-r",
+   "group": "taxiway",
+   "position": [
+    104.5952,
+    15.7636
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-17-0-l",
+   "group": "taxiway",
+   "position": [
+    105.351,
+    16.0398
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-17-0-r",
+   "group": "taxiway",
+   "position": [
+    104.555,
+    15.9602
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-18-0-l",
+   "group": "taxiway",
+   "position": [
+    105.341,
+    16.115
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-18-0-r",
+   "group": "taxiway",
+   "position": [
+    104.541,
+    16.125
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-19-0-l",
+   "group": "taxiway",
+   "position": [
+    105.343,
+    16.2782
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-19-0-r",
+   "group": "taxiway",
+   "position": [
+    104.543,
+    16.2818
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-20-0-l",
+   "group": "taxiway",
+   "position": [
+    105.352,
+    18.2431
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-20-0-r",
+   "group": "taxiway",
+   "position": [
+    104.552,
+    18.2489
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-21-0-l",
+   "group": "taxiway",
+   "position": [
+    105.368,
+    20.4154
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-21-0-r",
+   "group": "taxiway",
+   "position": [
+    104.568,
+    20.4206
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-21-1-l",
+   "group": "taxiway",
+   "position": [
+    105.373,
+    21.1884
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-21-1-r",
+   "group": "taxiway",
+   "position": [
+    104.573,
+    21.1936
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-1-0-l",
+   "group": "taxiway",
+   "position": [
+    105.373,
+    21.1884
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-1-0-r",
+   "group": "taxiway",
+   "position": [
+    104.573,
+    21.1936
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-2-0-l",
+   "group": "taxiway",
+   "position": [
+    105.3698,
+    21.7213
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-2-0-r",
+   "group": "taxiway",
+   "position": [
+    104.5822,
+    21.5807
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-3-0-l",
+   "group": "taxiway",
+   "position": [
+    105.3274,
+    21.9116
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-3-0-r",
+   "group": "taxiway",
+   "position": [
+    104.5846,
+    21.6144
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-4-0-l",
+   "group": "taxiway",
+   "position": [
+    105.2249,
+    22.1171
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-4-0-r",
+   "group": "taxiway",
+   "position": [
+    104.6071,
+    21.6089
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-5-0-l",
+   "group": "taxiway",
+   "position": [
+    105.1587,
+    22.1966
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-5-0-r",
+   "group": "taxiway",
+   "position": [
+    104.5713,
+    21.6534
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-6-0-l",
+   "group": "taxiway",
+   "position": [
+    105.0029,
+    22.3494
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-6-0-r",
+   "group": "taxiway",
+   "position": [
+    104.5551,
+    21.6866
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-7-0-l",
+   "group": "taxiway",
+   "position": [
+    104.8459,
+    22.4513
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-7-0-r",
+   "group": "taxiway",
+   "position": [
+    104.4901,
+    21.7347
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-8-0-l",
+   "group": "taxiway",
+   "position": [
+    104.6642,
+    22.5387
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-8-0-r",
+   "group": "taxiway",
+   "position": [
+    104.3898,
+    21.7873
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-9-0-l",
+   "group": "taxiway",
+   "position": [
+    104.5123,
+    22.5922
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-9-0-r",
+   "group": "taxiway",
+   "position": [
+    104.3117,
+    21.8178
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-10-0-l",
+   "group": "taxiway",
+   "position": [
+    104.3215,
+    22.6334
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-10-0-r",
+   "group": "taxiway",
+   "position": [
+    104.2785,
+    21.8346
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-11-0-l",
+   "group": "taxiway",
+   "position": [
+    104.1983,
+    22.6389
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-11-0-r",
+   "group": "taxiway",
+   "position": [
+    104.2157,
+    21.8391
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-11-1-l",
+   "group": "taxiway",
+   "position": [
+    104.1063,
+    22.6369
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:taxiway:B-11-1-r",
+   "group": "taxiway",
+   "position": [
+    104.1237,
+    21.8371
+   ],
+   "heightM": 0.3,
+   "faces": [
+    {
+     "towards": null,
+     "color": "blue",
+     "inUse": "both"
+    }
+   ]
+  }
+ ]
+}

@@ -3,7 +3,7 @@
  *
  * Defaults: today's date in Europe/Stockholm at 12:30 (daylight, so the map opens readable), stadium
  * floodlights off (no match is assumed). URL parameters make captures reproducible:
- *   ?date=2026-10-21&time=21:30&stadium=off|training|event&sun=legacy&play=60
+ *   ?date=2026-10-21&time=21:30&stadium=off|training|event&sun=legacy&play=60&airport=auto&runway=27
  * `play` is the time-lapse rate in simulated seconds per real second (0 = paused).
  */
 import { addDays, utcToLocal } from './solar';
@@ -24,6 +24,15 @@ export const lightingState = $state({
     ? stadiumParam
     : 'off') as StadiumMode['id'],
   legacySun: params.get('sun') === 'legacy',
+  /**
+   * Airport Lighting Phase E1: the ESSP runway lights' own switch ('auto' = lit when dark, a simulator
+   * rule) and the runway in use (decides approach lights, PAPI and the threshold/end colours). ESTIMATE
+   * defaults: no operational data on the runway in use; 27 is the default. ?airport=auto|on|off&runway=09|27
+   */
+  airport: (['auto', 'on', 'off'].includes(params.get('airport') ?? '')
+    ? params.get('airport')
+    : 'auto') as 'auto' | 'on' | 'off',
+  runway: (params.get('runway') === '09' ? '09' : '27') as '09' | '27',
   /** Simulated seconds per real second while playing (0 = stopped). */
   rate: Math.max(0, Number(params.get('play') ?? 0)) || 0,
 });
