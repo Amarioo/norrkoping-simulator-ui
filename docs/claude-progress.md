@@ -5,7 +5,7 @@ This file is the recovery checkpoint. Newest status first.
 ## Airport Lighting Phase E1 — runway lights at Norrköping-Kungsängen (2026-11-03) — tested locally and approved by the user (2026-11-03), committed and pushed to `origin/main`
 
 [Full report](airport-lighting-e1/README.md). Worked directly on local `main` (= `origin/main` `ff96ae0`).
-**Committed and pushed to `origin/main`** (user, 2026-11-03). Backend unchanged.
+**Committed as `24724eb` and pushed to `origin/main`** (user, 2026-11-03). Backend unchanged.
 
 - **Result:** 470 lights on RWY 09/27 from AIRAC AIP AMDT 6/2026 (effective 2026-10-29, read 2026-11-03):
   edge (72, white/yellow caution zone), threshold/end rows (32, green out / red in), Calvert CAT I approach

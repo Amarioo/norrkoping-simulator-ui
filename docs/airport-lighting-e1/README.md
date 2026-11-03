@@ -1,7 +1,7 @@
 # Airport Lighting Phase E1 — runway lights at Norrköping-Kungsängen (2026-11-03)
 
 Worked directly on local `main` (= `origin/main` `ff96ae0`), as agreed with the user on 2026-11-02:
-**not committed, not pushed** until the user has tested it locally. Backend unchanged. Roadmap track
+tested locally by the user, **committed (`24724eb`) and pushed to `origin/main`** (2026-11-03). Backend unchanged. Roadmap track
 E, step E1; plan: `docs/step62/airport-lighting-plan.md`.
 
 ## Result
