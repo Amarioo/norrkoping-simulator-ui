@@ -92,8 +92,9 @@ test('Airport Lighting E1: ESSP runway lights, own switch, runway in use, PAPI, 
 
   // Defaults: auto (lit when dark), runway 27 in use; the layout of src/lib/airport/runwayLights.ts.
   const night = await airport(page);
-  expect(night.lights).toBe(470);
-  expect(night.byGroup).toEqual({ edge: 72, threshold: 32, approach: 268, papi: 8, taxiway: 90 });
+  // 470 in E1; 572 since the Calvert crossbars at 150–750 m (102 more approach lights).
+  expect(night.lights).toBe(572);
+  expect(night.byGroup).toEqual({ edge: 72, threshold: 32, approach: 370, papi: 8, taxiway: 90 });
   expect(night.visible).toBe(true);
   expect(night.level).toBeGreaterThan(0.9);
   expect(night.runwayInUse).toBe('27');

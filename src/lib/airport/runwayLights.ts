@@ -51,10 +51,32 @@ export const ESTIMATES = {
   approachSpacingM: 30,
   barretteLights: 5,
   barretteLengthM: 4,
-  /** One crossbar 300 m from the threshold, 30 m long (precision approach CAT I, 5.3.4.10). */
-  crossbarAtM: 300,
-  crossbarLengthM: 30,
+  /**
+   * Calvert crossbars at 150, 300, 450, 600 and 750 m from the threshold (those within the system's
+   * length). The 300 m bar is 30 m long; the others are sized so that the lines through their outer
+   * ends converge 300 m beyond the threshold (SKYbrary, "Approach Lighting"; the actual bar widths at
+   * ESSP are not published). Lights on a bar about 2 m apart.
+   */
+  crossbarsAtM: [150, 300, 450, 600, 750],
+  crossbarRefAtM: 300,
+  crossbarRefLengthM: 30,
+  crossbarConvergeM: 300,
   crossbarSpacingM: 2,
+  /**
+   * Approach lights lie in the horizontal plane of their threshold, as far as the terrain allows
+   * (Annex 14 5.3.4.20: as nearly as possible in a horizontal plane through the threshold): this high
+   * above the threshold's ground; where the terrain rises above that plane, this high above the ground.
+   * Their masts (yellow, as on site) carry them.
+   */
+  approachPlaneM: 0.5,
+  approachMinHeightM: 0.4,
+  /**
+   * Upward slope of the light plane away from the threshold (Annex 14 allows up to 1:66). RWY 09: 1:66,
+   * because street-level photos of the system where it crosses Söderleden (shown by the user,
+   * 2026-11-03) have masts about as tall as the 8–10 m street lights there, which a horizontal plane
+   * would not need. RWY 27: horizontal (no evidence either way).
+   */
+  approachPlaneSlope: { '09': 1 / 66, '27': 0 },
   /** PAPI: distance from the threshold so that MEHT is met at the lowest on-slope angle (5.3.5). */
   papiUnitSettingsDeg: [3.5, 3 + 1 / 6, 2 + 5 / 6, 2.5],
   papiInnerOffsetM: 15,
@@ -62,7 +84,7 @@ export const ESTIMATES = {
   /** Taxiway edge lights: at most 60 m apart on straight sections (5.3.18), about 1 m off the edge. */
   taxiwayEdgeSpacingM: 60,
   taxiwayEdgeOffsetM: 1,
-  heightM: { edge: 0.35, threshold: 0.3, approach: 0.8, papi: 0.9, taxiway: 0.3 },
+  heightM: { edge: 0.35, threshold: 0.3, approach: 0.4, papi: 0.9, taxiway: 0.3 },
   /**
    * Side spill: share of a directional light's brightness seen outside its main beam (on its own
    * side), so the runway reads from the side and from above, as elevated fittings do. PAPI: none.
@@ -90,8 +112,17 @@ export interface RunwayLight {
   id: string;
   group: LightGroup;
   position: Point;
+  /** Height above the ground (for approach lights the minimum; see `plane`). */
   heightM: number;
   faces: LightFace[];
+  /**
+   * Approach lights: the threshold whose horizontal light plane they lie in (scene x/z), and the row
+   * (barrette or crossbar) they belong to, which one mast and bar carry.
+   */
+  plane?: Point;
+  /** Approach lights: height of the light plane at this light above the threshold's ground (m). */
+  planeAboveM?: number;
+  row?: string;
 }
 
 const sub = (a: Point, b: Point): Point => [a[0] - b[0], a[1] - b[1]];
@@ -139,13 +170,15 @@ export function esspRunwayLights(airways: Airway[], metresPerUnit = 25): RunwayL
     key: string,
     position: Point,
     faces: LightFace[],
-    heightM = ESTIMATES.heightM[group],
+    heightM: number = ESTIMATES.heightM[group],
+    extra: Pick<RunwayLight, 'plane' | 'planeAboveM' | 'row'> = {},
   ) =>
     lights.push({
       id: `${E1_RULE}:${group}:${key}`,
       group,
       position,
       heightM,
+      ...extra,
       faces: faces.map((f) =>
         f.towards && f.papiDeg === undefined && ESTIMATES.spill[group] > 0
           ? { ...f, spill: ESTIMATES.spill[group] }
@@ -187,29 +220,43 @@ export function esspRunwayLights(airways: Airway[], metresPerUnit = 25): RunwayL
     ]);
   }
   // Approach lights (SOURCE: Calvert CAT I, 540 m for 09 west of its threshold, 900 m for 27 east of
-  // its threshold, white; ESTIMATE: ICAO CAT I pattern — the Calvert crossbar layout of this airport
-  // is not published in the AIP text).
+  // its threshold, white, steady — the AIP lists no flashing lights (EFAS) at ESSP). ESTIMATE: the
+  // centreline as barrettes of 5 lights every 30 m, the Calvert crossbars (see ESTIMATES), the light
+  // plane through the threshold (rising 1:66 for RWY 09).
   for (const [rwy, sign] of [
     ['09', -1],
     ['27', 1],
   ] as const) {
     const base = rwy === '09' ? 0 : L,
-      towards = rwy === '09' ? west : east;
+      towards = rwy === '09' ? west : east,
+      plane = rwy === '09' ? thr09 : thr27;
     const face: LightFace = { towards, color: 'white', inUse: rwy };
-    for (let d = ESTIMATES.approachSpacingM; d <= ESSP_RWY.approachLengthM[rwy] + 1e-6; d += 30)
+    const length = ESSP_RWY.approachLengthM[rwy];
+    const app = (key: string, d: number, c: number, row: string) =>
+      add('approach', key, at(base + sign * d, c), [face], ESTIMATES.approachMinHeightM, {
+        plane,
+        planeAboveM: ESTIMATES.approachPlaneM + d * ESTIMATES.approachPlaneSlope[rwy],
+        row: `${rwy}-${row}`,
+      });
+    for (let d = ESTIMATES.approachSpacingM; d <= length + 1e-6; d += ESTIMATES.approachSpacingM)
       for (let b = 0; b < ESTIMATES.barretteLights; b++) {
         const c =
           -ESTIMATES.barretteLengthM / 2 +
           (b * ESTIMATES.barretteLengthM) / (ESTIMATES.barretteLights - 1);
-        add('approach', `${rwy}-${d}-${b}`, at(base + sign * d, c), [face]);
+        app(`${rwy}-${d}-${b}`, d, c, `b${d}`);
       }
-    for (
-      let c = -ESTIMATES.crossbarLengthM / 2;
-      c <= ESTIMATES.crossbarLengthM / 2 + 1e-6;
-      c += ESTIMATES.crossbarSpacingM
-    )
-      if (Math.abs(c) > ESTIMATES.barretteLengthM / 2 + 0.5)
-        add('approach', `${rwy}-x${c}`, at(base + sign * ESTIMATES.crossbarAtM, c), [face]);
+    for (const d of ESTIMATES.crossbarsAtM.filter((x) => x <= length)) {
+      const halfWidth =
+        ((ESTIMATES.crossbarRefLengthM / 2) * (d + ESTIMATES.crossbarConvergeM)) /
+        (ESTIMATES.crossbarRefAtM + ESTIMATES.crossbarConvergeM);
+      const steps = Math.round((2 * halfWidth) / ESTIMATES.crossbarSpacingM);
+      for (let k = 0; k <= steps; k++) {
+        const c = -halfWidth + (k * 2 * halfWidth) / steps;
+        // The centre is the barrette's (the crossbar is the barrette's row widened).
+        if (Math.abs(c) > ESTIMATES.barretteLengthM / 2 + 0.5)
+          app(`${rwy}-x${d}-${k}`, d, c, `b${d}`);
+      }
+    }
   }
   // PAPI (SOURCE: left side, 3.00°, MEHT 56 ft; ESTIMATE: 4 units, angle settings, offsets). The
   // distance from the threshold puts the eye height MEHT at the lowest on-slope angle (unit C setting).

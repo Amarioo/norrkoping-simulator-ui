@@ -23,9 +23,23 @@
   "approachSpacingM": 30,
   "barretteLights": 5,
   "barretteLengthM": 4,
-  "crossbarAtM": 300,
-  "crossbarLengthM": 30,
+  "crossbarsAtM": [
+   150,
+   300,
+   450,
+   600,
+   750
+  ],
+  "crossbarRefAtM": 300,
+  "crossbarRefLengthM": 30,
+  "crossbarConvergeM": 300,
   "crossbarSpacingM": 2,
+  "approachPlaneM": 0.5,
+  "approachMinHeightM": 0.4,
+  "approachPlaneSlope": {
+   "27": 0,
+   "09": 0.015151515151515152
+  },
   "papiUnitSettingsDeg": [
    3.5,
    3.1666666666666665,
@@ -39,7 +53,7 @@
   "heightM": {
    "edge": 0.35,
    "threshold": 0.3,
-   "approach": 0.8,
+   "approach": 0.4,
    "papi": 0.9,
    "taxiway": 0.3
   },
@@ -76,11 +90,11 @@
   }
  },
  "counts": {
-  "total": 470,
+  "total": 572,
   "byGroup": {
    "edge": 72,
    "threshold": 32,
-   "approach": 268,
+   "approach": 370,
    "papi": 8,
    "taxiway": 90
   }
@@ -3109,7 +3123,13 @@
     101.9633,
     14.69
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 0.9545454545454546,
+   "row": "09-b30",
    "faces": [
     {
      "towards": [
@@ -3129,7 +3149,13 @@
     101.9631,
     14.65
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 0.9545454545454546,
+   "row": "09-b30",
    "faces": [
     {
      "towards": [
@@ -3149,7 +3175,13 @@
     101.963,
     14.61
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 0.9545454545454546,
+   "row": "09-b30",
    "faces": [
     {
      "towards": [
@@ -3169,7 +3201,13 @@
     101.9629,
     14.57
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 0.9545454545454546,
+   "row": "09-b30",
    "faces": [
     {
      "towards": [
@@ -3189,7 +3227,13 @@
     101.9627,
     14.53
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 0.9545454545454546,
+   "row": "09-b30",
    "faces": [
     {
      "towards": [
@@ -3209,7 +3253,13 @@
     100.7633,
     14.694
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.4090909090909092,
+   "row": "09-b60",
    "faces": [
     {
      "towards": [
@@ -3229,7 +3279,13 @@
     100.7631,
     14.654
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.4090909090909092,
+   "row": "09-b60",
    "faces": [
     {
      "towards": [
@@ -3249,7 +3305,13 @@
     100.763,
     14.614
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.4090909090909092,
+   "row": "09-b60",
    "faces": [
     {
      "towards": [
@@ -3269,7 +3331,13 @@
     100.7629,
     14.574
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.4090909090909092,
+   "row": "09-b60",
    "faces": [
     {
      "towards": [
@@ -3289,7 +3357,13 @@
     100.7627,
     14.534
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.4090909090909092,
+   "row": "09-b60",
    "faces": [
     {
      "towards": [
@@ -3309,7 +3383,13 @@
     99.5633,
     14.698
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.8636363636363638,
+   "row": "09-b90",
    "faces": [
     {
      "towards": [
@@ -3329,7 +3409,13 @@
     99.5632,
     14.658
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.8636363636363638,
+   "row": "09-b90",
    "faces": [
     {
      "towards": [
@@ -3349,7 +3435,13 @@
     99.563,
     14.618
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.8636363636363638,
+   "row": "09-b90",
    "faces": [
     {
      "towards": [
@@ -3369,7 +3461,13 @@
     99.5629,
     14.578
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.8636363636363638,
+   "row": "09-b90",
    "faces": [
     {
      "towards": [
@@ -3389,7 +3487,13 @@
     99.5628,
     14.538
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 1.8636363636363638,
+   "row": "09-b90",
    "faces": [
     {
      "towards": [
@@ -3409,7 +3513,13 @@
     98.3633,
     14.7019
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.3181818181818183,
+   "row": "09-b120",
    "faces": [
     {
      "towards": [
@@ -3429,7 +3539,13 @@
     98.3632,
     14.6619
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.3181818181818183,
+   "row": "09-b120",
    "faces": [
     {
      "towards": [
@@ -3449,7 +3565,13 @@
     98.363,
     14.6219
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.3181818181818183,
+   "row": "09-b120",
    "faces": [
     {
      "towards": [
@@ -3469,7 +3591,13 @@
     98.3629,
     14.5819
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.3181818181818183,
+   "row": "09-b120",
    "faces": [
     {
      "towards": [
@@ -3489,7 +3617,13 @@
     98.3628,
     14.5419
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.3181818181818183,
+   "row": "09-b120",
    "faces": [
     {
      "towards": [
@@ -3509,7 +3643,13 @@
     97.1633,
     14.7059
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
    "faces": [
     {
      "towards": [
@@ -3529,7 +3669,13 @@
     97.1632,
     14.6659
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
    "faces": [
     {
      "towards": [
@@ -3549,7 +3695,13 @@
     97.163,
     14.6259
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
    "faces": [
     {
      "towards": [
@@ -3569,7 +3721,13 @@
     97.1629,
     14.5859
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
    "faces": [
     {
      "towards": [
@@ -3589,7 +3747,13 @@
     97.1628,
     14.5459
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
    "faces": [
     {
      "towards": [
@@ -3609,7 +3773,13 @@
     95.9633,
     14.7099
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.2272727272727275,
+   "row": "09-b180",
    "faces": [
     {
      "towards": [
@@ -3629,7 +3799,13 @@
     95.9632,
     14.6699
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.2272727272727275,
+   "row": "09-b180",
    "faces": [
     {
      "towards": [
@@ -3649,7 +3825,13 @@
     95.963,
     14.6299
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.2272727272727275,
+   "row": "09-b180",
    "faces": [
     {
      "towards": [
@@ -3669,7 +3851,13 @@
     95.9629,
     14.5899
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.2272727272727275,
+   "row": "09-b180",
    "faces": [
     {
      "towards": [
@@ -3689,7 +3877,13 @@
     95.9628,
     14.5499
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.2272727272727275,
+   "row": "09-b180",
    "faces": [
     {
      "towards": [
@@ -3709,7 +3903,13 @@
     94.7633,
     14.7139
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.681818181818182,
+   "row": "09-b210",
    "faces": [
     {
      "towards": [
@@ -3729,7 +3929,13 @@
     94.7632,
     14.6739
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.681818181818182,
+   "row": "09-b210",
    "faces": [
     {
      "towards": [
@@ -3749,7 +3955,13 @@
     94.763,
     14.6339
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.681818181818182,
+   "row": "09-b210",
    "faces": [
     {
      "towards": [
@@ -3769,7 +3981,13 @@
     94.7629,
     14.5939
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.681818181818182,
+   "row": "09-b210",
    "faces": [
     {
      "towards": [
@@ -3789,7 +4007,13 @@
     94.7628,
     14.5539
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 3.681818181818182,
+   "row": "09-b210",
    "faces": [
     {
      "towards": [
@@ -3809,7 +4033,13 @@
     93.5633,
     14.7179
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.136363636363637,
+   "row": "09-b240",
    "faces": [
     {
      "towards": [
@@ -3829,7 +4059,13 @@
     93.5632,
     14.6779
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.136363636363637,
+   "row": "09-b240",
    "faces": [
     {
      "towards": [
@@ -3849,7 +4085,13 @@
     93.5631,
     14.6379
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.136363636363637,
+   "row": "09-b240",
    "faces": [
     {
      "towards": [
@@ -3869,7 +4111,13 @@
     93.5629,
     14.5979
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.136363636363637,
+   "row": "09-b240",
    "faces": [
     {
      "towards": [
@@ -3889,7 +4137,13 @@
     93.5628,
     14.5579
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.136363636363637,
+   "row": "09-b240",
    "faces": [
     {
      "towards": [
@@ -3909,7 +4163,13 @@
     92.3633,
     14.7219
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.590909090909091,
+   "row": "09-b270",
    "faces": [
     {
      "towards": [
@@ -3929,7 +4189,13 @@
     92.3632,
     14.6819
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.590909090909091,
+   "row": "09-b270",
    "faces": [
     {
      "towards": [
@@ -3949,7 +4215,13 @@
     92.3631,
     14.6419
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.590909090909091,
+   "row": "09-b270",
    "faces": [
     {
      "towards": [
@@ -3969,7 +4241,13 @@
     92.3629,
     14.6019
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.590909090909091,
+   "row": "09-b270",
    "faces": [
     {
      "towards": [
@@ -3989,7 +4267,13 @@
     92.3628,
     14.5619
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 4.590909090909091,
+   "row": "09-b270",
    "faces": [
     {
      "towards": [
@@ -4009,7 +4293,13 @@
     91.1633,
     14.7259
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -4029,7 +4319,13 @@
     91.1632,
     14.6859
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -4049,7 +4345,13 @@
     91.1631,
     14.6459
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -4069,7 +4371,13 @@
     91.1629,
     14.6059
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -4089,7 +4397,13 @@
     91.1628,
     14.5659
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -4109,7 +4423,13 @@
     89.9633,
     14.7299
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.5,
+   "row": "09-b330",
    "faces": [
     {
      "towards": [
@@ -4129,7 +4449,13 @@
     89.9632,
     14.6899
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.5,
+   "row": "09-b330",
    "faces": [
     {
      "towards": [
@@ -4149,7 +4475,13 @@
     89.9631,
     14.6499
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.5,
+   "row": "09-b330",
    "faces": [
     {
      "towards": [
@@ -4169,7 +4501,13 @@
     89.9629,
     14.6099
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.5,
+   "row": "09-b330",
    "faces": [
     {
      "towards": [
@@ -4189,7 +4527,13 @@
     89.9628,
     14.5699
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.5,
+   "row": "09-b330",
    "faces": [
     {
      "towards": [
@@ -4209,7 +4553,13 @@
     88.7633,
     14.7338
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.954545454545455,
+   "row": "09-b360",
    "faces": [
     {
      "towards": [
@@ -4229,7 +4579,13 @@
     88.7632,
     14.6938
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.954545454545455,
+   "row": "09-b360",
    "faces": [
     {
      "towards": [
@@ -4249,7 +4605,13 @@
     88.7631,
     14.6538
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.954545454545455,
+   "row": "09-b360",
    "faces": [
     {
      "towards": [
@@ -4269,7 +4631,13 @@
     88.7629,
     14.6138
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.954545454545455,
+   "row": "09-b360",
    "faces": [
     {
      "towards": [
@@ -4289,7 +4657,13 @@
     88.7628,
     14.5738
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.954545454545455,
+   "row": "09-b360",
    "faces": [
     {
      "towards": [
@@ -4309,7 +4683,13 @@
     87.5634,
     14.7378
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.409090909090909,
+   "row": "09-b390",
    "faces": [
     {
      "towards": [
@@ -4329,7 +4709,13 @@
     87.5632,
     14.6978
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.409090909090909,
+   "row": "09-b390",
    "faces": [
     {
      "towards": [
@@ -4349,7 +4735,13 @@
     87.5631,
     14.6578
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.409090909090909,
+   "row": "09-b390",
    "faces": [
     {
      "towards": [
@@ -4369,7 +4761,13 @@
     87.563,
     14.6178
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.409090909090909,
+   "row": "09-b390",
    "faces": [
     {
      "towards": [
@@ -4389,7 +4787,13 @@
     87.5628,
     14.5778
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.409090909090909,
+   "row": "09-b390",
    "faces": [
     {
      "towards": [
@@ -4409,7 +4813,13 @@
     86.3634,
     14.7418
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.863636363636364,
+   "row": "09-b420",
    "faces": [
     {
      "towards": [
@@ -4429,7 +4839,13 @@
     86.3632,
     14.7018
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.863636363636364,
+   "row": "09-b420",
    "faces": [
     {
      "towards": [
@@ -4449,7 +4865,13 @@
     86.3631,
     14.6618
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.863636363636364,
+   "row": "09-b420",
    "faces": [
     {
      "towards": [
@@ -4469,7 +4891,13 @@
     86.363,
     14.6218
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.863636363636364,
+   "row": "09-b420",
    "faces": [
     {
      "towards": [
@@ -4489,7 +4917,13 @@
     86.3628,
     14.5818
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 6.863636363636364,
+   "row": "09-b420",
    "faces": [
     {
      "towards": [
@@ -4509,7 +4943,13 @@
     85.1634,
     14.7458
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
    "faces": [
     {
      "towards": [
@@ -4529,7 +4969,13 @@
     85.1632,
     14.7058
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
    "faces": [
     {
      "towards": [
@@ -4549,7 +4995,13 @@
     85.1631,
     14.6658
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
    "faces": [
     {
      "towards": [
@@ -4569,7 +5021,13 @@
     85.163,
     14.6258
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
    "faces": [
     {
      "towards": [
@@ -4589,7 +5047,13 @@
     85.1628,
     14.5858
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
    "faces": [
     {
      "towards": [
@@ -4609,7 +5073,13 @@
     83.9634,
     14.7498
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.772727272727273,
+   "row": "09-b480",
    "faces": [
     {
      "towards": [
@@ -4629,7 +5099,13 @@
     83.9632,
     14.7098
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.772727272727273,
+   "row": "09-b480",
    "faces": [
     {
      "towards": [
@@ -4649,7 +5125,13 @@
     83.9631,
     14.6698
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.772727272727273,
+   "row": "09-b480",
    "faces": [
     {
      "towards": [
@@ -4669,7 +5151,13 @@
     83.963,
     14.6298
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.772727272727273,
+   "row": "09-b480",
    "faces": [
     {
      "towards": [
@@ -4689,7 +5177,13 @@
     83.9628,
     14.5898
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.772727272727273,
+   "row": "09-b480",
    "faces": [
     {
      "towards": [
@@ -4709,7 +5203,13 @@
     82.7634,
     14.7538
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.227272727272727,
+   "row": "09-b510",
    "faces": [
     {
      "towards": [
@@ -4729,7 +5229,13 @@
     82.7632,
     14.7138
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.227272727272727,
+   "row": "09-b510",
    "faces": [
     {
      "towards": [
@@ -4749,7 +5255,13 @@
     82.7631,
     14.6738
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.227272727272727,
+   "row": "09-b510",
    "faces": [
     {
      "towards": [
@@ -4769,7 +5281,13 @@
     82.763,
     14.6338
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.227272727272727,
+   "row": "09-b510",
    "faces": [
     {
      "towards": [
@@ -4789,7 +5307,13 @@
     82.7628,
     14.5938
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.227272727272727,
+   "row": "09-b510",
    "faces": [
     {
      "towards": [
@@ -4809,7 +5333,13 @@
     81.5634,
     14.7578
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.681818181818182,
+   "row": "09-b540",
    "faces": [
     {
      "towards": [
@@ -4829,7 +5359,13 @@
     81.5633,
     14.7178
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.681818181818182,
+   "row": "09-b540",
    "faces": [
     {
      "towards": [
@@ -4849,7 +5385,13 @@
     81.5631,
     14.6778
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.681818181818182,
+   "row": "09-b540",
    "faces": [
     {
      "towards": [
@@ -4869,7 +5411,13 @@
     81.563,
     14.6378
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.681818181818182,
+   "row": "09-b540",
    "faces": [
     {
      "towards": [
@@ -4889,7 +5437,13 @@
     81.5629,
     14.5978
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 8.681818181818182,
+   "row": "09-b540",
    "faces": [
     {
      "towards": [
@@ -4903,13 +5457,279 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x-15",
+   "id": "airport-lighting-e1-v1:approach:09-x150-0",
+   "group": "approach",
+   "position": [
+    97.1645,
+    15.0759
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x150-1",
+   "group": "approach",
+   "position": [
+    97.1643,
+    14.9941
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x150-2",
+   "group": "approach",
+   "position": [
+    97.164,
+    14.9123
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x150-3",
+   "group": "approach",
+   "position": [
+    97.1637,
+    14.8305
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x150-4",
+   "group": "approach",
+   "position": [
+    97.1634,
+    14.7487
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x150-7",
+   "group": "approach",
+   "position": [
+    97.1626,
+    14.5032
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x150-8",
+   "group": "approach",
+   "position": [
+    97.1624,
+    14.4214
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x150-9",
+   "group": "approach",
+   "position": [
+    97.1621,
+    14.3396
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x150-10",
+   "group": "approach",
+   "position": [
+    97.1618,
+    14.2578
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x150-11",
+   "group": "approach",
+   "position": [
+    97.1615,
+    14.1759
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 2.772727272727273,
+   "row": "09-b150",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x300-0",
    "group": "approach",
    "position": [
     91.1651,
     15.2459
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -4923,13 +5743,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x-13",
+   "id": "airport-lighting-e1-v1:approach:09-x300-1",
    "group": "approach",
    "position": [
     91.1648,
     15.1659
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -4943,13 +5769,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x-11",
+   "id": "airport-lighting-e1-v1:approach:09-x300-2",
    "group": "approach",
    "position": [
     91.1645,
     15.0859
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -4963,13 +5795,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x-9",
+   "id": "airport-lighting-e1-v1:approach:09-x300-3",
    "group": "approach",
    "position": [
     91.1643,
     15.0059
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -4983,13 +5821,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x-7",
+   "id": "airport-lighting-e1-v1:approach:09-x300-4",
    "group": "approach",
    "position": [
     91.164,
     14.9259
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -5003,13 +5847,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x-5",
+   "id": "airport-lighting-e1-v1:approach:09-x300-5",
    "group": "approach",
    "position": [
     91.1637,
     14.8459
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -5023,13 +5873,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x-3",
+   "id": "airport-lighting-e1-v1:approach:09-x300-6",
    "group": "approach",
    "position": [
     91.1635,
     14.7659
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -5043,13 +5899,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x3",
+   "id": "airport-lighting-e1-v1:approach:09-x300-9",
    "group": "approach",
    "position": [
     91.1627,
     14.5259
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -5063,13 +5925,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x5",
+   "id": "airport-lighting-e1-v1:approach:09-x300-10",
    "group": "approach",
    "position": [
     91.1624,
     14.4459
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -5083,13 +5951,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x7",
+   "id": "airport-lighting-e1-v1:approach:09-x300-11",
    "group": "approach",
    "position": [
     91.1621,
     14.3659
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -5103,13 +5977,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x9",
+   "id": "airport-lighting-e1-v1:approach:09-x300-12",
    "group": "approach",
    "position": [
     91.1619,
     14.2859
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -5123,13 +6003,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x11",
+   "id": "airport-lighting-e1-v1:approach:09-x300-13",
    "group": "approach",
    "position": [
     91.1616,
     14.2059
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -5143,13 +6029,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x13",
+   "id": "airport-lighting-e1-v1:approach:09-x300-14",
    "group": "approach",
    "position": [
     91.1613,
     14.1259
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
    "faces": [
     {
      "towards": [
@@ -5163,13 +6055,487 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:09-x15",
+   "id": "airport-lighting-e1-v1:approach:09-x300-15",
    "group": "approach",
    "position": [
     91.1611,
     14.0459
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 5.045454545454546,
+   "row": "09-b300",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-0",
+   "group": "approach",
+   "position": [
+    85.1656,
+    15.4158
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-1",
+   "group": "approach",
+   "position": [
+    85.1653,
+    15.3368
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-2",
+   "group": "approach",
+   "position": [
+    85.1651,
+    15.2579
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-3",
+   "group": "approach",
+   "position": [
+    85.1648,
+    15.179
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-4",
+   "group": "approach",
+   "position": [
+    85.1645,
+    15.1
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-5",
+   "group": "approach",
+   "position": [
+    85.1643,
+    15.0211
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-6",
+   "group": "approach",
+   "position": [
+    85.164,
+    14.9421
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-7",
+   "group": "approach",
+   "position": [
+    85.1638,
+    14.8632
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-8",
+   "group": "approach",
+   "position": [
+    85.1635,
+    14.7842
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-11",
+   "group": "approach",
+   "position": [
+    85.1627,
+    14.5474
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-12",
+   "group": "approach",
+   "position": [
+    85.1624,
+    14.4684
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-13",
+   "group": "approach",
+   "position": [
+    85.1622,
+    14.3895
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-14",
+   "group": "approach",
+   "position": [
+    85.1619,
+    14.3105
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-15",
+   "group": "approach",
+   "position": [
+    85.1617,
+    14.2316
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-16",
+   "group": "approach",
+   "position": [
+    85.1614,
+    14.1526
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-17",
+   "group": "approach",
+   "position": [
+    85.1611,
+    14.0737
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-18",
+   "group": "approach",
+   "position": [
+    85.1609,
+    13.9948
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
+   "faces": [
+    {
+     "towards": [
+      -0.999994481467946,
+      0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "09",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:09-x450-19",
+   "group": "approach",
+   "position": [
+    85.1606,
+    13.9158
+   ],
+   "heightM": 0.4,
+   "plane": [
+    103.163,
+    14.606
+   ],
+   "planeAboveM": 7.318181818181818,
+   "row": "09-b450",
    "faces": [
     {
      "towards": [
@@ -5189,7 +6555,13 @@
     192.5573,
     14.389
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b30",
    "faces": [
     {
      "towards": [
@@ -5209,7 +6581,13 @@
     192.5571,
     14.349
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b30",
    "faces": [
     {
      "towards": [
@@ -5229,7 +6607,13 @@
     192.557,
     14.309
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b30",
    "faces": [
     {
      "towards": [
@@ -5249,7 +6633,13 @@
     192.5569,
     14.269
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b30",
    "faces": [
     {
      "towards": [
@@ -5269,7 +6659,13 @@
     192.5567,
     14.229
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b30",
    "faces": [
     {
      "towards": [
@@ -5289,7 +6685,13 @@
     193.7573,
     14.385
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b60",
    "faces": [
     {
      "towards": [
@@ -5309,7 +6711,13 @@
     193.7571,
     14.345
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b60",
    "faces": [
     {
      "towards": [
@@ -5329,7 +6737,13 @@
     193.757,
     14.305
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b60",
    "faces": [
     {
      "towards": [
@@ -5349,7 +6763,13 @@
     193.7569,
     14.265
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b60",
    "faces": [
     {
      "towards": [
@@ -5369,7 +6789,13 @@
     193.7567,
     14.225
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b60",
    "faces": [
     {
      "towards": [
@@ -5389,7 +6815,13 @@
     194.9572,
     14.381
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b90",
    "faces": [
     {
      "towards": [
@@ -5409,7 +6841,13 @@
     194.9571,
     14.341
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b90",
    "faces": [
     {
      "towards": [
@@ -5429,7 +6867,13 @@
     194.957,
     14.301
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b90",
    "faces": [
     {
      "towards": [
@@ -5449,7 +6893,13 @@
     194.9568,
     14.261
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b90",
    "faces": [
     {
      "towards": [
@@ -5469,7 +6919,13 @@
     194.9567,
     14.221
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b90",
    "faces": [
     {
      "towards": [
@@ -5489,7 +6945,13 @@
     196.1572,
     14.3771
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b120",
    "faces": [
     {
      "towards": [
@@ -5509,7 +6971,13 @@
     196.1571,
     14.3371
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b120",
    "faces": [
     {
      "towards": [
@@ -5529,7 +6997,13 @@
     196.157,
     14.2971
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b120",
    "faces": [
     {
      "towards": [
@@ -5549,7 +7023,13 @@
     196.1568,
     14.2571
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b120",
    "faces": [
     {
      "towards": [
@@ -5569,7 +7049,13 @@
     196.1567,
     14.2171
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b120",
    "faces": [
     {
      "towards": [
@@ -5589,7 +7075,13 @@
     197.3572,
     14.3731
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
    "faces": [
     {
      "towards": [
@@ -5609,7 +7101,13 @@
     197.3571,
     14.3331
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
    "faces": [
     {
      "towards": [
@@ -5629,7 +7127,13 @@
     197.357,
     14.2931
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
    "faces": [
     {
      "towards": [
@@ -5649,7 +7153,13 @@
     197.3568,
     14.2531
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
    "faces": [
     {
      "towards": [
@@ -5669,7 +7179,13 @@
     197.3567,
     14.2131
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
    "faces": [
     {
      "towards": [
@@ -5689,7 +7205,13 @@
     198.5572,
     14.3691
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b180",
    "faces": [
     {
      "towards": [
@@ -5709,7 +7231,13 @@
     198.5571,
     14.3291
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b180",
    "faces": [
     {
      "towards": [
@@ -5729,7 +7257,13 @@
     198.557,
     14.2891
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b180",
    "faces": [
     {
      "towards": [
@@ -5749,7 +7283,13 @@
     198.5568,
     14.2491
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b180",
    "faces": [
     {
      "towards": [
@@ -5769,7 +7309,13 @@
     198.5567,
     14.2091
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b180",
    "faces": [
     {
      "towards": [
@@ -5789,7 +7335,13 @@
     199.7572,
     14.3651
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b210",
    "faces": [
     {
      "towards": [
@@ -5809,7 +7361,13 @@
     199.7571,
     14.3251
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b210",
    "faces": [
     {
      "towards": [
@@ -5829,7 +7387,13 @@
     199.757,
     14.2851
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b210",
    "faces": [
     {
      "towards": [
@@ -5849,7 +7413,13 @@
     199.7568,
     14.2451
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b210",
    "faces": [
     {
      "towards": [
@@ -5869,7 +7439,13 @@
     199.7567,
     14.2051
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b210",
    "faces": [
     {
      "towards": [
@@ -5889,7 +7465,13 @@
     200.9572,
     14.3611
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b240",
    "faces": [
     {
      "towards": [
@@ -5909,7 +7491,13 @@
     200.9571,
     14.3211
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b240",
    "faces": [
     {
      "towards": [
@@ -5929,7 +7517,13 @@
     200.9569,
     14.2811
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b240",
    "faces": [
     {
      "towards": [
@@ -5949,7 +7543,13 @@
     200.9568,
     14.2411
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b240",
    "faces": [
     {
      "towards": [
@@ -5969,7 +7569,13 @@
     200.9567,
     14.2011
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b240",
    "faces": [
     {
      "towards": [
@@ -5989,7 +7595,13 @@
     202.1572,
     14.3571
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b270",
    "faces": [
     {
      "towards": [
@@ -6009,7 +7621,13 @@
     202.1571,
     14.3171
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b270",
    "faces": [
     {
      "towards": [
@@ -6029,7 +7647,13 @@
     202.1569,
     14.2771
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b270",
    "faces": [
     {
      "towards": [
@@ -6049,7 +7673,13 @@
     202.1568,
     14.2371
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b270",
    "faces": [
     {
      "towards": [
@@ -6069,7 +7699,13 @@
     202.1567,
     14.1971
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b270",
    "faces": [
     {
      "towards": [
@@ -6089,7 +7725,13 @@
     203.3572,
     14.3531
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -6109,7 +7751,13 @@
     203.3571,
     14.3131
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -6129,7 +7777,13 @@
     203.3569,
     14.2731
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -6149,7 +7803,13 @@
     203.3568,
     14.2331
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -6169,7 +7829,13 @@
     203.3567,
     14.1931
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -6189,7 +7855,13 @@
     204.5572,
     14.3491
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b330",
    "faces": [
     {
      "towards": [
@@ -6209,7 +7881,13 @@
     204.5571,
     14.3091
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b330",
    "faces": [
     {
      "towards": [
@@ -6229,7 +7907,13 @@
     204.5569,
     14.2691
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b330",
    "faces": [
     {
      "towards": [
@@ -6249,7 +7933,13 @@
     204.5568,
     14.2291
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b330",
    "faces": [
     {
      "towards": [
@@ -6269,7 +7959,13 @@
     204.5567,
     14.1891
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b330",
    "faces": [
     {
      "towards": [
@@ -6289,7 +7985,13 @@
     205.7572,
     14.3452
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b360",
    "faces": [
     {
      "towards": [
@@ -6309,7 +8011,13 @@
     205.7571,
     14.3052
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b360",
    "faces": [
     {
      "towards": [
@@ -6329,7 +8037,13 @@
     205.7569,
     14.2652
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b360",
    "faces": [
     {
      "towards": [
@@ -6349,7 +8063,13 @@
     205.7568,
     14.2252
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b360",
    "faces": [
     {
      "towards": [
@@ -6369,7 +8089,13 @@
     205.7567,
     14.1852
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b360",
    "faces": [
     {
      "towards": [
@@ -6389,7 +8115,13 @@
     206.9572,
     14.3412
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b390",
    "faces": [
     {
      "towards": [
@@ -6409,7 +8141,13 @@
     206.957,
     14.3012
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b390",
    "faces": [
     {
      "towards": [
@@ -6429,7 +8167,13 @@
     206.9569,
     14.2612
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b390",
    "faces": [
     {
      "towards": [
@@ -6449,7 +8193,13 @@
     206.9568,
     14.2212
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b390",
    "faces": [
     {
      "towards": [
@@ -6469,7 +8219,13 @@
     206.9566,
     14.1812
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b390",
    "faces": [
     {
      "towards": [
@@ -6489,7 +8245,13 @@
     208.1572,
     14.3372
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b420",
    "faces": [
     {
      "towards": [
@@ -6509,7 +8271,13 @@
     208.157,
     14.2972
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b420",
    "faces": [
     {
      "towards": [
@@ -6529,7 +8297,13 @@
     208.1569,
     14.2572
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b420",
    "faces": [
     {
      "towards": [
@@ -6549,7 +8323,13 @@
     208.1568,
     14.2172
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b420",
    "faces": [
     {
      "towards": [
@@ -6569,7 +8349,13 @@
     208.1566,
     14.1772
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b420",
    "faces": [
     {
      "towards": [
@@ -6589,7 +8375,13 @@
     209.3572,
     14.3332
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
    "faces": [
     {
      "towards": [
@@ -6609,7 +8401,13 @@
     209.357,
     14.2932
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
    "faces": [
     {
      "towards": [
@@ -6629,7 +8427,13 @@
     209.3569,
     14.2532
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
    "faces": [
     {
      "towards": [
@@ -6649,7 +8453,13 @@
     209.3568,
     14.2132
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
    "faces": [
     {
      "towards": [
@@ -6669,7 +8479,13 @@
     209.3566,
     14.1732
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
    "faces": [
     {
      "towards": [
@@ -6689,7 +8505,13 @@
     210.5572,
     14.3292
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b480",
    "faces": [
     {
      "towards": [
@@ -6709,7 +8531,13 @@
     210.557,
     14.2892
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b480",
    "faces": [
     {
      "towards": [
@@ -6729,7 +8557,13 @@
     210.5569,
     14.2492
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b480",
    "faces": [
     {
      "towards": [
@@ -6749,7 +8583,13 @@
     210.5568,
     14.2092
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b480",
    "faces": [
     {
      "towards": [
@@ -6769,7 +8609,13 @@
     210.5566,
     14.1692
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b480",
    "faces": [
     {
      "towards": [
@@ -6789,7 +8635,13 @@
     211.7572,
     14.3252
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b510",
    "faces": [
     {
      "towards": [
@@ -6809,7 +8661,13 @@
     211.757,
     14.2852
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b510",
    "faces": [
     {
      "towards": [
@@ -6829,7 +8687,13 @@
     211.7569,
     14.2452
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b510",
    "faces": [
     {
      "towards": [
@@ -6849,7 +8713,13 @@
     211.7568,
     14.2052
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b510",
    "faces": [
     {
      "towards": [
@@ -6869,7 +8739,13 @@
     211.7566,
     14.1652
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b510",
    "faces": [
     {
      "towards": [
@@ -6889,7 +8765,13 @@
     212.9571,
     14.3212
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b540",
    "faces": [
     {
      "towards": [
@@ -6909,7 +8791,13 @@
     212.957,
     14.2812
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b540",
    "faces": [
     {
      "towards": [
@@ -6929,7 +8817,13 @@
     212.9569,
     14.2412
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b540",
    "faces": [
     {
      "towards": [
@@ -6949,7 +8843,13 @@
     212.9567,
     14.2012
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b540",
    "faces": [
     {
      "towards": [
@@ -6969,7 +8869,13 @@
     212.9566,
     14.1612
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b540",
    "faces": [
     {
      "towards": [
@@ -6989,7 +8895,13 @@
     214.1571,
     14.3173
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b570",
    "faces": [
     {
      "towards": [
@@ -7009,7 +8921,13 @@
     214.157,
     14.2773
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b570",
    "faces": [
     {
      "towards": [
@@ -7029,7 +8947,13 @@
     214.1569,
     14.2373
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b570",
    "faces": [
     {
      "towards": [
@@ -7049,7 +8973,13 @@
     214.1567,
     14.1973
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b570",
    "faces": [
     {
      "towards": [
@@ -7069,7 +8999,13 @@
     214.1566,
     14.1573
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b570",
    "faces": [
     {
      "towards": [
@@ -7089,7 +9025,13 @@
     215.3571,
     14.3133
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
    "faces": [
     {
      "towards": [
@@ -7109,7 +9051,13 @@
     215.357,
     14.2733
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
    "faces": [
     {
      "towards": [
@@ -7129,7 +9077,13 @@
     215.3569,
     14.2333
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
    "faces": [
     {
      "towards": [
@@ -7149,7 +9103,13 @@
     215.3567,
     14.1933
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
    "faces": [
     {
      "towards": [
@@ -7169,7 +9129,13 @@
     215.3566,
     14.1533
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
    "faces": [
     {
      "towards": [
@@ -7189,7 +9155,13 @@
     216.5571,
     14.3093
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b630",
    "faces": [
     {
      "towards": [
@@ -7209,7 +9181,13 @@
     216.557,
     14.2693
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b630",
    "faces": [
     {
      "towards": [
@@ -7229,7 +9207,13 @@
     216.5569,
     14.2293
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b630",
    "faces": [
     {
      "towards": [
@@ -7249,7 +9233,13 @@
     216.5567,
     14.1893
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b630",
    "faces": [
     {
      "towards": [
@@ -7269,7 +9259,13 @@
     216.5566,
     14.1493
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b630",
    "faces": [
     {
      "towards": [
@@ -7289,7 +9285,13 @@
     217.7571,
     14.3053
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b660",
    "faces": [
     {
      "towards": [
@@ -7309,7 +9311,13 @@
     217.757,
     14.2653
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b660",
    "faces": [
     {
      "towards": [
@@ -7329,7 +9337,13 @@
     217.7569,
     14.2253
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b660",
    "faces": [
     {
      "towards": [
@@ -7349,7 +9363,13 @@
     217.7567,
     14.1853
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b660",
    "faces": [
     {
      "towards": [
@@ -7369,7 +9389,13 @@
     217.7566,
     14.1453
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b660",
    "faces": [
     {
      "towards": [
@@ -7389,7 +9415,13 @@
     218.9571,
     14.3013
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b690",
    "faces": [
     {
      "towards": [
@@ -7409,7 +9441,13 @@
     218.957,
     14.2613
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b690",
    "faces": [
     {
      "towards": [
@@ -7429,7 +9467,13 @@
     218.9568,
     14.2213
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b690",
    "faces": [
     {
      "towards": [
@@ -7449,7 +9493,13 @@
     218.9567,
     14.1813
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b690",
    "faces": [
     {
      "towards": [
@@ -7469,7 +9519,13 @@
     218.9566,
     14.1413
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b690",
    "faces": [
     {
      "towards": [
@@ -7489,7 +9545,13 @@
     220.1571,
     14.2973
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b720",
    "faces": [
     {
      "towards": [
@@ -7509,7 +9571,13 @@
     220.157,
     14.2573
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b720",
    "faces": [
     {
      "towards": [
@@ -7529,7 +9597,13 @@
     220.1568,
     14.2173
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b720",
    "faces": [
     {
      "towards": [
@@ -7549,7 +9623,13 @@
     220.1567,
     14.1773
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b720",
    "faces": [
     {
      "towards": [
@@ -7569,7 +9649,13 @@
     220.1566,
     14.1373
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b720",
    "faces": [
     {
      "towards": [
@@ -7589,7 +9675,13 @@
     221.3571,
     14.2933
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
    "faces": [
     {
      "towards": [
@@ -7609,7 +9701,13 @@
     221.357,
     14.2533
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
    "faces": [
     {
      "towards": [
@@ -7629,7 +9727,13 @@
     221.3568,
     14.2133
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
    "faces": [
     {
      "towards": [
@@ -7649,7 +9753,13 @@
     221.3567,
     14.1733
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
    "faces": [
     {
      "towards": [
@@ -7669,7 +9779,13 @@
     221.3566,
     14.1333
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
    "faces": [
     {
      "towards": [
@@ -7689,7 +9805,13 @@
     222.5571,
     14.2893
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b780",
    "faces": [
     {
      "towards": [
@@ -7709,7 +9831,13 @@
     222.557,
     14.2493
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b780",
    "faces": [
     {
      "towards": [
@@ -7729,7 +9857,13 @@
     222.5568,
     14.2093
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b780",
    "faces": [
     {
      "towards": [
@@ -7749,7 +9883,13 @@
     222.5567,
     14.1693
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b780",
    "faces": [
     {
      "towards": [
@@ -7769,7 +9909,13 @@
     222.5566,
     14.1293
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b780",
    "faces": [
     {
      "towards": [
@@ -7789,7 +9935,13 @@
     223.7571,
     14.2854
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b810",
    "faces": [
     {
      "towards": [
@@ -7809,7 +9961,13 @@
     223.757,
     14.2454
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b810",
    "faces": [
     {
      "towards": [
@@ -7829,7 +9987,13 @@
     223.7568,
     14.2054
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b810",
    "faces": [
     {
      "towards": [
@@ -7849,7 +10013,13 @@
     223.7567,
     14.1654
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b810",
    "faces": [
     {
      "towards": [
@@ -7869,7 +10039,13 @@
     223.7566,
     14.1254
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b810",
    "faces": [
     {
      "towards": [
@@ -7889,7 +10065,13 @@
     224.9571,
     14.2814
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b840",
    "faces": [
     {
      "towards": [
@@ -7909,7 +10091,13 @@
     224.9569,
     14.2414
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b840",
    "faces": [
     {
      "towards": [
@@ -7929,7 +10117,13 @@
     224.9568,
     14.2014
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b840",
    "faces": [
     {
      "towards": [
@@ -7949,7 +10143,13 @@
     224.9567,
     14.1614
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b840",
    "faces": [
     {
      "towards": [
@@ -7969,7 +10169,13 @@
     224.9565,
     14.1214
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b840",
    "faces": [
     {
      "towards": [
@@ -7989,7 +10195,13 @@
     226.1571,
     14.2774
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b870",
    "faces": [
     {
      "towards": [
@@ -8009,7 +10221,13 @@
     226.1569,
     14.2374
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b870",
    "faces": [
     {
      "towards": [
@@ -8029,7 +10247,13 @@
     226.1568,
     14.1974
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b870",
    "faces": [
     {
      "towards": [
@@ -8049,7 +10273,13 @@
     226.1567,
     14.1574
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b870",
    "faces": [
     {
      "towards": [
@@ -8069,7 +10299,13 @@
     226.1565,
     14.1174
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b870",
    "faces": [
     {
      "towards": [
@@ -8089,7 +10325,13 @@
     227.3571,
     14.2734
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b900",
    "faces": [
     {
      "towards": [
@@ -8109,7 +10351,13 @@
     227.3569,
     14.2334
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b900",
    "faces": [
     {
      "towards": [
@@ -8129,7 +10377,13 @@
     227.3568,
     14.1934
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b900",
    "faces": [
     {
      "towards": [
@@ -8149,7 +10403,13 @@
     227.3567,
     14.1534
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b900",
    "faces": [
     {
      "towards": [
@@ -8169,7 +10429,13 @@
     227.3565,
     14.1134
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b900",
    "faces": [
     {
      "towards": [
@@ -8183,13 +10449,279 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x-15",
+   "id": "airport-lighting-e1-v1:approach:27-x150-0",
+   "group": "approach",
+   "position": [
+    197.3585,
+    14.7431
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x150-1",
+   "group": "approach",
+   "position": [
+    197.3582,
+    14.6612
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x150-2",
+   "group": "approach",
+   "position": [
+    197.3579,
+    14.5794
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x150-3",
+   "group": "approach",
+   "position": [
+    197.3576,
+    14.4976
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x150-4",
+   "group": "approach",
+   "position": [
+    197.3574,
+    14.4158
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x150-7",
+   "group": "approach",
+   "position": [
+    197.3566,
+    14.1703
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x150-8",
+   "group": "approach",
+   "position": [
+    197.3563,
+    14.0885
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x150-9",
+   "group": "approach",
+   "position": [
+    197.356,
+    14.0067
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x150-10",
+   "group": "approach",
+   "position": [
+    197.3557,
+    13.9249
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x150-11",
+   "group": "approach",
+   "position": [
+    197.3555,
+    13.8431
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b150",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x300-0",
    "group": "approach",
    "position": [
     203.3589,
     14.8731
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8203,13 +10735,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x-13",
+   "id": "airport-lighting-e1-v1:approach:27-x300-1",
    "group": "approach",
    "position": [
     203.3587,
     14.7931
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8223,13 +10761,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x-11",
+   "id": "airport-lighting-e1-v1:approach:27-x300-2",
    "group": "approach",
    "position": [
     203.3584,
     14.7131
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8243,13 +10787,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x-9",
+   "id": "airport-lighting-e1-v1:approach:27-x300-3",
    "group": "approach",
    "position": [
     203.3581,
     14.6331
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8263,13 +10813,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x-7",
+   "id": "airport-lighting-e1-v1:approach:27-x300-4",
    "group": "approach",
    "position": [
     203.3579,
     14.5531
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8283,13 +10839,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x-5",
+   "id": "airport-lighting-e1-v1:approach:27-x300-5",
    "group": "approach",
    "position": [
     203.3576,
     14.4731
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8303,13 +10865,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x-3",
+   "id": "airport-lighting-e1-v1:approach:27-x300-6",
    "group": "approach",
    "position": [
     203.3573,
     14.3931
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8323,13 +10891,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x3",
+   "id": "airport-lighting-e1-v1:approach:27-x300-9",
    "group": "approach",
    "position": [
     203.3565,
     14.1531
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8343,13 +10917,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x5",
+   "id": "airport-lighting-e1-v1:approach:27-x300-10",
    "group": "approach",
    "position": [
     203.3563,
     14.0731
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8363,13 +10943,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x7",
+   "id": "airport-lighting-e1-v1:approach:27-x300-11",
    "group": "approach",
    "position": [
     203.356,
     13.9931
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8383,13 +10969,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x9",
+   "id": "airport-lighting-e1-v1:approach:27-x300-12",
    "group": "approach",
    "position": [
     203.3557,
     13.9131
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8403,13 +10995,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x11",
+   "id": "airport-lighting-e1-v1:approach:27-x300-13",
    "group": "approach",
    "position": [
     203.3555,
     13.8331
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8423,13 +11021,19 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x13",
+   "id": "airport-lighting-e1-v1:approach:27-x300-14",
    "group": "approach",
    "position": [
     203.3552,
     13.7531
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
    "faces": [
     {
      "towards": [
@@ -8443,13 +11047,1683 @@
    ]
   },
   {
-   "id": "airport-lighting-e1-v1:approach:27-x15",
+   "id": "airport-lighting-e1-v1:approach:27-x300-15",
    "group": "approach",
    "position": [
     203.3549,
     13.6731
    ],
-   "heightM": 0.8,
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b300",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-0",
+   "group": "approach",
+   "position": [
+    209.3594,
+    15.0032
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-1",
+   "group": "approach",
+   "position": [
+    209.3591,
+    14.9242
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-2",
+   "group": "approach",
+   "position": [
+    209.3589,
+    14.8453
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-3",
+   "group": "approach",
+   "position": [
+    209.3586,
+    14.7664
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-4",
+   "group": "approach",
+   "position": [
+    209.3583,
+    14.6874
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-5",
+   "group": "approach",
+   "position": [
+    209.3581,
+    14.6085
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-6",
+   "group": "approach",
+   "position": [
+    209.3578,
+    14.5295
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-7",
+   "group": "approach",
+   "position": [
+    209.3576,
+    14.4506
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-8",
+   "group": "approach",
+   "position": [
+    209.3573,
+    14.3716
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-11",
+   "group": "approach",
+   "position": [
+    209.3565,
+    14.1348
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-12",
+   "group": "approach",
+   "position": [
+    209.3562,
+    14.0558
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-13",
+   "group": "approach",
+   "position": [
+    209.356,
+    13.9769
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-14",
+   "group": "approach",
+   "position": [
+    209.3557,
+    13.8979
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-15",
+   "group": "approach",
+   "position": [
+    209.3555,
+    13.819
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-16",
+   "group": "approach",
+   "position": [
+    209.3552,
+    13.74
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-17",
+   "group": "approach",
+   "position": [
+    209.3549,
+    13.6611
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-18",
+   "group": "approach",
+   "position": [
+    209.3547,
+    13.5822
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x450-19",
+   "group": "approach",
+   "position": [
+    209.3544,
+    13.5032
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b450",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-0",
+   "group": "approach",
+   "position": [
+    215.3599,
+    15.1333
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-1",
+   "group": "approach",
+   "position": [
+    215.3596,
+    15.055
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-2",
+   "group": "approach",
+   "position": [
+    215.3593,
+    14.9767
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-3",
+   "group": "approach",
+   "position": [
+    215.3591,
+    14.8985
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-4",
+   "group": "approach",
+   "position": [
+    215.3588,
+    14.8202
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-5",
+   "group": "approach",
+   "position": [
+    215.3586,
+    14.742
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-6",
+   "group": "approach",
+   "position": [
+    215.3583,
+    14.6637
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-7",
+   "group": "approach",
+   "position": [
+    215.358,
+    14.5854
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-8",
+   "group": "approach",
+   "position": [
+    215.3578,
+    14.5072
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-9",
+   "group": "approach",
+   "position": [
+    215.3575,
+    14.4289
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-10",
+   "group": "approach",
+   "position": [
+    215.3573,
+    14.3507
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-13",
+   "group": "approach",
+   "position": [
+    215.3565,
+    14.1159
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-14",
+   "group": "approach",
+   "position": [
+    215.3562,
+    14.0376
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-15",
+   "group": "approach",
+   "position": [
+    215.356,
+    13.9594
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-16",
+   "group": "approach",
+   "position": [
+    215.3557,
+    13.8811
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-17",
+   "group": "approach",
+   "position": [
+    215.3554,
+    13.8028
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-18",
+   "group": "approach",
+   "position": [
+    215.3552,
+    13.7246
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-19",
+   "group": "approach",
+   "position": [
+    215.3549,
+    13.6463
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-20",
+   "group": "approach",
+   "position": [
+    215.3547,
+    13.5681
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-21",
+   "group": "approach",
+   "position": [
+    215.3544,
+    13.4898
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-22",
+   "group": "approach",
+   "position": [
+    215.3541,
+    13.4115
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x600-23",
+   "group": "approach",
+   "position": [
+    215.3539,
+    13.3333
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b600",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-0",
+   "group": "approach",
+   "position": [
+    221.3603,
+    15.2633
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-1",
+   "group": "approach",
+   "position": [
+    221.3601,
+    15.1826
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-2",
+   "group": "approach",
+   "position": [
+    221.3598,
+    15.1018
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-3",
+   "group": "approach",
+   "position": [
+    221.3595,
+    15.021
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-4",
+   "group": "approach",
+   "position": [
+    221.3592,
+    14.9403
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-5",
+   "group": "approach",
+   "position": [
+    221.359,
+    14.8595
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-6",
+   "group": "approach",
+   "position": [
+    221.3587,
+    14.7787
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-7",
+   "group": "approach",
+   "position": [
+    221.3584,
+    14.6979
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-8",
+   "group": "approach",
+   "position": [
+    221.3582,
+    14.6172
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-9",
+   "group": "approach",
+   "position": [
+    221.3579,
+    14.5364
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-10",
+   "group": "approach",
+   "position": [
+    221.3576,
+    14.4556
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-11",
+   "group": "approach",
+   "position": [
+    221.3574,
+    14.3749
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-15",
+   "group": "approach",
+   "position": [
+    221.3563,
+    14.0518
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-16",
+   "group": "approach",
+   "position": [
+    221.356,
+    13.971
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-17",
+   "group": "approach",
+   "position": [
+    221.3558,
+    13.8903
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-18",
+   "group": "approach",
+   "position": [
+    221.3555,
+    13.8095
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-19",
+   "group": "approach",
+   "position": [
+    221.3552,
+    13.7287
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-20",
+   "group": "approach",
+   "position": [
+    221.355,
+    13.648
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-21",
+   "group": "approach",
+   "position": [
+    221.3547,
+    13.5672
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-22",
+   "group": "approach",
+   "position": [
+    221.3544,
+    13.4864
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-23",
+   "group": "approach",
+   "position": [
+    221.3542,
+    13.4056
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-24",
+   "group": "approach",
+   "position": [
+    221.3539,
+    13.3249
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-25",
+   "group": "approach",
+   "position": [
+    221.3536,
+    13.2441
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
+   "faces": [
+    {
+     "towards": [
+      0.999994481467946,
+      -0.00332220313252724
+     ],
+     "color": "white",
+     "inUse": "27",
+     "spill": 0.15
+    }
+   ]
+  },
+  {
+   "id": "airport-lighting-e1-v1:approach:27-x750-26",
+   "group": "approach",
+   "position": [
+    221.3533,
+    13.1633
+   ],
+   "heightM": 0.4,
+   "plane": [
+    191.357,
+    14.313
+   ],
+   "planeAboveM": 0.5,
+   "row": "27-b750",
    "faces": [
     {
      "towards": [

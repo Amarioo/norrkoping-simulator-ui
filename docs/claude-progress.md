@@ -2,6 +2,20 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Airport Lighting E1 follow-up — Calvert crossbars, yellow masts, no flashers (2026-11-03) — tested locally and approved by the user (2026-11-06), committed and pushed to `origin/main`
+
+[Report section](airport-lighting-e1/README.md#follow-up-calvert-crossbars-and-masts-2026-11-03-after-the-users-test).
+Worked directly on local `main` (= `origin/main` `4fab0d8`). **Committed and pushed to `origin/main`** (user, 2026-11-06).
+
+- **Checked (user's question):** no flashing approach lights at ESSP (the AIP lists EFAS where present, e.g.
+  Bromma; none at ESSP or Arlanda/Landvetter/Skavsta/Linköping); no guidance lights on city roofs (tall
+  structures have obstacle lights, not modelled; ESSP §2.10 gives no lighting).
+- **Changed:** Calvert crossbars at 150–450 m (09) / 150–750 m (27), sized by the SKYbrary convergence rule
+  (572 lights, approach 268 → 370); yellow masts and bars; light plane 0.5 m above the threshold's ground,
+  rising 1:66 for RWY 09 (masts at Söderleden as tall as the street lights in the user's photos), level for 27.
+- **Checks:** type check 0; build OK, byte-reproducible; Vitest 528/529 (new 12/12; known `police.test.ts`
+  CRLF). Playwright (25 tests) three full runs: 24/25, 24/25, 25/25. Both failures were `sse-debug.spec.ts` (export right after "Rensa" missing the raw reader's channel), not the airport test, while the machine was busy (Chrome ≈ 9 %, idle load up to 48 %). That spec alone: 1 failure in 3 and 1 in 4 runs (one a cold-start timeout), then 6/6 on a warm server; on `origin/main` 4/4 in the same session. Not caused by anything airport-related as far as found; recorded as a timing-sensitive test. Timing: +2 draw calls, differences noise-level on a busy machine.
+
 ## Airport Lighting Phase E1 — runway lights at Norrköping-Kungsängen (2026-11-03) — tested locally and approved by the user (2026-11-03), committed and pushed to `origin/main`
 
 [Full report](airport-lighting-e1/README.md). Worked directly on local `main` (= `origin/main` `ff96ae0`).

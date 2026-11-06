@@ -31,6 +31,7 @@ import {
 } from 'three';
 import { HALO_CULL_MARGIN, HALO_FRAGMENT, HALO_VERTEX } from '../lighting/fixtures';
 import {
+  ESTIMATES,
   esspRunwayLights,
   faceSeen,
   LIGHT_RGB,
@@ -60,9 +61,10 @@ const HOUSINGS: Record<LightGroup, { geometry: () => BufferGeometry; color: stri
     geometry: () => new CylinderGeometry(0.08, 0.1, 0.3, 8).translate(0, 0.15, 0),
     color: '#d9c96a',
   },
+  // Approach lights: the lamp head only (at the light); masts and bars are added per row below.
   approach: {
-    geometry: () => new BoxGeometry(0.25, 0.8, 0.25).translate(0, 0.4, 0),
-    color: '#c45a2c',
+    geometry: () => new BoxGeometry(0.3, 0.22, 0.26).translate(0, -0.11, 0),
+    color: '#4b4b46',
   },
   papi: { geometry: () => new BoxGeometry(1.2, 0.9, 0.7).translate(0, 0.45, 0), color: '#e7e4da' },
 };
@@ -80,6 +82,23 @@ export function createRunwayLights(
   const n = lights.length;
   const y = lights.map((l) => ground.groundHeight(...l.position));
   const lightY = lights.map((l, i) => y[i] + l.heightM / metresPerUnit);
+  // Approach lights: one level per row (barrette or crossbar), in the light plane (its height above the
+  // threshold's ground, rising for RWY 09) where the terrain allows, else at least their minimum height
+  // above the highest ground under the row.
+  const rows = new Map<string, number[]>();
+  lights.forEach((l, i) => {
+    if (!l.row) return;
+    if (!rows.has(l.row)) rows.set(l.row, []);
+    rows.get(l.row)!.push(i);
+  });
+  for (const members of rows.values()) {
+    const { plane, planeAboveM } = lights[members[0]];
+    const level = Math.max(
+      ground.groundHeight(...plane!) + (planeAboveM ?? ESTIMATES.approachPlaneM) / metresPerUnit,
+      ...members.map((i) => lightY[i]),
+    );
+    for (const i of members) lightY[i] = level;
+  }
 
   // Housings: one instanced mesh per group.
   const m = new Matrix4();
@@ -99,13 +118,96 @@ export function createRunwayLights(
     );
     mesh.name = 'airport-lights-' + kind;
     members.forEach(([l, i], k) => {
-      m.makeTranslation(l.position[0], y[i], l.position[1]);
+      m.makeTranslation(l.position[0], kind === 'approach' ? lightY[i] : y[i], l.position[1]);
       mesh.setMatrixAt(k, m);
     });
     mesh.computeBoundingSphere();
     mesh.receiveShadow = true;
     group.add(mesh);
   }
+
+  // Approach masts and bars (yellow, as on site; sizes ESTIMATE): each row hangs on a bar at its light
+  // level, carried by masts from the ground: at the row's centre and, on crossbars, at each end and
+  // about every 8 m between.
+  const MAST = 0.3,
+    BAR = 0.14;
+  const mastAt: { x: number; z: number; ground: number; top: number }[] = [];
+  const bars: { a: Point; b: Point; level: number }[] = [];
+  for (const members of rows.values()) {
+    // Order along the row: by offset from its first light, measured across the approach axis.
+    const p0 = lights[members[0]].position;
+    const far = members.reduce((best, i) =>
+      Math.hypot(lights[i].position[0] - p0[0], lights[i].position[1] - p0[1]) >
+      Math.hypot(lights[best].position[0] - p0[0], lights[best].position[1] - p0[1])
+        ? i
+        : best,
+    );
+    const pf = lights[far].position;
+    const dir: Point = [pf[0] - p0[0], pf[1] - p0[1]];
+    const sorted = [...members].sort(
+      (i, j) =>
+        (lights[i].position[0] - p0[0]) * dir[0] +
+        (lights[i].position[1] - p0[1]) * dir[1] -
+        ((lights[j].position[0] - p0[0]) * dir[0] + (lights[j].position[1] - p0[1]) * dir[1]),
+    );
+    const first = lights[sorted[0]].position,
+      last = lights[sorted.at(-1)!].position,
+      level = lightY[sorted[0]];
+    bars.push({ a: first, b: last, level });
+    const span = Math.hypot(last[0] - first[0], last[1] - first[1]) * metresPerUnit;
+    const centre: Point = [(first[0] + last[0]) / 2, (first[1] + last[1]) / 2];
+    const posts: Point[] = [centre];
+    if (span > 6) {
+      const count = Math.max(2, Math.round(span / 8) + 1);
+      for (let k = 0; k < count; k++) {
+        const t = k / (count - 1);
+        posts.push([first[0] + (last[0] - first[0]) * t, first[1] + (last[1] - first[1]) * t]);
+      }
+    }
+    for (const [x, z] of posts) {
+      const g = ground.groundHeight(x, z);
+      if (level - g > 0.05 / metresPerUnit) mastAt.push({ x, z, ground: g, top: level });
+    }
+  }
+  const yellow = own(new MeshStandardMaterial({ color: '#d9ae2b', roughness: 0.6 }));
+  if (mastAt.length) {
+    const masts = own(
+      new InstancedMesh(
+        own(new BoxGeometry(MAST / metresPerUnit, 1, MAST / metresPerUnit).translate(0, 0.5, 0)),
+        yellow,
+        mastAt.length,
+      ),
+    );
+    masts.name = 'airport-lights-masts';
+    mastAt.forEach(({ x, z, ground: g, top }, k) => {
+      m.makeScale(1, top - g, 1).setPosition(x, g, z);
+      masts.setMatrixAt(k, m);
+    });
+    masts.computeBoundingSphere();
+    group.add(masts);
+  }
+  const barMesh = own(
+    new InstancedMesh(
+      own(new BoxGeometry(1, BAR / metresPerUnit, BAR / metresPerUnit)),
+      yellow,
+      Math.max(1, bars.length),
+    ),
+  );
+  barMesh.name = 'airport-lights-bars';
+  barMesh.count = bars.length;
+  const rot = new Matrix4();
+  bars.forEach(({ a, b, level }, k) => {
+    const dx = b[0] - a[0],
+      dz = b[1] - a[1];
+    const length = Math.max(Math.hypot(dx, dz), 0.3 / metresPerUnit);
+    rot.makeRotationY(-Math.atan2(dz, dx));
+    m.makeScale(length, 1, 1)
+      .premultiply(rot)
+      .setPosition((a[0] + b[0]) / 2, level - (0.22 + BAR / 2) / metresPerUnit, (a[1] + b[1]) / 2);
+    barMesh.setMatrixAt(k, m);
+  });
+  if (bars.length) barMesh.computeBoundingSphere();
+  group.add(barMesh);
 
   // Glow: the street lights' halo program; a slightly larger minimum size so the rows read as lines.
   const haloMaterial = own(

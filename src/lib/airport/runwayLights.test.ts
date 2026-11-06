@@ -72,6 +72,41 @@ describe('Airport Lighting E1: ESSP RWY 09/27 layout', () => {
     expect(Math.min(...east)).toBeGreaterThan(L);
   });
 
+  it('adds the Calvert crossbars: 150–450 m for 09, 150–750 m for 27, widening outwards', () => {
+    const app = of('approach');
+    for (const [rwy, bars] of [
+      ['09', [150, 300, 450]],
+      ['27', [150, 300, 450, 600, 750]],
+    ] as const) {
+      const lights = app.filter((l) => l.faces[0].inUse === rwy);
+      const dist = (l: RunwayLight) => Math.abs(local(l.position).along - (rwy === '09' ? 0 : L));
+      // Rows wider than the 4 m barrette are the crossbars.
+      const rows = new Map<string, RunwayLight[]>();
+      for (const l of lights) rows.set(l.row!, [...(rows.get(l.row!) ?? []), l]);
+      const crossbars = [...rows.values()]
+        .map((row) => ({
+          at: Math.round(dist(row[0])),
+          width:
+            Math.max(...row.map((l) => local(l.position).across)) -
+            Math.min(...row.map((l) => local(l.position).across)),
+        }))
+        .filter((r) => r.width > 5)
+        .sort((a, b) => a.at - b.at);
+      expect(crossbars.map((r) => r.at)).toEqual(bars);
+      // 30 m at 300 m; outer ends on lines converging 300 m beyond the threshold.
+      for (const r of crossbars) expect(r.width).toBeCloseTo((30 * (r.at + 300)) / 600, 1);
+    }
+  });
+
+  it('lays the approach lights in the light plane: rising 1:66 for 09, level for 27', () => {
+    for (const l of of('approach')) {
+      const d = Math.abs(local(l.position).along - (l.faces[0].inUse === '09' ? 0 : L));
+      const slope = l.faces[0].inUse === '09' ? 1 / 66 : 0;
+      expect(l.planeAboveM).toBeCloseTo(ESTIMATES.approachPlaneM + d * slope, 6);
+      expect(l.plane).toEqual(l.faces[0].inUse === '09' ? thr09 : thr27);
+    }
+  });
+
   it('puts four PAPI units on the left of each landing direction, outside the runway', () => {
     const papi = of('papi');
     expect(papi.length).toBe(8);

@@ -35,6 +35,37 @@ E, step E1; plan: `docs/step62/airport-lighting-plan.md`.
   calls; **no new shader program** (the glow reuses the street-light halo program; checked by the new
   Playwright test). Recolouring all lights for a moving camera: 0.017 ms per frame.
 
+## Follow-up: Calvert crossbars and masts (2026-11-03, after the user's test)
+
+The user compared the scene with street-level and aerial photos of the RWY 09 approach where it crosses
+Söderleden: several crossbars on tall yellow masts. The first version had one ICAO crossbar at 300 m on
+0.8 m stands. Checked and changed (approved by the user, committed and pushed 2026-11-06):
+
+- **No flashing lights at ESSP.** Sequenced flashing approach lights exist at some airports; the Swedish
+  AIP names them where present (Bromma: "EFAS 900 m from THR"; GEN 2.2: EFAS = electronic flashing
+  approach system lights). ESSP lists none, nor do Arlanda, Landvetter, Skavsta or Linköping, so the
+  approach lights stay steady.
+- **No guidance lights on roofs.** Approach lights end 540 m / 900 m from the thresholds. Tall city
+  structures carry obstacle lights (warnings, not guidance); the AIP's ESSP obstacle list (§2.10) gives
+  no lighting for its buildings, spire and masts, and the national >100 m obstacle data (ENR 5.4, digital)
+  was not acquired. Not modelled; a possible later phase.
+- **Calvert crossbars** at 150, 300, 450 m (RWY 09) and 150–750 m (RWY 27), 30 m long at 300 m and the
+  others sized so their ends converge 300 m beyond the threshold (22.5 … 52.5 m) (SKYbrary; ESTIMATE):
+  572 lights instead of 470 (approach 268 → 370).
+- **Yellow masts and bars, light plane.** Each row hangs on a yellow bar carried by masts; the lights lie
+  in a plane 0.5 m above the threshold's ground, rising 1:66 away from THR 09 (Annex 14's maximum; the
+  photos show masts at Söderleden about as tall as the 8–10 m street lights) and level for THR 27 (no
+  evidence) (ESTIMATE). [Evidence 06](evidence/06-day-approach-09-masts-and-crossbars-at-the-creek.png)
+  (by day, masts rising away from the runway over the creek),
+  [07](evidence/07-night-approach-09-three-crossbars.png) (RWY 09 approach at night, three crossbars).
+- **Cost:** +2 draw calls (masts, bars). Paired against `origin/main` (E1 first version), 3 rounds
+  ([data/paired-calvert-summary.md](data/paired-calvert-summary.md)): overview at night −0.33 ms
+  [−0.41 … +2.12], Kungsängen at night +0.53 [−0.23 … +0.75], by day +0.01 [−0.13 … +0.11]. The
+  machine was about twice as slow during this run as in the first E1 run (overview 12.5 ms against
+  6.3 ms), so these differences are noise-level, not a clean measurement.
+- **Checks:** type check 0; build byte-reproducible; Vitest 528/529 (layout tests 12/12; known
+  `police.test.ts`); layout data byte-identical on rebuild. Playwright (25 tests) three full runs: 24/25, 24/25, 25/25. Both failures were `sse-debug.spec.ts` (export right after "Rensa" missing the raw reader's channel), not the airport test, while the machine was busy (Chrome ≈ 9 %, idle load up to 48 %). That spec alone: 1 failure in 3 and 1 in 4 runs (one a cold-start timeout), then 6/6 on a warm server; on `origin/main` 4/4 in the same session. Not caused by anything airport-related as far as found; recorded as a timing-sensitive test.
+
 ## How it works
 
 - `src/lib/airport/runwayLights.ts` — pure layout: every light's position (scene x/z), height and
