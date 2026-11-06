@@ -2,6 +2,21 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Project board — local Kanban of epics and stories (2026-11-06) — committed to local `main` on the user's request (2026-11-06), not pushed
+
+[Guide and details](board/README.md). Worked directly on local `main` (= `origin/main` `bed5d5d`). Simulator code unchanged.
+**Committed to local `main`** (user, 2026-11-06); **not pushed** to `origin/main`.
+
+- **What:** `npm run board` serves a Kanban board on http://127.0.0.1:5330/ (Backlog, Nästa, Pågår,
+  Test (du testar), Klart). Epics = roadmap tracks L, F, B, D, E, C, P plus S (simulator link and
+  traffic) and G (foundation steps); stories = phases. Drag and drop, card panel with tasks and
+  comments, epic filter, search, built-in report viewer for `docs/**.md`.
+- **Data:** `docs/board/board.json` (in git), seeded from this file and `docs/roadmap.md`: 38 done,
+  B2 next, 9 backlog. Older phases still marked "for review" here are in Done with a note saying so.
+- **Sync:** the page polls every 2 s; saves carry a content hash and are refused (409) if the file
+  changed meanwhile. `npm run board:check` validates the file. Rule for keeping it current added to `CLAUDE.md`.
+- **Checks:** see [evidence/checks.md](board/evidence/checks.md).
+
 ## Aircraft Lights Phase E2 — navigation, anti-collision, landing and taxi lights on the aircraft (2026-11-06) — tested locally and approved by the user (2026-11-06), committed and pushed to `origin/main`
 
 [Full report](aircraft-lights-e2/README.md). Worked directly on local `main` (= `origin/main` `afa08cf`).

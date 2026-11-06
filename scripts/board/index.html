@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Projekttavla – Norrköping</title>
+<style>
+  :root {
+    --bg: #f4f5f7; --panel: #ffffff; --col: #ebecf0; --text: #172b4d; --muted: #5e6c84; --line: #dfe1e6;
+    --accent: #0c66e4; --danger: #c9372c; --shadow: 0 1px 2px rgba(9, 30, 66, .25); --marker: #0c66e4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1d2125; --panel: #22272b; --col: #161a1d; --text: #dee4ea; --muted: #9fadbc; --line: #3a444c;
+      --accent: #579dff; --danger: #f87168; --shadow: 0 1px 2px rgba(0, 0, 0, .6); --marker: #579dff;
+    }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--bg); color: var(--text); font: 14px/1.4 system-ui, "Segoe UI", sans-serif; display: flex; flex-direction: column; }
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { cursor: pointer; border: 1px solid var(--line); background: var(--panel); border-radius: 6px; padding: 4px 10px; }
+  button.primary { background: var(--accent); color: #fff; border-color: transparent; }
+  button.link { border: none; background: none; color: var(--accent); padding: 0; }
+  button.danger { color: var(--danger); }
+
+  header.top { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
+  header.top h1 { font-size: 16px; margin: 0 8px 0 0; white-space: nowrap; }
+  #search { padding: 4px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); min-width: 160px; }
+  #sync { margin-left: auto; color: var(--muted); font-size: 12px; white-space: nowrap; }
+  #sync.bad { color: var(--danger); }
+
+  .epics { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 16px; border-bottom: 1px solid var(--line); background: var(--panel); }
+  .chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line); border-radius: 999px; padding: 2px 10px 2px 6px; background: var(--bg); font-size: 12px; }
+  .chip.on { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+  .chip .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--c); }
+  .chip .bar { width: 40px; height: 4px; border-radius: 2px; background: var(--line); overflow: hidden; }
+  .chip .bar i { display: block; height: 100%; background: var(--c); }
+  .chip .count { color: var(--muted); }
+  #epic-info { padding: 6px 16px; color: var(--muted); font-size: 13px; border-bottom: 1px solid var(--line); }
+
+  #banner { padding: 8px 16px; background: #ffeceb; color: #5d1f1a; border-bottom: 1px solid var(--danger); white-space: pre-wrap; font-size: 13px; }
+  @media (prefers-color-scheme: dark) { #banner { background: #42221f; color: #ffd5d2; } }
+
+  main#board { flex: 1; display: grid; grid-template-columns: repeat(5, minmax(250px, 1fr)); gap: 12px; padding: 12px 16px; overflow-x: auto; align-items: start; }
+  .col { background: var(--col); border-radius: 10px; padding: 8px; min-height: 120px; display: flex; flex-direction: column; gap: 8px; }
+  .col h2 { font-size: 12px; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); margin: 2px 4px; display: flex; justify-content: space-between; }
+  .col.over { outline: 2px dashed var(--marker); outline-offset: -2px; }
+  .col[data-status="test"] h2 { color: #b65c02; }
+  .col .more { align-self: center; }
+  .card { background: var(--panel); border-radius: 8px; padding: 8px 10px; box-shadow: var(--shadow); cursor: grab; border-left: 4px solid var(--c); }
+  .card:hover { outline: 1px solid var(--line); }
+  .card.dragging { opacity: .4; }
+  .card .top { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); }
+  .card .sid { font-weight: 600; color: var(--text); }
+  .card .size { margin-left: auto; border: 1px solid var(--line); border-radius: 4px; padding: 0 4px; font-size: 11px; }
+  .card .title { margin: 4px 0; }
+  .card .meta { display: flex; gap: 10px; font-size: 11px; color: var(--muted); }
+  .card .meta .note { color: #b65c02; }
+  .marker { height: 3px; border-radius: 2px; background: var(--marker); }
+  .empty { color: var(--muted); font-size: 12px; text-align: center; padding: 12px 0; }
+
+  aside#drawer { position: fixed; top: 0; right: 0; bottom: 0; width: min(480px, 100vw); background: var(--panel); border-left: 1px solid var(--line); box-shadow: -4px 0 16px rgba(0,0,0,.15); overflow-y: auto; padding: 14px 16px 40px; z-index: 10; }
+  aside#drawer .head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  aside#drawer .head .sid { font-weight: 700; border-left: 4px solid var(--c); padding-left: 6px; }
+  aside#drawer .head .close { margin-left: auto; }
+  .field { display: flex; flex-direction: column; gap: 3px; margin: 10px 0; }
+  .field > span { font-size: 12px; color: var(--muted); }
+  .field input, .field select, .field textarea { border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; background: var(--bg); width: 100%; }
+  .field textarea { resize: vertical; min-height: 54px; }
+  .row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  input.big { font-size: 16px; font-weight: 600; }
+  a { color: var(--accent); }
+  .tasks label { display: flex; gap: 8px; align-items: flex-start; padding: 3px 0; }
+  .field .tasks input[type="checkbox"], .tasks input[type="checkbox"] { width: auto; flex: none; margin-top: 3px; }
+  .tasks label span { flex: 1; }
+  .tasks label.done span { text-decoration: line-through; color: var(--muted); }
+  .comments .c { border-top: 1px solid var(--line); padding: 6px 0; white-space: pre-wrap; }
+  .comments .c b { font-size: 12px; }
+  .comments .c.claude b { color: var(--accent); }
+  .inline { display: flex; gap: 6px; }
+  .inline input { flex: 1; }
+
+  dialog#viewer { width: min(920px, 96vw); height: 90vh; padding: 0; border: 1px solid var(--line); border-radius: 10px; background: var(--panel); color: var(--text); }
+  dialog#viewer::backdrop { background: rgba(0,0,0,.4); }
+  dialog#viewer .vhead { position: sticky; top: 0; display: flex; gap: 12px; align-items: center; padding: 10px 16px; background: var(--panel); border-bottom: 1px solid var(--line); }
+  dialog#viewer .vhead b { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  dialog#viewer .vhead .close { margin-left: auto; }
+  #viewer-body { padding: 4px 20px 30px; }
+  #viewer-body img { max-width: 100%; }
+  #viewer-body pre { background: var(--bg); padding: 8px; overflow-x: auto; border-radius: 6px; }
+  #viewer-body code { background: var(--bg); padding: 0 3px; border-radius: 3px; }
+  #viewer-body table { border-collapse: collapse; display: block; overflow-x: auto; font-size: 13px; }
+  #viewer-body td, #viewer-body th { border: 1px solid var(--line); padding: 3px 6px; vertical-align: top; }
+  #viewer-body blockquote { border-left: 3px solid var(--line); margin: 0; padding-left: 12px; color: var(--muted); }
+  #viewer-body .hit { background: rgba(255, 196, 0, .25); scroll-margin-top: 64px; }
+
+  #toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: #172b4d; color: #fff; padding: 8px 14px; border-radius: 8px; font-size: 13px; max-width: 90vw; z-index: 30; }
+</style>
+</head>
+<body>
+<header class="top">
+  <h1>Norrköping · projekttavla</h1>
+  <input id="search" type="search" placeholder="Sök id, titel, text…" />
+  <button id="add" class="primary">+ Ny story</button>
+  <span id="sync">Laddar…</span>
+</header>
+<nav class="epics" id="epics"></nav>
+<div id="epic-info" hidden></div>
+<div id="banner" hidden></div>
+<main id="board"></main>
+<aside id="drawer" hidden></aside>
+<dialog id="viewer">
+  <div class="vhead"><b id="viewer-title"></b><a id="viewer-vscode" href="#">Öppna i VS Code</a><button class="close" id="viewer-close">Stäng</button></div>
+  <article id="viewer-body"></article>
+</dialog>
+<div id="toast" hidden></div>
+
+<script type="module">
+import { STATUSES, SIZES, moveStory, nextUserStoryId } from '/board-lib.mjs';
+
+const $ = (sel) => document.querySelector(sel);
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const today = () => new Date().toLocaleDateString('sv-SE');
+const DONE_LIMIT = 12;
+
+const state = { version: null, board: null, repoRoot: '', epic: null, query: '', openId: null, showAllDone: false, dragId: null, saving: 0 };
+
+// ---------- data ----------
+async function load() {
+  try {
+    const res = await fetch('/api/board', { cache: 'no-store' });
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error ?? res.statusText);
+    if (data.version !== state.version) {
+      state.version = data.version;
+      state.board = data.board;
+      state.repoRoot = data.repoRoot;
+      render(true);
+    }
+    showBanner(data.errors?.length ? `board.json har fel (tavlan kan inte sparas förrän de är rättade):\n- ${data.errors.join('\n- ')}` : '');
+    setSync(`Synkad ${new Date().toLocaleTimeString('sv-SE')}`);
+  } catch (e) {
+    setSync('Ingen kontakt med servern', true);
+    if (String(e.message).includes('board.json')) showBanner(e.message);
+  }
+}
+
+let chain = Promise.resolve();
+function save(board) {
+  state.board = board;
+  render();
+  state.saving++;
+  setSync('Sparar…');
+  chain = chain.then(async () => {
+    try {
+      const res = await fetch('/api/board', { method: 'PUT', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ baseVersion: state.version, board: state.board }) });
+      const data = await res.json();
+      if (res.ok) {
+        state.version = data.version;
+        setSync(`Sparad ${new Date().toLocaleTimeString('sv-SE')}`);
+      } else if (res.status === 409) {
+        toast('Tavlan ändrades samtidigt (troligen av Claude). Den är uppdaterad nu – gör om din ändring.');
+        state.version = null;
+      } else {
+        toast(`Kunde inte spara: ${data.error}${data.errors ? '\n' + data.errors.join('\n') : ''}`);
+        state.version = null;
+      }
+    } catch {
+      toast('Kunde inte spara: ingen kontakt med servern.');
+      state.version = null;
+    } finally {
+      state.saving--;
+      if (state.version === null) await load();
+    }
+  });
+}
+
+const epicOf = (id) => state.board.epics.find((e) => e.id === id) ?? { id, title: id, color: '#888888' };
+const storyOf = (id) => state.board.stories.find((s) => s.id === id);
+function updateStory(id, patch) {
+  const stories = state.board.stories.map((s) => {
+    if (s.id !== id) return s;
+    const next = { ...s, ...patch };
+    for (const [k, v] of Object.entries(next)) if (v === '' || v === undefined || (Array.isArray(v) && v.length === 0)) delete next[k];
+    return next;
+  });
+  save({ ...state.board, stories });
+}
+
+// ---------- render ----------
+function matches(s) {
+  if (state.epic && s.epic !== state.epic) return false;
+  const q = state.query.trim().toLowerCase();
+  if (!q) return true;
+  return [s.id, s.title, s.summary, s.outcome, s.note, ...(s.tasks ?? []).map((t) => t.text), ...(s.comments ?? []).map((c) => c.text)]
+    .some((v) => String(v ?? '').toLowerCase().includes(q));
+}
+
+// fromPoll: a refresh caused by someone else's change; it must not disturb a field being edited.
+function render(fromPoll = false) {
+  if (!state.board) return;
+  renderEpics();
+  const board = $('#board');
+  board.innerHTML = '';
+  for (const col of state.board.columns) {
+    const all = state.board.stories.filter((s) => s.status === col.id && matches(s));
+    const shown = col.id === 'done' && !state.showAllDone ? all.slice(0, DONE_LIMIT) : all;
+    const el = document.createElement('section');
+    el.className = 'col';
+    el.dataset.status = col.id;
+    el.innerHTML = `<h2><span>${esc(col.title)}</span><span>${all.length}</span></h2>` +
+      (shown.length ? shown.map(cardHtml).join('') : '<div class="empty">Inga kort</div>') +
+      (shown.length < all.length ? `<button class="more link" data-more>Visa alla ${all.length}</button>` : '') +
+      (col.id === 'done' && state.showAllDone && all.length > DONE_LIMIT ? '<button class="more link" data-less>Visa färre</button>' : '');
+    board.append(el);
+  }
+  if (state.openId) renderDrawer(fromPoll);
+}
+
+function cardHtml(s) {
+  const e = epicOf(s.epic);
+  const tasks = s.tasks?.length ? `<span>${s.tasks.filter((t) => t.done).length}/${s.tasks.length} deluppgifter</span>` : '';
+  const comments = s.comments?.length ? `<span>${s.comments.length} kommentar${s.comments.length > 1 ? 'er' : ''}</span>` : '';
+  const note = s.note ? '<span class="note" title="Har en notering">notering</span>' : '';
+  return `<div class="card" draggable="true" data-id="${esc(s.id)}" style="--c:${esc(e.color)}">
+    <div class="top"><span class="sid">${esc(s.id)}</span><span>${esc(e.title)}</span>${s.size ? `<span class="size">${esc(s.size)}</span>` : ''}</div>
+    <div class="title">${esc(s.title)}</div>
+    <div class="meta">${tasks}${comments}${note}${s.date ? `<span>${esc(s.date)}</span>` : ''}</div>
+  </div>`;
+}
+
+function renderEpics() {
+  const nav = $('#epics');
+  const chips = state.board.epics.map((e) => {
+    const mine = state.board.stories.filter((s) => s.epic === e.id);
+    const done = mine.filter((s) => s.status === 'done').length;
+    const pct = mine.length ? Math.round((100 * done) / mine.length) : 0;
+    return `<button class="chip ${state.epic === e.id ? 'on' : ''}" data-epic="${esc(e.id)}" style="--c:${esc(e.color)}" title="${esc(e.summary ?? '')}">
+      <span class="dot"></span><b>${esc(e.id)}</b> ${esc(e.title)} <span class="bar"><i style="width:${pct}%"></i></span><span class="count">${done}/${mine.length}</span></button>`;
+  });
+  nav.innerHTML = `<button class="chip ${state.epic ? '' : 'on'}" data-epic="">Alla epics</button>` + chips.join('');
+  const info = $('#epic-info');
+  const e = state.epic && epicOf(state.epic);
+  info.hidden = !e;
+  if (e) {
+    info.innerHTML = `${esc(e.summary ?? '')} ${e.report ? `<button class="link" data-open-report="${esc(e.report)}" data-section="${esc(e.section ?? '')}">Öppna i färdplanen</button>` : ''}`;
+  }
+}
+
+function renderDrawer(fromPoll = false) {
+  const drawer = $('#drawer');
+  const s = storyOf(state.openId);
+  if (!s) return closeDrawer();
+  const active = document.activeElement;
+  const typing = drawer.contains(active) && /^(INPUT|TEXTAREA)$/.test(active.tagName) && active.type !== 'checkbox';
+  if (fromPoll && typing && drawer.dataset.id === s.id) return; // don't disturb typing
+  const refocus = typing && drawer.dataset.id === s.id ? (active.dataset.f ? `[data-f="${active.dataset.f}"]` : active.id ? `#${active.id}` : null) : null;
+  const e = epicOf(s.epic);
+  const opt = (list, cur, label = (x) => x) => list.map((x) => `<option value="${esc(x)}" ${x === cur ? 'selected' : ''}>${esc(label(x))}</option>`).join('');
+  drawer.dataset.id = s.id;
+  drawer.innerHTML = `
+    <div class="head"><span class="sid" style="--c:${esc(e.color)}">${esc(s.id)}</span><span style="color:var(--muted)">${esc(e.title)}</span>
+      <button class="close" data-close>Stäng</button></div>
+    <label class="field"><span>Titel</span><input class="big" data-f="title" value="${esc(s.title)}" /></label>
+    <div class="row">
+      <label class="field"><span>Epic</span><select data-f="epic">${opt(state.board.epics.map((x) => x.id), s.epic, (id) => `${id} – ${epicOf(id).title}`)}</select></label>
+      <label class="field"><span>Status</span><select data-f="status">${opt(STATUSES, s.status, (id) => state.board.columns.find((c) => c.id === id).title)}</select></label>
+      <label class="field"><span>Storlek</span><select data-f="size"><option value="">–</option>${opt(SIZES, s.size)}</select></label>
+    </div>
+    <label class="field"><span>Beskrivning</span><textarea data-f="summary">${esc(s.summary ?? '')}</textarea></label>
+    <label class="field"><span>Resultat</span><textarea data-f="outcome">${esc(s.outcome ?? '')}</textarea></label>
+    <label class="field"><span>Notering</span><textarea data-f="note">${esc(s.note ?? '')}</textarea></label>
+    <div class="row">
+      <label class="field"><span>Datum</span><input type="date" data-f="date" value="${esc(s.date ?? '')}" /></label>
+      <label class="field" style="grid-column: span 2"><span>Rapport (sökväg under docs/)</span><input data-f="report" value="${esc(s.report ?? '')}" placeholder="docs/…/README.md" /></label>
+    </div>
+    ${s.report ? `<p><button data-open-report="${esc(s.report)}" data-section="${esc(s.section ?? '')}">Öppna rapporten</button>
+      <a href="${esc(vscodeHref(s.report))}">Öppna i VS Code</a></p>` : ''}
+    <div class="field tasks"><span>Deluppgifter</span>
+      ${(s.tasks ?? []).map((t, i) => `<label class="${t.done ? 'done' : ''}"><input type="checkbox" data-task="${i}" ${t.done ? 'checked' : ''} /><span>${esc(t.text)}</span><button class="link danger" data-task-del="${i}" title="Ta bort">×</button></label>`).join('') || '<span class="empty">Inga deluppgifter</span>'}
+      <div class="inline"><input id="new-task" placeholder="Ny deluppgift…" /><button data-task-add>Lägg till</button></div>
+    </div>
+    <div class="field comments"><span>Kommentarer (Claude läser dem när du ber mig titta på tavlan)</span>
+      ${(s.comments ?? []).map((c) => `<div class="c ${esc(c.author)}"><b>${c.author === 'claude' ? 'Claude' : 'Du'} · ${esc(c.date)}</b><br>${esc(c.text)}</div>`).join('')}
+      <textarea id="new-comment" placeholder="Skriv en kommentar…"></textarea>
+      <div><button data-comment-add>Lägg till kommentar</button></div>
+    </div>
+    <p style="margin-top:24px"><button class="danger" data-delete>Ta bort story</button></p>`;
+  drawer.hidden = false;
+  if (refocus) drawer.querySelector(refocus)?.focus();
+}
+
+function openDrawer(id) { state.openId = id; $('#drawer').dataset.id = ''; renderDrawer(); }
+function closeDrawer() { state.openId = null; $('#drawer').hidden = true; }
+
+// ---------- markdown viewer ----------
+function resolvePath(baseDir, rel) {
+  const parts = (rel.startsWith('/') ? rel.slice(1) : `${baseDir}/${rel}`).split('/');
+  const out = [];
+  for (const p of parts) { if (p === '..') out.pop(); else if (p && p !== '.') out.push(p); }
+  return out.join('/');
+}
+function vscodeHref(p) { return `vscode://file/${encodeURI(`${state.repoRoot.replace(/\\/g, '/')}/${p}`)}`; }
+
+function inlineMd(text, baseDir) {
+  const codes = [];
+  let s = esc(text).replace(/`([^`]+)`/g, (_, c) => `\u0000${codes.push(c) - 1}\u0000`);
+  s = s.replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, (_, alt, u) => `<img alt="${alt}" src="${/^https?:/.test(u) ? u : '/' + resolvePath(baseDir, u)}">`);
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => /^https?:/.test(u)
+    ? `<a href="${u}" target="_blank" rel="noreferrer">${t}</a>`
+    : `<a href="#" data-md-link="${u.startsWith('#') ? '' : resolvePath(baseDir, u.split('#')[0])}" data-md-anchor="${(u.split('#')[1] ?? '').replace(/-/g, ' ')}">${t}</a>`);
+  s = s.replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/(^|[\s(])\*([^*\s][^*]*)\*/g, '$1<i>$2</i>');
+  return s.replace(/\u0000(\d+)\u0000/g, (_, i) => `<code>${codes[i]}</code>`);
+}
+
+function renderMarkdown(md, baseDir) {
+  const lines = md.replace(/\r\n?/g, '\n').split('\n');
+  const out = [];
+  const isBlockStart = (l) => /^(```|#{1,6} |\s*\||\s*([-*+]|\d+\.) |>)/.test(l);
+  for (let i = 0; i < lines.length;) {
+    const l = lines[i];
+    if (/^```/.test(l)) {
+      const buf = [];
+      for (i++; i < lines.length && !/^```/.test(lines[i]); i++) buf.push(lines[i]);
+      i++;
+      out.push(`<pre><code>${esc(buf.join('\n'))}</code></pre>`);
+    } else if (/^#{1,6} /.test(l)) {
+      const n = l.match(/^#+/)[0].length;
+      out.push(`<h${n}>${inlineMd(l.slice(n + 1), baseDir)}</h${n}>`);
+      i++;
+    } else if (/^\s*\|/.test(l)) {
+      const rows = [];
+      for (; i < lines.length && /^\s*\|/.test(lines[i]); i++) rows.push(lines[i]);
+      const cells = (r) => r.trim().replace(/^\||\|$/g, '').split('|').map((c) => c.trim());
+      const body = rows.filter((r) => !/^\s*\|?\s*:?-{2,}/.test(r));
+      out.push('<table>' + body.map((r, j) => `<tr>${cells(r).map((c) => j === 0 ? `<th>${inlineMd(c, baseDir)}</th>` : `<td>${inlineMd(c, baseDir)}</td>`).join('')}</tr>`).join('') + '</table>');
+    } else if (/^\s*([-*+]|\d+\.) /.test(l)) {
+      const items = [];
+      for (; i < lines.length && lines[i].trim() !== '' && (/^\s*([-*+]|\d+\.) /.test(lines[i]) || /^\s+\S/.test(lines[i])); i++) {
+        const m = lines[i].match(/^(\s*)([-*+]|\d+\.) (.*)$/);
+        if (m) items.push({ indent: m[1].length, text: m[3], check: null });
+        else if (items.length) items[items.length - 1].text += ' ' + lines[i].trim();
+      }
+      out.push('<ul>' + items.map((it) => {
+        const box = it.text.match(/^\[( |x)\] (.*)$/i);
+        const text = box ? `${box[1].toLowerCase() === 'x' ? '☑' : '☐'} ${box[2]}` : it.text;
+        return `<li style="margin-left:${it.indent * 0.6}em">${inlineMd(text, baseDir)}</li>`;
+      }).join('') + '</ul>');
+    } else if (/^>/.test(l)) {
+      const buf = [];
+      for (; i < lines.length && /^>/.test(lines[i]); i++) buf.push(lines[i].replace(/^>\s?/, ''));
+      out.push(`<blockquote>${inlineMd(buf.join(' '), baseDir)}</blockquote>`);
+    } else if (l.trim() === '') {
+      i++;
+    } else {
+      const buf = [];
+      for (; i < lines.length && lines[i].trim() !== '' && !isBlockStart(lines[i]); i++) buf.push(lines[i]);
+      out.push(`<p>${inlineMd(buf.join(' '), baseDir)}</p>`);
+    }
+  }
+  return out.join('\n');
+}
+
+async function openReport(docPath, section) {
+  const dlg = $('#viewer');
+  $('#viewer-title').textContent = docPath;
+  $('#viewer-vscode').href = vscodeHref(docPath);
+  const body = $('#viewer-body');
+  body.innerHTML = '<p>Laddar…</p>';
+  if (!dlg.open) dlg.showModal();
+  const res = await fetch('/' + docPath, { cache: 'no-store' });
+  if (!res.ok) { body.innerHTML = `<p>Kunde inte öppna ${esc(docPath)}.</p>`; return; }
+  const text = await res.text();
+  body.innerHTML = /\.md$/i.test(docPath) ? renderMarkdown(text, docPath.split('/').slice(0, -1).join('/')) : `<pre>${esc(text)}</pre>`;
+  body.parentElement.scrollTop = 0;
+  dlg.scrollTop = 0;
+  if (section) {
+    const needle = section.toLowerCase();
+    const els = [...body.querySelectorAll('h1,h2,h3,h4,h5,h6')].concat([...body.querySelectorAll('p,li,td')]);
+    const hit = els.find((el) => el.textContent.toLowerCase().includes(needle));
+    if (hit) { hit.classList.add('hit'); hit.scrollIntoView({ block: 'start' }); }
+  }
+}
+
+// ---------- ui helpers ----------
+function setSync(text, bad = false) { const el = $('#sync'); el.textContent = text; el.classList.toggle('bad', bad); }
+function showBanner(text) { const el = $('#banner'); el.hidden = !text; el.textContent = text; }
+let toastTimer;
+function toast(text) {
+  const el = $('#toast');
+  el.textContent = text; el.hidden = false;
+  clearTimeout(toastTimer); toastTimer = setTimeout(() => (el.hidden = true), 5000);
+}
+
+// ---------- events ----------
+$('#search').addEventListener('input', (e) => { state.query = e.target.value; render(); });
+$('#epics').addEventListener('click', (e) => {
+  const chip = e.target.closest('[data-epic]');
+  if (!chip) return;
+  state.epic = chip.dataset.epic && chip.dataset.epic !== state.epic ? chip.dataset.epic : null;
+  render();
+});
+$('#add').addEventListener('click', () => {
+  const id = nextUserStoryId(state.board);
+  const story = { id, epic: state.epic ?? state.board.epics[0].id, title: 'Ny story', status: 'backlog' };
+  save({ ...state.board, stories: [story, ...state.board.stories] });
+  openDrawer(id);
+  const title = $('#drawer [data-f="title"]');
+  title?.focus(); title?.select();
+});
+
+document.addEventListener('click', (e) => {
+  const t = e.target;
+  const report = t.closest('[data-open-report]');
+  if (report) { openReport(report.dataset.openReport, report.dataset.section); return; }
+  const mdLink = t.closest('[data-md-link]');
+  if (mdLink) {
+    e.preventDefault();
+    const target = mdLink.dataset.mdLink || $('#viewer-title').textContent;
+    if (/\.md$/i.test(target)) openReport(target, mdLink.dataset.mdAnchor);
+    else window.open('/' + target, '_blank');
+    return;
+  }
+  if (t.closest('#viewer-close')) { $('#viewer').close(); return; }
+  if (t.closest('[data-more]')) { state.showAllDone = true; render(); return; }
+  if (t.closest('[data-less]')) { state.showAllDone = false; render(); return; }
+  const card = t.closest('.card');
+  if (card) { openDrawer(card.dataset.id); return; }
+
+  if (!t.closest('#drawer')) return;
+  const s = storyOf(state.openId);
+  if (!s) return;
+  if (t.closest('[data-close]')) closeDrawer();
+  else if (t.closest('[data-task-add]')) {
+    const input = $('#new-task');
+    if (input.value.trim()) { input.blur(); updateStory(s.id, { tasks: [...(s.tasks ?? []), { text: input.value.trim(), done: false }] }); }
+  } else if (t.closest('[data-task-del]')) {
+    const i = Number(t.closest('[data-task-del]').dataset.taskDel);
+    e.preventDefault();
+    updateStory(s.id, { tasks: s.tasks.filter((_, j) => j !== i) });
+  } else if (t.closest('[data-comment-add]')) {
+    const input = $('#new-comment');
+    if (input.value.trim()) { input.blur(); updateStory(s.id, { comments: [...(s.comments ?? []), { author: 'du', date: today(), text: input.value.trim() }] }); }
+  } else if (t.closest('[data-delete]')) {
+    if (confirm(`Ta bort ${s.id} "${s.title}"?`)) { closeDrawer(); save({ ...state.board, stories: state.board.stories.filter((x) => x.id !== s.id) }); }
+  }
+});
+
+$('#drawer').addEventListener('change', (e) => {
+  const s = storyOf(state.openId);
+  if (!s) return;
+  const t = e.target;
+  if (t.dataset.task !== undefined) {
+    const i = Number(t.dataset.task);
+    t.blur();
+    updateStory(s.id, { tasks: s.tasks.map((x, j) => (j === i ? { ...x, done: t.checked } : x)) });
+    return;
+  }
+  const f = t.dataset.f;
+  if (!f) return;
+  const value = t.value.trim();
+  if (f === 'title' && !value) { toast('Titeln får inte vara tom.'); t.value = s.title; return; }
+  if (f === 'report' && value && !/^docs\/[^\\:]+$/.test(value)) { toast('Rapporten ska ligga under docs/, t.ex. docs/perf-p1/README.md'); t.value = s.report ?? ''; return; }
+  if (t.tagName === 'SELECT') t.blur();
+  const patch = { [f]: value };
+  if (f === 'report') patch.section = '';
+  updateStory(s.id, patch);
+});
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && !$('#viewer').open && state.openId) closeDrawer();
+  if (e.key === 'Enter' && e.target.id === 'new-task') document.querySelector('[data-task-add]').click();
+});
+
+// Drag and drop between and within columns.
+let marker = document.createElement('div');
+marker.className = 'marker';
+function dropTarget(col, y) {
+  const cards = [...col.querySelectorAll('.card:not(.dragging)')];
+  return cards.find((c) => { const r = c.getBoundingClientRect(); return y < r.top + r.height / 2; }) ?? null;
+}
+const board = $('#board');
+board.addEventListener('dragstart', (e) => {
+  const card = e.target.closest('.card');
+  if (!card) return;
+  state.dragId = card.dataset.id;
+  card.classList.add('dragging');
+  e.dataTransfer.effectAllowed = 'move';
+  e.dataTransfer.setData('text/plain', card.dataset.id);
+});
+board.addEventListener('dragover', (e) => {
+  const col = e.target.closest('.col');
+  if (!col || !state.dragId) return;
+  e.preventDefault();
+  board.querySelectorAll('.col.over').forEach((c) => c !== col && c.classList.remove('over'));
+  col.classList.add('over');
+  const before = dropTarget(col, e.clientY);
+  if (before) col.insertBefore(marker, before);
+  else col.insertBefore(marker, col.querySelector('.more') ?? null);
+});
+board.addEventListener('drop', (e) => {
+  const col = e.target.closest('.col');
+  if (!col || !state.dragId) return;
+  e.preventDefault();
+  const before = dropTarget(col, e.clientY);
+  const id = state.dragId;
+  const status = col.dataset.status;
+  state.dragId = null;
+  marker.remove();
+  const next = moveStory(state.board, id, status, before?.dataset.id ?? null);
+  if (JSON.stringify(next.stories) === JSON.stringify(state.board.stories)) { render(); return; }
+  save(next);
+});
+board.addEventListener('dragend', () => {
+  state.dragId = null;
+  marker.remove();
+  board.querySelectorAll('.dragging, .over').forEach((el) => el.classList.remove('dragging', 'over'));
+});
+
+// Keep up with changes Claude makes to the file.
+await load();
+setInterval(() => { if (!state.saving && !state.dragId) load(); }, 2000);
+</script>
+</body>
+</html>

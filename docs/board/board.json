@@ -1,0 +1,601 @@
+{
+  "schema": 1,
+  "columns": [
+    {
+      "id": "backlog",
+      "title": "Backlog"
+    },
+    {
+      "id": "next",
+      "title": "Nästa"
+    },
+    {
+      "id": "doing",
+      "title": "Pågår"
+    },
+    {
+      "id": "test",
+      "title": "Test (du testar)"
+    },
+    {
+      "id": "done",
+      "title": "Klart"
+    }
+  ],
+  "epics": [
+    {
+      "id": "L",
+      "title": "Belysning i hela staden",
+      "color": "#d9a400",
+      "summary": "Gatubelysning, gång- och cykelvägar, leder och privat mark. Spår L i färdplanen.",
+      "report": "docs/roadmap.md",
+      "section": "Spår L"
+    },
+    {
+      "id": "F",
+      "title": "Fordon",
+      "color": "#d9480f",
+      "summary": "Ljus och modeller för bilar, bussar, lastbilar, spårvagnar och tåg. Spår F i färdplanen.",
+      "report": "docs/roadmap.md",
+      "section": "Spår F"
+    },
+    {
+      "id": "B",
+      "title": "Landmärken",
+      "color": "#9c36b5",
+      "summary": "Rådhuset, Gull-Olle och kyrkorna. Spår B i färdplanen.",
+      "report": "docs/roadmap.md",
+      "section": "Spår B"
+    },
+    {
+      "id": "D",
+      "title": "Verksamheter",
+      "color": "#1c7ed6",
+      "summary": "Polishuset, bensinstationer och andra verksamheter. Spår D i färdplanen.",
+      "report": "docs/roadmap.md",
+      "section": "Spår D"
+    },
+    {
+      "id": "E",
+      "title": "Flygplatsen (ESSP Kungsängen)",
+      "color": "#0ca678",
+      "summary": "Banljus, flygfältet och flygplanen. Spår E i färdplanen.",
+      "report": "docs/roadmap.md",
+      "section": "Spår E"
+    },
+    {
+      "id": "C",
+      "title": "Vrinneviskogen",
+      "color": "#2f9e44",
+      "summary": "Vegetation och elljusspåret. Spår C i färdplanen.",
+      "report": "docs/roadmap.md",
+      "section": "Spår C"
+    },
+    {
+      "id": "P",
+      "title": "Prestanda",
+      "color": "#e64980",
+      "summary": "Mål: minst 60 fps i helskärm, p95 av bildtiden högst 16,7 ms. Spår P i färdplanen.",
+      "report": "docs/roadmap.md",
+      "section": "Spår P"
+    },
+    {
+      "id": "S",
+      "title": "Simulatorkoppling och trafik",
+      "color": "#5c7cfa",
+      "summary": "Strömmen från backend (SSE), felsökning och trafikens vägval."
+    },
+    {
+      "id": "G",
+      "title": "Grund: koordinater, terräng och geometri",
+      "color": "#868e96",
+      "summary": "De första stegen: koordinatsystem, höjddata, terräng, vägar och broar."
+    }
+  ],
+  "stories": [
+    {
+      "id": "B2",
+      "epic": "B",
+      "title": "Kyrkornas fasadbelysning",
+      "status": "next",
+      "size": "M",
+      "summary": "Fasadbelysning på kyrkorna, en kyrka i taget. Nästa etapp enligt färdplanens rekommenderade ordning.",
+      "report": "docs/roadmap.md",
+      "section": "Spår B",
+      "tasks": [
+        {
+          "text": "Välj ordning, t.ex. Hedvig, Olai, Matteus, S:t Johannes",
+          "done": false
+        },
+        {
+          "text": "Bekräfta att varje kyrka faktiskt är fasadbelyst innan den tänds",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "D2",
+      "epic": "D",
+      "title": "Bensinstationer",
+      "status": "backlog",
+      "size": "M",
+      "summary": "32 OSM-objekt (docs/step62/fuel-stations.md).",
+      "report": "docs/roadmap.md",
+      "section": "Spår D",
+      "tasks": [
+        {
+          "text": "Tak och pumpar",
+          "done": false
+        },
+        {
+          "text": "Belysning under taket",
+          "done": false
+        },
+        {
+          "text": "Generiska skyltar (operatörernas logotyper är inte licensierade)",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "F2",
+      "epic": "F",
+      "title": "Spårvagnar och tåg",
+      "status": "backlog",
+      "size": "S",
+      "report": "docs/roadmap.md",
+      "section": "Spår F"
+    },
+    {
+      "id": "C1",
+      "epic": "C",
+      "title": "Vegetation i Vrinneviskogen",
+      "status": "backlog",
+      "size": "L",
+      "report": "docs/roadmap.md",
+      "section": "Spår C",
+      "tasks": [
+        {
+          "text": "Trädhöjd från Skogsstyrelsens/Lantmäteriets laserdata (CC0), en 250 m-ruta först",
+          "done": false
+        },
+        {
+          "text": "Kontrollera kartans södra gräns: den skär av reservatet, kartan kan behöva utökas söderut",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "C2",
+      "epic": "C",
+      "title": "Elljusspåret (ca 2,4–2,5 km)",
+      "status": "backlog",
+      "size": "M",
+      "summary": "Kräver C1.",
+      "report": "docs/roadmap.md",
+      "section": "Spår C",
+      "tasks": [
+        {
+          "text": "Ca 80–120 uppskattade stolpar om inget register finns",
+          "done": false
+        },
+        {
+          "text": "Släckt sent på natten",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "B1-2",
+      "epic": "B",
+      "title": "Rådhusets fasadbelysning (B1 del 2)",
+      "status": "backlog",
+      "summary": "Del 2 av B1. Ingen dokumentation av belysningen hittad hittills; märks som uppskattning om ingen finns.",
+      "report": "docs/landmark-b1/README.md"
+    },
+    {
+      "id": "P2d",
+      "epic": "P",
+      "title": "Trafik: färre meshar, gallring, ladda bara upp det som rört sig",
+      "status": "backlog",
+      "summary": "Uppskattat 1,5–2,5 ms i översikten, 1–2 ms i gatuvyer.",
+      "report": "docs/roadmap.md",
+      "section": "P2d"
+    },
+    {
+      "id": "P2e",
+      "epic": "P",
+      "title": "Vid behov: gemensam ljusbuffert, frysta matriser, texturatlas",
+      "status": "backlog",
+      "report": "docs/roadmap.md",
+      "section": "P2e"
+    },
+    {
+      "id": "P3",
+      "epic": "P",
+      "title": "Anpassningsbar kvalitet (Låg/Medel/Hög, dynamisk upplösning)",
+      "status": "backlog",
+      "size": "M",
+      "summary": "Kräver beslut om svagare datorer ska stödjas.",
+      "report": "docs/roadmap.md",
+      "section": "P3"
+    },
+    {
+      "id": "L-REG",
+      "epic": "L",
+      "title": "Begär kommunens belysningsregister (din sak, valfri)",
+      "status": "backlog",
+      "summary": "Kommer registret byts uppskattade lyktor ut mot riktiga, utan att etapperna ändras.",
+      "report": "docs/step62/data-sources.md",
+      "section": "Acquisition requests"
+    },
+    {
+      "id": "E2",
+      "epic": "E",
+      "title": "Flygplansljus",
+      "status": "done",
+      "size": "S/M",
+      "date": "2026-11-06",
+      "summary": "Positionsljus, blinkande antikollisionsljus och strober, landnings- och taxiljus på NK-01. Egen väljare \"Flygplansljus\".",
+      "outcome": "Testad lokalt och godkänd 2026-11-06, committad och pushad till main.",
+      "report": "docs/aircraft-lights-e2/README.md"
+    },
+    {
+      "id": "E1b",
+      "epic": "E",
+      "title": "E1 uppföljning: Calvert-tvärbommar och gula master",
+      "status": "done",
+      "date": "2026-11-03",
+      "outcome": "Testad lokalt och godkänd 2026-11-06, committad och pushad till main.",
+      "report": "docs/airport-lighting-e1/README.md",
+      "section": "Follow-up: Calvert crossbars"
+    },
+    {
+      "id": "E1",
+      "epic": "E",
+      "title": "Banljus på Kungsängen",
+      "status": "done",
+      "size": "M",
+      "date": "2026-11-03",
+      "outcome": "Testad lokalt och godkänd 2026-11-03, committad och pushad till main.",
+      "report": "docs/airport-lighting-e1/README.md"
+    },
+    {
+      "id": "E-AF",
+      "epic": "E",
+      "title": "Flygfältet: rena banändar där taxibanor ansluter",
+      "status": "done",
+      "date": "2026-11-02",
+      "outcome": "Testad lokalt och godkänd 2026-11-02, committad och pushad till main.",
+      "report": "docs/airfield-overlap/README.md"
+    },
+    {
+      "id": "P2c",
+      "epic": "P",
+      "title": "Kartdetaljer: flygfältets ytor och kantljus sammanslagna",
+      "status": "done",
+      "date": "2026-11-02",
+      "outcome": "Testad lokalt och godkänd 2026-11-02, committad och pushad till main.",
+      "report": "docs/perf-p2c/README.md"
+    },
+    {
+      "id": "P2b",
+      "epic": "P",
+      "title": "Mark, vägar, vatten och byggnader: en mesh per 1 km-ruta",
+      "status": "done",
+      "date": "2026-11-02",
+      "outcome": "Godkänd 2026-11-02, committad, pushad och mergad i main.",
+      "report": "docs/perf-p2b/README.md"
+    },
+    {
+      "id": "S-STREAM",
+      "epic": "S",
+      "title": "Strömmen öppnar vid start, inte efter staden",
+      "status": "done",
+      "date": "2026-10-29",
+      "outcome": "Godkänd 2026-10-29, committad, pushad och mergad i main.",
+      "report": "docs/stream-early-start/README.md"
+    },
+    {
+      "id": "P2a",
+      "epic": "P",
+      "title": "Träd: gemensamma material och grövre rutor",
+      "status": "done",
+      "date": "2026-10-27",
+      "outcome": "Godkänd 2026-10-27, committad, pushad och mergad i main.",
+      "report": "docs/perf-p2a/README.md"
+    },
+    {
+      "id": "S-SSE2",
+      "epic": "S",
+      "title": "SSE: appen återansluter själv efter omstart av backend",
+      "status": "done",
+      "date": "2026-10-26",
+      "outcome": "Mergad i main.",
+      "report": "docs/sse-reconnect/README.md"
+    },
+    {
+      "id": "S-SSE1",
+      "epic": "S",
+      "title": "SSE-felsökningspanel",
+      "status": "done",
+      "date": "2026-10-26",
+      "outcome": "Godkänd 2026-10-26, committad, pushad och mergad i main.",
+      "report": "docs/sse-debug/README.md"
+    },
+    {
+      "id": "P1",
+      "epic": "P",
+      "title": "Mätning och profilering: var går tiden?",
+      "status": "done",
+      "size": "M",
+      "date": "2026-10-26",
+      "outcome": "Godkänd 2026-10-26, committad, pushad och mergad i main.",
+      "report": "docs/perf-p1/README.md"
+    },
+    {
+      "id": "P0",
+      "epic": "P",
+      "title": "Helskärm och fps-räknare",
+      "status": "done",
+      "size": "S",
+      "date": "2026-10-26",
+      "outcome": "Testad lokalt och godkänd 2026-10-26, committad, pushad och mergad i main.",
+      "report": "docs/fullscreen-fps/README.md"
+    },
+    {
+      "id": "L2d",
+      "epic": "L",
+      "title": "Belysning på privat mark",
+      "status": "done",
+      "size": "S/M",
+      "date": "2026-10-26",
+      "outcome": "Godkänd 2026-10-26 med rekommenderade beslut, committad, pushad och mergad i main.",
+      "report": "docs/lighting-city-l2d/README.md"
+    },
+    {
+      "id": "D1b",
+      "epic": "D",
+      "title": "Polistornet från laserdata",
+      "status": "done",
+      "date": "2026-10-25",
+      "outcome": "Committad, pushad och mergad i main.",
+      "report": "docs/police-tower-d1b/README.md"
+    },
+    {
+      "id": "D1-fix",
+      "epic": "D",
+      "title": "D1 uppföljning: emblemets skala och tända fönster",
+      "status": "done",
+      "date": "2026-10-25",
+      "outcome": "Godkänd 2026-10-25, committad, pushad och mergad i main.",
+      "report": "docs/police-signs-d1/README.md"
+    },
+    {
+      "id": "D1",
+      "epic": "D",
+      "title": "Polisens emblem på Polishuset",
+      "status": "done",
+      "size": "S",
+      "date": "2026-10-25",
+      "outcome": "Godkänd 2026-10-25, committad, pushad och mergad i main.",
+      "report": "docs/police-signs-d1/README.md"
+    },
+    {
+      "id": "B1",
+      "epic": "B",
+      "title": "Rådhuset och Gull-Olle, geometri i dagsljus (B1 del 1)",
+      "status": "done",
+      "date": "2026-10-25",
+      "outcome": "Godkänd 2026-10-25, committad, pushad och mergad i main. Del 2 (fasadbelysning) ligger i backlog som B1-2.",
+      "report": "docs/landmark-b1/README.md"
+    },
+    {
+      "id": "F1",
+      "epic": "F",
+      "title": "Strålkastare och baklyktor",
+      "status": "done",
+      "size": "M",
+      "date": "2026-10-25",
+      "outcome": "Godkänd 2026-10-25, committad och pushad.",
+      "report": "docs/vehicle-lights-f1/README.md"
+    },
+    {
+      "id": "L2bc",
+      "epic": "L",
+      "title": "Gång- och cykelvägar, torg, korsningar och motorvägar (L2b + L2c)",
+      "status": "done",
+      "date": "2026-10-25",
+      "outcome": "Implementerad, committad och pushad till main.",
+      "note": "Progress-filen säger \"för granskning\"; inget uttryckligt godkännande noterat.",
+      "report": "docs/lighting-city-l2bc/README.md"
+    },
+    {
+      "id": "L2a",
+      "epic": "L",
+      "title": "Gatubelysning i hela tätorten",
+      "status": "done",
+      "size": "M",
+      "date": "2026-10-25",
+      "outcome": "Implementerad, committad och pushad till main.",
+      "note": "Progress-filen säger \"för granskning\"; inget uttryckligt godkännande noterat.",
+      "report": "docs/lighting-city-l2/README.md"
+    },
+    {
+      "id": "L1",
+      "epic": "L",
+      "title": "Skalbar rendering av lyktor",
+      "status": "done",
+      "size": "M",
+      "date": "2026-10-24",
+      "outcome": "Implementerad, committad och pushad till main; du gick vidare till L2.",
+      "report": "docs/lighting-city-l1/README.md"
+    },
+    {
+      "id": "L0",
+      "epic": "L",
+      "title": "Belysningskarta för hela staden (regel lighting-city-v1)",
+      "status": "done",
+      "size": "M",
+      "date": "2026-10-24",
+      "outcome": "Godkänd 2026-10-24.",
+      "report": "docs/lighting-city-l0/README.md"
+    },
+    {
+      "id": "L-A3",
+      "epic": "L",
+      "title": "Belysning A3: resten av Kungstorget-ringen",
+      "status": "done",
+      "date": "2026-10-24",
+      "outcome": "Implementerad och committad i main.",
+      "note": "Progress-filen säger \"för granskning\"; ersattes av arbetssättet i L0–L2.",
+      "report": "docs/lighting-phase-a3/README.md"
+    },
+    {
+      "id": "L-A2",
+      "epic": "L",
+      "title": "Belysning A2: västra Norra Promenaden och norra Kungsgatan",
+      "status": "done",
+      "date": "2026-10-24",
+      "outcome": "Implementerad och committad i main.",
+      "note": "Progress-filen säger \"för granskning\"; ersattes av arbetssättet i L0–L2.",
+      "report": "docs/lighting-phase-a2/README.md"
+    },
+    {
+      "id": "L-A1",
+      "epic": "L",
+      "title": "Belysning A1: centrala stadskorridoren",
+      "status": "done",
+      "date": "2026-10-24",
+      "outcome": "Implementerad och committad i main.",
+      "note": "Progress-filen säger \"för granskning\"; ersattes av arbetssättet i L0–L2.",
+      "report": "docs/lighting-phase-a1/README.md"
+    },
+    {
+      "id": "L-P0",
+      "epic": "L",
+      "title": "Belysning fas 0: register, kapacitet och spatialt index",
+      "status": "done",
+      "date": "2026-10-24",
+      "outcome": "Implementerad och committad i main.",
+      "note": "Progress-filen säger \"för granskning\".",
+      "report": "docs/lighting-phase0/README.md"
+    },
+    {
+      "id": "S6.1b",
+      "epic": "S",
+      "title": "Steg 6.1b: bussarnas framkomlighet utan nya vändningar",
+      "status": "done",
+      "date": "2026-10-24",
+      "outcome": "Accepterad som avgränsad rättning av vägvalet.",
+      "report": "docs/step61b/README.md"
+    },
+    {
+      "id": "S6.2",
+      "epic": "L",
+      "title": "Steg 6.2: inventering av belysning och plan för utrullning",
+      "status": "done",
+      "date": "2026-10-23",
+      "outcome": "Utredning klar, committad i main.",
+      "report": "docs/step62/README.md"
+    },
+    {
+      "id": "S6.1",
+      "epic": "L",
+      "title": "Steg 6.1: nattpolering och vägval över broar",
+      "status": "done",
+      "date": "2026-10-22",
+      "outcome": "Implementerad, finns i main.",
+      "note": "Progress-filen säger \"för granskning\".",
+      "report": "docs/step61/README.md"
+    },
+    {
+      "id": "S6",
+      "epic": "L",
+      "title": "Steg 6: dag/natt-pilot och Idrottsparken",
+      "status": "done",
+      "date": "2026-10-21",
+      "outcome": "Implementerad, finns i main.",
+      "note": "Progress-filen säger \"för granskning\".",
+      "report": "docs/step6/README.md"
+    },
+    {
+      "id": "S5.1opt",
+      "epic": "G",
+      "title": "Steg 5.1: optimering av geometrikostnad",
+      "status": "done",
+      "date": "2026-10-20",
+      "outcome": "Klar, finns i main.",
+      "report": "docs/claude-progress.md",
+      "section": "Step 5.1 geometry cost optimisation"
+    },
+    {
+      "id": "S5.1",
+      "epic": "G",
+      "title": "Steg 5.1: riktade rättningar av infrastrukturens geometri",
+      "status": "done",
+      "date": "2026-10-19",
+      "outcome": "Klar, finns i main.",
+      "report": "docs/claude-progress.md",
+      "section": "Step 5.1 (2026-10-19)"
+    },
+    {
+      "id": "S5",
+      "epic": "G",
+      "title": "Steg 5: vägytor och återstående lutningar",
+      "status": "done",
+      "date": "2026-10-19",
+      "outcome": "Klar, finns i main.",
+      "report": "docs/claude-progress.md",
+      "section": "Step 5 (2026-10-19)"
+    },
+    {
+      "id": "GP",
+      "epic": "G",
+      "title": "Geometripass",
+      "status": "done",
+      "date": "2026-10-18",
+      "outcome": "Klar, finns i main.",
+      "report": "docs/claude-progress.md",
+      "section": "Geometry pass (2026-10-18"
+    },
+    {
+      "id": "S3.5",
+      "epic": "G",
+      "title": "Steg 3.5",
+      "status": "done",
+      "date": "2026-10-18",
+      "outcome": "Klar, finns i main.",
+      "report": "docs/claude-progress.md",
+      "section": "Step 3.5 COMPLETE"
+    },
+    {
+      "id": "S3",
+      "epic": "G",
+      "title": "Steg 3: terräng",
+      "status": "done",
+      "date": "2026-10-18",
+      "outcome": "Klar, finns i main.",
+      "report": "docs/terrain-step3.md"
+    },
+    {
+      "id": "S2",
+      "epic": "G",
+      "title": "Steg 2: höjdförskjutningar",
+      "status": "done",
+      "date": "2026-10-18",
+      "outcome": "Klar, finns i main.",
+      "report": "docs/claude-progress.md",
+      "section": "Step 2 final report"
+    },
+    {
+      "id": "S1",
+      "epic": "G",
+      "title": "Steg 1: koordinatfel rättade (SWEREF 99 TM)",
+      "status": "done",
+      "outcome": "Klar, finns i main.",
+      "report": "docs/claude-progress.md",
+      "section": "Step 1 final report"
+    }
+  ]
+}

@@ -10,6 +10,8 @@
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "vitest run",
     "test:e2e": "playwright test",
+    "board": "node scripts/board/server.mjs",
+    "board:check": "node scripts/board/server.mjs --check",
     "format": "prettier --write .",
     "elevation:import": "node scripts/import-elevation.mjs",
     "map:import": "node scripts/import-norrkoping.mjs"

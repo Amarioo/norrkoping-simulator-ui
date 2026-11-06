@@ -11,6 +11,16 @@ The reader is not a developer and decides whether to approve or revise. Start ev
 
 Then the details (tables, numbers, file list). Explain jargon (lux, p95, occlusion) in a few words on first use.
 
+## Project board
+`docs/board/board.json` is the user's Kanban board (`npm run board`, http://127.0.0.1:5330/; guide in
+`docs/board/README.md`). Epics are the roadmap tracks, stories are phases. Keep it current:
+- Starting a phase: move its story to `doing` (add it under the right epic if missing). Report written,
+  waiting for the user's test: `test`. Approved and committed/pushed: `done`, with `date` and `outcome`.
+- Read the `comments` on the story you work on (author `du` = the user) and answer with author `claude`.
+- Edit the file with `moveStory`/`serializeBoard` from `scripts/board/board-lib.mjs` (or keep the same
+  2-space JSON form), then run `npm run board:check`. The user may be editing it at the same time, so
+  re-read it right before writing.
+
 ## Geodata and coordinates
 - Data and generators use EPSG:3006 (SWEREF 99 TM). Document every conversion to scene coordinates: origin, axis directions, units, elevation reference system.
 - For each dataset record source, license, acquisition date and known accuracy, in the phase's `*-provenance.json` and `docs/<phase>/data-provenance.md`.
