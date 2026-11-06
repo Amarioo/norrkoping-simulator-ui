@@ -190,7 +190,12 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   enligt ICAO där AIP saknar dem (uppskattning); ingen mätbar prestandakostnad.*
   - Bana 09/27: kantljus, tröskel-/slutljus, inflygningsljus, PAPI enligt AIP
     (`docs/step62/airport-lighting-plan.md`). Bana 11/29 obelyst. Egen strömbrytare, oberoende av stadens.
-- [ ] **E2 Flygplansljus** — S/M
+- [x] **E2 Flygplansljus** — S/M — *genomförd 2026-11-06 direkt på main, testad lokalt, godkänd, committad och
+  pushad till main: [docs/aircraft-lights-e2/README.md](aircraft-lights-e2/README.md). Positionsljus röd vänster /
+  grön höger / vit bak med sektorer enligt CS-25.1387, blinkande antikollisionsljus och strober på
+  simuleringsklockan (takt uppskattad inom CS-25.1401:s 40–100 per minut), landnings- och taxiljus efter
+  flygfas (simulatorns regel). Egen väljare "Flygplansljus". Rättat: vingspetsarnas röda och gröna lins
+  satt omvänt på modellen.*
   - Positionsljus röd/grön/vit, anti-kollisionsljus, strobe, landningsljus (EASA SERA/CS-25-konvention;
     exakt blinkmönster per flygplanstyp är okänt och märks så).
 

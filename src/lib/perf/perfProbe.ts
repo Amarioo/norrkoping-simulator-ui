@@ -52,6 +52,8 @@ export interface PerfProbeInput {
   transport: { group: Object3D; airplane: Object3D };
   transit: Owner;
   signals: Owner;
+  /** Aircraft Lights Phase E2: the aircraft lights' glow (counted with the aircraft). */
+  aircraftLights?: Owner;
   /** The lighting controller's group (it is replaced when the controller is recreated). */
   lightingGroup: () => Object3D;
   /** The traffic snapshot object (a new object arrives with every server message). */
@@ -139,6 +141,7 @@ export function installPerfProbe(input: PerfProbeInput) {
       owner.set(child, child.name === 'sky' ? 'sky' : 'lights');
     owner.set(input.transport.group, 'vehicles');
     owner.set(input.transport.airplane, 'aircraft');
+    if (input.aircraftLights) owner.set(input.aircraftLights.group, 'aircraft');
     owner.set(input.transit.group, 'transit');
     owner.set(input.signals.group, 'signals');
     return owner;

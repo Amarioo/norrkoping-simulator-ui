@@ -1,0 +1,87 @@
+{
+  "phase": "Aircraft Lights E2",
+  "accessed": "2026-11-06",
+  "geodata": "none: lights are placed in the aircraft model frame under the drawn body's object transform",
+  "aircraft": {
+    "id": "NK-01",
+    "kind": "fictional shuttle (backend RegionalFlight.kt), no real type documentation",
+    "modelFrame": "metres; +z forward, +y up (gear contact y = 0), +x = aircraft's left (left = up x forward)",
+    "worldTransform": "airplane.matrixWorld: smoothed position, rotation (-pitch, heading, bank, 'YXZ'), scale 1/25 (scene units of 25 m)"
+  },
+  "sources": [
+    {
+      "id": "CS-25.1385",
+      "title": "EASA Easy Access Rules for Large Aeroplanes (CS-25), CS 25.1385 (b), (c) Position light system installation",
+      "url": "https://www.easa.europa.eu/en/document-library/easy-access-rules/online-publications/easy-access-rules-large-aeroplanes-cs-25?page=44",
+      "license": "EASA public regulatory material",
+      "used": "red left, green right, white rear (as far aft as practicable)"
+    },
+    {
+      "id": "CS-25.1387",
+      "title": "CS 25.1387 (b)-(d) Position light system dihedral angles",
+      "url": "https://www.easa.europa.eu/en/document-library/easy-access-rules/online-publications/easy-access-rules-large-aeroplanes-cs-25?page=44",
+      "license": "EASA public regulatory material",
+      "used": "L and R 110 deg from dead ahead; A bounded by planes 70 deg left and right of dead astern",
+      "crossCheck": "https://www.law.cornell.edu/cfr/text/14/25.1387"
+    },
+    {
+      "id": "CS-25.1395",
+      "title": "CS 25.1395 Maximum intensities in overlapping beams of position lights",
+      "url": "https://www.easa.europa.eu/en/document-library/easy-access-rules/online-publications/easy-access-rules-large-aeroplanes-cs-25?page=44",
+      "license": "EASA public regulatory material",
+      "used": "bounds only: no limit in the first 10 deg beyond a boundary; red/green capped at 10 cd (10-20 deg, Area A) and 1 cd (beyond, Area B)"
+    },
+    {
+      "id": "CS-25.1401",
+      "title": "CS 25.1401 (b)-(d) Anti-collision light system",
+      "url": "https://www.easa.europa.eu/en/document-library/easy-access-rules/online-publications/easy-access-rules-large-aeroplanes-cs-25?page=44",
+      "license": "EASA public regulatory material",
+      "used": "aviation red or white; effective flash frequency 40-100 cycles per minute (range for the estimated periods)"
+    },
+    {
+      "id": "SERA.3215",
+      "title": "SERA.3215 Lights to be displayed by aircraft, Reg. (EU) No 923/2012 as amended by (EU) 2016/1185 (EASA Easy Access Rules for SERA)",
+      "url": "https://www.easa.europa.eu/en/document-library/easy-access-rules/online-publications/easy-access-rules-standardised-european?erules-id=ERULES-1963177438-9863",
+      "license": "EU legislation / EASA public regulatory material",
+      "used": "(a) night in flight; (b)(1), (b)(4) movement area at night; (c), (d) by day; (e) pilot may switch off or dim flashing lights. No rule for landing or taxi lights."
+    }
+  ],
+  "estimates": {
+    "sockets_m": {
+      "navLeft": [11.6, 2.9, -0.55],
+      "navRight": [-11.6, 2.9, -0.55],
+      "navTail": [0, 2.05, -9.6],
+      "beaconTop": [0, 3.12, -1.2],
+      "beaconBottom": [0, 0.9, -1.2],
+      "strobeLeft": [11.6, 2.9, -0.95],
+      "strobeRight": [-11.6, 2.9, -0.95],
+      "strobeTail": [0, 2.35, -9.6],
+      "landingLeft": [5, 2.62, 0.78],
+      "landingRight": [-5, 2.62, 0.78],
+      "taxi": [0, 1.55, 5.7],
+      "basis": "ESTIMATE read from the drawn model (transportModels.ts)"
+    },
+    "positionLightOverlap": "ESTIMATE: 100 % to 8 deg beyond a boundary, ramp to 10 % at 10 deg, 10 % to 18 deg, ramp to 0 at 20 deg (within CS 25.1395)",
+    "positionLightVertical": "not modelled (visible at all elevations)",
+    "beaconFlash": { "periodS": 1.2, "pulseS": 0.15, "cyclesPerMinute": 50, "pattern": "single pulse; top and bottom together", "basis": "ESTIMATE inside CS 25.1401(c)" },
+    "strobeFlash": { "periodS": 1.0909090909090908, "pulseS": 0.08, "cyclesPerMinute": 55, "pattern": "single pulse; all three together", "basis": "ESTIMATE inside CS 25.1401(c)" },
+    "flashPhase": "FNV-1a 32-bit hash of id + '|beacon' or '|strobe', as a fraction of the period (deterministic, not real data)",
+    "landingBeam": { "fullDeg": 12, "edgeDeg": 40, "axis": [0, -0.05, 1], "basis": "ESTIMATE, visual only" },
+    "taxiBeam": { "fullDeg": 25, "edgeDeg": 60, "axis": [0, -0.1, 1], "basis": "ESTIMATE, visual only" },
+    "dayFlashLevel": 0.65,
+    "glow": { "normal": { "sizeM": 1.3, "minPx": 3 }, "strong": { "sizeM": 4, "minPx": 6, "groups": ["landing", "taxi", "strobe"] }, "basis": "ESTIMATE, perceptual" },
+    "colours": "perceptual linear RGB, not chromaticity-matched"
+  },
+  "simulatorRule": {
+    "PARKED": ["navigation", "beacon"],
+    "TAXI_OUT": ["navigation", "beacon", "taxi"],
+    "TAKEOFF": ["navigation", "beacon", "strobe", "landing"],
+    "CLIMB": ["navigation", "beacon", "strobe", "landing"],
+    "CRUISE": ["navigation", "beacon", "strobe"],
+    "APPROACH": ["navigation", "beacon", "strobe", "landing"],
+    "LANDING": ["navigation", "beacon", "strobe", "landing"],
+    "TAXI_IN": ["navigation", "beacon", "taxi"],
+    "note": "simulator rule informed by SERA.3215, not an airline SOP; taxi light only with the gear down; unknown phases: navigation and beacon"
+  },
+  "clock": "simulation time from the backend snapshots (10 per real second), interpolated at the time scale, max 0.25 real s ahead, held when paused, monotonic except after a reset; each frame shows the on-share of its simulation-time window"
+}

@@ -33,6 +33,8 @@
   import l2dUrl from './data/streetlights-l2d.json?url';
   import { advanceClock, lightingState } from './lighting/state.svelte';
   import type { VehiclePose } from './lighting/vehicleLights';
+  import { createSimClock } from './lighting/aircraftLights';
+  import { createAircraftLights } from './lighting/aircraftLightsView';
   import { perfFlags } from './perf/perfFlags';
   import { installPerfProbe } from './perf/perfProbe';
   let {
@@ -55,6 +57,10 @@
   const view = createMappedCity(),
     transport = createTransportModels(),
     signals = createTrafficSignals();
+  // Aircraft Lights Phase E2: one instanced glow buffer for all aircraft lights, timed by an
+  // interpolated simulation clock (pause and time scale consistent).
+  const aircraftLights = createAircraftLights(),
+    simClock = createSimClock();
   // Step 6: time of day, street lighting and stadium floodlights (lighting/controller.ts). Every lit
   // material gets the fixed lighting patch before its first compile. Recreating the controller
   // (development hook below) rebinds the same materials to the new controller's uniforms. The
@@ -131,6 +137,8 @@
       describe: () => lighting.describe(),
       /** Airport Lighting Phase E1: the ESSP runway lights (counts, level, runway in use). */
       airport: () => view.airport.describe(),
+      /** Aircraft Lights Phase E2: this frame's aircraft lights (positions, colours, window). */
+      aircraftLights: () => aircraftLights.describe(),
       get uniforms() {
         return lighting.uniforms;
       },
@@ -194,6 +202,7 @@
       transport,
       transit,
       signals,
+      aircraftLights,
       lightingGroup: () => lighting.group,
       snapshot: () => city.snapshot,
     });
@@ -237,6 +246,7 @@
     lighting.dispose();
     view.dispose();
     transport.dispose();
+    aircraftLights.dispose();
     transit.dispose();
     signals.dispose();
   });
@@ -272,7 +282,7 @@
     // Vehicle Lights Phase F1: lens glow and the nearest vehicles' beams, from this frame's smoothed
     // poses (after the models moved, so beams and lenses stay together while paused or following).
     const level = lighting.artificial;
-    transport.setNightLevel(level);
+    transport.setNightLevel(level, lightingState.aircraftLights === 'off' ? 0 : level);
     transit.setNightLevel(level);
     // Police Signs Phase D1: the police emblem glows at the same night level.
     view.setNightLevel(level);
@@ -286,6 +296,30 @@
         renderer.domElement.height,
         scene.fog as Fog | null,
       );
+    // Aircraft Lights Phase E2: under the aircraft body's transform of this frame (after it moved).
+    const snap = city.snapshot;
+    const { t0, t1 } = simClock.advance(
+      {
+        sequence: snap.sequence,
+        simulationTime: snap.simulationTime,
+        paused: snap.paused,
+        timeScale: snap.settings.timeScale,
+      },
+      dt,
+    );
+    if (camera.current) {
+      aircraftLights.update(
+        transport.aircraftPoses(),
+        t0,
+        t1,
+        camera.current,
+        level,
+        lightingState.aircraftLights,
+        renderer.domElement.height,
+        scene.fog as Fog | null,
+      );
+      transport.setBeaconLens(aircraftLights.beaconLevel());
+    }
     vehiclePoses.length = 0;
     for (const p of transport.poses()) vehiclePoses.push(p);
     for (const p of transit.poses()) vehiclePoses.push(p);
@@ -305,7 +339,7 @@
 <!-- Sun, sky, hemisphere/ambient light, fog and fixtures: lighting/controller.ts (Step 6). -->
 <T is={lightingRoot} />
 <!-- Ground and river cutouts are rendered together by mapView. -->
-<T is={view.group} />{#if inspector}<T is={inspector.group} />{/if}<T is={transport.group} onclick={pick} /><T is={signals.group} /><T
+<T is={view.group} /><T is={aircraftLights.group} />{#if inspector}<T is={inspector.group} />{/if}<T is={transport.group} onclick={pick} /><T is={signals.group} /><T
   is={transit.group}
   onclick={pick}
 />

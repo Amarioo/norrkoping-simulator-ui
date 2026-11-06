@@ -287,6 +287,15 @@
           och taxibanorna B och C. Antal och avstånd är uppskattade enligt ICAO där AIP inte anger
           dem. Gräsbanan 11/29 är obelyst.
         </p>
+        <label class="slider-label" for="aircraft-lights"><span>Flygplansljus</span></label><select
+          id="aircraft-lights"
+          bind:value={lightingState.aircraftLights}
+          ><option value="auto">Efter flygfas</option><option value="off">Av</option></select
+        >
+        <p class="micro-note">
+          Positionsljus röd vänster, grön höger, vit bak (EASA CS-25). Antikollisionsljus blinkar även
+          på dagen; blinktakt och vilka ljus som tänds i varje fas är simulatorns uppskattning.
+        </p>
       </section>
       <section class="sim-card flight-card">
         <div class="card-heading">

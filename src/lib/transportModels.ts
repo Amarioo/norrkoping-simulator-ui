@@ -20,6 +20,7 @@ import {
   Vector2,
 } from 'three';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { Vehicle, Aircraft } from './city.svelte';
 import {
   HEADLAMP_NIGHT_GAIN,
@@ -27,6 +28,8 @@ import {
   type LitVehicleKind,
   type VehiclePose,
 } from './lighting/vehicleLights';
+import { SOCKETS, type LightKind } from './lighting/aircraftLights';
+import type { AircraftLightPose } from './lighting/aircraftLightsView';
 
 type Part = { mesh: InstancedMesh; local: Matrix4; tint: boolean; wheel: boolean };
 /** Vehicle dimensions are in metres, converted once to the map's 1:25 scale. */
@@ -62,6 +65,8 @@ export function createTransportModels() {
     tailLamp = lamp('#a32722');
   // Vehicle Lights Phase F1: lens glow follows the night level (day look unchanged at level 0).
   const DAY_EMISSIVE = 0.4;
+  /** Aircraft lens glow at full night level / beacon flash (perceptual, as the vehicle lenses). */
+  const AIRCRAFT_LENS_GAIN = 3;
   function local(x: number, y: number, z: number, ry = 0, rz = 0) {
     return new Matrix4().compose(
       new Vector3(x, y, z),
@@ -351,14 +356,49 @@ export function createTransportModels() {
       prop.add(blade);
     }
     pmesh(new SphereGeometry(0.25, 12, 8), white, side * 3.4, 2.15, 2.4);
-    pmesh(
-      new SphereGeometry(0.1, 8, 6),
-      side === -1 ? lamp('#ce3229') : lamp('#4fb27e'),
-      side * 11.45,
-      2.9,
-      -0.55,
-    );
   }
+  // Aircraft Lights Phase E2: lenses at the light sockets (lighting/aircraftLights.ts). The model's
+  // +x is the aircraft's LEFT (+z forward, +y up): red on the left wing tip, green on the right
+  // (CS-25.1385). Before E2 the two tip lenses were the other way round.
+  const socket = (kind: LightKind) => SOCKETS.find((s) => s.kind === kind)!.position;
+  const lens = (kind: LightKind, r: number, inset = 0.1) => {
+    const [x, y, z] = socket(kind);
+    return new SphereGeometry(r, 8, 6).translate(x - Math.sign(x) * inset, y, z);
+  };
+  const navRedLens = lamp('#ce3229'),
+    navGreenLens = lamp('#4fb27e'),
+    beaconLens = lamp('#d0281f'),
+    whiteLens = lamp('#f4f1e6');
+  pmesh(lens('navLeft', 0.1), navRedLens, 0, 0, 0);
+  pmesh(lens('navRight', 0.1), navGreenLens, 0, 0, 0);
+  // Beacon domes on top of and under the fuselage, sizes ESTIMATE.
+  const dome = (kind: LightKind, up: number) => {
+    const [x, y, z] = socket(kind);
+    return new SphereGeometry(0.16, 10, 6, 0, Math.PI * 2, 0, Math.PI / 2)
+      .scale(1, up * 0.8, 1)
+      .translate(x, y - up * 0.1, z);
+  };
+  pmesh(mergeGeometries([dome('beaconTop', 1), dome('beaconBottom', -1)])!, beaconLens, 0, 0, 0);
+  // White: tail light, wing-tip strobes, landing lights (flat discs facing forward), taxi light.
+  const disc = (kind: LightKind, r: number) => {
+    const [x, y, z] = socket(kind);
+    return new CylinderGeometry(r, r, 0.05, 10).rotateX(Math.PI / 2).translate(x, y, z - 0.03);
+  };
+  pmesh(
+    mergeGeometries([
+      lens('navTail', 0.1, 0).translate(0, 0, 0.08),
+      lens('strobeLeft', 0.08),
+      lens('strobeRight', 0.08),
+      lens('strobeTail', 0.07, 0).translate(0, 0, 0.08),
+      disc('landingLeft', 0.16),
+      disc('landingRight', 0.16),
+      disc('taxi', 0.1),
+    ])!,
+    whiteLens,
+    0,
+    0,
+    0,
+  );
   const gear = new Group();
   airplane.add(gear);
   for (const [x, z] of [
@@ -387,6 +427,14 @@ export function createTransportModels() {
       (c) => new Color(c),
     );
   let planePosition: Vector3 | undefined;
+  // Aircraft Lights Phase E2: the drawn aircraft's pose for its lights (same object transform).
+  const aircraftPoses: AircraftLightPose[] = [];
+  const airplanePose: AircraftLightPose = {
+    id: '',
+    phase: '',
+    gear: true,
+    matrix: airplane.matrixWorld,
+  };
   // Smoothed render poses of the cars and trucks drawn this frame (reused objects), for the beams.
   const poses: VehiclePose[] = [];
   let poseCount = 0;
@@ -447,17 +495,40 @@ export function createTransportModels() {
         airplane.rotation.set(-a.pitch, a.heading, a.bank, 'YXZ');
         gear.visible = a.gear;
         for (const prop of props) prop.rotation.z = time * 45;
+        airplane.updateWorldMatrix(true, false);
+        airplanePose.id = a.id;
+        airplanePose.phase = a.phase;
+        airplanePose.gear = a.gear;
       }
+      aircraftPoses.length = 0;
+      if (a) aircraftPoses.push(airplanePose);
+    },
+    /**
+     * Aircraft Lights Phase E2: the drawn aircraft this frame (id, phase, gear and the body's
+     * object-to-world matrix; valid until the next update).
+     */
+    aircraftPoses(): readonly AircraftLightPose[] {
+      return aircraftPoses;
+    },
+    /** Beacon lens glow 0…1 (follows the flash of the first aircraft's beacon). */
+    setBeaconLens(level: number) {
+      beaconLens.emissiveIntensity = DAY_EMISSIVE + AIRCRAFT_LENS_GAIN * level;
     },
     /** Smoothed poses of this frame's cars and trucks (valid until the next update). */
     poses(): readonly VehiclePose[] {
       poses.length = poseCount;
       return poses;
     },
-    /** Night level 0…1 (env.artificial): headlamp and tail-lamp lens glow. */
-    setNightLevel(level: number) {
+    /**
+     * Night level 0…1 (env.artificial): headlamp and tail-lamp lens glow; `aircraftLevel` for the
+     * aircraft's steady lenses (0 when its lights are switched off).
+     */
+    setNightLevel(level: number, aircraftLevel = level) {
       headlamp.emissiveIntensity = DAY_EMISSIVE + HEADLAMP_NIGHT_GAIN * level;
       tailLamp.emissiveIntensity = DAY_EMISSIVE + TAILLAMP_NIGHT_GAIN * level;
+      // Aircraft Lights Phase E2: steady aircraft lenses (position lights, tail, landing).
+      for (const m of [navRedLens, navGreenLens, whiteLens])
+        m.emissiveIntensity = DAY_EMISSIVE + AIRCRAFT_LENS_GAIN * aircraftLevel;
     },
     positionOf(id: number) {
       return smoothed.get(id)?.pos;

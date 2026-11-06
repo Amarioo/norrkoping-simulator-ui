@@ -122,3 +122,6 @@ work/geodata/
 /work/perf-p2c/
 # Airport Lighting Phase E1 scratch (screenshots, raw runs). Curated data is in docs/airport-lighting-e1/.
 /work/airport-e1/
+# Aircraft Lights Phase E2 scratch (origin/main worktree, hook builds, raw runs). Curated data is in
+# docs/aircraft-lights-e2/; reusable tools are in scripts/aircraft-e2/.
+/work/aircraft-e2/

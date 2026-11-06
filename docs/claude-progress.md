@@ -2,6 +2,28 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Aircraft Lights Phase E2 — navigation, anti-collision, landing and taxi lights on the aircraft (2026-11-06) — tested locally and approved by the user (2026-11-06), committed and pushed to `origin/main`
+
+[Full report](aircraft-lights-e2/README.md). Worked directly on local `main` (= `origin/main` `afa08cf`).
+**Committed and pushed to `origin/main`** (user, 2026-11-06). Backend unchanged.
+
+- **Result:** 11 lights on the simulated aircraft NK-01: steady red left / green right / white tail
+  (CS 25.1385) with sectors (CS 25.1387; overlap estimate within CS 25.1395); red beacon top and bottom
+  and white strobes flashing on the simulation clock (pause / time scale consistent, seeded by aircraft
+  id; 50 and 55 per minute = estimates inside CS 25.1401's 40–100); landing and taxi lights by flight
+  phase (simulator rule informed by SERA.3215, not an SOP), emissive only. Anti-collision lights by day
+  too. Own switch "Flygplansljus" in "Tid och ljus" (`?aircraftLights=auto|off`).
+- **Fixed:** the drawn model had red and green wing-tip lenses swapped (red on the right tip).
+- **How:** sockets in the model frame (+x = left) under the body's `matrixWorld`; two instanced glow
+  buffers with the street lights' halo program (no new program), no three.js lights.
+- **Measured (paired vs `origin/main`, 5 + 5 rounds):** overview night +0.31 then +0.05 ms on the
+  recheck, Kungsängen +0.16 / −0.01 ms (noise); +4 draw calls; CPU 0.0017 ms per frame.
+- **Checks:** type check 0; build OK, byte-reproducible (29 files), no hook in `dist/`; Vitest 544/545
+  (new 16/16; known `police.test.ts` CRLF); Playwright 26/26 twice on the final code (one earlier run
+  disturbed by my own file edits during the run, explained in the report).
+- **Local only:** `.claude/launch.json` (`e2-main` 5321, `e2-new` 5322), `work/aircraft-e2/` (hook builds, raw runs, logs; the detached
+  `origin/main` worktree used for measuring was removed).
+
 ## Airport Lighting E1 follow-up — Calvert crossbars, yellow masts, no flashers (2026-11-03) — tested locally and approved by the user (2026-11-06), committed and pushed to `origin/main`
 
 [Report section](airport-lighting-e1/README.md#follow-up-calvert-crossbars-and-masts-2026-11-03-after-the-users-test).

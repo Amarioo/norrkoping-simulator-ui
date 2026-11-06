@@ -4,6 +4,7 @@
  * Defaults: today's date in Europe/Stockholm at 12:30 (daylight, so the map opens readable), stadium
  * floodlights off (no match is assumed). URL parameters make captures reproducible:
  *   ?date=2026-10-21&time=21:30&stadium=off|training|event&sun=legacy&play=60&airport=auto&runway=27
+ *   &aircraftLights=auto
  * `play` is the time-lapse rate in simulated seconds per real second (0 = paused).
  */
 import { addDays, utcToLocal } from './solar';
@@ -33,6 +34,11 @@ export const lightingState = $state({
     ? params.get('airport')
     : 'auto') as 'auto' | 'on' | 'off',
   runway: (params.get('runway') === '09' ? '09' : '27') as '09' | '27',
+  /**
+   * Aircraft Lights Phase E2: 'auto' = the lights the flight phase calls for (simulator rule, see
+   * lighting/aircraftLights.ts), 'off' = none. ?aircraftLights=auto|off
+   */
+  aircraftLights: (params.get('aircraftLights') === 'off' ? 'off' : 'auto') as 'auto' | 'off',
   /** Simulated seconds per real second while playing (0 = stopped). */
   rate: Math.max(0, Number(params.get('play') ?? 0)) || 0,
 });
