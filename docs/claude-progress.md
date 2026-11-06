@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Project board — local Kanban of epics and stories (2026-11-06) — committed to local `main` on the user's request (2026-11-06), not pushed
+## Project board — local Kanban of epics and stories (2026-11-06) — committed (`c1de186`) and pushed to `origin/main` on the user's request (2026-11-06)
 
 [Guide and details](board/README.md). Worked directly on local `main` (= `origin/main` `bed5d5d`). Simulator code unchanged.
-**Committed to local `main`** (user, 2026-11-06); **not pushed** to `origin/main`.
+**Committed (`c1de186`) and pushed to `origin/main`** (user, 2026-11-06).
 
 - **What:** `npm run board` serves a Kanban board on http://127.0.0.1:5330/ (Backlog, Nästa, Pågår,
   Test (du testar), Klart). Epics = roadmap tracks L, F, B, D, E, C, P plus S (simulator link and
