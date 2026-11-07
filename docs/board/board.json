@@ -94,53 +94,6 @@
   ],
   "stories": [
     {
-      "id": "B2",
-      "epic": "B",
-      "title": "Kyrkornas fasadbelysning – Hedvigs kyrka",
-      "status": "test",
-      "size": "M",
-      "summary": "Fasadbelysning på kyrkorna, en kyrka i taget. Nästa etapp enligt färdplanens rekommenderade ordning.",
-      "report": "docs/landmark-b2/README.md",
-      "tasks": [
-        {
-          "text": "Välj ordning: Hedvig först (du valde 2026-11-07)",
-          "done": true
-        },
-        {
-          "text": "Bekräfta belysning: Hedvig troligen (kabelschakt 2014, RAÄ 2015:7), inget nattfoto",
-          "done": true
-        },
-        {
-          "text": "Hedvigs kyrka uppmätt ur laserdata, med torn",
-          "done": true
-        },
-        {
-          "text": "Strålkastare på natten (uppskattade, 8 st)",
-          "done": true
-        },
-        {
-          "text": "Du testade lokalt och godkände (2026-11-07)",
-          "done": true
-        },
-        {
-          "text": "Nästa kyrka: Olai (kolla nya Olaiparken), Matteus, S:t Johannes",
-          "done": false
-        }
-      ],
-      "comments": [
-        {
-          "author": "claude",
-          "date": "2026-11-06",
-          "text": "Sökning efter belägg: inget nattfoto 2020–2026 för någon kyrka. Hedvig: TROLIGEN belyst (ny fasadbelysning, kabelschakt mars 2014, RAÄ-rapport 2015:7; schakt längs öst- och västsidan och runt tornet). Olai: TROLIGEN 2012 (strålkastare på parkstolpar enligt kommunens belysningsplan), men Olaiparken byggs om 2026 så läget idag okänt. Matteus och S:t Johannes: inga belägg (Matteus gryningsfoton 2018–19 visar bara upplysta urtavlor). Rådhustornet: BEKRÄFTAT belyst, varmgult (Commons nattfoto 2017-11-30). Väntar på ditt beslut om vilken kyrka som tänds."
-        },
-        {
-          "author": "claude",
-          "date": "2026-11-07",
-          "text": "Hedvigs kyrka är klar för test. Kyrkan är uppmätt ur laserdata (tak, öständen, sakristian, klocktornet med åttkantig lanternin), detaljerna kommer från foton. Strålkastarna är en uppskattning: att belysning finns vet vi från kabelschaktet 2014, men inte hur den ser ut. Ett kvällsfoto från dig skulle avgöra det. Inget är committat."
-        }
-      ]
-    },
-    {
       "id": "D2",
       "epic": "D",
       "title": "Bensinstationer",
@@ -623,6 +576,55 @@
       "outcome": "Klar, finns i main.",
       "report": "docs/claude-progress.md",
       "section": "Step 1 final report"
+    },
+    {
+      "id": "B2",
+      "epic": "B",
+      "title": "Kyrkornas fasadbelysning – Hedvigs kyrka",
+      "status": "done",
+      "size": "M",
+      "summary": "Fasadbelysning på kyrkorna, en kyrka i taget. Nästa etapp enligt färdplanens rekommenderade ordning.",
+      "report": "docs/landmark-b2/README.md",
+      "tasks": [
+        {
+          "text": "Välj ordning: Hedvig först (du valde 2026-11-07)",
+          "done": true
+        },
+        {
+          "text": "Bekräfta belysning: Hedvig troligen (kabelschakt 2014, RAÄ 2015:7), inget nattfoto",
+          "done": true
+        },
+        {
+          "text": "Hedvigs kyrka uppmätt ur laserdata, med torn",
+          "done": true
+        },
+        {
+          "text": "Strålkastare på natten (uppskattade, 8 st)",
+          "done": true
+        },
+        {
+          "text": "Du testade lokalt och godkände (2026-11-07)",
+          "done": true
+        },
+        {
+          "text": "Nästa kyrka: Olai (kolla nya Olaiparken), Matteus, S:t Johannes",
+          "done": false
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-06",
+          "text": "Sökning efter belägg: inget nattfoto 2020–2026 för någon kyrka. Hedvig: TROLIGEN belyst (ny fasadbelysning, kabelschakt mars 2014, RAÄ-rapport 2015:7; schakt längs öst- och västsidan och runt tornet). Olai: TROLIGEN 2012 (strålkastare på parkstolpar enligt kommunens belysningsplan), men Olaiparken byggs om 2026 så läget idag okänt. Matteus och S:t Johannes: inga belägg (Matteus gryningsfoton 2018–19 visar bara upplysta urtavlor). Rådhustornet: BEKRÄFTAT belyst, varmgult (Commons nattfoto 2017-11-30). Väntar på ditt beslut om vilken kyrka som tänds."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-07",
+          "text": "Hedvigs kyrka är klar för test. Kyrkan är uppmätt ur laserdata (tak, öständen, sakristian, klocktornet med åttkantig lanternin), detaljerna kommer från foton. Strålkastarna är en uppskattning: att belysning finns vet vi från kabelschaktet 2014, men inte hur den ser ut. Ett kvällsfoto från dig skulle avgöra det. Inget är committat."
+        }
+      ],
+      "date": "2026-11-07",
+      "outcome": "Hedvigs kyrka uppmätt ur laserdata (säteritak, tresidig östände, klocktorn med åttkantig lanternin, 36,9 m) och med 8 uppskattade strålkastare på kvällen; godkänd, committad (dc409be) och pushad. Olai, Matteus och S:t Johannes återstår."
     }
   ]
 }

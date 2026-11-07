@@ -1,7 +1,7 @@
 # Landmark Phase B2 — Hedvigs kyrka with estimated floodlighting (2026-11-07)
 
-Worked directly on local `main` (= `origin/main` `8927fee`), as agreed with the user. **Nothing is
-committed.** Backend unchanged. Roadmap track B, step B2 ("one church at a time"); the user chose
+Worked directly on local `main` (= `origin/main` `8927fee`), as agreed with the user. Tested locally
+and approved by the user, **committed (`dc409be`) and pushed to `origin/main`** (2026-11-07). Backend unchanged. Roadmap track B, step B2 ("one church at a time"); the user chose
 Hedvigs kyrka first (2026-11-07) after the evidence search below.
 
 ## Result

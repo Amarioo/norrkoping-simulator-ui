@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Landmark Phase B2 — Hedvigs kyrka, measured, with estimated floodlighting (2026-11-07) — tested locally and approved by the user (2026-11-07); **not committed**
+## Landmark Phase B2 — Hedvigs kyrka, measured, with estimated floodlighting (2026-11-07) — tested locally and approved by the user (2026-11-07), committed (`dc409be`) and pushed to `origin/main`
 
 [Full report](landmark-b2/README.md). Worked directly on local `main` (= `origin/main` `8927fee`). Backend unchanged.
-**Nothing committed.** Approved by the user 2026-11-07. Board: B2 in *Test* until committed and pushed.
+Approved by the user 2026-11-07; **committed (`dc409be`) and pushed to `origin/main`** on the user's request. Board: B2 in *Done*.
 
 - **Evidence first (2026-11-06):** no night photograph 2020–2026 of any of the four churches.
   - Hedvig: new façade lighting cabled in March 2014 (RAÄ 2015:7).

@@ -164,7 +164,7 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
 - [ ] **B2 Kyrkornas fasadbelysning** — M
   - En kyrka i taget (t.ex. Hedvig, Olai, Matteus, S:t Johannes). Bekräfta att kyrkan faktiskt är
     fasadbelyst innan vi tänder den.
-  - *Hedvigs kyrka genomförd 2026-11-07 direkt på main, testad lokalt och godkänd 2026-11-07, ej committad:
+  - *Hedvigs kyrka genomförd 2026-11-07 direkt på main, testad lokalt och godkänd 2026-11-07, committad och pushad till main:
     [docs/landmark-b2/README.md](landmark-b2/README.md). Kyrkan uppmätt ur laserdata (säteritak, tresidig
     östände, klocktorn med åttkantig lanternin, 36,9 m); fasadbelysning installerad 2014 enligt RAÄ:s
     rapport om kabelschaktet, men armaturer, riktning och färg är uppskattade (inget nattfoto hittades).
