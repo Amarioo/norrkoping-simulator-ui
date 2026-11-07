@@ -166,35 +166,6 @@
       ]
     },
     {
-      "id": "B1-2",
-      "epic": "B",
-      "title": "Rådhusets fasadbelysning (B1 del 2)",
-      "status": "test",
-      "summary": "Del 2 av B1: tornets fasadbelysning. Belagd av ett nattfoto på Commons (2017-11-30): tornet och spiran upplysta i varmgult. Återanvänder strålkastarna från B2.",
-      "report": "docs/landmark-b1-2/README.md",
-      "tasks": [
-        {
-          "text": "Belägg: nattfoto 2017 (tornet upplyst, fasaderna mörka)",
-          "done": true
-        },
-        {
-          "text": "Strålkastare på tornet (8 st, uppskattade)",
-          "done": true
-        },
-        {
-          "text": "Du testade lokalt och godkände (2026-11-07)",
-          "done": true
-        }
-      ],
-      "comments": [
-        {
-          "author": "claude",
-          "date": "2026-11-07",
-          "text": "Klar för test. Tornet lyser varmt gyllene på natten ovanför huvudtaket, som på nattfotot från 2017; fasaderna under är mörka. Strålkastarnas placering är uppskattad. Ingen mätbar prestandakostnad. Inget är committat."
-        }
-      ]
-    },
-    {
       "id": "P2d",
       "epic": "P",
       "title": "Trafik: färre meshar, gallring, ladda bara upp det som rört sig",
@@ -646,6 +617,37 @@
       ],
       "date": "2026-11-07",
       "outcome": "Hedvigs kyrka uppmätt ur laserdata (säteritak, tresidig östände, klocktorn med åttkantig lanternin, 36,9 m) och med 8 uppskattade strålkastare på kvällen; godkänd, committad (dc409be) och pushad. Olai, Matteus och S:t Johannes återstår."
+    },
+    {
+      "id": "B1-2",
+      "epic": "B",
+      "title": "Rådhusets fasadbelysning (B1 del 2)",
+      "status": "done",
+      "summary": "Del 2 av B1: tornets fasadbelysning. Belagd av ett nattfoto på Commons (2017-11-30): tornet och spiran upplysta i varmgult. Återanvänder strålkastarna från B2.",
+      "report": "docs/landmark-b1-2/README.md",
+      "tasks": [
+        {
+          "text": "Belägg: nattfoto 2017 (tornet upplyst, fasaderna mörka)",
+          "done": true
+        },
+        {
+          "text": "Strålkastare på tornet (8 st, uppskattade)",
+          "done": true
+        },
+        {
+          "text": "Du testade lokalt och godkände (2026-11-07)",
+          "done": true
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-07",
+          "text": "Klar för test. Tornet lyser varmt gyllene på natten ovanför huvudtaket, som på nattfotot från 2017; fasaderna under är mörka. Strålkastarnas placering är uppskattad. Ingen mätbar prestandakostnad. Inget är committat."
+        }
+      ],
+      "date": "2026-11-07",
+      "outcome": "Rådhustornet upplyst på natten som på nattfotot 2017 (tornkropp, klocka, klockvåning, tak och Gull-Olle i varmt guld, fasaderna mörka); 8 uppskattade strålkastare, ingen mätbar prestandakostnad; godkänd, committad (700c8be) och pushad."
     }
   ]
 }

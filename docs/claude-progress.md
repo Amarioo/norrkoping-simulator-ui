@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Landmark Phase B1 part 2 — Rådhuset's tower floodlit at night (2026-11-07) — tested locally and approved by the user (2026-11-07); **not committed**
+## Landmark Phase B1 part 2 — Rådhuset's tower floodlit at night (2026-11-07) — tested locally and approved by the user (2026-11-07), committed (`700c8be`) and pushed to `origin/main`
 
 [Full report](landmark-b1-2/README.md). Worked directly on local `main` (= `origin/main` `39d4c0f`). Backend unchanged.
-**Nothing committed.** Approved by the user 2026-11-07. Board: B1-2 in *Test* until committed and pushed.
+Approved by the user 2026-11-07; **committed (`700c8be`) and pushed to `origin/main`** on the user's request. Board: B1-2 in *Done*.
 
 - **Evidence:** Commons night photograph of 2017-11-30 from the north bank (CC BY 4.0). It shows the
   tower above the main roof floodlit in warm gold (shaft, clock, belfry, cornice, roof, Gull-Olle)

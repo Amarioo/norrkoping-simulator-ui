@@ -1,6 +1,6 @@
 # Landmark Phase B1 part 2 — Rådhuset's tower floodlit at night (2026-11-07)
 
-Worked directly on local `main` (= `origin/main` `39d4c0f`). **Nothing is committed.** Backend unchanged.
+Worked directly on local `main` (= `origin/main` `39d4c0f`). Tested locally and approved by the user, **committed (`700c8be`) and pushed to `origin/main`** (2026-11-07). Backend unchanged.
 Roadmap track B, step B1 part 2. Part 1 (the measured town hall, Gull-Olle) is
 [docs/landmark-b1/README.md](../landmark-b1/README.md).
 
