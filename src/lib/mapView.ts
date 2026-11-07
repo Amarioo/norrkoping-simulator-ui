@@ -26,6 +26,7 @@ import { requestCityLayers } from './cityMeshClient';
 import { layeredGround } from './groundLayers';
 import { createIdrottsparken } from './stadium/idrottsparken';
 import { createRadhuset } from './landmarks/radhuset/radhuset';
+import { createHedvig } from './landmarks/hedvig/hedvig';
 import { createRunwayLights } from './airport/runwayLightsView';
 
 export { Batch, fill, strip } from './cityMesh';
@@ -227,6 +228,10 @@ export function createMappedCity() {
   // Landmark Phase B1: Rådhuset with its tower and Gull-Olle (replaces the OSM walls of way/285809156).
   const radhuset = createRadhuset(terrain);
   group.add(radhuset.group);
+  // Landmark Phase B2: Hedvigs kyrka and its bell tower (replaces the OSM walls of way/88741182);
+  // its floodlights go to the lighting controller as façade emitters.
+  const hedvig = createHedvig(terrain);
+  group.add(hedvig.group);
   // Airport Lighting Phase E1: ESSP RWY 09/27 approach, runway and taxiway lights (own switch).
   const airport = createRunwayLights(terrain, cityMap.airways, cityMap.meta.metresPerUnit);
   group.add(airport.group);
@@ -240,6 +245,8 @@ export function createMappedCity() {
      */
     /** Airport Lighting Phase E1: the airport lights (update per frame from the scene). */
     airport,
+    /** Landmark Phase B2: façade floodlights (scene units) for the lighting controller. */
+    facades: hedvig.floodlights,
     setNightLevel(level: number) {
       details.setPoliceNightLevel(level);
     },
@@ -251,6 +258,7 @@ export function createMappedCity() {
       disposed = true;
       stadium.dispose();
       radhuset.dispose();
+      hedvig.dispose();
       airport.dispose();
       details.dispose();
       places.dispose();

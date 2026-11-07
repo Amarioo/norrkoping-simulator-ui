@@ -1,0 +1,72 @@
+{
+  "phase": "Landmark Phase B2, first church (geometry by day, estimated floodlighting at night)",
+  "object": "Hedvigs kyrka, Norrköping (Nicodemus Tessin the Elder, consecrated 1673; renovated 2013–2014), with its bell tower",
+  "model": "src/lib/landmarks/hedvig/spec.ts (values), src/lib/landmarks/hedvig/hedvig.ts (geometry, floodlights to scene)",
+  "frame": {
+    "description": "Building frame: horizontal ground metres, origin = measured bell-tower centre, +u along the nave towards the east end (mean of the OSM long walls, way/88741182 vertices 59 → 43 and 7 → 19), +v towards the north; heights RH2000 metres.",
+    "originScene": [0.1073, -13.0706],
+    "originSweref99TM": [569032.68, 6495315.65],
+    "axisScene": [0.976882, -0.213781],
+    "sceneContract": "scene = (SWEREF 99 TM − (569030, 6494989)) / (25 · 0.9996584126), x east, z south; scene y = RH2000 / 25 (verticalOriginMetres 0)",
+    "source": "LIDAR (origin), OSM (axis)"
+  },
+  "sources": {
+    "OSM": {
+      "what": "Building footprint way/88741182 (name=Hedvigs kyrka, building=church)",
+      "file": "src/lib/data/norrkoping-map.json (unchanged)",
+      "snapshot": "2026-10-16T13:35:36Z",
+      "licence": "ODbL-1.0, © OpenStreetMap contributors",
+      "accuracy": "mapped from aerial imagery; typically ±1 m"
+    },
+    "LIDAR": {
+      "what": "Lantmäteriet point cloud, STAC collection dsm-skoglig-copc (called Laserdata NH 2020 elsewhere in this project)",
+      "tile": "y20c012-64950_5675_25.copc.laz",
+      "tileSha256": "see docs/landmark-b2/data/hedvig-lidar.json source.tileSha256",
+      "acquired": "2020-02-03 (STAC item date), scan area 20C012",
+      "density": "nominal 1.2 points/m²",
+      "licence": "CC BY 4.0, ©Lantmäteriet (processed)",
+      "processing": "scripts/landmark-b2/hedvig_lidar.py → docs/landmark-b2/data/hedvig-lidar.json (deterministic)",
+      "accuracy": "heights ±0.1–0.2 m on roofs; wall and tower-face positions ±0.3–0.5 m; thin tops under-sampled"
+    },
+    "PHOTO": {
+      "what": "Wikimedia Commons photographs, inspected as references only; nothing copied into the model",
+      "files": [
+        { "file": "2016-06-13 MV-LISA 942 In Norrköping, Hedvigs Kyrka.jpg", "author": "Eduard47", "date": "2016-06-16 (EXIF; 2016-06-13 in the name)", "licence": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:2016-06-13_MV-LISA_942_In_Norrk%C3%B6ping,_Hedvigs_Kyrka.jpg" },
+        { "file": "WTNkpng1 Ainali Hedvigskyrka 2.JPG", "author": "Jan Ainali (Wiki Takes Norrköping 1)", "date": "2012-05-12", "licence": "CC BY-SA 3.0", "url": "https://commons.wikimedia.org/wiki/File:WTNkpng1_Ainali_Hedvigskyrka_2.JPG" },
+        { "file": "Hedvigs kyrka från luften.jpg", "author": "L.G.foto", "date": "2011-04-21", "licence": "CC BY-SA 4.0", "url": "https://commons.wikimedia.org/wiki/File:Hedvigs_kyrka_fr%C3%A5n_luften.jpg" }
+      ]
+    },
+    "RAÄ": {
+      "what": "Arkeologerna / RAÄ UV Öst, Rapport 2015:7, 'Hedvigs kyrka – ett ledningsschakt för fasadbelysning runt kyrkan' (Rikard Hedvall)",
+      "url": "https://pub.raa.se/dokumentation/134968b9-c25b-4776-9404-cca90802d5fe/arkivbestandig",
+      "summary": "https://arkeologerna.com/publikationer/hedvigs-kyrka/",
+      "date": "trench dug 2014-03-25/26; report dated July 2014",
+      "facts": ["the parish (S:t Olofs församling) applied to install a new façade lighting on Hedvigs kyrka", "cable trench just under 100 m along the church's east and west sides, north and south of the tower, and a short trench 5 m south-west of the tower"],
+      "notStated": ["fixture types", "positions of the fixtures", "aiming", "colour temperature", "switching times", "whether the lighting is in use in 2026"]
+    },
+    "SEARCH": {
+      "what": "Search for evidence of current floodlighting",
+      "date": "2026-11-06",
+      "searched": ["Wikimedia Commons categories of the church (all 31 files daytime, 2005–2017)", "norrkoping.se: Stad i ljus, Belysningsplan 2012-01-17, Riktlinje för belysning 2023", "svenskakyrkan.se/norrkoping and press releases", "local press", "lighting-design firms' project pages"],
+      "result": "no dated night photograph and no document describing the fixtures, aiming or colour"
+    },
+    "EST": { "what": "estimate by this project, no measurement" }
+  },
+  "values": [
+    { "id": "tower.top", "value": 36.9, "unit": "m RH2000", "kind": "measured", "source": "LIDAR", "evidence": "highest non-noise return within 3 m of the tower centre (the needle; the vane above is not resolved)" },
+    { "id": "ground", "value": { "west": 4.77, "south": 5.06, "north": 4.66, "east": 4.92 }, "unit": "m RH2000", "kind": "measured", "source": "LIDAR", "evidence": "class 2 medians beside each side" },
+    { "id": "tower.heightAboveWestGround", "value": 32.13, "unit": "m", "kind": "derived", "source": "LIDAR" },
+    { "id": "nave.profile", "value": [[0, 15.0], [6.25, 20.95], [6.25, 21.75], [10.74, 25.45]], "unit": "[inset m, m RH2000]", "kind": "measured", "source": "LIDAR", "evidence": "nave section, median over u 6–24 of the highest return per 1 × 0.5 m cell: eave edge 15.0 at v −10.9/10.6, step at |v| ≈ 4.5 (20.7 → 22.1), ridge 25.4 at v ≈ 0" },
+    { "id": "nave.eastEnd", "value": "hipped with the same profile; ridge end u ≈ 26.5, step u ≈ 30.6", "kind": "measured", "source": "LIDAR (eastEnd section)" },
+    { "id": "westBay", "value": { "eave": 12.8, "eaveU": -9.0, "terrace": 17.4, "terraceU": -4.6 }, "unit": "m RH2000 / frame m", "kind": "measured", "source": "LIDAR (westBayCentre section, surface grid)" },
+    { "id": "sacristy", "value": { "eave": 10.2, "ridge": 12.2, "porchTop": 9.0 }, "unit": "m RH2000", "kind": "measured", "source": "LIDAR (sacristy sections, surface grid)" },
+    { "id": "tower.planWidths", "value": { "capRim25.2-25.9": [7.11, 8.95], "cap25.9-27.6": [5.46, 6.71], "lanternRoof29.9-30.8": [4.67, 6.30], "lanternRoof30.8-31.6": [3.46, 4.44] }, "unit": "m (u × v, 2nd–98th percentile)", "kind": "measured", "source": "LIDAR", "evidence": "model adds ≈ 0.1–0.2 m (the percentiles lie inside the true edge); best-fitting rectangles turned 0–3°: the tower is aligned with the nave" },
+    { "id": "tower.stage", "value": { "hu": 3.45, "hv": 4.35, "bottom": 17.4, "top": 25.2 }, "unit": "m", "kind": "derived", "source": "LIDAR (terrace, cap rim, balustrade returns)" },
+    { "id": "tower.octagon", "value": "lantern and its roof octagonal, chamfer 0.35 × smaller half-width", "kind": "photo + estimate", "source": "PHOTO (2012 close-up), LIDAR pattern (returns reach further at the side middles)" },
+    { "id": "tower.details", "value": "2 arched louvres per face with gilded swags; clock dials Ø 1.6 m at 28.8 m on the wide lantern faces; gilded diamonds on the diagonal faces; gilded ball and needle", "kind": "estimate", "source": "PHOTO" },
+    { "id": "facade", "value": "red brick, light stone plinth and cornice, cream frontispiece, copper roofs, dark panel-clad tower", "kind": "estimate", "source": "PHOTO" },
+    { "id": "windows", "value": "round-arched 1.9 m wide, sill 7.8 m, top 13.2 m; 5 south, 3 north, 1 on each diagonal east wall", "kind": "estimate", "source": "PHOTO, EST" },
+    { "id": "floodlights", "value": "8 ground floodlights: west front 2 (6 500 cd, 24°/40°), tower 3 (24 000 / 2 × 20 000 cd, 9–10°/16–18°), east end 3 (7 000 cd, 18°/30°); 3000 K; on with the street lighting", "kind": "estimate", "source": "RAÄ (that a lighting exists since 2014 and where its cables run) + EST (everything else)", "evidence": "computed ≈ 166 lx at mid-height of the west front, ≈ 61 lx on the bell stage's south face, ≈ 173 lx on the east wall (facadeIlluminance)" }
+  ],
+  "unchanged": ["OSM data (src/lib/data/norrkoping-map.json)", "street lighting data", "Rådhuset's geometry (byte-identical after moving the shared Builder; fingerprint 12b2569b07213c1167e24685199122cbe008757419232224279fffbcf244e504)"]
+}

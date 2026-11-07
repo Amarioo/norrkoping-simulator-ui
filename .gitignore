@@ -125,3 +125,6 @@ work/geodata/
 # Aircraft Lights Phase E2 scratch (origin/main worktree, hook builds, raw runs). Curated data is in
 # docs/aircraft-lights-e2/; reusable tools are in scripts/aircraft-e2/.
 /work/aircraft-e2/
+# Landmark Phase B2 scratch (hook builds, raw runs, LiDAR rebuild). Curated data is in
+# docs/landmark-b2/; reusable tools are in scripts/landmark-b2/.
+/work/landmark-b2/

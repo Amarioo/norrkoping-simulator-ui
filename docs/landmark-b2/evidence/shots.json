@@ -1,0 +1,118 @@
+{
+ "frame": "building frame (u, v, h RH2000), see spec.ts",
+ "shots": [
+  {
+   "file": "01-day-west-front.png",
+   "time": "12:39",
+   "camera": [
+    -48,
+    -34,
+    14
+   ],
+   "target": [
+    4,
+    0,
+    17
+   ],
+   "facadeLights": 0,
+   "programs": 20
+  },
+  {
+   "file": "02-day-south-east.png",
+   "time": "12:39",
+   "camera": [
+    60,
+    -45,
+    40
+   ],
+   "target": [
+    15,
+    0,
+    14
+   ],
+   "facadeLights": 0,
+   "programs": 20
+  },
+  {
+   "file": "03-day-tower.png",
+   "time": "12:39",
+   "camera": [
+    -30,
+    -26,
+    12
+   ],
+   "target": [
+    -1,
+    -1,
+    24
+   ],
+   "facadeLights": 0,
+   "programs": 20
+  },
+  {
+   "file": "04-night-west-front.png",
+   "time": "21:30",
+   "camera": [
+    -48,
+    -34,
+    14
+   ],
+   "target": [
+    4,
+    0,
+    17
+   ],
+   "facadeLights": 8,
+   "programs": 20
+  },
+  {
+   "file": "05-night-west-close.png",
+   "time": "21:30",
+   "camera": [
+    -40,
+    -12,
+    9
+   ],
+   "target": [
+    0,
+    0,
+    15
+   ],
+   "facadeLights": 8,
+   "programs": 20
+  },
+  {
+   "file": "06-night-east-end.png",
+   "time": "21:30",
+   "camera": [
+    52,
+    -14,
+    9
+   ],
+   "target": [
+    33,
+    0,
+    12
+   ],
+   "facadeLights": 8,
+   "programs": 20
+  },
+  {
+   "file": "07-night-south-west-wide.png",
+   "time": "21:30",
+   "camera": [
+    -38,
+    -42,
+    22
+   ],
+   "target": [
+    8,
+    0,
+    15
+   ],
+   "facadeLights": 8,
+   "programs": 20
+  }
+ ],
+ "errors": []
+}

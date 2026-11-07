@@ -18,6 +18,9 @@
  * after the vehicle models moved; it picks the VEHICLE_MAX vehicles nearest the camera and writes
  * their low beams into fixed uniforms (none by day). No lights, textures or programs are created.
  *
+ * Façade floodlights (Landmark Phase B2, `facades`): fixed emitters written once into uniforms; at
+ * night they follow the street lighting's level (env.artificial), by day facadeCount is 0.
+ *
  * Temporal smoothing: jumps of more than 20 simulated minutes (presets, date changes) blend the
  * environment over BLEND_SECONDS; floodlight groups ramp over RAMP_SECONDS. settle() ends both at
  * once (deterministic screenshots).
@@ -48,10 +51,13 @@ import { STADIUM_MODES } from '../stadium/idrottsparken';
 import {
   boundUniforms,
   createLightingUniforms,
+  FACADE_MAX,
+  facadeZone,
   floatTexture,
   patchMaterial,
   STADIUM_MAX,
   STADIUM_ROOFS,
+  type FacadeEmitter,
 } from './cityLights';
 import {
   blendEnvironment,
@@ -203,6 +209,8 @@ export function createCityLighting(options: {
   chunkCells?: number;
   /** Keep registry records for inspect() (default: development and tests). */
   keepRecords?: boolean;
+  /** Landmark façade floodlights (Landmark Phase B2), scene units; at most FACADE_MAX. */
+  facades?: readonly FacadeEmitter[];
 }) {
   const { terrain, stadium, renderer, scene } = options;
   const metres = terrain.data.reference.metresPerUnit;
@@ -332,6 +340,18 @@ export function createCityLighting(options: {
     uniforms.stadiumLevel.value = Math.max(weights.masts, weights.roofs) > 0.0005 ? 1 : 0;
   };
   applyWeights();
+
+  // Façade floodlights: fixed emitters, written once; the night level switches them (update()).
+  const facades = options.facades ?? [];
+  if (facades.length > FACADE_MAX) throw new Error('Façade floodlights exceed their shader budget');
+  facades.forEach((e, k) => {
+    const [a, b, c] = [0, 1, 2].map((i) => uniforms.facadeLights.value[k * 3 + i]);
+    a.set(e.position[0], e.position[1], e.position[2], e.cosInner);
+    b.set(e.aim[0], e.aim[1], e.aim[2], e.cosOuter);
+    c.set(e.color[0] * e.candela, e.color[1] * e.candela, e.color[2] * e.candela, e.rangeM);
+  });
+  const zone = facadeZone(facades, metres);
+  uniforms.facadeZone.value.set(zone.x, zone.z, zone.radius, 0);
 
   // Real-time lights, sky and fog (fixed set).
   const sun = new DirectionalLight('#fff3de', 2.1);
@@ -582,6 +602,8 @@ export function createCityLighting(options: {
       (scene.background as Color).copy(env.horizon);
       renderer.toneMappingExposure = env.exposure;
       uniforms.cityLampLevel.value = env.artificial;
+      uniforms.facadeLevel.value = env.artificial;
+      uniforms.facadeCount.value = env.artificial > 0.0005 ? facades.length : 0;
       sky.update(camera, env, shownSun);
       street.visuals?.update(camera, env.artificial, viewportHeight, fog);
       stadium.update(camera, Math.max(weights.masts, weights.roofs));
@@ -669,6 +691,12 @@ export function createCityLighting(options: {
           shadowMaps: 0,
         },
         stadiumEmitters: stadium.emitters.length,
+        facadeLights: {
+          emitters: facades.length,
+          active: uniforms.facadeCount.value,
+          level: uniforms.facadeLevel.value,
+          names: facades.map((e) => e.name),
+        },
         vehicleLights: {
           enabled: vehicleBeams,
           max: VEHICLE_MAX,

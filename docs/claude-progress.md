@@ -2,6 +2,40 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Landmark Phase B2 — Hedvigs kyrka, measured, with estimated floodlighting (2026-11-07) — tested locally and approved by the user (2026-11-07); **not committed**
+
+[Full report](landmark-b2/README.md). Worked directly on local `main` (= `origin/main` `8927fee`). Backend unchanged.
+**Nothing committed.** Approved by the user 2026-11-07. Board: B2 in *Test* until committed and pushed.
+
+- **Evidence first (2026-11-06):** no night photograph 2020–2026 of any of the four churches.
+  - Hedvig: new façade lighting cabled in March 2014 (RAÄ 2015:7).
+  - Olai: park-pole floodlights in the 2012 lighting plan, but the park is being rebuilt in 2026.
+  - Matteus, S:t Johannes: no evidence.
+  - Rådhuset's tower: confirmed lit (Commons night photo 2017-11-30).
+  - The user chose Hedvig first (2026-11-07).
+- **Result:** `src/lib/landmarks/hedvig/` replaces the 13 m OSM box of way/88741182.
+  - **From the LiDAR (2020):** brick nave with a säteritak (eave 15.0, step 20.95/21.75, ridge 25.45 m
+    RH2000); the three-sided hipped east end; the sacristy (10.2/12.2 m) and its porch; the west bay
+    (12.8 → 17.4 m terrace).
+  - **The bell tower:** cap rim 7.1 × 9.0 m at 25.2 m; an octagonal lantern and roof (from the photo
+    and the LiDAR pattern); needle 36.9 m.
+  - **From photos:** the details and colours.
+  - **Fit to the LiDAR:** median |Δ| 0.25 m, p90 0.58 m over 632 cells. The shared triangle builder
+    moved from `radhuset.ts` to `landmarks/builder.ts`; Rådhuset is byte-identical (vertex-buffer
+    hash).
+- **Floodlights (estimate):** 8 ground floodlights along the 2014 trench, 3000 K, ≈ 60–170 lx on the
+  lit walls, on with the street lighting. They are new façade emitters in the lighting shader
+  (`FacadeEmitter`, ≤ 16, zone-limited, 0 by day), in the floodlight part of the loop. No lights, no
+  new programs (20 by day and at night).
+- **Measured (paired, 5 rounds, hook builds):** rAF mean −0.10 … +0.10 ms; +5 draw calls.
+- **Checks:**
+  - type check: 0 errors;
+  - build: OK, byte-identical twice;
+  - Vitest: 591/592 (only the known `police.test.ts` CRLF failure); new tests 18/18;
+  - Playwright: 27/27;
+  - LiDAR file rebuild: byte-identical.
+- **Local only:** `.claude/launch.json` (`b2-main`, `b2-new`), `work/landmark-b2/`.
+
 ## Project board — local Kanban of epics and stories (2026-11-06) — committed (`c1de186`) and pushed to `origin/main` on the user's request (2026-11-06)
 
 [Guide and details](board/README.md). Worked directly on local `main` (= `origin/main` `bed5d5d`). Simulator code unchanged.

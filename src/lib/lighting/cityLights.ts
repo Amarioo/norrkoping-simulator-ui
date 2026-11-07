@@ -24,6 +24,9 @@
  * 3. Vehicle low beams (Vehicle Lights Phase F1): ≤ VEHICLE_MAX emitters (the vehicles nearest the
  *    camera, vehicleLights.ts) with a forward cone, a sharp cut-off above the horizontal and a range
  *    window; vehicleCount is 0 by day, so the loop does no vehicle work then.
+ * 4. Façade floodlights of landmarks (Landmark Phase B2, Hedvigs kyrka): ≤ FACADE_MAX fixed spot
+ *    emitters (position, aim, cone, colour × candela, range) in world space, evaluated only by
+ *    fragments inside one horizontal zone that covers every emitter's range; facadeCount is 0 by day.
  *
  * Shader configuration never changes after the first compile: lamp count, time of day and
  * floodlight state are uniforms or texture contents (no program recompiles while scrubbing time).
@@ -54,6 +57,8 @@ export const MAX_PER_CELL = 32;
 export const SECTORS = 16;
 export const STADIUM_MAX = 16;
 export const STADIUM_ROOFS = 8;
+/** Most façade floodlights (Landmark Phase B2); three vec4 per emitter. */
+export const FACADE_MAX = 16;
 /** Display irradiance per lux for street lighting (night-adapted perceptual calibration). */
 export const STREET_LUX_SCALE = 0.035;
 /** Display irradiance per lux for the floodlights (compressed: a 1 200 lux pitch ≈ 1.1). */
@@ -88,6 +93,56 @@ export interface StadiumEmitter {
   cosOuter: number;
   candela: number;
   color: [number, number, number];
+}
+/**
+ * A landmark façade floodlight (Landmark Phase B2): a ground-mounted spot, world space. Light colour
+ * and intensity are estimates per landmark (see its spec).
+ */
+export interface FacadeEmitter {
+  name: string;
+  /** Emitter position, scene units. */
+  position: [number, number, number];
+  /** Unit aim direction (scene axes; scene units are isotropic). */
+  aim: [number, number, number];
+  /** Cosines of the beam half-angles: full intensity inside, none outside. */
+  cosInner: number;
+  cosOuter: number;
+  /** Peak intensity, candela. */
+  candela: number;
+  /** Range window, metres. */
+  rangeM: number;
+  /** Linear RGB colour (unit luminance-ish). */
+  color: [number, number, number];
+}
+/**
+ * Horizontal zone (scene units: centre x, z and radius) holding every façade emitter's reach, so only
+ * fragments that can receive façade light evaluate the emitters.
+ */
+export function facadeZone(emitters: readonly FacadeEmitter[], metres: number) {
+  if (emitters.length === 0) return { x: 0, z: 0, radius: -1 };
+  const xs = emitters.map((e) => e.position[0]),
+    zs = emitters.map((e) => e.position[2]);
+  const x = (Math.min(...xs) + Math.max(...xs)) / 2,
+    z = (Math.min(...zs) + Math.max(...zs)) / 2;
+  const radius = Math.max(
+    ...emitters.map((e) => Math.hypot(e.position[0] - x, e.position[2] - z) + e.rangeM / metres),
+  );
+  return { x, z, radius };
+}
+/**
+ * CPU reference of the shader's façadeLight (tests): irradiance in lux at world point P (scene units)
+ * for one emitter, before the display scale, ignoring the surface orientation.
+ */
+export function facadeIlluminance(e: FacadeEmitter, p: [number, number, number], metres: number) {
+  const L = [0, 1, 2].map((i) => (e.position[i] - p[i]) * metres);
+  const d2 = Math.max(L[0] ** 2 + L[1] ** 2 + L[2] ** 2, 0.25),
+    d = Math.sqrt(d2);
+  const c = -(L[0] * e.aim[0] + L[1] * e.aim[1] + L[2] * e.aim[2]) / d;
+  const t = Math.min(1, Math.max(0, (c - e.cosOuter) / (e.cosInner - e.cosOuter)));
+  const spot = t * t * (3 - 2 * t);
+  const r = Math.min(d / e.rangeM, 1),
+    window = 1 - r ** 4;
+  return (e.candela * spot * window * window) / d2;
 }
 export interface StadiumRoof {
   /** Arena frame, metres: x0 < x1, z0 < z1, roof plane height y. */
@@ -143,6 +198,13 @@ export function createLightingUniforms() {
     /** Vehicle Lights Phase F1: active beams (0 by day) and their emitters (vehicleLights.ts layout). */
     vehicleCount: { value: 0 },
     vehicleLights: { value: Array.from({ length: VEHICLE_MAX * VEHICLE_VEC4 }, () => new Vector4()) },
+    /** Landmark Phase B2: façade floodlights shown (0 by day), their night level and zone. */
+    facadeCount: { value: 0 },
+    facadeLevel: { value: 0 },
+    /** Zone centre x, z and radius (scene units); radius < 0 = none. */
+    facadeZone: { value: new Vector4(0, 0, -1, 0) },
+    /** Per emitter: position.xyz + cosInner, aim.xyz + cosOuter, colour × candela + range (m). */
+    facadeLights: { value: Array.from({ length: FACADE_MAX * 3 }, () => new Vector4()) },
   };
 }
 export type LightingUniforms = ReturnType<typeof createLightingUniforms>;
@@ -249,6 +311,10 @@ uniform vec4 stadiumLights[ ${STADIUM_MAX * 3} ];
 uniform vec4 stadiumRoofs[ ${STADIUM_ROOFS * 2} ];
 uniform int vehicleCount;
 uniform vec4 vehicleLights[ ${VEHICLE_MAX * VEHICLE_VEC4} ];
+uniform int facadeCount;
+uniform float facadeLevel;
+uniform vec4 facadeZone;
+uniform vec4 facadeLights[ ${FACADE_MAX * 3} ];
 
 float cityOcclusion( ivec2 lamp, int s ) {
 	vec4 t = texelFetch( cityLampTex, lamp + ivec2( 3 + s / 4, 0 ), 0 );
@@ -331,6 +397,21 @@ vec3 vehicleLight( int k, vec3 P, out vec3 dir ) {
 	float window = 1.0 - r * r * r * r;
 	return vec3( ${BEAM_COLOR.map((c) => c.toFixed(3)).join(', ')} ) * ( b.z * horizontal * vertical * window * window / d2 );
 }
+// Façade floodlight k at world point P (facadeIlluminance is the CPU reference): irradiance colour and
+// the unit world direction to the emitter. Straight-line code like cityLamp.
+vec3 facadeLight( int k, vec3 P, out vec3 dir ) {
+	vec4 a = facadeLights[ k * 3 ];
+	vec4 b = facadeLights[ k * 3 + 1 ];
+	vec4 e = facadeLights[ k * 3 + 2 ];
+	vec3 Lm = ( a.xyz - P ) * cityMetres;
+	float d2 = max( dot( Lm, Lm ), 0.25 );
+	float d = sqrt( d2 );
+	dir = Lm / d;
+	float spot = smoothstep( b.w, a.w, dot( -dir, b.xyz ) );
+	float r = min( d / e.w, 1.0 );
+	float window = 1.0 - r * r * r * r;
+	return e.rgb * ( spot * window * window / d2 );
+}
 `;
 const FRAGMENT_MAIN = /* glsl */ `
 	{
@@ -374,7 +455,11 @@ const FRAGMENT_MAIN = /* glsl */ `
 				* ( 1.0 - smoothstep( stadiumBox.y, stadiumBox.y + stadiumBox.w, abs( stadiumP.z ) ) )
 				* ( 1.0 - smoothstep( stadiumBox.z, stadiumBox.z + 8.0, stadiumP.y ) );
 		}
-		int cityFloods = stadiumMask > 0.0 ? stadiumCount : 0;
+		// Floodlights: the landmark façade floodlights (Landmark B2; only inside their zone, none by day),
+		// then the stadium's.
+		vec2 facadeD = vCityWorld.xz - facadeZone.xy;
+		int cityFacades = facadeCount > 0 && dot( facadeD, facadeD ) < facadeZone.z * facadeZone.z ? facadeCount : 0;
+		int cityFloods = cityFacades + ( stadiumMask > 0.0 ? stadiumCount : 0 );
 		// Vehicle beams first (≤ VEHICLE_MAX, none by day), then floodlights, then the cell's lamps.
 		int cityCars = vehicleCount;
 		for ( int n = 0; n < cityCars + cityFloods + cityLamps; n ++ ) {
@@ -382,8 +467,10 @@ const FRAGMENT_MAIN = /* glsl */ `
 			vec3 col;
 			if ( n < cityCars ) {
 				col = vehicleLight( n, vCityWorld, dir ) * cityLuxScale;
+			} else if ( n < cityCars + cityFacades ) {
+				col = facadeLight( n - cityCars, vCityWorld, dir ) * ( cityLuxScale * facadeLevel );
 			} else if ( n < cityCars + cityFloods ) {
-				col = stadiumLight( n - cityCars, stadiumP, dir ) * ( stadiumLuxScale * stadiumLevel * stadiumMask );
+				col = stadiumLight( n - cityCars - cityFacades, stadiumP, dir ) * ( stadiumLuxScale * stadiumLevel * stadiumMask );
 			} else {
 				int at = cityListStart + n - cityCars - cityFloods;
 				int listRow = at / cityListWidth;

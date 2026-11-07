@@ -97,6 +97,7 @@
       renderer,
       scene,
       registry: defaultRegistry(),
+      facades: view.facades,
     });
     for (const root of [view.group, transport.group, transit.group, signals.group]) l.patch(root);
     l.patchMaterials(view.layerMaterials);
