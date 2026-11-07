@@ -1,3 +1,5 @@
+import type { Floodlight } from '../floodlights';
+
 /**
  * Norrköpings rådhus (town hall, I. G. Clason, 1907–1910) and Gull-Olle, Landmark Phase B1: the
  * dimensions the model is built from.
@@ -21,6 +23,7 @@
  *            CC BY-SA 4.0), "Norrköpings rådhus tower 20th of September 2016.jpg" (CC BY-SA 4.0),
  *            "Norrköpings rådhus (hösten 2025).jpg" (CC0). Inspected for layout and colour only;
  *            nothing is copied into the model.
+ *   [NIGHT]  night photographs of the floodlit tower (see FLOODLIGHTS, Landmark Phase B1 part 2).
  *   [EST]    estimate (no measurement): marked per value.
  */
 
@@ -203,3 +206,106 @@ export const COLOURS = {
   opening: '#1b1917',
   gold: '#e8b84a',
 };
+
+/**
+ * Tower floodlighting at night (Landmark Phase B1 part 2). Evidence [NIGHT]: Commons "Norrköping och
+ * Motala ström i mörker.jpg" (DivadH, 2017-11-30 20:18, CC BY 4.0), taken from the north bank of
+ * Motala ström: the tower above the main roof — the shaft with its bands and clock, the belfry, the
+ * cornice and above all the pyramid roof up to Gull-Olle — is brightly floodlit in a warm golden
+ * light; the town hall's façades below are dark (lit only by the street lamps). A dawn photograph
+ * ("Norrköpings rådhus.jpg", Ola.j.hedin, 2019-01-15 08:08, CC BY-SA 4.0) shows the spire still lit.
+ * No document describes the fixtures: their positions, aiming, beam angles, intensities and the
+ * exact colour are ESTIMATES that reproduce the photograph — one flood per shaft face (from Tyska
+ * torget for the north face, from the roofs around the tower for the others) and four on the
+ * cornice lighting the roof and the statue. Only the faces seen in the photograph (north, west) are
+ * documented; the south and east faces are assumed lit alike. Colour: a warm white of ≈ 2200 K
+ * matching the golden tone of the photograph [EST]. Positions: building frame; `z` = absolute height
+ * RH2000 (on a roof or the cornice), `height` = above the ground (on the square).
+ */
+export const FLOOD_COLOR_WARM: [number, number, number] = [1.0, 0.6, 0.27];
+export const FLOODLIGHTS: Floodlight[] = [
+  // Shaft, north face: a narrow flood on Tyska torget, 25 m in front of the tower.
+  {
+    name: 'shaft-north',
+    at: [0, 30],
+    height: 0.5,
+    aim: [0, 5.0, 47],
+    inner: 9,
+    outer: 15,
+    candela: 300000,
+    rangeM: 80,
+  },
+  // Shaft, south face: on the ridge of the tall courtyard block behind the tower.
+  {
+    name: 'shaft-south',
+    at: [-0.5, -12],
+    z: 36.4,
+    aim: [0, -5.6, 48],
+    inner: 16,
+    outer: 26,
+    candela: 40000,
+    rangeM: 40,
+  },
+  // Shaft, east and west faces: on the north wing's upper roof slope beside the tower.
+  {
+    name: 'shaft-east',
+    at: [9, 0],
+    z: 32.4,
+    aim: [5.25, -0.3, 47],
+    inner: 13,
+    outer: 22,
+    candela: 60000,
+    rangeM: 40,
+  },
+  {
+    name: 'shaft-west',
+    at: [-9, 0],
+    z: 32.4,
+    aim: [-5.3, -0.3, 47],
+    inner: 13,
+    outer: 22,
+    candela: 60000,
+    rangeM: 40,
+  },
+  // Roof and Gull-Olle: one flood on a bracket 1.2 m beyond the cornice on each side.
+  {
+    name: 'roof-north',
+    at: [0, 7.0],
+    z: 58.3,
+    aim: [0, 2.5, 63],
+    inner: 30,
+    outer: 52,
+    candela: 25000,
+    rangeM: 25,
+  },
+  {
+    name: 'roof-south',
+    at: [0, -7.0],
+    z: 58.3,
+    aim: [0, -2.5, 63],
+    inner: 30,
+    outer: 52,
+    candela: 25000,
+    rangeM: 25,
+  },
+  {
+    name: 'roof-east',
+    at: [7.0, 0],
+    z: 58.3,
+    aim: [2.5, 0, 63],
+    inner: 30,
+    outer: 52,
+    candela: 25000,
+    rangeM: 25,
+  },
+  {
+    name: 'roof-west',
+    at: [-7.0, 0],
+    z: 58.3,
+    aim: [-2.5, 0, 63],
+    inner: 30,
+    outer: 52,
+    candela: 25000,
+    rangeM: 25,
+  },
+];

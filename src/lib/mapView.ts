@@ -245,8 +245,11 @@ export function createMappedCity() {
      */
     /** Airport Lighting Phase E1: the airport lights (update per frame from the scene). */
     airport,
-    /** Landmark Phase B2: façade floodlights (scene units) for the lighting controller. */
-    facades: hedvig.floodlights,
+    /**
+     * Landmark façade floodlights (scene units) for the lighting controller: Hedvigs kyrka (B2) and
+     * Rådhuset's tower (B1 part 2).
+     */
+    facades: [...hedvig.floodlights, ...radhuset.floodlights],
     setNightLevel(level: number) {
       details.setPoliceNightLevel(level);
     },

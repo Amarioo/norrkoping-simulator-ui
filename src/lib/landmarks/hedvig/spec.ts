@@ -1,3 +1,5 @@
+import type { Floodlight } from '../floodlights';
+
 /**
  * Hedvigs kyrka, Norrköping (Nicodemus Tessin the Elder, consecrated 1673; renovated 2013–2014),
  * Landmark Phase B2: the dimensions the model and its floodlights are built from.
@@ -204,21 +206,6 @@ export const COLOURS = {
  * intensities chosen for ≈ 50–200 lx on the walls (CIE 94-type guidance for a brick façade in a lit
  * town square). Positions: building frame (u, v, height above the ground there); aim: frame point.
  */
-export interface Floodlight {
-  name: string;
-  at: [number, number];
-  /** Mounting height above the rendered ground, m. */
-  height: number;
-  /** Aim point (u, v, h RH2000). */
-  aim: [number, number, number];
-  /** Beam half-angles, degrees (full intensity inside `inner`, none outside `outer`). */
-  inner: number;
-  outer: number;
-  /** Peak intensity, candela [EST]. */
-  candela: number;
-  /** Range window, m. */
-  rangeM: number;
-}
 export const FLOOD_COLOR_3000K: [number, number, number] = [1.0, 0.72, 0.46];
 export const FLOODLIGHTS: Floodlight[] = [
   // West front: two floods in front of the corner pilasters, washing the front and the bell stage.

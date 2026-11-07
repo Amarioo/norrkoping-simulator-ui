@@ -33,7 +33,7 @@ const setTime = (page: Page, minutes: number) =>
   );
 type Describe = {
   programs: number;
-  facadeLights: { emitters: number; active: number; level: number };
+  facadeLights: { emitters: number; active: number; level: number; names: string[] };
 };
 const describe = (page: Page) =>
   page.evaluate(() =>
@@ -92,7 +92,9 @@ test('Hedvigs kyrka: measured model in the scene, floodlights at night only, pro
   expect(found!.top).toBeCloseTo(lidar.tower.topRH2000, 1);
 
   const day = await describe(page);
-  expect(day.facadeLights.emitters).toBe(8);
+  // Hedvig's eight floodlights among the landmark façade emitters (Rådhuset's tower has its own since
+  // Landmark B1 part 2).
+  expect(day.facadeLights.names.filter((n) => n.startsWith('hedvig-'))).toHaveLength(8);
   expect(day.facadeLights.active).toBe(0);
 
   // Camera west-south-west of the church, at the height of the west front, looking at it.
@@ -168,7 +170,7 @@ test('Hedvigs kyrka: measured model in the scene, floodlights at night only, pro
   await page.waitForTimeout(800);
   await frames(page);
   const night = await describe(page);
-  expect(night.facadeLights.active).toBe(8);
+  expect(night.facadeLights.active).toBe(night.facadeLights.emitters);
   expect(night.facadeLights.level).toBeGreaterThan(0.9);
   expect(night.programs).toBe(dayPrograms);
 

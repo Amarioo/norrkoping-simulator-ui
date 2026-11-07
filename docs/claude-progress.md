@@ -2,6 +2,32 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Landmark Phase B1 part 2 — Rådhuset's tower floodlit at night (2026-11-07) — tested locally and approved by the user (2026-11-07); **not committed**
+
+[Full report](landmark-b1-2/README.md). Worked directly on local `main` (= `origin/main` `39d4c0f`). Backend unchanged.
+**Nothing committed.** Approved by the user 2026-11-07. Board: B1-2 in *Test* until committed and pushed.
+
+- **Evidence:** Commons night photograph of 2017-11-30 from the north bank (CC BY 4.0). It shows the
+  tower above the main roof floodlit in warm gold (shaft, clock, belfry, cornice, roof, Gull-Olle)
+  and the façades below dark. The spire is still lit at dawn in 2019.
+- **Result:** 8 estimated fixtures in `radhuset/spec.ts` `FLOODLIGHTS`:
+  - one on Tyska torget, one on the courtyard block's ridge, two on the north wing's roof, four at
+    the cornice;
+  - ≈ 2200 K;
+  - 54–205 lx on the shaft faces, 374 lx on the roof faces, < 1 lx on the façade below.
+
+  They are façade emitters like Hedvig's, via the new shared `landmarks/floodlights.ts`. Rådhuset's
+  geometry is unchanged (same vertex hash as part 1). With Hedvig the 16 façade slots are full.
+- **Measured (paired vs `39d4c0f`, 5 rounds):** rAF mean −0.02 … +0.03 ms; draw calls +0.
+- **Checks:**
+  - type check: 0 errors;
+  - build: OK;
+  - Vitest: 594/595 (only the known `police.test.ts`); new tests 3/3;
+  - Playwright: 28/28.
+
+  `tests/landmark-hedvig.spec.ts` now counts Hedvig's emitters by name (still 8).
+- **Local only:** `.claude/launch.json` (`b12-main`, `b12-new`), `work/landmark-b1-2/`.
+
 ## Landmark Phase B2 — Hedvigs kyrka, measured, with estimated floodlighting (2026-11-07) — tested locally and approved by the user (2026-11-07), committed (`dc409be`) and pushed to `origin/main`
 
 [Full report](landmark-b2/README.md). Worked directly on local `main` (= `origin/main` `8927fee`). Backend unchanged.

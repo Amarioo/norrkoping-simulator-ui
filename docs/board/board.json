@@ -169,9 +169,30 @@
       "id": "B1-2",
       "epic": "B",
       "title": "Rådhusets fasadbelysning (B1 del 2)",
-      "status": "backlog",
-      "summary": "Del 2 av B1. Ingen dokumentation av belysningen hittad hittills; märks som uppskattning om ingen finns.",
-      "report": "docs/landmark-b1/README.md"
+      "status": "test",
+      "summary": "Del 2 av B1: tornets fasadbelysning. Belagd av ett nattfoto på Commons (2017-11-30): tornet och spiran upplysta i varmgult. Återanvänder strålkastarna från B2.",
+      "report": "docs/landmark-b1-2/README.md",
+      "tasks": [
+        {
+          "text": "Belägg: nattfoto 2017 (tornet upplyst, fasaderna mörka)",
+          "done": true
+        },
+        {
+          "text": "Strålkastare på tornet (8 st, uppskattade)",
+          "done": true
+        },
+        {
+          "text": "Du testade lokalt och godkände (2026-11-07)",
+          "done": true
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-07",
+          "text": "Klar för test. Tornet lyser varmt gyllene på natten ovanför huvudtaket, som på nattfotot från 2017; fasaderna under är mörka. Strålkastarnas placering är uppskattad. Ingen mätbar prestandakostnad. Inget är committat."
+        }
+      ]
     },
     {
       "id": "P2d",

@@ -27,11 +27,15 @@ import {
 import type { TerrainService } from '../../terrain';
 import { cityMap } from '../../mapModel';
 import { Builder, C, L, type P } from '../builder';
+import { toFacadeEmitters } from '../floodlights';
+import type { FacadeEmitter } from '../../lighting/cityLights';
 import {
   BALUSTRADE,
   COLOURS,
   EAVE,
   FACADE,
+  FLOOD_COLOR_WARM,
+  FLOODLIGHTS,
   FRAME,
   GULL_OLLE,
   MIDDLE,
@@ -67,6 +71,14 @@ export function radhusetFrame(terrain: TerrainService) {
   return { origin: [ox, oz] as [number, number], rotation, metres, toFrame, toScene, ground };
 }
 export type RadhusetFrame = ReturnType<typeof radhusetFrame>;
+
+/**
+ * The tower's floodlights (Landmark Phase B1 part 2, spec FLOODLIGHTS) as scene-space façade emitters
+ * for the lighting controller. Not meshes: the model's geometry is unchanged by part 2.
+ */
+export function radhusetFloodlights(frame: RadhusetFrame): FacadeEmitter[] {
+  return toFacadeEmitters(frame, FLOODLIGHTS, FLOOD_COLOR_WARM, 'radhuset-');
+}
 
 /** Wall top of an OSM footprint edge (midpoint in the building frame): which part it belongs to. */
 export function wallTop(u: number, v: number) {
@@ -586,6 +598,7 @@ export function createRadhuset(terrain: TerrainService) {
   return {
     group,
     frame,
+    floodlights: radhusetFloodlights(frame),
     report: { ...report, triangles, meshes: parts.length },
     dispose() {
       owned.forEach((r) => r.dispose());

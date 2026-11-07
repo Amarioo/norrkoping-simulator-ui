@@ -4,6 +4,10 @@ Part 1 (geometry by day) is done. What is not done, not known or only estimated:
 
 ## 1. Part 2: façade lighting (not started)
 
+> **Update 2026-11-07:** done in part 2 ([docs/landmark-b1-2/README.md](../landmark-b1-2/README.md)): a Commons
+> night photograph of 2017 shows the tower floodlit; the fixtures are estimates. The text below is
+> kept as written for part 1.
+
 The roadmap's second step. Nothing in this change lights the town hall: at night it is lit only by
 the street lamps around it, the clock faces darken like the façade (as before), Gull-Olle is dark.
 

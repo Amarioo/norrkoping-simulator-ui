@@ -161,6 +161,10 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   ej påbörjad, ingen dokumentation av belysningen hittad.*
   - Först geometrin (tornet 68 m, förgylld skulptur 4,5 m enligt kommunen), dagsljus. Sedan
     fasadbelysning, märkt som uppskattning om ingen dokumentation finns.
+  - *Del 2 (tornets belysning) genomförd 2026-11-07 direkt på main, testad lokalt och godkänd 2026-11-07, ej committad:
+    [docs/landmark-b1-2/README.md](landmark-b1-2/README.md). Ett nattfoto på Commons (2017) visar tornet
+    upplyst i varmt guld ovanför huvudtaket, fasaderna mörka; strålkastarnas placering och styrka är
+    uppskattade. Ingen mätbar prestandakostnad.*
 - [ ] **B2 Kyrkornas fasadbelysning** — M
   - En kyrka i taget (t.ex. Hedvig, Olai, Matteus, S:t Johannes). Bekräfta att kyrkan faktiskt är
     fasadbelyst innan vi tänder den.

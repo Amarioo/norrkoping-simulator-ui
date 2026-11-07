@@ -28,6 +28,7 @@ import type { TerrainService } from '../../terrain';
 import { cityMap } from '../../mapModel';
 import type { FacadeEmitter } from '../../lighting/cityLights';
 import { Builder, C, L, insidePolygon, type P } from '../builder';
+import { toFacadeEmitters } from '../floodlights';
 import {
   COLOURS,
   EAST_END,
@@ -296,26 +297,7 @@ function paintClock() {
 
 /** The floodlights (spec FLOODLIGHTS) as scene-space façade emitters for the lighting controller. */
 export function hedvigFloodlights(frame: HedvigFrame): FacadeEmitter[] {
-  const m = frame.metres;
-  return FLOODLIGHTS.map((f) => {
-    const [x, z] = frame.toScene(f.at[0], f.at[1]);
-    const y = (frame.ground(f.at[0], f.at[1]) + f.height) / m;
-    const [ax, az] = frame.toScene(f.aim[0], f.aim[1]);
-    const dx = ax - x,
-      dy = f.aim[2] / m - y,
-      dz = az - z,
-      len = Math.hypot(dx, dy, dz);
-    return {
-      name: 'hedvig-' + f.name,
-      position: [x, y, z],
-      aim: [dx / len, dy / len, dz / len],
-      cosInner: Math.cos((f.inner * Math.PI) / 180),
-      cosOuter: Math.cos((f.outer * Math.PI) / 180),
-      candela: f.candela,
-      rangeM: f.rangeM,
-      color: FLOOD_COLOR_3000K,
-    };
-  });
+  return toFacadeEmitters(frame, FLOODLIGHTS, FLOOD_COLOR_3000K, 'hedvig-');
 }
 
 export function createHedvig(terrain: TerrainService) {
@@ -741,7 +723,7 @@ export function createHedvig(terrain: TerrainService) {
       f.at[1] - 0.2,
       f.at[1] + 0.2,
       g - 0.05,
-      g + f.height,
+      g + (f.height ?? 0),
       housing,
     );
   }

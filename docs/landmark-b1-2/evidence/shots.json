@@ -1,0 +1,86 @@
+{
+ "frame": "Rådhuset's building frame (u, v, h RH2000), see src/lib/landmarks/radhuset/spec.ts",
+ "shots": [
+  {
+   "file": "01-night-from-north-bank.png",
+   "time": "20:18",
+   "camera": [
+    -60,
+    200,
+    10
+   ],
+   "target": [
+    0,
+    0,
+    45
+   ],
+   "facadeLights": 16,
+   "programs": 20
+  },
+  {
+   "file": "02-night-tyska-torget.png",
+   "time": "20:18",
+   "camera": [
+    -25,
+    95,
+    22
+   ],
+   "target": [
+    0,
+    -10,
+    36
+   ],
+   "facadeLights": 16,
+   "programs": 20
+  },
+  {
+   "file": "03-night-tower.png",
+   "time": "20:18",
+   "camera": [
+    -40,
+    110,
+    30
+   ],
+   "target": [
+    0,
+    0,
+    52
+   ],
+   "facadeLights": 16,
+   "programs": 20
+  },
+  {
+   "file": "04-night-with-hedvigs-kyrka.png",
+   "time": "20:18",
+   "camera": [
+    -70,
+    140,
+    45
+   ],
+   "target": [
+    20,
+    20,
+    25
+   ],
+   "facadeLights": 16,
+   "programs": 20
+  },
+  {
+   "file": "05-day-tower.png",
+   "time": "12:00",
+   "camera": [
+    -40,
+    110,
+    30
+   ],
+   "target": [
+    0,
+    0,
+    52
+   ],
+   "facadeLights": 0,
+   "programs": 20
+  }
+ ],
+ "errors": []
+}

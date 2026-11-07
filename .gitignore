@@ -128,3 +128,5 @@ work/geodata/
 # Landmark Phase B2 scratch (hook builds, raw runs, LiDAR rebuild). Curated data is in
 # docs/landmark-b2/; reusable tools are in scripts/landmark-b2/.
 /work/landmark-b2/
+# Landmark Phase B1 part 2 scratch (hook builds, raw runs). Curated data is in docs/landmark-b1-2/.
+/work/landmark-b1-2/
