@@ -49,7 +49,9 @@ export interface FixtureRecord {
     | {
         kind: 'bridge';
         segment: { way: number; a: number[]; b: number[]; yA: number; yB: number; t: number };
-      };
+      }
+    /** Phase D2: hung under a fuel-station canopy; `y` = the canopy underside (scene units). */
+    | { kind: 'canopy'; y: number };
   /** Mapped (OSM node) or estimated; method, source and uncertainty: streetlights-provenance.json. */
   placement: 'mapped' | 'estimated';
   /** Canonical registry ID (registry.ts), when the record came through the registry. */
@@ -178,6 +180,15 @@ const SHAPES: Record<string, (h: number, arm: number) => TypeShape> = {
         ),
       )!,
   }),
+  // Phase D2 (estimate): a square LED downlight recessed in a fuel-station canopy. The base is the
+  // canopy underside (mount kind 'canopy'), so the housing sits inside the canopy and only the lens
+  // shows below it.
+  downlight: () => ({
+    armM: 0,
+    lens: [0, -0.05, 0],
+    body: () => at(new BoxGeometry(0.62, 0.08, 0.62), 0, 0.02, 0),
+    lensGeometry: () => at(new PlaneGeometry(0.5, 0.5), 0, -0.035, 0, Math.PI / 2),
+  }),
 };
 const TYPE_SHAPE: Record<string, () => TypeShape> = {
   'street-bracket-8m': () => SHAPES.bracket(8, 1.4),
@@ -186,6 +197,7 @@ const TYPE_SHAPE: Record<string, () => TypeShape> = {
   'entrance-post-4m': () => SHAPES.lantern(4, 0),
   'site-pole-10m': () => SHAPES.sitePole(10, 0.5),
   'yard-mast-18m': () => SHAPES.mast(18, 0),
+  'canopy-downlight': () => SHAPES.downlight(0, 0),
 };
 /** Fixture types the renderer has geometry for (registry validation). */
 export const FIXTURE_TYPES = Object.keys(TYPE_SHAPE);
@@ -198,6 +210,7 @@ export function mountHeight(f: FixtureRecord, terrain: TerrainService) {
       terrain.profileHeight([s.a[0], s.yA, s.a[1]], [s.b[0], s.yB, s.b[1]], s.t) + ROAD_SURFACE
     );
   }
+  if (f.mount.kind === 'canopy') return f.mount.y;
   return terrain.groundHeight(f.x, f.z);
 }
 /** Emitter position (scene units) of a fixture with base height `baseY`. */
@@ -286,6 +299,7 @@ const LOD_SHAPES: Record<string, () => BufferGeometry> = {
       at(new CylinderGeometry(0.14, 0.24, 18 - 0.6, 4, 1, true), 0, (18 - 0.6) / 2, 0),
       at(new BoxGeometry(1.6, 0.5, 1.6), 0, 18 - 0.4, 0),
     ])!,
+  downlight: () => at(new BoxGeometry(0.62, 0.08, 0.62), 0, 0.02, 0),
 };
 function lodBracket(h: number, arm: number) {
   return mergeGeometries([
@@ -306,6 +320,7 @@ const TYPE_LOD: Record<string, keyof typeof LOD_SHAPES> = {
   'entrance-post-4m': 'lantern4',
   'site-pole-10m': 'sitePole10',
   'yard-mast-18m': 'mast18',
+  'canopy-downlight': 'downlight',
 };
 
 /** Side of the square tiles fixtures are bucketed into for gathering (scene units, 200 m). */

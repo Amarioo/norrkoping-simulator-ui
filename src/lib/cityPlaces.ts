@@ -7,6 +7,7 @@ import { cityMap } from './mapModel';
 import { terrain } from './terrain';
 import { RADHUSET_ID } from './landmarks/radhuset/spec';
 import { HEDVIG_ID } from './landmarks/hedvig/spec';
+import { FUEL_REPLACED_IDS } from './fuel/spec';
 
 /** Lowest ground under a mapped building (detailed models replace its OSM walls). */
 const footprint = (id: string) =>
@@ -19,6 +20,7 @@ export const DETAILED_BUILDING_IDS = new Set([
   'way/91908705', // Gamla tennishallen
   RADHUSET_ID, // Rådhuset (Landmark Phase B1, src/lib/landmarks/radhuset/)
   HEDVIG_ID, // Hedvigs kyrka (Landmark Phase B2, src/lib/landmarks/hedvig/)
+  ...FUEL_REPLACED_IDS, // fuel-station canopies (Phase D2, src/lib/fuel/)
   ...data.roofs.map((r) => 'way/' + r.id),
 ]);
 

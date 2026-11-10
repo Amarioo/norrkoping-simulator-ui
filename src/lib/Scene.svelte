@@ -35,6 +35,7 @@
   import type { VehiclePose } from './lighting/vehicleLights';
   import { createSimClock } from './lighting/aircraftLights';
   import { createAircraftLights } from './lighting/aircraftLightsView';
+  import { fuelLightingRegistry } from './fuel/fuelLighting';
   import { perfFlags } from './perf/perfFlags';
   import { installPerfProbe } from './perf/perfProbe';
   let {
@@ -81,9 +82,13 @@
   let l2Set: CompactSet | null = null,
     l2bcSet: CompactSet | null = null,
     l2dSet: CompactSet | null = null;
+  // Phase D2: the fuel-station canopy downlights join every citywide set (not the A1–A3 start set).
+  const fuelRegistry = fuelLightingRegistry(terrain, view.fuel.layouts);
+  const withFuel = (registry: ReturnType<typeof runtimeLightingRegistry>) =>
+    mergeRegistries(registry, fuelRegistry);
   const defaultRegistry = () =>
     l2Set
-      ? cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, l2dSet ?? undefined)
+      ? withFuel(cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, l2dSet ?? undefined))
       : runtimeLightingRegistry(terrain);
   const fetchSet = (url: string) =>
     fetch(url).then((r) => {
@@ -121,7 +126,7 @@
     : Promise.all([fetchSet(l2Url), fetchSet(l2bcUrl), withSites ? fetchSet(l2dUrl) : null])
         .then(([a, bc, d]) => {
           const result = lighting.replaceStreetLighting(
-            cityLightingRegistry(terrain, a, bc, d ?? undefined),
+            withFuel(cityLightingRegistry(terrain, a, bc, d ?? undefined)),
           );
           if (!result.ok) throw new Error(`citywide set rejected at ${result.stage}`);
           l2Set = a;
@@ -175,8 +180,14 @@
         // Phase L2d: the city set without the site-lighting category (streets, paths, squares).
         cityStreets: () =>
           l2Set
-            ? cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined)
+            ? withFuel(cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined))
             : runtimeLightingRegistry(terrain),
+        // Phase D2: the default set without the canopy downlights (= main's set), and those alone.
+        cityNoFuel: () =>
+          l2Set
+            ? cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, l2dSet ?? undefined)
+            : runtimeLightingRegistry(terrain),
+        fuel: () => fuelRegistry,
         // Phase L1: any set in the A1–A3 runtime format (e.g. the stress set) on top of the runtime set.
         runtimePlus: (data: A1Data, identity: CorridorIdentity) =>
           mergeRegistries(

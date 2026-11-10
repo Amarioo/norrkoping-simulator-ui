@@ -1,0 +1,97 @@
+{
+  "phase": "D2",
+  "title": "Fuel stations: measured canopies, estimated islands, dispensers, downlights and generic sign bands",
+  "version": "fuel-d2-v1",
+  "crs": {
+    "horizontal": "EPSG:3006 (SWEREF 99 TM)",
+    "vertical": "RH2000"
+  },
+  "scene": {
+    "transform": "scene = (SWEREF - origin) / (25 * k); x east, z south; y = RH2000 / 25",
+    "origin": {
+      "easting": 569030,
+      "northing": 6494989
+    },
+    "gridScaleFactor": 0.9996584126,
+    "metresPerUnit": 25,
+    "modelFrame": "one group at the scene origin, scale 1/25; local x = scene x * 25 (east), z = scene z * 25 (south), y = RH2000 metres"
+  },
+  "sources": [
+    {
+      "id": "osm-fuel",
+      "what": "32 amenity=fuel features (points/ways, names, brands, operators)",
+      "file": "docs/step62/evidence/fuel-stations.json",
+      "license": "ODbL-1.0",
+      "date": "OSM base 2026-10-23T09:05:06Z",
+      "accuracy": "mapped POIs; not a certified count of active stations"
+    },
+    {
+      "id": "osm-map",
+      "what": "canopy outlines: building=roof (30 in the map), way/99263073 (building:part=roof on the amenity=fuel way) and, by user decision 2026-11-10, way/96575513 (building=yes read as the canopy of Ingo Lindövägen)",
+      "file": "src/lib/data/norrkoping-map.json",
+      "license": "ODbL-1.0",
+      "date": "OSM base 2026-10-16T13:35:36Z",
+      "accuracy": "as mapped, typically 1-2 m"
+    },
+    {
+      "id": "lidar",
+      "what": "canopy top and surrounding ground heights",
+      "dataset": "Lantmäteriet Laserdata NH 2020 (STAC dsm-skoglig-copc, scan area 20C012), 35 local tiles in work/geodata/lantmateriet/",
+      "license": "CC BY 4.0",
+      "date": "2020",
+      "accuracy": "about 0.1 m vertical; nominal 1.2 points/m2"
+    },
+    {
+      "id": "decision",
+      "what": "user decision 2026-11-10: also build OKQ8 Hagebygatan (outline measured from the LiDAR) and Ingo Lindövägen (OSM building=yes read as the canopy)",
+      "date": "2026-11-10"
+    }
+  ],
+  "derived": {
+    "file": "src/lib/data/fuel-canopies.json",
+    "sha256": "474a001c90ebf7ec9461bf73a512638b12623330f3eb3090c00f08a1e1a9227a",
+    "script": "scripts/fuel-d2/canopies_lidar.py",
+    "scriptSha256": "ef48167d04b7135831344c832fc30a738dca054592abd112412874fd53946b41",
+    "tools": {
+      "python": "3.12.14 (codex-runtimes)",
+      "numpy": "2.3.5",
+      "scipy": "1.18.1",
+      "laspy": "2.7.0",
+      "pillow": "13.0.0"
+    },
+    "seed": null,
+    "rebuild": "byte-identical (2026-11-10)",
+    "result": {
+      "stations": 32,
+      "built": 21,
+      "canopyOutlines": 22,
+      "accepted": 21
+    },
+    "lidarOutline": "lidar:node/1107696684 (OKQ8 Hagebygatan): minimum-area rectangle of the flat roofed patch, 445 m2, fill 0.845",
+    "firstVersion": {
+      "sha256": "85ccc9e4d4774be1b5cadd0b23b572150e5be91a88ce0b9c117f000bc2ccb6cf",
+      "built": 19
+    }
+  },
+  "estimates": {
+    "file": "src/lib/fuel/spec.ts",
+    "items": [
+      "fascia depth 0.9 m below the measured top, at most (top above ground - 3.5 m): 0.47 m at OKQ8 Hagebygatan, 0.77 m at Ingo Lindövägen",
+      "generic sign band 0.32 m, neutral white, lit at night (no logos: not licensed)",
+      "pump islands: one per 7.5 m of canopy length, across the canopy, 1.2 m wide, 0.18 m high",
+      "one dispenser (0.5 x 1.0 x 1.85 m) and one column (0.4 m) per island",
+      "downlights: 5 m grid, 1.5 m inset, 1200 cd, 4000 K, 16 m range, radial profile; 239 in total",
+      "night glow: soffit 0.18, sign band and displays 0.85 (x the street lighting's night level)",
+      "switching: with the street lighting, all night"
+    ]
+  },
+  "lighting": {
+    "rollout": "fuel-d2-v1",
+    "dataset": "osm-fuel-d2",
+    "ids": "estimate:fuel-d2-v1:<way/... or lidar:node/...>:s<n>",
+    "support": "canopy-underside (new support kind; y = measured top - fascia depth)",
+    "fixtureType": "canopy-downlight (new)",
+    "occlusion": "16 sectors cut at the nearest OSM building wall within 16 m (canopies excluded)",
+    "count": 239
+  }
+}

@@ -27,6 +27,7 @@ import { layeredGround } from './groundLayers';
 import { createIdrottsparken } from './stadium/idrottsparken';
 import { createRadhuset } from './landmarks/radhuset/radhuset';
 import { createHedvig } from './landmarks/hedvig/hedvig';
+import { createFuelStations } from './fuel/fuelStations';
 import { createRunwayLights } from './airport/runwayLightsView';
 
 export { Batch, fill, strip } from './cityMesh';
@@ -232,6 +233,10 @@ export function createMappedCity() {
   // its floodlights go to the lighting controller as façade emitters.
   const hedvig = createHedvig(terrain);
   group.add(hedvig.group);
+  // Phase D2: fuel-station canopies (replace the OSM roof extrusions), islands, dispensers, columns and
+  // a generic lit sign band; their downlights are street-lighting fixtures (fuel/fuelLighting.ts).
+  const fuel = createFuelStations(terrain);
+  group.add(fuel.group);
   // Airport Lighting Phase E1: ESSP RWY 09/27 approach, runway and taxiway lights (own switch).
   const airport = createRunwayLights(terrain, cityMap.airways, cityMap.meta.metresPerUnit);
   group.add(airport.group);
@@ -250,8 +255,11 @@ export function createMappedCity() {
      * Rådhuset's tower (B1 part 2).
      */
     facades: [...hedvig.floodlights, ...radhuset.floodlights],
+    /** Phase D2: the fuel stations (layouts for the canopy downlights, night glow). */
+    fuel,
     setNightLevel(level: number) {
       details.setPoliceNightLevel(level);
+      fuel.setNightLevel(level);
     },
     /** Materials of the worker-built layers (their meshes arrive after `ready`). */
     layerMaterials: Object.values(materials).map((m) => m.material),
@@ -262,6 +270,7 @@ export function createMappedCity() {
       stadium.dispose();
       radhuset.dispose();
       hedvig.dispose();
+      fuel.dispose();
       airport.dispose();
       details.dispose();
       places.dispose();

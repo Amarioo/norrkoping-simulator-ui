@@ -856,8 +856,17 @@ test('Phase L2a citywide street lighting: loaded at map-ready, lights Söderstad
   // Phase L2d: site lighting (its own category, all estimates) loads with them.
   const site = start.rollouts['lighting-l2d-v1'];
   expect(site.estimated).toBeGreaterThan(3000);
+  // Phase D2: the fuel-station canopy downlights (all estimates) load with them.
+  const fuel = start.rollouts['fuel-d2-v1'];
+  expect(fuel).toEqual({ mapped: 0, estimated: 239 });
   expect(start.fixtures).toBe(
-    273 + start.rollouts['lighting-l2a-v1'].estimated + bc.estimated + bc.mapped + site.estimated + site.mapped,
+    273 +
+      start.rollouts['lighting-l2a-v1'].estimated +
+      bc.estimated +
+      bc.mapped +
+      site.estimated +
+      site.mapped +
+      fuel.estimated,
   );
   expect(start.max).toBeLessThanOrEqual(32);
   const swaps: Awaited<ReturnType<typeof state>>[] = [];

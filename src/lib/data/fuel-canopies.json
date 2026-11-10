@@ -1,0 +1,1014 @@
+{
+ "canopies": [
+  {
+   "accepted": true,
+   "areaM2": 136.5,
+   "canopyCellShare": 0.807,
+   "cells": 114,
+   "clearanceM": 4.27,
+   "groundReturnsBelow": 74,
+   "groundRh2000": 6.14,
+   "groundSamples": 2473,
+   "id": "way/96575513",
+   "outline": "osm building=yes, read as the canopy (user decision 2026-11-10)",
+   "reason": "flat roof over the outline",
+   "returns": 564,
+   "station": "osm:node/247135512",
+   "stationDistanceM": 1.1,
+   "topRh2000": {
+    "p10": 10.35,
+    "p50": 10.41,
+    "p90": 10.73
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 255.4,
+   "canopyCellShare": 0.909,
+   "cells": 219,
+   "clearanceM": 5.3,
+   "groundReturnsBelow": 138,
+   "groundRh2000": 5.35,
+   "groundSamples": 3287,
+   "id": "way/287685618",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 1439,
+   "station": "osm:node/247135767",
+   "stationDistanceM": 0.6,
+   "topRh2000": {
+    "p10": 10.59,
+    "p50": 10.65,
+    "p90": 10.71
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 330.1,
+   "canopyCellShare": 0.634,
+   "cells": 292,
+   "clearanceM": 5.62,
+   "groundReturnsBelow": 33,
+   "groundRh2000": 30.81,
+   "groundSamples": 1129,
+   "id": "way/287687455",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 476,
+   "station": "osm:node/310929394",
+   "stationDistanceM": 12.0,
+   "topRh2000": {
+    "p10": 36.33,
+    "p50": 36.43,
+    "p90": 36.46
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 199.5,
+   "canopyCellShare": 0.686,
+   "cells": 169,
+   "clearanceM": 5.63,
+   "groundReturnsBelow": 174,
+   "groundRh2000": 15.2,
+   "groundSamples": 1374,
+   "id": "way/543365825",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 437,
+   "station": "osm:node/529808045",
+   "stationDistanceM": 33.4,
+   "topRh2000": {
+    "p10": 20.63,
+    "p50": 20.83,
+    "p90": 21.0
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 313.4,
+   "canopyCellShare": 0.911,
+   "cells": 280,
+   "clearanceM": 5.39,
+   "groundReturnsBelow": 125,
+   "groundRh2000": 12.82,
+   "groundSamples": 2560,
+   "id": "way/287685615",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 1207,
+   "station": "osm:node/761744018",
+   "stationDistanceM": 13.1,
+   "topRh2000": {
+    "p10": 18.17,
+    "p50": 18.21,
+    "p90": 18.27
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 322.8,
+   "canopyCellShare": 0.847,
+   "cells": 288,
+   "clearanceM": 5.66,
+   "groundReturnsBelow": 32,
+   "groundRh2000": 40.97,
+   "groundSamples": 1140,
+   "id": "way/287685620",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 496,
+   "station": "osm:node/1069177545",
+   "stationDistanceM": 2.5,
+   "topRh2000": {
+    "p10": 46.57,
+    "p50": 46.63,
+    "p90": 46.69
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 445.1,
+   "canopyCellShare": 0.811,
+   "cells": 403,
+   "clearanceM": 3.97,
+   "groundReturnsBelow": 63,
+   "groundRh2000": 20.14,
+   "groundSamples": 2457,
+   "id": "lidar:node/1107696684",
+   "outline": "LiDAR roof patch, minimum-area rectangle (user decision 2026-11-10)",
+   "patchCells": 376,
+   "reason": "flat roof over the outline",
+   "rectangleFill": 0.845,
+   "returns": 1649,
+   "ringSweref": [
+    [
+     570704.55,
+     6492539.69
+    ],
+    [
+     570723.03,
+     6492517.86
+    ],
+    [
+     570734.91,
+     6492527.91
+    ],
+    [
+     570716.43,
+     6492549.74
+    ]
+   ],
+   "station": "osm:node/1107696684",
+   "stationDistanceM": 14.5,
+   "topRh2000": {
+    "p10": 24.07,
+    "p50": 24.11,
+    "p90": 24.17
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 281.7,
+   "canopyCellShare": 0.931,
+   "cells": 248,
+   "clearanceM": 5.3,
+   "groundReturnsBelow": 29,
+   "groundRh2000": 31.5,
+   "groundSamples": 1271,
+   "id": "way/287685617",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 556,
+   "station": "osm:node/1185864032",
+   "stationDistanceM": 13.7,
+   "topRh2000": {
+    "p10": 36.73,
+    "p50": 36.8,
+    "p90": 36.84
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 64.3,
+   "canopyCellShare": 0.74,
+   "cells": 50,
+   "clearanceM": 5.52,
+   "groundReturnsBelow": 25,
+   "groundRh2000": 17.51,
+   "groundSamples": 800,
+   "id": "way/287691519",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 118,
+   "station": "osm:node/1839935742",
+   "stationDistanceM": 0.2,
+   "topRh2000": {
+    "p10": 23.01,
+    "p50": 23.03,
+    "p90": 23.05
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 104.9,
+   "canopyCellShare": 1.0,
+   "cells": 85,
+   "clearanceM": 5.56,
+   "groundReturnsBelow": 96,
+   "groundRh2000": 4.05,
+   "groundSamples": 2514,
+   "id": "way/194456154",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 555,
+   "station": "osm:node/2010693037",
+   "stationDistanceM": 0.3,
+   "topRh2000": {
+    "p10": 9.49,
+    "p50": 9.61,
+    "p90": 9.89
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 359.4,
+   "canopyCellShare": 0.838,
+   "cells": 321,
+   "clearanceM": 5.07,
+   "groundReturnsBelow": 159,
+   "groundRh2000": 14.92,
+   "groundSamples": 1213,
+   "id": "way/93354349",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 726,
+   "station": "osm:node/2516006120",
+   "stationDistanceM": 35.3,
+   "topRh2000": {
+    "p10": 19.96,
+    "p50": 19.99,
+    "p90": 20.08
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 326.4,
+   "canopyCellShare": 0.976,
+   "cells": 289,
+   "clearanceM": 5.58,
+   "groundReturnsBelow": 35,
+   "groundRh2000": 5.03,
+   "groundSamples": 1425,
+   "id": "way/287687456",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 648,
+   "station": "osm:node/2912579680",
+   "stationDistanceM": 12.3,
+   "topRh2000": {
+    "p10": 10.56,
+    "p50": 10.61,
+    "p90": 10.65
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 185.0,
+   "canopyCellShare": 0.949,
+   "cells": 157,
+   "clearanceM": 4.64,
+   "groundReturnsBelow": 85,
+   "groundRh2000": 13.14,
+   "groundSamples": 1402,
+   "id": "way/93304112",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 398,
+   "station": "osm:node/2912579681",
+   "stationDistanceM": 0.5,
+   "topRh2000": {
+    "p10": 17.77,
+    "p50": 17.78,
+    "p90": 17.92
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 180.4,
+   "canopyCellShare": 0.967,
+   "cells": 151,
+   "clearanceM": 5.97,
+   "groundReturnsBelow": 142,
+   "groundRh2000": 4.04,
+   "groundSamples": 2502,
+   "id": "way/194456157",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 708,
+   "station": "osm:node/2912616288",
+   "stationDistanceM": 0.2,
+   "topRh2000": {
+    "p10": 9.94,
+    "p50": 10.01,
+    "p90": 10.04
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 160.5,
+   "canopyCellShare": 0.82,
+   "cells": 133,
+   "clearanceM": 4.69,
+   "groundReturnsBelow": 28,
+   "groundRh2000": 40.3,
+   "groundSamples": 1326,
+   "id": "way/99263073",
+   "outline": "osm building:part=roof",
+   "reason": "flat roof over the outline",
+   "returns": 302,
+   "station": "osm:way/99263073",
+   "stationDistanceM": 0.1,
+   "topRh2000": {
+    "p10": 44.93,
+    "p50": 44.99,
+    "p90": 45.07
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 181.3,
+   "canopyCellShare": 0.929,
+   "cells": 155,
+   "clearanceM": 5.05,
+   "groundReturnsBelow": 4,
+   "groundRh2000": 6.4,
+   "groundSamples": 1068,
+   "id": "way/287685616",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 333,
+   "station": "osm:way/108229823",
+   "stationDistanceM": 16.0,
+   "topRh2000": {
+    "p10": 11.38,
+    "p50": 11.45,
+    "p90": 11.52
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 201.9,
+   "canopyCellShare": 0.877,
+   "cells": 171,
+   "clearanceM": 5.61,
+   "groundReturnsBelow": 48,
+   "groundRh2000": 5.66,
+   "groundSamples": 1514,
+   "id": "way/108231626",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 388,
+   "station": "osm:way/108231626",
+   "stationDistanceM": 0.0,
+   "topRh2000": {
+    "p10": 11.2,
+    "p50": 11.27,
+    "p90": 11.35
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 146.2,
+   "canopyCellShare": 0.975,
+   "cells": 121,
+   "clearanceM": 5.23,
+   "groundReturnsBelow": 120,
+   "groundRh2000": 38.69,
+   "groundSamples": 1831,
+   "id": "way/287685614",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 641,
+   "station": "osm:way/157911695",
+   "stationDistanceM": 14.1,
+   "topRh2000": {
+    "p10": 43.87,
+    "p50": 43.92,
+    "p90": 44.02
+   }
+  },
+  {
+   "accepted": false,
+   "areaM2": 215.0,
+   "canopyCellShare": 0.245,
+   "cells": 188,
+   "clearanceM": 5.58,
+   "groundReturnsBelow": 44,
+   "groundRh2000": 32.88,
+   "groundSamples": 1143,
+   "id": "way/287685611",
+   "outline": "osm building=roof",
+   "reason": "only 24% of the outline has a roof 3.0–8.5 m above ground",
+   "returns": 137,
+   "station": "osm:way/287685611",
+   "stationDistanceM": 0.0,
+   "topRh2000": {
+    "p10": 38.41,
+    "p50": 38.46,
+    "p90": 38.52
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 277.4,
+   "canopyCellShare": 0.802,
+   "cells": 243,
+   "clearanceM": 5.24,
+   "groundReturnsBelow": 43,
+   "groundRh2000": 31.58,
+   "groundSamples": 999,
+   "id": "way/287685621",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 433,
+   "station": "osm:way/287685623",
+   "stationDistanceM": 13.8,
+   "topRh2000": {
+    "p10": 36.64,
+    "p50": 36.82,
+    "p90": 37.22
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 125.8,
+   "canopyCellShare": 0.654,
+   "cells": 104,
+   "clearanceM": 5.59,
+   "groundReturnsBelow": 12,
+   "groundRh2000": 16.5,
+   "groundSamples": 981,
+   "id": "way/287690914",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 158,
+   "station": "osm:way/287690914",
+   "stationDistanceM": 0.0,
+   "topRh2000": {
+    "p10": 22.06,
+    "p50": 22.09,
+    "p90": 22.21
+   }
+  },
+  {
+   "accepted": true,
+   "areaM2": 57.3,
+   "canopyCellShare": 0.907,
+   "cells": 43,
+   "clearanceM": 5.5,
+   "groundReturnsBelow": 24,
+   "groundRh2000": 13.9,
+   "groundSamples": 766,
+   "id": "way/287690916",
+   "outline": "osm building=roof",
+   "reason": "flat roof over the outline",
+   "returns": 105,
+   "station": "osm:way/287690916",
+   "stationDistanceM": 0.0,
+   "topRh2000": {
+    "p10": 19.36,
+    "p50": 19.4,
+    "p90": 19.42
+   }
+  }
+ ],
+ "meta": {
+  "crs": "EPSG:3006",
+  "lidarTiles": 35,
+  "parameters": {
+   "associateM": 60.0,
+   "clearanceM": [
+    3.0,
+    8.5
+   ],
+   "groundRingM": [
+    1.0,
+    10.0
+   ],
+   "insetM": 0.5,
+   "lidarPatch": {
+    "maxDistanceM": 25.0,
+    "minCells": 60,
+    "minFill": 0.75
+   },
+   "maxSpreadM": 0.8,
+   "minCover": 0.5
+  },
+  "phase": "D2",
+  "script": "scripts/fuel-d2/canopies_lidar.py",
+  "sources": [
+   {
+    "dataset": "docs/step62/evidence/fuel-stations.json",
+    "id": "osm-fuel",
+    "license": "ODbL-1.0",
+    "osmBase": "2026-10-23T09:05:06Z"
+   },
+   {
+    "dataset": "src/lib/data/norrkoping-map.json",
+    "id": "osm-map",
+    "license": "ODbL-1.0",
+    "osmBase": "2026-10-16T13:35:36Z"
+   },
+   {
+    "dataset": "user decision 2026-11-10: also build OKQ8 Hagebygatan and Ingo Lindövägen from the LiDAR",
+    "id": "decision",
+    "license": "-",
+    "osmBase": "-"
+   },
+   {
+    "acquired": "2020",
+    "dataset": "Lantmäteriet Laserdata NH 2020 (dsm-skoglig-copc, scan area 20C012)",
+    "id": "lidar",
+    "license": "CC BY 4.0"
+   }
+  ],
+  "userDecisions": {
+   "date": "2026-11-10",
+   "interpreted": {
+    "osm:node/247135512": "way/96575513"
+   },
+   "lidarOutline": {
+    "osm:node/1107696684": "lidar:node/1107696684"
+   }
+  },
+  "version": "fuel-d2-v1",
+  "verticalDatum": "RH2000"
+ },
+ "stations": [
+  {
+   "brand": "TRB",
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    570571.4,
+    6494300.6
+   ],
+   "id": "osm:node/247135227",
+   "lidarCandidate": {
+    "areaM2": 34,
+    "distanceM": 13.5,
+    "heightM": 4.05
+   },
+   "name": "TRB",
+   "operator": "Alltransport",
+   "reason": "no canopy outline in OSM near the station; nearest flat roofed LiDAR patch recorded, not built"
+  },
+  {
+   "brand": "Preem",
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    570575.0,
+    6494134.7
+   ],
+   "id": "osm:node/247135234",
+   "lidarCandidate": {
+    "areaM2": 46,
+    "distanceM": 38.6,
+    "heightM": 3.94
+   },
+   "name": "Preem - Norrköping, Trb",
+   "operator": "Preem",
+   "reason": "no canopy outline in OSM near the station; nearest flat roofed LiDAR patch recorded, not built"
+  },
+  {
+   "brand": "Preem",
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    570152.9,
+    6497679.8
+   ],
+   "id": "osm:node/247135416",
+   "lidarCandidate": null,
+   "name": "Preem - Norrköping,Händelö",
+   "operator": "Preem",
+   "reason": "no canopy outline in OSM near the station; no flat roofed LiDAR patch nearby"
+  },
+  {
+   "brand": "St1",
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    567997.9,
+    6495930.6
+   ],
+   "id": "osm:node/247135502",
+   "lidarCandidate": null,
+   "name": "St1 Norrköping Stockholmsvägen",
+   "operator": "St1",
+   "reason": "no canopy outline in OSM near the station; no flat roofed LiDAR patch nearby"
+  },
+  {
+   "brand": null,
+   "built": true,
+   "canopies": [
+    "way/96575513"
+   ],
+   "coordinates": [
+    570669.3,
+    6495184.9
+   ],
+   "id": "osm:node/247135512",
+   "name": "Ingo Norrköping, Lindövägen",
+   "operator": "Ingo"
+  },
+  {
+   "brand": "Tanka",
+   "built": true,
+   "canopies": [
+    "way/287685618"
+   ],
+   "coordinates": [
+    570815.7,
+    6494810.3
+   ],
+   "id": "osm:node/247135767",
+   "name": "Tanka Norrköping",
+   "operator": "OKQ8"
+  },
+  {
+   "brand": "St1",
+   "built": true,
+   "canopies": [
+    "way/287687455"
+   ],
+   "coordinates": [
+    567227.3,
+    6495604.9
+   ],
+   "id": "osm:node/310929394",
+   "name": "St1",
+   "operator": "St1"
+  },
+  {
+   "brand": "Circle K",
+   "built": true,
+   "canopies": [
+    "way/543365825"
+   ],
+   "coordinates": [
+    567805.5,
+    6496421.7
+   ],
+   "id": "osm:node/529808045",
+   "name": "Circle K",
+   "operator": null
+  },
+  {
+   "brand": "Circle K",
+   "built": true,
+   "canopies": [
+    "way/287685615"
+   ],
+   "coordinates": [
+    567460.5,
+    6498087.2
+   ],
+   "id": "osm:node/761744018",
+   "name": "Circle K",
+   "operator": null
+  },
+  {
+   "brand": "INGO",
+   "built": true,
+   "canopies": [
+    "way/287685620"
+   ],
+   "coordinates": [
+    566200.5,
+    6496828.5
+   ],
+   "id": "osm:node/1069177545",
+   "name": "INGO",
+   "operator": "INGO"
+  },
+  {
+   "brand": "OKQ8",
+   "built": true,
+   "canopies": [
+    "lidar:node/1107696684"
+   ],
+   "coordinates": [
+    570728.1,
+    6492545.6
+   ],
+   "id": "osm:node/1107696684",
+   "name": "OKQ8 Hagebygatan",
+   "operator": "OKQ8"
+  },
+  {
+   "brand": null,
+   "built": true,
+   "canopies": [
+    "way/287685617"
+   ],
+   "coordinates": [
+    568686.9,
+    6493511.6
+   ],
+   "id": "osm:node/1185864032",
+   "name": "CircleK Gamla Övägen",
+   "operator": "CircleK"
+  },
+  {
+   "brand": null,
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    565708.0,
+    6493879.3
+   ],
+   "id": "osm:node/1376659170",
+   "lidarCandidate": null,
+   "name": "Gasolfyllarna",
+   "operator": null,
+   "reason": "no canopy outline in OSM near the station; no flat roofed LiDAR patch nearby"
+  },
+  {
+   "brand": "St1",
+   "built": true,
+   "canopies": [
+    "way/287691519"
+   ],
+   "coordinates": [
+    567102.8,
+    6497901.9
+   ],
+   "id": "osm:node/1839935742",
+   "name": "St1 Norrköping Koppargatan",
+   "operator": "St1"
+  },
+  {
+   "brand": "Qstar",
+   "built": true,
+   "canopies": [
+    "way/194456154"
+   ],
+   "coordinates": [
+    568961.0,
+    6496438.5
+   ],
+   "id": "osm:node/2010693037",
+   "name": "Qstar Norrköping Norra",
+   "operator": "Qstar Försäljning"
+  },
+  {
+   "brand": "OKQ8",
+   "built": true,
+   "canopies": [
+    "way/93354349"
+   ],
+   "coordinates": [
+    567822.0,
+    6496275.3
+   ],
+   "id": "osm:node/2516006120",
+   "name": "OKQ8 Rondellen",
+   "operator": "OKQ8"
+  },
+  {
+   "brand": "Svensk Biogas",
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    570368.3,
+    6494518.4
+   ],
+   "id": "osm:node/2912562712",
+   "lidarCandidate": null,
+   "name": "CNG Norrköping syd Eon",
+   "operator": "Svensk Biogas",
+   "reason": "no canopy outline in OSM near the station; no flat roofed LiDAR patch nearby"
+  },
+  {
+   "brand": "St1",
+   "built": true,
+   "canopies": [
+    "way/287687456"
+   ],
+   "coordinates": [
+    568249.6,
+    6496757.6
+   ],
+   "id": "osm:node/2912579680",
+   "name": "St1 Norrköping Boktryckargatan",
+   "operator": "St1"
+  },
+  {
+   "brand": "St1",
+   "built": true,
+   "canopies": [
+    "way/93304112"
+   ],
+   "coordinates": [
+    568203.2,
+    6495690.2
+   ],
+   "id": "osm:node/2912579681",
+   "name": "St1 Norrköping Stockholmsvägen 10",
+   "operator": "St1"
+  },
+  {
+   "brand": "Preem",
+   "built": true,
+   "canopies": [
+    "way/194456157"
+   ],
+   "coordinates": [
+    569003.3,
+    6496398.0
+   ],
+   "id": "osm:node/2912616288",
+   "name": "Preem Norrköping, Spårgatan",
+   "operator": "Preem"
+  },
+  {
+   "brand": null,
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    571463.0,
+    6497521.8
+   ],
+   "id": "osm:node/6518761186",
+   "lidarCandidate": null,
+   "name": "E85 AgroEtanol",
+   "operator": "Lantmännen",
+   "reason": "no canopy outline in OSM near the station; no flat roofed LiDAR patch nearby"
+  },
+  {
+   "brand": null,
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    568098.0,
+    6501056.0
+   ],
+   "id": "osm:node/10159592470",
+   "lidarCandidate": null,
+   "name": null,
+   "operator": null,
+   "reason": "no canopy outline in OSM near the station; no flat roofed LiDAR patch nearby"
+  },
+  {
+   "brand": null,
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    568006.5,
+    6500995.3
+   ],
+   "id": "osm:node/13625640176",
+   "lidarCandidate": {
+    "areaM2": 36,
+    "distanceM": 60.8,
+    "heightM": 4.49
+   },
+   "name": null,
+   "operator": null,
+   "reason": "no canopy outline in OSM near the station; nearest flat roofed LiDAR patch recorded, not built"
+  },
+  {
+   "brand": null,
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    567965.7,
+    6501005.7
+   ],
+   "id": "osm:node/13625640177",
+   "lidarCandidate": null,
+   "name": null,
+   "operator": null,
+   "reason": "no canopy outline in OSM near the station; no flat roofed LiDAR patch nearby"
+  },
+  {
+   "brand": null,
+   "built": true,
+   "canopies": [
+    "way/99263073"
+   ],
+   "coordinates": [
+    567584.2,
+    6493739.5
+   ],
+   "id": "osm:way/99263073",
+   "name": "Ingo Norrköping, Vagngatan",
+   "operator": null
+  },
+  {
+   "brand": "Circle K",
+   "built": true,
+   "canopies": [
+    "way/287685616"
+   ],
+   "coordinates": [
+    571105.7,
+    6493940.0
+   ],
+   "id": "osm:way/108229823",
+   "name": "Circle K",
+   "operator": null
+  },
+  {
+   "brand": "Qstar",
+   "built": true,
+   "canopies": [
+    "way/108231626"
+   ],
+   "coordinates": [
+    571095.1,
+    6494098.7
+   ],
+   "id": "osm:way/108231626",
+   "name": "Qstar Norrköping Risängen",
+   "operator": "Qstar"
+  },
+  {
+   "brand": "OKQ8",
+   "built": true,
+   "canopies": [
+    "way/287685614"
+   ],
+   "coordinates": [
+    567500.8,
+    6493692.7
+   ],
+   "id": "osm:way/157911695",
+   "name": "OKQ8 Skarphagsleden",
+   "operator": "OKQ8"
+  },
+  {
+   "brand": "OKQ8",
+   "built": false,
+   "canopies": [],
+   "coordinates": [
+    565954.1,
+    6493954.4
+   ],
+   "id": "osm:way/287685611",
+   "lidarCandidate": {
+    "areaM2": 27,
+    "distanceM": 6.2,
+    "heightM": 5.48
+   },
+   "name": "OKQ8 Moa Martinssons gata",
+   "operator": "OKQ8",
+   "reason": "no canopy outline in OSM near the station; nearest flat roofed LiDAR patch recorded, not built"
+  },
+  {
+   "brand": "OKQ8",
+   "built": true,
+   "canopies": [
+    "way/287685621"
+   ],
+   "coordinates": [
+    562807.8,
+    6492524.3
+   ],
+   "id": "osm:way/287685623",
+   "name": "OKQ8 Skärblackavägen",
+   "operator": "OKQ8"
+  },
+  {
+   "brand": "Preem",
+   "built": true,
+   "canopies": [
+    "way/287690914"
+   ],
+   "coordinates": [
+    567305.9,
+    6497431.0
+   ],
+   "id": "osm:way/287690914",
+   "name": "Preem Norrköping, Ingelsta",
+   "operator": "Preem"
+  },
+  {
+   "brand": "Ingo",
+   "built": true,
+   "canopies": [
+    "way/287690916"
+   ],
+   "coordinates": [
+    570534.3,
+    6493220.7
+   ],
+   "id": "osm:way/287690916",
+   "name": "Ingo Norrköping, Hageby Centrum",
+   "operator": "Ingo"
+  }
+ ]
+}

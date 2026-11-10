@@ -188,6 +188,11 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
     (bröstning 49,35 m RH2000, 8,2 m lägre än förut); emblemet (rättad storlek) och de tända fönstren
     följer med.*
 - [ ] **D2 Bensinstationer** — M
+  - *Genomförd 2026-11-10 direkt på main, godkänd av dig 2026-11-10 med de rekommenderade besluten, ännu inte committad: [docs/fuel-d2/README.md](fuel-d2/README.md).
+    21 av 32 stationer har fått tak på uppmätt höjd (laserdata 2020, 4,0–6,0 m) med uppskattade pumpöar, pumpar,
+    pelare, en neutral skyltlist och 239 takspotlights (≈ 70–180 lux på natten). OKQ8 Hagebygatan och Ingo Lindövägen
+    lades till på ditt beslut (taken tolkade ur laserdata). De 11 utan bekräftat tak byggs inte. Ersätter de 13 m höga
+    lådor som taken ritades som förut.*
   - 32 OSM-objekt (`docs/step62/fuel-stations.md`). Tak, pumpar, belysning under taket, generiska
     skyltar (operatörernas logotyper är inte licensierade).
 

@@ -235,6 +235,8 @@ describe('geographic placement rules', () => {
       const l = lighting.lamps[i];
       if (f.mount.kind === 'ground') expect(l.baseY).toBe(terrain.groundHeight(f.x, f.z));
       else {
+        // Only ground and bridge mounts exist in this set (Phase D2 added canopy mounts elsewhere).
+        if (f.mount.kind !== 'bridge') throw new Error(`unexpected mount ${f.mount.kind}`);
         const s = f.mount.segment;
         expect(l.baseY).toBeCloseTo(
           terrain.profileHeight([s.a[0], s.yA, s.a[1]], [s.b[0], s.yB, s.b[1]], s.t) + ROAD_SURFACE,

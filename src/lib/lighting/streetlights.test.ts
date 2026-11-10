@@ -151,6 +151,8 @@ describe('pilot fixtures: clearances and mounting', () => {
       const base = lamps[i].baseY;
       if (f.mount.kind === 'ground') expect(base).toBeCloseTo(terrain.groundHeight(f.x, f.z), 9);
       else {
+        // Only ground and bridge mounts exist in this set (Phase D2 added canopy mounts elsewhere).
+        if (f.mount.kind !== 'bridge') throw new Error(`unexpected mount ${f.mount.kind}`);
         const s = f.mount.segment;
         const road = cityMap.roads.find(
           (r) => r.way === s.way && r.a[0] === s.a[0] && r.a[1] === s.a[1],

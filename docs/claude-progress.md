@@ -2,6 +2,47 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Phase D2 — fuel stations: measured canopies, estimated pumps and canopy lighting (2026-11-10) — approved by the user (2026-11-10) with the recommended decisions; not committed yet
+
+[Full report](fuel-d2/README.md). Worked directly on local `main` (= `origin/main` `7447e9f`). Backend unchanged.
+Approved by the user 2026-11-10 with the recommended decisions. **Nothing is committed yet.** Board: D2 in *Test* until it is committed.
+
+- **Result:**
+  - 21 of 32 OSM fuel stations have a canopy. The top height comes from the LiDAR 2020 (3.97–5.97 m
+    above ground, flat within 0.13 m, median p90 − p10).
+  - The outlines come from OSM `building=roof` (18) and `building:part=roof` (1). Two more were
+    added after the first report, at the user's request (2026-11-10):
+    - Ingo Lindövägen: an OSM `building=yes` read as the canopy.
+    - OKQ8 Hagebygatan: the outline measured from the LiDAR as a rectangle (`lidar:node/1107696684`,
+      `ringSweref`).
+  - The canopies replace the 13 m hipped OSM blocks the city mesh drew before
+    (`FUEL_REPLACED_IDS` in `DETAILED_BUILDING_IDS`).
+  - Estimated parts: a 0.9 m fascia (shallower on the two low canopies, so the underside stays
+    ≥ 3.5 m up), 48 islands with dispensers and columns, a neutral lit sign band (no logos, not
+    licensed), and 239 downlights (1 200 cd, 4 000 K, 73–180 lx under the lamps).
+  - Not built (11): stations with no canopy found, and OKQ8 Moa, whose outline is only 24 % roofed in
+    the 2020 LiDAR.
+- **How:**
+  - The script `scripts/fuel-d2/canopies_lidar.py` produces `src/lib/data/fuel-canopies.json`
+    (byte-identical rebuild).
+  - `src/lib/fuel/`: `spec`, `layout`, `fuelStations` (3 merged meshes) and `fuelLighting`.
+  - The downlights are a street-lighting rollout, `fuel-d2-v1`, with a new support kind
+    `canopy-underside` and a new fixture type `canopy-downlight`. They join every citywide set. New
+    hooks: `registries.cityNoFuel()` and `registries.fuel()`.
+- **Measured (paired vs `7447e9f`, 5 rounds, final code):** rAF mean medians −0.25 … +0.09 ms; the
+  overview is +0.05 ms in every round; +3–4 draw calls; no frame over 16.7 ms; 20 programs.
+- **Checks:**
+  - type check: 0 errors;
+  - build: OK, byte-identical twice;
+  - Vitest: 603/604 (only the known `police.test.ts`); new tests 9/9;
+  - Playwright: 29/29 on the final code. `tests/lighting.spec.ts` (L2a) now counts the 239 downlights in the
+    default set and asserts that number exactly.
+- **Decisions (user, 2026-11-10: the recommendations):** build nothing at the 11 remaining stations; measure the station
+  buildings (13 m default) in a follow-up; no price pylons; lights all night at 4 000 K.
+- **Local only:** `.claude/launch.json` (`d2-main` 5341, `d2-new` 5342, `d2-main-dev` 5343), and
+  `work/fuel-d2/` (hook builds, raw runs, logs, LiDAR rebuilds). The `main` worktree used for
+  measuring was removed.
+
 ## Landmark Phase B1 part 2 — Rådhuset's tower floodlit at night (2026-11-07) — tested locally and approved by the user (2026-11-07), committed (`700c8be`) and pushed to `origin/main`
 
 [Full report](landmark-b1-2/README.md). Worked directly on local `main` (= `origin/main` `39d4c0f`). Backend unchanged.

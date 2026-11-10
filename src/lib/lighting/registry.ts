@@ -61,6 +61,13 @@ export type Support =
       status: 'derived';
       /** Map road segment of the deck (scene units, network reference heights) and station t. */
       segment: { way: number; a: number[]; b: number[]; yA: number; yB: number; t: number };
+    }
+  | {
+      /** Phase D2: a downlight in a fuel-station canopy; `y` = canopy underside (scene units). */
+      kind: 'canopy-underside';
+      surface: 'fuel-canopy-underside';
+      status: 'derived';
+      y: number;
     };
 export interface RegistryFixture {
   id: string;
@@ -85,7 +92,7 @@ export interface RegistryFixture {
     script: string;
     version: string;
     seed: null;
-    method: 'osm-node' | 'lit-way-station' | 'pilot-site';
+    method: 'osm-node' | 'lit-way-station' | 'pilot-site' | 'canopy-grid';
     station: number | null;
   };
   position: {
@@ -142,7 +149,8 @@ export interface PilotFixture {
     | {
         kind: 'bridge';
         segment: { way: number; a: number[]; b: number[]; yA: number; yB: number; t: number };
-      };
+      }
+    | { kind: 'canopy'; y: number };
   placement: 'mapped' | 'estimated';
   heightM: number;
   cct: number;
@@ -293,7 +301,9 @@ export function toPilotFixture(r: RegistryFixture): PilotFixture & { canonicalId
     mount:
       r.support.kind === 'bridge-deck'
         ? { kind: 'bridge', segment: r.support.segment }
-        : { kind: 'ground' },
+        : r.support.kind === 'canopy-underside'
+          ? { kind: 'canopy', y: r.support.y }
+          : { kind: 'ground' },
     placement: r.placement,
     heightM: r.mountingHeightM.value,
     cct: r.photometry.cctK,
@@ -430,6 +440,8 @@ export function validateRegistry(
       )
         err(id, 'support.segment', 'invalid bridge-deck segment');
       else if (g.t < 0 || g.t > 1) err(id, 'support.segment', `station t=${g.t} outside [0, 1]`);
+    } else if (s?.kind === 'canopy-underside') {
+      if (!finite(s.y)) err(id, 'support.y', 'non-finite canopy underside');
     } else if (s?.kind !== 'ground') err(id, 'support', 'unknown support surface');
     // Physical parameters.
     const h = r.mountingHeightM?.value;
