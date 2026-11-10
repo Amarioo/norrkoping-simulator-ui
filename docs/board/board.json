@@ -94,68 +94,6 @@
   ],
   "stories": [
     {
-      "id": "D2",
-      "epic": "D",
-      "title": "Bensinstationer",
-      "status": "test",
-      "size": "M",
-      "summary": "32 OSM-objekt (docs/step62/fuel-stations.md).",
-      "report": "docs/fuel-d2/README.md",
-      "section": "Spår D",
-      "tasks": [
-        {
-          "text": "Tak över pumparna uppmätta ur laserdata (21 av 32 stationer)",
-          "done": true
-        },
-        {
-          "text": "Hagebygatan och Lindövägen byggda ur laserdata (ditt beslut 2026-11-10)",
-          "done": true
-        },
-        {
-          "text": "Pumpöar, pumpar och pelare (uppskattade)",
-          "done": true
-        },
-        {
-          "text": "Belysning under taket (239 uppskattade takspotlights)",
-          "done": true
-        },
-        {
-          "text": "Generiska skyltar: neutral lysande list, inga logotyper (ej licensierade)",
-          "done": true
-        },
-        {
-          "text": "Du testade och godkände (2026-11-10)",
-          "done": true
-        },
-        {
-          "text": "Beslut: rekommendationerna (11 stationer byggs inte, stationshusen i uppföljning, inga prisskyltar, ljus hela natten 4 000 K)",
-          "done": true
-        }
-      ],
-      "comments": [
-        {
-          "author": "claude",
-          "date": "2026-11-10",
-          "text": "Påbörjad. Taken över pumparna mäts ur laserdata (19 av 32 stationer har ett tak i OSM som laserdata bekräftar); öar, pumpar, takets lampor och en neutral skyltlist är uppskattningar. Stationer utan tak i OSM byggs inte."
-        },
-        {
-          "author": "claude",
-          "date": "2026-11-10",
-          "text": "Klar för test. 19 stationer har fått tunna tak på uppmätt höjd (4,6–6,0 m) i stället för de 13 m höga lådor som ritades förut, med uppskattade pumpöar, pumpar, pelare, en neutral lysande skyltlist och 207 takspotlights (ca 70–150 lux på natten). 13 stationer utan bekräftat tak byggs inte. Ingen mätbar prestandakostnad. Inget är committat."
-        },
-        {
-          "author": "claude",
-          "date": "2026-11-10",
-          "text": "Taken vid OKQ8 Hagebygatan och Ingo Lindövägen är byggda ur laserdata som du bad om. Hagebygatan: konturen uppmätt (28,6 × 15,6 m, taket 4,0 m högt). Lindövägen: OSM-huset tolkat som tak (4,3 m). Båda är tolkningar och märkta så; de är låga, så takkanten är uppskattad grundare. Nu 21 stationer och 239 lampor, ingen kostnad som märks. Inget är committat."
-        },
-        {
-          "author": "claude",
-          "date": "2026-11-10",
-          "text": "Godkänd av dig med de rekommenderade besluten. Inte committad ännu; kortet flyttas till Klart när det är committat och pushat."
-        }
-      ]
-    },
-    {
       "id": "F2",
       "epic": "F",
       "title": "Spårvagnar och tåg",
@@ -686,6 +624,75 @@
       ],
       "date": "2026-11-07",
       "outcome": "Rådhustornet upplyst på natten som på nattfotot 2017 (tornkropp, klocka, klockvåning, tak och Gull-Olle i varmt guld, fasaderna mörka); 8 uppskattade strålkastare, ingen mätbar prestandakostnad; godkänd, committad (700c8be) och pushad."
+    },
+    {
+      "id": "D2",
+      "epic": "D",
+      "title": "Bensinstationer",
+      "status": "done",
+      "size": "M",
+      "summary": "32 OSM-objekt (docs/step62/fuel-stations.md).",
+      "report": "docs/fuel-d2/README.md",
+      "section": "Spår D",
+      "tasks": [
+        {
+          "text": "Tak över pumparna uppmätta ur laserdata (21 av 32 stationer)",
+          "done": true
+        },
+        {
+          "text": "Hagebygatan och Lindövägen byggda ur laserdata (ditt beslut 2026-11-10)",
+          "done": true
+        },
+        {
+          "text": "Pumpöar, pumpar och pelare (uppskattade)",
+          "done": true
+        },
+        {
+          "text": "Belysning under taket (239 uppskattade takspotlights)",
+          "done": true
+        },
+        {
+          "text": "Generiska skyltar: neutral lysande list, inga logotyper (ej licensierade)",
+          "done": true
+        },
+        {
+          "text": "Du testade och godkände (2026-11-10)",
+          "done": true
+        },
+        {
+          "text": "Beslut: rekommendationerna (11 stationer byggs inte, stationshusen i uppföljning, inga prisskyltar, ljus hela natten 4 000 K)",
+          "done": true
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-10",
+          "text": "Påbörjad. Taken över pumparna mäts ur laserdata (19 av 32 stationer har ett tak i OSM som laserdata bekräftar); öar, pumpar, takets lampor och en neutral skyltlist är uppskattningar. Stationer utan tak i OSM byggs inte."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-10",
+          "text": "Klar för test. 19 stationer har fått tunna tak på uppmätt höjd (4,6–6,0 m) i stället för de 13 m höga lådor som ritades förut, med uppskattade pumpöar, pumpar, pelare, en neutral lysande skyltlist och 207 takspotlights (ca 70–150 lux på natten). 13 stationer utan bekräftat tak byggs inte. Ingen mätbar prestandakostnad. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-10",
+          "text": "Taken vid OKQ8 Hagebygatan och Ingo Lindövägen är byggda ur laserdata som du bad om. Hagebygatan: konturen uppmätt (28,6 × 15,6 m, taket 4,0 m högt). Lindövägen: OSM-huset tolkat som tak (4,3 m). Båda är tolkningar och märkta så; de är låga, så takkanten är uppskattad grundare. Nu 21 stationer och 239 lampor, ingen kostnad som märks. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-10",
+          "text": "Godkänd av dig med de rekommenderade besluten. Inte committad ännu; kortet flyttas till Klart när det är committat och pushat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-10",
+          "text": "Committad (dbb1289) och pushad till origin/main."
+        }
+      ],
+      "date": "2026-11-10",
+      "outcome": "21 av 32 bensinstationer har tak på uppmätt höjd (laserdata 2020, 4,0–6,0 m) i stället för 13 m höga lådor, med uppskattade pumpöar, pumpar, pelare, neutral skyltlist och 239 takspotlights (ca 70–180 lux på natten); Hagebygatan och Lindövägen tolkade ur laserdata på ditt beslut; godkänd, committad (dbb1289) och pushad."
     }
   ]
 }

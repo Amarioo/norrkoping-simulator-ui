@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Phase D2 — fuel stations: measured canopies, estimated pumps and canopy lighting (2026-11-10) — approved by the user (2026-11-10) with the recommended decisions; not committed yet
+## Phase D2 — fuel stations: measured canopies, estimated pumps and canopy lighting (2026-11-10) — approved by the user (2026-11-10) with the recommended decisions, committed (`dbb1289`) and pushed to `origin/main`
 
 [Full report](fuel-d2/README.md). Worked directly on local `main` (= `origin/main` `7447e9f`). Backend unchanged.
-Approved by the user 2026-11-10 with the recommended decisions. **Nothing is committed yet.** Board: D2 in *Test* until it is committed.
+Approved by the user 2026-11-10 with the recommended decisions; **committed (`dbb1289`) and pushed to `origin/main`** on the user's request. Board: D2 in *Done*.
 
 - **Result:**
   - 21 of 32 OSM fuel stations have a canopy. The top height comes from the LiDAR 2020 (3.97–5.97 m

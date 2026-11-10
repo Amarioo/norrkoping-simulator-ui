@@ -1,7 +1,8 @@
 # Phase D2 — fuel stations: measured canopies, estimated pumps and canopy lighting (2026-11-10)
 
 Worked directly on local `main` (= `origin/main` `7447e9f`). Backend unchanged. **Approved by the
-user on 2026-11-10 with the recommended decisions below; not committed yet.** Roadmap track D, step D2.
+user on 2026-11-10 with the recommended decisions below; committed (`dbb1289`) and pushed to
+`origin/main`.** Roadmap track D, step D2.
 
 ## Verdict
 
