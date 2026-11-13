@@ -1,0 +1,1037 @@
+{
+  "shots": [
+    {
+      "file": "01-before-loop-top.png",
+      "time": "21:30",
+      "lighting": "no-c2",
+      "sweref": {
+        "cam": [
+          569450,
+          6492690,
+          900
+        ],
+        "target": [
+          569450,
+          6492700,
+          0
+        ]
+      },
+      "camera": [
+        16.805740629246618,
+        38.11413350725062,
+        91.99142311104279
+      ],
+      "target": [
+        16.805740629246618,
+        2.1105415820520443,
+        91.59128642939407
+      ],
+      "programs": 20,
+      "fixtures": 26088,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 0,
+        "scheduled": 43,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "02-before-loop-from-south.png",
+      "time": "21:30",
+      "lighting": "no-c2",
+      "sweref": {
+        "cam": [
+          569450,
+          6491900,
+          300
+        ],
+        "target": [
+          569400,
+          6492650,
+          10
+        ]
+      },
+      "camera": [
+        16.805740629246618,
+        13.429993234266814,
+        123.60222096129239
+      ],
+      "target": [
+        14.805057221002972,
+        2.40862846922486,
+        93.5919698376377
+      ],
+      "programs": 20,
+      "fixtures": 26088,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 0,
+        "scheduled": 43,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "03-before-west-leg-above.png",
+      "time": "21:30",
+      "lighting": "no-c2",
+      "sweref": {
+        "cam": [
+          569200,
+          6492480,
+          60
+        ],
+        "target": [
+          569140,
+          6492700,
+          2
+        ]
+      },
+      "camera": [
+        6.8023235880283925,
+        4.153073489487608,
+        100.3942934256661
+      ],
+      "target": [
+        4.401503498136019,
+        1.6795057441307881,
+        91.59128642939407
+      ],
+      "programs": 20,
+      "fixtures": 26088,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 0,
+        "scheduled": 43,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "04-before-west-leg-eye-level.png",
+      "time": "21:30",
+      "lighting": "no-c2",
+      "sweref": {
+        "cam": [
+          569166,
+          6492602,
+          1.7
+        ],
+        "target": [
+          569128,
+          6492680,
+          3
+        ]
+      },
+      "camera": [
+        5.441858870422714,
+        1.6683063392702646,
+        95.51262590955162
+      ],
+      "target": [
+        3.921339480157544,
+        1.6770043810644935,
+        92.39155979269152
+      ],
+      "programs": 20,
+      "fixtures": 26088,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 0,
+        "scheduled": 43,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "05-before-north-leg-above.png",
+      "time": "21:30",
+      "lighting": "no-c2",
+      "sweref": {
+        "cam": [
+          569420,
+          6493120,
+          70
+        ],
+        "target": [
+          569300,
+          6492960,
+          2
+        ]
+      },
+      "camera": [
+        15.60533058430043,
+        3.720783560040088,
+        74.78554580014745
+      ],
+      "target": [
+        10.803690404515683,
+        1.6565286800660157,
+        81.18773270652711
+      ],
+      "programs": 20,
+      "fixtures": 26088,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 0,
+        "scheduled": 43,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "06-before-seam-south-west.png",
+      "time": "21:30",
+      "lighting": "no-c2",
+      "sweref": {
+        "cam": [
+          569300,
+          6492400,
+          55
+        ],
+        "target": [
+          569236,
+          6492490,
+          2
+        ]
+      },
+      "camera": [
+        10.803690404515683,
+        4.279667103590168,
+        103.59538687885593
+      ],
+      "target": [
+        8.242815641963817,
+        1.867425539601893,
+        99.99415674401737
+      ],
+      "programs": 20,
+      "fixtures": 26088,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 0,
+        "scheduled": 43,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "07-after-loop-top.png",
+      "time": "21:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569450,
+          6492690,
+          900
+        ],
+        "target": [
+          569450,
+          6492700,
+          0
+        ]
+      },
+      "camera": [
+        16.805740629246618,
+        38.11413350725062,
+        91.99142311104279
+      ],
+      "target": [
+        16.805740629246618,
+        2.1105415820520443,
+        91.59128642939407
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "08-after-loop-from-south.png",
+      "time": "21:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569450,
+          6491900,
+          300
+        ],
+        "target": [
+          569400,
+          6492650,
+          10
+        ]
+      },
+      "camera": [
+        16.805740629246618,
+        13.429993234266814,
+        123.60222096129239
+      ],
+      "target": [
+        14.805057221002972,
+        2.40862846922486,
+        93.5919698376377
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "09-after-west-leg-above.png",
+      "time": "21:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569200,
+          6492480,
+          60
+        ],
+        "target": [
+          569140,
+          6492700,
+          2
+        ]
+      },
+      "camera": [
+        6.8023235880283925,
+        4.153073489487608,
+        100.3942934256661
+      ],
+      "target": [
+        4.401503498136019,
+        1.6795057441307881,
+        91.59128642939407
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "10-after-west-leg-eye-level.png",
+      "time": "21:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569166,
+          6492602,
+          1.7
+        ],
+        "target": [
+          569128,
+          6492680,
+          3
+        ]
+      },
+      "camera": [
+        5.441858870422714,
+        1.6683063392702646,
+        95.51262590955162
+      ],
+      "target": [
+        3.921339480157544,
+        1.6770043810644935,
+        92.39155979269152
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "11-after-north-leg-above.png",
+      "time": "21:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569420,
+          6493120,
+          70
+        ],
+        "target": [
+          569300,
+          6492960,
+          2
+        ]
+      },
+      "camera": [
+        15.60533058430043,
+        3.720783560040088,
+        74.78554580014745
+      ],
+      "target": [
+        10.803690404515683,
+        1.6565286800660157,
+        81.18773270652711
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "12-after-seam-south-west.png",
+      "time": "21:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569300,
+          6492400,
+          55
+        ],
+        "target": [
+          569236,
+          6492490,
+          2
+        ]
+      },
+      "camera": [
+        10.803690404515683,
+        4.279667103590168,
+        103.59538687885593
+      ],
+      "target": [
+        8.242815641963817,
+        1.867425539601893,
+        99.99415674401737
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "13-after-switched-off-loop-top.png",
+      "time": "22:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569450,
+          6492690,
+          900
+        ],
+        "target": [
+          569450,
+          6492700,
+          0
+        ]
+      },
+      "camera": [
+        16.805740629246618,
+        38.11413350725062,
+        91.99142311104279
+      ],
+      "target": [
+        16.805740629246618,
+        2.1105415820520443,
+        91.59128642939407
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": false,
+        "level": 0
+      }
+    },
+    {
+      "file": "14-after-switched-off-loop-from-south.png",
+      "time": "22:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569450,
+          6491900,
+          300
+        ],
+        "target": [
+          569400,
+          6492650,
+          10
+        ]
+      },
+      "camera": [
+        16.805740629246618,
+        13.429993234266814,
+        123.60222096129239
+      ],
+      "target": [
+        14.805057221002972,
+        2.40862846922486,
+        93.5919698376377
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": false,
+        "level": 0
+      }
+    },
+    {
+      "file": "15-after-switched-off-west-leg-above.png",
+      "time": "22:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569200,
+          6492480,
+          60
+        ],
+        "target": [
+          569140,
+          6492700,
+          2
+        ]
+      },
+      "camera": [
+        6.8023235880283925,
+        4.153073489487608,
+        100.3942934256661
+      ],
+      "target": [
+        4.401503498136019,
+        1.6795057441307881,
+        91.59128642939407
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": false,
+        "level": 0
+      }
+    },
+    {
+      "file": "16-after-switched-off-west-leg-eye-level.png",
+      "time": "22:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569166,
+          6492602,
+          1.7
+        ],
+        "target": [
+          569128,
+          6492680,
+          3
+        ]
+      },
+      "camera": [
+        5.441858870422714,
+        1.6683063392702646,
+        95.51262590955162
+      ],
+      "target": [
+        3.921339480157544,
+        1.6770043810644935,
+        92.39155979269152
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": false,
+        "level": 0
+      }
+    },
+    {
+      "file": "17-after-switched-off-north-leg-above.png",
+      "time": "22:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569420,
+          6493120,
+          70
+        ],
+        "target": [
+          569300,
+          6492960,
+          2
+        ]
+      },
+      "camera": [
+        15.60533058430043,
+        3.720783560040088,
+        74.78554580014745
+      ],
+      "target": [
+        10.803690404515683,
+        1.6565286800660157,
+        81.18773270652711
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": false,
+        "level": 0
+      }
+    },
+    {
+      "file": "18-after-switched-off-seam-south-west.png",
+      "time": "22:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569300,
+          6492400,
+          55
+        ],
+        "target": [
+          569236,
+          6492490,
+          2
+        ]
+      },
+      "camera": [
+        10.803690404515683,
+        4.279667103590168,
+        103.59538687885593
+      ],
+      "target": [
+        8.242815641963817,
+        1.867425539601893,
+        99.99415674401737
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": false,
+        "level": 0
+      }
+    },
+    {
+      "file": "19-after-day-loop-top.png",
+      "time": "12:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569450,
+          6492690,
+          900
+        ],
+        "target": [
+          569450,
+          6492700,
+          0
+        ]
+      },
+      "camera": [
+        16.805740629246618,
+        38.11413350725062,
+        91.99142311104279
+      ],
+      "target": [
+        16.805740629246618,
+        2.1105415820520443,
+        91.59128642939407
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "20-after-day-loop-from-south.png",
+      "time": "12:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569450,
+          6491900,
+          300
+        ],
+        "target": [
+          569400,
+          6492650,
+          10
+        ]
+      },
+      "camera": [
+        16.805740629246618,
+        13.429993234266814,
+        123.60222096129239
+      ],
+      "target": [
+        14.805057221002972,
+        2.40862846922486,
+        93.5919698376377
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "21-after-day-west-leg-above.png",
+      "time": "12:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569200,
+          6492480,
+          60
+        ],
+        "target": [
+          569140,
+          6492700,
+          2
+        ]
+      },
+      "camera": [
+        6.8023235880283925,
+        4.153073489487608,
+        100.3942934256661
+      ],
+      "target": [
+        4.401503498136019,
+        1.6795057441307881,
+        91.59128642939407
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "22-after-day-west-leg-eye-level.png",
+      "time": "12:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569166,
+          6492602,
+          1.7
+        ],
+        "target": [
+          569128,
+          6492680,
+          3
+        ]
+      },
+      "camera": [
+        5.441858870422714,
+        1.6683063392702646,
+        95.51262590955162
+      ],
+      "target": [
+        3.921339480157544,
+        1.6770043810644935,
+        92.39155979269152
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "23-after-day-north-leg-above.png",
+      "time": "12:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569420,
+          6493120,
+          70
+        ],
+        "target": [
+          569300,
+          6492960,
+          2
+        ]
+      },
+      "camera": [
+        15.60533058430043,
+        3.720783560040088,
+        74.78554580014745
+      ],
+      "target": [
+        10.803690404515683,
+        1.6565286800660157,
+        81.18773270652711
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    },
+    {
+      "file": "24-after-day-seam-south-west.png",
+      "time": "12:30",
+      "lighting": "default",
+      "sweref": {
+        "cam": [
+          569300,
+          6492400,
+          55
+        ],
+        "target": [
+          569236,
+          6492490,
+          2
+        ]
+      },
+      "camera": [
+        10.803690404515683,
+        4.279667103590168,
+        103.59538687885593
+      ],
+      "target": [
+        8.242815641963817,
+        1.867425539601893,
+        99.99415674401737
+      ],
+      "programs": 20,
+      "fixtures": 26146,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "scheduled": 101,
+        "schedule": {
+          "onFromMinutes": 360,
+          "offFromMinutes": 1320,
+          "status": "assumption",
+          "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+        },
+        "on": true,
+        "level": 1
+      }
+    }
+  ],
+  "errors": []
+}

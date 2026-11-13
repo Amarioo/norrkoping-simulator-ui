@@ -2,6 +2,44 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Phase C2 — Vrinneviskogen: the illuminated trail, 58 new lanterns and a 22.00–06.00 switch-off (2026-11-13) — approved by the user (2026-11-13), NOT committed yet
+
+[Full report](trail-c2/README.md). Worked directly on local `main` (= `origin/main` `3161e89`). Backend unchanged.
+Approved by the user 2026-11-13. **Nothing is committed.** Board: C2 in *Test* until committed and pushed. Started on the user's "Start C2" (2026-11-13).
+
+- **Found:** the loop (OSM relation 5703856, 14 ways, 2 369 m, all `lit=yes`) matches the
+  municipality's "Vrinnevi elljusspår 2,4 km" in length. L2bc had already lit its 4 `highway=path`
+  ways (43 lanterns, 929 m); the 10 other ways (9 `highway=track`, 1 short footway, 1 440 m) were
+  dark because the corridor generator has no rule for tracks. NT 2019-10-16: a visitor counted 100
+  lamps on the loop.
+- **Result:** 58 estimated lanterns (`park-lantern-4m`, the existing type) on the dark run, a
+  station every 24.8 m, 1.2 m from the centreline; 101 lamps on the loop. All 101 follow a schedule:
+  on from 06.00, off from 22.00 (**an assumption**, taken from the municipality's text for its
+  Abborreberg trail; not stated for Vrinnevi).
+- **How:** `src/lib/lighting/trailSchedule.ts` (loop ways, schedule, no imports),
+  `trailLighting.ts` (policy `lighting-c2-v1`), `trailGenerator.ts` (pure, joins the ways into a
+  ring, stations per run); data `src/lib/data/streetlights-c2.json` (compact set, bundled, 6.1 kB)
+  from `scripts/trail-c2/` (`extract-source.mjs` → `scripts/data/trail-c2-source.json`,
+  `write.test.ts`). Runtime: a flag per lamp shares one float with the bridge flag in the lamp
+  texture; uniform `cityScheduleLevel` in the light shader, `haloScheduled` attribute on the
+  halos, a second lens mesh per scheduled type; the controller ramps the level (1.5 s) from the
+  clock. `cityLightingRegistry(..., trail)` is opt-in (the app passes it), so earlier tests keep
+  their sets; `?lighting=no-c2` and `registries.cityNoTrail()` give main's set.
+- **Earlier output untouched:** no earlier data file changed (`docs/trail-c2/data/hashes.json`);
+  the corridor and site generators are not edited. New behaviour for L2bc's 43 lanterns on the loop:
+  they now switch off at 22.00 too.
+- **Measured:** 3 clean paired rounds (machine 4–10 % busy): +0.07…+0.12 ms at night in the loop
+  views, +0.08 ms whole city, +0.01 ms by day; no frame over 16.7 ms; 20 programs; +1 draw call near
+  the trail; main file 1 119 → 1 128 kB (gzip 306.6 → 309.2).
+- **Checks:** type check 0 errors; build OK, byte-identical twice; Vitest 642/643 (only the known
+  `police.test.ts`); Playwright 37/37 on the final state. `tests/lighting.spec.ts` got one more
+  term in its lamp-count sum (as D2 did); no assertion removed.
+- **Open decisions:** the switch-off hours (keep 22–06 until confirmed); lamp type (keep the park
+  lantern or add a trail pole); the next track (the roadmap's planned order ends with C2).
+- **Windows note:** a folder link to `node_modules` inside `work/` loads the dev server (seen in
+  U2 as well); create it only while building the main worktree, then remove it.
+- **Local only:** `.claude/launch.json` entries `c2-main` 5381, `c2-new` 5382; `work/trail-c2/`.
+
 ## Interface Phase U2 — dark theme as the default, light as the choice (2026-11-13) — committed (`f5a1f42`) and pushed to `origin/main` on the user's request, before the frame-time measurement
 
 [Full report](interface-u2/README.md). Worked directly on local `main` (= `origin/main` `4395127`, with U1). Backend unchanged.

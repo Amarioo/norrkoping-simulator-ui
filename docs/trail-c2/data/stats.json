@@ -1,0 +1,190 @@
+{
+ "rule": "lighting-c2-v1",
+ "snapshot": {
+  "osmBase": "2026-10-24T19:51:21Z",
+  "sha256": "e28586216be2df97df7bf251a83513583a427317bad152815936dea8a6bece0b"
+ },
+ "schedule": {
+  "onFromMinutes": 360,
+  "offFromMinutes": 1320,
+  "status": "assumption",
+  "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+ },
+ "counts": {
+  "fixtures": 58,
+  "mapped": 0,
+  "estimated": 58,
+  "stations": 58,
+  "rejected": 0,
+  "ways": 14,
+  "waysEstimated": 10,
+  "waysEarlier": 4,
+  "loopLengthM": 2368.9,
+  "estimatedLengthM": 1439.8,
+  "earlierFixturesOnLoop": 43,
+  "loopFixtures": 101
+ },
+ "runs": [
+  {
+   "run": 1,
+   "ways": [
+    383320782,
+    122294025,
+    122294026,
+    383320783,
+    26223168,
+    432960719,
+    432960738,
+    372645636,
+    432960730,
+    383320784
+   ],
+   "lengthM": 1439.8,
+   "stations": 58,
+   "fixtures": 58
+  }
+ ],
+ "ways": [
+  {
+   "way": 26223168,
+   "highway": "footway",
+   "order": 0,
+   "reversed": false,
+   "lengthM": 7.7,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 1
+  },
+  {
+   "way": 432960719,
+   "highway": "track",
+   "order": 1,
+   "reversed": false,
+   "lengthM": 9.3,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 0
+  },
+  {
+   "way": 432960738,
+   "highway": "track",
+   "order": 2,
+   "reversed": false,
+   "lengthM": 115,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 5
+  },
+  {
+   "way": 372645636,
+   "highway": "track",
+   "order": 3,
+   "reversed": false,
+   "lengthM": 695.5,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 28
+  },
+  {
+   "way": 432960730,
+   "highway": "track",
+   "order": 4,
+   "reversed": false,
+   "lengthM": 119.2,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 5
+  },
+  {
+   "way": 383320784,
+   "highway": "track",
+   "order": 5,
+   "reversed": false,
+   "lengthM": 84.6,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 3
+  },
+  {
+   "way": 383320779,
+   "highway": "path",
+   "order": 6,
+   "reversed": false,
+   "lengthM": 16.6,
+   "status": "lit by an earlier rollout (1 fixtures): left as it is",
+   "earlierFixtures": 1,
+   "fixtures": 0
+  },
+  {
+   "way": 432960741,
+   "highway": "path",
+   "order": 7,
+   "reversed": true,
+   "lengthM": 187.7,
+   "status": "lit by an earlier rollout (9 fixtures): left as it is",
+   "earlierFixtures": 9,
+   "fixtures": 0
+  },
+  {
+   "way": 383320758,
+   "highway": "path",
+   "order": 8,
+   "reversed": true,
+   "lengthM": 232.2,
+   "status": "lit by an earlier rollout (11 fixtures): left as it is",
+   "earlierFixtures": 11,
+   "fixtures": 0
+  },
+  {
+   "way": 383320778,
+   "highway": "path",
+   "order": 9,
+   "reversed": true,
+   "lengthM": 492.6,
+   "status": "lit by an earlier rollout (22 fixtures): left as it is",
+   "earlierFixtures": 22,
+   "fixtures": 0
+  },
+  {
+   "way": 383320782,
+   "highway": "track",
+   "order": 10,
+   "reversed": false,
+   "lengthM": 68.5,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 3
+  },
+  {
+   "way": 122294025,
+   "highway": "track",
+   "order": 11,
+   "reversed": false,
+   "lengthM": 269.3,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 11
+  },
+  {
+   "way": 122294026,
+   "highway": "track",
+   "order": 12,
+   "reversed": false,
+   "lengthM": 41.4,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 1
+  },
+  {
+   "way": 383320783,
+   "highway": "track",
+   "order": 13,
+   "reversed": false,
+   "lengthM": 29.3,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 1
+  }
+ ],
+ "rejected": []
+}

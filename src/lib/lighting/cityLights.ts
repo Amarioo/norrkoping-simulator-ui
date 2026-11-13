@@ -81,6 +81,11 @@ export interface ShaderLamp {
   /** Mounting surface height (scene units) and whether light below it is blocked (bridge decks). */
   baseY: number;
   clipBelow: boolean;
+  /**
+   * Phase C2: the lamp follows the switch-off schedule (cityScheduleLevel) on top of the night level:
+   * the Vrinnevi illuminated trail, dark late at night. Default: always on at night.
+   */
+  scheduled?: boolean;
   /** 16 horizontal occlusion distances, metres (sector s centred at angle (s + 0.5)·22.5° − 180°). */
   occlusionM: number[];
 }
@@ -179,6 +184,8 @@ export function createLightingUniforms() {
     cityPagesPerRow: { value: 1 },
     cityLampRows: { value: 1 },
     cityLampLevel: { value: 0 },
+    /** Phase C2: level of the scheduled lamps (1 = on, 0 = switched off; trailLighting.ts). */
+    cityScheduleLevel: { value: 1 },
     /** Most lamps evaluated per cell (loop guard), a uniform so the loop stays dynamic (not unrolled). */
     cityCellSlots: { value: MAX_PER_CELL },
     cityLuxScale: { value: STREET_LUX_SCALE },
@@ -236,7 +243,13 @@ export function packLampData(lamps: ShaderLamp[], maxTextureSize = 16384) {
       o + 4,
     );
     data.set(
-      [l.baseY, l.clipBelow ? 1 : 0, Math.sin(l.heading ?? 0), Math.cos(l.heading ?? 0)],
+      // Flags in one float: 1 = no light below the deck, 2 = follows the switch-off schedule.
+      [
+        l.baseY,
+        (l.clipBelow ? 1 : 0) + (l.scheduled ? 2 : 0),
+        Math.sin(l.heading ?? 0),
+        Math.cos(l.heading ?? 0),
+      ],
       o + 8,
     );
     for (let s = 0; s < SECTORS; s++) data[o + 12 + s] = l.occlusionM[s] ?? l.rangeM;
@@ -294,6 +307,7 @@ uniform int cityListWidth;
 uniform vec4 cityGrid;
 uniform float cityGridRows;
 uniform float cityLampLevel;
+uniform float cityScheduleLevel;
 uniform float cityLuxScale;
 uniform float cityMetres;
 uniform float stadiumLevel;
@@ -337,7 +351,9 @@ vec3 cityLamp( int i, vec3 P, out vec3 dir ) {
 	float r = min( d / t0.w, 1.0 );
 	// Lanterns fade sooner across lawns; preserve the longer road throw of street brackets.
 	float window = 1.0 - mix( r * r * r * r, r * r, t1.w );
-	float below = step( 0.5, t2.y ) * step( P.y, t2.x - 0.4 / cityMetres );
+	// t2.y flags: 1 = no light below the deck, 2 = follows the switch-off schedule (Phase C2).
+	float scheduled = step( 1.5, t2.y );
+	float below = step( 0.5, t2.y - 2.0 * scheduled ) * step( P.y, t2.x - 0.4 / cityMetres );
 	float hd = length( Lm.xz );
 	float s = ( atan( -Lm.z, -Lm.x ) + PI ) * ( ${SECTORS}.0 / ( 2.0 * PI ) ) - 0.5;
 	float fs = floor( s );
@@ -354,7 +370,7 @@ vec3 cityLamp( int i, vec3 P, out vec3 dir ) {
 	float profile = t1.w < 0.5
 		? streetShape * ( 0.75 + 0.55 * sqrt( max( 0.0, 1.0 - c * c ) ) ) * smoothstep( 0.17, 0.37, c )
 		: ( 0.85 + 0.25 * c ) * smoothstep( -0.12, 0.2, c );
-	return t1.rgb * ( profile * window * window * fade * ( 1.0 - below ) / d2 );
+	return t1.rgb * ( profile * window * window * fade * ( 1.0 - below ) * mix( 1.0, cityScheduleLevel, scheduled ) / d2 );
 }
 // Floodlight j at arena-frame point p (metres): irradiance colour (zero outside the beam or behind a
 // roof) and the unit WORLD direction to the emitter.

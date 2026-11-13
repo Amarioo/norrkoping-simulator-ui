@@ -1,0 +1,20 @@
+{
+ "note": "SHA-256 of the files Phase C2 generates, and of the earlier phases' data files it reads (unchanged: git reports no difference for them).",
+ "generated": {
+  "src/lib/data/streetlights-c2.json": "7abb93e0ecc7a67015ecb0f90639576272ee45e10874beef67f2c94718b25378",
+  "docs/trail-c2/data/streetlights-c2-provenance.json": "ba8cacb3b6fa2ff9f26a8ceae52a47bcfec741960eb81d4334d1fff54c748c4d",
+  "docs/trail-c2/data/stats.json": "805656fc7717ee03902aa63a1de8035ea7ff1ec285fc2557d7124f72a1003b43",
+  "scripts/data/trail-c2-source.json": "7f47cf41f7f1da17aca6be6536638c3998a19f4fe99cdd0595ae1f26474b10d9"
+ },
+ "earlierUnchanged": {
+  "src/lib/data/streetlights.json": "3c90719f166b3ff38443d0e38848e158fdf0d373730a122015dfccd2d18a36f7",
+  "src/lib/data/streetlights-a1.json": "7ea8da79d87b05637e3e2d566605ca0a5b685b3e2bca336f280e864863bd62dc",
+  "src/lib/data/streetlights-a2.json": "8bb5986f9becdd5bba30976aa9a00a29c24083d45c2ab14b014763612f1ede0e",
+  "src/lib/data/streetlights-a3.json": "9c2341bba411035d286ba9c825b084761993a8ef82d09a0ffeddfe967d9d5d9e",
+  "src/lib/data/streetlights-l2.json": "36bd4cfd48d4156ab429d6284f8dc4c0a6687e5a51c25a3eff767059a45ef245",
+  "src/lib/data/streetlights-l2bc.json": "c4cc95378eee88e25442fc0a28028de6174837f24926d3d553e28309b2c64d9e",
+  "src/lib/data/streetlights-l2d.json": "c67c64b0a84e4ab76cca9e19c9712a11a2d7495942ef27dd763528e1fb126af6",
+  "src/lib/data/forest-c1.json": "3122edfb064a853ed3d8d1f0b029b24ab6bfe1fa8682dd7c19295a2ebea2f7fb",
+  "src/lib/data/norrkoping-map.json": "454ecbe0d86e64b366e7c3ac3f93664077d29cfe667ee44fc8950c944a77ac90"
+ }
+}

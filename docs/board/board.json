@@ -103,19 +103,43 @@
       "id": "C2",
       "epic": "C",
       "title": "Elljusspåret (ca 2,4–2,5 km)",
-      "status": "backlog",
+      "status": "test",
       "size": "M",
-      "summary": "Kräver C1.",
-      "report": "docs/roadmap.md",
+      "summary": "Hela slingan upplyst: 58 nya uppskattade lyktor + 43 befintliga = 101. Släckt 22–06 (antagande).",
+      "report": "docs/trail-c2/README.md",
       "section": "Spår C",
       "tasks": [
         {
-          "text": "Ca 80–120 uppskattade stolpar om inget register finns",
-          "done": false
+          "text": "Slingan kontrollerad mot kommunens uppgift (2,4 km)",
+          "done": true
         },
         {
-          "text": "Släckt sent på natten",
-          "done": false
+          "text": "58 uppskattade lyktor på den mörka delen (101 totalt; 100 räknade 2019)",
+          "done": true
+        },
+        {
+          "text": "Släckt sent på natten: 22.00–06.00 (antagande)",
+          "done": true
+        },
+        {
+          "text": "Tester, mätning och rapport",
+          "done": true
+        },
+        {
+          "text": "Du testade och godkände (2026-11-13)",
+          "done": true
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Klart för test, inte committat. Släcktiderna 22–06 är ett antagande från kommunens text om Abborrebergs elljusspår; säg till om du vet de riktiga tiderna för Vrinnevi."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Godkänd av dig. Släcktiderna 22–06 är fortfarande ett antagande."
         }
       ]
     },

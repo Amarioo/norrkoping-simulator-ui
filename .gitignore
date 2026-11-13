@@ -142,3 +142,6 @@ work/geodata/
 # Interface Phase U1 (new interface) scratch (copy of the app before the change, hook builds, raw runs,
 # logs, first screenshots). Curated data is in docs/interface-u1/; reusable tools are in scripts/interface-u1/.
 /work/ui-u1/
+# Phase C2 (Vrinnevi illuminated trail) scratch (main worktree, hook builds, raw runs, logs, first
+# screenshots). Curated data is in docs/trail-c2/; reusable tools are in scripts/trail-c2/.
+/work/trail-c2/

@@ -1,0 +1,187 @@
+{
+ "run": "whole Playwright suite on the final state, dev server + local backend, Edge headless",
+ "summary": "37 passed (8.1m), 0 failed (one test line is not itemised below)",
+ "failed": 0,
+ "tests": [
+  {
+   "result": "passed",
+   "test": "tests\\aircraft-lights.spec.ts:119:1 › Aircraft Lights E2: lights at night, flashing on the simulation clock, red left / green right, no new programs, context loss",
+   "seconds": 29.8
+  },
+  {
+   "result": "passed",
+   "test": "tests\\airport-lights.spec.ts:80:1 › Airport Lighting E1: ESSP runway lights, own switch, runway in use, PAPI, programs, context loss",
+   "seconds": 12.9
+  },
+  {
+   "result": "passed",
+   "test": "tests\\bridge-traffic.spec.ts:25:1 › a tracked bus and cars cross Bergsbron while trucks avoid its northern trap",
+   "seconds": 66
+  },
+  {
+   "result": "passed",
+   "test": "tests\\forest.spec.ts:112:1 › Phase C1 forest: measured trees and forest floors in the 14 tiles, no illustrative trees left, 20 programs",
+   "seconds": 7.8
+  },
+  {
+   "result": "passed",
+   "test": "tests\\fuel-stations.spec.ts:125:1 › Phase D2 fuel stations: canopies in the scene, downlights light the forecourt at night only, 20 programs",
+   "seconds": 12.4
+  },
+  {
+   "result": "passed",
+   "test": "tests\\fullscreen-fps.spec.ts:53:1 › Phase P0: fullscreen button, F and Esc; the renderer follows the panel on entry and exit",
+   "seconds": 5.7
+  },
+  {
+   "result": "passed",
+   "test": "tests\\fullscreen-fps.spec.ts:105:1 › Phase P0: where fullscreen is refused, the panel fills the window and follows its size",
+   "seconds": 6.4
+  },
+  {
+   "result": "passed",
+   "test": "tests\\fullscreen-fps.spec.ts:142:1 › Phase P0: fps counter off by default, toggles with button and P, shows numbers, remembers the choice, 20 programs",
+   "seconds": 15
+  },
+  {
+   "result": "passed",
+   "test": "tests\\interface-u1.spec.ts:7:1 › Interface U1: tabs, charts, numbers and toasts on a desktop screen",
+   "seconds": 7.9
+  },
+  {
+   "result": "passed",
+   "test": "tests\\interface-u1.spec.ts:70:1 › Interface U1: on a phone the settings open in a drawer; the map keeps the page width",
+   "seconds": 5.9
+  },
+  {
+   "result": "passed",
+   "test": "tests\\interface-u2.spec.ts:28:1 › Interface U2: dark by default; the button switches to light and the choice is remembered",
+   "seconds": 6.7
+  },
+  {
+   "result": "passed",
+   "test": "tests\\interface-u2.spec.ts:74:1 › Interface U2: ?theme= in the address wins and is not remembered; unknown values mean dark",
+   "seconds": 12.3
+  },
+  {
+   "result": "passed",
+   "test": "tests\\landmark-hedvig.spec.ts:45:1 › Hedvigs kyrka: measured model in the scene, floodlights at night only, programs unchanged",
+   "seconds": 4.7
+  },
+  {
+   "result": "passed",
+   "test": "tests\\landmark-radhuset-lights.spec.ts:83:1 › Rådhuset: tower floodlit at night only, façades below dark, programs unchanged",
+   "seconds": 6.6
+  },
+  {
+   "result": "passed",
+   "test": "tests\\landmark-radhuset.spec.ts:35:1 › Rådhuset: measured tower and Gull-Olle in the scene, old tower removed, programs unchanged",
+   "seconds": 5.4
+  },
+  {
+   "result": "passed",
+   "test": "tests\\lighting-l2d.spec.ts:82:1 › Phase L2d site lighting: own category, lights the lots at Polishuset at night, poles only by day, 20 programs",
+   "seconds": 12.5
+  },
+  {
+   "result": "passed",
+   "test": "tests\\lighting-l2d.spec.ts:157:1 › Phase L2d: ?lighting=no-l2d leaves the site category out",
+   "seconds": 5.5
+  },
+  {
+   "result": "passed",
+   "test": "tests\\lighting.spec.ts:37:1 › time of day, presets and independent floodlights work without shader recompiles",
+   "seconds": 10.3
+  },
+  {
+   "result": "passed",
+   "test": "tests\\lighting.spec.ts:124:1 › stadium and lighting recover after WebGL context loss",
+   "seconds": 9.5
+  },
+  {
+   "result": "passed",
+   "test": "tests\\lighting.spec.ts:171:1 › street lighting survives rebuilds, controller recreation and context restoration",
+   "seconds": 15
+  },
+  {
+   "result": "passed",
+   "test": "tests\\lighting.spec.ts:316:1 › Phase A1 corridor: illumination, set swaps, rejection, recreation and context restoration",
+   "seconds": 15.7
+  },
+  {
+   "result": "passed",
+   "test": "tests\\lighting.spec.ts:466:1 › Phase A2 corridor: illumination, unchanged reference view, swaps, rejection, recreation and context restoration",
+   "seconds": 26.4
+  },
+  {
+   "result": "passed",
+   "test": "tests\\lighting.spec.ts:627:1 › Phase A3 Kungstorget ring: illumination, unchanged reference view, swaps, rejection, recreation and context restoration",
+   "seconds": 26.4
+  },
+  {
+   "result": "passed",
+   "test": "tests\\lighting.spec.ts:788:1 › Phase L2a citywide street lighting: loaded at map-ready, lights Söderstaden, swaps, rejection, recreation and context restoration",
+   "seconds": 19.1
+  },
+  {
+   "result": "passed",
+   "test": "tests\\police-signs.spec.ts:38:1 › Phase D1 police sign and windows: emblem on the SSE gable, glow and lit windows at night, not by day, programs unchanged",
+   "seconds": 6.5
+  },
+  {
+   "result": "passed",
+   "test": "tests\\police-tower.spec.ts:41:1 › Phase D1b police tower: measured frame, heights, footprint, emblem, programs unchanged",
+   "seconds": 4.1
+  },
+  {
+   "result": "passed",
+   "test": "tests\\rail-lights.spec.ts:77:1 › Phase F2 rail lights: beam in front of a followed tram and train at night, off by day, no new programs",
+   "seconds": 15.1
+  },
+  {
+   "result": "passed",
+   "test": "tests\\simulation.spec.ts:4:1 › traffic commands, SSE, free camera and vehicle following work together",
+   "seconds": 12.1
+  },
+  {
+   "result": "passed",
+   "test": "tests\\sse-debug.spec.ts:36:1 › SSE debug: panel off by default records nothing; L toggles it",
+   "seconds": 5.6
+  },
+  {
+   "result": "passed",
+   "test": "tests\\sse-debug.spec.ts:61:1 › SSE debug: events, counters, lifecycle, filters, expand, copy, pause, clear, raw reader and export",
+   "seconds": 6.8
+  },
+  {
+   "result": "passed",
+   "test": "tests\\sse-reconnect.spec.ts:88:3 › city stream reconnects by itself after the backend was away (proxy)",
+   "seconds": 27.5
+  },
+  {
+   "result": "passed",
+   "test": "tests\\sse-reconnect.spec.ts:88:3 › city stream reconnects by itself after the backend was away (silent)",
+   "seconds": 26.4
+  },
+  {
+   "result": "passed",
+   "test": "tests\\trail.spec.ts:125:1 › Phase C2 trail: 58 new lanterns light the loop at 21:30, the loop is dark after 22:00 and lit again at 06:30, 20 programs",
+   "seconds": 12.9
+  },
+  {
+   "result": "passed",
+   "test": "tests\\trail.spec.ts:215:1 › Phase C2 trail: ?lighting=no-c2 leaves the new lanterns out",
+   "seconds": 3.7
+  },
+  {
+   "result": "passed",
+   "test": "tests\\transit.spec.ts:3:1 › collective transport counts, articulated vehicles and following reach the UI through SSE",
+   "seconds": 4.3
+  },
+  {
+   "result": "passed",
+   "test": "tests\\vehicle-lights.spec.ts:65:1 › Phase F1 vehicle lights: beam in front of a followed car at night, off by day, no new programs, context restoration",
+   "seconds": 12.8
+  }
+ ]
+}

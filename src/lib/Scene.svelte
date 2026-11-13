@@ -79,6 +79,9 @@
   const lightingParam = hookEnabled ? new URLSearchParams(location.search).get('lighting') : null;
   const onlyA3 = lightingParam === 'a3';
   const withSites = lightingParam !== 'no-l2d';
+  // Phase C2: the lanterns of the Vrinnevi illuminated trail (58 estimates, bundled) join the citywide
+  // set; `?lighting=no-c2` (development / hook builds) leaves them out (the set of main before C2).
+  const withTrail = lightingParam !== 'no-c2';
   let l2Set: CompactSet | null = null,
     l2bcSet: CompactSet | null = null,
     l2dSet: CompactSet | null = null;
@@ -88,7 +91,9 @@
     mergeRegistries(registry, fuelRegistry);
   const defaultRegistry = () =>
     l2Set
-      ? withFuel(cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, l2dSet ?? undefined))
+      ? withFuel(
+          cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, l2dSet ?? undefined, withTrail),
+        )
       : runtimeLightingRegistry(terrain);
   const fetchSet = (url: string) =>
     fetch(url).then((r) => {
@@ -126,7 +131,7 @@
     : Promise.all([fetchSet(l2Url), fetchSet(l2bcUrl), withSites ? fetchSet(l2dUrl) : null])
         .then(([a, bc, d]) => {
           const result = lighting.replaceStreetLighting(
-            withFuel(cityLightingRegistry(terrain, a, bc, d ?? undefined)),
+            withFuel(cityLightingRegistry(terrain, a, bc, d ?? undefined, withTrail)),
           );
           if (!result.ok) throw new Error(`citywide set rejected at ${result.stage}`);
           l2Set = a;
@@ -180,12 +185,21 @@
         // Phase L2d: the city set without the site-lighting category (streets, paths, squares).
         cityStreets: () =>
           l2Set
-            ? withFuel(cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined))
+            ? withFuel(
+                cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, undefined, withTrail),
+              )
+            : runtimeLightingRegistry(terrain),
+        // Phase C2: the default set without the trail lanterns (= main's set before C2).
+        cityNoTrail: () =>
+          l2Set
+            ? withFuel(
+                cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, l2dSet ?? undefined),
+              )
             : runtimeLightingRegistry(terrain),
         // Phase D2: the default set without the canopy downlights (= main's set), and those alone.
         cityNoFuel: () =>
           l2Set
-            ? cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, l2dSet ?? undefined)
+            ? cityLightingRegistry(terrain, l2Set, l2bcSet ?? undefined, l2dSet ?? undefined, withTrail)
             : runtimeLightingRegistry(terrain),
         fuel: () => fuelRegistry,
         // Phase L1: any set in the A1–A3 runtime format (e.g. the stress set) on top of the runtime set.

@@ -21,6 +21,10 @@
  * Façade floodlights (Landmark Phase B2, `facades`): fixed emitters written once into uniforms; at
  * night they follow the street lighting's level (env.artificial), by day facadeCount is 0.
  *
+ * Illuminated trail (Phase C2, trailLighting.ts): the lanterns of the Vrinnevi loop are ordinary
+ * fixtures of the street-lighting set with a flag; cityScheduleLevel switches them off late at night
+ * (a uniform, ramped like the floodlights). No rebuild, upload or program follows from it.
+ *
  * Temporal smoothing: jumps of more than 20 simulated minutes (presets, date changes) blend the
  * environment over BLEND_SECONDS; floodlight groups ramp over RAMP_SECONDS. settle() ends both at
  * once (deterministic screenshots).
@@ -70,9 +74,17 @@ import lightingData from '../data/streetlights.json';
 import a1Data from '../data/streetlights-a1.json';
 import a2Data from '../data/streetlights-a2.json';
 import a3Data from '../data/streetlights-a3.json';
+import c2Data from '../data/streetlights-c2.json';
 import { decodeCompactSet, type CompactSet } from './compactSet';
 import { L2_DATASET, L2_GENERATOR, L2BC_DATASET, L2BC_GENERATOR } from './corridorL2';
 import { L2D_CATEGORY, L2D_DATASET, L2D_GENERATOR } from './siteLighting';
+import {
+  C2_CATEGORY,
+  C2_DATASET,
+  C2_GENERATOR,
+  TRAIL_SCHEDULE,
+  trailScheduleOn,
+} from './trailLighting';
 import {
   A2_IDENTITY,
   A3_IDENTITY,
@@ -148,18 +160,35 @@ export function l2dLightingRegistry(terrain: TerrainService, data: CompactSet) {
     generator: L2D_GENERATOR,
   });
 }
-/** The citywide rendered set: pilot + A1 + A2 + A3 + L2a (+ L2bc, + L2d site lighting when given). */
+/**
+ * Phase C2: the estimated lanterns on the part of the Vrinnevi illuminated trail that L2bc left dark
+ * (streetlights-c2.json, bundled: 58 fixtures). A category of its own (trailLighting.ts).
+ */
+export function trailLightingRegistry(terrain: TerrainService) {
+  return corridorRegistry(
+    decodeCompactSet(c2Data as unknown as CompactSet) as unknown as A1Data,
+    terrain.data.reference,
+    { dataset: C2_DATASET, generator: C2_GENERATOR },
+  );
+}
+/**
+ * The citywide rendered set: pilot + A1 + A2 + A3 + L2a (+ L2bc, + L2d site lighting when given).
+ * `trail` (Phase C2, default off; the app passes true): the trail lanterns, which complete L2bc's lanterns on the loop and
+ * are therefore only added together with L2bc.
+ */
 export function cityLightingRegistry(
   terrain: TerrainService,
   l2: CompactSet,
   l2bc?: CompactSet,
   l2d?: CompactSet,
+  trail = false,
 ) {
   return mergeRegistries(
     runtimeLightingRegistry(terrain),
     l2LightingRegistry(terrain, l2),
     ...(l2bc ? [l2bcLightingRegistry(terrain, l2bc)] : []),
     ...(l2d ? [l2dLightingRegistry(terrain, l2d)] : []),
+    ...(l2bc && trail ? [trailLightingRegistry(terrain)] : []),
   );
 }
 /** The accepted Phase A1 rendered set (pilot + A1, 232 fixtures): the A1 tests and A2 comparisons. */
@@ -327,6 +356,8 @@ export function createCityLighting(options: {
   });
   const weights = { masts: 0, roofs: 0 },
     targets = { masts: 0, roofs: 0 };
+  // Phase C2: level of the lamps that follow the trail's switch-off schedule (1 = on).
+  const trail = { weight: 1, target: 1 };
   const applyWeights = () => {
     stadium.emitters.forEach((e, j) => {
       const w = weights[stadium.emitterGroups[j]] * e.candela;
@@ -493,6 +524,24 @@ export function createCityLighting(options: {
       },
     };
   };
+  /** Phase C2: the illuminated trail (its own lanterns, every scheduled lamp, and the schedule). */
+  const trailDiagnostics = () => {
+    const r = street.prepared?.rollouts[C2_GENERATOR.version];
+    const lamps = street.prepared?.lamps ?? [];
+    let scheduled = 0;
+    for (const l of lamps) if (l.scheduled) scheduled++;
+    return {
+      category: C2_CATEGORY,
+      rollout: C2_GENERATOR.version,
+      /** This phase's lanterns, and every lamp on the loop (with the earlier rollout's). */
+      fixtures: r ? r.mapped + r.estimated : 0,
+      scheduled,
+      schedule: TRAIL_SCHEDULE,
+      /** Allowed on by the schedule now, and the level shown (ramped). */
+      on: trail.target === 1,
+      level: trail.weight,
+    };
+  };
   /** Lighting Phase L2d: the site-lighting category (separate from street lighting). */
   const siteDiagnostics = () => {
     const r = street.prepared?.rollouts[L2D_GENERATOR.version];
@@ -560,12 +609,14 @@ export function createCityLighting(options: {
       const mode: StadiumMode = STADIUM_MODES[input.stadium];
       targets.masts = mode.masts;
       targets.roofs = mode.roofs;
+      trail.target = trailScheduleOn(input.minutes) ? 1 : 0;
     },
     /** Ends any temporal smoothing at once. */
     settle() {
       blend = 1;
       weights.masts = targets.masts;
       weights.roofs = targets.roofs;
+      trail.weight = trail.target;
       blendEnvironment(target, target, 1, shown);
       shownSun.copy(sunDir);
       applyWeights();
@@ -589,6 +640,9 @@ export function createCityLighting(options: {
         }
       }
       if (moving) applyWeights();
+      const trailStep = trail.target - trail.weight;
+      if (trailStep !== 0)
+        trail.weight += Math.sign(trailStep) * Math.min(Math.abs(trailStep), dt / RAMP_SECONDS);
       const env: EnvironmentState = shown;
       sun.color.copy(env.sunColor);
       sun.intensity = env.sunIntensity;
@@ -602,10 +656,11 @@ export function createCityLighting(options: {
       (scene.background as Color).copy(env.horizon);
       renderer.toneMappingExposure = env.exposure;
       uniforms.cityLampLevel.value = env.artificial;
+      uniforms.cityScheduleLevel.value = trail.weight;
       uniforms.facadeLevel.value = env.artificial;
       uniforms.facadeCount.value = env.artificial > 0.0005 ? facades.length : 0;
       sky.update(camera, env, shownSun);
-      street.visuals?.update(camera, env.artificial, viewportHeight, fog);
+      street.visuals?.update(camera, env.artificial, viewportHeight, fog, trail.weight);
       stadium.update(camera, Math.max(weights.masts, weights.roofs));
     },
     /**
@@ -679,6 +734,7 @@ export function createCityLighting(options: {
         },
         streetLighting: streetDiagnostics(),
         siteLighting: siteDiagnostics(),
+        trailLighting: trailDiagnostics(),
         patchedMaterials: patchCount.materials,
         reboundMaterials: patchCount.rebound,
         programs: renderer.info.programs?.length ?? null,

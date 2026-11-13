@@ -236,6 +236,14 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
     reservatet inom kartan (ca 160 ha), efter förenklad ritning på avstånd och separat laddning av datan.*
 - [ ] **C2 Elljusspåret** (ca 2,4–2,5 km) — M
   - Kräver C1. Ca 80–120 uppskattade stolpar om inget register finns. Släckt sent på natten.
+  - *Genomförd 2026-11-13 direkt på main, godkänd av dig 2026-11-13, inte committad ännu:
+    [docs/trail-c2/README.md](trail-c2/README.md). Slingan (OSM-relation 5703856, 14 delsträckor,
+    2 369 m, alla märkta som upplysta) stämmer i längd med kommunens "Vrinnevi elljusspår 2,4 km".
+    43 lyktor fanns redan på 929 m (från L2bc); 1 440 m var mörka eftersom gångvägsregeln saknade
+    regel för `highway=track`. Nu 58 nya uppskattade lyktor där, alltså 101 runt slingan (en besökare
+    räknade 100 lampor 2019, NT). Hela slingan släcks 22.00 och tänds 06.00; tiderna är ett antagande
+    hämtat från kommunens text om Abborrebergs elljusspår, inte bekräftat för Vrinnevi. Inga nya
+    shaderprogram (20), kostnad ca 0,1 ms per bild.*
 
 ### Spår P: prestanda
 

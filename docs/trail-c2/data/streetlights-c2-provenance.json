@@ -1,0 +1,1639 @@
+{
+ "meta": {
+  "generator": {
+   "script": "src/lib/lighting/trailGenerator.ts",
+   "version": "lighting-c2-v1",
+   "seed": null
+  },
+  "category": "illuminated recreational trail (elljusspår), not street lighting",
+  "policy": {
+   "version": "lighting-c2-v1",
+   "spacingM": 25,
+   "observedLoopLamps": 100,
+   "edgeSetbackM": 0.2,
+   "shiftsM": [
+    0,
+    2,
+    -2,
+    4,
+    -4,
+    6,
+    -6
+   ],
+   "coverM": 12.5,
+   "buildingClearanceM": 0.6,
+   "carriagewayClearanceM": 0.4,
+   "tramClearanceM": 2.2,
+   "railClearanceM": 3,
+   "maxMapDeviationM": 1
+  },
+  "type": {
+   "park-lantern-4m": {
+    "heightM": 4.2,
+    "armM": 0,
+    "cct": 2700,
+    "candela": 380,
+    "rangeM": 16,
+    "profile": 1,
+    "spacingM": 25,
+    "suppressM": 9,
+    "status": "existing Step 6 type; its use on the trail, and the spacing, are estimates"
+   }
+  },
+  "lit": "Phase C2 rule lighting-c2-v1 (estimates): the ways of the running route relation 5703856 tagged lit=yes that no earlier rollout lit (highway=track and one short footway), stations every 25 m along each run",
+  "schedule": {
+   "onFromMinutes": 360,
+   "offFromMinutes": 1320,
+   "status": "assumption",
+   "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
+  },
+  "coordinates": {
+   "data": "EPSG:3006 (SWEREF 99 TM)",
+   "scene": "x = (E − 569030) / (25 × k), z = −(N − 6494989) / (25 × k), k = 0.9996584126; x east, z south, 1 unit = 25 m on the ground; heights from the terrain (RH 2000)"
+  },
+  "format": {
+   "fixtures": "[id, rule, run, station index in the run, stations in the run, chainage from the run start m, chainage from the way start m, effective spacing m, side in walking direction, side fallback 0|1, shift m, offset from centreline m, position uncertainty m]",
+   "positions": "[id, E, N] EPSG:3006 metres (0.01 m) of the post base",
+   "sourceWays": "OSM way → version, timestamp and tags of the snapshot (all 14 ways of the loop)",
+   "ways": "the walk around the loop: way, class, order, direction, length, decision, earlier fixtures, fixtures of this phase"
+  },
+  "observed": [
+   "the way belongs to the running route relation/5703856",
+   "the way is lit (lit=yes)"
+  ],
+  "inferred": [
+   "colour temperature",
+   "distribution",
+   "fixture type",
+   "light output",
+   "mounting height",
+   "pole position",
+   "spacing"
+  ],
+  "inputs": {
+   "source": {
+    "file": "scripts/data/trail-c2-source.json",
+    "sha256": "7f47cf41f7f1da17aca6be6536638c3998a19f4fe99cdd0595ae1f26474b10d9"
+   },
+   "relation": {
+    "file": "scripts/vegetation-c1/trail-osm.json",
+    "sha256": "3e38900d90f4c9cd1deeba8e13e1a120d16d46d6c37ec13c812c4f15b0728987"
+   },
+   "map": {
+    "file": "src/lib/data/norrkoping-map.json",
+    "sha256": "454ecbe0d86e64b366e7c3ac3f93664077d29cfe667ee44fc8950c944a77ac90"
+   },
+   "pilot": {
+    "file": "src/lib/data/streetlights.json",
+    "sha256": "3c90719f166b3ff38443d0e38848e158fdf0d373730a122015dfccd2d18a36f7"
+   },
+   "a1": {
+    "file": "src/lib/data/streetlights-a1.json",
+    "sha256": "7ea8da79d87b05637e3e2d566605ca0a5b685b3e2bca336f280e864863bd62dc"
+   },
+   "a2": {
+    "file": "src/lib/data/streetlights-a2.json",
+    "sha256": "8bb5986f9becdd5bba30976aa9a00a29c24083d45c2ab14b014763612f1ede0e"
+   },
+   "a3": {
+    "file": "src/lib/data/streetlights-a3.json",
+    "sha256": "9c2341bba411035d286ba9c825b084761993a8ef82d09a0ffeddfe967d9d5d9e"
+   },
+   "l2a": {
+    "file": "src/lib/data/streetlights-l2.json",
+    "sha256": "36bd4cfd48d4156ab429d6284f8dc4c0a6687e5a51c25a3eff767059a45ef245"
+   },
+   "l2bc": {
+    "file": "src/lib/data/streetlights-l2bc.json",
+    "sha256": "c4cc95378eee88e25442fc0a28028de6174837f24926d3d553e28309b2c64d9e"
+   },
+   "l2d": {
+    "file": "src/lib/data/streetlights-l2d.json",
+    "sha256": "c67c64b0a84e4ab76cca9e19c9712a11a2d7495942ef27dd763528e1fb126af6"
+   },
+   "generator": {
+    "file": "src/lib/lighting/trailGenerator.ts",
+    "sha256": "e65c03d006f094be3b59fde1913952fab353fa27a276724042268eae3d3042c8"
+   },
+   "rule": {
+    "file": "src/lib/lighting/trailLighting.ts",
+    "sha256": "9ba5541dafd31f275c5bd6a909fa9343f73faafd3e6c8eda5ec2308d350baee0"
+   },
+   "schedule": {
+    "file": "src/lib/lighting/trailSchedule.ts",
+    "sha256": "d4151ec865e43ad0ac3bd568143b5a02afe2815e7eb9a86cc09873301d651910"
+   }
+  },
+  "source": {
+   "file": "scripts/data/trail-c2-source.json",
+   "osmBase": "2026-10-24T19:51:21Z",
+   "snapshotSha256": "e28586216be2df97df7bf251a83513583a427317bad152815936dea8a6bece0b",
+   "retrievedAt": "2026-10-24T19:52:03.038Z",
+   "relation": {
+    "element": "relation/5703856",
+    "version": 2,
+    "timestamp": "2016-07-24T22:24:59Z",
+    "tags": {
+     "colour": "black",
+     "route": "running",
+     "type": "route"
+    },
+    "file": "scripts/vegetation-c1/trail-osm.json",
+    "sha256": "3e38900d90f4c9cd1deeba8e13e1a120d16d46d6c37ec13c812c4f15b0728987",
+    "osmBase": "2026-11-13T16:49:35Z",
+    "members": [
+     26223168,
+     383320783,
+     122294026,
+     122294025,
+     383320782,
+     383320778,
+     383320758,
+     432960741,
+     383320779,
+     383320784,
+     432960730,
+     372645636,
+     432960738,
+     432960719
+    ]
+   },
+   "license": "ODbL-1.0 © OpenStreetMap contributors"
+  },
+  "counts": {
+   "fixtures": 58,
+   "mapped": 0,
+   "estimated": 58,
+   "stations": 58,
+   "rejected": 0,
+   "ways": 14,
+   "waysEstimated": 10,
+   "waysEarlier": 4,
+   "loopLengthM": 2368.9,
+   "estimatedLengthM": 1439.8,
+   "earlierFixturesOnLoop": 43,
+   "loopFixtures": 101
+  }
+ },
+ "fixtures": [
+  [
+   "estimate:lighting-c2-v1:way/122294025:s0",
+   "trail-run-beside",
+   1,
+   3,
+   58,
+   86.88,
+   18.39,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s1",
+   "trail-run-beside",
+   1,
+   4,
+   58,
+   111.71,
+   43.21,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s10",
+   "trail-run-beside",
+   1,
+   13,
+   58,
+   335.12,
+   266.63,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s2",
+   "trail-run-beside",
+   1,
+   5,
+   58,
+   136.53,
+   68.04,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s3",
+   "trail-run-beside",
+   1,
+   6,
+   58,
+   161.36,
+   92.86,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s4",
+   "trail-run-beside",
+   1,
+   7,
+   58,
+   186.18,
+   117.68,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s5",
+   "trail-run-beside",
+   1,
+   8,
+   58,
+   211,
+   142.51,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s6",
+   "trail-run-beside",
+   1,
+   9,
+   58,
+   235.83,
+   167.33,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s7",
+   "trail-run-beside",
+   1,
+   10,
+   58,
+   260.65,
+   192.15,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s8",
+   "trail-run-beside",
+   1,
+   11,
+   58,
+   285.47,
+   216.98,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s9",
+   "trail-run-beside",
+   1,
+   12,
+   58,
+   310.3,
+   241.8,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294026:s0",
+   "trail-run-beside",
+   1,
+   14,
+   58,
+   359.95,
+   22.15,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/26223168:s0",
+   "trail-run-beside",
+   1,
+   16,
+   58,
+   409.59,
+   1.12,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s0",
+   "trail-run-beside",
+   1,
+   22,
+   58,
+   558.54,
+   18.04,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s1",
+   "trail-run-beside",
+   1,
+   23,
+   58,
+   583.36,
+   42.86,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s10",
+   "trail-run-beside",
+   1,
+   32,
+   58,
+   806.78,
+   266.27,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s11",
+   "trail-run-beside",
+   1,
+   33,
+   58,
+   831.6,
+   291.1,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s12",
+   "trail-run-beside",
+   1,
+   34,
+   58,
+   856.42,
+   315.92,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s13",
+   "trail-run-beside",
+   1,
+   35,
+   58,
+   881.25,
+   340.75,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s14",
+   "trail-run-beside",
+   1,
+   36,
+   58,
+   906.07,
+   365.57,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s15",
+   "trail-run-beside",
+   1,
+   37,
+   58,
+   930.9,
+   390.39,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s16",
+   "trail-run-beside",
+   1,
+   38,
+   58,
+   955.72,
+   415.22,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s17",
+   "trail-run-beside",
+   1,
+   39,
+   58,
+   980.54,
+   440.04,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s18",
+   "trail-run-beside",
+   1,
+   40,
+   58,
+   1005.37,
+   464.87,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s19",
+   "trail-run-beside",
+   1,
+   41,
+   58,
+   1030.19,
+   489.69,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s2",
+   "trail-run-beside",
+   1,
+   24,
+   58,
+   608.19,
+   67.68,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s20",
+   "trail-run-beside",
+   1,
+   42,
+   58,
+   1055.01,
+   514.51,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s21",
+   "trail-run-beside",
+   1,
+   43,
+   58,
+   1079.84,
+   539.34,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s22",
+   "trail-run-beside",
+   1,
+   44,
+   58,
+   1104.66,
+   564.16,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s23",
+   "trail-run-beside",
+   1,
+   45,
+   58,
+   1129.49,
+   588.99,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s24",
+   "trail-run-beside",
+   1,
+   46,
+   58,
+   1154.31,
+   613.81,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s25",
+   "trail-run-beside",
+   1,
+   47,
+   58,
+   1179.13,
+   638.63,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s26",
+   "trail-run-beside",
+   1,
+   48,
+   58,
+   1203.96,
+   663.46,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s27",
+   "trail-run-beside",
+   1,
+   49,
+   58,
+   1228.78,
+   688.28,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s3",
+   "trail-run-beside",
+   1,
+   25,
+   58,
+   633.01,
+   92.51,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s4",
+   "trail-run-beside",
+   1,
+   26,
+   58,
+   657.83,
+   117.33,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s5",
+   "trail-run-beside",
+   1,
+   27,
+   58,
+   682.66,
+   142.16,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s6",
+   "trail-run-beside",
+   1,
+   28,
+   58,
+   707.48,
+   166.98,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s7",
+   "trail-run-beside",
+   1,
+   29,
+   58,
+   732.3,
+   191.8,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s8",
+   "trail-run-beside",
+   1,
+   30,
+   58,
+   757.13,
+   216.63,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s9",
+   "trail-run-beside",
+   1,
+   31,
+   58,
+   781.95,
+   241.45,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320782:s0",
+   "trail-run-beside",
+   1,
+   0,
+   58,
+   12.41,
+   12.41,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320782:s1",
+   "trail-run-beside",
+   1,
+   1,
+   58,
+   37.24,
+   37.24,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320782:s2",
+   "trail-run-beside",
+   1,
+   2,
+   58,
+   62.06,
+   62.06,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320783:s0",
+   "trail-run-beside",
+   1,
+   15,
+   58,
+   384.77,
+   5.59,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320784:s0",
+   "trail-run-beside",
+   1,
+   55,
+   58,
+   1377.73,
+   22.53,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320784:s1",
+   "trail-run-beside",
+   1,
+   56,
+   58,
+   1402.55,
+   47.35,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320784:s2",
+   "trail-run-beside",
+   1,
+   57,
+   58,
+   1427.37,
+   72.18,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s0",
+   "trail-run-beside",
+   1,
+   50,
+   58,
+   1253.61,
+   17.61,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s1",
+   "trail-run-beside",
+   1,
+   51,
+   58,
+   1278.43,
+   42.43,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s2",
+   "trail-run-beside",
+   1,
+   52,
+   58,
+   1303.25,
+   67.26,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s3",
+   "trail-run-beside",
+   1,
+   53,
+   58,
+   1328.08,
+   92.08,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s4",
+   "trail-run-beside",
+   1,
+   54,
+   58,
+   1352.9,
+   116.91,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s0",
+   "trail-run-beside",
+   1,
+   17,
+   58,
+   434.42,
+   8.89,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s1",
+   "trail-run-beside",
+   1,
+   18,
+   58,
+   459.24,
+   33.72,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s2",
+   "trail-run-beside",
+   1,
+   19,
+   58,
+   484.07,
+   58.54,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s3",
+   "trail-run-beside",
+   1,
+   20,
+   58,
+   508.89,
+   83.36,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s4",
+   "trail-run-beside",
+   1,
+   21,
+   58,
+   533.71,
+   108.19,
+   24.82,
+   "right",
+   0,
+   0,
+   1.2,
+   12.5
+  ]
+ ],
+ "positions": [
+  [
+   "estimate:lighting-c2-v1:way/122294025:s0",
+   569202.26,
+   6492556.44
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s1",
+   569187.55,
+   6492576.45
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s10",
+   569133.01,
+   6492779.13
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s2",
+   569172.92,
+   6492596.43
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s3",
+   569158.86,
+   6492616.89
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s4",
+   569146.48,
+   6492638.07
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s5",
+   569136.07,
+   6492660.45
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s6",
+   569127.95,
+   6492683.9
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s7",
+   569120.84,
+   6492707.58
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s8",
+   569120.98,
+   6492730.98
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294025:s9",
+   569127,
+   6492755.06
+  ],
+  [
+   "estimate:lighting-c2-v1:way/122294026:s0",
+   569139.87,
+   6492802.93
+  ],
+  [
+   "estimate:lighting-c2-v1:way/26223168:s0",
+   569150.23,
+   6492851.55
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s0",
+   569156.99,
+   6492999.08
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s1",
+   569163.78,
+   6493021.99
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s10",
+   569309.78,
+   6492892.83
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s11",
+   569320.6,
+   6492870.61
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s12",
+   569329.84,
+   6492847.58
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s13",
+   569338.89,
+   6492824.48
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s14",
+   569350.34,
+   6492802.34
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s15",
+   569370.04,
+   6492786.85
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s16",
+   569390.21,
+   6492772.67
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s17",
+   569407.71,
+   6492755.71
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s18",
+   569418.59,
+   6492734.42
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s19",
+   569422.04,
+   6492710.05
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s2",
+   569184.79,
+   6493031.99
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s20",
+   569423.77,
+   6492685.33
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s21",
+   569428.35,
+   6492660.85
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s22",
+   569439.46,
+   6492638.59
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s23",
+   569457.9,
+   6492621.83
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s24",
+   569478.28,
+   6492607.45
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s25",
+   569500.6,
+   6492595.94
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s26",
+   569525,
+   6492591.43
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s27",
+   569549.05,
+   6492586.27
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s3",
+   569207.76,
+   6493029.44
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s4",
+   569223.46,
+   6493011.34
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s5",
+   569237.72,
+   6492990.92
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s6",
+   569251.99,
+   6492970.51
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s7",
+   569271.42,
+   6492955.08
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s8",
+   569286.68,
+   6492936.36
+  ],
+  [
+   "estimate:lighting-c2-v1:way/372645636:s9",
+   569299.89,
+   6492915.66
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320782:s0",
+   569236.37,
+   6492490.3
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320782:s1",
+   569226.68,
+   6492513.21
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320782:s2",
+   569215.95,
+   6492535.58
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320783:s0",
+   569146.76,
+   6492826.79
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320784:s0",
+   569685.4,
+   6492527.6
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320784:s1",
+   569706.01,
+   6492514.15
+  ],
+  [
+   "estimate:lighting-c2-v1:way/383320784:s2",
+   569726.51,
+   6492500.17
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s0",
+   569572.5,
+   6492578.16
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s1",
+   569595.95,
+   6492570.05
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s2",
+   569618.75,
+   6492560.78
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s3",
+   569640.93,
+   6492549.66
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960730:s4",
+   569663.11,
+   6492538.53
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s0",
+   569155.06,
+   6492875.55
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s1",
+   569158.96,
+   6492900.17
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s2",
+   569157.97,
+   6492924.97
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s3",
+   569156.79,
+   6492949.77
+  ],
+  [
+   "estimate:lighting-c2-v1:way/432960738:s4",
+   569155.88,
+   6492974.5
+  ]
+ ],
+ "sourceWays": {
+  "way/26223168": {
+   "version": 9,
+   "timestamp": "2015-11-28T19:28:24Z",
+   "tags": {
+    "highway": "footway",
+    "lit": "yes"
+   }
+  },
+  "way/122294025": {
+   "version": 3,
+   "timestamp": "2015-11-28T19:28:27Z",
+   "tags": {
+    "highway": "track",
+    "lit": "yes",
+    "motor_vehicle": "no",
+    "surface": "fine_gravel",
+    "tracktype": "grade1"
+   }
+  },
+  "way/122294026": {
+   "version": 5,
+   "timestamp": "2017-02-01T13:27:19Z",
+   "tags": {
+    "highway": "track",
+    "lit": "yes",
+    "surface": "fine_gravel",
+    "tracktype": "grade1"
+   }
+  },
+  "way/372645636": {
+   "version": 6,
+   "timestamp": "2016-07-24T22:25:02Z",
+   "tags": {
+    "highway": "track",
+    "lit": "yes",
+    "surface": "unpaved",
+    "tracktype": "grade2"
+   }
+  },
+  "way/383320758": {
+   "version": 2,
+   "timestamp": "2016-07-24T22:25:00Z",
+   "tags": {
+    "highway": "path",
+    "lit": "yes"
+   }
+  },
+  "way/383320778": {
+   "version": 2,
+   "timestamp": "2016-07-24T22:25:01Z",
+   "tags": {
+    "highway": "path",
+    "lit": "yes",
+    "surface": "gravel"
+   }
+  },
+  "way/383320779": {
+   "version": 1,
+   "timestamp": "2015-11-28T19:28:20Z",
+   "tags": {
+    "highway": "path",
+    "lit": "yes"
+   }
+  },
+  "way/383320782": {
+   "version": 1,
+   "timestamp": "2015-11-28T19:28:20Z",
+   "tags": {
+    "highway": "track",
+    "lit": "yes",
+    "motor_vehicle": "no",
+    "surface": "fine_gravel",
+    "tracktype": "grade2"
+   }
+  },
+  "way/383320783": {
+   "version": 2,
+   "timestamp": "2023-11-13T12:54:01Z",
+   "tags": {
+    "highway": "track",
+    "lit": "yes",
+    "surface": "fine_gravel"
+   }
+  },
+  "way/383320784": {
+   "version": 1,
+   "timestamp": "2015-11-28T19:28:21Z",
+   "tags": {
+    "highway": "track",
+    "lit": "yes",
+    "surface": "unpaved",
+    "tracktype": "grade2"
+   }
+  },
+  "way/432960719": {
+   "version": 1,
+   "timestamp": "2016-07-24T22:24:56Z",
+   "tags": {
+    "highway": "track",
+    "lit": "yes",
+    "surface": "unpaved",
+    "tracktype": "grade2"
+   }
+  },
+  "way/432960730": {
+   "version": 1,
+   "timestamp": "2016-07-24T22:24:57Z",
+   "tags": {
+    "highway": "track",
+    "lit": "yes",
+    "surface": "unpaved",
+    "tracktype": "grade2"
+   }
+  },
+  "way/432960738": {
+   "version": 1,
+   "timestamp": "2016-07-24T22:24:58Z",
+   "tags": {
+    "highway": "track",
+    "lit": "yes",
+    "surface": "unpaved",
+    "tracktype": "grade2"
+   }
+  },
+  "way/432960741": {
+   "version": 1,
+   "timestamp": "2016-07-24T22:24:58Z",
+   "tags": {
+    "highway": "path",
+    "lit": "yes"
+   }
+  }
+ },
+ "ways": [
+  {
+   "way": 26223168,
+   "highway": "footway",
+   "order": 0,
+   "reversed": false,
+   "lengthM": 7.7,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 1
+  },
+  {
+   "way": 432960719,
+   "highway": "track",
+   "order": 1,
+   "reversed": false,
+   "lengthM": 9.3,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 0
+  },
+  {
+   "way": 432960738,
+   "highway": "track",
+   "order": 2,
+   "reversed": false,
+   "lengthM": 115,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 5
+  },
+  {
+   "way": 372645636,
+   "highway": "track",
+   "order": 3,
+   "reversed": false,
+   "lengthM": 695.5,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 28
+  },
+  {
+   "way": 432960730,
+   "highway": "track",
+   "order": 4,
+   "reversed": false,
+   "lengthM": 119.2,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 5
+  },
+  {
+   "way": 383320784,
+   "highway": "track",
+   "order": 5,
+   "reversed": false,
+   "lengthM": 84.6,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 3
+  },
+  {
+   "way": 383320779,
+   "highway": "path",
+   "order": 6,
+   "reversed": false,
+   "lengthM": 16.6,
+   "status": "lit by an earlier rollout (1 fixtures): left as it is",
+   "earlierFixtures": 1,
+   "fixtures": 0
+  },
+  {
+   "way": 432960741,
+   "highway": "path",
+   "order": 7,
+   "reversed": true,
+   "lengthM": 187.7,
+   "status": "lit by an earlier rollout (9 fixtures): left as it is",
+   "earlierFixtures": 9,
+   "fixtures": 0
+  },
+  {
+   "way": 383320758,
+   "highway": "path",
+   "order": 8,
+   "reversed": true,
+   "lengthM": 232.2,
+   "status": "lit by an earlier rollout (11 fixtures): left as it is",
+   "earlierFixtures": 11,
+   "fixtures": 0
+  },
+  {
+   "way": 383320778,
+   "highway": "path",
+   "order": 9,
+   "reversed": true,
+   "lengthM": 492.6,
+   "status": "lit by an earlier rollout (22 fixtures): left as it is",
+   "earlierFixtures": 22,
+   "fixtures": 0
+  },
+  {
+   "way": 383320782,
+   "highway": "track",
+   "order": 10,
+   "reversed": false,
+   "lengthM": 68.5,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 3
+  },
+  {
+   "way": 122294025,
+   "highway": "track",
+   "order": 11,
+   "reversed": false,
+   "lengthM": 269.3,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 11
+  },
+  {
+   "way": 122294026,
+   "highway": "track",
+   "order": 12,
+   "reversed": false,
+   "lengthM": 41.4,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 1
+  },
+  {
+   "way": 383320783,
+   "highway": "track",
+   "order": 13,
+   "reversed": false,
+   "lengthM": 29.3,
+   "status": "estimated",
+   "earlierFixtures": 0,
+   "fixtures": 1
+  }
+ ],
+ "runs": [
+  {
+   "run": 1,
+   "ways": [
+    383320782,
+    122294025,
+    122294026,
+    383320783,
+    26223168,
+    432960719,
+    432960738,
+    372645636,
+    432960730,
+    383320784
+   ],
+   "lengthM": 1439.8,
+   "stations": 58,
+   "fixtures": 58
+  }
+ ],
+ "rejected": []
+}
