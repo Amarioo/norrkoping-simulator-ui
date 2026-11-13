@@ -1,7 +1,8 @@
 # Vehicle Lights Phase F2 — headlights and tail lights on trams and trains (2026-11-13)
 
 Worked directly on local `main` (= `origin/main` `eee971c`). Backend unchanged. **Approved by the user on
-2026-11-13 with the recommended decisions below; not committed yet.** Roadmap track F, step F2.
+2026-11-13 with the recommended decisions below; committed (`bdd561c`) and pushed to
+`origin/main`.** Roadmap track F, step F2.
 
 ## Verdict
 

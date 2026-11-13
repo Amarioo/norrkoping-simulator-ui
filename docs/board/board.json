@@ -94,54 +94,6 @@
   ],
   "stories": [
     {
-      "id": "F2",
-      "epic": "F",
-      "title": "Spårvagnar och tåg",
-      "status": "test",
-      "size": "S",
-      "report": "docs/rail-lights-f2/README.md",
-      "summary": "Strålkastare och baklyktor på spårvagnar och tåg, som på bilar och bussar i F1.",
-      "tasks": [
-        {
-          "text": "Lyktglasen lyser på natten (fram vitt, bak rött)",
-          "done": true
-        },
-        {
-          "text": "Ljuskägla framför de närmaste spårvagnarna och tågen",
-          "done": true
-        },
-        {
-          "text": "Tester, mätning och rapport",
-          "done": true
-        },
-        {
-          "text": "Du testade och godkände (2026-11-13)",
-          "done": true
-        },
-        {
-          "text": "Beslut: rekommendationerna (tågets ljuskägla som bilens, lyktorna som de är, inga tända fönster nu)",
-          "done": true
-        }
-      ],
-      "comments": [
-        {
-          "author": "claude",
-          "date": "2026-11-13",
-          "text": "Påbörjad. Spårvagnar och tåg får samma ljus som bilar och bussar fick i F1: lysande lyktglas och en ljuskägla framför de närmaste. Allt ljus är uppskattat."
-        },
-        {
-          "author": "claude",
-          "date": "2026-11-13",
-          "text": "Klar för test. På natten har spårvagnar och tåg lysande vita lyktor fram och röda bak, och de närmaste lyser upp spåret framför sig, som bilarna och bussarna. På dagen är bilden oförändrad. Allt ljus är uppskattat (samma värden som i F1). Ingen mätbar prestandakostnad; alla tester går igenom utom det sedan tidigare kända police.test.ts. Tre frågor till dig i rapporten (tågets ljuskägla, lyktornas antal, tända fönster); jag rekommenderar att allt får vara som det är. Inget är committat."
-        },
-        {
-          "author": "claude",
-          "date": "2026-11-13",
-          "text": "Godkänd av dig med de rekommenderade besluten. Inte committad ännu; kortet flyttas till Klart när det är committat och pushat."
-        }
-      ]
-    },
-    {
       "id": "C1",
       "epic": "C",
       "title": "Vegetation i Vrinneviskogen",
@@ -732,6 +684,61 @@
       ],
       "date": "2026-11-10",
       "outcome": "21 av 32 bensinstationer har tak på uppmätt höjd (laserdata 2020, 4,0–6,0 m) i stället för 13 m höga lådor, med uppskattade pumpöar, pumpar, pelare, neutral skyltlist och 239 takspotlights (ca 70–180 lux på natten); Hagebygatan och Lindövägen tolkade ur laserdata på ditt beslut; godkänd, committad (dbb1289) och pushad."
+    },
+    {
+      "id": "F2",
+      "epic": "F",
+      "title": "Spårvagnar och tåg",
+      "status": "done",
+      "size": "S",
+      "report": "docs/rail-lights-f2/README.md",
+      "summary": "Strålkastare och baklyktor på spårvagnar och tåg, som på bilar och bussar i F1.",
+      "tasks": [
+        {
+          "text": "Lyktglasen lyser på natten (fram vitt, bak rött)",
+          "done": true
+        },
+        {
+          "text": "Ljuskägla framför de närmaste spårvagnarna och tågen",
+          "done": true
+        },
+        {
+          "text": "Tester, mätning och rapport",
+          "done": true
+        },
+        {
+          "text": "Du testade och godkände (2026-11-13)",
+          "done": true
+        },
+        {
+          "text": "Beslut: rekommendationerna (tågets ljuskägla som bilens, lyktorna som de är, inga tända fönster nu)",
+          "done": true
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Påbörjad. Spårvagnar och tåg får samma ljus som bilar och bussar fick i F1: lysande lyktglas och en ljuskägla framför de närmaste. Allt ljus är uppskattat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Klar för test. På natten har spårvagnar och tåg lysande vita lyktor fram och röda bak, och de närmaste lyser upp spåret framför sig, som bilarna och bussarna. På dagen är bilden oförändrad. Allt ljus är uppskattat (samma värden som i F1). Ingen mätbar prestandakostnad; alla tester går igenom utom det sedan tidigare kända police.test.ts. Tre frågor till dig i rapporten (tågets ljuskägla, lyktornas antal, tända fönster); jag rekommenderar att allt får vara som det är. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Godkänd av dig med de rekommenderade besluten. Inte committad ännu; kortet flyttas till Klart när det är committat och pushat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Committad (bdd561c) och pushad till origin/main."
+        }
+      ],
+      "date": "2026-11-13",
+      "outcome": "Spårvagnar och tåg har på natten lysande vita lyktor fram och röda bak, och de närmaste lyser upp spåret framför sig som bilarna i F1; allt ljus uppskattat, dagbilden oförändrad, ingen mätbar prestandakostnad; godkänd, committad (bdd561c) och pushad."
     }
   ]
 }

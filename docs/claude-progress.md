@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Vehicle Lights Phase F2 — headlights and tail lights on trams and trains (2026-11-13) — approved by the user (2026-11-13) with the recommended decisions, NOT committed yet
+## Vehicle Lights Phase F2 — headlights and tail lights on trams and trains (2026-11-13) — approved by the user (2026-11-13) with the recommended decisions, committed (`bdd561c`) and pushed to `origin/main`
 
 [Full report](rail-lights-f2/README.md). Worked directly on local `main` (= `origin/main` `eee971c`). Backend unchanged.
-Approved by the user 2026-11-13. **Nothing is committed.** Board: F2 in *Test* until it is committed and pushed.
+Approved by the user 2026-11-13 with the recommended decisions; **committed (`bdd561c`) and pushed to `origin/main`** on the user's request. Board: F2 in *Done*.
 
 - **Result:** at night every tram and train shows lit white headlamps and red tail lamps, and the
   ones nearest the camera throw F1's light pool on the track ahead. By day nothing changes (6 day
