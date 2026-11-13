@@ -90,6 +90,12 @@
       "title": "Grund: koordinater, terräng och geometri",
       "color": "#868e96",
       "summary": "De första stegen: koordinatsystem, höjddata, terräng, vägar och broar."
+    },
+    {
+      "id": "U",
+      "title": "Gränssnitt",
+      "color": "#0f5e78",
+      "summary": "Sidans utseende och reglage: flikar, diagram, meddelanden och mobilvy."
     }
   ],
   "stories": [
@@ -833,6 +839,49 @@
       ],
       "date": "2026-11-13",
       "outcome": "14 rutor längs norra slingan, bara inom reservatet: 8 071 trädtoppar (median 22,5 m, högst 36,4 m), 66,5 ha = 29 % av reservatet inom kartan. Kostnad ca 0,1–0,8 ms per bild (mätt på upptagen dator, bör mätas om), nedladdningen 83 kB större. Godkänd, committad (d7294dd) och pushad."
+    },
+    {
+      "id": "U1",
+      "epic": "U",
+      "title": "Nytt gränssnitt efter mockupen",
+      "status": "test",
+      "size": "M",
+      "report": "docs/interface-u1/README.md",
+      "summary": "Ljust tema, inställningarna i tre flikar, två diagram under kartan, rullande siffror, meddelanderutor och en uppdragbar låda på mobilen. Byggt i den befintliga Svelte-appen.",
+      "tasks": [
+        {
+          "text": "Flikar, reglage och kartverktyg i nytt utseende",
+          "done": true
+        },
+        {
+          "text": "Diagram, rullande siffror och meddelanderutor",
+          "done": true
+        },
+        {
+          "text": "Uppdragbar låda på mobilen",
+          "done": true
+        },
+        {
+          "text": "Tester, mätning och rapport",
+          "done": false
+        },
+        {
+          "text": "Du testar och godkänner",
+          "done": false
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Påbörjad efter ditt besked (Ja, i Svelte) och efter att sessionen med Vrinneviskogen hade stannat. Samma utseende som i mockupen, byggt i dagens app med Svelte-motsvarigheterna till biblioteken. Kartans storlek på skärmen ändras inte."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Klar för ditt test. Sidan har mockupens utseende: ljust tema, tre flikar, två diagram under kartan, rullande siffror, meddelanderutor och en uppdragbar låda på mobilen. Kartan är orörd och lika stor som förut. Inte klart: prestandamätningen och en ren körning av webbläsartesterna, eftersom ett spel belastade datorn (cirka 70 %) under kontrollerna; de körs när datorn är lugn. Fem frågor till dig i rapporten; jag rekommenderar att allt får vara som det är. Inget är committat."
+        }
+      ]
     }
   ]
 }

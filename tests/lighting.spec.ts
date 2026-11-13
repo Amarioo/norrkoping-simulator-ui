@@ -57,6 +57,8 @@ test('time of day, presets and independent floodlights work without shader recom
   await request.post('/api/simulator/reset', { data: {} });
   await page.goto('/?date=2026-10-21&time=12:39&stadium=off');
   await expect(page.locator('[data-map-ready="true"]')).toBeVisible({ timeout: 120000 });
+  // Interface U1: the lighting controls live in the "Tid och ljus" tab.
+  await page.getByRole('tab', { name: 'Tid och ljus' }).click();
   await expect(page.locator('.lighting-card')).toBeVisible();
   const elevation = async () =>
     Number(await page.locator('[data-sun-elevation]').getAttribute('data-sun-elevation'));

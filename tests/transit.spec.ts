@@ -32,7 +32,8 @@ test('collective transport counts, articulated vehicles and following reach the 
     ])
       await page.locator('#' + id).fill(value);
     await page.getByRole('button', { name: /Uppdatera trafiken/ }).click();
-    await expect(page.locator('.sim-feedback')).toContainText('Trafiken uppdaterad.');
+    // Interface U1: the simulator's answer is shown as a toast.
+    await expect(page.locator('[data-sonner-toaster]')).toContainText('Trafiken uppdaterad.');
     await expect
       .poll(async () => {
         const w = await (await request.get('/api/simulator/world')).json();

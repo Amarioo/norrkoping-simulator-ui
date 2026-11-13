@@ -29,6 +29,8 @@ const frames = (page: Page) =>
       ),
   );
 const select = async (page: Page, id: string, value: string) => {
+  // Interface U1: the lighting controls live in the "Tid och ljus" tab.
+  await page.getByRole('tab', { name: 'Tid och ljus' }).click();
   await page.selectOption(id, value);
   await frames(page);
 };

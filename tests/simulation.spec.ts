@@ -26,7 +26,11 @@ test('traffic commands, SSE, free camera and vehicle following work together', a
   ])
     await page.locator('#' + id).fill(value);
   await page.getByRole('button', { name: /Uppdatera trafiken/ }).click();
-  await expect(page.locator('.sim-feedback')).toContainText('Trafiken uppdaterad.');
+  // Interface U1: the simulator's answers are shown as toasts, and the settings are split over the
+  // tabs "Trafik", "Tid och ljus" and "Flyg".
+  const toasts = page.locator('[data-sonner-toaster]');
+  const openTab = (name: string) => page.getByRole('tab', { name }).click();
+  await expect(toasts).toContainText('Trafiken uppdaterad.');
   await expect
     .poll(async () => (await (await request.get('/api/simulator/world')).json()).vehicles.length)
     .toBe(60);
@@ -71,6 +75,7 @@ test('traffic commands, SSE, free camera and vehicle following work together', a
   );
   await expect(page.locator('.vehicle-inspector')).toContainText('Lastbil');
   await page.getByRole('button', { name: 'Stäng fordonsdetaljer' }).click();
+  await openTab('Flyg');
   await page.getByRole('button', { name: /Följ flygplanet/ }).click();
   await expect(page.locator('.map-status')).toContainText('FÖLJER NK-01');
   await page.getByRole('button', { name: 'Fortsätt simuleringen' }).click();
@@ -87,14 +92,16 @@ test('traffic commands, SSE, free camera and vehicle following work together', a
   await expect(page.locator('.sim-live').filter({ hasText: 'Simulatorn är ansluten' })).toBeVisible(
     { timeout: 15000 },
   );
+  await openTab('Trafik');
   await page.getByLabel('Flygtrafik mellan flygplatserna').uncheck();
   await page.getByRole('button', { name: /Uppdatera trafiken/ }).click();
   await expect
     .poll(async () => (await (await request.get('/api/simulator/world')).json()).aircraft.length)
     .toBe(0);
+  await openTab('Flyg');
   await expect(page.getByRole('button', { name: /Följ flygplanet/ })).toBeDisabled();
   await page.getByRole('button', { name: 'Återställ simuleringen' }).click();
-  await expect(page.locator('.sim-feedback')).toContainText('Simuleringen återställd.');
+  await expect(toasts).toContainText('Simuleringen återställd.');
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator('body')).toHaveJSProperty('scrollWidth', 390);
   await page.screenshot({ path: 'test-results/simulator-mobile.png', fullPage: true });

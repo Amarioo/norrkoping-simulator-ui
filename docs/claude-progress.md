@@ -2,6 +2,43 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Interface Phase U1 — the new interface after the mockup (2026-11-13) — for the user's test, NOT committed
+
+[Full report](interface-u1/README.md). Worked directly on local `main` (= `origin/main` `50a625d`). Backend unchanged.
+**Nothing is committed.** Board: U1 in *Test*, new epic "Gränssnitt" (U). Started on the user's decision of 2026-11-13
+(the look of the React mockup, built in the existing Svelte app), after the C1b session had finished.
+
+- **Result:** light theme; the settings in three tabs (Trafik, Tid och ljus, Flyg); two charts under
+  the map (vehicles moving, vehicles per kind); rolling big numbers; toasts for the simulator's
+  answers, errors and landings; on screens under 760 px the settings in a drawer from the bottom edge.
+  The 3D scene is untouched and the canvas has the same size as before at four window sizes.
+- **How:**
+  - `bits-ui` 2.21.0 (tabs), `layerchart` 2.10.1 (charts), `@number-flow/svelte` 0.4.2 (numbers),
+    `svelte-sonner` 1.2.3 (toasts), `vaul-svelte` 1.0.0-next.7 (drawer, a pre-release). All MIT.
+  - `src/App.svelte`, `src/style.css` rewritten; `src/lib/ui/` new (`TrafficCharts`,
+    `AnimatedNumber`, `SettingsDrawer`, `trafficStats`). Charts and drawer are fetched on demand.
+  - Lists, sliders and switches stay the browser's own, restyled, with the same ids and classes
+    (15 of 21 test files and 47 scripts operate them).
+  - Five test files adapted: open the tab before using a control in it; read the answer from the
+    toast. No assertion changed.
+- **Measured:** canvas size identical before/after; main file 1 068 → 1 119 kB (gzip 290 → 306 kB),
+  charts 171 kB and drawer 69 kB separate; page up in the dev server 5.9 s before and after.
+  **Frame times not measured**: a game loaded the machine (about 70 % busy).
+- **Checks (under that load):**
+  - type check: 0 errors;
+  - build: OK, byte-identical twice;
+  - Vitest: 617/626 (`police.test.ts` as before, 7 time-outs at the 5 s limit in untouched tests,
+    and the board link check before the report existed); `trafficStats.test.ts` 4/4;
+  - Playwright: full runs 31/33, 30/33, 30/33; every failure "page not up within 5 s"
+    (`sse-debug`, `simulation`), and `sse-debug` fails 8 of 8 against `50a625d` under the same load.
+- **To do on a quiet machine:** `scripts/interface-u1/paired.mjs` (5 rounds, hook builds on 5372 and
+  5373), then one full `npm test` and `npm run test:e2e`.
+- **Open decisions:** native controls restyled (recommended: keep); panel 280 px (keep); clock does
+  not roll (keep); `vaul-svelte` pre-release (accept for now); older measurement scripts that use
+  `#stadium-lights` need the tab opened first (leave until needed).
+- **Local only:** `.claude/launch.json` (`u1-dev` 5371, `u1-before` 5372, `u1-new` 5373,
+  `u1-before-dev` 5374) and `work/ui-u1/`.
+
 ## Phase C1b — Vrinneviskogen: the trees around the northern trail loop, 14 squares (2026-11-13) — approved by the user (2026-11-13), committed (`d7294dd`) and pushed to `origin/main`
 
 [Full report](vegetation-c1/README.md) (one report for C1 and C1b). Worked directly on local `main` (= `origin/main` `ac6ecf0`), on top of the uncommitted pilot (next entry). Backend unchanged.

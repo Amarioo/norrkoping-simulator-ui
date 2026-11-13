@@ -139,3 +139,6 @@ work/geodata/
 # Phase C1 (Vrinneviskogen vegetation, pilot) scratch (main worktree, hook builds, raw runs, logs,
 # LiDAR rebuilds). Curated data is in docs/vegetation-c1/; reusable tools are in scripts/vegetation-c1/.
 /work/vegetation-c1/
+# Interface Phase U1 (new interface) scratch (copy of the app before the change, hook builds, raw runs,
+# logs, first screenshots). Curated data is in docs/interface-u1/; reusable tools are in scripts/interface-u1/.
+/work/ui-u1/

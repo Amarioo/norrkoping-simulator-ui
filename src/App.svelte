@@ -1,6 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { Canvas } from '@threlte/core';
+  import { Tabs } from 'bits-ui';
+  import { Toaster, toast } from 'svelte-sonner';
   import Scene from './lib/Scene.svelte';
   import { CITY_VIEWS, cityMap } from './lib/mapModel';
   import { city, FLIGHT_PHASE, VEHICLE_NAMES } from './lib/city.svelte';
@@ -10,7 +12,8 @@
   import FpsProbe from './lib/perf/FpsProbe.svelte';
   import FpsCounter from './lib/perf/FpsCounter.svelte';
   import { fpsCounter, setFpsVisible } from './lib/perf/fpsMonitor.svelte';
-  import type { Component } from 'svelte';
+  import AnimatedNumber from './lib/ui/AnimatedNumber.svelte';
+  import type { Component, Snippet } from 'svelte';
   // SSE debug panel (L key / ?sse-debug): only in dev and VITE_SSE_DEBUG=1 builds, loaded on demand.
   let SseDebugHost = $state.raw<Component | null>(null);
   // Same condition as sseDebugAvailable (sseTap.ts), written out so the build drops the chunk.
@@ -31,8 +34,20 @@
     flights = $state(true),
     timeScale = $state(3),
     initialized = $state(false);
+  // Interface U1: the settings are split over three tabs (Bits UI); on a narrow screen they live
+  // in a drawer pulled up from the bottom edge (vaul-svelte) instead of the side panel.
+  let tab = $state('traffic'),
+    narrow = $state(false),
+    drawerOpen = $state(false);
+  // The charts (LayerChart) and the drawer (vaul-svelte) are fetched after the page is up, the
+  // drawer only on a narrow screen, so they do not delay the map.
+  let TrafficCharts = $state.raw<Component | null>(null),
+    SettingsDrawer = $state.raw<Component<{ open?: boolean; children: Snippet }, {}, 'open'> | null>(
+      null,
+    );
   const total = $derived(compact + estate + trucks + buses),
     moving = $derived(city.snapshot.vehicles.filter((v) => !v.stopped).length),
+    truckCount = $derived(city.snapshot.vehicles.filter((v) => v.kind === 'truck').length),
     plane = $derived(city.snapshot.aircraft[0]);
   // Step 6: simulated time of day (Europe/Stockholm) and stadium floodlights.
   const [siteLat, siteLon] = terrain.unproject(0, 0);
@@ -66,7 +81,45 @@
   onMount(() => {
     const c = document.createElement('canvas');
     webgl = !!c.getContext('webgl2');
-    return city.connect();
+    const query = matchMedia('(max-width: 760px)');
+    const onQuery = () => {
+      narrow = query.matches;
+      if (!narrow) drawerOpen = false;
+      else if (!SettingsDrawer)
+        import('./lib/ui/SettingsDrawer.svelte').then((m) => (SettingsDrawer = m.default));
+    };
+    onQuery();
+    query.addEventListener('change', onQuery);
+    import('./lib/ui/TrafficCharts.svelte').then((m) => (TrafficCharts = m.default));
+    const disconnect = city.connect();
+    return () => {
+      query.removeEventListener('change', onQuery);
+      disconnect();
+    };
+  });
+  // Interface U1: the simulator's answers and errors are shown as toasts (svelte-sonner). An error
+  // stays until the next command clears it; a new landing in the event list gets a toast of its own.
+  $effect(() => {
+    if (city.notice) toast.success(city.notice);
+  });
+  $effect(() => {
+    if (city.error) toast.error(city.error, { id: 'city-error', duration: Infinity });
+    else toast.dismiss('city-error');
+  });
+  let eventsPrimed = false,
+    lastEventId: unknown;
+  $effect(() => {
+    const top = city.snapshot.events[0];
+    if (!city.connected) return;
+    if (!eventsPrimed) {
+      eventsPrimed = true;
+      lastEventId = top?.id;
+      return;
+    }
+    if (top && top.id !== lastEventId) {
+      lastEventId = top.id;
+      if (top.kind === 'landing') toast(top.message);
+    }
   });
   // Phase P0: fullscreen map. The Fullscreen API on the map panel; where it is missing or refused
   // (e.g. iPhone Safari, a permissions policy) the panel fills the window with CSS instead. Threlte
@@ -147,241 +200,266 @@
 >
 <svelte:window onkeydown={mapKeys} />
 <svelte:document onfullscreenchange={fullscreenChange} />
-<div class="sim-shell">
+
+{#snippet controls()}
+  <Tabs.Root bind:value={tab} class="tabs">
+    <Tabs.List class="tab-list" aria-label="Inställningar">
+      <Tabs.Trigger value="traffic" class="tab">Trafik</Tabs.Trigger>
+      <Tabs.Trigger value="light" class="tab">Tid och ljus</Tabs.Trigger>
+      <Tabs.Trigger value="flight" class="tab">Flyg</Tabs.Trigger>
+    </Tabs.List>
+    <Tabs.Content value="traffic" class="tab-panel">
+      <div class="card-heading">
+        <h2>Vägtrafik</h2>
+        <span class="count-tag">{total} fordon</span>
+      </div>
+      <label class="slider-label" for="compact"
+        ><span>Små personbilar</span><output>{compact}</output></label
+      ><input id="compact" type="range" min="0" max="600" step="10" bind:value={compact} />
+      <label class="slider-label" for="estate"
+        ><span>Större bilar & kombi</span><output>{estate}</output></label
+      ><input id="estate" type="range" min="0" max="600" step="10" bind:value={estate} />
+      <label class="slider-label" for="trucks"><span>Lastbilar</span><output>{trucks}</output></label
+      ><input id="trucks" type="range" min="0" max="150" step="5" bind:value={trucks} />
+      <p class="control-note">
+        Personbilar följer körbara gator. Drottninggatan är undantagen. Lastbilar håller sig till
+        större vägar, bland annat E4 och Söderleden.
+      </p>
+      <h3 class="section-heading">Kollektivtrafik</h3>
+      <label class="slider-label" for="buses"><span>Bussar</span><output>{buses}</output></label
+      ><input id="buses" type="range" min="0" max="80" step="1" bind:value={buses} />
+      <label class="slider-label" for="trams"
+        ><span>Spårvagnar · linje 2 & 3</span><output>{trams}</output></label
+      ><input id="trams" type="range" min="0" max="40" step="1" bind:value={trams} />
+      <label class="slider-label" for="trains"
+        ><span>Östgötapendeln</span><output>{trains}</output></label
+      ><input id="trains" type="range" min="0" max="12" step="1" bind:value={trains} />
+      <p class="control-note">
+        Spårvagnar och pendeltåg följer kartlagda spår. Bussar delar vägtrafikens köer och
+        trafikljus. Hållplatsuppehåll och avgångar är simulerade.
+      </p>
+      <label class="field-label" for="time-scale"
+        ><span>Simuleringshastighet</span><output>{timeScale}×</output></label
+      ><select id="time-scale" bind:value={timeScale}
+        ><option value={1}>Realtid · 1×</option><option value={3}>Stadspuls · 3×</option><option
+          value={5}>Snabbare · 5×</option
+        ><option value={10}>Överblick · 10×</option><option value={20}>Snabbspola · 20×</option
+        ></select
+      >
+      <label class="switch-row"
+        ><span>Flygtrafik mellan flygplatserna</span><input
+          type="checkbox"
+          role="switch"
+          class="switch"
+          bind:checked={flights}
+        /></label
+      >
+      <button
+        class="apply-button"
+        disabled={!city.connected || city.pending || total > 1000}
+        onclick={apply}>{city.pending ? 'Uppdaterar…' : 'Uppdatera trafiken'}</button
+      >
+      {#if total > 1000}<p class="error-text">Välj högst 1 000 fordon totalt.</p>{/if}
+    </Tabs.Content>
+    <Tabs.Content value="light" class="tab-panel lighting-card">
+      <div class="card-heading">
+        <h2>Tid och ljus</h2>
+        <span class="count-tag">{formatClock(lightingState.minutes)}</span>
+      </div>
+      <label class="field-label" for="light-date"><span>Datum (Europe/Stockholm)</span></label
+      ><input
+        id="light-date"
+        type="date"
+        value={lightingState.date}
+        onchange={(e) => {
+          if (e.currentTarget.value) lightingState.date = e.currentTarget.value;
+        }}
+      />
+      <label class="slider-label" for="light-time"
+        ><span>Lokal tid</span><output>{formatClock(lightingState.minutes)}</output></label
+      ><input
+        id="light-time"
+        type="range"
+        min="0"
+        max="1439"
+        step="1"
+        value={Math.floor(lightingState.minutes)}
+        oninput={(e) => (lightingState.minutes = Number(e.currentTarget.value))}
+      />
+      <div class="preset-row" role="group" aria-label="Ljusförval">
+        {#each dayPresets as p (p.id)}<button
+            class="preset-button"
+            data-preset={p.id}
+            title={p.label + ' · ' + formatClock(p.minutes) + ' · ' + p.elevation.toFixed(1) + '°'}
+            onclick={() => setClock(lightingState.date, p.minutes)}>{p.label}</button
+          >{/each}
+      </div>
+      <p class="control-note" data-sun-elevation={sun.elevation.toFixed(2)}>
+        Solhöjd {sun.elevation.toFixed(1).replace('.', ',')}° · {PHASE_NAMES[
+          dayPhase(sun.elevation)
+        ]}. Gatubelysning i tre pilotområden: Kungsgatan, Strömparken och kring Idrottsparken.
+      </p>
+      <label class="field-label" for="light-play"><span>Tidsförlopp</span></label><select
+        id="light-play"
+        bind:value={lightingState.rate}
+        ><option value={0}>Stoppad</option><option value={60}>1 min per sekund</option><option
+          value={600}>10 min per sekund</option
+        ></select
+      >
+      <label class="field-label" for="stadium-lights"
+        ><span>Idrottsparkens strålkastare</span></label
+      ><select id="stadium-lights" bind:value={lightingState.stadium}
+        ><option value="off">Av</option><option value="training">Träning</option><option
+          value="event">Match</option
+        ></select
+      >
+      <p class="micro-note">
+        Strålkastarna styrs separat från tiden; ingen match antas. Lyktplaceringar är kartlagda
+        (OSM) eller uppskattade från lit=yes.
+      </p>
+      <label class="field-label" for="airport-lights"><span>Banljus Kungsängen</span></label
+      ><select id="airport-lights" bind:value={lightingState.airport}
+        ><option value="auto">Tänds när det är mörkt</option><option value="on">Alltid på</option
+        ><option value="off">Av</option></select
+      >
+      <label class="field-label" for="airport-runway"><span>Bana i bruk</span></label><select
+        id="airport-runway"
+        bind:value={lightingState.runway}
+        ><option value="27">27 (landning västerut)</option><option value="09"
+          >09 (landning österut)</option
+        ></select
+      >
+      <p class="micro-note">
+        Bana 09/27 enligt AIP (AMDT 6/2026): inflygningsljus, tröskel-, kant- och slutljus, PAPI och
+        taxibanorna B och C. Antal och avstånd är uppskattade enligt ICAO där AIP inte anger dem.
+        Gräsbanan 11/29 är obelyst.
+      </p>
+      <label class="field-label" for="aircraft-lights"><span>Flygplansljus</span></label><select
+        id="aircraft-lights"
+        bind:value={lightingState.aircraftLights}
+        ><option value="auto">Efter flygfas</option><option value="off">Av</option></select
+      >
+      <p class="micro-note">
+        Positionsljus röd vänster, grön höger, vit bak (EASA CS-25). Antikollisionsljus blinkar även
+        på dagen; blinktakt och vilka ljus som tänds i varje fas är simulatorns uppskattning.
+      </p>
+    </Tabs.Content>
+    <Tabs.Content value="flight" class="tab-panel flight-card">
+      <div class="card-heading">
+        <h2>Regionalflyg</h2>
+        <span class="flight-code">NK-01</span>
+      </div>
+      <div class="airport-route">
+        <span>NRK<small>Kungsängen</small></span><b aria-hidden="true">⇄</b><span
+          >F13<small>Bråvalla</small></span
+        >
+      </div>
+      <p class="flight-phase">
+        {plane ? FLIGHT_PHASE[plane.phase] : 'Flygtrafiken är avstängd'}
+      </p>
+      {#if plane}<p class="control-note">{plane.origin} → {plane.destination}</p>{/if}
+      <button
+        class="secondary-button"
+        disabled={!plane}
+        onclick={() => {
+          follow = follow === 'plane' ? '' : 'plane';
+        }}>{follow === 'plane' ? 'Sluta följa flygplanet' : 'Följ flygplanet'}</button
+      >
+      <p class="micro-note">
+        Fiktiv flygpendel till den tidigare F13-basen. Banornas lägen och riktningar följer kartan.
+      </p>
+    </Tabs.Content>
+  </Tabs.Root>
+{/snippet}
+
+{#snippet toaster()}
+  <Toaster position={narrow ? 'top-center' : 'bottom-right'} theme="light" closeButton />
+{/snippet}
+
+<div class="sim-shell" class:has-drawer-bar={narrow}>
   <header class="sim-header">
     <a href="/" class="sim-brand"
-      ><span class="brand-mark">N<span>↗</span></span><span
-        ><strong>NORRKÖPING</strong><small>SIMULATOR</small></span
-      ></a
+      ><span class="brand-mark" aria-hidden="true">N</span><h1>
+        <strong>NORRKÖPING</strong><small>SIMULATOR</small>
+      </h1></a
     >
-    <div class="sim-live">
-      <i class:online={city.connected}></i>{city.connected
-        ? 'Simulatorn är ansluten'
-        : 'Ansluter till simulatorn…'}<span class="local-badge">LOKAL SIMULERING</span>
+    <div class="header-tools">
+      <div class="sim-live">
+        <i class:online={city.connected}></i><span class="live-text"
+          >{city.connected ? 'Simulatorn är ansluten' : 'Ansluter till simulatorn…'}</span
+        ><span class="local-badge">LOKAL SIMULERING</span>
+      </div>
+      <div class="sim-clock">
+        <span>{clock}</span><button
+          class="clock-primary"
+          aria-label={city.snapshot.paused ? 'Fortsätt simuleringen' : 'Pausa simuleringen'}
+          disabled={!city.connected || city.pending}
+          onclick={() => city.command('pause', { paused: !city.snapshot.paused })}
+          ><svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"
+            >{#if city.snapshot.paused}<path d="M4 2.5v11l9-5.5z" />{:else}<path
+                d="M3.5 2.5h3v11h-3zM9.5 2.5h3v11h-3z"
+              />{/if}</svg
+          ></button
+        ><button
+          aria-label="Återställ simuleringen"
+          disabled={!city.connected || city.pending}
+          onclick={() => city.command('reset')}
+          ><svg viewBox="0 0 18 18" width="16" height="16" class="stroke-icon" aria-hidden="true"
+            ><path d="M3 9a6 6 0 1 0 2-4.5" /><path d="M3 3v3.5h3.5" /></svg
+          ></button
+        >
+      </div>
     </div>
   </header>
   <div class="sim-layout">
-    <aside class="sim-sidebar">
-      <div class="sidebar-title">
-        <span class="eyebrow">STADEN I RÖRELSE</span>
-        <h1>Ditt Norrköping.<br />På väg och i luften.</h1>
-        <p>Följ trafiken genom staden eller lyft mot Bråvalla.</p>
-      </div>
-      <section class="sim-card">
-        <div class="card-heading">
-          <h2>Vägtrafik</h2>
-          <span class="count-tag">{total} fordon</span>
-        </div>
-        <label class="slider-label" for="compact"
-          ><span>Små personbilar</span><output>{compact}</output></label
-        ><input id="compact" type="range" min="0" max="600" step="10" bind:value={compact} />
-        <label class="slider-label" for="estate"
-          ><span>Större bilar & kombi</span><output>{estate}</output></label
-        ><input id="estate" type="range" min="0" max="600" step="10" bind:value={estate} />
-        <label class="slider-label" for="trucks"
-          ><span>Lastbilar</span><output>{trucks}</output></label
-        ><input id="trucks" type="range" min="0" max="150" step="5" bind:value={trucks} />
-        <p class="control-note">
-          Personbilar följer körbara gator. Drottninggatan är undantagen. Lastbilar håller sig
-          till större vägar, bland annat E4 och Söderleden.
-        </p>
-        <h3 class="transit-heading">Kollektivtrafik</h3>
-        <label class="slider-label" for="buses"><span>Bussar</span><output>{buses}</output></label
-        ><input id="buses" type="range" min="0" max="80" step="1" bind:value={buses} />
-        <label class="slider-label" for="trams"
-          ><span>Spårvagnar · linje 2 & 3</span><output>{trams}</output></label
-        ><input id="trams" type="range" min="0" max="40" step="1" bind:value={trams} />
-        <label class="slider-label" for="trains"
-          ><span>Östgötapendeln</span><output>{trains}</output></label
-        ><input id="trains" type="range" min="0" max="12" step="1" bind:value={trains} />
-        <p class="control-note">
-          Spårvagnar och pendeltåg följer kartlagda spår. Bussar delar vägtrafikens köer och
-          trafikljus. Hållplatsuppehåll och avgångar är simulerade.
-        </p>
-        <label class="slider-label" for="time-scale"
-          ><span>Simuleringshastighet</span><output>{timeScale}×</output></label
-        ><select id="time-scale" bind:value={timeScale}
-          ><option value={1}>Realtid · 1×</option><option value={3}>Stadspuls · 3×</option
-          ><option value={5}>Snabbare · 5×</option><option value={10}>Överblick · 10×</option
-          ><option value={20}>Snabbspola · 20×</option></select
-        >
-        <label class="check-row"
-          ><input type="checkbox" bind:checked={flights} /> Flygtrafik mellan flygplatserna</label
-        >
-        <button
-          class="apply-button"
-          disabled={!city.connected || city.pending || total > 1000}
-          onclick={apply}
-          >{city.pending ? 'Uppdaterar…' : 'Uppdatera trafiken'}<span>↗</span></button
-        >
-        {#if total > 1000}<p class="error-text">Välj högst 1 000 fordon totalt.</p>{/if}
-      </section>
-      <section class="sim-card lighting-card">
-        <div class="card-heading">
-          <h2>Tid och ljus</h2>
-          <span class="count-tag">{formatClock(lightingState.minutes)}</span>
-        </div>
-        <label class="slider-label" for="light-date"><span>Datum (Europe/Stockholm)</span></label
-        ><input
-          id="light-date"
-          type="date"
-          value={lightingState.date}
-          onchange={(e) => {
-            if (e.currentTarget.value) lightingState.date = e.currentTarget.value;
-          }}
-        />
-        <label class="slider-label" for="light-time"
-          ><span>Lokal tid</span><output>{formatClock(lightingState.minutes)}</output></label
-        ><input
-          id="light-time"
-          type="range"
-          min="0"
-          max="1439"
-          step="1"
-          value={Math.floor(lightingState.minutes)}
-          oninput={(e) => (lightingState.minutes = Number(e.currentTarget.value))}
-        />
-        <div class="preset-row" role="group" aria-label="Ljusförval">
-          {#each dayPresets as p (p.id)}<button
-              class="preset-button"
-              data-preset={p.id}
-              title={p.label + ' · ' + formatClock(p.minutes) + ' · ' + p.elevation.toFixed(1) + '°'}
-              onclick={() => setClock(lightingState.date, p.minutes)}>{p.label}</button
-            >{/each}
-        </div>
-        <p class="control-note" data-sun-elevation={sun.elevation.toFixed(2)}>
-          Solhöjd {sun.elevation.toFixed(1).replace('.', ',')}° · {PHASE_NAMES[dayPhase(sun.elevation)]}.
-          Gatubelysning i tre pilotområden: Kungsgatan, Strömparken och kring Idrottsparken.
-        </p>
-        <label class="slider-label" for="light-play"><span>Tidsförlopp</span></label><select
-          id="light-play"
-          bind:value={lightingState.rate}
-          ><option value={0}>Stoppad</option><option value={60}>1 min per sekund</option><option
-            value={600}>10 min per sekund</option
-          ></select
-        >
-        <label class="slider-label" for="stadium-lights"><span>Idrottsparkens strålkastare</span></label
-        ><select id="stadium-lights" bind:value={lightingState.stadium}
-          ><option value="off">Av</option><option value="training">Träning</option><option
-            value="event">Match</option
-          ></select
-        >
-        <p class="micro-note">
-          Strålkastarna styrs separat från tiden; ingen match antas. Lyktplaceringar är kartlagda
-          (OSM) eller uppskattade från lit=yes.
-        </p>
-        <label class="slider-label" for="airport-lights"><span>Banljus Kungsängen</span></label
-        ><select id="airport-lights" bind:value={lightingState.airport}
-          ><option value="auto">Tänds när det är mörkt</option><option value="on">Alltid på</option
-          ><option value="off">Av</option></select
-        >
-        <label class="slider-label" for="airport-runway"><span>Bana i bruk</span></label><select
-          id="airport-runway"
-          bind:value={lightingState.runway}
-          ><option value="27">27 (landning västerut)</option><option value="09"
-            >09 (landning österut)</option
-          ></select
-        >
-        <p class="micro-note">
-          Bana 09/27 enligt AIP (AMDT 6/2026): inflygningsljus, tröskel-, kant- och slutljus, PAPI
-          och taxibanorna B och C. Antal och avstånd är uppskattade enligt ICAO där AIP inte anger
-          dem. Gräsbanan 11/29 är obelyst.
-        </p>
-        <label class="slider-label" for="aircraft-lights"><span>Flygplansljus</span></label><select
-          id="aircraft-lights"
-          bind:value={lightingState.aircraftLights}
-          ><option value="auto">Efter flygfas</option><option value="off">Av</option></select
-        >
-        <p class="micro-note">
-          Positionsljus röd vänster, grön höger, vit bak (EASA CS-25). Antikollisionsljus blinkar även
-          på dagen; blinktakt och vilka ljus som tänds i varje fas är simulatorns uppskattning.
-        </p>
-      </section>
-      <section class="sim-card flight-card">
-        <div class="card-heading">
-          <h2>Regionalflyg</h2>
-          <span class="flight-code">NK-01</span>
-        </div>
-        <div class="airport-route">
-          <span>NRK<small>Kungsängen</small></span><b>⇄</b><span
-            >F13<small>Bråvalla</small></span
+    {#if !narrow}
+      <aside class="sim-sidebar">
+        {@render controls()}
+        <details class="camera-help">
+          <summary>Fri kamera</summary>
+          <p>
+            Klicka i kartan och använd <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> för att förflytta
+            dig.
+          </p>
+          <p>
+            <kbd>Q</kbd>/<kbd>E</kbd> höjd · <kbd>Shift</kbd> snabbare<br />Dra: rotera · högerdra:
+            förflytta · scrolla: zooma
+          </p>
+        </details>
+        <footer class="sidebar-footer">
+          Kartdata och simulerad trafik · {cityMap.buildings.length.toLocaleString('sv-SE')} byggnader
+          · {cityMap.signals.length} signalpunkter<br /><span
+            >Kotlin / Ktor · CQRS · SSE · Three.js</span
           >
-        </div>
-        <p class="flight-phase">
-          {plane ? FLIGHT_PHASE[plane.phase] : 'Flygtrafiken är avstängd'}
-        </p>
-        {#if plane}<p class="control-note">{plane.origin} → {plane.destination}</p>{/if}
-        <button
-          class="secondary-button"
-          disabled={!plane}
-          onclick={() => {
-            follow = follow === 'plane' ? '' : 'plane';
-          }}
-          >{follow === 'plane' ? 'Sluta följa flygplanet' : 'Följ flygplanet'}
-          <span>✈</span></button
-        >
-        <p class="micro-note">
-          Fiktiv flygpendel till den tidigare F13-basen. Banornas lägen och riktningar följer
-          kartan.
-        </p>
-      </section>
-      <section class="camera-help">
-        <h2>Fri kamera</h2>
-        <p>
-          Klicka i kartan och använd <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> för att förflytta
-          dig.
-        </p>
-        <p>
-          <kbd>Q</kbd>/<kbd>E</kbd> höjd · <kbd>Shift</kbd> snabbare<br />Dra: rotera ·
-          högerdra: förflytta · scrolla: zooma
-        </p>
-      </section>
-      <footer class="sidebar-footer">
-        KARTDATA + SIMULERAD TRAFIK<br /><span>Kotlin / Ktor · CQRS · SSE · Three.js</span>
-      </footer>
-    </aside>
+        </footer>
+      </aside>
+    {/if}
     <main class="sim-main">
-      <div class="sim-title">
-        <div>
-          <span class="eyebrow">ÖSTERGÖTLAND · SVERIGE</span>
-          <h2>Norrköping i rörelse</h2>
-        </div>
-        <div class="sim-clock">
-          <span>{clock}</span><button
-            aria-label={city.snapshot.paused ? 'Fortsätt simuleringen' : 'Pausa simuleringen'}
-            disabled={!city.connected || city.pending}
-            onclick={() => city.command('pause', { paused: !city.snapshot.paused })}
-            >{city.snapshot.paused ? '▶' : 'Ⅱ'}</button
-          ><button
-            aria-label="Återställ simuleringen"
-            disabled={!city.connected || city.pending}
-            onclick={() => city.command('reset')}>↺</button
-          >
-        </div>
-      </div>
       <div class="sim-metrics">
         <div>
           <span>FORDON I STADEN</span><strong
-            >{city.snapshot.vehicles.length}<small> / {moving} i rörelse</small></strong
-          >
-        </div>
-        <div>
-          <span>LASTBILAR</span><strong
-            >{city.snapshot.vehicles.filter((v) => v.kind === 'truck').length}<small>
-              på huvudleder</small
+            ><AnimatedNumber value={city.snapshot.vehicles.length} /><small>
+              / {moving} i rörelse</small
             ></strong
           >
         </div>
         <div>
+          <span>LASTBILAR</span><strong
+            ><AnimatedNumber value={truckCount} /><small> på huvudleder</small></strong
+          >
+        </div>
+        <div>
           <span>FLYGTRAFIK</span><strong
-            >{plane ? '01' : '00'}<small>
+            ><AnimatedNumber value={plane ? 1 : 0} format={{ minimumIntegerDigits: 2 }} /><small>
               {plane ? FLIGHT_PHASE[plane.phase] : 'avstängd'}</small
             ></strong
           >
         </div>
         <div>
           <span>GENOMFÖRDA LANDNINGAR</span><strong
-            >{city.snapshot.completedFlights}<small> NRK ⇄ F13</small></strong
+            ><AnimatedNumber value={city.snapshot.completedFlights} /><small>
+              NRK ⇄ F13</small
+            ></strong
           >
         </div>
       </div>
@@ -410,7 +488,7 @@
                 >{value.label}</option
               >{/each}</select
           ><label class="label-toggle"
-            ><input type="checkbox" bind:checked={labels} /> Landmärken</label
+            ><input type="checkbox" role="switch" class="switch" bind:checked={labels} /> Landmärken</label
           ><span class="toolbar-divider" aria-hidden="true"></span><button
             type="button"
             class="map-tool fps-toggle"
@@ -443,7 +521,10 @@
             <button
               class="close-inspector"
               aria-label="Stäng fordonsdetaljer"
-              onclick={() => (city.selectedId = null)}>×</button
+              onclick={() => (city.selectedId = null)}
+              ><svg viewBox="0 0 12 12" width="12" height="12" class="stroke-icon" aria-hidden="true"
+                ><path d="M2 2l8 8M10 2l-8 8" /></svg
+              ></button
             ><span class="eyebrow">FORDON {city.selected.id}</span>
             <h3>
               {VEHICLE_NAMES[city.selected.kind]}
@@ -455,7 +536,7 @@
             </p>
             {#if city.selected.stop}<p>Hållplats: {city.selected.stop}</p>{/if}
             <button class="secondary-button" onclick={() => (follow = String(city.selected!.id))}
-              >Följ fordonet ↗</button
+              >Följ fordonet</button
             >
           </div>{/if}
         <div class="map-key">
@@ -474,45 +555,44 @@
             rel="noreferrer">CC BY 4.0</a
           >
         </div>
-      </div>
-      <div class="sim-feedback" aria-live="polite" class:has-error={!!city.error}>
-        {city.error ||
-          city.notice ||
-          'Välj en stadsdel eller förflytta dig fritt över kartan.'}<span
-          >{cityMap.buildings.length.toLocaleString('sv-SE')} byggnader · {cityMap.signals.length} signalpunkter</span
-        >
+        {#if mapExpanded}{@render toaster()}{/if}
       </div>
       <section class="sim-bottom">
-        <div>
-          <h2>Senaste händelser</h2>
+        {#if TrafficCharts}<TrafficCharts />{:else}<div class="chart-card"></div>
+          <div class="chart-card"></div>{/if}
+        <div class="chart-card events-card">
+          <div class="chart-heading"><h2>Senaste händelser</h2></div>
           {#each city.snapshot.events.slice(0, 4) as event (event.id)}<p class="event-row">
-              <span>{event.kind === 'landing' ? '↘' : '•'}</span>{event.message}<time
+              <span aria-hidden="true">{event.kind === 'landing' ? '↘' : '•'}</span>{event.message}<time
                 >{new Date(event.time * 1000).toISOString().slice(14, 19)}</time
               >
-            </p>{/each}
-        </div>
-        <div class="vehicle-select">
-          <h2>Hitta ett fordon</h2>
-          <label for="vehicle-select">Välj bil, buss, spårvagn eller tåg</label><select
-            id="vehicle-select"
-            value={city.selectedId ?? ''}
-            onchange={(e) => {
-              city.selectedId = Number(e.currentTarget.value) || null;
-            }}
-            ><option value="">Välj fordon…</option
-            >{#each city.snapshot.vehicles as v (v.id)}<option value={v.id}
-                >#{v.id} · {VEHICLE_NAMES[v.kind]} · {v.road || 'Lokalgata'}{v.destination
-                  ? ' → ' + v.destination
-                  : ''}</option
-              >{/each}</select
-          >
-          <p class="micro-note">
-            Signaler och flygturer är simulerade. Kartlagda former kompletteras med uppskattade
-            höjder och byggnadsdetaljer.
-          </p>
+            </p>{:else}<p class="chart-empty">Inga händelser ännu.</p>{/each}
+          <div class="vehicle-select">
+            <label for="vehicle-select">Hitta ett fordon</label><select
+              id="vehicle-select"
+              value={city.selectedId ?? ''}
+              onchange={(e) => {
+                city.selectedId = Number(e.currentTarget.value) || null;
+              }}
+              ><option value="">Välj bil, buss, spårvagn eller tåg…</option
+              >{#each city.snapshot.vehicles as v (v.id)}<option value={v.id}
+                  >#{v.id} · {VEHICLE_NAMES[v.kind]} · {v.road || 'Lokalgata'}{v.destination
+                    ? ' → ' + v.destination
+                    : ''}</option
+                >{/each}</select
+            >
+            <p class="micro-note">
+              Signaler och flygturer är simulerade. Kartlagda former kompletteras med uppskattade
+              höjder och byggnadsdetaljer.
+            </p>
+          </div>
         </div>
       </section>
     </main>
   </div>
+  {#if narrow && SettingsDrawer}
+    <SettingsDrawer bind:open={drawerOpen}>{@render controls()}</SettingsDrawer>
+  {/if}
 </div>
+{#if !mapExpanded}{@render toaster()}{/if}
 {#if SseDebugHost}<SseDebugHost />{/if}
