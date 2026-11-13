@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Phase C1b — Vrinneviskogen: the trees around the northern trail loop, 14 squares (2026-11-13) — approved by the user (2026-11-13), NOT committed yet
+## Phase C1b — Vrinneviskogen: the trees around the northern trail loop, 14 squares (2026-11-13) — approved by the user (2026-11-13), committed (`d7294dd`) and pushed to `origin/main`
 
 [Full report](vegetation-c1/README.md) (one report for C1 and C1b). Worked directly on local `main` (= `origin/main` `ac6ecf0`), on top of the uncommitted pilot (next entry). Backend unchanged.
-Approved by the user 2026-11-13. **Nothing is committed.** Board: C1b in *Test* (C1 too) until committed and pushed. Started on the user's decision of 2026-11-13 ("Roll out trail loop").
+Approved by the user 2026-11-13; **committed (`d7294dd`) and pushed to `origin/main`** on the user's request (one commit with the pilot). Board: C1b in *Done*. Started on the user's decision of 2026-11-13 ("Roll out trail loop").
 
 - **Result:**
   - 14 tiles of 250 m (SWEREF E 569 000–570 000, N 6 492 000–6 493 250): every tile within 60 m of the
@@ -33,10 +33,10 @@ Approved by the user 2026-11-13. **Nothing is committed.** Board: C1b in *Test* 
   loop against the municipal illuminated loop before C2.
 - **Local only:** as the pilot's entry below.
 
-## Phase C1 (pilot) — Vrinneviskogen: trees measured from laser data in one 250 m square (2026-11-13) — approved by the user (2026-11-13), NOT committed yet
+## Phase C1 (pilot) — Vrinneviskogen: trees measured from laser data in one 250 m square (2026-11-13) — approved by the user (2026-11-13), committed (`d7294dd`) and pushed to `origin/main`
 
 [Full report](vegetation-c1/README.md). Worked directly on local `main` (= `origin/main` `ac6ecf0`). Backend unchanged.
-Approved by the user 2026-11-13. **Nothing is committed.** Board: C1 in *Test* until committed and pushed. This is the pilot only; the rest of the forest is not built.
+Approved by the user 2026-11-13; **committed (`d7294dd`) and pushed to `origin/main`** on the user's request (one commit with C1b). Board: C1 in *Done*. This is the pilot only; the rest of the forest is not built.
 
 - **Result:**
   - The square SWEREF E 569 250–569 500, N 6 492 500–6 492 750 shows 649 tree tops found in the LiDAR

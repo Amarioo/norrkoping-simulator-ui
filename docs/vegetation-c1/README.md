@@ -1,6 +1,7 @@
 # Phase C1 — Vrinneviskogen: trees measured from laser data (2026-11-13)
 
-Two steps, both on local `main` (= `origin/main` `ac6ecf0`), backend unchanged, **nothing committed**:
+Two steps, both on local `main` (= `origin/main` `ac6ecf0`), backend unchanged. **Approved by the user
+on 2026-11-13; committed (`d7294dd`) and pushed to `origin/main`** (one commit):
 
 1. **C1, the pilot:** one 250 m square, and the check of the map's south edge. Approved by the user
    on 2026-11-13.
