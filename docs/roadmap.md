@@ -234,9 +234,9 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
     (höjd median 22,5 m, högst 36,4 m), 66,5 ha = 29 % av reservatet inom kartan. Kostnad ca 0,1–0,8 ms
     per bild (mätt på en upptagen dator, bör mätas om) och 83 kB större nedladdning. Återstår: resten av
     reservatet inom kartan (ca 160 ha), efter förenklad ritning på avstånd och separat laddning av datan.*
-- [ ] **C2 Elljusspåret** (ca 2,4–2,5 km) — M
+- [x] **C2 Elljusspåret** (ca 2,4–2,5 km) — M
   - Kräver C1. Ca 80–120 uppskattade stolpar om inget register finns. Släckt sent på natten.
-  - *Genomförd 2026-11-13 direkt på main, godkänd av dig 2026-11-13, inte committad ännu:
+  - *Genomförd 2026-11-13 direkt på main, godkänd av dig 2026-11-13, committad (`2155a5a`) och pushad till main:
     [docs/trail-c2/README.md](trail-c2/README.md). Slingan (OSM-relation 5703856, 14 delsträckor,
     2 369 m, alla märkta som upplysta) stämmer i längd med kommunens "Vrinnevi elljusspår 2,4 km".
     43 lyktor fanns redan på 929 m (från L2bc); 1 440 m var mörka eftersom gångvägsregeln saknade

@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Phase C2 — Vrinneviskogen: the illuminated trail, 58 new lanterns and a 22.00–06.00 switch-off (2026-11-13) — approved by the user (2026-11-13), NOT committed yet
+## Phase C2 — Vrinneviskogen: the illuminated trail, 58 new lanterns and a 22.00–06.00 switch-off (2026-11-13) — approved by the user (2026-11-13), committed (`2155a5a`) and pushed to `origin/main`
 
 [Full report](trail-c2/README.md). Worked directly on local `main` (= `origin/main` `3161e89`). Backend unchanged.
-Approved by the user 2026-11-13. **Nothing is committed.** Board: C2 in *Test* until committed and pushed. Started on the user's "Start C2" (2026-11-13).
+Approved by the user 2026-11-13; **committed (`2155a5a`) and pushed to `origin/main`** on the user's request. Board: C2 in *Done*. Started on the user's "Start C2" (2026-11-13).
 
 - **Found:** the loop (OSM relation 5703856, 14 ways, 2 369 m, all `lit=yes`) matches the
   municipality's "Vrinnevi elljusspår 2,4 km" in length. L2bc had already lit its 4 `highway=path`

@@ -1,7 +1,7 @@
 # Phase C2 — Vrinneviskogen: the illuminated trail (elljusspåret) (2026-11-13)
 
 Worked directly on local `main` (= `origin/main` `3161e89`), backend unchanged. **Approved by the
-user on 2026-11-13; nothing is committed.** Started on the user's "Start C2" of 2026-11-13.
+user on 2026-11-13; committed (`2155a5a`) and pushed to `origin/main`.** Started on the user's "Start C2" of 2026-11-13.
 
 ## Verdict
 
