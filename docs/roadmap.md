@@ -222,6 +222,18 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
 - [ ] **C1 Vegetation** — L
   - Trädhöjd från Skogsstyrelsen/Lantmäteriet laserdata (CC0), en 250 m-ruta först.
   - OBS: kartans södra gräns skär av reservatet; kan kräva att kartan utökas söderut.
+  - *Pilotrutan genomförd 2026-11-13 direkt på main, godkänd av dig 2026-11-13, inte committad ännu:
+    [docs/vegetation-c1/README.md](vegetation-c1/README.md). En ruta på 250 m (SWEREF E 569 250–569 500,
+    N 6 492 500–6 492 750): 649 trädtoppar uppmätta ur laserdata 2020 (höjd median 20,5 m, högst 31,6 m)
+    och skogsmark under kronorna; förut var rutan bar mark utan träd. Ingen mätbar prestandakostnad.
+    Kontrollen av södra gränsen: reservatet är 286 ha, 59 ha (21 %) ligger söder om kartan; laserdatan
+    täcker allt. Kartan ritar bara 32 % av reservatet som skog. Resten av skogen är inte byggd; beslut
+    om utrullning och om kartan ska utökas väntar på dig.*
+  - *Utrullning runt norra slingan (C1b) genomförd 2026-11-13 på ditt beslut, godkänd av dig 2026-11-13, inte
+    committad ännu (samma rapport): 14 rutor på 250 m längs slingan, bara inom reservatet: 8 071 trädtoppar
+    (höjd median 22,5 m, högst 36,4 m), 66,5 ha = 29 % av reservatet inom kartan. Kostnad ca 0,1–0,8 ms
+    per bild (mätt på en upptagen dator, bör mätas om) och 83 kB större nedladdning. Återstår: resten av
+    reservatet inom kartan (ca 160 ha), efter förenklad ritning på avstånd och separat laddning av datan.*
 - [ ] **C2 Elljusspåret** (ca 2,4–2,5 km) — M
   - Kräver C1. Ca 80–120 uppskattade stolpar om inget register finns. Släckt sent på natten.
 

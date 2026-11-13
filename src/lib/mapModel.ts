@@ -356,4 +356,8 @@ export const CITY_VIEWS: Record<string, CityFocus> = {
   },
   hamnbron: { label: 'Hamnbron', target: [15.3, 0.24, -19.72], position: [18.75, 1.3, -17.38] },
   underpass: focus('Ståthögavägen / järnvägsbron', [7.37, -37.23], 12),
+  // Phase C1: the LiDAR-measured forest tiles around the northern trail loop (centre about SWEREF
+  // E 569450, N 6492600) and, closer, the pilot tile (E 569250–569500, N 6492500–6492750).
+  vrinnevi: focus('Vrinneviskogen · norra slingan', [16.8, 95.6], 36),
+  vrinneviPilot: focus('Vrinneviskogen · pilotruta', [13.8, 94.59], 14),
 };

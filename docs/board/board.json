@@ -97,18 +97,98 @@
       "id": "C1",
       "epic": "C",
       "title": "Vegetation i Vrinneviskogen",
-      "status": "backlog",
+      "status": "test",
       "size": "L",
-      "report": "docs/roadmap.md",
-      "section": "Spår C",
+      "report": "docs/vegetation-c1/README.md",
       "tasks": [
         {
-          "text": "Trädhöjd från Skogsstyrelsens/Lantmäteriets laserdata (CC0), en 250 m-ruta först",
+          "text": "Trädhöjd från Lantmäteriets laserdata 2020 (CC BY 4.0), en 250 m-ruta först: 649 trädtoppar uppmätta",
+          "done": true
+        },
+        {
+          "text": "Kontrollera kartans södra gräns: 59 av 286 ha (21 %) av reservatet ligger söder om kartan",
+          "done": true
+        },
+        {
+          "text": "Skogsmark under kronorna i pilotrutan",
+          "done": true
+        },
+        {
+          "text": "Tester, mätning och rapport",
+          "done": true
+        },
+        {
+          "text": "Du testade och godkände (2026-11-13)",
+          "done": true
+        },
+        {
+          "text": "Beslut 2026-11-13: rulla ut runt norra slingan (C1b). Utöka kartan söderut: inte beslutat",
+          "done": true
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Påbörjad. Först två saker: (1) mäta hur mycket av reservatet som kartans södra kant skär av, (2) en pilotruta på 250 m där träden mäts ur laserdata (läge, höjd, kronbredd) i stället för de glesa, låga illustrativa träden. Resten av skogen byggs inte i det här steget."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Pilotrutan är klar för test. Välj \"Vrinneviskogen · pilotruta\" under Utforska. Rutan (250 m) visar 649 trädtoppar på sina uppmätta platser med uppmätt höjd (oftast ca 20 m, högst 32 m) och kronbredd, och skogsmark under kronorna; gläntan och stigarna är öppna. Förut var rutan bar mark. Trädens form, färg och stamtjocklek är uppskattningar, och det är trädtoppar som räknas, inte stammar. Två fynd: kartans södra kant skär av 21 % av reservatet (59 av 286 ha), och kartan ritar bara en tredjedel av reservatet som skog. Ingen mätbar prestandakostnad; alla tester går igenom utom det sedan tidigare kända police.test.ts. Resten av skogen är inte byggd: i rapporten finns fyra frågor till dig (utrullning, utöka kartan, skogsmark, trädform). Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Godkänd av dig. Inte committad ännu; kortet flyttas till Klart när det är committat och pushat. Frågorna i rapporten (resten av reservatet, utöka kartan, slingans sträckning före C2) är fortfarande öppna."
+        }
+      ]
+    },
+    {
+      "id": "C1b",
+      "epic": "C",
+      "title": "Vrinneviskogen: träden runt norra elljusslingan",
+      "status": "test",
+      "size": "M",
+      "summary": "Utrullning av pilotens metod till rutorna runt den norra slingan (ditt beslut 2026-11-13). Kräver C1.",
+      "report": "docs/vegetation-c1/README.md",
+      "tasks": [
+        {
+          "text": "Välj rutor längs slingan, inom reservatet: 14 rutor på 250 m",
+          "done": true
+        },
+        {
+          "text": "Mät träden i alla rutor ur laserdata: 8 071 trädtoppar",
+          "done": true
+        },
+        {
+          "text": "Tester, mätning och rapport",
+          "done": true
+        },
+        {
+          "text": "Mät om prestandan på en lugn dator (mätningen stördes av andra program)",
           "done": false
         },
         {
-          "text": "Kontrollera kartans södra gräns: den skär av reservatet, kartan kan behöva utökas söderut",
-          "done": false
+          "text": "Du testade och godkände (2026-11-13)",
+          "done": true
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Påbörjad på ditt beslut (\"Roll out trail loop\"). Pilotens metod används på rutorna längs den norra slingan, bara inom reservatet. Piloten (C1) ligger kvar i Test tills den är godkänd och committad."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Klar för test. Välj \"Vrinneviskogen · norra slingan\" under Utforska. Skogen runt norra slingan står nu i 14 rutor: 8 071 trädtoppar på uppmätta platser med uppmätt höjd (oftast ca 22 m, högst 36 m), skogsmark under kronorna, öppna gläntor och stigar. Bara mark inom reservatet är mätt; hus och trädgårdar utanför är orörda. Kostnad: ca 0,1–0,8 ms per bild, långt under gränsen för 60 bilder per sekund, men mätningen gjordes medan datorn var upptagen (bl.a. din egen dev-server) och bygger på två rundor av fem; den bör göras om på en lugn dator. Nedladdningen blir 83 kB större. Alla tester går igenom utom det sedan tidigare kända police.test.ts. Frågor till dig i rapporten: resten av reservatet (jag rekommenderar ja, efter två tekniska steg), utöka kartan söderut (inte nu), och att slingans sträckning kontrolleras före C2. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Godkänd av dig. Inte committad ännu; kortet flyttas till Klart när det är committat och pushat. Frågorna i rapporten (resten av reservatet, utöka kartan, slingans sträckning före C2) är fortfarande öppna."
         }
       ]
     },

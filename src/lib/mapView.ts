@@ -23,12 +23,14 @@ import { createLandmarkDetails } from './mapLandmarks';
 import { createCityPlaces, isDetailPlantingClear } from './cityPlaces';
 import { CITY_LAYERS, type CityLayer } from './cityMesh';
 import { requestCityLayers } from './cityMeshClient';
-import { layeredGround } from './groundLayers';
+import { layeredGround, layeredSurface } from './groundLayers';
 import { createIdrottsparken } from './stadium/idrottsparken';
 import { createRadhuset } from './landmarks/radhuset/radhuset';
 import { createHedvig } from './landmarks/hedvig/hedvig';
 import { createFuelStations } from './fuel/fuelStations';
 import { createRunwayLights } from './airport/runwayLightsView';
+import { forestStatistics, forestTiles, inMeasuredForest, treeHash, treeShape } from './forest/forest';
+import { FOREST_FLOOR_COLOR, FOREST_FLOOR_RANK, forestFloorGeometry } from './forest/forestFloor';
 
 export { Batch, fill, strip } from './cityMesh';
 
@@ -159,6 +161,9 @@ export function createMappedCity() {
       Math.floor(point[0] / TREE_LOOK_CELL) + ',' + Math.floor(point[1] / TREE_LOOK_CELL);
     const index = lookIndex.get(look) ?? 0;
     lookIndex.set(look, index + 1);
+    // Phase C1: inside a LiDAR-measured forest tile the measured trees are drawn instead (below).
+    // The look index still counts the point, so every other tree keeps its look.
+    if (inMeasuredForest(point)) continue;
     const key = Math.floor(point[0] / TREE_DRAW_CELL) + ',' + Math.floor(point[1] / TREE_DRAW_CELL);
     if (!treeCells.has(key)) treeCells.set(key, []);
     treeCells.get(key)!.push({ point, index });
@@ -214,6 +219,61 @@ export function createMappedCity() {
     group.add(trunks, leaves);
     trunks.computeBoundingSphere();
     leaves.computeBoundingSphere();
+  }
+  // Phase C1 (forest/forest.ts): the trees of each measured 250 m tile, at their measured position,
+  // height, crown radius and crown base; one trunk and two crown lobes per tree, sharing the trunk
+  // and crown geometry and materials above (no new shader program). One mesh pair per tile.
+  // The ground under the measured canopy gets the map's woodland colour (forest/forestFloor.ts).
+  const forestFloorMaterial = own(
+    layeredSurface(
+      new MeshStandardMaterial({ color: FOREST_FLOOR_COLOR, roughness: 1 }),
+      FOREST_FLOOR_RANK,
+    ),
+  );
+  for (const tile of forestTiles()) {
+    if (tile.floor.length) {
+      const floor = new Mesh(own(forestFloorGeometry(tile)), forestFloorMaterial);
+      floor.name = 'forest-floor-' + tile.id;
+      floor.receiveShadow = true;
+      group.add(floor);
+    }
+    if (!tile.trees.length) continue;
+    const trunks = own(new InstancedMesh(trunkGeometry, trunkMaterial, tile.trees.length));
+    const crowns = own(new InstancedMesh(crownGeometry, crownMaterial, tile.trees.length * 2));
+    trunks.name = 'forest-trunks-' + tile.id;
+    crowns.name = 'forest-crowns-' + tile.id;
+    const mat = new Matrix4(),
+      q = new Quaternion(),
+      up = new Vector3(0, 1, 0),
+      v = new Vector3(),
+      s = new Vector3();
+    const M = terrain.data.reference.metresPerUnit;
+    tile.trees.forEach((tree, slot) => {
+      const ground = terrain.groundHeight(tree.x, tree.z);
+      const shape = treeShape(tree),
+        hash = treeHash(tree);
+      mat.compose(
+        v.set(tree.x, ground + shape.trunk.height / 2 / M, tree.z),
+        q.identity(),
+        s.set(shape.trunk.radius / M, shape.trunk.height / M, shape.trunk.radius / M),
+      );
+      trunks.setMatrixAt(slot, mat);
+      q.setFromAxisAngle(up, hash * Math.PI * 2);
+      shape.lobes.forEach((lobe, j) => {
+        mat.compose(
+          v.set(tree.x, ground + lobe.y / M, tree.z),
+          q,
+          s.set(lobe.r / M, lobe.ry / M, lobe.r / M),
+        );
+        crowns.setMatrixAt(slot * 2 + j, mat);
+        crowns.setColorAt(slot * 2 + j, CROWN_TONES[(Math.floor(hash * 4) + j) % 4]);
+      });
+    });
+    trunks.castShadow = crowns.castShadow = true;
+    trunks.receiveShadow = crowns.receiveShadow = true;
+    group.add(trunks, crowns);
+    trunks.computeBoundingSphere();
+    crowns.computeBoundingSphere();
   }
   const riverfront = createRiverfrontDetails();
   group.add(riverfront.group);
@@ -279,6 +339,10 @@ export function createMappedCity() {
       resources.forEach((r) => r.dispose());
       group.clear();
     },
-    statistics: { buildings: cityMap.buildings.length, trees: positions.length },
+    statistics: {
+      buildings: cityMap.buildings.length,
+      trees: positions.length,
+      forest: forestStatistics(),
+    },
   };
 }

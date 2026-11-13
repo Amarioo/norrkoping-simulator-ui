@@ -2,6 +2,76 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Phase C1b — Vrinneviskogen: the trees around the northern trail loop, 14 squares (2026-11-13) — approved by the user (2026-11-13), NOT committed yet
+
+[Full report](vegetation-c1/README.md) (one report for C1 and C1b). Worked directly on local `main` (= `origin/main` `ac6ecf0`), on top of the uncommitted pilot (next entry). Backend unchanged.
+Approved by the user 2026-11-13. **Nothing is committed.** Board: C1b in *Test* (C1 too) until committed and pushed. Started on the user's decision of 2026-11-13 ("Roll out trail loop").
+
+- **Result:**
+  - 14 tiles of 250 m (SWEREF E 569 000–570 000, N 6 492 000–6 493 250): every tile within 60 m of the
+    trail loop (OSM relation/5703856, 2 368 m) that lies ≥ 10 % inside the reserve and wholly inside
+    the map. 8 071 tree tops (median 22.5 m, tallest 36.4 m); 7 668 drawn, 403 not (stem on a path,
+    road or pitch). 66.5 ha of the reserve, 29 % of its part inside the map.
+  - Only ground inside the reserve and off buildings (+2 m) is measured. The pilot tile's data is
+    identical to the pilot's.
+  - Camera presets `CITY_VIEWS.vrinnevi` ("Vrinneviskogen · norra slingan") and `vrinneviPilot`.
+- **How:** `forest_lidar.py` (`forest-c1-v2`): `select_tiles()`, `allowed_mask()`; data file 341 KB,
+  byte-identical rebuild (twice). The app code (`src/lib/forest/`, `mapView.ts`) needed no change
+  for more tiles.
+- **Measured (paired vs `ac6ecf0`):** the machine was 20–35 % busy (among others the user's own dev
+  server); rounds 1–2 clean, round 3 disturbed, 4–5 never started. Rounds 1–2: rAF mean +0.13 … +0.29
+  ms in the loop views, +0.08 … +0.76 ms in the whole-city view; +42 draw calls, +0.56 M triangles; no
+  frame over 9.9 ms; 20 programs. **To re-measure on a quiet machine.**
+- **Cost in size:** the App chunk grows 740 → 1 076 kB (gzip 210 → 293 kB): the data is bundled.
+- **Checks:**
+  - type check: 0 errors;
+  - build: OK, byte-identical twice;
+  - Vitest: 621/622 (only the known `police.test.ts`); `forest.test.ts` 14/14;
+  - Playwright: 31/31.
+- **Open decisions:** the rest of the reserve inside the map (recommended: yes, after level of detail
+  and separate loading of the data); extend the map southwards (recommended: not now); verify the
+  loop against the municipal illuminated loop before C2.
+- **Local only:** as the pilot's entry below.
+
+## Phase C1 (pilot) — Vrinneviskogen: trees measured from laser data in one 250 m square (2026-11-13) — approved by the user (2026-11-13), NOT committed yet
+
+[Full report](vegetation-c1/README.md). Worked directly on local `main` (= `origin/main` `ac6ecf0`). Backend unchanged.
+Approved by the user 2026-11-13. **Nothing is committed.** Board: C1 in *Test* until committed and pushed. This is the pilot only; the rest of the forest is not built.
+
+- **Result:**
+  - The square SWEREF E 569 250–569 500, N 6 492 500–6 492 750 shows 649 tree tops found in the LiDAR
+    2020 (median height 20.5 m, tallest 31.6 m, crown radius median 3.3 m); 622 are drawn, 27 are not
+    (stem on a path or the pitch). A forest floor lies under the canopy (72 % of the square).
+  - Before, the square was bare ground with no trees.
+  - New camera preset "Vrinneviskogen · pilotruta" (now `CITY_VIEWS.vrinneviPilot`).
+- **Found:**
+  - The reserve (OSM way/102865465, county board's data) is 286.2 ha; 227.0 ha (79 %) lie inside the
+    map, **59.2 ha (21 %) south of the map's edge**. The local LiDAR covers all of it.
+  - The map draws only 32 % of the reserve (inside the map) as woodland; 55 % has no land cover. The
+    LiDAR shows canopy over 81 %.
+- **How:**
+  - `scripts/vegetation-c1/forest_lidar.py` → `src/lib/data/forest-c1.json` (byte-identical rebuild,
+    three times): tree tops as local maxima of a 1 m canopy height model, crowns by watershed, crown
+    base from the returns in the crown, canopy mask in 5 m cells.
+  - `src/lib/forest/`: `forest` (tiles in the scene, which trees are drawn, tree shape),
+    `forestFloor` (mask draped on the terrain, woodland rank).
+  - `mapView.ts` skips the illustrative planting inside a measured tile and adds one trunk mesh, one
+    crown mesh and one floor mesh per tile, with the existing tree geometry and materials.
+- **Measured (paired vs `ac6ecf0`, 5 rounds, clean run):** rAF mean +0.02 / −0.01 ms by day, +0.12 ms
+  at night (every round +0.02 … +0.30); +3 draw calls, +45 827 triangles; no frame over 16.7 ms;
+  20 programs. Two earlier runs were disturbed by another program on the machine and are kept as such.
+- **Checks:**
+  - type check: 0 errors;
+  - build: OK, byte-identical twice;
+  - Vitest: 618/619 (only the known `police.test.ts`); new tests 11/11;
+  - Playwright: 31/31, including the new `tests/forest.spec.ts`.
+- **Open decisions:** roll out to the rest of the reserve inside the map (recommended, trail-loop
+  squares first, with level of detail); extend the map southwards (recommended: not now); forest floor
+  from the canopy mask (recommended: keep); one neutral tree shape (recommended: keep).
+- **Local only:** `.claude/launch.json` (`c1-main` 5361, `c1-new` 5362, `c1-main-dev` 5363), and
+  `work/vegetation-c1/` (hook builds, raw runs, logs, LiDAR rebuilds). The `main` worktree used for
+  the comparison was removed.
+
 ## Vehicle Lights Phase F2 — headlights and tail lights on trams and trains (2026-11-13) — approved by the user (2026-11-13) with the recommended decisions, committed (`bdd561c`) and pushed to `origin/main`
 
 [Full report](rail-lights-f2/README.md). Worked directly on local `main` (= `origin/main` `eee971c`). Backend unchanged.

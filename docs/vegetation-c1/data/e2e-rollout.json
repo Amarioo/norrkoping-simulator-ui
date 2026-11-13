@@ -1,0 +1,39 @@
+{
+ "forest": {
+  "tiles": 14,
+  "trunks": 7668,
+  "crowns": 15336,
+  "floorTriangles": 38838,
+  "floorOffsetUnits": -28,
+  "crownsOutsideTile": 0,
+  "highestCrownTop": 3.1271791085600853,
+  "illustrative": 0,
+  "geometries": 2,
+  "materials": 3
+ },
+ "highestCrownTopM": 29.16060833966953,
+ "day": {
+  "programs": 20,
+  "realtimeLights": {
+   "directional": 1,
+   "hemisphere": 1,
+   "ambient": 1,
+   "point": 0,
+   "spot": 0,
+   "shadowMaps": 0
+  },
+  "artificial": 0
+ },
+ "night": {
+  "programs": 20,
+  "realtimeLights": {
+   "directional": 1,
+   "hemisphere": 1,
+   "ambient": 1,
+   "point": 0,
+   "spot": 0,
+   "shadowMaps": 0
+  },
+  "artificial": 1
+ }
+}

@@ -1,0 +1,144 @@
+{
+  "phase": "vegetation-c1",
+  "summary": "The trees of the 250 m tiles along the northern trail loop of Vrinneviskogen (14 tiles, the pilot tile among them), derived from Lantmäteriet's 2020 laser scan (tree tops, heights, crown radii, crown bases, canopy mask), and the reserve's extent compared with the map.",
+  "runtimeFile": {
+    "path": "src/lib/data/forest-c1.json",
+    "sha256": "3122edfb064a853ed3d8d1f0b029b24ab6bfe1fa8682dd7c19295a2ebea2f7fb",
+    "generator": "scripts/vegetation-c1/forest_lidar.py (forest-c1-v2)",
+    "deterministic": "rebuilt twice on 2026-11-13: byte-identical (same sha256). No timestamps of the run or machine paths in the file. The pilot tile's trees and canopy mask are identical to v1 (sha256 of the v1 file: efcb9ae7fbfff335bbb3650bcc60bf38324c725c37f466fb0b2cf0eb87e440f3, rebuilt three times)."
+  },
+  "tools": {
+    "python": "3.12.14 (codex-runtimes)",
+    "numpy": "2.3.5",
+    "scipy": "1.18.1",
+    "laspy": "2.7.0",
+    "pyproj": "3.8.0",
+    "pillow": "13.0.0 (contact sheet only)",
+    "seed": "none (no random numbers)"
+  },
+  "datasets": [
+    {
+      "name": "Lantmäteriet Laserdata NH 2020 (point cloud)",
+      "source": "Lantmäteriet STAC https://api.lantmateriet.se/stac-hojd/v1, collection dsm-skoglig-copc; local copies in work/geodata/lantmateriet/ (not in git)",
+      "licence": "CC BY 4.0, ©Lantmäteriet",
+      "acquired": "scanned 2020 (scan area 20C012); downloaded earlier in the project (scripts/download-lantmateriet.ps1)",
+      "accuracy": "about 0.1 m vertical on open hard ground; about 2 returns per m²; classification 2 = ground",
+      "kind": "source",
+      "tiles": {
+        "all 14 tiles and the reserve statistics": {
+          "y20c012-64900_5675_25.copc.laz": "2d477a00182db43d0ae39ee815cad7807615e526be8ff915cfdb000d0a599f63",
+          "y20c012-64900_5700_25.copc.laz": "24fabe2456c0121a3846c3972387923105208c0a1f4ac61fe2f28a9b4fb8c8c5",
+          "y20c012-64925_5675_25.copc.laz": "100bff44706c22371381345e0e9207e55be88a275366f122c4dcc00034ef6ac9",
+          "y20c012-64925_5700_25.copc.laz": "1b061fbe203e372e8824f4ebab949aedc487a6f4eb18eb7ec9a860d22b9bab75"
+        }
+      }
+    },
+    {
+      "name": "Vrinneviskogen Naturreservat, outline",
+      "source": "OpenStreetMap way/102865465 version 13 (edited 2025-09-07), fetched through the Overpass API; OSM tags: source = Länsstyrelsen i Östergötlands län (gis.lst.se), lst:ref 2001776, lst:area_ha 286.768. Stored in scripts/vegetation-c1/reserve-osm.json",
+      "licence": "ODbL-1.0, © OpenStreetMap contributors",
+      "acquired": "2026-11-13 (OSM base 2026-11-13T15:32:20Z)",
+      "accuracy": "as mapped in OSM from the county board's data; not checked against Naturvårdsverket's register. The municipality's page says 277 ha; this outline is 286.2 ha",
+      "kind": "source",
+      "sha256": "4854d21663890860768f2ebcaf7dc73c236b885757c832b1867d90fb675e8b37",
+      "use": "the limit of what is measured (only ground inside the reserve), and the statistics of how much of the reserve the map covers; not drawn"
+    },
+    {
+      "name": "Trail loop (to choose the tiles)",
+      "source": "OpenStreetMap relation/5703856 version 2 (route=running, colour=black; relation last edited 2016-07-24), fetched through the Overpass API. Stored in scripts/vegetation-c1/trail-osm.json",
+      "licence": "ODbL-1.0, © OpenStreetMap contributors",
+      "acquired": "2026-11-13 (OSM base 2026-11-13T16:49:35Z)",
+      "accuracy": "2 368 m long as mapped. Its alignment is NOT verified against the municipality's 2.4 km illuminated loop (docs/step62/vrinneviskogen-plan.md)",
+      "kind": "source",
+      "sha256": "3e38900d90f4c9cd1deeba8e13e1a120d16d46d6c37ec13c812c4f15b0728987",
+      "use": "tile selection only: 250 m tiles within 60 m of it, at least 10 % inside the reserve, wholly inside the map. Not drawn, no lamps (that is C2)"
+    },
+    {
+      "name": "Runtime map",
+      "source": "src/lib/data/norrkoping-map.json (OpenStreetMap, OSM base 2026-10-16T13:35:36Z): clip polygon, paths, roads, pitches, water, buildings",
+      "licence": "ODbL-1.0",
+      "acquired": "2026-10-16",
+      "accuracy": "as mapped",
+      "kind": "source",
+      "use": "which measured tops are not drawn (stem on a rendered path, road, pitch or water); buildings (plus 2 m) are masked out of the measurement; unchanged"
+    }
+  ],
+  "derived": [
+    {
+      "name": "Tree top position",
+      "from": "local maxima of the 1 m canopy height model",
+      "accuracy": "about ±1 m"
+    },
+    {
+      "name": "Tree height",
+      "from": "highest return within 1 m of the top minus the LiDAR ground",
+      "accuracy": "about ±0.5 m, tends to be slightly low"
+    },
+    {
+      "name": "Crown radius",
+      "from": "area of the tree's watershed segment above 35 % of its height",
+      "accuracy": "about ±1 m; neighbouring crowns in dense stands can merge into one"
+    },
+    {
+      "name": "Crown base",
+      "from": "10th percentile of the returns ≥ 1.5 m above ground inside the crown, limited to 20–80 % of the height",
+      "accuracy": "rough: few pulses reach the lower crown; trees with too few returns get 0.5 × height (an estimate, flag 1)"
+    },
+    {
+      "name": "Canopy mask (forest floor)",
+      "from": "5 m cells with at least half of their 1 m cells ≥ 2 m high",
+      "accuracy": "5 m cells"
+    },
+    {
+      "name": "Reserve statistics",
+      "from": "4 m grid: reserve outline, map clip and canopy height",
+      "accuracy": "about ±0.1 ha"
+    }
+  ],
+  "estimates": [
+    {
+      "name": "Detection constants",
+      "value": "smoothing 1 m, window 1.2 m + 0.07 × height, minimum 3 m, crown cut 35 %",
+      "basis": "method assumptions, tuned by eye on the contact sheet; not properties of the forest",
+      "label": "estimate"
+    },
+    {
+      "name": "Trunk radius",
+      "value": "0.05 m + 0.006 × height",
+      "basis": "not measured; a plausible proportion",
+      "label": "estimate"
+    },
+    {
+      "name": "Crown shape and colour",
+      "value": "two ellipsoid lobes inside the measured envelope; the existing tree greens",
+      "basis": "species are not known per tree, so a neutral crown",
+      "label": "estimate"
+    },
+    {
+      "name": "Forest floor colour",
+      "value": "#648b51, the map's woodland colour",
+      "basis": "the canopy is measured; what the ground under it looks like is assumed",
+      "label": "estimate"
+    },
+    {
+      "name": "Stem clearance to paths",
+      "value": "0.3 m",
+      "basis": "measured tops whose stem would stand on a rendered surface are not drawn",
+      "label": "estimate"
+    },
+    {
+      "name": "Tile selection constants",
+      "value": "60 m around the trail, 10 % minimum reserve share, 2 m building margin",
+      "basis": "this project's choice",
+      "label": "estimate"
+    }
+  ],
+  "coordinates": "Data: EPSG:3006 (SWEREF 99 TM) metres; tree heights in metres above the LiDAR ground at the tree (the LiDAR's heights are RH2000). Scene: x = (E − 569030) / (25 × 0.9996584126), z = (6494989 − N) / (25 × 0.9996584126), x east, z south; stems stand on the rendered ground (the app's RH2000 terrain, scene y = RH2000 / 25); model sizes use 25 m per unit (0.03 % off the grid scale).",
+  "notInvented": [
+    "species",
+    "trunk diameters as measurements",
+    "tree positions outside the measured tiles or outside the reserve",
+    "changes in the forest after 2020",
+    "the illuminated trail or its lamps (C2)"
+  ]
+}
