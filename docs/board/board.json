@@ -844,7 +844,7 @@
       "id": "U1",
       "epic": "U",
       "title": "Nytt gränssnitt efter mockupen",
-      "status": "test",
+      "status": "done",
       "size": "M",
       "report": "docs/interface-u1/README.md",
       "summary": "Ljust tema, inställningarna i tre flikar, två diagram under kartan, rullande siffror, meddelanderutor och en uppdragbar låda på mobilen. Byggt i den befintliga Svelte-appen.",
@@ -867,7 +867,7 @@
         },
         {
           "text": "Du testar och godkänner",
-          "done": false
+          "done": true
         }
       ],
       "comments": [
@@ -880,8 +880,15 @@
           "author": "claude",
           "date": "2026-11-13",
           "text": "Klar för ditt test. Sidan har mockupens utseende: ljust tema, tre flikar, två diagram under kartan, rullande siffror, meddelanderutor och en uppdragbar låda på mobilen. Kartan är orörd och lika stor som förut. Inte klart: prestandamätningen och en ren körning av webbläsartesterna, eftersom ett spel belastade datorn (cirka 70 %) under kontrollerna; de körs när datorn är lugn. Fem frågor till dig i rapporten; jag rekommenderar att allt får vara som det är. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Committad (4f83f95) och pushad till origin/main på din begäran. Prestandamätningen och en ren körning av alla tester var inte gjorda då (datorn var belastad); de görs tillsammans med mörkt läge (U2)."
         }
-      ]
+      ],
+      "date": "2026-11-13",
+      "outcome": "Sidan har mockupens utseende i den befintliga Svelte-appen: ljust tema, tre flikar, två diagram under kartan, rullande siffror, meddelanderutor och en uppdragbar låda på mobilen; kartan orörd och lika stor som förut. Committad (4f83f95) och pushad på din begäran innan prestandamätningen och en ren testkörning var gjorda; de görs i U2."
     }
   ]
 }

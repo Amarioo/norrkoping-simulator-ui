@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Interface Phase U1 — the new interface after the mockup (2026-11-13) — for the user's test, NOT committed
+## Interface Phase U1 — the new interface after the mockup (2026-11-13) — committed (`4f83f95`) and pushed to `origin/main` on the user's request, before the frame-time measurement
 
 [Full report](interface-u1/README.md). Worked directly on local `main` (= `origin/main` `50a625d`). Backend unchanged.
-**Nothing is committed.** Board: U1 in *Test*, new epic "Gränssnitt" (U). Started on the user's decision of 2026-11-13
+**Committed (`4f83f95`) and pushed to `origin/main`** on the user's request (2026-11-13); the frame-time measurement and a clean full test run were still open then. Board: U1 in *Done*, new epic "Gränssnitt" (U). Started on the user's decision of 2026-11-13
 (the look of the React mockup, built in the existing Svelte app), after the C1b session had finished.
 
 - **Result:** light theme; the settings in three tabs (Trafik, Tid och ljus, Flyg); two charts under

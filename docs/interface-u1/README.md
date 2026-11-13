@@ -1,7 +1,9 @@
 # Interface Phase U1 — the new interface after the mockup (2026-11-13)
 
-Worked directly on local `main` (= `origin/main` `50a625d`). Backend unchanged. **Nothing is
-committed.** For the user's test. Board: U1 in *Test*, new epic "Gränssnitt" (U).
+Worked directly on local `main` (= `origin/main` `50a625d`). Backend unchanged. **Committed
+(`4f83f95`) and pushed to `origin/main`** on the user's request of 2026-11-13, before the frame-time
+measurement and a clean full test run (see Risks; both follow with U2). Board: U1 in *Done*, new
+epic "Gränssnitt" (U).
 
 Started on the user's decision of 2026-11-13: the look of the React mockup
 (<https://claude.ai/artifact/YJYx8rb8z2RZ7mEvcbX6Pn>), built in the existing Svelte app with the
