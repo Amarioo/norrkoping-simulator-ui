@@ -2,6 +2,32 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Interface Phase U2 — dark theme as the default, light as the choice (2026-11-13) — for the user's test, NOT committed
+
+[Full report](interface-u2/README.md). Worked directly on local `main` (= `origin/main` `4395127`, with U1). Backend unchanged.
+**Nothing of U2 is committed.** Board: U2 in *Test*. Asked for by the user on 2026-11-13.
+
+- **Result:** the page opens dark; a button in the header switches to U1's light look and back, and
+  the choice is remembered (`localStorage` `norrkoping.theme`). `?theme=light|dark` in the address
+  wins without being remembered. Everything on the page follows; the 3D scene is untouched.
+- **How:** every colour in `src/style.css` is a variable (`:root` dark, `:root[data-theme='light']`
+  light); `src/lib/ui/{themeName,themeDom}.ts` set the theme in `main.ts` before the app loads;
+  `theme.svelte.ts` and a header button in `App.svelte`; toasts get the same theme.
+- **Measured:** canvas 1102 × 684 at 1440 × 1040 in both themes (as before U1); main file gzip
+  306.3 → 306.6 kB. **Frame times not measured**, for U1 or U2: the machine was never quiet (a game,
+  then a browser). One disturbed round exists (`work/ui-u1/runs/paired-1.json`) and is not usable.
+- **Checks:** type check 0 errors; build OK, byte-identical twice; Vitest `src/lib/ui` 9/9;
+  Playwright `interface-u2` 2/2, `interface-u1` 2/2. The whole suites are not run on the final state.
+- **To do on a quiet machine:** `MAX_BUSY=18 node scripts/interface-u1/paired.mjs <out.json> 5
+  main=http://127.0.0.1:5372 u2=http://127.0.0.1:5373` (hook builds of `50a625d` and the working
+  tree), then `npm test` and `npm run test:e2e`.
+- **Found while working:** a folder link `work/ui-u1/before-src/node_modules` made the development
+  server use about three processor cores; removed. Open preview tabs of the 3D map also slow the
+  tests.
+- **Open decisions:** dark for everyone who has not chosen, also on a light computer (recommended:
+  keep); one toggle button (keep).
+- **Local only:** as U1's entry below.
+
 ## Interface Phase U1 — the new interface after the mockup (2026-11-13) — committed (`4f83f95`) and pushed to `origin/main` on the user's request, before the frame-time measurement
 
 [Full report](interface-u1/README.md). Worked directly on local `main` (= `origin/main` `50a625d`). Backend unchanged.

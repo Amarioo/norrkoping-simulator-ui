@@ -13,6 +13,7 @@
   import FpsCounter from './lib/perf/FpsCounter.svelte';
   import { fpsCounter, setFpsVisible } from './lib/perf/fpsMonitor.svelte';
   import AnimatedNumber from './lib/ui/AnimatedNumber.svelte';
+  import { theme, toggleTheme } from './lib/ui/theme.svelte';
   import type { Component, Snippet } from 'svelte';
   // SSE debug panel (L key / ?sse-debug): only in dev and VITE_SSE_DEBUG=1 builds, loaded on demand.
   let SseDebugHost = $state.raw<Component | null>(null);
@@ -373,7 +374,7 @@
 {/snippet}
 
 {#snippet toaster()}
-  <Toaster position={narrow ? 'top-center' : 'bottom-right'} theme="light" closeButton />
+  <Toaster position={narrow ? 'top-center' : 'bottom-right'} theme={theme.value} closeButton />
 {/snippet}
 
 <div class="sim-shell" class:has-drawer-bar={narrow}>
@@ -389,6 +390,19 @@
           >{city.connected ? 'Simulatorn är ansluten' : 'Ansluter till simulatorn…'}</span
         ><span class="local-badge">LOKAL SIMULERING</span>
       </div>
+      <button
+        type="button"
+        class="theme-toggle"
+        aria-label={theme.value === 'dark' ? 'Byt till ljust läge' : 'Byt till mörkt läge'}
+        title={theme.value === 'dark' ? 'Ljust läge' : 'Mörkt läge'}
+        data-theme-now={theme.value}
+        onclick={toggleTheme}
+        ><svg viewBox="0 0 18 18" width="18" height="18" class="stroke-icon" aria-hidden="true"
+          >{#if theme.value === 'dark'}<circle cx="9" cy="9" r="3.4" /><path
+              d="M9 1.5v2M9 14.5v2M1.5 9h2M14.5 9h2M3.7 3.7l1.4 1.4M12.9 12.9l1.4 1.4M3.7 14.3l1.4-1.4M12.9 5.1l1.4-1.4"
+            />{:else}<path d="M15 10.6A6.5 6.5 0 0 1 7.4 3a6.5 6.5 0 1 0 7.6 7.6z" />{/if}</svg
+        ></button
+      >
       <div class="sim-clock">
         <span>{clock}</span><button
           class="clock-primary"

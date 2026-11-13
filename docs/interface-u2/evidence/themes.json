@@ -1,0 +1,18 @@
+{
+ "dark": {
+  "theme": "dark",
+  "canvas": [
+   1102,
+   684
+  ],
+  "toaster": "dark"
+ },
+ "light": {
+  "theme": "light",
+  "canvas": [
+   1102,
+   684
+  ],
+  "toaster": "light"
+ }
+}

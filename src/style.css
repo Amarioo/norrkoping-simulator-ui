@@ -1,11 +1,49 @@
-/* Interface U1: light theme. The map panel's size rules (.sim-layout columns, .sim-main padding,
-   .map-panel height) are the same as before, so the 3D canvas keeps its size at every window width. */
+/* Interface U1 + U2: two palettes. Dark is the default; `data-theme="light"` on <html> (set by
+   src/lib/ui/themeDom.ts) switches to the light one. The map panel's size rules (.sim-layout columns,
+   .sim-main padding, .map-panel height) are the same as before U1, so the 3D canvas keeps its size. */
 :root {
   font-family: Inter, 'Segoe UI', system-ui, sans-serif;
-  color: #1b2428;
-  background: #f3f1ec;
   font-synthesis: none;
   font-size: 14px;
+  color: var(--ink);
+  background: var(--ground);
+  color-scheme: dark;
+  --ink: #e6eeee;
+  --ink-2: #c5d2d4;
+  --muted: #9fb1b7;
+  --line: #2b3c44;
+  --line-strong: #46585f;
+  --surface: #17262e;
+  --ground: #101b22;
+  --accent: #74c5dd;
+  --accent-ink: #0b1a20;
+  --accent-soft: #1d3944;
+  --ok: #7fd0a0;
+  --warn-dot: #e0b060;
+  --danger: #f2a88f;
+  --switch-off: #5d6f76;
+  --switch-thumb: #f4f8f8;
+  --chip-bg: #0b1418;
+  --chip-ink: #ffffff;
+  --overlay: rgb(16 27 34 / 0.9);
+  --bar-bg: rgb(23 38 46 / 0.96);
+  --warn-bg: #3a2f14;
+  --warn-line: #a88a3f;
+  --warn-ink: #f3dfae;
+  --scrim: rgb(0 0 0 / 0.5);
+  --shadow: 0 2px 10px rgb(0 0 0 / 0.4);
+  --shadow-strong: 0 6px 24px rgb(0 0 0 / 0.5);
+  --tab-shadow: 0 1px 2px rgb(0 0 0 / 0.4);
+  --hover-filter: brightness(1.12);
+  /* LayerChart reads these. */
+  --color-primary: var(--accent);
+  --color-surface-100: var(--surface);
+  --color-surface-200: var(--ground);
+  --color-surface-300: var(--line);
+  --color-surface-content: var(--ink-2);
+}
+:root[data-theme='light'] {
+  color-scheme: light;
   --ink: #1b2428;
   --ink-2: #33414a;
   --muted: #55626a;
@@ -17,15 +55,22 @@
   --accent-ink: #ffffff;
   --accent-soft: #eef3f5;
   --ok: #2e7d4f;
-  --warn: #8a5a00;
+  --warn-dot: #c98a1b;
   --danger: #a3341b;
+  --switch-off: #8a8576;
+  --switch-thumb: #ffffff;
+  --chip-bg: #1b2428;
+  --chip-ink: #ffffff;
+  --overlay: rgb(255 255 255 / 0.93);
+  --bar-bg: rgb(255 255 255 / 0.96);
+  --warn-bg: #fff6df;
+  --warn-line: #d9b45c;
+  --warn-ink: #5a3d00;
+  --scrim: rgb(27 36 40 / 0.35);
   --shadow: 0 2px 10px rgb(27 36 40 / 0.16);
-  /* LayerChart reads these. */
-  --color-primary: #0f5e78;
-  --color-surface-100: #ffffff;
-  --color-surface-200: #f3f1ec;
-  --color-surface-300: #dedad0;
-  --color-surface-content: #33414a;
+  --shadow-strong: 0 6px 24px rgb(27 36 40 / 0.22);
+  --tab-shadow: 0 1px 2px rgb(27 36 40 / 0.14);
+  --hover-filter: brightness(0.94);
 }
 * {
   box-sizing: border-box;
@@ -65,7 +110,7 @@ summary:focus-visible,
   outline-offset: 2px;
 }
 button:hover:not(:disabled) {
-  filter: brightness(0.94);
+  filter: var(--hover-filter);
 }
 a {
   color: inherit;
@@ -79,7 +124,6 @@ input[type='date'] {
   padding: 9px 10px;
   width: 100%;
   min-height: 40px;
-  color-scheme: light;
 }
 h1,
 h2,
@@ -171,7 +215,7 @@ h2 {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #c98a1b;
+  background: var(--warn-dot);
   flex: none;
 }
 .sim-live i.online {
@@ -215,6 +259,17 @@ h2 {
 .sim-clock button.clock-primary {
   background: var(--accent);
   color: var(--accent-ink);
+}
+.theme-toggle {
+  width: 42px;
+  height: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  color: var(--ink-2);
 }
 .sim-clock button.clock-primary svg {
   fill: currentColor;
@@ -267,7 +322,7 @@ h2 {
   background: var(--surface);
   color: var(--ink);
   font-weight: 600;
-  box-shadow: 0 1px 2px rgb(27 36 40 / 0.14);
+  box-shadow: var(--tab-shadow);
 }
 .tab-panel[hidden] {
   display: none;
@@ -343,7 +398,7 @@ input[type='range'] {
   height: 24px;
   margin: 0;
   border-radius: 999px;
-  background: #8a8576;
+  background: var(--switch-off);
   cursor: pointer;
   transition: background 0.15s;
 }
@@ -355,7 +410,7 @@ input[type='range'] {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: #ffffff;
+  background: var(--switch-thumb);
   transition: transform 0.15s;
 }
 .switch:checked {
@@ -610,8 +665,8 @@ input[type='range'] {
   top: 19px;
   right: 14px;
   padding: 9px 12px;
-  background: var(--ink);
-  color: #ffffff;
+  background: var(--chip-bg);
+  color: var(--chip-ink);
   border-radius: 999px;
   font-size: 11px;
   font-weight: 600;
@@ -631,12 +686,12 @@ input[type='range'] {
   top: 72px;
   left: 14px;
   right: 14px;
-  background: #fff6df;
-  border: 1px solid #d9b45c;
+  background: var(--warn-bg);
+  border: 1px solid var(--warn-line);
   border-radius: 9px;
   padding: 10px 12px;
   font-size: 13px;
-  color: #5a3d00;
+  color: var(--warn-ink);
 }
 .map-key {
   position: absolute;
@@ -644,7 +699,7 @@ input[type='range'] {
   left: 14px;
   display: flex;
   gap: 12px;
-  background: rgb(255 255 255 / 0.94);
+  background: var(--overlay);
   color: var(--ink-2);
   padding: 7px 11px;
   border-radius: 9px;
@@ -666,7 +721,7 @@ input[type='range'] {
   right: 7px;
   font-size: 11px;
   color: var(--ink-2);
-  background: rgb(255 255 255 / 0.9);
+  background: var(--overlay);
   padding: 3px 7px;
   border-radius: 5px;
 }
@@ -684,7 +739,7 @@ input[type='range'] {
   background: var(--surface);
   padding: 14px;
   border-radius: 13px;
-  box-shadow: 0 6px 24px rgb(27 36 40 / 0.22);
+  box-shadow: var(--shadow-strong);
 }
 .vehicle-inspector h3 {
   font-size: 18px;
@@ -719,8 +774,8 @@ input[type='range'] {
   top: 50%;
   transform: translate(-50%, -50%);
   padding: 10px 14px;
-  background: var(--ink);
-  color: #ffffff;
+  background: var(--chip-bg);
+  color: var(--chip-ink);
   border-radius: 999px;
   font-size: 13px;
   display: flex;
@@ -846,14 +901,14 @@ input[type='range'] {
   bottom: 0;
   z-index: 20;
   padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
-  background: rgb(255 255 255 / 0.96);
+  background: var(--bar-bg);
   border-top: 1px solid var(--line);
 }
 .drawer-overlay {
   position: fixed;
   inset: 0;
   z-index: 40;
-  background: rgb(27 36 40 / 0.35);
+  background: var(--scrim);
 }
 .drawer-content {
   position: fixed;
@@ -868,7 +923,7 @@ input[type='range'] {
   background: var(--surface);
   color: var(--ink);
   border-radius: 20px 20px 0 0;
-  box-shadow: 0 -8px 30px rgb(27 36 40 / 0.22);
+  box-shadow: 0 -8px 30px var(--scrim);
   outline: none;
 }
 .drawer-handle {

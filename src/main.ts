@@ -1,6 +1,9 @@
 import { startCityLayers } from './lib/cityMeshClient';
 import { startCityStream } from './lib/cityStreamStart';
+import { applyTheme, readStartTheme } from './lib/ui/themeDom';
 import './style.css';
+// Interface U2: dark unless the visitor chose light; set before the app loads.
+applyTheme(readStartTheme());
 // Start downloading the map data and the geometry workers before the main thread loads
 // the app, so they run in parallel. App waits for the same data (see lib/cityData.ts).
 startCityLayers();

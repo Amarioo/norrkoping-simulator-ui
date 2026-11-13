@@ -889,6 +889,44 @@
       ],
       "date": "2026-11-13",
       "outcome": "Sidan har mockupens utseende i den befintliga Svelte-appen: ljust tema, tre flikar, två diagram under kartan, rullande siffror, meddelanderutor och en uppdragbar låda på mobilen; kartan orörd och lika stor som förut. Committad (4f83f95) och pushad på din begäran innan prestandamätningen och en ren testkörning var gjorda; de görs i U2."
+    },
+    {
+      "id": "U2",
+      "epic": "U",
+      "title": "Mörkt läge som standard",
+      "status": "test",
+      "size": "S",
+      "report": "docs/interface-u2/README.md",
+      "summary": "Sidan öppnas mörk. En knapp i sidhuvudet byter till det ljusa utseendet och valet sparas i webbläsaren.",
+      "tasks": [
+        {
+          "text": "Mörk färgsättning som standard, ljus som val",
+          "done": true
+        },
+        {
+          "text": "Knapp i sidhuvudet, valet sparas",
+          "done": true
+        },
+        {
+          "text": "Tester och bilder av båda lägena",
+          "done": true
+        },
+        {
+          "text": "Prestandamätning och ren körning av alla tester (även för U1)",
+          "done": false
+        },
+        {
+          "text": "Du testar och godkänner",
+          "done": false
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Klar för ditt test. Sidan öppnas mörk; solen i sidhuvudet byter till ljust läge och valet sparas. Flikar, reglage, diagram, meddelanderutor och mobil-lådan följer med; kartan är orörd och lika stor i båda lägena. Inte klart: prestandamätningen och en ren körning av alla tester, som väntar på att datorn blir lugn. Två frågor i rapporten; jag rekommenderar att allt får vara som det är. Inget av U2 är committat."
+        }
+      ]
     }
   ]
 }
