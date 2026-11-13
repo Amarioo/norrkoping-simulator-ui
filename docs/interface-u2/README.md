@@ -1,7 +1,8 @@
 # Interface Phase U2 — dark theme as the default, light as the choice (2026-11-13)
 
 Worked directly on local `main` (= `origin/main` `4395127`, which holds U1). Backend unchanged.
-**Nothing of U2 is committed.** For the user's test. Board: U2 in *Test*.
+**Committed (`f5a1f42`) and pushed to `origin/main`** on the user's request of 2026-11-13, before the
+frame-time measurement and a clean full test run (see Risks). Board: U2 in *Done*.
 
 Asked for by the user on 2026-11-13, together with the commit of U1: "implement dark mode and make
 it the default; light mode is the feature".

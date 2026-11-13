@@ -894,7 +894,7 @@
       "id": "U2",
       "epic": "U",
       "title": "Mörkt läge som standard",
-      "status": "test",
+      "status": "done",
       "size": "S",
       "report": "docs/interface-u2/README.md",
       "summary": "Sidan öppnas mörk. En knapp i sidhuvudet byter till det ljusa utseendet och valet sparas i webbläsaren.",
@@ -917,7 +917,7 @@
         },
         {
           "text": "Du testar och godkänner",
-          "done": false
+          "done": true
         }
       ],
       "comments": [
@@ -925,8 +925,15 @@
           "author": "claude",
           "date": "2026-11-13",
           "text": "Klar för ditt test. Sidan öppnas mörk; solen i sidhuvudet byter till ljust läge och valet sparas. Flikar, reglage, diagram, meddelanderutor och mobil-lådan följer med; kartan är orörd och lika stor i båda lägena. Inte klart: prestandamätningen och en ren körning av alla tester, som väntar på att datorn blir lugn. Två frågor i rapporten; jag rekommenderar att allt får vara som det är. Inget av U2 är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-13",
+          "text": "Committad (f5a1f42) och pushad till origin/main på din begäran. Prestandamätningen och en ren körning av alla tester (för U1 och U2) är inte gjorda än; de är köade och jag rapporterar resultatet när de är klara."
         }
-      ]
+      ],
+      "date": "2026-11-13",
+      "outcome": "Sidan öppnas mörk; en knapp i sidhuvudet byter till ljust läge och valet sparas. Allt på sidan följer temat, kartan orörd. Committad (f5a1f42) och pushad på din begäran innan prestandamätningen och en ren körning av alla tester var gjorda; de står kvar som öppen uppgift."
     }
   ]
 }

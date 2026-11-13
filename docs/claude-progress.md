@@ -2,10 +2,10 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Interface Phase U2 — dark theme as the default, light as the choice (2026-11-13) — for the user's test, NOT committed
+## Interface Phase U2 — dark theme as the default, light as the choice (2026-11-13) — committed (`f5a1f42`) and pushed to `origin/main` on the user's request, before the frame-time measurement
 
 [Full report](interface-u2/README.md). Worked directly on local `main` (= `origin/main` `4395127`, with U1). Backend unchanged.
-**Nothing of U2 is committed.** Board: U2 in *Test*. Asked for by the user on 2026-11-13.
+**Committed (`f5a1f42`) and pushed to `origin/main`** on the user's request (2026-11-13); the frame-time measurement and a clean full test run were still open then. Board: U2 in *Done*. Asked for by the user on 2026-11-13.
 
 - **Result:** the page opens dark; a button in the header switches to U1's light look and back, and
   the choice is remembered (`localStorage` `norrkoping.theme`). `?theme=light|dark` in the address
