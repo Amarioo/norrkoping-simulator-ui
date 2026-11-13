@@ -41,17 +41,23 @@ export const BEAM_COLOR: [number, number, number] = [1, 0.95, 0.86];
 export const HEADLAMP_NIGHT_GAIN = 3.2;
 export const TAILLAMP_NIGHT_GAIN = 2.2;
 
-export type LitVehicleKind = 'compact' | 'estate' | 'truck' | 'bus';
+export type LitVehicleKind = 'compact' | 'estate' | 'truck' | 'bus' | 'tram' | 'train';
 /**
  * Lamp geometry per vehicle kind, metres in the model frame (+z forward, y up from the wheel contact),
  * read from the drawn models (transportModels.ts, publicTransport.ts): front face of the headlamp
  * lenses and their height. The beam emitter is the midpoint of the two headlamps, 0.1 m ahead.
+ *
+ * Vehicle Lights Phase F2: trams and trains. Their pose is the LEADING section's (section 0, the one
+ * that carries the headlamps), so `front` counts from that section's centre: half the 6.12 m tram
+ * module / the 19.5 m train car, plus the lens (same lens box as the bus).
  */
 export const VEHICLE_LAMPS: Record<LitVehicleKind, { front: number; height: number }> = {
   compact: { front: 4.05 / 2 + 0.04, height: 0.82 },
   estate: { front: 4.75 / 2 + 0.04, height: 0.82 },
   truck: { front: 5.38, height: 0.93 },
   bus: { front: 12 / 2 + 0.085, height: 0.84 },
+  tram: { front: 6.12 / 2 + 0.085, height: 0.84 },
+  train: { front: 19.5 / 2 + 0.085, height: 0.84 },
 };
 export const isLitVehicleKind = (kind: string): kind is LitVehicleKind => kind in VEHICLE_LAMPS;
 
@@ -63,6 +69,11 @@ export interface VehiclePose {
   y: number;
   z: number;
   heading: number;
+  /**
+   * Nose-up pitch, radians (rail vehicles, Phase F2: the lamps sit far ahead of the section centre,
+   * so on a gradient they are higher or lower than the centre). Absent = level.
+   */
+  pitch?: number;
 }
 export interface SelectedVehicle {
   pose: VehiclePose;
@@ -118,10 +129,14 @@ export function selectNearestVehicles(
 export function beamEmitter(pose: VehiclePose, metresPerUnit: number) {
   const lamp = VEHICLE_LAMPS[pose.kind];
   const [fx, fz] = headingForward(pose.heading);
-  const ahead = (lamp.front + 0.1) / metresPerUnit;
+  const pitch = pose.pitch ?? 0;
+  const reach = lamp.front + 0.1;
+  // The beam itself stays horizontal (the shader takes a horizontal direction); only the lamp's
+  // position follows the pitch.
+  const ahead = (reach * Math.cos(pitch)) / metresPerUnit;
   return {
     x: pose.x + fx * ahead,
-    y: pose.y + lamp.height / metresPerUnit,
+    y: pose.y + (lamp.height + reach * Math.sin(pitch)) / metresPerUnit,
     z: pose.z + fz * ahead,
     fx,
     fz,

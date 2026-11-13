@@ -16,7 +16,12 @@ import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.j
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import type { Vehicle } from './city.svelte';
 import { TRACK_GAUGE_METRES, VEHICLE_GEOMETRY } from './trackProfile';
-import { HEADLAMP_NIGHT_GAIN, TAILLAMP_NIGHT_GAIN, type VehiclePose } from './lighting/vehicleLights';
+import {
+  HEADLAMP_NIGHT_GAIN,
+  TAILLAMP_NIGHT_GAIN,
+  type LitVehicleKind,
+  type VehiclePose,
+} from './lighting/vehicleLights';
 
 type Prototype = {
   meshes: InstancedMesh[];
@@ -52,7 +57,7 @@ export function createPublicTransport() {
     new MeshStandardMaterial({ color: '#ac2f29', emissive: '#a62b23', emissiveIntensity: 0.3 }),
   );
   // Vehicle Lights Phase F1: buses get their own lens materials (same parameters, so the same shader
-  // program), which glow at night; tram and train lenses stay as they are (Phase F2).
+  // program), which glow at night. Phase F2: the tram and train lenses (`headlamp`, `tail`) glow too.
   const busHeadlamp = own(headlamp.clone()),
     busTail = own(tail.clone());
   function texture(kind: string, section = 0) {
@@ -430,7 +435,8 @@ export function createPublicTransport() {
     across = new Vector3(1, 0, 0),
     scale = new Vector3(0.04, 0.04, 0.04);
   const states = new Map<string, { pos: Vector3; heading: number; pitch: number }>();
-  // Smoothed render poses of this frame's buses (reused objects), for the vehicle beams.
+  // Smoothed render poses of this frame's buses and (Phase F2) of the leading section of every tram
+  // and train (reused objects), for the vehicle beams.
   const poses: VehiclePose[] = [];
   let poseCount = 0;
   return {
@@ -475,9 +481,12 @@ export function createPublicTransport() {
           // Model origin = wheel contact at the section centre; +z is forward, so nose-up is −x rotation.
           q.setFromAxisAngle(axis, state.heading).multiply(tilt.setFromAxisAngle(across, -state.pitch));
           matrix.compose(state.pos, q, scale);
-          if (prototype.kind === 'bus') {
+          // Section 0 is the leading section: it carries the headlamps (drawn at its +z end).
+          if (prototype.section === 0) {
             const pose = (poses[poseCount++] ??= { id: 0, kind: 'bus', x: 0, y: 0, z: 0, heading: 0 });
             pose.id = vehicle.id;
+            pose.kind = prototype.kind as LitVehicleKind;
+            pose.pitch = state.pitch;
             pose.x = state.pos.x;
             pose.y = state.pos.y;
             pose.z = state.pos.z;
@@ -492,15 +501,17 @@ export function createPublicTransport() {
       }
       for (const key of states.keys()) if (!live.has(key)) states.delete(key);
     },
-    /** Smoothed poses of this frame's buses (valid until the next update). */
+    /** Smoothed poses of this frame's buses, trams and trains (valid until the next update). */
     poses(): readonly VehiclePose[] {
       poses.length = poseCount;
       return poses;
     },
-    /** Night level 0…1 (env.artificial): bus headlamp and tail-lamp lens glow. */
+    /** Night level 0…1 (env.artificial): headlamp and tail-lamp lens glow of buses, trams and trains. */
     setNightLevel(level: number) {
       busHeadlamp.emissiveIntensity = 0.5 + HEADLAMP_NIGHT_GAIN * level;
       busTail.emissiveIntensity = 0.3 + TAILLAMP_NIGHT_GAIN * level;
+      headlamp.emissiveIntensity = 0.5 + HEADLAMP_NIGHT_GAIN * level;
+      tail.emissiveIntensity = 0.3 + TAILLAMP_NIGHT_GAIN * level;
     },
     dispose() {
       owned.forEach((r) => r.dispose());

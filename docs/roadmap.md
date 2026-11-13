@@ -151,7 +151,11 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   prestandamål klarade.*
   - Lyktglas som lyser + en ljuskägla på vägen framför. Riktiga ljuskällor bara för de närmaste
     fordonen, av prestandaskäl.
-- [ ] **F2 Spårvagnar och tåg** — S
+- [ ] **F2 Spårvagnar och tåg** — S — *genomförd 2026-11-13 direkt på main, godkänd av dig 2026-11-13, inte
+  committad ännu: [docs/rail-lights-f2/README.md](rail-lights-f2/README.md). Spårvagnar och tåg har på natten
+  lysande vita lyktor fram och röda bak, och de närmaste kastar samma ljuskägla som bilarna i F1 på
+  spåret framför sig. Allt ljus är uppskattat (F1:s värden); ingen mätbar prestandakostnad; dagbilden
+  oförändrad.*
 
 ### Spår B: landmärken
 

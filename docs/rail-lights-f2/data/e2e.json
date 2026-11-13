@@ -1,0 +1,124 @@
+{
+ "tram": {
+  "vehicle": {
+   "id": 10001,
+   "kind": "tram",
+   "x": -49.29041207517565,
+   "y": 0.8256723846224097,
+   "z": -30.68632505742033,
+   "heading": 0.2825765067486632,
+   "pitch": 0.012158698645189201
+  },
+  "target": {
+   "x": 531.9999969501098,
+   "y": 287.51295746427274,
+   "inView": true
+  },
+  "night": {
+   "artificial": 1,
+   "programs": 20,
+   "realtimeLights": {
+    "directional": 1,
+    "hemisphere": 1,
+    "ambient": 1,
+    "point": 0,
+    "spot": 0,
+    "shadowMaps": 0
+   },
+   "vehicleLights": {
+    "enabled": true,
+    "max": 16,
+    "active": 3,
+    "selected": [
+     {
+      "id": 10001,
+      "kind": "tram",
+      "distanceM": 74.3,
+      "weight": 1
+     },
+     {
+      "id": 10004,
+      "kind": "tram",
+      "distanceM": 294.2,
+      "weight": 1
+     },
+     {
+      "id": 3,
+      "kind": "compact",
+      "distanceM": 358,
+      "weight": 1
+     }
+    ]
+   }
+  },
+  "luma": {
+   "lumaOn": 52.176749333333454,
+   "lumaOff": 35.331222111110925,
+   "lumaBack": 52.181092055555666
+  }
+ },
+ "train": {
+  "vehicle": {
+   "id": 10005,
+   "kind": "train",
+   "x": -67.89838157987288,
+   "y": 0.9593074454029031,
+   "z": -86.23505654349026,
+   "heading": -1.9181625446223336,
+   "pitch": 0.002632592133066694
+  },
+  "target": {
+   "x": 531.9999984548558,
+   "y": 299.38060958507856,
+   "inView": true
+  },
+  "night": {
+   "artificial": 1,
+   "programs": 20,
+   "realtimeLights": {
+    "directional": 1,
+    "hemisphere": 1,
+    "ambient": 1,
+    "point": 0,
+    "spot": 0,
+    "shadowMaps": 0
+   },
+   "vehicleLights": {
+    "enabled": true,
+    "max": 16,
+    "active": 1,
+    "selected": [
+     {
+      "id": 10005,
+      "kind": "train",
+      "distanceM": 130.5,
+      "weight": 1
+     }
+    ]
+   }
+  },
+  "luma": {
+   "lumaOn": 19.087917611111454,
+   "lumaOff": 2.2846944444443866,
+   "lumaBack": 19.088253000000343
+  }
+ },
+ "day": {
+  "artificial": 0,
+  "programs": 20,
+  "realtimeLights": {
+   "directional": 1,
+   "hemisphere": 1,
+   "ambient": 1,
+   "point": 0,
+   "spot": 0,
+   "shadowMaps": 0
+  },
+  "vehicleLights": {
+   "enabled": true,
+   "max": 16,
+   "active": 0,
+   "selected": []
+  }
+ }
+}

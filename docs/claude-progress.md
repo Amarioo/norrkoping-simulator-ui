@@ -2,6 +2,35 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Vehicle Lights Phase F2 — headlights and tail lights on trams and trains (2026-11-13) — approved by the user (2026-11-13) with the recommended decisions, NOT committed yet
+
+[Full report](rail-lights-f2/README.md). Worked directly on local `main` (= `origin/main` `eee971c`). Backend unchanged.
+Approved by the user 2026-11-13. **Nothing is committed.** Board: F2 in *Test* until it is committed and pushed.
+
+- **Result:** at night every tram and train shows lit white headlamps and red tail lamps, and the
+  ones nearest the camera throw F1's light pool on the track ahead. By day nothing changes (6 day
+  pictures byte-identical to `main`).
+- **How:**
+  - `publicTransport.ts`: the lens materials shared by trams and trains glow at night like the
+    buses'; `poses()` now also reports the leading section (section 0) of every tram and train, with
+    its pitch.
+  - `vehicleLights.ts`: `tram` and `train` in `VEHICLE_LAMPS` (lens front 3.145 / 9.835 m ahead of
+    the leading section's centre, 0.84 m up, read from the models); optional `pitch` on a pose.
+  - Shader, controller and `Scene.svelte` are unchanged. No new meshes, materials or programs.
+  - All light values are F1's estimates; no new dataset.
+- **Measured (paired vs `eee971c`, 5 rounds):** rAF mean medians −0.03 … +0.16 ms, each going both
+  ways between rounds; draw calls +0; no frame over 16.7 ms; 20 programs.
+- **Checks:**
+  - type check: 0 errors;
+  - build: OK, byte-identical twice;
+  - Vitest: 607/608 (only the known `police.test.ts`); new tests 4/4;
+  - Playwright: 30/30, including the new `tests/rail-lights.spec.ts`.
+- **Decisions (user, 2026-11-13: the recommendations, keep as is):** a train's light pool is a car's (60 m); the lamp
+  arrangement is the models' two-and-two, the real one was not looked up; no lit windows.
+- **Local only:** `.claude/launch.json` (`f2-main` 5351, `f2-new` 5352, `f2-main-dev` 5353), and
+  `work/rail-lights-f2/` (hook builds, raw runs, logs, screenshots). The `main` worktree used for
+  the comparison was removed.
+
 ## Phase D2 — fuel stations: measured canopies, estimated pumps and canopy lighting (2026-11-10) — approved by the user (2026-11-10) with the recommended decisions, committed (`dbb1289`) and pushed to `origin/main`
 
 [Full report](fuel-d2/README.md). Worked directly on local `main` (= `origin/main` `7447e9f`). Backend unchanged.

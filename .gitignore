@@ -133,3 +133,6 @@ work/geodata/
 # Phase D2 (fuel stations) scratch (hook builds, raw runs, LiDAR rebuild). Curated data is in
 # docs/fuel-d2/; reusable tools are in scripts/fuel-d2/.
 /work/fuel-d2/
+# Vehicle Lights Phase F2 (trams and trains) scratch (main worktree, hook builds, raw runs, logs).
+# Curated data is in docs/rail-lights-f2/; reusable tools are in scripts/rail-lights-f2/.
+/work/rail-lights-f2/
