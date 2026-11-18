@@ -2,6 +2,25 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Publishing prepared: Vercel + k3s (2026-11-18) — tested locally, committed on the user's request, nothing published
+
+[Report and the steps](deploy/README.md). Committed in both repositories (2026-11-18). The backend commit `e20722f`
+is **local only, not pushed**: its push starts the image workflow, which publishes a public image, and the push was
+stopped by the session's permission check. This repository: the commit "Publishing prepared".
+
+- **Backend:** CORS for the origins in `ALLOWED_ORIGIN` (comma-separated), preflight answered; `Dockerfile`,
+  `.github/workflows/image.yml` (image to ghcr.io on push to main), `deploy/k8s/simulator.yaml` (one replica,
+  Traefik ingress, limits per address; three placeholders to replace).
+- **Interface:** `VITE_API_BASE` (backend address in the build); empty = as before.
+- **Checks:** backend tests pass (`-race` not run locally); type check 0; build OK; Vitest 640/641 (known);
+  Playwright `visitor-city`, `simulation`, `interface-u1`, `sse-reconnect` 7/7; a production build on one
+  address against the backend on another worked in the running app.
+- **Not verified:** the image build (Docker not running), the manifest (no cluster access from this machine), the
+  Vercel build.
+- **Waiting for the user:** the backend's host name, how the cluster is reached, how it does HTTPS; then commit/push.
+- Board: `S-DEPLOY` in *Test*. `.claude/launch.json`: `deploy-backend` (8097) and `deploy-preview` (5392, a
+  build in the session's scratch folder).
+
 ## A city per visitor (2026-11-18) — approved by the user (2026-11-18), committed and pushed in both repositories
 
 [Report](visitor-city/README.md). First step towards a public deployment (interface on Vercel, backend in the

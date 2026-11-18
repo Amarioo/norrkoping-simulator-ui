@@ -996,7 +996,15 @@
       "id": "S-DEPLOY",
       "epic": "S",
       "title": "Publicering: gränssnittet på Vercel, backenden i k3s",
-      "status": "backlog"
+      "status": "test",
+      "report": "docs/deploy/README.md",
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Förberett och testat lokalt tvärs över två adresser; inget publicerat, inget committat. Jag behöver från dig: backendens värdnamn, hur klustret nås från internet och hur det sköter HTTPS. Docker-avbilden och k3s-filen är inte provade (Docker var inte igång, ingen klusteråtkomst härifrån)."
+        }
+      ]
     }
   ]
 }

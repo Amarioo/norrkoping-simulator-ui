@@ -7,7 +7,12 @@
  *
  * The id is random, says nothing about the visitor, and is kept in sessionStorage: a reload keeps
  * the city, a new tab gets a new one. No imports: main.ts loads this before the map data.
+ *
+ * `VITE_API_BASE` in the build is the backend's address when it is on another domain than the page
+ * (the public deployment: `https://api.example.com`). Empty, the page's own address is used and the
+ * dev server passes `/api` on to the backend.
  */
+const API_BASE = (import.meta.env.VITE_API_BASE ?? '').replace(/\/+$/, '');
 const KEY = 'city-session';
 
 function randomId() {
@@ -37,4 +42,4 @@ export const CITY_SESSION = pick();
 
 /** The address of a simulator route (`stream`, `world`, `settings`, `pause`, `reset`). */
 export const cityUrl = (name: string) =>
-  '/api/simulator/' + name + (CITY_SESSION ? '?session=' + CITY_SESSION : '');
+  API_BASE + '/api/simulator/' + name + (CITY_SESSION ? '?session=' + CITY_SESSION : '');
