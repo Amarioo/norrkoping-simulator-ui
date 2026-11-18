@@ -1003,6 +1003,21 @@
           "author": "claude",
           "date": "2026-11-18",
           "text": "Förberett och testat lokalt tvärs över två adresser; inget publicerat, inget committat. Jag behöver från dig: backendens värdnamn, hur klustret nås från internet och hur det sköter HTTPS. Docker-avbilden och k3s-filen är inte provade (Docker var inte igång, ingen klusteråtkomst härifrån)."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Upplagt som airplane mode-backenden: namnet api-norrkoping-simulator.213-66-61-225.nip.io, letsencrypt-prod, avbild för arm64. Strömmen mättes till 4,4 Mbit/s per besökare och komprimeras nu till cirka 1,1. Inget är lagt på klustret; jag väntar på ditt ja. Detaljer överst i rapporten."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Backenden är uppe: https://api-norrkoping-simulator.213-66-61-225.nip.io/health svarar, strömmen är komprimerad (1,1 Mbit/s per besökare). Kvar: gränssnittet på Vercel."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Sajten är ute: https://norrkoping-simulator-ui.vercel.app. Provad i webbläsaren: ansluten, egen stad, paus fungerar. Obs: varje push till main publicerar nu till produktion. Väntar på ditt test och godkännande."
         }
       ]
     }

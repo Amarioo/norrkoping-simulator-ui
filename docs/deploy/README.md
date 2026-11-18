@@ -5,6 +5,93 @@ Prepared and tested locally; **nothing is deployed**. Committed and pushed on th
 workflow (a public image on ghcr.io). Follows [A city per visitor](../visitor-city/README.md). No
 geodata, no coordinates, no earlier phase's output touched.
 
+## Update (2026-11-18, later): set up like the Airplane Mode backend; the stream is compressed
+
+The user: "decide ONE fitting name; we can do as we did with the backend for Airplane Mode". Read
+from that project's notes and, read-only, from the cluster (two arm64 Raspberry Pi nodes, k3s
+v1.29.5, Traefik 2.10.7, cert-manager with the ClusterIssuer `letsencrypt-prod`, names on nip.io
+for the public address). **Uncommitted in the backend repository; nothing applied to the cluster.**
+This section replaces the placeholders and the two limits per address described below.
+
+- **Name:** `api-norrkoping-simulator.213-66-61-225.nip.io` (same form as
+  `api-airplane-mode.213-66-61-225.nip.io`; nip.io needs no DNS record).
+- **Manifest** (`deploy/k8s/simulator.yaml`): that host, `letsencrypt-prod`, a plain Traefik ingress
+  for `/api` and `/health` like Airplane Mode's, at most 8 cities, at most two processor cores and
+  512 MB. The two limits per address are removed: behind k3s's built-in load balancer Traefik
+  probably sees one internal address for every visitor (not verified), so they would have limited
+  all visitors together. `kubectl apply --dry-run=client` on the cluster accepted the file.
+- **Image for arm64:** the first published image was amd64 only and would not have started on the
+  nodes. The Dockerfile now cross-compiles and the workflow publishes amd64 + arm64, tagged
+  `latest` and `sha-<commit>`. A local arm64 build of the binary succeeds; the image itself is first
+  built by the workflow.
+- **The stream was measured, and is large.** Ten seconds of `/api/simulator/stream`:
+
+  | Traffic | Uncompressed | gzip (whole file) |
+  |---|---|---|
+  | Start values (192 road vehicles) | 5.47 MB = 4.4 Mbit/s | 1.34 MB = 1.1 Mbit/s |
+  | Heaviest (1 000 road vehicles, 40 trams, 12 trains) | 28.2 MB = 22.6 Mbit/s | 6.7 MB = 5.4 Mbit/s |
+
+  The backend now compresses the stream (gzip, flushed after every snapshot) for clients that accept
+  it; every browser does. New test in `internal/api/server_test.go`. Compression is per listener;
+  its processor cost on the Pi is not measured.
+- **Not like Airplane Mode in one respect:** there the interface reaches the backend through
+  Vercel rewrites. Here the page talks to the backend directly (`VITE_API_BASE` + CORS), because
+  about 0.5 GB an hour per visitor would otherwise pass through Vercel and count against its quota.
+- **Roll-out is by hand** (`kubectl apply` over SSH). Airplane Mode's automatic roll-out uses a
+  GitHub runner on the Pi that belongs to its repository only.
+- **Checks:** backend `gofmt`, `go vet`, `go test -count=1 ./...` pass; Playwright `visitor-city`,
+  `sse-reconnect`, `simulation` 5/5 against the compressing backend (the working tree then also
+  held changes from other work in `index.html`, `src/App.svelte`, `src/lib/city.svelte.ts`).
+- **Open:** the interface's address on Vercel is not known until the project exists; the manifest
+  assumes `https://norrkoping-simulator-ui.vercel.app`. The home connection's upload speed decides
+  how many visitors fit: 8 visitors are about 9 Mbit/s with the start traffic, up to 43 Mbit/s if
+  all choose the heaviest.
+
+## Deployed to the cluster (2026-11-18, evening): the backend is live
+
+On the user's "Ja, driftsätt". Backend `21167a5` committed and pushed; Backend CI (with `-race`) and
+the image workflow passed; the image has amd64 and arm64 variants and can be pulled without login.
+Applied over SSH with the image `sha-21167a5b2ccbe447f8fcc921efa681a54d6a37a8`: a new namespace
+`norrkoping-simulator` (deployment, service, ingress); nothing else in the cluster was changed.
+The pod runs on the node `smeagol`; the certificate from `letsencrypt-prod` was ready within a
+minute.
+
+Checked from this machine against `https://api-norrkoping-simulator.213-66-61-225.nip.io`:
+
+| Check | Result |
+|---|---|
+| `/health` | `{"status":"ok"}`, HTTP 200, valid certificate (the very first request, seconds after the certificate was issued, failed to connect; every later one succeeded) |
+| `/api/simulator/world` | a running city |
+| Stream as the assumed Vercel origin, own city | 200, `Content-Encoding: gzip`, `Access-Control-Allow-Origin` = that origin; 98 events and 1.41 MB in 10 s = 1.1 Mbit/s |
+| Command from an origin not in the list | 403 |
+| Preflight from the Vercel origin | 204 |
+| Load | the pod used 32 m (3 % of a core) with the shared city only and 86 m with one visitor city being streamed and compressed; 135–153 MB. The Airplane Mode pod kept running |
+
+Plain `http://` answers too (no redirect to HTTPS). **Still to do:** the interface on Vercel
+(`VITE_API_BASE=https://api-norrkoping-simulator.213-66-61-225.nip.io`, `VITE_CITY_SESSIONS=1`), and
+`ALLOWED_ORIGIN` in the manifest if the Vercel address is not
+`https://norrkoping-simulator-ui.vercel.app`. A later backend release:
+`sudo k3s kubectl -n norrkoping-simulator set image deployment/simulator simulator=ghcr.io/amarioo/norrkoping-simulator-backend:sha-<commit>`.
+
+## The interface is live on Vercel (2026-11-18, evening)
+
+On the user's "Ja, skapa det". Created through the Vercel connection, in the same team as
+Airplane Mode: project `norrkoping-simulator-ui`, linked to the GitHub repository, framework Vite,
+Node 24.x, install `npx --yes npm@11.10.1 ci` (as in CI), build `npm run build`, output `dist`;
+`VITE_API_BASE=https://api-norrkoping-simulator.213-66-61-225.nip.io` and `VITE_CITY_SESSIONS=1` for
+production and preview. First production deployment from `main` = `adb4b31`, ready in 38 s.
+
+**Address: https://norrkoping-simulator-ui.vercel.app** (the address the backend already allowed, so
+the manifest needed no change). Checked in the browser: public without login, "Simulatorn är
+ansluten", an own city id, 202 vehicles on the map, the clock running; the pause button paused this
+tab's city and changed to "Fortsätt simuleringen"; no console errors.
+
+- **Every push to `main` in this repository now publishes to production** (the project is linked
+  to the repository). See "Releasing later" for the order when the elevation data changes.
+- Vercel's preview addresses for other branches are not in the backend's `ALLOWED_ORIGIN`; they
+  will load but not connect.
+- Not checked: several visitors at once, a phone, and Vercel's usage after real traffic.
+
 ## What is ready
 
 - **Backend answers a page on another domain (CORS).** The origins in `ALLOWED_ORIGIN` (several

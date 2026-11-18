@@ -2,12 +2,23 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Publishing prepared: Vercel + k3s (2026-11-18) — tested locally, committed on the user's request, nothing published
+## Publishing prepared: Vercel + k3s (2026-11-18) — LIVE since the evening of 2026-11-18, waiting for the user's test
 
 [Report and the steps](deploy/README.md). Committed and pushed in both repositories on the user's request
 (2026-11-18): backend `e20722f` (its push starts the image workflow, which publishes a public image to ghcr.io),
 this repository `ffb33dd`.
 
+- **Evening: the interface is LIVE** at https://norrkoping-simulator-ui.vercel.app (Vercel project
+  `norrkoping-simulator-ui`, linked to this repository: **every push to `main` now publishes to production**).
+  Checked in the browser: connected, own city, pause works.
+- **Evening: the backend is LIVE** at `https://api-norrkoping-simulator.213-66-61-225.nip.io` (backend `21167a5`,
+  namespace `norrkoping-simulator`, applied by hand over SSH on the user's go-ahead; health, compressed stream at
+  1.1 Mbit/s, allowed and refused origins checked).
+- **Later the same day** ([update](deploy/README.md); written before the deployment above):
+  set up like the Airplane Mode backend (`api-norrkoping-simulator.213-66-61-225.nip.io`, `letsencrypt-prod`,
+  arm64 image, at most 8 cities, the limits per address removed). The stream measured 4.4 Mbit/s per visitor with the
+  start traffic (22.6 at the heaviest); the backend now gzips it (about a quarter). Waiting for the user's go-ahead
+  to commit, push and apply, and for the interface's Vercel address.
 - **Backend:** CORS for the origins in `ALLOWED_ORIGIN` (comma-separated), preflight answered; `Dockerfile`,
   `.github/workflows/image.yml` (image to ghcr.io on push to main), `deploy/k8s/simulator.yaml` (one replica,
   Traefik ingress, limits per address; three placeholders to replace).
