@@ -7,27 +7,33 @@
  * highway=track, so the other ten ways (1 439 m) stayed dark. This phase:
  * - adds estimated lanterns on those ten ways (trailGenerator.ts, policy `lighting-c2-v1`), leaving
  *   every earlier fixture exactly as it is;
- * - gives the WHOLE loop (the 43 earlier lanterns and the new ones) a switch-off schedule: the trail
- *   is dark late at night although the street lighting stays on.
+ * The loop is lit all night, like all other lighting in the city (the user's decision of 2026-11-13:
+ * a first version switched the loop off 22.00–06.00 on an assumed schedule; that was removed).
  *
  * What is known and what is assumed:
  * - Known: the loop's geometry and lit=yes (OSM); its length 2.4 km (municipality); about 100 lamps
  *   along it (a visitor's count, 66 working + 34 broken, Norrköpings Tidningar 2019-10-16).
  * - Estimated: every lamp position, the lamp type, height, colour and output.
- * - ASSUMED: the switch-off times. No source states them for Vrinnevi. The municipality's text for
- *   another of its illuminated trails (Abborreberg) says the lamps are on from 06.00 until dawn and
- *   from dusk until 22.00; the same hours are assumed here.
  */
 import type { TypeSpec } from './corridorGenerator';
 import { L2_ZONES } from './corridorL2';
 
-export {
-  TRAIL_RELATION,
-  TRAIL_SCHEDULE,
-  TRAIL_WAYS,
-  isTrailFixture,
-  trailScheduleOn,
-} from './trailSchedule';
+/** The loop: OSM route relation and its member ways (scripts/data/trail-c2-source.json). */
+export const TRAIL_RELATION = 5703856;
+export const TRAIL_WAYS: readonly number[] = [
+  26223168, 122294025, 122294026, 372645636, 383320758, 383320778, 383320779, 383320782, 383320783,
+  383320784, 432960719, 432960730, 432960738, 432960741,
+];
+const WAY_ID = /^estimate:[a-z0-9.-]+:way\/(\d+):s\d+$/;
+const TRAIL_SET = new Set(TRAIL_WAYS);
+/**
+ * True for a fixture that stands on the loop: an estimate of any rollout (L2bc's lanterns and this
+ * phase's) whose canonical ID names one of the loop's ways (diagnostics and tests).
+ */
+export function isTrailFixture(canonicalId: string) {
+  const m = WAY_ID.exec(canonicalId);
+  return !!m && TRAIL_SET.has(Number(m[1]));
+}
 
 export const C2_GENERATOR = {
   script: 'src/lib/lighting/trailGenerator.ts',

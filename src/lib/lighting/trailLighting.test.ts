@@ -2,16 +2,15 @@
  * Phase C2: the Vrinnevi illuminated trail (trailLighting.ts, trailGenerator.ts). Reproduction byte
  * for byte, the loop (one closed ring of 14 lit ways, 2.4 km), where the new lanterns stand (only on
  * the ways that no earlier rollout lit, beside the drawn trail, clear of buildings, water, earlier
- * fixtures and the measured trees), the lamp count against the roadmap's estimate, the switch-off
- * schedule, its flag in the lamp data, and the full citywide set through the real controller.
+ * fixtures and the measured trees), the lamp count against the roadmap's estimate, and the full
+ * citywide set through the real controller: the loop is lit all night, like all other lighting.
  */
 import { describe, expect, test } from 'vitest';
 import fs from 'node:fs';
-import { Scene, Vector3, type PerspectiveCamera, type WebGLRenderer } from 'three';
+import { Scene, type WebGLRenderer } from 'three';
 import { terrain } from '../terrain';
 import { createIdrottsparken } from '../stadium/idrottsparken';
-import { cityLightingRegistry, createCityLighting, RAMP_SECONDS } from './controller';
-import { LAMP_TEXELS, packLampData, type ShaderLamp } from './cityLights';
+import { cityLightingRegistry, createCityLighting } from './controller';
 import { decodeCompactSet, type CompactSet } from './compactSet';
 import { validateRegistry } from './registry';
 import { FIXTURE_TYPES } from './fixtures';
@@ -21,10 +20,8 @@ import {
   C2_POLICY,
   C2_TYPE,
   TRAIL_RELATION,
-  TRAIL_SCHEDULE,
   TRAIL_WAYS,
   isTrailFixture,
-  trailScheduleOn,
 } from './trailLighting';
 import { forestTiles, trunkRadiusM } from '../forest/forest';
 import { C2_OUTPUT_FILES, generateC2, loadC2Inputs, toC2Files } from '../../../scripts/trail-c2/inputs';
@@ -163,18 +160,8 @@ describe('C2 generation', () => {
   });
 });
 
-describe('the switch-off schedule', () => {
-  test('is labelled an assumption: on from 06.00, off from 22.00, local time', () => {
-    expect(TRAIL_SCHEDULE.status).toBe('assumption');
-    const at = (h: number, m = 0) => trailScheduleOn(h * 60 + m);
-    expect([at(5, 59), at(6), at(12), at(21, 59), at(22), at(23, 30), at(0), at(3)]).toEqual([
-      false, true, true, true, false, false, false, false,
-    ]);
-    // Presets may pass minutes beyond midnight (next calendar day).
-    expect(trailScheduleOn(1440 + 60)).toBe(false);
-    expect(trailScheduleOn(1440 + 7 * 60)).toBe(true);
-  });
-  test('covers every lantern on the loop, of this phase and of L2bc, and nothing else', () => {
+describe('the loop in the citywide set', () => {
+  test('isTrailFixture names every lantern on the loop, of this phase and of L2bc, and nothing else', () => {
     for (const f of output.fixtures) expect(isTrailFixture(f.id), f.id).toBe(true);
     const bc = decodeCompactSet(l2bc).fixtures.filter((f) => isTrailFixture(f.id));
     expect(bc.length).toBe(43);
@@ -183,22 +170,7 @@ describe('the switch-off schedule', () => {
     expect(isTrailFixture('osm:node/26223168')).toBe(false);
     expect(isTrailFixture('estimate:lighting-l2bc-v1:way/1:s0')).toBe(false);
   });
-  test('the flag shares one float with the bridge flag in the lamp data', () => {
-    const lamp = (clipBelow: boolean, scheduled: boolean): ShaderLamp => ({
-      x: 0, y: 1, z: 0, rangeM: 16, color: [1, 1, 1], candela: 380, profile: 1, baseY: 0, clipBelow, scheduled, occlusionM: [],
-    });
-    const { data, width } = packLampData([lamp(false, false), lamp(true, false), lamp(false, true), lamp(true, true)]);
-    expect(width).toBe(LAMP_TEXELS);
-    expect([0, 1, 2, 3].map((i) => data[i * width * 4 + 9])).toEqual([0, 1, 2, 3]);
-    // A lamp without the field is an ordinary lamp (every earlier phase's data).
-    const plain = { ...lamp(false, false) };
-    delete plain.scheduled;
-    expect(packLampData([plain]).data[9]).toBe(0);
-  });
-});
-
-describe('the full citywide set with the trail', () => {
-  test('validates, adds exactly the 58 lanterns, schedules the 101 lamps of the loop, and switches them with the clock', () => {
+  test('validates, adds exactly the 58 lanterns, and the loop is lit at every hour of the night', () => {
     const registry = cityLightingRegistry(terrain, l2, l2bc, l2d, true);
     const v = validateRegistry(registry, { reference: terrain.data.reference, supportedTypes: FIXTURE_TYPES });
     expect(v.errors).toEqual([]);
@@ -206,51 +178,32 @@ describe('the full citywide set with the trail', () => {
     const renderer = { toneMappingExposure: 1, info: { programs: [] } } as unknown as WebGLRenderer;
     const city = createCityLighting({ terrain, stadium, renderer, scene: new Scene(), registry, strict: true });
     const before = 273 + l2.count + l2bc.count + l2d.count;
-    let d = city.describe();
+    const d = city.describe();
     expect(d.fixtures).toBe(before + 58);
     expect(d.streetLighting.index!.overflowCells).toBe(0);
     expect(d.streetLighting.index!.maxRawOccupancy).toBeLessThanOrEqual(32);
     expect(d.streetLighting.rollouts![C2_GENERATOR.version]).toEqual({ mapped: 0, estimated: 58 });
-    expect(d.trailLighting).toMatchObject({ category: 'trail', rollout: C2_GENERATOR.version, fixtures: 58, scheduled: 101 });
-    expect(city.lamps.filter((l) => l.scheduled).length).toBe(101);
+    expect(d.trailLighting).toEqual({ category: 'trail', rollout: C2_GENERATOR.version, fixtures: 58, loopLamps: 101 });
     expect(d.realtimeLights).toMatchObject({ point: 0, spot: 0 });
-
-    const camera = { position: new Vector3(0, 10, 0) } as unknown as PerspectiveCamera;
-    const frame = (dt: number) => {
-      try {
-        city.update(dt, camera, 800);
-      } catch {
-        // The stub camera has no matrices (sky, halos); the levels are set before those are read.
-      }
-    };
-    const at = (minutes: number) => city.set({ date: '2026-11-13', minutes, stadium: 'off' });
-    // 21:30, dark: on. A jump to 22:30 ramps the trail down; the street level is untouched.
-    at(21 * 60 + 30);
-    city.settle();
-    frame(0);
-    expect(city.describe().trailLighting).toMatchObject({ on: true, level: 1 });
-    expect(city.uniforms.cityScheduleLevel.value).toBe(1);
-    at(22 * 60 + 30);
-    frame(RAMP_SECONDS / 2);
-    d = city.describe();
-    expect(d.trailLighting.on).toBe(false);
-    expect(d.trailLighting.level).toBeGreaterThan(0.2);
-    expect(d.trailLighting.level).toBeLessThan(0.8);
-    frame(RAMP_SECONDS);
-    expect(city.uniforms.cityScheduleLevel.value).toBe(0);
-    // 05:30 still off, 06:30 on again (settle ends the ramp at once).
-    at(5 * 60 + 30);
-    city.settle();
-    expect(city.describe().trailLighting).toMatchObject({ on: false, level: 0 });
-    at(6 * 60 + 30);
-    city.settle();
-    expect(city.describe().trailLighting).toMatchObject({ on: true, level: 1 });
+    // No switch-off: there is one night level for every lamp, and it is full at 21:30, 23:30, 03:00
+    // and 05:30 alike (November: dark at all four).
+    expect('cityScheduleLevel' in city.uniforms).toBe(false);
+    for (const minutes of [21 * 60 + 30, 23 * 60 + 30, 3 * 60, 5 * 60 + 30]) {
+      city.set({ date: '2026-11-13', minutes, stadium: 'off' });
+      city.settle();
+      expect(city.describe().artificial, String(minutes)).toBeGreaterThan(0.95);
+    }
+    // The lamp data of a loop lantern is that of any other lantern of its type.
+    const fixtures = city.fixtures;
+    const loop = city.lamps.filter((_, i) => isTrailFixture(fixtures[i].canonicalId ?? fixtures[i].id));
+    expect(loop.length).toBe(101);
+    for (const l of loop) expect([l.candela, l.rangeM, l.profile, l.clipBelow]).toEqual([380, 16, 1, false]);
     city.dispose();
 
     // Without the trail argument the set is exactly the earlier one (the earlier phases' tests).
     const earlier = createCityLighting({ terrain, stadium, renderer, scene: new Scene(), registry: cityLightingRegistry(terrain, l2, l2bc, l2d), strict: true });
     expect(earlier.describe().fixtures).toBe(before);
-    expect(earlier.describe().trailLighting).toMatchObject({ fixtures: 0, scheduled: 43 });
+    expect(earlier.describe().trailLighting).toMatchObject({ fixtures: 0, loopLamps: 43 });
     earlier.dispose();
     stadium.dispose();
   });

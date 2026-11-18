@@ -41,12 +41,6 @@
    }
   },
   "lit": "Phase C2 rule lighting-c2-v1 (estimates): the ways of the running route relation 5703856 tagged lit=yes that no earlier rollout lit (highway=track and one short footway), stations every 25 m along each run",
-  "schedule": {
-   "onFromMinutes": 360,
-   "offFromMinutes": 1320,
-   "status": "assumption",
-   "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
-  },
   "coordinates": {
    "data": "EPSG:3006 (SWEREF 99 TM)",
    "scene": "x = (E − 569030) / (25 × k), z = −(N − 6494989) / (25 × k), k = 0.9996584126; x east, z south, 1 unit = 25 m on the ground; heights from the terrain (RH 2000)"
@@ -117,11 +111,7 @@
    },
    "rule": {
     "file": "src/lib/lighting/trailLighting.ts",
-    "sha256": "9ba5541dafd31f275c5bd6a909fa9343f73faafd3e6c8eda5ec2308d350baee0"
-   },
-   "schedule": {
-    "file": "src/lib/lighting/trailSchedule.ts",
-    "sha256": "d4151ec865e43ad0ac3bd568143b5a02afe2815e7eb9a86cc09873301d651910"
+    "sha256": "200044627f061b35134d0c06b90fb5d55bf14ae8e483c7782f1ce47d0110ec4c"
    }
   },
   "source": {

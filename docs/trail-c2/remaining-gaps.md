@@ -2,10 +2,9 @@
 
 What this phase does not do or could not verify, most important first.
 
-1. **The switch-off hours are an assumption.** 06.00–22.00 comes from the municipality's text for
-   another trail (Abborreberg). Nothing found states the hours for Vrinnevi. To settle it: ask
-   Norrköpings kommun, kultur- och fritidskontoret (they run the exercise trails), or read the sign at
-   the trail's start. Changing it is one constant (`TRAIL_SCHEDULE`).
+1. **The loop is lit all night in the app** (the user's decision of 2026-11-13). The real trail is
+   probably switched off late at night (the municipality's Abborreberg trail is, at 22.00); the hours
+   for Vrinnevi were never found. A first version assumed 22.00–06.00 and was removed.
 2. **No lamp register.** All 101 positions on the loop are estimates (58 from this phase, 43 from
    Lighting Phase L2bc). The only check is a visitor's count of 100 lamps from 2019. If the municipal
    lighting register arrives (board card L-REG), the trail's lamps may not be in it: the trail's
@@ -27,7 +26,7 @@ What this phase does not do or could not verify, most important first.
 8. **The 34 broken lamps of 2019 are not modelled**, nor the dark car park the article mentions; the
    municipality said the fault would be repaired.
 9. **The connecting trail from Navestad (1.5 km)** is not part of the loop relation and gets no lamps.
-10. **The schedule is the same every day of the year.** Between 06.00 and 22.00 the lamps follow the
-    same dusk/dawn level as the street lighting.
+10. **Airport and aircraft light switches are no longer in the interface** (same decision); the
+    runway in use is fixed at 27. They remain as address parameters for tests.
 11. **Carried over from C1:** the rest of the reserve's forest, level of detail and separate loading
     of the tree data, the map's south edge, and a clean timing of the C1b rollout.

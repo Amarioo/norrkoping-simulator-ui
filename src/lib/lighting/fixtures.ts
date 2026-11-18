@@ -35,7 +35,6 @@ import {
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { ROAD_SURFACE, type TerrainService } from '../terrain';
 import type { ShaderLamp } from './cityLights';
-import { isTrailFixture } from './trailSchedule';
 import lighting from '../data/streetlights.json';
 
 export interface FixtureRecord {
@@ -246,8 +245,6 @@ export function fixtureLamps(fixtures: FixtureRecord[], terrain: TerrainService)
       heading: f.heading ?? 0,
       baseY,
       clipBelow: f.mount.kind === 'bridge',
-      // Phase C2: the lanterns of the Vrinnevi illuminated trail follow its switch-off schedule.
-      scheduled: isTrailFixture(f.canonicalId ?? f.id),
       occlusionM: f.occlusionM,
     };
   });
@@ -262,9 +259,6 @@ varying vec3 vColor;
 varying float vFog;
 uniform float fogNear;
 uniform float fogFar;
-// Phase C2: 1 for lamps that follow the switch-off schedule (haloScheduleLevel), else 0.
-attribute float haloScheduled;
-uniform float haloScheduleLevel;
 void main() {
 	vec4 centre = modelViewMatrix * instanceMatrix * vec4( 0.0, 0.0, 0.0, 1.0 );
 	vec4 clip = projectionMatrix * centre;
@@ -275,7 +269,7 @@ void main() {
 	centre.xyz *= 1.0 - min( 0.002, 0.04 / max( length( centre.xyz ), 1e-3 ) );
 	gl_Position = projectionMatrix * centre;
 	vUv = uv;
-	vColor = instanceColor * mix( 1.0, haloScheduleLevel, haloScheduled );
+	vColor = instanceColor;
 	vFog = smoothstep( fogNear, fogFar, -centre.z );
 }
 `;
@@ -359,23 +353,18 @@ export function createFixtureVisuals(
   const housing = own(
     new MeshStandardMaterial({ color: '#4a4f52', roughness: 0.55, metalness: 0.45 }),
   );
-  // One lens material per colour temperature, and a second one for the lamps that follow the
-  // switch-off schedule (Phase C2: their lenses go grey when the trail is switched off).
   const lensMaterials = new Map<
-    string,
-    { material: MeshBasicMaterial; color: [number, number, number]; scheduled: boolean }
+    number,
+    { material: MeshBasicMaterial; color: [number, number, number] }
   >();
-  const lensFor = (cct: number, scheduled = false) => {
-    const key = `${cct}${scheduled ? ':scheduled' : ''}`;
-    if (!lensMaterials.has(key))
-      lensMaterials.set(key, {
+  const lensFor = (cct: number) => {
+    if (!lensMaterials.has(cct))
+      lensMaterials.set(cct, {
         material: own(new MeshBasicMaterial({ color: '#c9c8c0' })),
         color: kelvinToLinear(cct),
-        scheduled,
       });
-    return lensMaterials.get(key)!.material;
+    return lensMaterials.get(cct)!.material;
   };
-  const scheduledOf = (i: number) => !!lamps[i].scheduled;
   const haloMaterial = own(
     new ShaderMaterial({
       vertexShader: HALO_VERTEX,
@@ -385,7 +374,6 @@ export function createFixtureVisuals(
         haloMinPx: { value: 2.5 },
         viewportHeight: { value: 800 },
         haloLevel: { value: 0 },
-        haloScheduleLevel: { value: 1 },
         fogNear: { value: 700 },
         fogFar: { value: 1700 },
       },
@@ -495,20 +483,12 @@ export function createFixtureVisuals(
     for (const cct of [...new Set(fixtures.filter((f) => f.type === type).map((f) => f.cct))].sort(
       (a, b) => a - b,
     )) {
-      const ofCct = (i: number) => ofType(i) && fixtures[i].cct === cct;
-      for (const scheduled of [false, true]) {
-        const match = (i: number) => ofCct(i) && scheduledOf(i) === scheduled;
-        if (!fixtures.some((_, i) => match(i))) continue;
-        const lens = own(
-          new InstancedMesh(
-            lensGeometry,
-            lensFor(cct, scheduled),
-            capacity(match, LENS_DETAIL + REGATHER),
-          ),
-        );
-        lens.name = `lighting-lens-${type}-${cct}${scheduled ? '-scheduled' : ''}`;
-        slots.push({ mesh: lens, accept: (i, d) => match(i) && d < LENS_DETAIL });
-      }
+      const match = (i: number) => ofType(i) && fixtures[i].cct === cct;
+      const lens = own(
+        new InstancedMesh(lensGeometry, lensFor(cct), capacity(match, LENS_DETAIL + REGATHER)),
+      );
+      lens.name = `lighting-lens-${type}-${cct}`;
+      slots.push({ mesh: lens, accept: (i, d) => match(i) && d < LENS_DETAIL });
     }
   }
   for (const { mesh } of slots) {
@@ -531,9 +511,6 @@ export function createFixtureVisuals(
     colors.set([l.color[0] * w, l.color[1] * w, l.color[2] * w], k * 3);
   });
   halo.instanceColor = new InstancedBufferAttribute(colors, 3);
-  const haloScheduled = new Float32Array(Math.max(1, n));
-  lamps.forEach((l, k) => (haloScheduled[k] = l.scheduled ? 1 : 0));
-  halo.geometry.setAttribute('haloScheduled', new InstancedBufferAttribute(haloScheduled, 1));
   halo.userData.fixtureIds = fixtures.map((f) => f.id);
   if (n) {
     halo.computeBoundingSphere();
@@ -588,25 +565,20 @@ export function createFixtureVisuals(
     dayLens = new Color('#c9c8c0');
   return {
     group,
-    /**
-     * Per frame: gather near fixtures when the camera moved; night level of lenses/halos.
-     * `scheduleLevel` (Phase C2): level of the lamps that follow the switch-off schedule (1 = on).
-     */
+    /** Per frame: gather near fixtures when the camera moved; night level of lenses/halos. */
     update(
       camera: Camera,
       level: number,
       viewportHeight: number,
       fog: { near: number; far: number },
-      scheduleLevel = 1,
     ) {
       if (!gathered || camera.position.distanceTo(gatheredAt) >= REGATHER) gather(camera.position);
-      for (const { material, color, scheduled } of lensMaterials.values()) {
+      for (const { material, color } of lensMaterials.values()) {
         // Lit lens: HDR emitter colour (unlit material, tone mapped); by day a grey diffuser.
         lensColor.setRGB(color[0] * 7, color[1] * 7, color[2] * 7);
-        material.color.copy(dayLens).lerp(lensColor, scheduled ? level * scheduleLevel : level);
+        material.color.copy(dayLens).lerp(lensColor, level);
       }
       haloMaterial.uniforms.haloLevel.value = level * 0.6;
-      haloMaterial.uniforms.haloScheduleLevel.value = scheduleLevel;
       haloMaterial.uniforms.viewportHeight.value = viewportHeight;
       haloMaterial.uniforms.fogNear.value = fog.near;
       haloMaterial.uniforms.fogFar.value = fog.far;

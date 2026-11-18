@@ -18,11 +18,11 @@ policy, the schedule, and SHA-256 hashes of every input file).
 | **Estimate** | Position of each of the 58 lanterns | stations every 24.8 m, 1.2 m from the trail's centreline, right-hand side in walking direction | — | — | ± 12.5 m along the trail (half the spacing); the side is a guess |
 | **Estimate** | The spacing, 25 m | 100 counted lamps minus the 43 that Phase L2bc placed on the other part of the loop = 57 for 1 439 m | — | — | follows the count's uncertainty |
 | **Estimate** | Lamp type, height 4.2 m, colour 2 700 K, output 380 cd, reach 16 m | the existing Step 6 type `park-lantern-4m` (the same as L2bc's 43 lanterns on the loop). No luminaire data for the trail exists in this project | — | — | not measured. Real trail lamps are often taller poles; see the gaps file |
-| **ASSUMPTION** | Switch-off hours: on from 06.00, off from 22.00 (local time) | not stated anywhere for Vrinnevi. Taken from the municipality's text for its Abborreberg illuminated trail on Naturkartan: "Lamporna är tända på morgonen kl. 6.00 till gryning och från skymning till kl. 22.00." | — | read 2026-11-13 | **may be wrong for Vrinnevi**; one constant to change (`TRAIL_SCHEDULE` in `src/lib/lighting/trailSchedule.ts`) |
 
 **Not invented and not in the data:** lamp IDs or a municipal lamp register, real lamp positions,
-luminaire models, which lamps are broken, the 1.5 km connecting trail from Navestad that Naturkartan
-mentions (not part of the relation, and nothing says it is lit), seasonal changes of the schedule.
+luminaire models, which lamps are broken, the hours the real lamps are switched off (the app keeps
+the loop lit all night, the user's decision of 2026-11-13; a first version assumed 22.00–06.00), the 1.5 km connecting trail from Navestad that Naturkartan
+mentions (not part of the relation, and nothing says it is lit).
 
 ## Coordinates
 

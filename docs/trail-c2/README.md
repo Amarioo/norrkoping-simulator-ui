@@ -3,47 +3,69 @@
 Worked directly on local `main` (= `origin/main` `3161e89`), backend unchanged. **Approved by the
 user on 2026-11-13; committed (`2155a5a`) and pushed to `origin/main`.** Started on the user's "Start C2" of 2026-11-13.
 
-## Verdict
+## Update, later on 2026-11-13: lit all night, and only Parken's switch left — NOT committed
 
-The whole 2.4 km illuminated trail in Vrinneviskogen is now lit in the app: 58 new lamp posts stand
-along the 1.4 km that was dark before, and together with the 43 lanterns an earlier phase had already
-placed there are 101 lamps round the loop (a visitor counted 100 in 2019). After 22.00 the loop goes
-dark while the city's street lighting stays on, and it comes on again at 06.00.
-Recommendation: **approve**. All checks pass and the cost is about 0.1 ms per picture, far inside
-the 60-pictures-per-second target. One thing is an
-assumption you should know about: the switch-off hours (decision 1).
+After approving, the user decided: *"The switch off does not matter. I want everything to be lighted
+up during the night in the city. The only switch and option that still should be left is the one for
+parken."* Done on local `main` (= `origin/main` `1b8756f`); **nothing of this update is committed.**
 
-To see it: choose **"Vrinneviskogen · norra slingan"** in the *Utforska* list, open the tab *Tid och
-ljus* and set the time to about 21:30 (lit), then past 22:00 (dark).
+### Verdict
 
-## Decisions still open (the user approved the result on 2026-11-13; these were not answered)
+The illuminated trail now stays lit all night like every other lamp in the city, and the *Tid och
+ljus* tab has one light switch left: Idrottsparken's floodlights (Av / Träning / Match). The switches
+for the runway lights at Kungsängen, the runway in use and the aircraft lights are gone from the
+interface; those lights come on by themselves when it is dark. Recommendation: **approve**. All
+checks pass, and the lamp shader is back to exactly what it was before C2, so the schedule's small
+cost is gone too.
 
-1. **The switch-off hours, 22.00 to 06.00.** No source gives them for Vrinnevi. They are taken from
-   the municipality's text for its Abborreberg trail ("tända kl. 6.00 till gryning och från skymning
-   till kl. 22.00"). *Recommended: keep 22.00–06.00 until you know better* (the sign at the trail's
-   start, or a question to kultur- och fritidskontoret, would settle it; it is one number to change).
-2. **Lamp type: the same 4.2 m park lantern as the 43 that were already there.** A real illuminated
-   trail often has taller, plainer poles. *Recommended: keep*; a dedicated trail pole would be a new
-   estimated lamp type replacing all 101, a small follow-up if you want the look.
-3. **The earlier 43 lanterns now also switch off at 22.00.** They were placed by the path-lighting
-   phase (L2bc) and stayed on all night. Their positions and data are untouched; only the switch-off
-   is new. *Recommended: keep*, since they are part of the same loop.
-4. **Next step.** The roadmap's planned order is now complete (C2 was its last step). Open choices:
-   the rest of the reserve's forest (needs level of detail first), performance P2d/P3, or the
-   interface track. *Recommended: decide after testing this.*
+### Decisions needed from the user
 
-## Risks / not verified
+1. **"Bana i bruk" (runway in use, 27 or 09) was removed together with the two light switches**,
+   because you asked for Parken's to be the only option left. The app now always shows runway 27 in
+   use (the default it had). *Recommended: keep it removed*; say so if you want that one choice back,
+   it is a few lines.
+2. **Lamp type on the trail** (the park lantern, or a taller trail pole): unchanged, still open.
+   *Recommended: keep.*
+3. **Next track**: the roadmap's planned order is complete. *Recommended: decide after testing.*
 
-- **Switch-off hours assumed** (decision 1).
-- **All lamp positions are estimates.** There is no lamp register. The count (101) matches the one
-  count found (100, a visitor's, 2019); the positions are evenly spaced guesses, ± 12 m.
-- **The route is OpenStreetMap's.** Its length (2 369 m) matches the municipality's 2.4 km and all its
-  14 pieces are tagged as lit, but it was not compared line by line with the municipality's own map.
-- **Trees do not block lamp light** in this lighting model (buildings do), so light passes trunks.
-- **Timing** was measured in three rounds on a quiet machine; the result (about +0.1 ms) is close
-  to the smallest difference the method can show.
-- **One existing browser test was extended** (one more term in a lamp-count sum); see "Checks".
-- **The known failing unit test** `police.test.ts` (line endings, since before this phase) still fails.
+### Risks / not verified
+
+- **Frame times were not measured again.** The earlier measurement (below) included the schedule; the
+  lamp shader and lamp drawing are now byte-for-byte the files from before C2, so the cost cannot be
+  higher than measured, but there is no new number.
+- **Three browser tests were adapted**: the two airport tests set the same state through the
+  development hook instead of the removed switches (every check is kept), and the trail test now
+  checks "equally bright at 21:30, 23:30 and 03:00" instead of "dark after 22:00".
+- **The switches still exist as address parameters** (`?airport=off`, `?runway=09`,
+  `?aircraftLights=off`) for tests and screenshots; they are not reachable from the interface.
+- **All lamp positions are estimates**, the route is OpenStreetMap's, and trees do not block lamp
+  light: unchanged from the first report.
+- **The known failing unit test** `police.test.ts` still fails, as before.
+
+### What changed in this update
+
+- Removed: the trail's schedule (`trailSchedule.ts`, the flag in the lamp data, the
+  `cityScheduleLevel` uniform, the extra lens mesh, the controller's ramp).
+  `src/lib/lighting/cityLights.ts` and `fixtures.ts` are identical to commit `3161e89` (before C2).
+- Removed from `src/App.svelte`: the selects *Banljus Kungsängen*, *Bana i bruk* and
+  *Flygplansljus*; one sentence now says that all other lighting follows the darkness.
+- The 58 lanterns, their positions and their provenance are unchanged; the generated files changed
+  only in their metadata (no schedule), and were regenerated.
+- Checks on this state: type check 0 errors; build OK, byte-identical twice; Vitest 640 of 641 (only
+  `police.test.ts`); Playwright 38 of 38. Brightness beside a new post (0–255): 1.4 without the new
+  lamps, 73.2 at 21:30, 73.2 at 23:30, 73.2 at 03:00.
+- Evidence: [the loop at 23:30](evidence-all-night/loop-top-2330.png),
+  [at 03:00](evidence-all-night/loop-top-0300.png),
+  [the tab with one light switch](evidence-all-night/tab-tid-och-ljus.png).
+
+**Everything below is the first report as approved and committed (`2155a5a`). Where it mentions the
+22.00–06.00 switch-off, that part no longer applies; the pictures 13–18 ("switched off") are history.**
+
+## Verdict (first report)
+
+The whole 2.4 km illuminated trail in Vrinneviskogen was lit: 58 new lamp posts along the 1.4 km that
+was dark before, 101 lamps round the loop with the 43 already there (a visitor counted 100 in 2019).
+The first version also switched the loop off 22.00–06.00 on an assumed schedule (removed, see above).
 
 ## What was there before
 

@@ -2,9 +2,9 @@ import fs from 'node:fs';
 import { test, expect, type Page } from '@playwright/test';
 
 // Phase C2: the Vrinnevi illuminated trail in the running app. The 58 new lanterns are in the set and
-// light the ground beside the trail at 21:30 (against the set without them, registries.cityNoTrail());
-// after 22:00 the whole loop (101 lamps) is switched off while the street lighting stays on; at 06:30
-// it is on again; no three.js lights and the shader program count stays 20. No backend needed.
+// light the ground beside the trail at night (against the set without them, registries.cityNoTrail());
+// the loop is lit all night like all other lighting (21:30, 23:30 and 03:00 give the same picture);
+// no three.js lights and the shader program count stays 20. No backend needed.
 const map = JSON.parse(fs.readFileSync('src/lib/data/norrkoping-map.json', 'utf8'));
 const prov = JSON.parse(fs.readFileSync('docs/trail-c2/data/streetlights-c2-provenance.json', 'utf8'));
 const r = map.meta.reference;
@@ -99,32 +99,7 @@ const luma = (page: Page, png: Buffer, x: number, y: number, half = 24) =>
     },
     { b64: png.toString('base64'), x, y, half },
   );
-/** The trail's parts of the lamp visuals: flagged halos, the scheduled lens mesh and its level. */
-const visuals = (page: Page) =>
-  page.evaluate(() => {
-    const group = (globalThis as any).__cityLighting.group;
-    let halo: any = null,
-      lens: any = null;
-    group.traverse((o: any) => {
-      if (o.name === 'lighting-halos') halo = o;
-      if (o.name === 'lighting-lens-park-lantern-4m-2700-scheduled') lens = o;
-    });
-    const flags = halo.geometry.getAttribute('haloScheduled').array as Float32Array;
-    let flagged = 0;
-    for (let i = 0; i < halo.count; i++) flagged += flags[i];
-    return {
-      halos: halo.count,
-      flagged,
-      haloScheduleLevel: halo.material.uniforms.haloScheduleLevel.value,
-      lens: !!lens,
-      lensCount: lens?.count ?? 0,
-      lensColor: lens ? lens.material.color.r + lens.material.color.g + lens.material.color.b : 0,
-    };
-  });
-
-test('Phase C2 trail: 58 new lanterns light the loop at 21:30, the loop is dark after 22:00 and lit again at 06:30, 20 programs', async ({
-  page,
-}) => {
+test('Phase C2 trail: 58 new lanterns light the loop, all night, 20 programs', async ({ page }) => {
   test.setTimeout(300000);
   const errors: string[] = [];
   page.on('pageerror', (e) => errors.push(e.message));
@@ -137,18 +112,15 @@ test('Phase C2 trail: 58 new lanterns light the loop at 21:30, the loop is dark 
   await page.waitForTimeout(2000);
   await frames(page);
 
-  // 21:30: the trail is on; the set holds this phase's 58 lanterns and 101 scheduled lamps.
+  // 21:30: the set holds this phase's 58 lanterns; 101 lamps stand on the loop.
   const start = await state(page);
   expect(start.artificial).toBeGreaterThan(0.95);
-  expect(start.trailLighting).toMatchObject({
+  expect(start.trailLighting).toEqual({
     category: 'trail',
     rollout: 'lighting-c2-v1',
     fixtures: 58,
-    scheduled: 101,
-    on: true,
-    level: 1,
+    loopLamps: 101,
   });
-  expect(start.trailLighting.schedule.status).toBe('assumption');
   expect(start.streetLighting.rollouts['lighting-c2-v1']).toEqual({ mapped: 0, estimated: 58 });
   expect(start.streetLighting.index.overflowCells).toBe(0);
   expect(start.realtimeLights).toMatchObject({ point: 0, spot: 0, shadowMaps: 0 });
@@ -157,57 +129,36 @@ test('Phase C2 trail: 58 new lanterns light the loop at 21:30, the loop is dark 
   const lit = await shot(page);
   const at = await projectBase(page);
   const litLuma = await luma(page, lit, at.x, at.y);
-  const v = await visuals(page);
-  expect(v.flagged).toBe(101);
-  expect(v.halos).toBe(start.fixtures);
-  expect(v.haloScheduleLevel).toBe(1);
-  expect(v.lens).toBe(true);
-  expect(v.lensCount).toBeGreaterThan(0);
 
   // Against main's set without this phase's lanterns: the ground at the post is dark there.
   expect(await call(page, `${hook}.replaceStreetLighting(${hook}.registries.cityNoTrail())`)).toEqual({ ok: true });
   const without = await state(page);
   expect(without.fixtures).toBe(start.fixtures - 58);
   expect(without.streetLighting.rollouts['lighting-c2-v1']).toBeUndefined();
-  expect(without.trailLighting).toMatchObject({ fixtures: 0, scheduled: 43 });
+  expect(without.trailLighting).toMatchObject({ fixtures: 0, loopLamps: 43 });
   const beforeLuma = await luma(page, await shot(page), at.x, at.y);
   expect(await call(page, `${hook}.replaceStreetLighting(${hook}.registries.city())`)).toEqual({ ok: true });
   expect((await state(page)).fixtures).toBe(start.fixtures);
   console.log(`[trail] ${POST_ID} ground luma at 21:30: without C2 ${beforeLuma.toFixed(1)}, with ${litLuma.toFixed(1)}`);
   expect(litLuma).toBeGreaterThan(beforeLuma * 1.5 + 10);
 
-  // 22:30: the loop is switched off, the street lighting is not.
-  await setTime(page, 22 * 60 + 30);
-  await page.waitForTimeout(400);
-  const off = await state(page);
-  expect(off.artificial).toBeGreaterThan(0.95);
-  expect(off.trailLighting).toMatchObject({ on: false, level: 0 });
-  const offLuma = await luma(page, await shot(page), at.x, at.y);
-  const vOff = await visuals(page);
-  expect(vOff.haloScheduleLevel).toBe(0);
-  expect(vOff.lensColor).toBeLessThan(v.lensColor / 2);
-  expect(await call<number>(page, `${hook}.uniforms.cityScheduleLevel.value`)).toBe(0);
-  expect(await call<number>(page, `${hook}.uniforms.cityLampLevel.value`)).toBeGreaterThan(0.95);
-  console.log(`[trail] ground luma at 22:30 (switched off): ${offLuma.toFixed(1)}`);
-  expect(Math.abs(offLuma - beforeLuma)).toBeLessThan(3);
-  expect(off.programs).toBe(20);
+  // Late night: still lit, the same brightness (no switch-off).
+  for (const minutes of [23 * 60 + 30, 3 * 60]) {
+    await setTime(page, minutes);
+    await page.waitForTimeout(400);
+    const night = await state(page);
+    expect(night.artificial).toBeGreaterThan(0.95);
+    const l = await luma(page, await shot(page), at.x, at.y);
+    console.log(`[trail] ground luma at ${Math.floor(minutes / 60)}:${String(minutes % 60).padStart(2, '0')}: ${l.toFixed(1)}`);
+    expect(Math.abs(l - litLuma)).toBeLessThan(0.1 * litLuma);
+    expect(night.programs).toBe(20);
+  }
 
-  // 06:30 (still dark in November): on again, the same brightness as in the evening.
-  await setTime(page, 6 * 60 + 30);
-  await page.waitForTimeout(400);
-  const morning = await state(page);
-  expect(morning.artificial).toBeGreaterThan(0.95);
-  expect(morning.trailLighting).toMatchObject({ on: true, level: 1 });
-  const morningLuma = await luma(page, await shot(page), at.x, at.y);
-  console.log(`[trail] ground luma at 06:30: ${morningLuma.toFixed(1)}`);
-  expect(Math.abs(morningLuma - litLuma)).toBeLessThan(0.15 * litLuma);
-
-  // Day: the schedule allows the lamps, the daylight level keeps them off; no new program.
+  // Day: the lamps are off with all other lighting; no new program.
   await setTime(page, 12 * 60 + 30);
   await page.waitForTimeout(400);
   const day = await state(page);
   expect(day.artificial).toBeLessThan(0.01);
-  expect(day.trailLighting.on).toBe(true);
   expect(day.programs).toBe(20);
   expect(errors).toEqual([]);
 });
@@ -219,6 +170,26 @@ test('Phase C2 trail: ?lighting=no-c2 leaves the new lanterns out', async ({ pag
   await expect(page.locator('[data-map-ready="true"]')).toBeVisible({ timeout: 150000 });
   const d = await state(page);
   expect(d.streetLighting.rollouts['lighting-c2-v1']).toBeUndefined();
-  // The earlier lanterns on the loop are there, and follow the schedule.
-  expect(d.trailLighting).toMatchObject({ fixtures: 0, scheduled: 43, on: true });
+  // The earlier lanterns on the loop are there.
+  expect(d.trailLighting).toMatchObject({ fixtures: 0, loopLamps: 43 });
+});
+
+test('Tid och ljus: Idrottsparkens floodlights are the only light switch left', async ({ page }) => {
+  test.setTimeout(300000);
+  await page.route('**/api/**', (route) => route.abort());
+  await page.goto('/?date=2026-11-13&time=21:30&stadium=off');
+  await expect(page.locator('[data-map-ready="true"]')).toBeVisible({ timeout: 150000 });
+  await page.getByRole('tab', { name: 'Tid och ljus' }).click();
+  await expect(page.locator('#stadium-lights')).toBeVisible();
+  await expect(page.locator('#stadium-lights option')).toHaveCount(3);
+  for (const gone of ['#airport-lights', '#airport-runway', '#aircraft-lights'])
+    await expect(page.locator(gone)).toHaveCount(0);
+  // The date, the clock and the time-lapse are still there (they set the time, not a light).
+  for (const kept of ['#light-date', '#light-time', '#light-play']) await expect(page.locator(kept)).toBeVisible();
+  // Everything else follows the darkness by itself: runway and aircraft lights are on their rule.
+  const s = await page.evaluate(() => {
+    const st = (globalThis as any).__cityLighting.state;
+    return { airport: st.airport, aircraftLights: st.aircraftLights };
+  });
+  expect(s).toEqual({ airport: 'auto', aircraftLights: 'auto' });
 });

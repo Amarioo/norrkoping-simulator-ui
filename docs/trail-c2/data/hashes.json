@@ -1,9 +1,9 @@
 {
  "note": "SHA-256 of the files Phase C2 generates, and of the earlier phases' data files it reads (unchanged: git reports no difference for them).",
  "generated": {
-  "src/lib/data/streetlights-c2.json": "7abb93e0ecc7a67015ecb0f90639576272ee45e10874beef67f2c94718b25378",
-  "docs/trail-c2/data/streetlights-c2-provenance.json": "ba8cacb3b6fa2ff9f26a8ceae52a47bcfec741960eb81d4334d1fff54c748c4d",
-  "docs/trail-c2/data/stats.json": "805656fc7717ee03902aa63a1de8035ea7ff1ec285fc2557d7124f72a1003b43",
+  "src/lib/data/streetlights-c2.json": "f9f881de25f2c0a01647c04cd24b669aa4a0bedfb568d16822c96d1322353b5b",
+  "docs/trail-c2/data/streetlights-c2-provenance.json": "7d53b25fede311e7f6c8fc050dc661eae1dbe5efbf61efafb6622d8ffb7d257d",
+  "docs/trail-c2/data/stats.json": "73005360f64c5752c46337aaa00785ad4b7545e15d5b94842baced0121c9a1aa",
   "scripts/data/trail-c2-source.json": "7f47cf41f7f1da17aca6be6536638c3998a19f4fe99cdd0595ae1f26474b10d9"
  },
  "earlierUnchanged": {

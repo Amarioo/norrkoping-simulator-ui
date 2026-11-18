@@ -24,7 +24,6 @@ import {
   C2_ROLLOUT,
   C2_TYPE,
   C2_ZONE,
-  TRAIL_SCHEDULE,
   trailType,
 } from '../../src/lib/lighting/trailLighting';
 import { L2D_INPUT_FILES, L2D_OUTPUT_FILES, loadL2dInputs } from '../lighting-l2d/inputs';
@@ -44,7 +43,6 @@ export const C2_INPUT_FILES = {
   l2d: L2D_OUTPUT_FILES.runtime,
   generator: 'src/lib/lighting/trailGenerator.ts',
   rule: 'src/lib/lighting/trailLighting.ts',
-  schedule: 'src/lib/lighting/trailSchedule.ts',
 } as const;
 export const C2_OUTPUT_FILES = {
   runtime: 'src/lib/data/streetlights-c2.json',
@@ -109,7 +107,6 @@ export function toC2Files(out: TrailOutput, input = loadC2Inputs()) {
     types,
     corridor: { [C2_ZONE.id]: { name: C2_ZONE.name, ringEN: C2_ZONE.ring } },
     lit,
-    schedule: TRAIL_SCHEDULE,
     units:
       'x, z: scene units (1 = 25 m, SWEREF 99 TM scene frame) × 1e4; heading: rad × 1e6; occlusion: cm; corridor ring: EPSG:3006 E/N metres',
     counts: out.counts,
@@ -129,7 +126,6 @@ export function toC2Files(out: TrailOutput, input = loadC2Inputs()) {
       policy: C2_POLICY,
       type: { [C2_TYPE]: { ...t, status: 'existing Step 6 type; its use on the trail, and the spacing, are estimates' } },
       lit,
-      schedule: TRAIL_SCHEDULE,
       coordinates: {
         data: 'EPSG:3006 (SWEREF 99 TM)',
         scene: `x = (E − ${ref.originEasting}) / (${ref.metresPerUnit} × k), z = −(N − ${ref.originNorthing}) / (${ref.metresPerUnit} × k), k = ${ref.gridScaleFactor}; x east, z south, 1 unit = ${ref.metresPerUnit} m on the ground; heights from the terrain (RH 2000)`,
@@ -168,7 +164,6 @@ export function toC2Files(out: TrailOutput, input = loadC2Inputs()) {
   const stats = {
     rule: C2_GENERATOR.version,
     snapshot: { osmBase: meta.osmBase, sha256: meta.snapshot.sha256 },
-    schedule: TRAIL_SCHEDULE,
     counts: out.counts,
     runs: out.runs,
     ways: out.ways,

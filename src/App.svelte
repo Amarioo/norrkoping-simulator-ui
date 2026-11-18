@@ -318,28 +318,15 @@
         Strålkastarna styrs separat från tiden; ingen match antas. Lyktplaceringar är kartlagda
         (OSM) eller uppskattade från lit=yes.
       </p>
-      <label class="field-label" for="airport-lights"><span>Banljus Kungsängen</span></label
-      ><select id="airport-lights" bind:value={lightingState.airport}
-        ><option value="auto">Tänds när det är mörkt</option><option value="on">Alltid på</option
-        ><option value="off">Av</option></select
-      >
-      <label class="field-label" for="airport-runway"><span>Bana i bruk</span></label><select
-        id="airport-runway"
-        bind:value={lightingState.runway}
-        ><option value="27">27 (landning västerut)</option><option value="09"
-          >09 (landning österut)</option
-        ></select
-      >
+      <p class="micro-note">
+        All annan belysning tänds själv när det blir mörkt och lyser hela natten: gator, gångvägar,
+        elljusspåret i Vrinneviskogen, banljusen på Kungsängen och flygplanens ljus.
+      </p>
       <p class="micro-note">
         Bana 09/27 enligt AIP (AMDT 6/2026): inflygningsljus, tröskel-, kant- och slutljus, PAPI och
         taxibanorna B och C. Antal och avstånd är uppskattade enligt ICAO där AIP inte anger dem.
         Gräsbanan 11/29 är obelyst.
       </p>
-      <label class="field-label" for="aircraft-lights"><span>Flygplansljus</span></label><select
-        id="aircraft-lights"
-        bind:value={lightingState.aircraftLights}
-        ><option value="auto">Efter flygfas</option><option value="off">Av</option></select
-      >
       <p class="micro-note">
         Positionsljus röd vänster, grön höger, vit bak (EASA CS-25). Antikollisionsljus blinkar även
         på dagen; blinktakt och vilka ljus som tänds i varje fas är simulatorns uppskattning.

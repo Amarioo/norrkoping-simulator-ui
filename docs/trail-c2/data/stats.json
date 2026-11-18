@@ -4,12 +4,6 @@
   "osmBase": "2026-10-24T19:51:21Z",
   "sha256": "e28586216be2df97df7bf251a83513583a427317bad152815936dea8a6bece0b"
  },
- "schedule": {
-  "onFromMinutes": 360,
-  "offFromMinutes": 1320,
-  "status": "assumption",
-  "basis": "Norrköpings kommun's description of its Abborreberg illuminated trail (Naturkartan): lamps on 06.00 to dawn and dusk to 22.00. Not stated for Vrinnevi."
- },
  "counts": {
   "fixtures": 58,
   "mapped": 0,

@@ -1,0 +1,43 @@
+{
+  "shots": [
+    {
+      "file": "loop-top-2330.png",
+      "time": "23:30",
+      "artificial": 1,
+      "programs": 20,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "loopLamps": 101
+      }
+    },
+    {
+      "file": "loop-top-0300.png",
+      "time": "03:00",
+      "artificial": 1,
+      "programs": 20,
+      "trail": {
+        "category": "trail",
+        "rollout": "lighting-c2-v1",
+        "fixtures": 58,
+        "loopLamps": 101
+      }
+    }
+  ],
+  "controlsInTab": [
+    "compact",
+    "estate",
+    "trucks",
+    "buses",
+    "trams",
+    "trains",
+    "time-scale",
+    "",
+    "light-date",
+    "light-time",
+    "light-play",
+    "stadium-lights"
+  ],
+  "errors": []
+}

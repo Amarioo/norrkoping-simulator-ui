@@ -29,9 +29,15 @@ const frames = (page: Page) =>
       ),
   );
 const select = async (page: Page, id: string, value: string) => {
-  // Interface U1: the lighting controls live in the "Tid och ljus" tab.
-  await page.getByRole('tab', { name: 'Tid och ljus' }).click();
-  await page.selectOption(id, value);
+  // 2026-11-13: these switches left the interface (only Idrottsparken's is kept; everything else is
+  // lit when dark). The same state is set through the development hook.
+  const key = { '#airport-lights': 'airport', '#airport-runway': 'runway', '#aircraft-lights': 'aircraftLights' }[id]!;
+  await page.evaluate(
+    ([k, v]) => {
+      (globalThis as any).__cityLighting.state[k] = v;
+    },
+    [key, value],
+  );
   await frames(page);
 };
 // Threshold 27 (scene units, 1 = 25 m); ground ≈ RH2000 9.8 m. A pilot on the 3° slope 1 000 m out:

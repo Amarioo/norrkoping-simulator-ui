@@ -22,8 +22,7 @@
  * night they follow the street lighting's level (env.artificial), by day facadeCount is 0.
  *
  * Illuminated trail (Phase C2, trailLighting.ts): the lanterns of the Vrinnevi loop are ordinary
- * fixtures of the street-lighting set with a flag; cityScheduleLevel switches them off late at night
- * (a uniform, ramped like the floodlights). No rebuild, upload or program follows from it.
+ * fixtures of the street-lighting set, lit all night like every other fixture.
  *
  * Temporal smoothing: jumps of more than 20 simulated minutes (presets, date changes) blend the
  * environment over BLEND_SECONDS; floodlight groups ramp over RAMP_SECONDS. settle() ends both at
@@ -78,13 +77,7 @@ import c2Data from '../data/streetlights-c2.json';
 import { decodeCompactSet, type CompactSet } from './compactSet';
 import { L2_DATASET, L2_GENERATOR, L2BC_DATASET, L2BC_GENERATOR } from './corridorL2';
 import { L2D_CATEGORY, L2D_DATASET, L2D_GENERATOR } from './siteLighting';
-import {
-  C2_CATEGORY,
-  C2_DATASET,
-  C2_GENERATOR,
-  TRAIL_SCHEDULE,
-  trailScheduleOn,
-} from './trailLighting';
+import { C2_CATEGORY, C2_DATASET, C2_GENERATOR, isTrailFixture } from './trailLighting';
 import {
   A2_IDENTITY,
   A3_IDENTITY,
@@ -356,8 +349,6 @@ export function createCityLighting(options: {
   });
   const weights = { masts: 0, roofs: 0 },
     targets = { masts: 0, roofs: 0 };
-  // Phase C2: level of the lamps that follow the trail's switch-off schedule (1 = on).
-  const trail = { weight: 1, target: 1 };
   const applyWeights = () => {
     stadium.emitters.forEach((e, j) => {
       const w = weights[stadium.emitterGroups[j]] * e.candela;
@@ -524,22 +515,17 @@ export function createCityLighting(options: {
       },
     };
   };
-  /** Phase C2: the illuminated trail (its own lanterns, every scheduled lamp, and the schedule). */
+  /** Phase C2: the illuminated trail (this phase's lanterns and every lamp on the loop). */
   const trailDiagnostics = () => {
     const r = street.prepared?.rollouts[C2_GENERATOR.version];
-    const lamps = street.prepared?.lamps ?? [];
-    let scheduled = 0;
-    for (const l of lamps) if (l.scheduled) scheduled++;
+    let loopLamps = 0;
+    for (const f of street.prepared?.fixtures ?? []) if (isTrailFixture(f.canonicalId ?? f.id)) loopLamps++;
     return {
       category: C2_CATEGORY,
       rollout: C2_GENERATOR.version,
       /** This phase's lanterns, and every lamp on the loop (with the earlier rollout's). */
       fixtures: r ? r.mapped + r.estimated : 0,
-      scheduled,
-      schedule: TRAIL_SCHEDULE,
-      /** Allowed on by the schedule now, and the level shown (ramped). */
-      on: trail.target === 1,
-      level: trail.weight,
+      loopLamps,
     };
   };
   /** Lighting Phase L2d: the site-lighting category (separate from street lighting). */
@@ -609,14 +595,12 @@ export function createCityLighting(options: {
       const mode: StadiumMode = STADIUM_MODES[input.stadium];
       targets.masts = mode.masts;
       targets.roofs = mode.roofs;
-      trail.target = trailScheduleOn(input.minutes) ? 1 : 0;
     },
     /** Ends any temporal smoothing at once. */
     settle() {
       blend = 1;
       weights.masts = targets.masts;
       weights.roofs = targets.roofs;
-      trail.weight = trail.target;
       blendEnvironment(target, target, 1, shown);
       shownSun.copy(sunDir);
       applyWeights();
@@ -640,9 +624,6 @@ export function createCityLighting(options: {
         }
       }
       if (moving) applyWeights();
-      const trailStep = trail.target - trail.weight;
-      if (trailStep !== 0)
-        trail.weight += Math.sign(trailStep) * Math.min(Math.abs(trailStep), dt / RAMP_SECONDS);
       const env: EnvironmentState = shown;
       sun.color.copy(env.sunColor);
       sun.intensity = env.sunIntensity;
@@ -656,11 +637,10 @@ export function createCityLighting(options: {
       (scene.background as Color).copy(env.horizon);
       renderer.toneMappingExposure = env.exposure;
       uniforms.cityLampLevel.value = env.artificial;
-      uniforms.cityScheduleLevel.value = trail.weight;
       uniforms.facadeLevel.value = env.artificial;
       uniforms.facadeCount.value = env.artificial > 0.0005 ? facades.length : 0;
       sky.update(camera, env, shownSun);
-      street.visuals?.update(camera, env.artificial, viewportHeight, fog, trail.weight);
+      street.visuals?.update(camera, env.artificial, viewportHeight, fog);
       stadium.update(camera, Math.max(weights.masts, weights.roofs));
     },
     /**

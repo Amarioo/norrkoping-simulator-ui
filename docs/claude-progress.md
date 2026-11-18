@@ -2,6 +2,27 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Phase C2 update — the trail lit all night, only Parken's light switch left in the interface (2026-11-13) — for the user's test, NOT committed
+
+[Report, section "Update"](trail-c2/README.md). On local `main` (= `origin/main` `1b8756f`). **Nothing is committed.**
+The user, after approving C2: "The switch off does not matter. I want everything to be lighted up
+during the night in the city. The only switch and option that still should be left is the one for parken."
+
+- **Removed the trail's switch-off:** `trailSchedule.ts` deleted; `cityLights.ts` and `fixtures.ts`
+  restored to `3161e89` (no flag, no `cityScheduleLevel`, no extra lens mesh); the controller has no
+  ramp; `describe().trailLighting` = `{category, rollout, fixtures, loopLamps}`. The 58 lanterns
+  are unchanged; generated files regenerated (metadata without the schedule).
+- **Interface:** `src/App.svelte` loses the selects `#airport-lights`, `#airport-runway`,
+  `#aircraft-lights`; `#stadium-lights` stays. `lightingState` and the address parameters
+  (`?airport`, `?runway`, `?aircraftLights`) are kept for tests and capture scripts. Runway in use
+  is therefore always 27 from the interface (flagged to the user as a decision).
+- **Tests:** `tests/airport-lights.spec.ts` and `aircraft-lights.spec.ts` set the state through
+  `__cityLighting.state` instead of the selects (all checks kept); `tests/trail.spec.ts` checks
+  equal brightness at 21:30, 23:30 and 03:00 and that Parken's is the only light switch.
+- **Checks:** type check 0 errors; build OK, byte-identical twice; Vitest 640/641 (only the known
+  `police.test.ts`); Playwright 38/38. Frame times not re-measured (lamp shader = pre-C2 file).
+- Old capture scripts that operate the removed selects (if any do) would need the hook instead.
+
 ## Phase C2 — Vrinneviskogen: the illuminated trail, 58 new lanterns and a 22.00–06.00 switch-off (2026-11-13) — approved by the user (2026-11-13), committed (`2155a5a`) and pushed to `origin/main`
 
 [Full report](trail-c2/README.md). Worked directly on local `main` (= `origin/main` `3161e89`). Backend unchanged.
