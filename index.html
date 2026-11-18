@@ -10,9 +10,62 @@
     />
     <title>Norrköping Simulator</title>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!--
+      Start indicator: painted with the HTML, before any script has run, and removed by main.ts when
+      the app mounts. Building the scene keeps the main thread busy for about two seconds; without
+      this the page stays blank for that time. The spinner is a transform animation, which the browser
+      keeps running while the main thread is busy. Colours: the page backgrounds of the two themes
+      (CHROME in src/lib/ui/themeDom.ts); main.ts sets data-theme first thing.
+    -->
+    <style>
+      .start-loading {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        background: #101b22;
+        color: #e6eeee;
+        font:
+          14px Inter,
+          'Segoe UI',
+          system-ui,
+          sans-serif;
+      }
+      :root[data-theme='light'] .start-loading {
+        background: #f3f1ec;
+        color: #1b2428;
+      }
+      .start-loading span {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .start-loading i {
+        width: 10px;
+        height: 10px;
+        border: 2px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: start-loading-spin 0.8s linear infinite;
+      }
+      @keyframes start-loading-spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .start-loading i {
+          animation: none;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="start-loading" role="status">
+        <span><i></i>Startar simulatorn…</span>
+      </div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

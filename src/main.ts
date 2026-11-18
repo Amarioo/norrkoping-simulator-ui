@@ -11,6 +11,8 @@ startCityStream();
 const target = document.getElementById('app')!;
 Promise.all([import('svelte'), import('./App.svelte')]).then(
   ([{ mount }, { default: App }]) => {
+    // Removes the start indicator of index.html; the app shows its own "Bygger kartan…" from here.
+    target.replaceChildren();
     mount(App, { target });
   },
   (error) => {
