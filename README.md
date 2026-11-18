@@ -1,6 +1,6 @@
 # Norrköping Simulator
 
-En lokal 3D-simulator för Norrköping med vägtrafik och en fiktiv flygpendel mellan Norrköpings flygplats (Kungsängen) och Bråvalla F13. Svelte 5, TypeScript, Threlte och Three.js visar kartan; Kotlin/Ktor beräknar trafiken och skickar kompletta lägesbilder med SSE.
+En lokal 3D-simulator för Norrköping med vägtrafik och en fiktiv flygpendel mellan Norrköpings flygplats (Kungsängen) och Bråvalla F13. Svelte 5, TypeScript, Threlte och Three.js visar kartan; en Go-server beräknar trafiken och skickar kompletta lägesbilder med SSE.
 
 ## Starta från VS Code
 
@@ -8,7 +8,7 @@ Backend, i en egen terminal:
 
 ```powershell
 cd C:\Users\amarg\dev\norrkoping-simulator-backend
-.\dev.ps1
+go run ./cmd/simulator
 ```
 
 Frontend, i en annan terminal:
@@ -18,9 +18,9 @@ cd C:\Users\amarg\dev\norrkoping-simulator-ui
 npm run dev
 ```
 
-Öppna http://127.0.0.1:5173. Ktor använder port 8080. Starta om båda processerna efter uppdateringen. Projektnamnen är nu `norrkoping-simulator-ui` och `norrkoping-simulator-backend`; Båda repomapparna heter nu `norrkoping-simulator-ui` respektive `norrkoping-simulator-backend`.
+Öppna http://127.0.0.1:5173. Backenden använder port 8080. Starta om båda processerna efter uppdateringen. Projektnamnen är nu `norrkoping-simulator-ui` och `norrkoping-simulator-backend`; Båda repomapparna heter nu `norrkoping-simulator-ui` respektive `norrkoping-simulator-backend`.
 
-Kräver Node 22.12+ (testat med Node 24), npm 11.10.1+, JDK 21/25 och WebGL 2. Vid en ny installation: `npm ci`. Om global npm 11.1.0 ger `edgesOut`-fel, använd `npx --yes npm@11.10.1 ci`. Inga externa konton eller kartanrop behövs under körning.
+Kräver Node 22.12+ (testat med Node 24), npm 11.10.1+, Go 1.24+ och WebGL 2. Vid en ny installation: `npm ci`. Om global npm 11.1.0 ger `edgesOut`-fel, använd `npx --yes npm@11.10.1 ci`. Inga externa konton eller kartanrop behövs under körning.
 
 ## Använd simulatorn
 
@@ -56,7 +56,7 @@ Trafiken har avståndshållning, signalstopp och förenklade korsningsreservatio
 
 `POST /api/simulator/*` → validerat kommando → låst skrivmodell → oföränderlig lägesbild → `StateFlow` → SSE-event `city` → instansierade 3D-fordon.
 
-Frontend interpolerar positioner mellan lägesbilder. Ktor är auktoritativ för antal, rörelse, paus, flygfaser och trafiksignaler. SSE återansluter med senaste kompletta lägesbilden; ingen historisk replay. Tillståndet är lokalt i minnet. De äldre drönarfilerna och API-rutterna finns kvar för kompatibilitet men används inte av det nya gränssnittet.
+Frontend interpolerar positioner mellan lägesbilder. Backenden är auktoritativ för antal, rörelse, paus, flygfaser och trafiksignaler. SSE återansluter med senaste kompletta lägesbilden; ingen historisk replay. Tillståndet är lokalt i minnet. De äldre drönarfilerna och API-rutterna finns kvar för kompatibilitet men används inte av det nya gränssnittet.
 
 ## Importera kartdata igen
 
@@ -70,7 +70,7 @@ npm run map:import -- C:\path\norrkoping-region.json ..\norrkoping-simulator-bac
 
 Importören läser också `scripts/data/norrkoping-transit-source.json`, en OSM-snapshot med spårvägsrelationer och hållplatser.
 
-Importören skriver kartan och transportnätet under `src/lib/data/`. Det andra argumentet kopierar samma transportnät till backend. Starta om Ktor efter byte av data. Fråga, tid, ursprung och gränser finns i JSON-filernas `meta`. Se DATA-LICENSE.md för ODbL och attribution.
+Importören skriver kartan och transportnätet under `src/lib/data/`. Det andra argumentet kopierar samma transportnät till backend. Starta om backenden efter byte av data. Fråga, tid, ursprung och gränser finns i JSON-filernas `meta`. Se DATA-LICENSE.md för ODbL och attribution.
 
 ## Verifiering
 
@@ -84,7 +84,7 @@ npm run test:e2e
 
 E2E kontrollerar kommandon, två SSE-klienter, antal fordon, fri kamera, följning, paus, återanslutning, flygavstängning, återställning och mobilbredd. E2E kontrollerar även kollektivtrafikreglagen, SSE, ledade fordon och följning. Backendtester kontrollerar köstart vid grönt, underfartens anslutningar, tio minuters regionalt trafikflöde, hållplatsuppehåll/återstart och en full flygresa åt båda hållen.
 
-För egna testportar: starta Ktor med `PORT=8081` och `ALLOWED_ORIGIN=http://127.0.0.1:5174`; starta Vite med `API_TARGET=http://127.0.0.1:8081` och `node node_modules/vite/bin/vite.js --host 127.0.0.1 --port 5174`; kör E2E med `E2E_BASE_URL=http://127.0.0.1:5174`.
+För egna testportar: starta backenden med `PORT=8081` och `ALLOWED_ORIGIN=http://127.0.0.1:5174`; starta Vite med `API_TARGET=http://127.0.0.1:8081` och `node node_modules/vite/bin/vite.js --host 127.0.0.1 --port 5174`; kör E2E med `E2E_BASE_URL=http://127.0.0.1:5174`.
 
 ## Detaljer från platsreferenserna
 
@@ -104,7 +104,7 @@ Platsunderlaget finns i `scripts/data/norrkoping-places-source.json`. Återskapa
 
 Promenadernas träd har 4,6–5,7 meter breda kronor, smala stammar och fri sikt under kronorna. Trädpositionerna kommer fortsatt från kartan; den kompletterande parkplanteringen och trädformerna är illustrativa. Träden instansieras, och broarnas statiska geometri slås samman per material.
 
-Bergsbron har tre stenvalv, fogad sten, smidesräcken och dubbla lyktor. Laxholmsbron har ljusa räcken med kryss och cirklar. Saltängsbron och Hamnbron använder kartlagda brokonturer med stöd, kantbalkar och räcken; Saltängsbron har även flaggstänger och kontaktledningar. Spången och tre små gångbroar kring laxtrappan i Strömparken har trädetaljer. Gamlebro/Järnbron är också kompletterad. Brodetaljer, stödlägen och höjder är uppskattade efter fotoreferenser, inte konstruktionsritningar. Broar över vatten möter anslutande gator och gångvägar på samma nivå. Vattenytan har sänkts sex meter i modellens koordinatsystem; utskurna markytor, strandkanter och landfästen ersätter de tidigare upphöjda ramperna. Nivåerna är visuella approximationer i `src/lib/data/terrain-levels.json`. Importören synkroniserar väg- och spårtrafikens höjder med brobanorna; broar över land och järnvägens underfarter behåller sin höjdseparation. Starta om både UI och Ktor efter uppdateringen.
+Bergsbron har tre stenvalv, fogad sten, smidesräcken och dubbla lyktor. Laxholmsbron har ljusa räcken med kryss och cirklar. Saltängsbron och Hamnbron använder kartlagda brokonturer med stöd, kantbalkar och räcken; Saltängsbron har även flaggstänger och kontaktledningar. Spången och tre små gångbroar kring laxtrappan i Strömparken har trädetaljer. Gamlebro/Järnbron är också kompletterad. Brodetaljer, stödlägen och höjder är uppskattade efter fotoreferenser, inte konstruktionsritningar. Broar över vatten möter anslutande gator och gångvägar på samma nivå. Vattenytan har sänkts sex meter i modellens koordinatsystem; utskurna markytor, strandkanter och landfästen ersätter de tidigare upphöjda ramperna. Nivåerna är visuella approximationer i `src/lib/data/terrain-levels.json`. Importören synkroniserar väg- och spårtrafikens höjder med brobanorna; broar över land och järnvägens underfarter behåller sin höjdseparation. Starta om både UI och backend efter uppdateringen.
 
 Utforska-listan har egna vyer för broarna samt Norra och Södra Promenaden i gatuperspektiv. Brokonturerna ligger i `scripts/data/norrkoping-bridges-source.json`, gånglinjerna i `scripts/data/norrkoping-bridge-paths-source.json`; kör `node scripts/import-city-bridges.mjs` för att återskapa `src/lib/data/city-bridges.json` utan nätåtkomst.
 
@@ -112,7 +112,7 @@ Utforska-listan har egna vyer för broarna samt Norra och Södra Promenaden i ga
 
 Ingelstagatans bro vid polishuset har brodäck, räcken och landfästen. Gatan ansluter i marknivå och järnvägen går i en utskuren skärning. Importör och rendering använder samma höjdprofil i `src/lib/ingelstaTerrain.js`; profilen är uppskattad, inte inmätt terräng. Grand Hotel och Holmens kontorshus har egna referensbaserade fasader och återskapade ordskyltar. Välj de tre nya vyerna i Utforska-menyn.
 
-Spårvagnarnas destinationsskyltar följer den aktiva sträckan i OSM-rutten: 2 Kvarnberget/Fridvalla och 3 Vidablick/Klockaretorpet. Backend skickar destination i SSE och byter den när nästa riktning börjar. Det är simulerad trafik, inte aktuella tidtabellsavgångar. Starta om Ktor när transportnätet uppdaterats.
+Spårvagnarnas destinationsskyltar följer den aktiva sträckan i OSM-rutten: 2 Kvarnberget/Fridvalla och 3 Vidablick/Klockaretorpet. Backend skickar destination i SSE och byter den när nästa riktning börjar. Det är simulerad trafik, inte aktuella tidtabellsavgångar. Starta om backenden när transportnätet uppdaterats.
 
 ## Tid, ljus och Idrottsparken (steg 6)
 
