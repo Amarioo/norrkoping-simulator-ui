@@ -7,6 +7,7 @@
   import { CITY_VIEWS } from './mapModel';
   import { LEGACY_LEVELS, terrain } from './terrain';
   import { city } from './city.svelte';
+  import { padKeys } from './cameraPad';
   let {
     focus = 'overview',
     follow = $bindable(''),
@@ -104,6 +105,8 @@
       camera.near = near;
       camera.updateProjectionMatrix();
     }
+    // Interface U4: a button held on the on-screen camera pad counts as its keyboard key.
+    if (padKeys.size) follow = '';
     if (follow) {
       const item =
         follow === 'plane'
@@ -139,18 +142,19 @@
         controls.update();
       } else follow = '';
     }
-    if (!keys.size) return;
+    if (!keys.size && !padKeys.size) return;
+    const held = (k: string) => keys.has(k) || padKeys.has(k);
     forward.subVectors(controls.target, camera.position);
     forward.y = 0;
     forward.normalize();
     right.crossVectors(forward, new Vector3(0, 1, 0)).normalize();
     move.set(0, 0, 0);
-    if (keys.has('w') || keys.has('arrowup')) move.add(forward);
-    if (keys.has('s') || keys.has('arrowdown')) move.sub(forward);
-    if (keys.has('a') || keys.has('arrowleft')) move.sub(right);
-    if (keys.has('d') || keys.has('arrowright')) move.add(right);
-    if (keys.has('q')) move.y -= 1;
-    if (keys.has('e')) move.y += 1;
+    if (held('w') || keys.has('arrowup')) move.add(forward);
+    if (held('s') || keys.has('arrowdown')) move.sub(forward);
+    if (held('a') || keys.has('arrowleft')) move.sub(right);
+    if (held('d') || keys.has('arrowright')) move.add(right);
+    if (held('q')) move.y -= 1;
+    if (held('e')) move.y += 1;
     const speed =
       Math.max(1.4, camera.position.distanceTo(controls.target) * 0.65) *
       (keys.has('shift') ? 3 : 1);

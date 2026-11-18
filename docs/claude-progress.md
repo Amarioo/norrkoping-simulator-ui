@@ -2,6 +2,59 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Interface U4, step 3: camera buttons for touch (2026-11-18) — pushed for the user's test on a real device
+
+[Report](mobile-u4/README.md). Steps 1–3 committed and pushed to origin/main on the user's request ("Ja, pusha"), so the
+user can try it on a phone; the push publishes to production. Not yet approved. The uncommitted
+`labels = $state(false)` in `src/App.svelte` (not from this work) was left out of the commit and stays in the
+working tree.
+
+- **New:** `src/lib/ui/CameraPad.svelte`, `src/lib/cameraPad.ts`. **Changed:** `src/lib/FreeCamera.svelte`,
+  `src/App.svelte`, `src/style.css`, `tests/interface-u4.spec.ts`.
+- Six hold-to-move buttons (forward, back, left, right, raise, lower) at the map's right edge, 44 px each,
+  shown only under `any-pointer: coarse`. They feed the same movement code as W A S D and Q/E.
+- **Checks:** type check 0; build OK; Vitest 640/641 (known `police.test.ts`); Playwright `interface-u4` 3/3,
+  `interface-u1`, `interface-u2`, `simulation`, `fullscreen-fps` 8/8 (others not run).
+- **Not verified:** a real iPhone/iPad, Safari, two fingers at once, light theme. The movement was confirmed by
+  Playwright, not by eye (the browser pane was hidden and draws no frames).
+- **Next:** the user's test on a real device (needs a push to `main`, which publishes), then sharpness/performance.
+- Board: `U4` in *Test* (three tasks ticked).
+
+## Interface U4, step 2: layout for tablet and phone (2026-11-18) — waiting for the user's test
+
+[Report](mobile-u4/README.md). Nothing committed.
+
+- **Changed:** `src/style.css` (block "Interface U4"), `src/App.svelte` (the screen query), new
+  `tests/interface-u4.spec.ts`.
+- **Drawer layout** at most 900 px wide or at most 500 px tall (before: 760 px wide). Phone on its side: map
+  761 × 275 instead of 509 × 568 on a 375 px tall screen. iPad upright: map 769 px wide instead of 517.
+  iPad on its side and desktop unchanged.
+- **Finger size** under `pointer: coarse`: sliders, tabs, buttons, lists 44 px; lists 16 px text.
+- **Checks:** type check 0; build OK; Vitest 640/641 (the known checksum failure); Playwright `interface-u4` 2/2,
+  `interface-u1`, `interface-u2`, `simulation`, `fullscreen-fps` 8/8 (others not run); four sizes seen in the
+  running app.
+- **Not verified:** a real iPhone/iPad, Safari, light theme; finger sizes only in emulation.
+- **Not mine:** `src/App.svelte` has `labels = $state(false)` uncommitted from elsewhere; left as found.
+- **Next:** camera by touch (step 3), then the user's device test, then sharpness/performance.
+- Board: `U4` in *Doing* (two tasks ticked).
+
+## Interface U4, step 1: tablet and phone measured (2026-11-18) — measurement only, waiting for the user's decision
+
+[Report](mobile-u4/README.md). No app code changed. Nothing committed.
+
+- **Measured** at 375 × 812, 812 × 375, 820 × 1180 and 1180 × 820 in the desktop app's browser pane (dev server
+  `u1-dev` 5371, backend `start-backend` 8095, view "Innerstaden", commit `fa0df58`).
+- **Found:** the scene is as heavy at phone size as on a desktop (4.6 M triangles, 911 draw calls per frame);
+  a phone on its side gets the desktop layout with a map 1.5 screens tall; no touch way to move or raise the
+  camera; iPad upright has a 250 px side panel beside a 517 px map; 11 of 12 controls under 44 px on the phone
+  (sliders 20 px, switches 24 px); lists with 13–14 px text (iPhone zooms); double resolution cost 0–55 % more
+  graphics time on this computer.
+- **Not valid / not done:** frame rate (the pane was hidden and throttled), any real phone or tablet, Safari,
+  touch gestures. Measured on an RTX 5070 Ti.
+- **Checks:** `npm run board:check` OK. Type check, build, Vitest, Playwright not run (no code change).
+- **Proposed next:** layout, then camera by touch, then the user's test on a real device, then sharpness/performance.
+- Board: `U4` in *Doing* (first task ticked).
+
 ## Interface U3: tram on the start screen, plain connection texts (2026-11-18) — approved by the user, committed and pushed
 
 [Report](start-tram/README.md). Only this repository.

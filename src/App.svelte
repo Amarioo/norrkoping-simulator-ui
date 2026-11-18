@@ -11,6 +11,7 @@
   import { dayPhase, localToUtc, presets, solarPosition } from './lib/lighting/solar';
   import FpsProbe from './lib/perf/FpsProbe.svelte';
   import FpsCounter from './lib/perf/FpsCounter.svelte';
+  import CameraPad from './lib/ui/CameraPad.svelte';
   import { fpsCounter, setFpsVisible } from './lib/perf/fpsMonitor.svelte';
   import AnimatedNumber from './lib/ui/AnimatedNumber.svelte';
   import { theme, toggleTheme } from './lib/ui/theme.svelte';
@@ -82,7 +83,9 @@
   onMount(() => {
     const c = document.createElement('canvas');
     webgl = !!c.getContext('webgl2');
-    const query = matchMedia('(max-width: 760px)');
+    // Interface U4: the drawer layout also for a tablet held upright (up to 900 px wide) and a phone
+    // on its side (up to 500 px tall). The same query as the compact block in style.css.
+    const query = matchMedia('(max-width: 900px), (max-height: 500px)');
     const onQuery = () => {
       narrow = query.matches;
       if (!narrow) drawerOpen = false;
@@ -509,6 +512,7 @@
           >
         </div>
         {#if fpsCounter.visible}<FpsCounter />{/if}
+        {#if webgl && mapReady}<CameraPad />{/if}
         <div class="map-status">
           {follow ? 'FÖLJER ' + (follow === 'plane' ? 'NK-01' : 'FORDON ' + follow) : 'FRI KAMERA'}
           <i></i>

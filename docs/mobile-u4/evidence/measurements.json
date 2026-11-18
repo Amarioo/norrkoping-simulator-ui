@@ -1,0 +1,122 @@
+{
+  "what": "Interface U4, step 1: the state on phone and tablet screen sizes before any change",
+  "date": "2026-11-18",
+  "commit": "fa0df58",
+  "method": "The dev server (launch entry u1-dev, port 5371) against the local Go backend (start-backend, port 8095), start traffic, the view 'Innerstaden'. The desktop app's browser pane emulated each screen size. Layout numbers were read from the page (getBoundingClientRect, computed style). Scene load and frame cost came from the existing measurement hook __perfP1 (src/lib/perf/perfProbe.ts): renderer.info for triangles and draw calls, EXT_disjoint_timer_query_webgl2 for GPU time.",
+  "machine": "ANGLE (NVIDIA GeForce RTX 5070 Ti, Direct3D11), Windows 11. A desktop graphics card, not a phone or tablet.",
+  "notValid": "Frames per second. The browser pane was hidden while measuring, so the browser throttled the frame loop (frame intervals of 12 ms mixed with 600 ms). The cost per frame (cpuMs, gpuMs) is measured per rendered frame and is not affected.",
+  "emulation": "Only 375x812 emulated a touch phone (Android Chrome user agent, 5 touch points, device pixel ratio 2). The other three sizes were set without reloading and kept device pixel ratio 1 and no touch points: they show the layout at that size, not the device.",
+  "screens": [
+    {
+      "name": "phone portrait",
+      "viewport": "375x812",
+      "layoutMode": "phone (drawer)",
+      "horizontalOverflowPx": 0,
+      "pageHeightPx": 1685,
+      "sidebarWidthPx": null,
+      "mapCssPx": "349x526",
+      "mapShareOfViewportHeight": 0.65,
+      "canvasTouchAction": "none",
+      "controlsVisible": 12,
+      "controlsSmallerThan44px": 11,
+      "formControlsBelow16pxFont": 2,
+      "textElements": 56,
+      "textElementsBelow12px": 26,
+      "drawCalls": 911,
+      "triangles": 4620898,
+      "frameCost": [
+        { "pixelRatio": 1, "bufferPx": "349x526", "megapixels": 0.18, "frames": 260, "cpuMedianMs": 4.2, "cpuP95Ms": 7.1, "gpuMedianMs": 5.1, "gpuP95Ms": 7.06 },
+        { "pixelRatio": 2, "bufferPx": "698x1052", "megapixels": 0.73, "frames": 317, "cpuMedianMs": 3.6, "cpuP95Ms": 6.5, "gpuMedianMs": 4.63, "gpuP95Ms": 6.77 },
+        { "pixelRatio": 3, "bufferPx": "1047x1578", "megapixels": 1.65, "frames": 92, "cpuMedianMs": 5.6, "cpuP95Ms": 10.0, "gpuMedianMs": 5.64, "gpuP95Ms": 8.45 }
+      ]
+    },
+    {
+      "name": "phone portrait, settings drawer open",
+      "viewport": "375x812",
+      "drawerPx": "375x698",
+      "controlsVisible": 12,
+      "controlsSmallerThan44px": 11,
+      "smallest": "six sliders 339x20, one switch 40x24, three tabs 108x40, one select 339x41",
+      "formControlFontPx": 14
+    },
+    {
+      "name": "iPad portrait",
+      "viewport": "820x1180",
+      "layoutMode": "desktop (sidebar)",
+      "horizontalOverflowPx": 0,
+      "pageHeightPx": 1596,
+      "sidebarWidthPx": 250,
+      "mapCssPx": "517x777",
+      "mapShareOfViewportWidth": 0.63,
+      "mapShareOfViewportHeight": 0.66,
+      "canvasTouchAction": "none",
+      "controlsVisible": 24,
+      "controlsSmallerThan44px": 23,
+      "formControlsBelow16pxFont": 3,
+      "textElements": 91,
+      "textElementsBelow12px": 32,
+      "drawCalls": 911,
+      "triangles": 4620898,
+      "frameCost": [
+        { "pixelRatio": 1, "bufferPx": "517x777", "megapixels": 0.4, "frames": 32, "cpuMedianMs": 6.3, "cpuP95Ms": 8.9, "gpuMedianMs": 6.01, "gpuP95Ms": 11.7 },
+        { "pixelRatio": 2, "bufferPx": "1034x1554", "megapixels": 1.61, "frames": 10, "cpuMedianMs": 7.7, "cpuP95Ms": 9.0, "gpuMedianMs": 9.33, "gpuP95Ms": 10.68 }
+      ]
+    },
+    {
+      "name": "iPad landscape",
+      "viewport": "1180x820",
+      "layoutMode": "desktop (sidebar)",
+      "horizontalOverflowPx": 0,
+      "pageHeightPx": 1078,
+      "sidebarWidthPx": 280,
+      "mapCssPx": "827x568",
+      "mapShareOfViewportWidth": 0.7,
+      "mapShareOfViewportHeight": 0.69,
+      "canvasTouchAction": "none",
+      "controlsVisible": 24,
+      "controlsSmallerThan44px": 23,
+      "formControlsBelow16pxFont": 3,
+      "textElements": 92,
+      "textElementsBelow12px": 33,
+      "drawCalls": 1140,
+      "triangles": 6408405,
+      "frameCost": [
+        { "pixelRatio": 1, "bufferPx": "827x568", "megapixels": 0.47, "frames": 11, "cpuMedianMs": 8.4, "cpuP95Ms": 9.9, "gpuMedianMs": 6.65, "gpuP95Ms": 11.53 },
+        { "pixelRatio": 2, "bufferPx": "1654x1136", "megapixels": 1.88, "frames": 34, "cpuMedianMs": 8.3, "cpuP95Ms": 10.4, "gpuMedianMs": 8.62, "gpuP95Ms": 11.48 }
+      ]
+    },
+    {
+      "name": "phone landscape",
+      "viewport": "812x375",
+      "layoutMode": "desktop (sidebar)",
+      "horizontalOverflowPx": 0,
+      "pageHeightPx": 1388,
+      "sidebarWidthPx": 250,
+      "mapCssPx": "509x568",
+      "mapShareOfViewportHeight": 1.51,
+      "canvasTouchAction": "none",
+      "controlsVisible": 24,
+      "controlsSmallerThan44px": 23,
+      "formControlsBelow16pxFont": 3,
+      "textElements": 90,
+      "textElementsBelow12px": 31,
+      "drawCalls": 984,
+      "triangles": 5197181,
+      "frameCost": [
+        { "pixelRatio": 1, "bufferPx": "509x568", "megapixels": 0.29, "frames": 69, "cpuMedianMs": 5.8, "cpuP95Ms": 8.5, "gpuMedianMs": 6.84, "gpuP95Ms": 10.3 }
+      ]
+    }
+  ],
+  "controlSizes": {
+    "note": "Same sizes at every screen size. 44 px is Apple's recommended minimum for a finger target.",
+    "sliders": "full width x 20",
+    "switches": "40x24",
+    "mapToolbarButtons": "36-40 x 36",
+    "mapViewSelect": "106-204 x 36, font 13 px",
+    "headerButtons": "40x40 and 42x42",
+    "tabs": "70-108 x 40",
+    "otherSelects": "height 41, font 14 px",
+    "attributionLinks": "height 14-15",
+    "onlyControlAt44": "the 'Inställningar' bar on the phone"
+  }
+}

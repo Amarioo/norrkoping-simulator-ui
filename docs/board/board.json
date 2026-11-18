@@ -1067,6 +1067,64 @@
           "text": "Sajten är ute: https://norrkoping-simulator-ui.vercel.app. Provad i webbläsaren: ansluten, egen stad, paus fungerar. Obs: varje push till main publicerar nu till produktion. Väntar på ditt test och godkännande."
         }
       ]
+    },
+    {
+      "id": "U4",
+      "epic": "U",
+      "title": "Surfplatta och telefon",
+      "status": "test",
+      "size": "M/L",
+      "summary": "Simulatorn ska gå att använda på iPad och telefon: layout, kamerastyrning med fingrar, skärpa och prestanda. Börjar med en mätning av läget i dag.",
+      "tasks": [
+        {
+          "text": "Mät läget i telefon- och iPad-storlek",
+          "done": true
+        },
+        {
+          "text": "Layout: iPad på högkant, knappstorlekar, kanter",
+          "done": true
+        },
+        {
+          "text": "Kamerastyrning med fingrar",
+          "done": true
+        },
+        {
+          "text": "Skärpa och prestanda",
+          "done": false
+        },
+        {
+          "text": "Du testar på egen iPhone/iPad och godkänner",
+          "done": false
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Påbörjad efter ditt besked \"Ja, mät först\". Första steget ändrar ingen kod i appen, det mäter bara."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Mätningen är klar, ingen kod i appen är ändrad. Störst risk: staden ritas lika tung på en telefon som på en dator (4,6 miljoner trianglar per bild). Trasigt: telefon på tvären får datorlayouten och kartan blir 1,5 skärmar hög. Saknas: sätt att flytta och höja kameran med fingrar. Reglage (20 px) och omkopplare (24 px) är för små för fingrar. Bildfrekvens på en riktig telefon är inte mätt, det behöver din iPhone/iPad. Förslag: layouten först, sedan kameran. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Layouten är klar för ditt test. Telefon på tvären och iPad på högkant får nu samma läge som telefonen (inställningarna i lådan), och kartan får plats på skärmen. Reglage, flikar, knappar och rullistor är 44 px på pekskärm och rullistorna har 16 px text. iPad liggande och datorn är oförändrade. Inte provat på en riktig iPhone eller iPad. Kvar: kameran med fingrar, sedan skärpa och prestanda. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Kameraknapparna är klara för ditt test. På pekskärm finns sex knappar vid kartans högerkant: framåt, bakåt, vänster, höger, höj och sänk. Håll in för att flytta, släpp för att stanna. De syns inte med mus. Layouten och knapparna är provade i efterliknat pekläge, inte på en riktig iPhone eller iPad. För att du ska kunna prova på din telefon behöver ändringen pushas, och en push publicerar till den riktiga adressen. Kvar: skärpa och prestanda. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Committad och pushad till origin/main på din begäran, så att du kan prova på din telefon och iPad. Ändringen av \"Landmärken\" från start i App.svelte, som inte kom från det här arbetet, är inte med i committen. Kortet ligger kvar i Test tills du har provat."
+        }
+      ],
+      "report": "docs/mobile-u4/README.md"
     }
   ]
 }

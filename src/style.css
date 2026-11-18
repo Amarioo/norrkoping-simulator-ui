@@ -1060,6 +1060,109 @@ input[type='range'] {
   }
 }
 
+/* Interface U4: tablet and phone.
+   Compact layout (no side panel, the settings in the drawer) also for a tablet held upright and a phone on
+   its side. The same query as in App.svelte. The rules for a narrow phone (760 px) above still apply there. */
+@media (max-width: 900px), (max-height: 500px) {
+  .sim-layout {
+    display: block;
+  }
+  .has-drawer-bar {
+    padding-bottom: 76px;
+  }
+}
+/* A narrow phone: the map height follows the visible screen (svh = the height with the browser's bars shown),
+   so it does not jump when the address bar slides away. */
+@media (max-width: 760px) {
+  .map-panel {
+    height: 65svh;
+  }
+}
+/* A phone on its side: the map and the settings bar fit on one screen. */
+@media (max-height: 500px) {
+  .map-panel {
+    height: calc(100vh - 100px);
+    height: calc(100svh - 100px);
+    min-height: 220px;
+  }
+}
+/* Finger-sized controls where the main pointer is a finger (phones, tablets). 44 px is the recommended minimum;
+   16 px text in lists and date fields keeps iPhone from zooming the page when they are tapped. */
+@media (pointer: coarse) {
+  select,
+  input[type='date'],
+  .explorer-toolbar select {
+    min-height: 44px;
+    font-size: 16px;
+  }
+  input[type='range'] {
+    height: 44px;
+    margin: -8px 0 -12px;
+  }
+  .tab,
+  .label-toggle {
+    min-height: 44px;
+  }
+  .sim-clock button,
+  .theme-toggle {
+    width: 44px;
+    height: 44px;
+  }
+  .map-tool {
+    min-width: 44px;
+    height: 44px;
+  }
+}
+
+/* Interface U4: camera buttons on the map, only where a finger is a pointer. Two rows: raise, forward, lower
+   over left, back, right. */
+.camera-pad {
+  display: none;
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  grid-template-areas:
+    'up fwd down'
+    'left back right';
+  gap: 4px;
+  padding: 5px;
+  background: var(--overlay);
+  border-radius: 13px;
+  box-shadow: var(--shadow);
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+.camera-pad-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 9px;
+  background: var(--surface);
+  color: var(--ink-2);
+  touch-action: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.camera-pad-button.held {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.camera-pad-button svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+@media (any-pointer: coarse) {
+  .camera-pad {
+    display: grid;
+  }
+}
 /* Phase P0: fullscreen map and fps counter. */
 .map-panel:fullscreen {
   width: 100%;
