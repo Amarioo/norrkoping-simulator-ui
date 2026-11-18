@@ -73,6 +73,15 @@ Plain `http://` answers too (no redirect to HTTPS). **Still to do:** the interfa
 `https://norrkoping-simulator-ui.vercel.app`. A later backend release:
 `sudo k3s kubectl -n norrkoping-simulator set image deployment/simulator simulator=ghcr.io/amarioo/norrkoping-simulator-backend:sha-<commit>`.
 
+## Shorter address (2026-11-18, late evening): https://norrkoping-simulator.vercel.app
+
+The user asked for the address without "-ui". `norrkoping-simulator.vercel.app` was free and is
+added to the Vercel project as a second production address; the first one still works. The backend
+allows both: `ALLOWED_ORIGIN` in `deploy/k8s/simulator.yaml` (backend repository, committed locally,
+not pushed) and, with `kubectl set env`, in the running deployment, which restarted (same image,
+`sha-21167a5…`). Checked in the browser on the new address: connected, clock running, pause
+answered. The Vercel project itself is still named `norrkoping-simulator-ui`.
+
 ## The interface is live on Vercel (2026-11-18, evening)
 
 On the user's "Ja, skapa det". Created through the Vercel connection, in the same team as
