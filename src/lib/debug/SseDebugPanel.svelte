@@ -343,7 +343,7 @@
     {:else}
       <li class="empty">
         {total === 0
-          ? 'Inga händelser än. Kör backend (Ktor på port 8080) eller slå på en rå läsare.'
+          ? 'Inga händelser än. Kör backend (port 8080) eller slå på en rå läsare.'
           : 'Inga poster matchar filtret.'}
       </li>
     {/each}

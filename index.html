@@ -13,9 +13,13 @@
     <!--
       Start indicator: painted with the HTML, before any script has run, and removed by main.ts when
       the app mounts. Building the scene keeps the main thread busy for about two seconds; without
-      this the page stays blank for that time. The spinner is a transform animation, which the browser
-      keeps running while the main thread is busy. Colours: the page backgrounds of the two themes
-      (CHROME in src/lib/ui/themeDom.ts); main.ts sets data-theme first thing.
+      this the page stays blank for that time. A tram rolls in on a short piece of track, stops
+      at Söder Tull (a stop on the simulator's tram lines) and drives on: a transform
+      animation, which the browser keeps running while the main thread is busy. The tram is a side view
+      of the simulator's own (src/lib/publicTransport.ts): five sections, the same livery colours, the
+      pantograph on the middle section. The negative delay puts it in view at the first paint. Page
+      colours: the backgrounds of the two themes (CHROME in src/lib/ui/themeDom.ts); main.ts sets
+      data-theme first thing.
     -->
     <style>
       .start-loading {
@@ -35,27 +39,94 @@
         background: #f3f1ec;
         color: #1b2428;
       }
-      .start-loading span {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+      .start-box {
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+        --tram: min(300px, 47vw);
+        width: calc(var(--tram) * 520 / 300);
       }
-      .start-loading i {
-        width: 10px;
-        height: 10px;
-        border: 2px solid currentColor;
-        border-right-color: transparent;
-        border-radius: 50%;
-        animation: start-loading-spin 0.8s linear infinite;
+      .start-track {
+        position: relative;
+        width: 100%;
+        height: calc(var(--tram) * 46 / 312 + 26px);
+        overflow: hidden;
+        border-bottom: 1px solid rgb(127 140 146 / 55%);
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
       }
-      @keyframes start-loading-spin {
-        to {
-          transform: rotate(360deg);
+      /* Contact wire at the height of the pantograph's bar (y 0.9 of the tram's 46). */
+      .start-wire {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: calc(var(--tram) * 45.1 / 312);
+        height: 1px;
+        background: rgb(127 140 146 / 45%);
+      }
+      /* Weather shelter just ahead of where the tram's nose stops, in the tram's scale (10 units per metre). */
+      .start-shelter {
+        position: absolute;
+        left: 71.5%;
+        bottom: 0;
+        width: calc(var(--tram) * 52 / 312);
+      }
+      /* The stop sign on a pole above the middle of the shelter. */
+      .start-stop {
+        position: absolute;
+        left: 76.5%;
+        bottom: 0;
+        height: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        justify-items: center;
+        transform: translateX(-50%);
+      }
+      .start-stop b {
+        padding: 2px 7px;
+        border: 1px solid rgb(127 140 146 / 70%);
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        white-space: nowrap;
+      }
+      .start-stop i {
+        width: 2px;
+        background: rgb(127 140 146 / 70%);
+      }
+      .start-tram {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        animation: start-tram-pass 7s -0.9s infinite;
+      }
+      .start-tram svg {
+        display: block;
+        width: var(--tram);
+      }
+      /* Rolls in braking, stands with its nose at the shelter, pulls away. Percentages are of the track. */
+      @keyframes start-tram-pass {
+        0% {
+          transform: translateX(calc(-1 * var(--tram)));
+          animation-timing-function: cubic-bezier(0.15, 0.55, 0.3, 1);
+        }
+        40% {
+          transform: translateX(12%);
+        }
+        64% {
+          transform: translateX(12%);
+          animation-timing-function: cubic-bezier(0.6, 0, 0.85, 0.5);
+        }
+        100% {
+          transform: translateX(100%);
         }
       }
       @media (prefers-reduced-motion: reduce) {
-        .start-loading i {
+        .start-tram {
           animation: none;
+          transform: translateX(12%);
         }
       }
     </style>
@@ -63,7 +134,92 @@
   <body>
     <div id="app">
       <div class="start-loading" role="status">
-        <span><i></i>Startar simulatorn…</span>
+        <div class="start-box">
+          <div class="start-track" aria-hidden="true">
+            <div class="start-wire"></div>
+            <div class="start-stop"><b>Söder Tull</b><i></i></div>
+            <svg class="start-shelter" viewBox="0 0 52 30">
+              <rect x="5.2" y="8" width="41.6" height="16" fill="#9ec3cc" fill-opacity="0.16" />
+              <path d="M5.2 24h41.6M26 8v16" stroke="#6f7d84" stroke-width="0.6" />
+              <rect x="33" y="10.5" width="8" height="10" fill="#e9e9d9" fill-opacity="0.85" />
+              <path d="M34.5 13h5M34.5 15h5M34.5 17h3.4" stroke="#56636a" stroke-width="0.6" />
+              <rect x="10" y="24.4" width="18" height="1.5" fill="#a9824a" />
+              <path
+                d="M12.5 25.9v4.1M25.5 25.9v4.1M4.6 6v24M47.4 6v24"
+                stroke="#6f7d84"
+                stroke-width="1.2"
+              />
+              <rect x="1" y="4" width="50" height="2.2" rx="1" fill="#6f7d84" />
+            </svg>
+            <div class="start-tram">
+              <svg viewBox="0 0 312 46">
+                <clipPath id="start-tram-body">
+                  <path d="M9 8H303L309 36a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3Z" />
+                </clipPath>
+                <path
+                  d="M150 4 161 3.2 153 1.2M147 1.1h13"
+                  fill="none"
+                  stroke="#9aa6ab"
+                  stroke-width="1.1"
+                  stroke-linejoin="round"
+                />
+                <rect x="144" y="3.6" width="24" height="2" fill="#8d989c" />
+                <rect x="9" y="5.2" width="294" height="4" rx="1.6" fill="#08786d" />
+                <g clip-path="url(#start-tram-body)">
+                  <rect x="0" y="8" width="312" height="31" fill="#efb919" />
+                  <rect x="0" y="8" width="312" height="2.8" fill="#08786d" />
+                  <rect x="0" y="10.8" width="312" height="0.7" fill="#e9e9d9" />
+                  <path
+                    d="M7 23H308"
+                    stroke="#242c2b"
+                    stroke-width="14.2"
+                    stroke-dasharray="11.6 1.9"
+                  />
+                  <rect x="0" y="35.9" width="312" height="0.8" fill="#e9e9d9" />
+                  <rect x="0" y="36.7" width="312" height="2.3" fill="#08786d" />
+                  <g id="start-tram-door">
+                    <rect x="34.35" y="15.2" width="11.5" height="20.7" fill="#efb919" />
+                    <path
+                      d="M34.35 15.2v20.7M45.85 15.2v20.7"
+                      stroke="#a67c08"
+                      stroke-width="0.5"
+                    />
+                    <rect x="35.45" y="16.8" width="4.2" height="15.4" rx="0.6" fill="#242c2b" />
+                    <rect x="40.55" y="16.8" width="4.2" height="15.4" rx="0.6" fill="#242c2b" />
+                  </g>
+                  <use href="#start-tram-door" x="61.2" />
+                  <use href="#start-tram-door" x="122.4" />
+                  <use href="#start-tram-door" x="183.6" />
+                  <use href="#start-tram-door" x="244.8" />
+                  <path
+                    d="M64.2 8v31M125.4 8v31M186.6 8v31M247.8 8v31"
+                    stroke="#1c2326"
+                    stroke-width="2.4"
+                  />
+                  <rect x="304.4" y="31.4" width="3.2" height="2.2" fill="#fff3c4" />
+                  <rect x="4.4" y="31.4" width="3.2" height="2.2" fill="#c8382f" />
+                </g>
+                <rect x="12" y="39" width="288" height="2.6" fill="#2b3439" />
+                <g id="start-tram-bogie">
+                  <rect x="15" y="40.4" width="36" height="2.8" rx="1" fill="#3b474d" />
+                  <g fill="#222a2e" stroke="#9aa6ab" stroke-width="0.9">
+                    <circle cx="22" cy="42.5" r="3" />
+                    <circle cx="44" cy="42.5" r="3" />
+                  </g>
+                  <path
+                    d="M22 42.5h0M44 42.5h0"
+                    stroke="#9aa6ab"
+                    stroke-width="1.6"
+                    stroke-linecap="round"
+                  />
+                </g>
+                <use href="#start-tram-bogie" x="123" />
+                <use href="#start-tram-bogie" x="246" />
+              </svg>
+            </div>
+          </div>
+          <span>Startar simulatorn…</span>
+        </div>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>

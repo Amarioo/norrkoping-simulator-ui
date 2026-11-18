@@ -2,6 +2,20 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Interface U3: tram on the start screen, plain connection texts (2026-11-18) — approved by the user, committed and pushed
+
+[Report](start-tram/README.md). Only this repository.
+
+- **Start screen** (`index.html`): a tram in the simulator's livery rolls in above "Startar simulatorn…", stops at
+  a weather shelter signed "Söder Tull" and drives on (doors, bogies, contact wire; inline SVG, one CSS
+  transform animation of 7 s, stands still with "reduce motion"). Replaces the spinner.
+- **Texts:** banner "Försöker ansluta till servern…"; the 404 message no longer names Ktor; the sidebar line
+  "Kotlin / Ktor · CQRS · SSE · Three.js" removed; "Ktor" removed from the stream debug panel's hint.
+- **Checks:** type check 0; build OK; Vitest 640/641 (known `police.test.ts`); Playwright `simulation`,
+  `sse-reconnect`, `interface-u1` 5/5 (others not run); start screen and banner seen in the running app.
+- **Not verified:** light theme, "reduce motion", a phone.
+- Board: `U3` in *Done*. `.claude/launch.json`: `start-backend` (8095, a binary in the session's scratch folder).
+
 ## Publishing prepared: Vercel + k3s (2026-11-18) — LIVE since the evening of 2026-11-18, waiting for the user's test
 
 [Report and the steps](deploy/README.md). Committed and pushed in both repositories on the user's request

@@ -153,7 +153,7 @@ class CityStore {
         signal: AbortSignal.timeout(12000),
       });
       if (res.status === 404)
-        throw new Error('Starta om Ktor för att läsa in Norrköping Simulator.');
+        throw new Error('Servern svarade inte som väntat. Försök igen om en stund.');
       const data = await res.json();
       if (!res.ok) throw new Error(data.error ?? 'Kommandot misslyckades');
       this.notice = data.message;

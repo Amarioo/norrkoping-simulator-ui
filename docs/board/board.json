@@ -993,6 +993,53 @@
       "outcome": "Godkänd 2026-11-18, committad och pushad i båda repona (backend 2b3b5bb). Varje besökare får en egen stad med ?own-city eller VITE_CITY_SESSIONS=1; avstängt som standard. Publiceringen återstår (S-DEPLOY)."
     },
     {
+      "id": "U3",
+      "epic": "U",
+      "title": "Spårvagn på startskärmen, enklare anslutningstexter",
+      "status": "done",
+      "size": "S",
+      "report": "docs/start-tram/README.md",
+      "summary": "Medan simulatorn startar rullar en spårvagn i simulatorns färger in, stannar vid Söder Tull och åker vidare. Texterna om anslutningen nämner inte längre Ktor eller backend.",
+      "tasks": [
+        {
+          "text": "Spårvagn på startskärmen",
+          "done": true
+        },
+        {
+          "text": "Texter utan tekniska ord",
+          "done": true
+        },
+        {
+          "text": "Du testar och godkänner",
+          "done": true
+        }
+      ],
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Klar för ditt test. Startskärmen visar en gul och grön spårvagn som rullar förbi ovanför \"Startar simulatorn…\". När servern är borta står det \"Försöker ansluta till servern…\". Jag tog också bort raden \"Kotlin / Ktor · CQRS · SSE · Three.js\" under sidopanelen, säg till om den ska tillbaka. Ljust läge och telefon är inte tittade på. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Ändrat efter ditt besked: spårvagnen rullar in och bromsar, står knappt två sekunder vid en skylt \"Söder Tull\" och åker sedan vidare. Ett varv tar sju sekunder. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Mer detaljer efter ditt besked: dörrar på varje vagnsdel, tydligare hjul och boggier, kontaktledning ovanför och ett väderskydd med bänk och tidtabell under skylten \"Söder Tull\". Spårvagnen stannar nu med nosen vid väderskyddet, så att det syns hela tiden. Inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Godkänd av dig (\"perfekt\"), committad och pushad till origin/main på din begäran."
+        }
+      ],
+      "date": "2026-11-18",
+      "outcome": "Medan simulatorn startar rullar en spårvagn i simulatorns färger in, stannar vid ett väderskydd på Söder Tull och åker vidare. Texterna om anslutningen nämner inte längre Ktor eller backend. Godkänd av dig, committad och pushad. Ljust läge, \"minska rörelse\" och telefon är inte tittade på."
+    },
+    {
       "id": "S-DEPLOY",
       "epic": "S",
       "title": "Publicering: gränssnittet på Vercel, backenden i k3s",

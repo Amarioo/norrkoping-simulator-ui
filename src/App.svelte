@@ -429,9 +429,7 @@
         </details>
         <footer class="sidebar-footer">
           Kartdata och simulerad trafik · {cityMap.buildings.length.toLocaleString('sv-SE')} byggnader
-          · {cityMap.signals.length} signalpunkter<br /><span
-            >Kotlin / Ktor · CQRS · SSE · Three.js</span
-          >
+          · {cityMap.signals.length} signalpunkter
         </footer>
       </aside>
     {/if}
@@ -516,7 +514,7 @@
           <i></i>
         </div>
         {#if !city.connected}<div class="connection-banner">
-            Ansluter till Ktor… Starta om backend om du nyss uppdaterade projektet.
+            Försöker ansluta till servern…
           </div>{/if}
         {#if city.selected}<div class="vehicle-inspector">
             <button
