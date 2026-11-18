@@ -145,3 +145,6 @@ work/geodata/
 # Phase C2 (Vrinnevi illuminated trail) scratch (main worktree, hook builds, raw runs, logs, first
 # screenshots). Curated data is in docs/trail-c2/; reusable tools are in scripts/trail-c2/.
 /work/trail-c2/
+
+# Claude Code's local state (worktrees, launch configuration, locks).
+/.claude/
