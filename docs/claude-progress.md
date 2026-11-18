@@ -4,9 +4,9 @@ This file is the recovery checkpoint. Newest status first.
 
 ## Publishing prepared: Vercel + k3s (2026-11-18) — tested locally, committed on the user's request, nothing published
 
-[Report and the steps](deploy/README.md). Committed in both repositories (2026-11-18). The backend commit `e20722f`
-is **local only, not pushed**: its push starts the image workflow, which publishes a public image, and the push was
-stopped by the session's permission check. This repository: the commit "Publishing prepared".
+[Report and the steps](deploy/README.md). Committed and pushed in both repositories on the user's request
+(2026-11-18): backend `e20722f` (its push starts the image workflow, which publishes a public image to ghcr.io),
+this repository `ffb33dd`.
 
 - **Backend:** CORS for the origins in `ALLOWED_ORIGIN` (comma-separated), preflight answered; `Dockerfile`,
   `.github/workflows/image.yml` (image to ghcr.io on push to main), `deploy/k8s/simulator.yaml` (one replica,

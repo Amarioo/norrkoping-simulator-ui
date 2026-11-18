@@ -1,7 +1,8 @@
 # Publishing — the interface on Vercel, the backend in k3s (2026-11-18)
 
-Prepared and tested locally; **nothing is published**. Committed on the user's request (2026-11-18);
-the backend commit `e20722f` is local only until its push is allowed (the push publishes the image). Follows [A city per visitor](../visitor-city/README.md). No
+Prepared and tested locally; **nothing is deployed**. Committed and pushed on the user's request
+(2026-11-18): backend `e20722f`, this repository `ffb33dd`. The backend push started the image
+workflow (a public image on ghcr.io). Follows [A city per visitor](../visitor-city/README.md). No
 geodata, no coordinates, no earlier phase's output touched.
 
 ## What is ready
