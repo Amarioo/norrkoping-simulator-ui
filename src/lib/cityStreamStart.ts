@@ -5,9 +5,10 @@
  * here, the request goes out at once and the first snapshot is waiting when the app mounts.
  * city.connect() takes over the stream; this module must not import the map data (terrain.ts).
  */
+import { cityUrl } from './citySession';
 import { tapEventSource } from './debug/sseTap';
 
-export const CITY_STREAM_URL = '/api/simulator/stream';
+export const CITY_STREAM_URL = cityUrl('stream');
 
 let early: { source: EventSource; last: MessageEvent<string> | null } | null = null;
 

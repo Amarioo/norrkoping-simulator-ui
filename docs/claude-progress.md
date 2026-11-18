@@ -2,6 +2,25 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## A city per visitor (2026-11-18) — approved by the user (2026-11-18), committed and pushed in both repositories
+
+[Report](visitor-city/README.md). First step towards a public deployment (interface on Vercel, backend in the
+user's k3s cluster). Changes in **both** repositories; backend `main` = `2b3b5bb`, this repository: the commit "A city per visitor".
+
+- **Backend:** `/api/simulator/*` takes `?session=<id>`; `internal/sim/sessions.go` runs a city per id, removes it
+  after `CITY_IDLE` (60 s) without listener or command, at most `MAX_CITIES` (20), then 503. Without the
+  parameter: the shared city, as before.
+- **Interface:** `src/lib/citySession.ts`; on with `VITE_CITY_SESSIONS=1` in the build or `?own-city` in the
+  address (id per tab in sessionStorage). Off by default, because the tests steer the shared city through the API.
+- **Measured:** one city = 0.3 % of a core at the start values, about 6 % at the heaviest setting, 5.4 MB, 14 ms to create.
+- **Checks:** backend `go test ./...` pass (`-race` not run locally); type check 0 errors; build OK; Vitest 640/641
+  (the known `police.test.ts`); Playwright `visitor-city` 2/2 plus `interface-u1`, `simulation`, `sse-debug`,
+  `sse-reconnect`, `bridge-traffic` (others not run); two tabs checked in the running app.
+- **Next (board `S-DEPLOY`, not started):** Dockerfile, CORS, configurable backend address, k3s manifests, HTTPS,
+  a request limit per address.
+- Board: `S-VISIT` in *Done*. `.claude/launch.json` has `visitor-backend` (8097, a binary in the session's
+  scratch folder, rebuild with `go build`) and `visitor-dev` (5391).
+
 ## Start indicator, start-up measurements and the Go backend (2026-11-18) — committed and pushed
 
 - **Backend is now Go.** `norrkoping-simulator-backend` `main` = `faa1106`: the Kotlin/Ktor server was ported to Go

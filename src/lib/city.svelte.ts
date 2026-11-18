@@ -1,4 +1,5 @@
 import { terrain } from './terrain';
+import { CITY_SESSION, cityUrl } from './citySession';
 import { takeCityStream } from './cityStreamStart';
 import { watchStream, type StreamWatch } from './sseWatchdog';
 import type { Vec3, Activity } from './types';
@@ -108,6 +109,14 @@ class CityStore {
       if (last) onCity(last);
       stream.onerror = () => {
         this.connected = false;
+        // An EventSource does not say why it failed. With a city per visitor the usual reason is
+        // that every city is taken (503 with a message); ask for it.
+        if (CITY_SESSION)
+          fetch(cityUrl('world'), { signal: AbortSignal.timeout(5000) })
+            .then(async (res) => {
+              if (res.status === 503 && !this.connected) this.error = (await res.json()).error;
+            })
+            .catch(() => {});
       };
       return stream;
     };
@@ -137,7 +146,7 @@ class CityStore {
     this.error = '';
     this.notice = '';
     try {
-      const res = await fetch('/api/simulator/' + name, {
+      const res = await fetch(cityUrl(name), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(body),

@@ -975,6 +975,28 @@
       ],
       "date": "2026-11-18",
       "outcome": "Hela elljusspåret (2,4 km) upplyst: 58 nya uppskattade lyktor på den förut mörka delen (1,4 km) + 43 befintliga = 101 (100 räknade 2019). Lyser hela natten som övrig belysning; enda ljusväljaren i gränssnittet är Idrottsparkens strålkastare. Kostnad ca 0,1 ms per bild, 20 shaderprogram som förut. Godkänd, committad (2155a5a, uppdateringen 196f7ca) och pushad."
+    },
+    {
+      "id": "S-VISIT",
+      "epic": "S",
+      "title": "En egen stad per besökare",
+      "status": "done",
+      "report": "docs/visitor-city/README.md",
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Byggd och testad lokalt, inget committat. Slås på med VITE_CITY_SESSIONS=1 i bygget eller ?own-city i adressen; utan det är allt som förut. Väntar på ditt test."
+        }
+      ],
+      "date": "2026-11-18",
+      "outcome": "Godkänd 2026-11-18, committad och pushad i båda repona (backend 2b3b5bb). Varje besökare får en egen stad med ?own-city eller VITE_CITY_SESSIONS=1; avstängt som standard. Publiceringen återstår (S-DEPLOY)."
+    },
+    {
+      "id": "S-DEPLOY",
+      "epic": "S",
+      "title": "Publicering: gränssnittet på Vercel, backenden i k3s",
+      "status": "backlog"
     }
   ]
 }

@@ -11,11 +11,12 @@
  * own `fetch()` connection to a stream and parses the text itself, so it sees every event name, the
  * `:` comment lines and `retry:` fields too — at the price of one extra connection to the backend.
  */
+import { cityUrl } from '../citySession';
 import { SseLog, SseTextParser, type SseEntryInput } from './sseLog';
 import { setTapListener, type TappedSource } from './sseTap';
 
 /** The streams the backend serves (norrkoping-simulator-backend Application.kt). */
-export const KNOWN_STREAMS = ['/api/simulator/stream', '/api/sse/world', '/api/sse/telemetry'];
+export const KNOWN_STREAMS = [cityUrl('stream'), '/api/sse/world', '/api/sse/telemetry'];
 
 export const sseLog = new SseLog();
 

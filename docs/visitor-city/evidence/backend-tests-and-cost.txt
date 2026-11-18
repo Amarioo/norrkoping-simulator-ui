@@ -1,0 +1,21 @@
+# go test ./... (backend working tree on faa1106, go1.27.4 windows/amd64, 2026-11-18)
+?   	norrkoping-simulator/cmd/simulator	[no test files]
+ok  	norrkoping-simulator/internal/api	(cached)
+ok  	norrkoping-simulator/internal/sim	(cached)
+?   	norrkoping-simulator/src/main/resources	[no test files]
+
+# go test ./internal/sim -run CityMemory -bench 'CityStep(Default|Heaviest)|NewCity' -benchtime 3s -v
+    city_bench_test.go:64: live heap per city: 5.37 MB
+--- PASS: TestCityMemory (0.58s)
+goos: windows
+goarch: amd64
+pkg: norrkoping-simulator/internal/sim
+cpu: AMD Ryzen 7 9800X3D 8-Core Processor           
+BenchmarkCityStepDefault
+BenchmarkCityStepDefault-16     	   12159	    302995 ns/op
+BenchmarkCityStepHeaviest
+BenchmarkCityStepHeaviest-16    	     571	   6055907 ns/op
+BenchmarkNewCity
+BenchmarkNewCity-16             	     266	  13582465 ns/op
+PASS
+ok  	norrkoping-simulator/internal/sim	14.975s
