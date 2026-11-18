@@ -3,7 +3,7 @@
 Worked directly on local `main` (= `origin/main` `3161e89`), backend unchanged. **Approved by the
 user on 2026-11-13; committed (`2155a5a`) and pushed to `origin/main`.** Started on the user's "Start C2" of 2026-11-13.
 
-## Update, later on 2026-11-13: lit all night, and only Parken's switch left — NOT committed
+## Update, later on 2026-11-13: lit all night, and only Parken's switch left — approved 2026-11-18, committed (`196f7ca`) and pushed
 
 After approving, the user decided: *"The switch off does not matter. I want everything to be lighted
 up during the night in the city. The only switch and option that still should be left is the one for

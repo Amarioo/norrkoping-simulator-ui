@@ -2,9 +2,29 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Phase C2 update — the trail lit all night, only Parken's light switch left in the interface (2026-11-13) — for the user's test, NOT committed
+## Start indicator, start-up measurements and the Go backend (2026-11-18) — committed and pushed
 
-[Report, section "Update"](trail-c2/README.md). On local `main` (= `origin/main` `1b8756f`). **Nothing is committed.**
+- **Backend is now Go.** `norrkoping-simulator-backend` `main` = `faa1106`: the Kotlin/Ktor server was ported to Go
+  (`go run ./cmd/simulator`, Go 1.24+) and the Kotlin sources removed. Same routes, bodies and behaviour;
+  `testdata/golden.json` there holds the frozen Kotlin reference traces. This repository's `README.md` follows (`781a483`).
+  `src/main/resources` and `src/test/resources` in the backend are unchanged paths, so the importers and
+  control-file tests here write where they did.
+- **Start indicator** (`62660bc`): `index.html` paints "Startar simulatorn…" before any script runs and `src/main.ts`
+  removes it on mount. First contentful paint 2.6–3.4 s → 0.03–0.1 s; time to the complete map unchanged (about 3.3 s).
+- **Start-up measurements** (installed Chrome, RTX 5070 Ti, 1920×1080, dev server; scripts were scratch, not kept):
+  main thread: scene build one 1.7 s task, then about 0.6–0.7 s waiting for 20 shader programs (about 111 k characters
+  of source each; compiled in parallel, not helped by the browser's disk cache), then about 0.6 s of buffer uploads.
+  Workers: each parses the data in 0.6 s; terrain 1.8 s, network 2.3 s (strips 1.2 s + joins 1.1 s), buildings and
+  markings 0.7 s. **Tried and reverted:** building the two network halves in two workers. The workers finished 0.3 s
+  earlier, the map did not (the main thread is the bottleneck), and it cost 70 draw calls. Getting towards 2 s needs
+  prebuilt binary geometry together with a split scene build: a phase of its own, not started.
+- **Housekeeping:** `.claude/` ignored (`3b4c05f`); Interface U1 evidence that was left out of its commit added (`c02ab18`).
+- **Checks (2026-11-18):** type check 0 errors; build OK; Vitest 640/641 (the known `police.test.ts`); Playwright
+  `interface-u1`, `interface-u2`, `bridge-traffic` 5/5 against the Go backend (the other spec files not run); CI green on `62660bc`.
+
+## Phase C2 update — the trail lit all night, only Parken's light switch left in the interface (2026-11-13) — approved 2026-11-18, committed (`196f7ca`) and pushed
+
+[Report, section "Update"](trail-c2/README.md). Approved by the user on 2026-11-18; committed as `196f7ca` and pushed to `origin/main`.
 The user, after approving C2: "The switch off does not matter. I want everything to be lighted up
 during the night in the city. The only switch and option that still should be left is the one for parken."
 

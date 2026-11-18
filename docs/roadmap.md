@@ -242,7 +242,7 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
     43 lyktor fanns redan på 929 m (från L2bc); 1 440 m var mörka eftersom gångvägsregeln saknade
     regel för `highway=track`. Nu 58 nya uppskattade lyktor där, alltså 101 runt slingan (en besökare
     räknade 100 lampor 2019, NT). Slingan lyser hela natten som all annan belysning (ditt beslut 2026-11-13; en första version
-    släckte 22–06 på ett antagande och togs bort, inte committat ännu). Enda ljusväljaren kvar i
+    släckte 22–06 på ett antagande och togs bort; godkänt 2026-11-18, committat `196f7ca`). Enda ljusväljaren kvar i
     gränssnittet är Idrottsparkens strålkastare. Inga nya
     shaderprogram (20), kostnad ca 0,1 ms per bild.*
 
