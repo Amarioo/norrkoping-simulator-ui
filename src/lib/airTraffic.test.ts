@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { Mesh, MeshStandardMaterial, PerspectiveCamera, Vector3 } from 'three';
+import { Box3, Mesh, MeshStandardMaterial, PerspectiveCamera, Vector3, type Object3D } from 'three';
 import { createTransportModels } from './transportModels';
 import { AIRCRAFT_MAX, createAircraftLights } from './lighting/aircraftLightsView';
-import { SOCKETS } from './lighting/aircraftLights';
+import { SOCKETS, socketsOf } from './lighting/aircraftLights';
+import { AIRCRAFT_TYPES, jetLights, typeOf } from './aircraftTypes';
 import { FLIGHT_PHASE, MAX_PLANES, planesOf } from './flights';
 import type { Aircraft, TrafficSettings } from './city.svelte';
 
@@ -153,5 +154,79 @@ describe('Air traffic: settings and phase names', () => {
     ])
       expect(FLIGHT_PHASE[phase]).toBeTruthy();
     expect(Object.keys(FLIGHT_PHASE).length).toBe(10);
+  });
+});
+
+describe('Air routes: aircraft types', () => {
+  const jets = Object.entries(AIRCRAFT_TYPES).filter(([, t]) => t.jet);
+  const meshesOf = (body: Object3D) => {
+    const list: Mesh[] = [];
+    body.traverse((o) => (o as Mesh).isMesh && list.push(o as Mesh));
+    return list;
+  };
+
+  it('the measures are those of the types, and every type has a name', () => {
+    expect(Object.keys(AIRCRAFT_TYPES).sort()).toEqual(['A20N', 'A21N', 'B38M', 'TP']);
+    expect(jets.length).toBe(3);
+    for (const [, t] of Object.entries(AIRCRAFT_TYPES)) expect(t.name && t.short).toBeTruthy();
+    expect(AIRCRAFT_TYPES.A21N.jet!.length).toBeGreaterThan(AIRCRAFT_TYPES.A20N.jet!.length + 6);
+    expect(typeOf(undefined)).toBe('TP');
+    expect(typeOf('B744')).toBe('TP');
+    expect(typeOf('A20N')).toBe('A20N');
+  });
+
+  it('a jet is drawn to its length, span and tail height, with its wheels on the ground', () => {
+    const transport = createTransportModels();
+    for (const [id, t] of jets) {
+      transport.update([], [plane(1, { type: id, pos: [0, 0, 0], heading: 0, gear: true })], 1, 0);
+      const body = transport.aircraft.children.find((b) => b.visible)!;
+      const box = new Box3().setFromObject(body);
+      const size = box.getSize(new Vector3()).multiplyScalar(25);
+      const s = t.jet!;
+      // The tip devices lean a quarter of a metre outwards; the fin is the highest part.
+      expect(size.z).toBeCloseTo(s.length, 1);
+      expect(size.x).toBeGreaterThan(s.span);
+      expect(size.x).toBeLessThan(s.span + 1);
+      expect(box.max.y * 25).toBeCloseTo(s.tailHeight, 1);
+      // (A wheel is a 14-sided prism, so its lowest corner is up to 2 cm above the ground.)
+      expect(Math.abs(box.min.y * 25)).toBeLessThan(0.02);
+      // Few parts: a jet is a dozen draw calls, not the turboprop's fifty-five.
+      expect(meshesOf(body).length).toBeLessThanOrEqual(12);
+      expect(body.getObjectByName('gear')).toBeTruthy();
+      expect(body.getObjectByName('beacon')).toBeTruthy();
+    }
+    transport.dispose();
+  });
+
+  it('a place in the fleet changes body with its type, and each type keeps its own lights', () => {
+    const transport = createTransportModels();
+    const lights = createAircraftLights();
+    const camera = new PerspectiveCamera(50, 1.5, 0.01, 1000);
+    camera.position.set(0, 40, 0.01);
+    camera.lookAt(0, 0, 0);
+    camera.updateMatrixWorld();
+    const at = (kind: string) =>
+      lights.describe().lights.find((l) => l.kind === kind)!.world as [number, number, number];
+    for (const id of ['TP', 'A21N', 'B38M', 'TP']) {
+      transport.update([], [plane(1, { type: id, pos: [0, 0, 0], heading: 0 })], 1, 0);
+      expect(transport.aircraft.children.filter((b) => b.visible).length).toBe(1);
+      expect(transport.aircraftPoses()[0].type).toBe(id);
+      lights.update(transport.aircraftPoses(), 0, 0.02, camera, 1, 'auto', 1000, null);
+      // Red on the left wing tip (+x), green on the right: half a span apart from the centre line.
+      const span = AIRCRAFT_TYPES[id].jet?.span ?? 23.2;
+      expect(at('navLeft')[0] * 25).toBeCloseTo(span / 2, 0);
+      expect(at('navRight')[0] * 25).toBeCloseTo(-span / 2, 0);
+      expect(lights.describe().instances).toBe(SOCKETS.length);
+    }
+    // The turboprop in the first place is the original model again, not a copy.
+    expect(transport.aircraft.children.find((b) => b.visible)).toBe(transport.airplane);
+    expect(socketsOf('A20N').length).toBe(SOCKETS.length);
+    expect(socketsOf('A20N')).toBe(socketsOf('A20N'));
+    expect(socketsOf(undefined)).toBe(SOCKETS);
+    // A jet's lights are where its model has them.
+    const places = jetLights(AIRCRAFT_TYPES.A20N.jet!);
+    for (const s of socketsOf('A20N')) expect(s.position).toEqual(places[s.kind]);
+    lights.dispose();
+    transport.dispose();
   });
 });

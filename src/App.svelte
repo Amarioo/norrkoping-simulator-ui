@@ -6,6 +6,7 @@
   import Scene from './lib/Scene.svelte';
   import { CITY_VIEWS, cityMap } from './lib/mapModel';
   import { city, FLIGHT_PHASE, MAX_PLANES, VEHICLE_NAMES } from './lib/city.svelte';
+  import { AIRCRAFT_TYPES, typeOf } from './lib/aircraftTypes';
   import { terrain } from './lib/terrain';
   import { formatClock, lightingState, setClock } from './lib/lighting/state.svelte';
   import { dayPhase, localToUtc, presets, solarPosition } from './lib/lighting/solar';
@@ -378,7 +379,14 @@
       <p class="flight-phase">
         {plane ? (FLIGHT_PHASE[plane.phase] ?? plane.phase) : 'Flygtrafiken är avstängd'}
       </p>
-      {#if plane}<p class="control-note">{plane.origin} → {plane.destination}</p>{/if}
+      {#if plane}
+        <p class="control-note">
+          {plane.origin} → {plane.destination}{plane.route ? ', ' + plane.route : ''}
+        </p>
+        {#if plane.type}<p class="control-note flight-type">
+            {AIRCRAFT_TYPES[typeOf(plane.type)].name}
+          </p>{/if}
+      {/if}
       <button
         class="secondary-button"
         disabled={!plane}
@@ -397,7 +405,9 @@
                 aria-pressed={a.id === plane?.id}
                 onclick={() => choosePlane(a.id)}
                 ><b>{a.id}</b><span>{FLIGHT_PHASE[a.phase] ?? a.phase}</span><small
-                  >{airportCode(a.origin)} → {airportCode(a.destination)}</small
+                  >{a.type ? AIRCRAFT_TYPES[typeOf(a.type)].short + ' · ' : ''}{airportCode(
+                    a.origin,
+                  )} → {airportCode(a.destination)}{a.route ? ' ' + a.route : ''}</small
                 ></button
               >
             </li>
@@ -406,8 +416,9 @@
       {/if}
       <p class="micro-note">
         Fiktiv flygpendel till den tidigare F13-basen. Banornas lägen och riktningar följer kartan,
-        och planen köar på de kartlagda taxislingorna vid banändarna. Tider, hastigheter, flyghöjder
-        och avgångstider är simulatorns uppskattning.
+        och planen köar på de kartlagda taxislingorna vid banändarna. Flygplanstyp och rutt (över,
+        norr om eller söder om staden) slumpas. Rutter, tider, hastigheter, flyghöjder, avgångstider
+        och planens färger är simulatorns påhitt, inte flygbolagens.
       </p>
     </Tabs.Content>
   </Tabs.Root>

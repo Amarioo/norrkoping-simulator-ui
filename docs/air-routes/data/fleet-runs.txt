@@ -1,0 +1,26 @@
+ESSP "över staden": 584 units at 2.55 units/s, nearest the other direction 4.0 units
+ESSP "norr om staden": 668 units at 2.92 units/s, nearest the other direction 4.0 units
+ESSP "söder om staden": 616 units at 2.69 units/s, nearest the other direction 41.9 units
+F13 "över staden": 251 units at 2.55 units/s, nearest the other direction 4.0 units
+F13 "norr om staden": 304 units at 3.09 units/s, nearest the other direction 4.0 units
+F13 "söder om staden": 325 units at 3.30 units/s, nearest the other direction 4.0 units
+1 aircraft, steps [0.05]: 49 flights, 0.49 in the air on average, closest +Inf (in the air +Inf), longest wait 45 s, nearest the edge of the map 10.2, routes flown 6
+1 aircraft, steps [0.02]: 49 flights, 0.49 in the air on average, closest +Inf (in the air +Inf), longest wait 45 s, nearest the edge of the map 10.2, routes flown 6
+1 aircraft, steps [0.05 0.05 0.013]: 49 flights, 0.49 in the air on average, closest +Inf (in the air +Inf), longest wait 45 s, nearest the edge of the map 10.2, routes flown 6
+2 aircraft, steps [0.05]: 98 flights, 0.98 in the air on average, closest 34.75 (in the air 35.31), longest wait 45 s, nearest the edge of the map 10.2, routes flown 6
+2 aircraft, steps [0.02]: 98 flights, 0.98 in the air on average, closest 34.74 (in the air 35.14), longest wait 45 s, nearest the edge of the map 10.2, routes flown 6
+2 aircraft, steps [0.05 0.05 0.013]: 98 flights, 0.98 in the air on average, closest 34.74 (in the air 35.12), longest wait 45 s, nearest the edge of the map 10.2, routes flown 6
+3 aircraft, steps [0.05]: 132 flights, 1.33 in the air on average, closest 2.24 (in the air 7.13), longest wait 273 s, nearest the edge of the map 10.2, routes flown 6
+3 aircraft, steps [0.02]: 132 flights, 1.33 in the air on average, closest 2.23 (in the air 7.23), longest wait 273 s, nearest the edge of the map 10.2, routes flown 6
+3 aircraft, steps [0.05 0.05 0.013]: 132 flights, 1.33 in the air on average, closest 2.23 (in the air 7.49), longest wait 273 s, nearest the edge of the map 10.2, routes flown 6
+4 aircraft, steps [0.05]: 168 flights, 1.68 in the air on average, closest 2.24 (in the air 13.77), longest wait 273 s, nearest the edge of the map 10.2, routes flown 6
+4 aircraft, steps [0.02]: 168 flights, 1.68 in the air on average, closest 2.23 (in the air 13.86), longest wait 273 s, nearest the edge of the map 10.2, routes flown 6
+4 aircraft, steps [0.05 0.05 0.013]: 168 flights, 1.68 in the air on average, closest 2.23 (in the air 13.88), longest wait 273 s, nearest the edge of the map 10.2, routes flown 6
+5 aircraft, steps [0.05]: 203 flights, 2.02 in the air on average, closest 2.11 (in the air 20.39), longest wait 362 s, nearest the edge of the map 10.2, routes flown 6
+5 aircraft, steps [0.02]: 203 flights, 2.02 in the air on average, closest 2.11 (in the air 20.40), longest wait 362 s, nearest the edge of the map 10.2, routes flown 6
+5 aircraft, steps [0.05 0.05 0.013]: 203 flights, 2.02 in the air on average, closest 2.11 (in the air 20.40), longest wait 362 s, nearest the edge of the map 10.2, routes flown 6
+6 aircraft, steps [0.05]: 243 flights, 2.42 in the air on average, closest 2.11 (in the air 20.39), longest wait 437 s, nearest the edge of the map 10.2, routes flown 6
+6 aircraft, steps [0.02]: 243 flights, 2.42 in the air on average, closest 2.11 (in the air 20.40), longest wait 437 s, nearest the edge of the map 10.2, routes flown 6
+6 aircraft, steps [0.05 0.05 0.013]: 243 flights, 2.42 in the air on average, closest 2.11 (in the air 20.40), longest wait 437 s, nearest the edge of the map 10.2, routes flown 6
+6 aircraft in 6 h: 243 flights with the timetable, 191 without
+5 aircraft in 6 h: 203 flights with the timetable, 213 without

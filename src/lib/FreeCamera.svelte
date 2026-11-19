@@ -8,6 +8,7 @@
   import { LEGACY_LEVELS, terrain } from './terrain';
   import { city } from './city.svelte';
   import { padKeys } from './cameraPad';
+  import { AIRCRAFT_TYPES, typeOf } from './aircraftTypes';
   let {
     focus = 'overview',
     follow = $bindable(''),
@@ -114,9 +115,11 @@
         city.snapshot.vehicles.find((v) => String(v.id) === follow);
       if (item) {
         const kind = 'kind' in item ? item.kind : 'plane';
+        // Air routes: a jet is about twice the turboprop, so the camera follows from twice as far.
+        const jet = 'type' in item && !!AIRCRAFT_TYPES[typeOf(item.type)].jet ? 2 : 1;
         const distance =
             kind === 'plane'
-              ? 3.8
+              ? 3.8 * jet
               : kind === 'train'
                 ? 5
                 : kind === 'tram'
@@ -125,9 +128,11 @@
                     ? 1.4
                     : 0.85,
           height =
-            kind === 'plane' || kind === 'train'
-              ? 1.5
-              : kind === 'tram'
+            kind === 'plane'
+              ? 1.5 * jet
+              : kind === 'train'
+                ? 1.5
+                : kind === 'tram'
                 ? 1
                 : kind === 'bus'
                   ? 0.65

@@ -222,6 +222,10 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   "Flygplan" och en lista i Flyg-fliken. Tider, hastigheter, flyghöjder och avgångstider är uppskattningar.*
   - Möjlig fortsättning: uppställning vid terminalen på Kungsängen (kräver uppskattade uppställningsplatser
     och en regel för den enda länken till banan).
+- [ ] **E4 Flygrutter och flygplanstyper** — L — *genomförd 2026-11-19 på main i båda kodförråden, väntar på
+  ditt test, inte committad: [docs/air-routes/README.md](air-routes/README.md). Tre rutter åt varje håll (över,
+  norr om och söder om staden), alltid innanför kartan. Flygplanstypen slumpas: turboprop, Airbus A320neo,
+  Airbus A321neo eller Boeing 737 MAX 8. Rutterna och planens färger är påhittade.*
 
 ### Spår C: Vrinneviskogen
 

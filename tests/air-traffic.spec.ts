@@ -1,4 +1,6 @@
+import fs from 'node:fs';
 import { test, expect, type APIRequestContext } from '@playwright/test';
+import { AIRCRAFT_TYPES } from '../src/lib/aircraftTypes';
 
 // Air traffic: up to six aircraft share the two runways. The backend must be one that flies the fleet
 // (docs/air-traffic/README.md); the single legacy shuttle is covered by simulation.spec.ts.
@@ -79,8 +81,16 @@ test('the slider, the list of aircraft and following one of them', async ({ page
   await expect(page.locator('.flight-code')).toHaveText('NK-01');
   for (const [i, id] of ids(5).entries()) await expect(rows.nth(i)).toContainText(id);
   await expect(rows.nth(0)).toContainText(/NRK → F13|F13 → NRK/);
+  // Air routes: every row and the card name the aircraft's type.
+  const types: string[] = (await world(request)).aircraft.map((a: { type: string }) => a.type);
+  for (const [i, type] of types.entries()) {
+    expect(Object.keys(AIRCRAFT_TYPES)).toContain(type);
+    await expect(rows.nth(i)).toContainText(AIRCRAFT_TYPES[type].short);
+  }
+  await expect(page.locator('.flight-type')).toHaveText(AIRCRAFT_TYPES[types[0]].name);
   await rows.nth(2).click();
   await expect(page.locator('.flight-code')).toHaveText('NK-03');
+  await expect(page.locator('.flight-type')).toHaveText(AIRCRAFT_TYPES[types[2]].name);
   await expect(rows.nth(2)).toHaveAttribute('aria-pressed', 'true');
   await expect(rows.nth(0)).toHaveAttribute('aria-pressed', 'false');
 
@@ -150,6 +160,21 @@ test('six aircraft take turns on the runways without meeting', async ({ request 
   });
   await request.post('/api/simulator/reset', { data: {} });
   await request.post('/api/simulator/pause', { data: { paused: false } });
+  // Air routes: the outline of the mapped area (scene x, z), which no aircraft may leave.
+  const outline: [number, number][] = JSON.parse(
+    fs.readFileSync('src/lib/data/norrkoping-map.json', 'utf8'),
+  ).meta.clip;
+  const insideMap = ([x, , z]: number[]) => {
+    let inside = false;
+    for (let i = 0, j = outline.length - 1; i < outline.length; j = i++) {
+      const [ax, az] = outline[i],
+        [bx, bz] = outline[j];
+      if (az > z !== bz > z && x < ((bx - ax) * (z - az)) / (bz - az) + ax) inside = !inside;
+    }
+    return inside;
+  };
+  const routes = new Set<string>(),
+    kinds = new Set<string>();
   const phases = new Set<string>();
   let closest = Infinity,
     samples = 0;
@@ -160,6 +185,12 @@ test('six aircraft take turns on the runways without meeting', async ({ request 
     samples++;
     for (const [i, a] of w.aircraft.entries()) {
       phases.add(a.phase);
+      kinds.add(a.type);
+      expect(insideMap(a.pos), `${a.id} at ${a.pos} in ${a.phase}`).toBe(true);
+      if (['CLIMB', 'CRUISE', 'APPROACH'].includes(a.phase)) {
+        expect(a.route).toBeTruthy();
+        routes.add(a.origin + ': ' + a.route);
+      }
       for (const b of w.aircraft.slice(i + 1))
         closest = Math.min(
           closest,
@@ -186,6 +217,10 @@ test('six aircraft take turns on the runways without meeting', async ({ request 
   ])
     expect(phases).toContain(phase);
   expect(phases).not.toContain('HOLDING');
+  // Twenty simulated minutes are a dozen flights: more than one route, and only known types.
+  expect(routes.size).toBeGreaterThanOrEqual(3);
+  for (const route of routes) expect(route).toMatch(/: (över|norr om|söder om) staden$/);
+  for (const kind of kinds) expect(Object.keys(AIRCRAFT_TYPES)).toContain(kind);
   const landings = w.events.filter((e: { kind: string }) => e.kind === 'landing');
   expect(landings.length).toBeGreaterThan(0);
   expect(landings[0].message).toMatch(/: NK-0[1-6] har landat\.$/);

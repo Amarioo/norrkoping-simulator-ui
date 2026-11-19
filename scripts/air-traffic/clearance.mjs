@@ -1,5 +1,5 @@
 // Air traffic: how close the aircraft's ground paths come to the mapped buildings.
-//   node scripts/air-traffic/clearance.mjs [out.json]
+//   node scripts/air-traffic/clearance.mjs [out.json] [geometry.json] [half span in metres]
 // Reads docs/air-traffic/data/geometry.json (written by the backend's TestWriteAirTrafficGeometry: the
 // ground path of each runway, from the end of the landing roll round the taxiway loop to the threshold)
 // and the buildings of src/lib/data/norrkoping-map.json, both in scene units (1 unit = 25 m). Prints, and
@@ -7,8 +7,13 @@
 // tip. Exits with an error if a path runs through a building or a wing would touch one.
 import fs from 'node:fs';
 
-const HALF_SPAN = 11.5 / 25; // the drawn model's wing (transportModels.ts: wing(11.5, …)), in scene units
-const geometry = JSON.parse(fs.readFileSync('docs/air-traffic/data/geometry.json', 'utf8'));
+// Without the last two arguments: the geometry of the first air traffic phase and the turboprop's wing
+// (transportModels.ts: wing(11.5, …)). The air routes phase passes its own geometry and the widest
+// type's half span, 17.96 m.
+const HALF_SPAN = Number(process.argv[4] ?? 11.5) / 25; // in scene units
+const geometry = JSON.parse(
+  fs.readFileSync(process.argv[3] ?? 'docs/air-traffic/data/geometry.json', 'utf8'),
+);
 const map = JSON.parse(fs.readFileSync('src/lib/data/norrkoping-map.json', 'utf8'));
 
 const toSegment = (p, a, b) => {

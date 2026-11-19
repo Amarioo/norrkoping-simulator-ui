@@ -1,0 +1,68 @@
+{
+  "base": "http://127.0.0.1:5401",
+  "resets": 5,
+  "fleet": [
+    "NK-01 A20N",
+    "NK-02 TP",
+    "NK-03 A21N",
+    "NK-04 B38M",
+    "NK-05 B38M",
+    "NK-06 B38M"
+  ],
+  "shots": [
+    {
+      "name": "01-type-A20N",
+      "note": "NK-01, A20N, in the queue at Norrköpings flygplats"
+    },
+    {
+      "name": "02-type-TP",
+      "note": "NK-02, TP, in the queue at Bråvalla F13"
+    },
+    {
+      "name": "03-type-A21N",
+      "note": "NK-03, A21N, in the queue at Norrköpings flygplats"
+    },
+    {
+      "name": "04-type-B38M",
+      "note": "NK-04, B38M, in the queue at Bråvalla F13"
+    },
+    {
+      "name": "05-queue-from-above",
+      "note": "the queue around NK-01 (A20N) at Norrköpings flygplats"
+    },
+    {
+      "name": "06-following-a-jet-on-a-route",
+      "note": "NK-01, A20N, CRUISE, from Norrköpings flygplats söder om staden, at 196.3,12.0,59.6"
+    },
+    {
+      "name": "07-night-jet-lights",
+      "note": "NK-03, A21N, QUEUE at Norrköpings flygplats"
+    }
+  ],
+  "errors": [],
+  "card": {
+    "code": "NK-01",
+    "type": "Airbus A320neo",
+    "status": "FÖLJER NK-01",
+    "rows": [
+      "NK-01\nPå väg\nA320neo · NRK → F13 söder om staden",
+      "NK-02\nStartar\nTurboprop · F13 → NRK söder om staden",
+      "NK-03\nKöar till startbanan\nA321neo · NRK → F13",
+      "NK-04\nKöar till startbanan\n737 MAX 8 · F13 → NRK",
+      "NK-05\nKöar till startbanan\n737 MAX 8 · NRK → F13",
+      "NK-06\nKöar till startbanan\n737 MAX 8 · F13 → NRK"
+    ]
+  },
+  "night": {
+    "aircraft": 6,
+    "instances": 66,
+    "types": [
+      "NK-01 A20N",
+      "NK-02 TP",
+      "NK-03 A21N",
+      "NK-04 B38M",
+      "NK-05 B38M",
+      "NK-06 B38M"
+    ]
+  }
+}

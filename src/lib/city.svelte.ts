@@ -44,6 +44,10 @@ export interface Aircraft {
   destination: string;
   speed: number;
   gear: boolean;
+  /** Air routes: aircraft type (aircraftTypes.ts); missing for the single legacy shuttle. */
+  type?: string;
+  /** Air routes: name of the route it is cleared for or flying, e.g. "norr om staden". */
+  route?: string;
 }
 export interface CitySnapshot {
   terrainRevision?: string;

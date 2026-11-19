@@ -31,6 +31,8 @@ import {
 } from './lighting/vehicleLights';
 import { SOCKETS, type LightKind } from './lighting/aircraftLights';
 import { AIRCRAFT_MAX, type AircraftLightPose } from './lighting/aircraftLightsView';
+import { AIRCRAFT_TYPES, typeOf } from './aircraftTypes';
+import { buildJet } from './jetModel';
 
 type Part = { mesh: InstancedMesh; local: Matrix4; tint: boolean; wheel: boolean };
 /** Vehicle dimensions are in metres, converted once to the map's 1:25 scale. */
@@ -441,35 +443,79 @@ export function createTransportModels() {
   // Aircraft Lights Phase E2: the drawn aircraft's poses for their lights (same object transform).
   const aircraftPoses: AircraftLightPose[] = [];
   /**
-   * One drawn aircraft. The copies share the first one's geometry and materials, except the beacon
+   * Air routes: the model every body of a type is copied from. `TP` is the turboprop built above; a
+   * jet is built from its measures the first time one appears (jetModel.ts), in an invented livery.
+   */
+  const patterns = new Map<string, Group>([['TP', airplane]]);
+  function pattern(type: string) {
+    if (!patterns.has(type)) {
+      const spec = AIRCRAFT_TYPES[type].jet!;
+      const jet = buildJet(
+        spec,
+        {
+          body,
+          livery: mat(spec.livery, 0.2, 0.45),
+          glass,
+          dark: black,
+          metal: chrome,
+          rubber,
+          navRed: navRedLens,
+          navGreen: navGreenLens,
+          beacon: beaconLens,
+          whiteLens,
+        },
+        own,
+      );
+      jet.scale.setScalar(aircraftScale);
+      patterns.set(type, jet);
+    }
+    return patterns.get(type)!;
+  }
+  /**
+   * One body of one type. The copies share the pattern's geometry and materials, except the beacon
    * lens: each aircraft's beacon flashes on its own clock (aircraftLights.ts seeds it by the id).
    */
-  interface DrawnAircraft {
+  interface Body {
     body: Group;
     gear: Object3D;
     props: Object3D[];
     beacon: MeshStandardMaterial;
+  }
+  /** One drawn aircraft: a body per type it has been, of which one is shown. */
+  interface DrawnAircraft {
+    bodies: Map<string, Body>;
+    shown?: Body;
     position: Vector3;
     pose: AircraftLightPose;
   }
   const fleet: DrawnAircraft[] = [];
   function drawnAircraft(i: number): DrawnAircraft {
-    if (fleet[i]) return fleet[i];
-    const body = i ? airplane.clone() : airplane;
-    if (i) aircraftGroup.add(body);
-    const lens = body.getObjectByName('beacon') as Mesh;
-    if (i) lens.material = own(beaconLens.clone());
-    body.visible = false;
-    return (fleet[i] = {
-      body,
-      gear: body.getObjectByName('gear')!,
-      props: body.children.filter((c) => c.name === 'prop'),
-      beacon: lens.material as MeshStandardMaterial,
+    return (fleet[i] ??= {
+      bodies: new Map(),
       position: new Vector3(),
-      pose: { id: '', phase: '', gear: true, matrix: body.matrixWorld },
+      pose: { id: '', phase: '', gear: true, matrix: airplane.matrixWorld },
     });
   }
-  drawnAircraft(0);
+  function bodyOf(i: number, type: string): Body {
+    const d = drawnAircraft(i);
+    if (!d.bodies.has(type)) {
+      // The first aircraft as a turboprop is the pattern itself, as before the fleet.
+      const original = i === 0 && type === 'TP';
+      const body = original ? airplane : pattern(type).clone();
+      if (!original) aircraftGroup.add(body);
+      const lens = body.getObjectByName('beacon') as Mesh;
+      if (!original) lens.material = own(beaconLens.clone());
+      body.visible = false;
+      d.bodies.set(type, {
+        body,
+        gear: body.getObjectByName('gear')!,
+        props: body.children.filter((c) => c.name === 'prop'),
+        beacon: lens.material as MeshStandardMaterial,
+      });
+    }
+    return d.bodies.get(type)!;
+  }
+  bodyOf(0, 'TP');
   // Smoothed render poses of the cars and trucks drawn this frame (reused objects), for the beams.
   const poses: VehiclePose[] = [];
   let poseCount = 0;
@@ -527,20 +573,27 @@ export function createTransportModels() {
       aircraftPoses.length = 0;
       for (let i = 0; i < Math.max(fleet.length, Math.min(aircraft.length, AIRCRAFT_MAX)); i++) {
         const a = i < AIRCRAFT_MAX ? aircraft[i] : undefined;
+        const d = drawnAircraft(i);
         if (!a) {
-          fleet[i].body.visible = false;
+          if (d.shown) d.shown.body.visible = false;
+          d.shown = undefined;
           continue;
         }
-        const d = drawnAircraft(i);
+        const type = typeOf(a.type);
+        const b = bodyOf(i, type);
         // An aircraft that appears, or another one in this place: start where it is, do not glide there.
-        if (!d.body.visible || d.pose.id !== a.id) d.position.fromArray(a.pos);
-        d.body.visible = true;
+        if (!d.shown || d.pose.id !== a.id) d.position.fromArray(a.pos);
+        if (d.shown && d.shown !== b) d.shown.body.visible = false;
+        d.shown = b;
+        b.body.visible = true;
         d.position.lerp(pos.fromArray(a.pos), 1 - Math.exp(-dt * 12));
-        d.body.position.copy(d.position);
-        d.body.rotation.set(-a.pitch, a.heading, a.bank, 'YXZ');
-        d.gear.visible = a.gear;
-        for (const prop of d.props) prop.rotation.z = time * 45;
-        d.body.updateWorldMatrix(true, false);
+        b.body.position.copy(d.position);
+        b.body.rotation.set(-a.pitch, a.heading, a.bank, 'YXZ');
+        b.gear.visible = a.gear;
+        for (const prop of b.props) prop.rotation.z = time * 45;
+        b.body.updateWorldMatrix(true, false);
+        d.pose.matrix = b.body.matrixWorld;
+        d.pose.type = type;
         d.pose.id = a.id;
         d.pose.phase = a.phase;
         d.pose.gear = a.gear;
@@ -556,8 +609,8 @@ export function createTransportModels() {
     },
     /** Beacon lens glow 0…1 of the drawn aircraft `id` (follows the flash of its beacon). */
     setBeaconLens(id: string, level: number) {
-      const d = fleet.find((f) => f.pose.id === id);
-      if (d) d.beacon.emissiveIntensity = DAY_EMISSIVE + AIRCRAFT_LENS_GAIN * level;
+      const d = fleet.find((f) => f.shown && f.pose.id === id);
+      if (d) d.shown!.beacon.emissiveIntensity = DAY_EMISSIVE + AIRCRAFT_LENS_GAIN * level;
     },
     /** Smoothed poses of this frame's cars and trucks (valid until the next update). */
     poses(): readonly VehiclePose[] {

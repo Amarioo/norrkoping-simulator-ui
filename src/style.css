@@ -506,9 +506,9 @@ input[type='range'] {
 .flight-row {
   width: 100%;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: baseline;
-  gap: 10px;
+  gap: 2px 10px;
   padding: 8px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -523,10 +523,14 @@ input[type='range'] {
   font-weight: 600;
   font-variant-numeric: tabular-nums;
 }
+/* Second line of a row: type, direction and route. */
 .flight-row small {
+  grid-column: 1 / -1;
   color: var(--muted);
   font-size: 12px;
-  white-space: nowrap;
+}
+.flight-type {
+  margin-top: 2px;
 }
 .flight-row[aria-pressed='true'] {
   border-color: var(--accent);

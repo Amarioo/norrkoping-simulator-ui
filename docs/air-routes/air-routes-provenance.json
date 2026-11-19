@@ -1,0 +1,209 @@
+{
+  "phase": "Air routes and aircraft types (board story E4)",
+  "written": "2026-11-19",
+  "fiction": "The flights are fictional. Routes and liveries are invented; no airline, schedule or procedure is used.",
+  "coordinates": {
+    "system": "scene coordinates = local SWEREF 99 TM (EPSG:3006): (SWEREF 99 TM - origin) / (25 * 0.9996584126), origin E 569030 N 6494989; X east, Z south, Y up; 1 unit = 25 m; vertical RH2000 (vertical origin 0)",
+    "conversion": "none in this phase",
+    "levels": "cruise and approach levels are scene Y, not height above ground",
+    "models": "aircraft models in metres in their own frame (+z forward, +y up, wheels at y = 0, +x left), placed at 1/25"
+  },
+  "sources": [
+    {
+      "id": "map-outline",
+      "title": "Outline of the mapped area (meta.clip of the importer output)",
+      "license": "map data (c) OpenStreetMap contributors, ODbL 1.0",
+      "acquired": "Overpass query 2026-10-16T13:35:36Z",
+      "accuracy": "exact: the edge of the data the simulator has",
+      "used": "the limit no flight may cross"
+    },
+    {
+      "id": "osm",
+      "title": "OpenStreetMap: runways, taxiways, building footprints (ways 104336425, 104336441)",
+      "license": "ODbL 1.0",
+      "acquired": "Overpass query 2026-10-16T13:35:36Z",
+      "accuracy": "not stated; typically a few metres",
+      "used": "ground paths, the two points the path bends away from, the clearance check"
+    },
+    {
+      "id": "operators",
+      "title": "Which operators and types fly from Norrköping",
+      "urls": [
+        "https://www.mynewsdesk.com/se/norrkopingflygplats/latest_news",
+        "https://www.mynewsdesk.com/se/norrkopingflygplats/pressreleases/apollos-satsning-fraan-norrkoeping-aer-en-stor-succe-3393262",
+        "https://centreforaviation.com/news/tui-fly-nordic-to-expand-charter-schedule-in-summer-2026-1329630",
+        "https://en.wikipedia.org/wiki/TUI_fly_Nordic",
+        "https://www.airportroutes.com/routes/ESSP-LGRP"
+      ],
+      "read": "2026-11-19",
+      "accuracy": "secondary sources; no timetable taken from them",
+      "used": "the choice of the Boeing 737 MAX 8 (TUI fly Nordic) and the Airbus A321neo (recorded on Norrköping-Rhodes)"
+    },
+    {
+      "id": "measures",
+      "title": "Aircraft length, span and tail height",
+      "urls": [
+        "https://planefyi.com/compare/boeing-737-max-8-vs-airbus-a320neo/",
+        "https://aerocorner.com/aircraft/a20n",
+        "https://www.airdatanews.com/which-is-bigger-boeing-737-max-8-or-airbus-a320neo/"
+      ],
+      "read": "2026-11-19",
+      "accuracy": "737 MAX 8 length 39.52 m in one page and 39.12 m in another, tail height 12.30 m and 12.45 m; wheel track, wheelbase and fuselage width are remembered figures, not confirmed",
+      "used": "size of the drawn jets, queue spacing, wing room"
+    }
+  ],
+  "types": [
+    {
+      "id": "TP",
+      "lengthMetres": 19,
+      "spanMetres": 23,
+      "basis": "the unnamed turboprop of the earlier versions; measures of the drawn model"
+    },
+    {
+      "id": "A20N",
+      "lengthMetres": 37.57,
+      "spanMetres": 35.8,
+      "basis": "asked for by the user; no source read shows one at Norrköping"
+    },
+    {
+      "id": "A21N",
+      "lengthMetres": 44.51,
+      "spanMetres": 35.8,
+      "basis": "recorded on Norrköping-Rhodes (airportroutes.com, October 2025)"
+    },
+    {
+      "id": "B38M",
+      "lengthMetres": 39.52,
+      "spanMetres": 35.92,
+      "basis": "TUI fly Nordic's type; TUI flies charters from Norrköping"
+    }
+  ],
+  "derived": [
+    {
+      "file": "docs/air-routes/data/geometry.json",
+      "sha256": "5f506c2d561c2de3ee5f6c475ab333b6db48bac1646e40769353e9636f3242b1",
+      "rebuild": "backend: AIR_GEOMETRY_OUT=<file> go test ./internal/sim -run TestWriteAirTrafficGeometry",
+      "deterministic": "two runs gave the same SHA-256"
+    },
+    {
+      "file": "docs/air-routes/data/clearance.json",
+      "sha256": "0a0635dfdaeeecc4a9e58c8f2dc69159d08c0c7e16f4b0c4f7a042a0b0092889",
+      "rebuild": "node scripts/air-traffic/clearance.mjs docs/air-routes/data/clearance.json docs/air-routes/data/geometry.json 17.96"
+    },
+    {
+      "file": "docs/air-routes/data/fleet-runs.txt",
+      "sha256": "db386d254630e4d5b206e49e8cd2f19cbf3421e585c5f5408d940904d135153c",
+      "rebuild": "backend: go test ./internal/sim -run \"KeepsEveryFleet|TimetableKeeps|UsesTheMapped\" -v"
+    },
+    {
+      "file": "docs/air-routes/evidence/route-map.svg",
+      "sha256": "23578b16c5e5a38cde83c22a983c6d43e378bb0906a77600e72e2b6fd1980b7d",
+      "rebuild": "node scripts/air-routes/route-map.mjs <out.svg> [out.png]"
+    }
+  ],
+  "tools": {
+    "go": "go1.27.4 windows/amd64",
+    "node": "v24.15.0"
+  },
+  "estimates": {
+    "note": "Invented or estimated; none is a procedure of either airport.",
+    "routes": {
+      "ESSP": [
+        {
+          "name": "över staden",
+          "units": 583.5584,
+          "unitsPerSecond": 2.5514
+        },
+        {
+          "name": "norr om staden",
+          "units": 668.3856,
+          "unitsPerSecond": 2.9222
+        },
+        {
+          "name": "söder om staden",
+          "units": 616.1227,
+          "unitsPerSecond": 2.6937
+        }
+      ],
+      "F13": [
+        {
+          "name": "över staden",
+          "units": 251.2207,
+          "unitsPerSecond": 2.551
+        },
+        {
+          "name": "norr om staden",
+          "units": 304.352,
+          "unitsPerSecond": 3.0906
+        },
+        {
+          "name": "söder om staden",
+          "units": 324.5182,
+          "unitsPerSecond": 3.2954
+        }
+      ]
+    },
+    "routePoints": {
+      "ESSP": {
+        "norr om staden": [
+          [
+            -20,
+            -150
+          ],
+          [
+            -150,
+            -25
+          ]
+        ],
+        "söder om staden": [
+          [
+            0,
+            110
+          ],
+          [
+            -170,
+            40
+          ]
+        ]
+      },
+      "F13": {
+        "norr om staden": [
+          [
+            -70,
+            -150
+          ],
+          [
+            0,
+            -40
+          ]
+        ],
+        "söder om staden": [
+          [
+            -110,
+            20
+          ]
+        ]
+      }
+    },
+    "speedRule": "route length / cruise time of the direction, so that every flight takes the same time",
+    "mapMarginUnits": 2,
+    "queueGapUnits": 2.4,
+    "wingRoomUnits": 0.8,
+    "obstacles": {
+      "F13": [
+        [
+          -223.184,
+          -63.997
+        ],
+        [
+          -226.987,
+          -63.655
+        ]
+      ]
+    },
+    "typeChoice": "equal chance among the four when an aircraft appears; seed from the clock per city and reset",
+    "jets": "proportions of the type family (wing 36 % back, 25 degrees of sweep, engines 5.75 m out), not drawings",
+    "liveries": "invented: petrol blue A320neo, brick red A321neo, mid blue 737 MAX 8; no airline shown"
+  },
+  "notData": "No timetable, airline schedule, AIP procedure or traffic feed."
+}

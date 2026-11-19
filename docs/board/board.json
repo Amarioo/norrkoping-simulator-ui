@@ -100,6 +100,51 @@
   ],
   "stories": [
     {
+      "id": "E4",
+      "epic": "E",
+      "title": "Flygrutter och flygplanstyper",
+      "status": "backlog",
+      "size": "L",
+      "summary": "Tre rutter åt varje håll (över, norr om och söder om staden), alltid innanför kartan, och slumpade flygplanstyper: turboprop, Airbus A320neo, Airbus A321neo och Boeing 737 MAX 8.",
+      "tasks": [
+        {
+          "text": "Flera rutter, alltid inom kartan",
+          "done": true
+        },
+        {
+          "text": "Slumpade flygplanstyper, plats för större plan",
+          "done": true
+        },
+        {
+          "text": "Jetmodell, ljus per typ, typ och rutt i listan",
+          "done": true
+        },
+        {
+          "text": "Alla kontroller, bevisbilder och rapport",
+          "done": true
+        },
+        {
+          "text": "Du testar och godkänner",
+          "done": true
+        }
+      ],
+      "report": "docs/air-routes/README.md",
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-19",
+          "text": "Klar för ditt test. Tre rutter åt varje håll (över, norr om och söder om staden) som slumpas per flygning och alltid ligger innanför kartan. Flygplanstypen slumpas per plan: turboprop, Airbus A320neo, Airbus A321neo eller Boeing 737 MAX 8. 737 MAX 8 och A321neo har källor för Norrköping, A320neo är med för att du bad om den. Färgerna är påhittade, inga flygbolag visas. Typ och rutt står i Flyg-fliken. Ändringarna ligger i båda kodförråden och inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-19",
+          "text": "Godkänt av dig (\"Ser bra ut\") och pushat i båda kodförråden. Kvar: utrullning av servern på k3s, som jag frågar om separat."
+        }
+      ],
+      "date": "2026-11-19",
+      "outcome": "Tre rutter åt varje håll (över, norr om, söder om staden), alltid innanför kartan, och fyra slumpade flygplanstyper: turboprop, Airbus A320neo, Airbus A321neo och Boeing 737 MAX 8. Godkänt av dig och pushat i båda kodförråden (servern dafd3bd). Servern är inte utrullad på k3s än; tills dess visar den publika sidan turboprop utan ruttnamn."
+    },
+    {
       "id": "E3",
       "epic": "E",
       "title": "Flygtrafik: upp till sex plan som köar vid banorna",
@@ -143,10 +188,15 @@
           "author": "claude",
           "date": "2026-11-19",
           "text": "Godkänd av dig (\"Ser bra ut\"), committad och pushad i båda kodförråden på din begäran, servern först. Utrullningen av servern till klustret är inte gjord."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-19",
+          "text": "Servern är utrullad i klustret på din begäran. Den publicerade sidan visar nu listan med tre plan."
         }
       ],
       "date": "2026-11-19",
-      "outcome": "Ett till sex flygplan pendlar mellan Kungsängen och Bråvalla, turas om på banorna och köar på de kartlagda taxislingorna. Reglaget \"Flygplan\" och en lista i Flyg-fliken. Med sex plan är ungefär två och ett halvt i luften. Godkänd av dig, committad och pushad i båda kodförråden. Servern är inte utrullad i klustret ännu. Terminalplattan på Kungsängen används inte."
+      "outcome": "Ett till sex flygplan pendlar mellan Kungsängen och Bråvalla, turas om på banorna och köar på de kartlagda taxislingorna. Reglaget \"Flygplan\" och en lista i Flyg-fliken. Med sex plan är ungefär två och ett halvt i luften. Godkänd av dig, committad och pushad i båda kodförråden. Servern är utrullad i klustret sedan 2026-11-19 och den publicerade sidan visar tre plan. Terminalplattan på Kungsängen används inte."
     },
     {
       "id": "P2d",

@@ -22,6 +22,8 @@
  *   an airline SOP. Socket positions are read from the drawn model (ESTIMATE of a real airframe).
  */
 
+import { AIRCRAFT_TYPES, jetLights, typeOf } from '../aircraftTypes';
+
 export type Vec3 = [number, number, number];
 export type LightGroup = 'navigation' | 'beacon' | 'strobe' | 'landing' | 'taxi';
 export type LightKind =
@@ -153,6 +155,25 @@ export const SOCKETS: readonly Socket[] = [
     sector: { kind: 'beam', axis: [0, -0.1, 1], full: 25, edge: 60 },
   },
 ];
+
+/**
+ * Air routes: the sockets of an aircraft type. The jets have the same eleven lights as the turboprop, at
+ * the places their own models give (aircraftTypes.ts, ESTIMATES); colours and sectors are the same.
+ */
+const socketsByType = new Map<string, readonly Socket[]>();
+export function socketsOf(type?: string): readonly Socket[] {
+  const id = typeOf(type);
+  const jet = AIRCRAFT_TYPES[id].jet;
+  if (!jet) return SOCKETS;
+  if (!socketsByType.has(id)) {
+    const places = jetLights(jet);
+    socketsByType.set(
+      id,
+      SOCKETS.map((s) => ({ ...s, position: places[s.kind] })),
+    );
+  }
+  return socketsByType.get(id)!;
+}
 
 /**
  * Flash pattern of a flashing group, simulation seconds. ESTIMATES inside the CS-25.1401 range of
@@ -349,13 +370,14 @@ export function aircraftLightStates(
   t0: number,
   t1: number,
   viewer: Vec3,
+  sockets: readonly Socket[] = SOCKETS,
 ): LightState[] {
   const on = groupsOn(phase, gear);
   const flash = {
     beacon: flashLevel(t0, t1, FLASH.beacon, flashOffset(aircraftId, 'beacon')),
     strobe: flashLevel(t0, t1, FLASH.strobe, flashOffset(aircraftId, 'strobe')),
   };
-  return SOCKETS.map((socket) => {
+  return sockets.map((socket) => {
     if (!on.has(socket.group)) return { socket, on: false, weight: 0 };
     const level = socket.group === 'beacon' || socket.group === 'strobe' ? flash[socket.group] : 1;
     const p = socket.position;

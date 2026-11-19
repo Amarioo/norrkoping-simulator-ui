@@ -25,6 +25,7 @@ import {
 import { HALO_FRAGMENT, HALO_VERTEX } from './fixtures';
 import {
   aircraftLightStates,
+  socketsOf,
   DAY_FLASH_LEVEL,
   SOCKETS,
   type LightGroup,
@@ -49,6 +50,8 @@ const STRONG: ReadonlySet<LightGroup> = new Set(['landing', 'taxi', 'strobe']);
 /** One drawn aircraft: id, flight phase, gear, and the body's object-to-world matrix this frame. */
 export interface AircraftLightPose {
   id: string;
+  /** Air routes: the aircraft type, which decides where its lights sit (aircraftTypes.ts). */
+  type?: string;
   phase: string;
   gear: boolean;
   matrix: Matrix4;
@@ -107,7 +110,7 @@ export function createAircraftLights(metresPerUnit = 25) {
   }
   let shown: Shown[] = [];
   let last = { mode: 'auto' as AircraftLightsMode, nightLevel: 0, t0: 0, t1: 0, aircraft: 0 };
-  let poses: { id: string; phase: string; gear: boolean; matrix: number[] }[] = [];
+  let poses: { id: string; type?: string; phase: string; gear: boolean; matrix: number[] }[] = [];
 
   return {
     group,
@@ -130,6 +133,7 @@ export function createAircraftLights(metresPerUnit = 25) {
       shown = [];
       poses = drawn.map((a) => ({
         id: a.id,
+        type: a.type,
         phase: a.phase,
         gear: a.gear,
         matrix: [...a.matrix.elements],
@@ -153,11 +157,15 @@ export function createAircraftLights(metresPerUnit = 25) {
       for (const a of drawn) {
         inverse.copy(a.matrix).invert();
         const local = viewer.copy(eye).applyMatrix4(inverse);
-        const states = aircraftLightStates(a.id, a.phase, a.gear, t0, t1, [
-          local.x,
-          local.y,
-          local.z,
-        ]);
+        const states = aircraftLightStates(
+          a.id,
+          a.phase,
+          a.gear,
+          t0,
+          t1,
+          [local.x, local.y, local.z],
+          socketsOf(a.type),
+        );
         for (const s of states) {
           const p = s.socket.position;
           world.set(p[0], p[1], p[2]).applyMatrix4(a.matrix);

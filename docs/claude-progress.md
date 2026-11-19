@@ -2,12 +2,53 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Air routes and aircraft types (2026-11-19) — approved, committed and pushed; backend not rolled out
+
+**Status 2026-11-19:** the user approved ("Ser bra ut", then "ja pusha båda"). Backend pushed as `dafd3bd`;
+this repository pushed in the commit that carries this line (publishes to Vercel). The k3s rollout of
+`sha-dafd3bd820a00fb81f2d4267fbf9ba78a6c554e3` is **not** done: ask the user first. Until then production
+draws turboprops without route names. Board `E4` in *Klart*. The text below is the state before approval.
+
+[Report](air-routes/README.md). Board story `E4`. On the user's wishes (memory `air-traffic-wishes`): several
+routes, never outside the map, random and larger aircraft. Changes in **both** repositories, uncommitted in
+both (backend `main` = `af513e6` plus the working tree; this repository `main` = `bbb03d8` plus the working
+tree).
+
+- **Backend:** `airtraffic.go`: three routes per direction (`airVias`: över / norr om / söder om staden),
+  one drawn per flight; all take the same time (longer = faster), so the runway rules and the timetable are
+  unchanged. `insideMap` checks every route, climb, approach and holding circle against `meta.clip`
+  (`network.go`) with 50 m to spare. Types `TP`, `A20N`, `A21N`, `B38M` (`airKinds`) drawn per aircraft
+  from a seed (clock per city and reset). `AircraftView` gets `type` and `route`. Queue gap 60 m; the path
+  bends up to 8 m from two buildings at F13 (`airObstacles`).
+- **Interface:** new `src/lib/aircraftTypes.ts` (measures, light positions) and `src/lib/jetModel.ts` (one
+  procedural jet, 10 parts); a body per aircraft and type in `transportModels.ts`; lights per type; type and
+  route in the Flyg tab. `scripts/air-routes/` (`shots.mjs`, `route-map.mjs`).
+- **Sources:** 737 MAX 8 (TUI fly Nordic, charters from Norrköping) and A321neo (recorded NRK–RHO) have
+  sources; the A320neo is the user's example without one; liveries and routes are invented.
+- **Measured** (six simulated hours each): flights and aircraft in the air as before (243 and 2.4 with six);
+  all six routes flown in every run; never nearer the map's edge than 255 m; nearest two cruising 178 m.
+- **Checks:** backend `go vet` clean, `go test ./...` pass (golden unchanged); type check 0; build OK; Vitest
+  649/650 (known `police.test.ts`); Playwright all 26 files 46/47 (the test process crashed at the start of
+  `air-traffic`, exit 0xC0000409; the file alone 4/4); evidence in `docs/air-routes/evidence`.
+- **Not verified:** `-race`; frame time; the published build; a phone; light theme.
+- **Tooling note:** the Vite dev server crashed twice (same exit code) under 10 Hz polling through its proxy;
+  `shots.mjs` takes the backend address as a third argument.
+- **Deploy order when approved:** backend first, then this repository (its push publishes). Either order is
+  harmless: an old interface draws turboprops, an old backend sends no types.
+- **Still uncommitted and not from this work:** `labels = $state(false)` in `src/App.svelte`; yesterday's
+  rollout notes in this file and on the board.
+- Board: `E4` in *Test*. `.claude/launch.json`: `air-backend` (8099, binary in this session's scratch
+  folder) and `air-dev` (5401).
+
 ## Air traffic: up to six aircraft that take turns on the runways (2026-11-18) — approved by the user (2026-11-19), committed and pushed in both repositories
 
 [Report](air-traffic/README.md). Board story `E3`. Approved ("Ser bra ut", then "Ja, pusha båda"). Backend
-`main` = `af513e6` (pushed first; its push starts the image workflow, the rollout to k3s is by hand and
-**not done**); this repository: the commit "Air traffic E3", whose push publishes to production. Until the
-backend is rolled out the published page flies one aircraft and shows "Servern flyger ännu bara ett flygplan".
+`main` = `af513e6`, this repository `bbb03d8`; both pushed. **Rolled out 2026-11-19** on the user's go-ahead
+("Ja, rulla ut"): `kubectl -n norrkoping-simulator set image deployment/simulator
+ simulator=ghcr.io/amarioo/norrkoping-simulator-backend:sha-af513e6473c9e1d28ddb89aeaaf18fdf29a6bd2c` over SSH (was
+`sha-21167a5…`). Checked: a fresh city has three aircraft, both Vercel origins are allowed, and
+https://norrkoping-simulator.vercel.app shows the list with aircraft in the air. This note and the board comment
+are not committed.
 
 - **Backend:** new `internal/sim/airtraffic.go` (+ `airtraffic_test.go`); `city.go`, `models.go`
   (`planes` in the settings, 1–6, a new city has 3), `api/server.go`, `README.md`. One to six aircraft
