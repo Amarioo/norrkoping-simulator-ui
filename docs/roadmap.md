@@ -216,6 +216,12 @@ Storlek: **S** = en session, **M** = 2–3 sessioner, **L** = fler. Väntan på 
   satt omvänt på modellen.*
   - Positionsljus röd/grön/vit, anti-kollisionsljus, strobe, landningsljus (EASA SERA/CS-25-konvention;
     exakt blinkmönster per flygplanstyp är okänt och märks så).
+- [x] **E3 Flygtrafik med upp till sex plan** — L — *genomförd 2026-11-18 på main i båda kodförråden, godkänd
+  2026-11-19, committad och pushad: [docs/air-traffic/README.md](air-traffic/README.md). Ett till sex plan pendlar
+  Kungsängen–Bråvalla, turas om på banorna och köar på de kartlagda taxislingorna vid banändarna. Reglage
+  "Flygplan" och en lista i Flyg-fliken. Tider, hastigheter, flyghöjder och avgångstider är uppskattningar.*
+  - Möjlig fortsättning: uppställning vid terminalen på Kungsängen (kräver uppskattade uppställningsplatser
+    och en regel för den enda länken till banan).
 
 ### Spår C: Vrinneviskogen
 

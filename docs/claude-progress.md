@@ -2,6 +2,42 @@
 
 This file is the recovery checkpoint. Newest status first.
 
+## Air traffic: up to six aircraft that take turns on the runways (2026-11-18) — approved by the user (2026-11-19), committed and pushed in both repositories
+
+[Report](air-traffic/README.md). Board story `E3`. Approved ("Ser bra ut", then "Ja, pusha båda"). Backend
+`main` = `af513e6` (pushed first; its push starts the image workflow, the rollout to k3s is by hand and
+**not done**); this repository: the commit "Air traffic E3", whose push publishes to production. Until the
+backend is rolled out the published page flies one aircraft and shows "Servern flyger ännu bara ett flygplan".
+
+- **Backend:** new `internal/sim/airtraffic.go` (+ `airtraffic_test.go`); `city.go`, `models.go`
+  (`planes` in the settings, 1–6, a new city has 3), `api/server.go`, `README.md`. One to six aircraft
+  NK-01 … NK-06; one runway user at a time; queues on the mapped taxiway loops (OSM ways 101516378 at ESSP,
+  104336417 + 104336403 at F13); a departure timetable (one slot per 176 s) for five or six aircraft; flights
+  as turn–straight–turn at 300 m / 200 m. A settings command **without** `planes` still flies the single
+  legacy shuttle of `flight.go`, so `testdata/golden.json` passes unchanged.
+- **Interface:** slider *Flygplan* (1–6) under the flights switch; the Flyg tab lists all aircraft, one is
+  chosen and followed by its id; every aircraft drawn with its own lights (`AIRCRAFT_MAX` 6). New
+  `src/lib/flights.ts`, `src/lib/airTraffic.test.ts`, `tests/air-traffic.spec.ts`, `scripts/air-traffic/`
+  (`shots.mjs`, `clearance.mjs`, `frames.mjs`). Against a server from before the fleet the interface sends
+  the settings without `planes` and disables the slider.
+- **Measured** (six simulated hours each): 49 / 98 / 132 / 168 / 202 / 242 flights and 0.5 / 1.0 / 1.3 / 1.7 /
+  2.0 / 2.4 aircraft in the air for 1–6 aircraft; never closer than 39 m on the ground, 370 m in the air;
+  nobody held in the air. Six aircraft without the timetable: 191 flights.
+- **Checks:** backend `go vet` clean, `go test ./...` pass; type check 0; build OK; Vitest 646/647 (known
+  `police.test.ts`); Playwright all 26 files 45/46 against the first backend version (`interface-u4` touch
+  test timed out under load, 3/3 alone), then 14/14 for the 8 files that use flights against the final
+  backend; seen in the running app; evidence in `docs/air-traffic/evidence`.
+- **Not verified:** `-race`; the other 17 Playwright files against the final backend; the published build;
+  a phone; holding in the browser (backend test only).
+- **Deploy order when approved:** the backend first (it serves an older interface unchanged), then this
+  repository, whose push to `main` publishes to production.
+- **Open decisions for the user:** start value 3 and maximum 6; whether the terminal apron at Kungsängen
+  should be used next (see [remaining-gaps.md](air-traffic/remaining-gaps.md) 1).
+- The uncommitted `labels = $state(false)` in `src/App.svelte` is still not from this work and is left as
+  it was.
+- Board: `E3` in *Done*. `.claude/launch.json`: `air-backend` (8099, a binary in the session's scratch
+  folder, rebuild with `go build`) and `air-dev` (5401).
+
 ## Interface U4, step 3: camera buttons for touch (2026-11-18) — pushed for the user's test on a real device
 
 [Report](mobile-u4/README.md). Steps 1–3 committed and pushed to origin/main on the user's request ("Ja, pusha"), so the

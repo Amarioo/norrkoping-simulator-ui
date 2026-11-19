@@ -344,7 +344,8 @@
         renderer.domElement.height,
         scene.fog as Fog | null,
       );
-      transport.setBeaconLens(aircraftLights.beaconLevel());
+      for (const pose of transport.aircraftPoses())
+        transport.setBeaconLens(pose.id, aircraftLights.beaconLevel(pose.id));
     }
     vehiclePoses.length = 0;
     for (const p of transport.poses()) vehiclePoses.push(p);

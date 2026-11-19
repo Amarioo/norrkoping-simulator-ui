@@ -238,15 +238,18 @@ describe('Aircraft Lights E2: flash timing (CS-25.1401 range, values ESTIMATE)',
 describe('Aircraft Lights E2: flight-phase rule (simulator rule)', () => {
   const phases = [
     'PARKED',
+    'QUEUE',
     'TAXI_OUT',
     'TAKEOFF',
     'CLIMB',
     'CRUISE',
+    'HOLDING',
     'APPROACH',
     'LANDING',
     'TAXI_IN',
   ];
-  it('covers every phase of RegionalFlight.kt', () => {
+  // QUEUE and HOLDING are the two phases the fleet (AirTraffic) adds to the single shuttle's eight.
+  it('covers every flight phase of the server', () => {
     expect(Object.keys(PHASE_RULES).sort()).toEqual([...phases].sort());
   });
   it('navigation and beacon always; strobes on the runway and airborne; landing and taxi lights by phase', () => {
@@ -254,7 +257,7 @@ describe('Aircraft Lights E2: flight-phase rule (simulator rule)', () => {
       const on = groupsOn(p, true);
       expect(on.has('navigation')).toBe(true);
       expect(on.has('beacon')).toBe(true);
-      expect(on.has('strobe')).toBe(!['PARKED', 'TAXI_OUT', 'TAXI_IN'].includes(p));
+      expect(on.has('strobe')).toBe(!['PARKED', 'QUEUE', 'TAXI_OUT', 'TAXI_IN'].includes(p));
       expect(on.has('landing')).toBe(['TAKEOFF', 'CLIMB', 'APPROACH', 'LANDING'].includes(p));
       expect(on.has('taxi')).toBe(['TAXI_OUT', 'TAXI_IN'].includes(p));
       // Never a taxi light with the gear up.

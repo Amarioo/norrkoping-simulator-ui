@@ -1,0 +1,136 @@
+{
+  "phase": "Air traffic (board story E3)",
+  "written": "2026-11-18",
+  "fiction": "The flights are fictional. No airline, schedule, procedure or traffic data of either airport is used.",
+  "coordinates": {
+    "system": "scene coordinates = local SWEREF 99 TM (EPSG:3006): (SWEREF 99 TM - origin) / (25 * 0.9996584126); X east, Z south, Y up; 1 unit = 25 m; vertical RH2000 minus the vertical origin of src/lib/terrain.ts",
+    "conversion": "none in this phase: runway, taxiway and building points are read as the importer wrote them",
+    "levels": "cruise and approach levels are scene Y (above the vertical origin), not height above ground"
+  },
+  "sources": [
+    {
+      "id": "osm",
+      "title": "OpenStreetMap: runways, taxiways and building footprints",
+      "license": "ODbL 1.0, (c) OpenStreetMap contributors",
+      "acquired": "Overpass query 2026-10-16T13:35:36Z (meta of src/lib/data/norrkoping-map.json)",
+      "files": [
+        "src/lib/data/norrkoping-map.json",
+        "norrkoping-simulator-backend/src/main/resources/transport-network.json"
+      ],
+      "accuracy": "not stated by the source; volunteer mapping from aerial imagery, typically a few metres; no survey",
+      "used": "runway lines and widths of ESSP and F13; taxiway ways 101516378 (ESSP), 104336417 and 104336403 (F13); building footprints for the clearance check"
+    },
+    {
+      "id": "dtm",
+      "title": "Markhöjdmodell Nedladdning, Lantmäteriet (processed)",
+      "license": "CC BY 4.0",
+      "acquired": "see ELEVATION.md",
+      "accuracy": "see ELEVATION.md",
+      "used": "height of an aircraft on the ground (terrain + 0.25 m, as the single shuttle)"
+    }
+  ],
+  "derived": [
+    {
+      "file": "docs/air-traffic/data/geometry.json",
+      "sha256": "ce5e45658015bd8e3bbc5617cebdad00c192c014176d2ee82f95d65770d1ba7d",
+      "rebuild": "backend: AIR_GEOMETRY_OUT=<file> go test ./internal/sim -run TestWriteAirTrafficGeometry",
+      "deterministic": "two runs gave the same SHA-256"
+    },
+    {
+      "file": "docs/air-traffic/data/clearance.json",
+      "sha256": "653b4dd693c5a122c8df691cef873ae7bd33356cc8bdc22b1b26ec869ef92f8c",
+      "rebuild": "node scripts/air-traffic/clearance.mjs docs/air-traffic/data/clearance.json"
+    },
+    {
+      "file": "docs/air-traffic/data/fleet-runs.txt",
+      "sha256": "40b156dee4614f7d3aedc14b9088de7d24748b4310135002e53f3fc5a60a60cf",
+      "rebuild": "backend: go test ./internal/sim -run \"KeepsEveryFleet|TimetableKeeps\" -v"
+    }
+  ],
+  "tools": {
+    "go": "go1.27.4 windows/amd64",
+    "node": "v24.15.0"
+  },
+  "estimates": {
+    "note": "Constants at the top of the backend file internal/sim/airtraffic.go; scene units (25 m) and seconds. None is a measured procedure of either airport.",
+    "maxAircraft": 6,
+    "taxiSpeed": 0.4,
+    "backtrackSpeed": 0.7,
+    "queueGap": 1.6,
+    "holdLateral": 2,
+    "pivotRateRadPerSecond": 0.35,
+    "turnaroundSeconds": 45,
+    "firstReadySeconds": 10,
+    "rollSeconds": 35,
+    "liftoffSpeed": 2.2,
+    "climbRate": 0.36,
+    "sinkRate": 0.22,
+    "approachSpeed": 2.5,
+    "touchdownShareOfRunway": 0.12,
+    "rolloutSeconds": 20,
+    "cruiseSpeed": 2.55,
+    "turnRadius": 20,
+    "approachLevel": 6,
+    "cruiseLevels": {
+      "ESSP": 12,
+      "F13": 8
+    },
+    "holdRadius": 24,
+    "finalGapSeconds": 20,
+    "marginSeconds": 8,
+    "slotWindowSeconds": 5,
+    "loops": {
+      "ESSP": [
+        101516378
+      ],
+      "F13": [
+        104336417,
+        104336403
+      ],
+      "why": "the mapped one-way circuit at each take-off threshold; at F13 the ways that keep clear of the mapped buildings (way 104336414 runs through two)"
+    }
+  },
+  "computed": {
+    "timetablePeriodSeconds": 176.275,
+    "timetableRounds": 4,
+    "strips": [
+      {
+        "id": "ESSP",
+        "pathUnits": 55.6513,
+        "lineUpSeconds": 12.75,
+        "vacateSeconds": 83.3621,
+        "firstSlotSeconds": 10,
+        "departures": {
+          "climbSeconds": 33.0006,
+          "cruiseUnits": 583.5584,
+          "approachSeconds": 22.468,
+          "flightSeconds": 319.315,
+          "touchdownSeparationSeconds": 163.1477,
+          "fix": [
+            -266.4064,
+            -42.8571
+          ]
+        }
+      },
+      {
+        "id": "F13",
+        "pathUnits": 62.4907,
+        "lineUpSeconds": 9.75,
+        "vacateSeconds": 90.3977,
+        "firstSlotSeconds": 84.9127,
+        "departures": {
+          "climbSeconds": 19.4116,
+          "cruiseUnits": 251.2207,
+          "approachSeconds": 26.5957,
+          "flightSeconds": 179.5253,
+          "touchdownSeparationSeconds": 159.1121,
+          "fix": [
+            47.2573,
+            14.7917
+          ]
+        }
+      }
+    ]
+  },
+  "notData": "No municipal, airport-operator or LFV data, no AIP procedures, no ADS-B or other traffic feed, no schedule. Aircraft ids NK-01 to NK-06 are invented."
+}

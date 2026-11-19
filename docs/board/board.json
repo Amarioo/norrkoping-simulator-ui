@@ -100,6 +100,55 @@
   ],
   "stories": [
     {
+      "id": "E3",
+      "epic": "E",
+      "title": "Flygtrafik: upp till sex plan som köar vid banorna",
+      "status": "backlog",
+      "size": "L",
+      "summary": "Ett till sex flygplan pendlar mellan Kungsängen och Bråvalla. De turas om på banorna, köar på de kartlagda taxislingorna och visas i en lista i Flyg-fliken.",
+      "tasks": [
+        {
+          "text": "Kömodell i servern (0–6 plan)",
+          "done": true
+        },
+        {
+          "text": "Servertester, referensspåren orörda",
+          "done": true
+        },
+        {
+          "text": "Flera plan och ljus i gränssnittet",
+          "done": true
+        },
+        {
+          "text": "Reglage, planlista och följ-val",
+          "done": true
+        },
+        {
+          "text": "Alla kontroller, bevisbilder och rapport",
+          "done": true
+        },
+        {
+          "text": "Du testar och godkänner",
+          "done": true
+        }
+      ],
+      "report": "docs/air-traffic/README.md",
+      "comments": [
+        {
+          "author": "claude",
+          "date": "2026-11-18",
+          "text": "Klar för ditt test. Reglaget \"Flygplan\" (1–6) finns under flygtrafik-knappen i fliken Trafik, och Flyg-fliken visar en lista där du väljer vilket plan du följer. Planen turas om på banorna och köar på taxislingorna vid banändarna. Med sex plan är ungefär två och ett halvt i luften. Terminalplattan på Kungsängen används inte ännu, säg till om det ska bli nästa steg. Ändringarna ligger i båda kodförråden och inget är committat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-19",
+          "text": "Godkänd av dig (\"Ser bra ut\"), committad och pushad i båda kodförråden på din begäran, servern först. Utrullningen av servern till klustret är inte gjord."
+        }
+      ],
+      "date": "2026-11-19",
+      "outcome": "Ett till sex flygplan pendlar mellan Kungsängen och Bråvalla, turas om på banorna och köar på de kartlagda taxislingorna. Reglaget \"Flygplan\" och en lista i Flyg-fliken. Med sex plan är ungefär två och ett halvt i luften. Godkänd av dig, committad och pushad i båda kodförråden. Servern är inte utrullad i klustret ännu. Terminalplattan på Kungsängen används inte."
+    },
+    {
       "id": "P2d",
       "epic": "P",
       "title": "Trafik: färre meshar, gallring, ladda bara upp det som rört sig",

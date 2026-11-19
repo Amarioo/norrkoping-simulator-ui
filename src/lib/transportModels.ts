@@ -1,6 +1,7 @@
 import {
   Group,
   Mesh,
+  Object3D,
   InstancedMesh,
   BoxGeometry,
   CylinderGeometry,
@@ -29,7 +30,7 @@ import {
   type VehiclePose,
 } from './lighting/vehicleLights';
 import { SOCKETS, type LightKind } from './lighting/aircraftLights';
-import type { AircraftLightPose } from './lighting/aircraftLightsView';
+import { AIRCRAFT_MAX, type AircraftLightPose } from './lighting/aircraftLightsView';
 
 type Part = { mesh: InstancedMesh; local: Matrix4; tint: boolean; wheel: boolean };
 /** Vehicle dimensions are in metres, converted once to the map's 1:25 scale. */
@@ -222,8 +223,13 @@ export function createTransportModels() {
         );
       }
   }
+  // Air traffic: every aircraft is under this group. `airplane` is the first one and the pattern for
+  // the others, which are copies made when a second, third… aircraft first appears (drawnAircraft).
+  const aircraftGroup = new Group();
+  aircraftGroup.name = 'aircraft';
+  group.add(aircraftGroup);
   const airplane = new Group();
-  group.add(airplane);
+  aircraftGroup.add(airplane);
   const aircraftScale = 1 / 25;
   airplane.scale.setScalar(aircraftScale);
   const planeParts: Mesh[] = [];
@@ -336,7 +342,6 @@ export function createTransportModels() {
       const window = pmesh(new SphereGeometry(0.19, 8, 6), glass, side * 1.01, 2.3, z);
       window.scale.set(0.1, 1.18, 1);
     }
-  const props: Group[] = [];
   for (const side of [-1, 1]) {
     const engine = pmesh(
       new CylinderGeometry(0.47, 0.64, 3.7, 16),
@@ -347,9 +352,9 @@ export function createTransportModels() {
     );
     engine.rotation.x = Math.PI / 2;
     const prop = new Group();
+    prop.name = 'prop';
     prop.position.set(side * 3.4, 2.15, 2.3);
     airplane.add(prop);
-    props.push(prop);
     for (let i = 0; i < 4; i++) {
       const blade = new Mesh(own(new BoxGeometry(0.16, 2.9, 0.06)), black);
       blade.rotation.z = (i * Math.PI) / 4;
@@ -378,7 +383,13 @@ export function createTransportModels() {
       .scale(1, up * 0.8, 1)
       .translate(x, y - up * 0.1, z);
   };
-  pmesh(mergeGeometries([dome('beaconTop', 1), dome('beaconBottom', -1)])!, beaconLens, 0, 0, 0);
+  pmesh(
+    mergeGeometries([dome('beaconTop', 1), dome('beaconBottom', -1)])!,
+    beaconLens,
+    0,
+    0,
+    0,
+  ).name = 'beacon';
   // White: tail light, wing-tip strobes, landing lights (flat discs facing forward), taxi light.
   const disc = (kind: LightKind, r: number) => {
     const [x, y, z] = socket(kind);
@@ -400,6 +411,7 @@ export function createTransportModels() {
     0,
   );
   const gear = new Group();
+  gear.name = 'gear';
   airplane.add(gear);
   for (const [x, z] of [
     [0, 5.5],
@@ -426,15 +438,38 @@ export function createTransportModels() {
     palette = ['#dce0de', '#343b40', '#667f91', '#aeb6ba', '#963f3c', '#bba27d', '#213b55'].map(
       (c) => new Color(c),
     );
-  let planePosition: Vector3 | undefined;
-  // Aircraft Lights Phase E2: the drawn aircraft's pose for its lights (same object transform).
+  // Aircraft Lights Phase E2: the drawn aircraft's poses for their lights (same object transform).
   const aircraftPoses: AircraftLightPose[] = [];
-  const airplanePose: AircraftLightPose = {
-    id: '',
-    phase: '',
-    gear: true,
-    matrix: airplane.matrixWorld,
-  };
+  /**
+   * One drawn aircraft. The copies share the first one's geometry and materials, except the beacon
+   * lens: each aircraft's beacon flashes on its own clock (aircraftLights.ts seeds it by the id).
+   */
+  interface DrawnAircraft {
+    body: Group;
+    gear: Object3D;
+    props: Object3D[];
+    beacon: MeshStandardMaterial;
+    position: Vector3;
+    pose: AircraftLightPose;
+  }
+  const fleet: DrawnAircraft[] = [];
+  function drawnAircraft(i: number): DrawnAircraft {
+    if (fleet[i]) return fleet[i];
+    const body = i ? airplane.clone() : airplane;
+    if (i) aircraftGroup.add(body);
+    const lens = body.getObjectByName('beacon') as Mesh;
+    if (i) lens.material = own(beaconLens.clone());
+    body.visible = false;
+    return (fleet[i] = {
+      body,
+      gear: body.getObjectByName('gear')!,
+      props: body.children.filter((c) => c.name === 'prop'),
+      beacon: lens.material as MeshStandardMaterial,
+      position: new Vector3(),
+      pose: { id: '', phase: '', gear: true, matrix: body.matrixWorld },
+    });
+  }
+  drawnAircraft(0);
   // Smoothed render poses of the cars and trucks drawn this frame (reused objects), for the beams.
   const poses: VehiclePose[] = [];
   let poseCount = 0;
@@ -450,7 +485,10 @@ export function createTransportModels() {
   };
   return {
     group,
+    /** The first aircraft's model (the others are copies of it). */
     airplane,
+    /** All drawn aircraft. */
+    aircraft: aircraftGroup,
     update(vehicles: Vehicle[], aircraft: Aircraft[], dt: number, time: number) {
       const live = new Set(vehicles.map((v) => v.id));
       for (const id of smoothed.keys()) if (!live.has(id)) smoothed.delete(id);
@@ -486,22 +524,28 @@ export function createTransportModels() {
           if (part.mesh.instanceColor) part.mesh.instanceColor.needsUpdate = true;
         }
       }
-      const a = aircraft[0];
-      airplane.visible = !!a;
-      if (a) {
-        if (!planePosition) planePosition = new Vector3(...a.pos);
-        planePosition.lerp(pos.fromArray(a.pos), 1 - Math.exp(-dt * 12));
-        airplane.position.copy(planePosition);
-        airplane.rotation.set(-a.pitch, a.heading, a.bank, 'YXZ');
-        gear.visible = a.gear;
-        for (const prop of props) prop.rotation.z = time * 45;
-        airplane.updateWorldMatrix(true, false);
-        airplanePose.id = a.id;
-        airplanePose.phase = a.phase;
-        airplanePose.gear = a.gear;
-      }
       aircraftPoses.length = 0;
-      if (a) aircraftPoses.push(airplanePose);
+      for (let i = 0; i < Math.max(fleet.length, Math.min(aircraft.length, AIRCRAFT_MAX)); i++) {
+        const a = i < AIRCRAFT_MAX ? aircraft[i] : undefined;
+        if (!a) {
+          fleet[i].body.visible = false;
+          continue;
+        }
+        const d = drawnAircraft(i);
+        // An aircraft that appears, or another one in this place: start where it is, do not glide there.
+        if (!d.body.visible || d.pose.id !== a.id) d.position.fromArray(a.pos);
+        d.body.visible = true;
+        d.position.lerp(pos.fromArray(a.pos), 1 - Math.exp(-dt * 12));
+        d.body.position.copy(d.position);
+        d.body.rotation.set(-a.pitch, a.heading, a.bank, 'YXZ');
+        d.gear.visible = a.gear;
+        for (const prop of d.props) prop.rotation.z = time * 45;
+        d.body.updateWorldMatrix(true, false);
+        d.pose.id = a.id;
+        d.pose.phase = a.phase;
+        d.pose.gear = a.gear;
+        aircraftPoses.push(d.pose);
+      }
     },
     /**
      * Aircraft Lights Phase E2: the drawn aircraft this frame (id, phase, gear and the body's
@@ -510,9 +554,10 @@ export function createTransportModels() {
     aircraftPoses(): readonly AircraftLightPose[] {
       return aircraftPoses;
     },
-    /** Beacon lens glow 0…1 (follows the flash of the first aircraft's beacon). */
-    setBeaconLens(level: number) {
-      beaconLens.emissiveIntensity = DAY_EMISSIVE + AIRCRAFT_LENS_GAIN * level;
+    /** Beacon lens glow 0…1 of the drawn aircraft `id` (follows the flash of its beacon). */
+    setBeaconLens(id: string, level: number) {
+      const d = fleet.find((f) => f.pose.id === id);
+      if (d) d.beacon.emissiveIntensity = DAY_EMISSIVE + AIRCRAFT_LENS_GAIN * level;
     },
     /** Smoothed poses of this frame's cars and trucks (valid until the next update). */
     poses(): readonly VehiclePose[] {

@@ -185,10 +185,14 @@ export const DAY_FLASH_LEVEL = 0.65;
  */
 export const PHASE_RULES: Record<string, readonly LightGroup[]> = {
   PARKED: ['navigation', 'beacon'],
+  // Air traffic: waiting in the queue on the taxiway loop, engines running, as PARKED.
+  QUEUE: ['navigation', 'beacon'],
   TAXI_OUT: ['navigation', 'beacon', 'taxi'],
   TAKEOFF: ['navigation', 'beacon', 'strobe', 'landing'],
   CLIMB: ['navigation', 'beacon', 'strobe', 'landing'],
   CRUISE: ['navigation', 'beacon', 'strobe'],
+  // Air traffic: circling at the approach fix until the runway is free, as CRUISE.
+  HOLDING: ['navigation', 'beacon', 'strobe'],
   APPROACH: ['navigation', 'beacon', 'strobe', 'landing'],
   LANDING: ['navigation', 'beacon', 'strobe', 'landing'],
   TAXI_IN: ['navigation', 'beacon', 'taxi'],

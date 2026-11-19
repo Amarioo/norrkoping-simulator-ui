@@ -1,0 +1,20 @@
+1 aircraft, steps [0.05]: 49 flights, 0.49 in the air on average, closest +Inf (in the air +Inf), longest wait 45 s
+1 aircraft, steps [0.02]: 49 flights, 0.49 in the air on average, closest +Inf (in the air +Inf), longest wait 45 s
+1 aircraft, steps [0.05 0.05 0.013]: 49 flights, 0.49 in the air on average, closest +Inf (in the air +Inf), longest wait 45 s
+2 aircraft, steps [0.05]: 98 flights, 0.98 in the air on average, closest 34.74 (in the air 40.88), longest wait 45 s
+2 aircraft, steps [0.02]: 98 flights, 0.98 in the air on average, closest 34.74 (in the air 40.83), longest wait 45 s
+2 aircraft, steps [0.05 0.05 0.013]: 98 flights, 0.98 in the air on average, closest 34.74 (in the air 40.88), longest wait 45 s
+3 aircraft, steps [0.05]: 132 flights, 1.33 in the air on average, closest 1.60 (in the air 20.23), longest wait 273 s
+3 aircraft, steps [0.02]: 132 flights, 1.33 in the air on average, closest 1.60 (in the air 20.35), longest wait 273 s
+3 aircraft, steps [0.05 0.05 0.013]: 132 flights, 1.33 in the air on average, closest 1.60 (in the air 20.28), longest wait 273 s
+4 aircraft, steps [0.05]: 168 flights, 1.68 in the air on average, closest 1.57 (in the air 14.90), longest wait 273 s
+4 aircraft, steps [0.02]: 168 flights, 1.68 in the air on average, closest 1.57 (in the air 14.95), longest wait 273 s
+4 aircraft, steps [0.05 0.05 0.013]: 168 flights, 1.68 in the air on average, closest 1.57 (in the air 14.85), longest wait 273 s
+5 aircraft, steps [0.05]: 202 flights, 2.02 in the air on average, closest 1.57 (in the air 20.40), longest wait 363 s
+5 aircraft, steps [0.02]: 202 flights, 2.02 in the air on average, closest 1.57 (in the air 20.40), longest wait 363 s
+5 aircraft, steps [0.05 0.05 0.013]: 202 flights, 2.02 in the air on average, closest 1.57 (in the air 20.37), longest wait 363 s
+6 aircraft, steps [0.05]: 242 flights, 2.42 in the air on average, closest 1.57 (in the air 20.40), longest wait 437 s
+6 aircraft, steps [0.02]: 242 flights, 2.42 in the air on average, closest 1.57 (in the air 20.40), longest wait 437 s
+6 aircraft, steps [0.05 0.05 0.013]: 242 flights, 2.42 in the air on average, closest 1.57 (in the air 20.37), longest wait 437 s
+6 aircraft in 6 h: 242 flights with the timetable, 191 without
+5 aircraft in 6 h: 202 flights with the timetable, 212 without

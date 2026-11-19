@@ -11,6 +11,11 @@ export interface TrafficSettings {
   trams: number;
   trains: number;
   flights: boolean;
+  /**
+   * Number of aircraft while flights are on (1–6). Left out by a server from before the fleet, and by a
+   * city that still flies the single legacy shuttle: read it with planesOf().
+   */
+  planes?: number;
   timeScale: number;
 }
 export interface Vehicle {
@@ -140,18 +145,36 @@ class CityStore {
       window.removeEventListener('offline', close);
     };
   }
-  async command(name: string, body: object = {}) {
+  /**
+   * Air traffic: false once the server has turned out to be one from before the fleet, which flies a
+   * single aircraft and rejects a settings command that names a number of them.
+   */
+  fleet = $state(true);
+  /**
+   * Sends a command. `fallback` is a body to send instead if the server rejects the first one as
+   * malformed (400); `onFallback` runs when that second body was accepted.
+   */
+  async command(name: string, body: object = {}, fallback?: object, onFallback?: () => void) {
     if (this.pending) return false;
     this.pending = true;
     this.error = '';
     this.notice = '';
     try {
-      const res = await fetch(cityUrl(name), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-        signal: AbortSignal.timeout(12000),
-      });
+      const send = (content: object) =>
+        fetch(cityUrl(name), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(content),
+          signal: AbortSignal.timeout(12000),
+        });
+      let res = await send(body);
+      if (res.status === 400 && fallback) {
+        const again = await send(fallback);
+        if (again.ok) {
+          res = again;
+          onFallback?.();
+        }
+      }
       if (res.status === 404)
         throw new Error('Servern svarade inte som väntat. Försök igen om en stund.');
       const data = await res.json();
@@ -165,18 +188,20 @@ class CityStore {
       this.pending = false;
     }
   }
+  /**
+   * Sends the traffic settings. A server from before the fleet does not know `planes`: it then gets the
+   * settings without it, flies its single aircraft, and `fleet` turns false.
+   */
+  configure(settings: TrafficSettings) {
+    const { planes: _, ...known } = settings;
+    if (!this.fleet) return this.command('settings', known);
+    return this.command('settings', settings, known, () => {
+      this.fleet = false;
+    });
+  }
 }
 export const city = new CityStore();
-export const FLIGHT_PHASE: Record<string, string> = {
-  PARKED: 'Vid uppställningsplats',
-  TAXI_OUT: 'Taxar till start',
-  TAKEOFF: 'Startar',
-  CLIMB: 'Stiger',
-  CRUISE: 'På väg',
-  APPROACH: 'Inflygning',
-  LANDING: 'Landar',
-  TAXI_IN: 'Taxar till uppställning',
-};
+export { FLIGHT_PHASE, MAX_PLANES, planesOf } from './flights';
 
 export const VEHICLE_NAMES: Record<Vehicle['kind'], string> = {
   compact: 'Personbil',

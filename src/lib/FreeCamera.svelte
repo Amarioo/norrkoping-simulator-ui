@@ -109,9 +109,9 @@
     if (padKeys.size) follow = '';
     if (follow) {
       const item =
-        follow === 'plane'
-          ? city.snapshot.aircraft[0]
-          : city.snapshot.vehicles.find((v) => String(v.id) === follow);
+        // Air traffic: an aircraft is followed by its id (NK-01 …); vehicles have numeric ids.
+        city.snapshot.aircraft.find((a) => a.id === follow) ??
+        city.snapshot.vehicles.find((v) => String(v.id) === follow);
       if (item) {
         const kind = 'kind' in item ? item.kind : 'plane';
         const distance =

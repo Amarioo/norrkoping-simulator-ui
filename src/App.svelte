@@ -5,7 +5,7 @@
   import { Toaster, toast } from 'svelte-sonner';
   import Scene from './lib/Scene.svelte';
   import { CITY_VIEWS, cityMap } from './lib/mapModel';
-  import { city, FLIGHT_PHASE, VEHICLE_NAMES } from './lib/city.svelte';
+  import { city, FLIGHT_PHASE, MAX_PLANES, VEHICLE_NAMES } from './lib/city.svelte';
   import { terrain } from './lib/terrain';
   import { formatClock, lightingState, setClock } from './lib/lighting/state.svelte';
   import { dayPhase, localToUtc, presets, solarPosition } from './lib/lighting/solar';
@@ -34,6 +34,7 @@
     trams = $state(8),
     trains = $state(2),
     flights = $state(true),
+    planes = $state(3),
     timeScale = $state(3),
     initialized = $state(false);
   // Interface U1: the settings are split over three tabs (Bits UI); on a narrow screen they live
@@ -50,7 +51,21 @@
   const total = $derived(compact + estate + trucks + buses),
     moving = $derived(city.snapshot.vehicles.filter((v) => !v.stopped).length),
     truckCount = $derived(city.snapshot.vehicles.filter((v) => v.kind === 'truck').length),
-    plane = $derived(city.snapshot.aircraft[0]);
+    aircraft = $derived(city.snapshot.aircraft),
+    inTheAir = $derived(aircraft.filter((a) => !a.gear || a.phase === 'APPROACH').length);
+  // Air traffic: the aircraft the Flyg tab shows and its button follows; the first until another is chosen.
+  let chosenPlane = $state('');
+  const plane = $derived(aircraft.find((a) => a.id === chosenPlane) ?? aircraft[0]);
+  const airportCode = (name: string) => (name.includes('F13') ? 'F13' : 'NRK');
+  function choosePlane(id: string) {
+    // Following one aircraft and choosing another moves the camera to it.
+    if (follow && follow === plane?.id) follow = id;
+    chosenPlane = id;
+  }
+  $effect(() => {
+    // A followed aircraft that left the fleet releases the camera (vehicles have numeric ids).
+    if (follow && !/^\d+$/.test(follow) && !aircraft.some((a) => a.id === follow)) follow = '';
+  });
   // Step 6: simulated time of day (Europe/Stockholm) and stadium floodlights.
   const [siteLat, siteLon] = terrain.unproject(0, 0);
   const dayPresets = $derived(presets(lightingState.date, siteLat, siteLon));
@@ -76,6 +91,8 @@
       trams = s.trams ?? 0;
       trains = s.trains ?? 0;
       flights = s.flights;
+      // A city that flies the single legacy shuttle does not name a number.
+      planes = s.planes ?? (s.flights ? 1 : planes);
       timeScale = s.timeScale;
       initialized = true;
     }
@@ -183,7 +200,7 @@
     focus = value;
   }
   async function apply() {
-    await city.command('settings', {
+    await city.configure({
       compact,
       estate,
       trucks,
@@ -191,6 +208,7 @@
       trams,
       trains,
       flights,
+      planes,
       timeScale,
     });
   }
@@ -258,6 +276,18 @@
           bind:checked={flights}
         /></label
       >
+      <label class="slider-label" for="planes"
+        ><span>Flygplan</span><output>{flights ? (city.fleet ? planes : 1) : 0}</output></label
+      ><input
+        id="planes"
+        type="range"
+        min="1"
+        max={MAX_PLANES}
+        step="1"
+        bind:value={planes}
+        disabled={!flights || !city.fleet}
+      />
+      {#if !city.fleet}<p class="control-note">Servern flyger ännu bara ett flygplan.</p>{/if}
       <button
         class="apply-button"
         disabled={!city.connected || city.pending || total > 1000}
@@ -338,7 +368,7 @@
     <Tabs.Content value="flight" class="tab-panel flight-card">
       <div class="card-heading">
         <h2>Regionalflyg</h2>
-        <span class="flight-code">NK-01</span>
+        <span class="flight-code">{plane?.id ?? 'NK-01'}</span>
       </div>
       <div class="airport-route">
         <span>NRK<small>Kungsängen</small></span><b aria-hidden="true">⇄</b><span
@@ -346,18 +376,38 @@
         >
       </div>
       <p class="flight-phase">
-        {plane ? FLIGHT_PHASE[plane.phase] : 'Flygtrafiken är avstängd'}
+        {plane ? (FLIGHT_PHASE[plane.phase] ?? plane.phase) : 'Flygtrafiken är avstängd'}
       </p>
       {#if plane}<p class="control-note">{plane.origin} → {plane.destination}</p>{/if}
       <button
         class="secondary-button"
         disabled={!plane}
         onclick={() => {
-          follow = follow === 'plane' ? '' : 'plane';
-        }}>{follow === 'plane' ? 'Sluta följa flygplanet' : 'Följ flygplanet'}</button
+          follow = plane && follow !== plane.id ? plane.id : '';
+        }}>{plane && follow === plane.id ? 'Sluta följa flygplanet' : 'Följ flygplanet'}</button
       >
+      {#if aircraft.length > 1}
+        <h3 class="section-heading">Alla flygplan · {inTheAir} i luften</h3>
+        <ul class="flight-list">
+          {#each aircraft as a (a.id)}
+            <li>
+              <button
+                type="button"
+                class="flight-row"
+                aria-pressed={a.id === plane?.id}
+                onclick={() => choosePlane(a.id)}
+                ><b>{a.id}</b><span>{FLIGHT_PHASE[a.phase] ?? a.phase}</span><small
+                  >{airportCode(a.origin)} → {airportCode(a.destination)}</small
+                ></button
+              >
+            </li>
+          {/each}
+        </ul>
+      {/if}
       <p class="micro-note">
-        Fiktiv flygpendel till den tidigare F13-basen. Banornas lägen och riktningar följer kartan.
+        Fiktiv flygpendel till den tidigare F13-basen. Banornas lägen och riktningar följer kartan,
+        och planen köar på de kartlagda taxislingorna vid banändarna. Tider, hastigheter, flyghöjder
+        och avgångstider är simulatorns uppskattning.
       </p>
     </Tabs.Content>
   </Tabs.Root>
@@ -452,8 +502,12 @@
         </div>
         <div>
           <span>FLYGTRAFIK</span><strong
-            ><AnimatedNumber value={plane ? 1 : 0} format={{ minimumIntegerDigits: 2 }} /><small>
-              {plane ? FLIGHT_PHASE[plane.phase] : 'avstängd'}</small
+            ><AnimatedNumber value={aircraft.length} format={{ minimumIntegerDigits: 2 }} /><small>
+              {aircraft.length > 1
+                ? inTheAir + ' i luften'
+                : plane
+                  ? (FLIGHT_PHASE[plane.phase] ?? plane.phase)
+                  : 'avstängd'}</small
             ></strong
           >
         </div>
@@ -514,7 +568,7 @@
         {#if fpsCounter.visible}<FpsCounter />{/if}
         {#if webgl && mapReady}<CameraPad />{/if}
         <div class="map-status">
-          {follow ? 'FÖLJER ' + (follow === 'plane' ? 'NK-01' : 'FORDON ' + follow) : 'FRI KAMERA'}
+          {follow ? 'FÖLJER ' + (/^\d+$/.test(follow) ? 'FORDON ' + follow : follow) : 'FRI KAMERA'}
           <i></i>
         </div>
         {#if !city.connected}<div class="connection-banner">

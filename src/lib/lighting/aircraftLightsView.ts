@@ -33,8 +33,8 @@ import {
 } from './aircraftLights';
 
 export type AircraftLightsMode = 'auto' | 'off';
-/** Most aircraft whose lights are drawn (fixed buffer; the simulator flies one). */
-export const AIRCRAFT_MAX = 4;
+/** Most aircraft that are drawn, with their lights (fixed buffer; the server flies up to six). */
+export const AIRCRAFT_MAX = 6;
 /**
  * Glow quads, metres and minimum pixels (ESTIMATE, perceptual): position lights and beacons a little
  * larger than the airport lights (0.9 m); the strong lights (landing, taxi, strobes) on a second buffer
@@ -189,9 +189,9 @@ export function createAircraftLights(metresPerUnit = 25) {
         b.mesh.instanceColor!.needsUpdate = true;
       }
     },
-    /** Beacon flash level 0…1 of the first aircraft this frame (for its lens), 0 if none. */
-    beaconLevel() {
-      return shown.find((s) => s.kind === 'beaconTop')?.weight ?? 0;
+    /** Beacon flash level 0…1 of aircraft `id` this frame (for its lens), 0 if it is not drawn. */
+    beaconLevel(id: string) {
+      return shown.find((s) => s.kind === 'beaconTop' && s.aircraft === id)?.weight ?? 0;
     },
     /** Development / test hook data: this frame's lights (world position in scene units, colour). */
     describe() {

@@ -1,0 +1,150 @@
+{
+  "base": "http://127.0.0.1:5401",
+  "build": "development server",
+  "viewport": [
+    1500,
+    1000
+  ],
+  "renderer": "ANGLE (NVIDIA, NVIDIA GeForce RTX 5070 Ti (0x00002C05) Direct3D11 vs_5_0 ps_5_0, D3D11)",
+  "summary": [
+    {
+      "planes": 0,
+      "calls": 503,
+      "triangles": 2073177,
+      "medianMs": 6.1,
+      "p95Ms": 6.2
+    },
+    {
+      "planes": 1,
+      "calls": 559,
+      "triangles": 2077599,
+      "medianMs": 6.1,
+      "p95Ms": 6.2
+    },
+    {
+      "planes": 3,
+      "calls": 613,
+      "triangles": 2082043,
+      "medianMs": 6.1,
+      "p95Ms": 6.2
+    },
+    {
+      "planes": 6,
+      "calls": 667,
+      "triangles": 2086509,
+      "medianMs": 6.1,
+      "p95Ms": 6.2
+    }
+  ],
+  "runs": [
+    {
+      "round": 1,
+      "planes": 0,
+      "drawn": 0,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 503,
+      "triangles": 2073177
+    },
+    {
+      "round": 1,
+      "planes": 1,
+      "drawn": 1,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 559,
+      "triangles": 2077599
+    },
+    {
+      "round": 1,
+      "planes": 3,
+      "drawn": 3,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 613,
+      "triangles": 2082043
+    },
+    {
+      "round": 1,
+      "planes": 6,
+      "drawn": 6,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 667,
+      "triangles": 2086509
+    },
+    {
+      "round": 2,
+      "planes": 0,
+      "drawn": 0,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 503,
+      "triangles": 2073177
+    },
+    {
+      "round": 2,
+      "planes": 1,
+      "drawn": 1,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 559,
+      "triangles": 2077599
+    },
+    {
+      "round": 2,
+      "planes": 3,
+      "drawn": 3,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 613,
+      "triangles": 2082043
+    },
+    {
+      "round": 2,
+      "planes": 6,
+      "drawn": 6,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 667,
+      "triangles": 2086509
+    },
+    {
+      "round": 3,
+      "planes": 0,
+      "drawn": 0,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 503,
+      "triangles": 2073177
+    },
+    {
+      "round": 3,
+      "planes": 1,
+      "drawn": 1,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 559,
+      "triangles": 2077599
+    },
+    {
+      "round": 3,
+      "planes": 3,
+      "drawn": 3,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 613,
+      "triangles": 2082043
+    },
+    {
+      "round": 3,
+      "planes": 6,
+      "drawn": 6,
+      "medianMs": 6.1,
+      "p95Ms": 6.2,
+      "calls": 667,
+      "triangles": 2086509
+    }
+  ],
+  "errors": []
+}

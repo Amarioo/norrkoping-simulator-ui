@@ -1,0 +1,73 @@
+{
+  "halfSpanUnits": 0.46,
+  "unitMetres": 25,
+  "airports": [
+    {
+      "id": "ESSP",
+      "name": "Norrköpings flygplats",
+      "taxiways": [
+        101516378
+      ],
+      "pathUnits": 55.6513,
+      "buildingsWithin3Units": 1,
+      "nearest": [
+        {
+          "id": "way/104245463",
+          "kind": "yes",
+          "through": false,
+          "distanceUnits": 2.55
+        },
+        {
+          "id": "way/104245576",
+          "kind": "yes",
+          "through": false,
+          "distanceUnits": 3.078
+        },
+        {
+          "id": "way/104245454",
+          "kind": "yes",
+          "through": false,
+          "distanceUnits": 4.957
+        }
+      ],
+      "wingTipClearanceMetres": 52.3
+    },
+    {
+      "id": "F13",
+      "name": "Bråvalla F13",
+      "taxiways": [
+        104336417,
+        104336403
+      ],
+      "pathUnits": 62.4907,
+      "buildingsWithin3Units": 4,
+      "nearest": [
+        {
+          "id": "way/104336425",
+          "kind": "yes",
+          "through": false,
+          "distanceUnits": 0.529
+        },
+        {
+          "id": "way/104336441",
+          "kind": "yes",
+          "through": false,
+          "distanceUnits": 0.748
+        },
+        {
+          "id": "way/104336384",
+          "kind": "yes",
+          "through": false,
+          "distanceUnits": 0.821
+        },
+        {
+          "id": "way/104336380",
+          "kind": "yes",
+          "through": false,
+          "distanceUnits": 1.566
+        }
+      ],
+      "wingTipClearanceMetres": 1.7
+    }
+  ]
+}

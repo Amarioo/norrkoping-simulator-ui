@@ -1,0 +1,518 @@
+{
+  "base": "http://127.0.0.1:5401",
+  "shots": [
+    {
+      "name": "01-kungsangen-start-queue-and-line-up",
+      "eye": [
+        103,
+        7.5,
+        21.5
+      ],
+      "at": [
+        101.5,
+        0.1,
+        11.5
+      ],
+      "simulationTime": 16.000000000000078,
+      "completedFlights": 0,
+      "aircraft": [
+        {
+          "id": "NK-01",
+          "phase": "TAXI_OUT",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            100.6,
+            0.15,
+            13.97
+          ]
+        },
+        {
+          "id": "NK-02",
+          "phase": "QUEUE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -228.7,
+            1.07,
+            -66.28
+          ]
+        },
+        {
+          "id": "NK-03",
+          "phase": "QUEUE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            98.63,
+            0.16,
+            12.59
+          ]
+        },
+        {
+          "id": "NK-04",
+          "phase": "QUEUE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -228.32,
+            1.08,
+            -64.74
+          ]
+        },
+        {
+          "id": "NK-05",
+          "phase": "QUEUE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            97.41,
+            0.16,
+            11.55
+          ]
+        },
+        {
+          "id": "NK-06",
+          "phase": "QUEUE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -227.64,
+            1.08,
+            -63.3
+          ]
+        }
+      ]
+    },
+    {
+      "name": "02-kungsangen-take-off-past-the-queue",
+      "eye": [
+        92,
+        9,
+        27
+      ],
+      "at": [
+        112,
+        0.1,
+        13
+      ],
+      "simulationTime": 34.00000000000019,
+      "completedFlights": 0,
+      "aircraft": [
+        {
+          "id": "NK-01",
+          "phase": "TAKEOFF",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            107.18,
+            0.15,
+            14.59
+          ]
+        },
+        {
+          "id": "NK-02",
+          "phase": "QUEUE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -228.7,
+            1.07,
+            -66.28
+          ]
+        },
+        {
+          "id": "NK-03",
+          "phase": "QUEUE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            98.63,
+            0.16,
+            12.59
+          ]
+        },
+        {
+          "id": "NK-04",
+          "phase": "QUEUE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -228.32,
+            1.08,
+            -64.74
+          ]
+        },
+        {
+          "id": "NK-05",
+          "phase": "QUEUE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            97.41,
+            0.16,
+            11.55
+          ]
+        },
+        {
+          "id": "NK-06",
+          "phase": "QUEUE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -227.64,
+            1.08,
+            -63.3
+          ]
+        }
+      ]
+    },
+    {
+      "name": "03-bravalla-start-queue-on-the-loop",
+      "eye": [
+        -217,
+        8,
+        -55
+      ],
+      "at": [
+        -226,
+        1.1,
+        -65
+      ],
+      "simulationTime": 84.9999999999973,
+      "completedFlights": 0,
+      "aircraft": [
+        {
+          "id": "NK-01",
+          "phase": "CLIMB",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            201.72,
+            11.06,
+            14.28
+          ]
+        },
+        {
+          "id": "NK-02",
+          "phase": "TAXI_OUT",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -228.7,
+            1.07,
+            -66.32
+          ]
+        },
+        {
+          "id": "NK-03",
+          "phase": "QUEUE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            98.63,
+            0.16,
+            12.59
+          ]
+        },
+        {
+          "id": "NK-04",
+          "phase": "QUEUE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -228.34,
+            1.08,
+            -64.78
+          ]
+        },
+        {
+          "id": "NK-05",
+          "phase": "QUEUE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            97.41,
+            0.16,
+            11.55
+          ]
+        },
+        {
+          "id": "NK-06",
+          "phase": "QUEUE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -227.66,
+            1.08,
+            -63.33
+          ]
+        }
+      ]
+    },
+    {
+      "name": "04-kungsangen-steady-arrival-on-the-loop",
+      "eye": [
+        103,
+        7.5,
+        21.5
+      ],
+      "at": [
+        101.5,
+        0.1,
+        11.5
+      ],
+      "simulationTime": 882.9999999997447,
+      "completedFlights": 8,
+      "aircraft": [
+        {
+          "id": "NK-01",
+          "phase": "TAXI_IN",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            107.17,
+            0.15,
+            10.87
+          ]
+        },
+        {
+          "id": "NK-02",
+          "phase": "LANDING",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            -202.66,
+            1.06,
+            -86.59
+          ]
+        },
+        {
+          "id": "NK-03",
+          "phase": "CRUISE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -97.64,
+            8,
+            -86.49
+          ]
+        },
+        {
+          "id": "NK-04",
+          "phase": "CRUISE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            54.86,
+            12,
+            -19.18
+          ]
+        },
+        {
+          "id": "NK-05",
+          "phase": "PARKED",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -228.7,
+            1.07,
+            -66.28
+          ]
+        },
+        {
+          "id": "NK-06",
+          "phase": "QUEUE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            98.63,
+            0.16,
+            12.59
+          ]
+        }
+      ]
+    },
+    {
+      "name": "05-flyg-tab-list-following-nk-04",
+      "eye": null,
+      "at": null,
+      "simulationTime": 908.999999999721,
+      "completedFlights": 8,
+      "aircraft": [
+        {
+          "id": "NK-01",
+          "phase": "TAXI_IN",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            97.68,
+            0.16,
+            8.28
+          ]
+        },
+        {
+          "id": "NK-02",
+          "phase": "TAXI_IN",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            -205.71,
+            1.07,
+            -84.5
+          ]
+        },
+        {
+          "id": "NK-03",
+          "phase": "CRUISE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -44.15,
+            8,
+            -47.32
+          ]
+        },
+        {
+          "id": "NK-04",
+          "phase": "CRUISE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            -11.38,
+            12,
+            -16.44
+          ]
+        },
+        {
+          "id": "NK-05",
+          "phase": "QUEUE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -228.7,
+            1.07,
+            -66.28
+          ]
+        },
+        {
+          "id": "NK-06",
+          "phase": "TAKEOFF",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            103.92,
+            0.15,
+            14.6
+          ]
+        }
+      ]
+    },
+    {
+      "name": "06-night-kungsangen-lights-on-the-loop",
+      "eye": [
+        102.5,
+        3.2,
+        17.5
+      ],
+      "at": [
+        100.5,
+        0.2,
+        11
+      ],
+      "simulationTime": 1058.9999999995846,
+      "completedFlights": 10,
+      "aircraft": [
+        {
+          "id": "NK-01",
+          "phase": "QUEUE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            98.63,
+            0.16,
+            12.59
+          ]
+        },
+        {
+          "id": "NK-02",
+          "phase": "PARKED",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -228.7,
+            1.07,
+            -66.28
+          ]
+        },
+        {
+          "id": "NK-03",
+          "phase": "TAXI_IN",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            107.26,
+            0.15,
+            10.95
+          ]
+        },
+        {
+          "id": "NK-04",
+          "phase": "LANDING",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            -202.91,
+            1.06,
+            -86.42
+          ]
+        },
+        {
+          "id": "NK-05",
+          "phase": "CRUISE",
+          "origin": "Bråvalla F13",
+          "destination": "Norrköpings flygplats",
+          "pos": [
+            -98.15,
+            8,
+            -86.87
+          ]
+        },
+        {
+          "id": "NK-06",
+          "phase": "CRUISE",
+          "origin": "Norrköpings flygplats",
+          "destination": "Bråvalla F13",
+          "pos": [
+            55.5,
+            12,
+            -19.21
+          ]
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "followStatus": "FÖLJER NK-04",
+  "list": [
+    "NK-01\nTaxar in från banan\nF13 → NRK",
+    "NK-02\nTaxar in från banan\nNRK → F13",
+    "NK-03\nPå väg\nF13 → NRK",
+    "NK-04\nPå väg\nNRK → F13",
+    "NK-05\nKöar till startbanan\nF13 → NRK",
+    "NK-06\nStartar\nNRK → F13"
+  ],
+  "night": {
+    "aircraftDrawnWithLights": 6,
+    "capacity": 66,
+    "instances": 66,
+    "ids": [
+      "NK-01 QUEUE",
+      "NK-02 PARKED",
+      "NK-03 TAXI_IN",
+      "NK-04 LANDING",
+      "NK-05 CRUISE",
+      "NK-06 CRUISE"
+    ]
+  }
+}
