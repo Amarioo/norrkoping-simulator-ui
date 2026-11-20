@@ -79,43 +79,46 @@ export function createMappedCity() {
     resources.push(r);
     return r;
   };
+  // Interface U4 (memory): the worker-built layers store no normals (cityMesh.ts, Batch.indexed).
+  // flatShading takes each triangle's normal from its own plane, which is the face normal the
+  // layers had per vertex before.
   const materials: Record<CityLayer, { material: MeshStandardMaterial; shadows: boolean }> = {
     markings: {
       material: own(
-        layeredGround(new MeshStandardMaterial({ vertexColors: true, roughness: 1, side: 2 })),
+        layeredGround(new MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 1, side: 2 })),
       ),
       shadows: false,
     },
     banks: {
-      material: own(new MeshStandardMaterial({ vertexColors: true, roughness: 1, side: 2 })),
+      material: own(new MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 1, side: 2 })),
       shadows: true,
     },
     land: {
       material: own(
-        layeredGround(new MeshStandardMaterial({ vertexColors: true, roughness: 1, side: 2 })),
+        layeredGround(new MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 1, side: 2 })),
       ),
       shadows: false,
     },
     water: {
       material: own(
-        new MeshStandardMaterial({ vertexColors: true, roughness: 0.28, metalness: 0.12, side: 2 }),
+        new MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 0.28, metalness: 0.12, side: 2 }),
       ),
       shadows: false,
     },
     roads: {
       material: own(
-        layeredGround(new MeshStandardMaterial({ vertexColors: true, roughness: 0.96, side: 2 })),
+        layeredGround(new MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 0.96, side: 2 })),
       ),
       shadows: false,
     },
     surveyed: {
-      material: own(new MeshStandardMaterial({ vertexColors: true, roughness: 0.85, side: 2 })),
+      material: own(new MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 0.85, side: 2 })),
       shadows: true,
     },
     walls: {
       material: own(
         new MeshStandardMaterial({
-          vertexColors: true,
+          vertexColors: true, flatShading: true,
           map: own(windowTexture()),
           roughness: 0.83,
           side: 2,
@@ -124,11 +127,11 @@ export function createMappedCity() {
       shadows: true,
     },
     roofs: {
-      material: own(new MeshStandardMaterial({ vertexColors: true, roughness: 0.86, side: 2 })),
+      material: own(new MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 0.86, side: 2 })),
       shadows: true,
     },
     cornices: {
-      material: own(new MeshStandardMaterial({ vertexColors: true, roughness: 0.9, side: 2 })),
+      material: own(new MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 0.9, side: 2 })),
       shadows: false,
     },
   };

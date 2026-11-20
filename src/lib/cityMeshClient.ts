@@ -4,7 +4,7 @@
  * are unavailable or fail, so the map always appears.
  */
 import type { CityLayers, CityTask } from './cityMesh';
-import { loadCityData, releaseCityData, type CityDataBytes } from './cityData';
+import { loadCityData, parseAfter, releaseCityData, type CityDataBytes } from './cityData';
 import { compactLayers, deserializeLayers, type SerializedLayers } from './cityMeshTransfer';
 
 type WorkerReply =
@@ -104,9 +104,14 @@ export function limitedMemory(): boolean {
 function startBuild(): Promise<CityLayers> {
   if (typeof Worker === 'undefined') return buildOnMainThread(ALL_TASKS);
   const cores = typeof navigator === 'undefined' ? 2 : navigator.hardwareConcurrency || 2;
+  const limited = limitedMemory();
   const data = loadCityData(),
-    plan = planCityTasks(limitedMemory() ? 1 : cores),
+    plan = planCityTasks(limited ? 1 : cores),
     runs = plan.map((tasks) => spawnWorker(tasks, data));
+  // Where memory is short the page reads the map and terrain data only after the worker is done
+  // (cityData.ts); it then drops the raw bytes itself. A failed worker also opens the gate, so the
+  // fallback on the main thread can read the data.
+  if (limited) parseAfter(Promise.allSettled(runs.map((run) => run.layers)));
   const parts = runs.map((run, i) =>
     run.loaded.then((loaded) => {
       if (loaded) return withFallback(plan[i], run.layers);
@@ -126,7 +131,9 @@ function startBuild(): Promise<CityLayers> {
   });
   return Promise.all([...parts, retry])
     .then((layers) => Object.assign({}, ...layers))
-    .finally(releaseCityData);
+    .finally(() => {
+      if (!limited) releaseCityData();
+    });
 }
 
 let pending: Promise<CityLayers> | null = null;

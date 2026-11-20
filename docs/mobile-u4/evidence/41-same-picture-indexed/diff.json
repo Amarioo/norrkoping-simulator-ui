@@ -1,0 +1,140 @@
+{
+  "note": "Channel differences 0–255 between screenshots of the map canvas, 1440 × 1040 window, Edge, simulation paused. Shares are parts of all pixels: differing = any difference, over2 = more than 2/255, over8 = more than 8/255.",
+  "before": "http://127.0.0.1:5403/",
+  "after": "http://127.0.0.1:5401/",
+  "rows": [
+    {
+      "view": "day-city",
+      "sameBuildTwice": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 0,
+        "differingShare": 0,
+        "over2Share": 0,
+        "over8Share": 0
+      },
+      "beforeAfter": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 3,
+        "differingShare": 0.38778465166187553,
+        "over2Share": 0.0000026494628214129586,
+        "over8Share": 0
+      }
+    },
+    {
+      "view": "day-overview",
+      "sameBuildTwice": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 0,
+        "differingShare": 0,
+        "over2Share": 0,
+        "over8Share": 0
+      },
+      "beforeAfter": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 14,
+        "differingShare": 0.2221667306953515,
+        "over2Share": 0.0000013247314107064793,
+        "over8Share": 0.0000013247314107064793
+      }
+    },
+    {
+      "view": "day-airport",
+      "sameBuildTwice": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 0,
+        "differingShare": 0,
+        "over2Share": 0,
+        "over8Share": 0
+      },
+      "beforeAfter": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 3,
+        "differingShare": 0.3273490799740353,
+        "over2Share": 0.000003974194232119438,
+        "over8Share": 0
+      }
+    },
+    {
+      "view": "day-street",
+      "sameBuildTwice": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 0,
+        "differingShare": 0,
+        "over2Share": 0,
+        "over8Share": 0
+      },
+      "beforeAfter": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 16,
+        "differingShare": 0.36204114615761657,
+        "over2Share": 0.000063587107713911,
+        "over8Share": 0.00006226237630320452
+      }
+    },
+    {
+      "view": "day-river",
+      "sameBuildTwice": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 0,
+        "differingShare": 0,
+        "over2Share": 0,
+        "over8Share": 0
+      },
+      "beforeAfter": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 2,
+        "differingShare": 0.32382661915296673,
+        "over2Share": 0,
+        "over8Share": 0
+      }
+    },
+    {
+      "view": "night-city",
+      "sameBuildTwice": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 0,
+        "differingShare": 0,
+        "over2Share": 0,
+        "over8Share": 0
+      },
+      "beforeAfter": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 2,
+        "differingShare": 0.08375746817332785,
+        "over2Share": 0,
+        "over8Share": 0
+      }
+    },
+    {
+      "view": "night-street",
+      "sameBuildTwice": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 0,
+        "differingShare": 0,
+        "over2Share": 0,
+        "over8Share": 0
+      },
+      "beforeAfter": {
+        "width": 1102,
+        "height": 685,
+        "maxDiff": 2,
+        "differingShare": 0.01332017433465365,
+        "over2Share": 0,
+        "over8Share": 0
+      }
+    }
+  ]
+}

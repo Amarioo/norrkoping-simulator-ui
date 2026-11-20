@@ -5,6 +5,7 @@
  * cacti. Everything is created once per scene mount and freed by
  * CityView.dispose().
  */
+import { releaseCanvasAfterUpload } from './canvasMemory';
 import {
   BoxGeometry,
   CanvasTexture,
@@ -128,7 +129,7 @@ function paintFacade(b: Building, tier: Building['tiers'][number], tierIndex: nu
 }
 
 function facadeTexture(canvas: HTMLCanvasElement, wrap: boolean): CanvasTexture {
-  const texture = new CanvasTexture(canvas);
+  const texture = releaseCanvasAfterUpload(new CanvasTexture(canvas));
   texture.colorSpace = SRGBColorSpace;
   texture.anisotropy = 4;
   if (wrap) texture.wrapS = RepeatWrapping;

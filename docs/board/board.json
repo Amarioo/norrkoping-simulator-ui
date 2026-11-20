@@ -1231,6 +1231,11 @@
           "author": "claude",
           "date": "2026-11-20",
           "text": "Sidan kraschade på din iPhone (\"Ett problem inträffade flera gånger\"). Orsaken är mätt: sidan tog cirka 3,5 GB minne när den startade, mer än en telefon tillåter. Nu lagras stadens geometri tätare (20 i stället för 44 byte per hörnpunkt), telefonen behåller ingen egen kopia av det grafikkortet redan har, och staden byggs av en bakgrundsprocess i stället för tre på telefon och surfplatta. Mätt i en datorwebbläsare i telefonstorlek: toppen 3,5 → 2,2 GB, stillastående 2,7 → 1,6 GB. Bilden är densamma för ögat (högst 3 steg av 255 skiljer). Om det räcker på din iPhone vet bara du; pushat på din begäran så att du kan prova. Räcker det inte är nästa steg att lagra delade hörnpunkter en gång och därefter en enklare stad för telefoner."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-20",
+          "text": "Andra omgången efter att sidan fortfarande kraschade på din iPhone (Safari och Chrome). Nu lagras varje hörnpunkt som flera trianglar delar bara en gång, så stadens geometri tar cirka 90 MB i stället för 1 130. På telefon läser sidan in kartdata först när bakgrundsbyggaren är klar, i stället för samtidigt, och färdigmålade skyltbilder töms ur minnet. Mätt i en datorwebbläsare i telefonstorlek: sidans topp 3,0 → 0,9 GB, totalt 3,5 → 1,5 GB. Starten tar längre tid (cirka 11 s i stället för 5 i mätningen). Bilden är densamma för ögat. Pushat så att du kan prova igen."
         }
       ],
       "report": "docs/mobile-u4/README.md"

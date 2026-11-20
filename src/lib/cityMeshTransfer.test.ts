@@ -68,25 +68,64 @@ describe('Interface U4: compact city vertices', () => {
     expect(back.boundingSphere!.radius).toBeCloseTo(g.boundingSphere!.radius, 6);
   });
 
-  it('a compact batch collects the same vertices as compacting a float batch', () => {
+  it('an indexed batch holds the same triangles as a float batch, with shared corners stored once', () => {
     const emit = (batch: Batch) => {
-      batch.triangle([0, 0, 0], [1, 0.1, 0], [0, 0.2, 1], new Color('#a7ac80'), [[3, 0], [3, 0], [3, 0]]);
-      batch.triangle([2, 0, 0], [2, 1, 0], [2, 0, 1], new Color('#41494e'));
+      const green = new Color('#a7ac80'),
+        rank = [[3, 0], [3, 0], [3, 0]];
+      // Two triangles sharing an edge, a third with another colour on the same points, one apart.
+      batch.triangle([0, 0, 0], [1, 0.1, 0], [0, 0.2, 1], green, rank);
+      batch.triangle([1, 0.1, 0], [1, 0.3, 1], [0, 0.2, 1], green, rank);
+      batch.triangle([0, 0, 0], [1, 0.1, 0], [0, 0.2, 1], new Color('#41494e'), rank);
+      batch.triangle([2, 0, 0], [2, 1, 0], [2, 0, 1], green);
       return batch.geometries()[0];
     };
     const floats = compactGeometry(emit(new Batch(0)));
-    Batch.compact = true;
-    let packed: BufferGeometry;
+    Batch.indexed = true;
+    let indexed: BufferGeometry;
     try {
-      packed = emit(new Batch(0));
+      indexed = compactGeometry(emit(new Batch(0)));
     } finally {
-      Batch.compact = false;
+      Batch.indexed = false;
     }
-    for (const name of ['position', 'normal', 'color']) {
-      expect(packed.getAttribute(name).array.constructor).toBe(floats.getAttribute(name).array.constructor);
-      expect(packed.getAttribute(name).normalized).toBe(floats.getAttribute(name).normalized);
-      expect([...packed.getAttribute(name).array]).toEqual([...floats.getAttribute(name).array]);
+    expect(indexed.getAttribute('normal')).toBeUndefined();
+    const index = indexed.index!;
+    expect(index.array).toBeInstanceOf(Uint16Array);
+    expect(index.count).toBe(12);
+    // 4 shared points in green + 3 in grey + 3 with another uv = 10 distinct vertices, not 12.
+    expect(indexed.getAttribute('position').count).toBe(10);
+    for (const name of ['position', 'color', 'uv']) {
+      const a = floats.getAttribute(name),
+        b = indexed.getAttribute(name);
+      expect(b.array.constructor).toBe(a.array.constructor);
+      expect(b.normalized).toBe(a.normalized);
+      for (let corner = 0; corner < 12; corner++)
+        for (let k = 0; k < a.itemSize; k++)
+          expect(b.getComponent(index.getX(corner), k)).toBe(a.getComponent(corner, k));
     }
+  });
+
+  it('an indexed cell batch seals each cell and keeps the index through the wire format', () => {
+    Batch.indexed = true;
+    let geometries: BufferGeometry[];
+    try {
+      const batch = new Batch(40);
+      for (let i = 0; i < 300; i++) {
+        const x = (i % 2) * 100 + (i % 7);
+        batch.triangle([x, 0, 0], [x + 1, 0, 0], [x, 0, 1], new Color('#648b51'));
+      }
+      geometries = batch.geometries();
+      expect(batch.geometries()).toHaveLength(0);
+    } finally {
+      Batch.indexed = false;
+    }
+    expect(geometries).toHaveLength(2);
+    expect(geometries.reduce((n, g) => n + g.index!.count, 0)).toBe(900);
+    // 7 distinct triangles per cell in a row: 8 points on one line and 7 on the other.
+    for (const g of geometries) expect(g.getAttribute('position').count).toBe(15);
+    const { layers, transfer } = serializeLayers({ land: geometries });
+    const back = deserializeLayers(layers).land!;
+    expect(transfer).toHaveLength(8);
+    expect([...back[0].index!.array]).toEqual([...geometries[0].index!.array]);
   });
 
   it('drops the page copy of an array once it is uploaded, keeping the vertex count', () => {

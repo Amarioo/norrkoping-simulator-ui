@@ -29,6 +29,24 @@ async function download(url: string): Promise<ArrayBuffer> {
 }
 
 let bytes: Promise<CityDataBytes> | null = null;
+/**
+ * Interface U4 (memory). Reading one dataset takes several times its file size while it is parsed,
+ * and both the page and the geometry worker read both datasets.
+ * - `gate`: where memory is short the page reads its copy only after the worker has finished and
+ *   is gone (parseAfter, set by cityMeshClient.ts), so the two do not hold their peaks together.
+ * - `dropWhenParsed`: the raw bytes are dropped as soon as both datasets are parsed here.
+ */
+let gate: Promise<unknown> | null = null;
+let dropWhenParsed = false;
+const parsed = new Set<keyof CityDataBytes>();
+/** The page parses its datasets only once `work` has settled, and then drops the raw bytes. */
+export function parseAfter(work: Promise<unknown>) {
+  gate = work.then(
+    () => {},
+    () => {},
+  );
+  dropWhenParsed = true;
+}
 /** Downloads both datasets once; a failed download is retried by the next call. */
 export function loadCityData(): Promise<CityDataBytes> {
   bytes ??= Promise.all([download(terrainUrl), download(mapUrl)]).then(
@@ -43,6 +61,7 @@ export function loadCityData(): Promise<CityDataBytes> {
 /** Workers use the bytes sent by the main thread instead of downloading them again. */
 export function provideCityData(data: CityDataBytes) {
   bytes = Promise.resolve(data);
+  dropWhenParsed = true;
 }
 /** Drops the raw bytes once they are parsed and every worker has its copy. */
 export function releaseCityData() {
@@ -51,9 +70,13 @@ export function releaseCityData() {
 
 /** Parses one dataset; the time shows up as a `city-data:parse-*` performance measure. */
 export async function cityJson<T>(name: keyof CityDataBytes): Promise<T> {
+  if (gate) await gate;
   const data = await loadCityData(),
     started = performance.now();
   const value = JSON.parse(new TextDecoder().decode(data[name])) as T;
   performance.measure?.(`city-data:parse-${name}`, { start: started });
+  parsed.add(name);
+  // A later reader (the inspection tools) downloads the files again, as after releaseCityData().
+  if (dropWhenParsed && parsed.size === 2) bytes = null;
   return value;
 }

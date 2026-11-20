@@ -60,27 +60,43 @@ const CHUNK_KEY_OFFSET = 32768;
  * less extra GPU work in street views (larger cells are culled less precisely).
  */
 export const CITY_CELL = 40;
+/** Scratch for the bit pattern of a vertex's floats (x, y, z, u, v) in the indexed mode. */
+const VERTEX_FLOATS = new Float32Array(5),
+  VERTEX_BITS = new Uint32Array(VERTEX_FLOATS.buffer);
 /**
- * Collects non-indexed triangles straight into typed arrays. The city emits millions of
- * triangles, so this avoids per-triangle Vector3/array allocations and number[] growth.
- * With a cell size it groups triangles by cell (each cell one geometry); without one
- * (`new Batch(0)`) it seals a geometry every 3 000 triangles.
+ * Collects triangles straight into typed arrays. The city emits millions of triangles, so this
+ * avoids per-triangle Vector3/array allocations and number[] growth. With a cell size it groups
+ * triangles by cell (each cell one geometry); without one (`new Batch(0)`) it seals a geometry
+ * every 3 000 triangles.
+ *
+ * Two modes. By default every triangle gets three vertices of its own with its face normal
+ * (non-indexed floats). In the indexed mode (`Batch.indexed`, Interface U4) a corner that several
+ * triangles share, with the same position, colour and uv, is stored once and the triangles refer
+ * to it by number; no normals are stored, the materials of these layers shade each triangle by its
+ * own plane instead (flatShading, mapView.ts), which gives the same face normal. The triangles and
+ * their order are the same in both modes.
  */
 export class Batch {
   /**
-   * Interface U4 (memory): set by the geometry worker before it builds. Normals and colours are
-   * then collected directly in the compact vertex format of cityMeshTransfer.ts (int8 and uint8,
-   * normalised) instead of as floats, which lowers the worker's memory while it builds.
+   * Interface U4 (memory): set by the geometry worker before it builds. The city is about
+   * 26 million triangle corners but far fewer distinct points, so the indexed mode takes a
+   * fraction of the memory, both while the worker builds and afterwards.
    */
-  static compact = false;
+  static indexed = false;
   private chunks = new Map<number, Batch>();
   private sealed: BufferGeometry[] = [];
+  /** Vertices stored (in the indexed mode: distinct vertices). */
   private count = 0;
-  private readonly packed = Batch.compact;
+  private readonly packed = Batch.indexed;
   private positions = new Float32Array(0);
-  private normals: Float32Array | Int8Array = this.packed ? new Int8Array(0) : new Float32Array(0);
+  private normals = new Float32Array(0);
   private colors: Float32Array | Uint8Array = this.packed ? new Uint8Array(0) : new Float32Array(0);
   private uvs = new Float32Array(0);
+  /** Indexed mode: three vertex numbers per triangle, and how many are in use. */
+  private indices = new Uint32Array(0);
+  private used = 0;
+  /** Indexed mode: open-addressing hash table of vertex numbers (−1 = free), a power of two long. */
+  private table = new Int32Array(0);
   constructor(
     private cellSize = CITY_CELL,
     private seal = true,
@@ -88,28 +104,34 @@ export class Batch {
   geometries(): BufferGeometry[] {
     if (!this.cellSize) {
       const result = [...this.sealed];
-      if (this.count) result.push(this.geometry());
+      if (this.packed ? this.used : this.count) result.push(this.geometry());
       this.sealed = [];
       return result;
     }
-    const result = [...this.chunks.values()].flatMap((chunk) => chunk.geometries());
-    this.chunks.clear();
+    // Each cell is released as soon as it is sealed, so the growth buffers do not all stay alive
+    // beside their exact-size copies.
+    const result: BufferGeometry[] = [];
+    for (const [key, chunk] of this.chunks) {
+      result.push(...chunk.geometries());
+      this.chunks.delete(key);
+    }
     return result;
   }
   private reserve(vertices: number) {
     if (vertices <= this.positions.length / 3) return;
     const current = this.positions.length / 3;
     // Grow 4× while small; past the old piece size an unsealed cell grows 2× to limit its peak memory.
-    const capacity = this.seal
-      ? Math.min(SEAL_VERTICES, Math.max(96, current * 4))
-      : Math.max(96, current < SEAL_VERTICES ? current * 4 : current * 2);
-    const grow = <T extends Float32Array | Int8Array | Uint8Array>(old: T, size: number) => {
+    const capacity =
+      this.seal && !this.packed
+        ? Math.min(SEAL_VERTICES, Math.max(96, current * 4))
+        : Math.max(96, current < SEAL_VERTICES ? current * 4 : current * 2);
+    const grow = <T extends Float32Array | Uint8Array>(old: T, size: number) => {
       const next = new (old.constructor as new (length: number) => T)(capacity * size);
       next.set(old.subarray(0, this.count * size));
       return next;
     };
     this.positions = grow(this.positions, 3);
-    this.normals = grow(this.normals, 3);
+    if (!this.packed) this.normals = grow(this.normals, 3);
     this.colors = grow(this.colors, 3);
     this.uvs = grow(this.uvs, 2);
   }
@@ -136,6 +158,22 @@ export class Batch {
       chunk.triangle(a, b, c, color, uv);
       return;
     }
+    if (this.packed) {
+      const r = Math.round(Math.min(1, Math.max(0, color.r)) * 255),
+        g = Math.round(Math.min(1, Math.max(0, color.g)) * 255),
+        bl = Math.round(Math.min(1, Math.max(0, color.b)) * 255);
+      if (this.used + 3 > this.indices.length) {
+        const next = new Uint32Array(Math.max(96, this.indices.length * 2));
+        next.set(this.indices.subarray(0, this.used));
+        this.indices = next;
+      }
+      this.indices[this.used] = this.vertex(a, r, g, bl, uv[0]);
+      this.indices[this.used + 1] = this.vertex(b, r, g, bl, uv[1]);
+      this.indices[this.used + 2] = this.vertex(c, r, g, bl, uv[2]);
+      this.used += 3;
+      if (this.seal && this.used >= SEAL_VERTICES) this.sealed.push(this.geometry());
+      return;
+    }
     const abx = b[0] - a[0],
       aby = b[1] - a[1],
       abz = b[2] - a[2],
@@ -152,17 +190,6 @@ export class Batch {
     nz *= inverse;
     this.reserve(this.count + 3);
     const { positions, normals, colors, uvs } = this;
-    let cr = color.r,
-      cg = color.g,
-      cb = color.b;
-    if (this.packed) {
-      nx = Math.round(nx * 127);
-      ny = Math.round(ny * 127);
-      nz = Math.round(nz * 127);
-      cr = Math.round(Math.min(1, Math.max(0, cr)) * 255);
-      cg = Math.round(Math.min(1, Math.max(0, cg)) * 255);
-      cb = Math.round(Math.min(1, Math.max(0, cb)) * 255);
-    }
     for (let i = 0; i < 3; i++) {
       const p = i === 0 ? a : i === 1 ? b : c,
         o = (this.count + i) * 3,
@@ -173,14 +200,96 @@ export class Batch {
       normals[o] = nx;
       normals[o + 1] = ny;
       normals[o + 2] = nz;
-      colors[o] = cr;
-      colors[o + 1] = cg;
-      colors[o + 2] = cb;
+      colors[o] = color.r;
+      colors[o + 1] = color.g;
+      colors[o + 2] = color.b;
       uvs[t] = uv[i][0];
       uvs[t + 1] = uv[i][1];
     }
     this.count += 3;
     if (this.seal && this.count >= SEAL_VERTICES) this.sealed.push(this.geometry());
+  }
+  /** Hash of the vertex whose floats are in VERTEX_FLOATS, with its colour bytes. */
+  private static hash(r: number, g: number, b: number) {
+    const bits = VERTEX_BITS;
+    let h =
+      bits[0] ^
+      Math.imul(bits[1], 0x9e3779b1) ^
+      Math.imul(bits[2], 0x85ebca6b) ^
+      Math.imul(bits[3], 0xc2b2ae35) ^
+      Math.imul(bits[4], 0x27d4eb2f) ^
+      Math.imul(((r << 16) | (g << 8) | b) + 1, 0x165667b1);
+    h ^= h >>> 15;
+    h = Math.imul(h, 0x2c1b3c6d);
+    h ^= h >>> 12;
+    return h;
+  }
+  /** Indexed mode: the number of this vertex, stored now if no equal vertex is there yet. */
+  private vertex(p: number[], r: number, g: number, b: number, uv: number[]) {
+    const f = VERTEX_FLOATS;
+    if ((this.count + 1) * 2 > this.table.length) this.rehash();
+    f[0] = p[0];
+    f[1] = p[1];
+    f[2] = p[2];
+    f[3] = uv[0];
+    f[4] = uv[1];
+    const { table, positions, colors, uvs } = this,
+      mask = table.length - 1;
+    let slot = Batch.hash(r, g, b) & mask;
+    for (;;) {
+      const i = table[slot];
+      if (i < 0) break;
+      const o = i * 3,
+        t = i * 2;
+      // The stored values are float32, like the scratch: equal bits or both zero.
+      if (
+        positions[o] === f[0] &&
+        positions[o + 1] === f[1] &&
+        positions[o + 2] === f[2] &&
+        colors[o] === r &&
+        colors[o + 1] === g &&
+        colors[o + 2] === b &&
+        uvs[t] === f[3] &&
+        uvs[t + 1] === f[4]
+      )
+        return i;
+      slot = (slot + 1) & mask;
+    }
+    const i = this.count;
+    this.reserve(i + 1);
+    const o = i * 3,
+      t = i * 2;
+    this.positions[o] = f[0];
+    this.positions[o + 1] = f[1];
+    this.positions[o + 2] = f[2];
+    this.colors[o] = r;
+    this.colors[o + 1] = g;
+    this.colors[o + 2] = b;
+    this.uvs[t] = f[3];
+    this.uvs[t + 1] = f[4];
+    table[slot] = i;
+    this.count = i + 1;
+    return i;
+  }
+  /** Indexed mode: a table four times as long (at least 256), filled again from the stored vertices. */
+  private rehash() {
+    const table = new Int32Array(Math.max(256, this.table.length * 4)).fill(-1),
+      mask = table.length - 1,
+      f = VERTEX_FLOATS,
+      { positions, colors, uvs } = this;
+    for (let i = 0; i < this.count; i++) {
+      const o = i * 3,
+        t = i * 2;
+      f[0] = positions[o];
+      f[1] = positions[o + 1];
+      f[2] = positions[o + 2];
+      f[3] = uvs[t];
+      f[4] = uvs[t + 1];
+      let slot = Batch.hash(colors[o], colors[o + 1], colors[o + 2]) & mask;
+      while (table[slot] >= 0) slot = (slot + 1) & mask;
+      table[slot] = i;
+    }
+    this.table = table;
   }
   quad(a: number[], b: number[], c: number[], d: number[], color: Color, u = 1, v = 1) {
     this.triangle(a, b, c, color, [
@@ -200,18 +309,24 @@ export class Batch {
     // A full buffer is used as is once the batch is reset. A partly filled one is copied to
     // its exact size: the city keeps its geometry arrays alive, and the unused growth
     // capacity of every chunk's last buffer would otherwise add ~20% to that memory.
-    const exact = <T extends Float32Array | Int8Array | Uint8Array>(array: T, size: number) =>
+    const exact = <T extends Float32Array | Uint8Array>(array: T, size: number) =>
       array.length === n * size ? array : (array.slice(0, n * size) as T);
     g.setAttribute('position', new BufferAttribute(exact(this.positions, 3), 3));
-    g.setAttribute('normal', new BufferAttribute(exact(this.normals, 3), 3, this.packed));
+    if (this.packed) {
+      const index = this.indices.subarray(0, this.used);
+      // 16-bit vertex numbers where they fit: half the size.
+      g.setIndex(new BufferAttribute(n <= 65536 ? Uint16Array.from(index) : index.slice(), 1));
+    } else g.setAttribute('normal', new BufferAttribute(exact(this.normals, 3), 3));
     g.setAttribute('color', new BufferAttribute(exact(this.colors, 3), 3, this.packed));
     g.setAttribute('uv', new BufferAttribute(exact(this.uvs, 2), 2));
     g.computeBoundingSphere();
-    this.count = 0;
+    this.count = this.used = 0;
     this.positions = new Float32Array(0);
-    this.normals = this.packed ? new Int8Array(0) : new Float32Array(0);
+    this.normals = new Float32Array(0);
     this.colors = this.packed ? new Uint8Array(0) : new Float32Array(0);
     this.uvs = new Float32Array(0);
+    this.indices = new Uint32Array(0);
+    this.table = new Int32Array(0);
     return g;
   }
 }

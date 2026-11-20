@@ -5,6 +5,8 @@ import type { CityLayer, CityLayers } from './cityMesh';
 type VertexArray = Float32Array | Int8Array | Uint8Array;
 export interface SerializedGeometry {
   attributes: Record<string, { array: VertexArray; itemSize: number; normalized: boolean }>;
+  /** Vertex numbers of an indexed geometry (three per triangle). */
+  index: Uint16Array | Uint32Array | null;
   /** Bounding sphere computed in the worker: [x, y, z, radius]. */
   sphere: [number, number, number, number] | null;
 }
@@ -63,8 +65,8 @@ export function compactLayers(layers: CityLayers) {
  * that case (App.svelte).
  */
 export function releaseAfterUpload(geometry: BufferGeometry) {
-  for (const attribute of Object.values(geometry.attributes))
-    (attribute as BufferAttribute).onUpload(function (this: BufferAttribute) {
+  for (const attribute of [...Object.values(geometry.attributes), geometry.index])
+    (attribute as BufferAttribute | null)?.onUpload(function (this: BufferAttribute) {
       (this as { array: unknown }).array = null;
     });
   return geometry;
@@ -85,10 +87,13 @@ export function serializeLayers(layers: CityLayers) {
         };
         transfer.add(array.buffer as ArrayBuffer);
       }
+      const index = (geometry.index?.array as Uint16Array | Uint32Array | undefined) ?? null;
+      if (index) transfer.add(index.buffer as ArrayBuffer);
       if (!geometry.boundingSphere) geometry.computeBoundingSphere();
       const s = geometry.boundingSphere;
       return {
         attributes,
+        index,
         sphere: s ? [s.center.x, s.center.y, s.center.z, s.radius] : null,
       };
     });
@@ -99,8 +104,9 @@ export function serializeLayers(layers: CityLayers) {
 export function deserializeLayers(layers: SerializedLayers): CityLayers {
   const result: CityLayers = {};
   for (const [layer, geometries] of Object.entries(layers) as [CityLayer, SerializedGeometry[]][]) {
-    result[layer] = geometries.map(({ attributes, sphere }) => {
+    result[layer] = geometries.map(({ attributes, index, sphere }) => {
       const geometry = new BufferGeometry();
+      if (index) geometry.setIndex(new BufferAttribute(index, 1));
       for (const [name, { array, itemSize, normalized }] of Object.entries(attributes))
         geometry.setAttribute(name, new BufferAttribute(array, itemSize, normalized));
       if (sphere)

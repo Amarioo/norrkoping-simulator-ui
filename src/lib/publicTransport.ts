@@ -1,3 +1,4 @@
+import { releaseCanvasAfterUpload } from './canvasMemory';
 import {
   Group,
   InstancedMesh,
@@ -114,7 +115,7 @@ export function createPublicTransport() {
       g.font = 'bold 50px sans-serif';
       g.fillText('Östgötatrafiken', 500, 440);
     }
-    const t = own(new CanvasTexture(c));
+    const t = own(releaseCanvasAfterUpload(new CanvasTexture(c)));
     t.colorSpace = SRGBColorSpace;
     t.anisotropy = 8;
     return own(new MeshStandardMaterial({ map: t, roughness: 0.46 }));
@@ -139,7 +140,7 @@ export function createPublicTransport() {
     g.fillStyle = '#ffbe35';
     g.font = '52px monospace';
     g.fillText(name, 84, 68, 418);
-    const t = own(new CanvasTexture(c));
+    const t = own(releaseCanvasAfterUpload(new CanvasTexture(c)));
     t.colorSpace = SRGBColorSpace;
     return own(
       new MeshStandardMaterial({

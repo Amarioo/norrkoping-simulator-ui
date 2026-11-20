@@ -6,7 +6,80 @@ following steps start from numbers instead of guesses.
 
 Numbers: [evidence/measurements.json](evidence/measurements.json). Open points: [remaining-gaps.md](remaining-gaps.md).
 
-## Step 4a: memory, after the page crashed on the user's iPhone (2026-11-20) — waiting for the user's test
+## Step 4b: memory, second round (2026-11-20) — waiting for the user's test
+
+Step 4a was pushed and the user tried again: the page still crashed, in Safari and in Chrome (on an iPhone
+both use the same engine, so that is one result, not two). The published page after step 4a measured
+2 283 MB at its peak ([34](evidence/34-memory-after-production.json)).
+
+**What changed in this round:**
+
+| Change | Where | Effect |
+|---|---|---|
+| A corner point that several triangles share is stored once, and the triangles refer to it by number (an index). The city has about 26 million triangle corners but only about 3.7 million distinct points. No surface directions (normals) are stored any more; the graphics card works out each triangle's direction from its own plane, which is the same direction | `Batch.indexed` in `src/lib/cityMesh.ts`; `flatShading` on the nine layer materials in `src/lib/mapView.ts` | the city's geometry about 520 → about 90 MB (1 130 MB before step 4a). On computers too |
+| The worker frees each 1 km cell's work buffers as soon as the cell is finished | `Batch.geometries` | lower peak in the worker |
+| Phones and tablets: the page reads the map and terrain files only after the worker has finished and is gone, instead of at the same time | `parseAfter` in `src/lib/cityData.ts`, `src/lib/cityMeshClient.ts` | the two largest peaks no longer coincide; the start takes longer |
+| Phones and tablets: a picture painted in the page (signs, liveries, façades; about 270 of them) is emptied once graphics memory has it. Not the clocks and the scoreboard, which are painted again | `src/lib/canvasMemory.ts`, used in `placeBuilder.ts`, `mapLandmarks.ts`, `publicTransport.ts`, `cityView.ts` | about 130 MB less in the page and as much in the graphics process, for what has been in view |
+
+### Memory, measured (same method as step 4a)
+
+| | Published before 4a | Published after 4a | Indexed city | + pictures emptied | + read in turn (this version) |
+|---|---|---|---|---|---|
+| Peak while starting (MB) | 3 511 | 2 283 | 1 940 | 1 810 | **1 517** |
+| – page process at its peak | 2 977 | 1 750 | 1 378 | 1 279 | **922** |
+| Standing still (MB) | 2 699 | 1 974 | 1 494 | 1 315 | **1 346** |
+| – page process | 1 784 | 1 200 | 905 | 873 | 908 |
+| – graphics process | 915 | 774 | 589 | 442 | 438 |
+| Map ready after (s) | 5.0 | 9.3 | 6.9 | 7.1 | 10.9 |
+
+Files: [30](evidence/30-memory-before-production.json), [34](evidence/34-memory-after-production.json),
+[35](evidence/35-memory-indexed.json), [36](evidence/36-memory-indexed-canvases.json),
+[37](evidence/37-memory-in-turn.json). One run per column; "standing still" is read 15 s after the map is
+ready and moves by some tens of MB with the moment the browser tidies its memory. The last three are the
+local build against the live backend.
+
+What the page process holds standing still, from the browser's own breakdown
+(`scripts/mobile-u4/memory-breakdown.mjs`, one run, before "read in turn"): typed data buffers about 240 MB,
+the script heap about 190 MB, WebGL about 125 MB, painted pictures about 80 MB (those not yet in view),
+other browser memory about 200 MB.
+
+**How to read this:** still a desktop browser, not Safari on an iPhone. The page process, which is what a
+phone's limit applies to, is at 31 % of where it started at its peak (922 of 2 977 MB). Whether that is under
+the limit of the user's iPhone is not known.
+
+### Same picture (step 4b)
+
+The same seven views, the version before step 4a against this one
+([diff.json](evidence/41-same-picture-indexed/diff.json), two picture pairs kept).
+
+| View | Largest difference (steps of 255) | Pixels differing by more than 2 steps |
+|---|---|---|
+| Inner city, day | 3 | 0.000 % |
+| Whole town, day | 14 | under 0.001 % (a pixel or two) |
+| Airport, day | 3 | 0.000 % |
+| Street, day | 16 | 0.006 % (about 47 pixels of 755 000) |
+| River, late afternoon | 2 | 0 |
+| Inner city, night | 2 | 0 |
+| Street, night | 2 | 0 |
+
+The same version photographed twice was identical in all seven. The few larger differences are single pixels
+on triangle edges, where the graphics card's own estimate of a triangle's direction differs from the stored
+one. Not visible when the two pictures are looked at side by side.
+
+### Checks (step 4b)
+
+| Check | Result |
+|---|---|
+| `npm run check` | 0 errors, 0 warnings |
+| `npm run build` | OK |
+| Vitest | 656 of 657; the failure is `police.test.ts` ("outline belongs to the current artwork"), known from earlier phases. `src/lib/cityMeshTransfer.test.ts` now has 7 tests (indexed batches added) |
+| Playwright, all 27 files (47 tests) | every test passed with this version, in four parts: 42 of 42 (every file but `air-traffic`, minus one test my filter left out), that one test 1 of 1, `air-traffic` 2 of 4, then its other two one at a time 1 of 1 and 1 of 1. The two failures in between were "connection refused": the Vite dev server crashed during the `air-traffic` file (Windows exit code 0xC0000409, the crash known from the air phases). A first full run lost 44 tests the same way when the server crashed at its start. No test was changed |
+| Running app | phone emulation in Edge through `memory.mjs`: the map becomes ready, no crash |
+
+Not verified: a real iPhone or iPad; Safari; the reload after a lost graphics context; the start time on a
+phone (here 5 → 11 s in phone emulation).
+
+## Step 4a: memory, after the page crashed on the user's iPhone (2026-11-20) — pushed; still crashed on the phone
 
 The user opened the published page on an iPhone and got Safari's "Ett problem inträffade flera gånger"
 (the tab was closed again and again). Safari shows that when a page takes more memory than the phone

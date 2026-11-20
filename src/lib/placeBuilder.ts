@@ -1,4 +1,5 @@
 import { LEGACY_LEVELS, terrain } from './terrain';
+import { releaseCanvasAfterUpload } from './canvasMemory';
 import { LAYER_RANK, layeredSurface } from './groundLayers';
 import {
   Group,
@@ -202,7 +203,7 @@ export class PlaceBuilder {
     c.width = w;
     c.height = h;
     paint(c.getContext('2d')!);
-    const t = this.own(new CanvasTexture(c));
+    const t = this.own(releaseCanvasAfterUpload(new CanvasTexture(c)));
     t.colorSpace = SRGBColorSpace;
     t.anisotropy = 8;
     return this.own(new MeshStandardMaterial({ map: t, roughness: 0.8, side: DoubleSide }));

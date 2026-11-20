@@ -2,7 +2,31 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Interface U4, step 4a: memory, after the page crashed on the user's iPhone (2026-11-20) — pushed for the user's test on the phone
+## Interface U4, step 4b: memory, second round (2026-11-20) — pushed for the user's test on the phone
+
+[Report](mobile-u4/README.md). After step 4a (below) the page still crashed on the user's iPhone, in Safari
+and Chrome ("Kraschar fortfarande, testat både på safari och chrome"). The earlier "push when the tests have
+passed" was taken to cover this second attempt at the same fix; the push publishes to production.
+
+- **Changed:** `src/lib/cityMesh.ts` (`Batch.indexed`: shared corner points stored once, no normals; cells
+  freed as they are sealed), `src/lib/mapView.ts` (`flatShading` on the nine layer materials),
+  `src/lib/cityMeshTransfer.ts` (index over the worker boundary), `src/lib/cityData.ts` +
+  `src/lib/cityMeshClient.ts` (`parseAfter`: on phones the page reads the data after the worker is done),
+  new `src/lib/canvasMemory.ts` used by `placeBuilder.ts`, `mapLandmarks.ts`, `publicTransport.ts`,
+  `cityView.ts` (painted pictures emptied after upload, phones only). New `scripts/mobile-u4/memory-breakdown.mjs`.
+- **Measured** (Edge at phone size, not an iPhone): peak 3 511 → 1 517 MB, the page process 2 977 → 922 MB;
+  the city's geometry 1 130 → about 90 MB; map ready after 11 s instead of 5 in phone emulation. Pictures
+  differ from before by at most 3 steps of 255 in five of seven views; single edge pixels up to 16 in two.
+- **Checks:** type check 0; build OK; Vitest 656/657 (known `police.test.ts`); Playwright all 47 passed, in
+  four parts because the Vite dev server kept crashing in `air-traffic` (see the report).
+- **Not verified:** a real iPhone, Safari, the reload after a lost context, the start time on a phone.
+- **If it still crashes:** a binary format for the two data files, smaller textures on phones, a simpler city.
+- **Tooling note:** the `air-dev` Vite server crashed three times today (exit 0xC0000409), each time in or at
+  the start of `tests/air-traffic.spec.ts`. Run that file apart from the others, its tests one at a time.
+- The uncommitted `labels = $state(false)` in `src/App.svelte` is still left out of the commits.
+- Board: `U4` stays in *Test*.
+
+## Interface U4, step 4a: memory, after the page crashed on the user's iPhone (2026-11-20) — pushed; still crashed on the phone
 
 [Report](mobile-u4/README.md). The user opened the published page on an iPhone: Safari closed the tab again
 and again ("Ett problem inträffade flera gånger"). Measured cause: about 3.5 GB of memory while starting.

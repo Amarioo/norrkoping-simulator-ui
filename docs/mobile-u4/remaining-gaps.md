@@ -1,4 +1,21 @@
-# Interface U4 — remaining gaps after step 4a, memory (2026-11-20)
+# Interface U4 — remaining gaps after step 4b, memory second round (2026-11-20)
+
+## Fixed in step 4b
+
+- The city's geometry is indexed: about 90 MB instead of about 520 (1 130 before step 4a).
+- On phones the page and the worker read the data in turn, and painted pictures are emptied after upload.
+- Peak memory of the page process 2 977 → 922 MB (desktop browser at phone size).
+
+## New in step 4b
+
+- Whether the page now fits on the user's iPhone is unknown until the user tries it.
+- The start is slower on phones (5 → 11 s in emulation on this computer; not measured on a phone).
+- If it still crashes, what is left: the two data files are parsed in the page (about 60 MB of JSON, several
+  times that while parsing; a binary format would avoid it), about 190 MB of script heap, textures at full
+  size in graphics memory (signs are 1024 × 160 each), and the frame itself (4.6 million triangles).
+- A few single pixels on triangle edges differ by up to 16 steps of 255 from before (flat shading).
+- `terrain.ts` and `mapModel.ts` keep the parsed files in module variables (the terrain file's base64
+  strings, about 30 MB, and the unmapped road list); not changed.
 
 ## Fixed in step 4a
 

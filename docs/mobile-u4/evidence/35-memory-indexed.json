@@ -1,0 +1,169 @@
+{
+  "url": "http://127.0.0.1:5402/",
+  "device": "Edge (Chromium), iPhone 14 emulation (390 × 664 px viewport, touch)",
+  "hardwareConcurrency": 16,
+  "crashed": false,
+  "mapReadySeconds": 6.888,
+  "peak": {
+    "rendererMB": 1378,
+    "gpuMB": 596
+  },
+  "peakTotalMB": 1940,
+  "settled": {
+    "rendererMB": 905,
+    "gpuMB": 589
+  },
+  "mainThreadJsHeapMB": 527,
+  "samples": [
+    {
+      "t": 0.62,
+      "rendererMB": 128,
+      "gpuMB": 132
+    },
+    {
+      "t": 1.49,
+      "rendererMB": 688,
+      "gpuMB": 182
+    },
+    {
+      "t": 2.38,
+      "rendererMB": 938,
+      "gpuMB": 184
+    },
+    {
+      "t": 3.15,
+      "rendererMB": 1094,
+      "gpuMB": 381
+    },
+    {
+      "t": 3.92,
+      "rendererMB": 1096,
+      "gpuMB": 549
+    },
+    {
+      "t": 4.66,
+      "rendererMB": 1253,
+      "gpuMB": 548
+    },
+    {
+      "t": 5.38,
+      "rendererMB": 1262,
+      "gpuMB": 547
+    },
+    {
+      "t": 6.12,
+      "rendererMB": 1378,
+      "gpuMB": 562
+    },
+    {
+      "t": 6.88,
+      "rendererMB": 1024,
+      "gpuMB": 571
+    },
+    {
+      "t": 7.6,
+      "rendererMB": 1024,
+      "gpuMB": 596
+    },
+    {
+      "t": 8.34,
+      "rendererMB": 1025,
+      "gpuMB": 595
+    },
+    {
+      "t": 9.07,
+      "rendererMB": 1014,
+      "gpuMB": 580
+    },
+    {
+      "t": 9.79,
+      "rendererMB": 1018,
+      "gpuMB": 583
+    },
+    {
+      "t": 10.51,
+      "rendererMB": 1019,
+      "gpuMB": 582
+    },
+    {
+      "t": 11.24,
+      "rendererMB": 1020,
+      "gpuMB": 580
+    },
+    {
+      "t": 11.96,
+      "rendererMB": 1021,
+      "gpuMB": 580
+    },
+    {
+      "t": 12.73,
+      "rendererMB": 1020,
+      "gpuMB": 576
+    },
+    {
+      "t": 13.46,
+      "rendererMB": 882,
+      "gpuMB": 572
+    },
+    {
+      "t": 14.19,
+      "rendererMB": 883,
+      "gpuMB": 572
+    },
+    {
+      "t": 14.9,
+      "rendererMB": 882,
+      "gpuMB": 572
+    },
+    {
+      "t": 15.65,
+      "rendererMB": 883,
+      "gpuMB": 572
+    },
+    {
+      "t": 16.38,
+      "rendererMB": 883,
+      "gpuMB": 571
+    },
+    {
+      "t": 17.11,
+      "rendererMB": 885,
+      "gpuMB": 569
+    },
+    {
+      "t": 17.84,
+      "rendererMB": 885,
+      "gpuMB": 570
+    },
+    {
+      "t": 18.57,
+      "rendererMB": 886,
+      "gpuMB": 570
+    },
+    {
+      "t": 19.29,
+      "rendererMB": 887,
+      "gpuMB": 570
+    },
+    {
+      "t": 20.01,
+      "rendererMB": 888,
+      "gpuMB": 570
+    },
+    {
+      "t": 20.74,
+      "rendererMB": 889,
+      "gpuMB": 569
+    },
+    {
+      "t": 21.5,
+      "rendererMB": 900,
+      "gpuMB": 574
+    },
+    {
+      "t": 22.33,
+      "rendererMB": 905,
+      "gpuMB": 589
+    }
+  ]
+}

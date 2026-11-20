@@ -20,7 +20,7 @@ scope.onmessage = async (event) => {
     provideCityData(event.data.data);
     // Imported only now: the map and terrain modules wait for the data provided above.
     const { buildCityLayers, Batch } = await import('./cityMesh');
-    Batch.compact = true;
+    Batch.indexed = true;
     const parsed = performance.now();
     const { layers, transfer } = serializeLayers(compactLayers(buildCityLayers(event.data.tasks)));
     scope.postMessage(

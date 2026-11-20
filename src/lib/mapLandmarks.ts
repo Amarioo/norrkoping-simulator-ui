@@ -1,4 +1,5 @@
 import { LEGACY_LEVELS, terrain } from './terrain';
+import { releaseCanvasAfterUpload } from './canvasMemory';
 import { LAYER_RANK, layeredSurface } from './groundLayers';
 import { groundDisc, groundRectangle } from './placeBuilder';
 import {
@@ -93,7 +94,7 @@ export function createLandmarkDetails() {
     c.width = w;
     c.height = h;
     paint(c.getContext('2d')!);
-    const t = track(new CanvasTexture(c));
+    const t = track(releaseCanvasAfterUpload(new CanvasTexture(c)));
     t.colorSpace = SRGBColorSpace;
     t.anisotropy = 8;
     return t;
