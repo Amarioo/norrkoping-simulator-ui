@@ -67,12 +67,19 @@ export const CITY_CELL = 40;
  * (`new Batch(0)`) it seals a geometry every 3 000 triangles.
  */
 export class Batch {
+  /**
+   * Interface U4 (memory): set by the geometry worker before it builds. Normals and colours are
+   * then collected directly in the compact vertex format of cityMeshTransfer.ts (int8 and uint8,
+   * normalised) instead of as floats, which lowers the worker's memory while it builds.
+   */
+  static compact = false;
   private chunks = new Map<number, Batch>();
   private sealed: BufferGeometry[] = [];
   private count = 0;
+  private readonly packed = Batch.compact;
   private positions = new Float32Array(0);
-  private normals = new Float32Array(0);
-  private colors = new Float32Array(0);
+  private normals: Float32Array | Int8Array = this.packed ? new Int8Array(0) : new Float32Array(0);
+  private colors: Float32Array | Uint8Array = this.packed ? new Uint8Array(0) : new Float32Array(0);
   private uvs = new Float32Array(0);
   constructor(
     private cellSize = CITY_CELL,
@@ -96,8 +103,8 @@ export class Batch {
     const capacity = this.seal
       ? Math.min(SEAL_VERTICES, Math.max(96, current * 4))
       : Math.max(96, current < SEAL_VERTICES ? current * 4 : current * 2);
-    const grow = (old: Float32Array, size: number) => {
-      const next = new Float32Array(capacity * size);
+    const grow = <T extends Float32Array | Int8Array | Uint8Array>(old: T, size: number) => {
+      const next = new (old.constructor as new (length: number) => T)(capacity * size);
       next.set(old.subarray(0, this.count * size));
       return next;
     };
@@ -145,6 +152,17 @@ export class Batch {
     nz *= inverse;
     this.reserve(this.count + 3);
     const { positions, normals, colors, uvs } = this;
+    let cr = color.r,
+      cg = color.g,
+      cb = color.b;
+    if (this.packed) {
+      nx = Math.round(nx * 127);
+      ny = Math.round(ny * 127);
+      nz = Math.round(nz * 127);
+      cr = Math.round(Math.min(1, Math.max(0, cr)) * 255);
+      cg = Math.round(Math.min(1, Math.max(0, cg)) * 255);
+      cb = Math.round(Math.min(1, Math.max(0, cb)) * 255);
+    }
     for (let i = 0; i < 3; i++) {
       const p = i === 0 ? a : i === 1 ? b : c,
         o = (this.count + i) * 3,
@@ -155,9 +173,9 @@ export class Batch {
       normals[o] = nx;
       normals[o + 1] = ny;
       normals[o + 2] = nz;
-      colors[o] = color.r;
-      colors[o + 1] = color.g;
-      colors[o + 2] = color.b;
+      colors[o] = cr;
+      colors[o + 1] = cg;
+      colors[o + 2] = cb;
       uvs[t] = uv[i][0];
       uvs[t + 1] = uv[i][1];
     }
@@ -182,17 +200,17 @@ export class Batch {
     // A full buffer is used as is once the batch is reset. A partly filled one is copied to
     // its exact size: the city keeps its geometry arrays alive, and the unused growth
     // capacity of every chunk's last buffer would otherwise add ~20% to that memory.
-    const exact = (array: Float32Array, size: number) =>
-      array.length === n * size ? array : array.slice(0, n * size);
+    const exact = <T extends Float32Array | Int8Array | Uint8Array>(array: T, size: number) =>
+      array.length === n * size ? array : (array.slice(0, n * size) as T);
     g.setAttribute('position', new BufferAttribute(exact(this.positions, 3), 3));
-    g.setAttribute('normal', new BufferAttribute(exact(this.normals, 3), 3));
-    g.setAttribute('color', new BufferAttribute(exact(this.colors, 3), 3));
+    g.setAttribute('normal', new BufferAttribute(exact(this.normals, 3), 3, this.packed));
+    g.setAttribute('color', new BufferAttribute(exact(this.colors, 3), 3, this.packed));
     g.setAttribute('uv', new BufferAttribute(exact(this.uvs, 2), 2));
     g.computeBoundingSphere();
     this.count = 0;
     this.positions = new Float32Array(0);
-    this.normals = new Float32Array(0);
-    this.colors = new Float32Array(0);
+    this.normals = this.packed ? new Int8Array(0) : new Float32Array(0);
+    this.colors = this.packed ? new Uint8Array(0) : new Float32Array(0);
     this.uvs = new Float32Array(0);
     return g;
   }

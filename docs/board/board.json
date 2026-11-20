@@ -139,10 +139,15 @@
           "author": "claude",
           "date": "2026-11-19",
           "text": "Godkänt av dig (\"Ser bra ut\") och pushat i båda kodförråden. Kvar: utrullning av servern på k3s, som jag frågar om separat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-19",
+          "text": "Servern är utrullad på k3s (dafd3bd). Kontrollerat på den publika sidan: Flyg-fliken visar typ och rutt."
         }
       ],
       "date": "2026-11-19",
-      "outcome": "Tre rutter åt varje håll (över, norr om, söder om staden), alltid innanför kartan, och fyra slumpade flygplanstyper: turboprop, Airbus A320neo, Airbus A321neo och Boeing 737 MAX 8. Godkänt av dig och pushat i båda kodförråden (servern dafd3bd). Servern är inte utrullad på k3s än; tills dess visar den publika sidan turboprop utan ruttnamn."
+      "outcome": "Tre rutter åt varje håll (över, norr om, söder om staden), alltid innanför kartan, och fyra slumpade flygplanstyper: turboprop, Airbus A320neo, Airbus A321neo och Boeing 737 MAX 8. Godkänt av dig, pushat i båda kodförråden och utrullat på k3s 2026-11-19. Syns på den publika sidan."
     },
     {
       "id": "E3",
@@ -1221,6 +1226,11 @@
           "author": "claude",
           "date": "2026-11-18",
           "text": "Committad och pushad till origin/main på din begäran, så att du kan prova på din telefon och iPad. Ändringen av \"Landmärken\" från start i App.svelte, som inte kom från det här arbetet, är inte med i committen. Kortet ligger kvar i Test tills du har provat."
+        },
+        {
+          "author": "claude",
+          "date": "2026-11-20",
+          "text": "Sidan kraschade på din iPhone (\"Ett problem inträffade flera gånger\"). Orsaken är mätt: sidan tog cirka 3,5 GB minne när den startade, mer än en telefon tillåter. Nu lagras stadens geometri tätare (20 i stället för 44 byte per hörnpunkt), telefonen behåller ingen egen kopia av det grafikkortet redan har, och staden byggs av en bakgrundsprocess i stället för tre på telefon och surfplatta. Mätt i en datorwebbläsare i telefonstorlek: toppen 3,5 → 2,2 GB, stillastående 2,7 → 1,6 GB. Bilden är densamma för ögat (högst 3 steg av 255 skiljer). Om det räcker på din iPhone vet bara du; pushat på din begäran så att du kan prova. Räcker det inte är nästa steg att lagra delade hörnpunkter en gång och därefter en enklare stad för telefoner."
         }
       ],
       "report": "docs/mobile-u4/README.md"

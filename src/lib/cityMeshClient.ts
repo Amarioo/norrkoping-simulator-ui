@@ -5,7 +5,7 @@
  */
 import type { CityLayers, CityTask } from './cityMesh';
 import { loadCityData, releaseCityData, type CityDataBytes } from './cityData';
-import { deserializeLayers, type SerializedLayers } from './cityMeshTransfer';
+import { compactLayers, deserializeLayers, type SerializedLayers } from './cityMeshTransfer';
 
 type WorkerReply =
   { loaded: true } | { layers: SerializedLayers; parseMs: number; ms: number } | { error: string };
@@ -22,7 +22,7 @@ export function planCityTasks(cores: number): CityTask[][] {
 let cityMesh: Promise<typeof import('./cityMesh')> | null = null;
 async function buildOnMainThread(tasks: CityTask[]): Promise<CityLayers> {
   const { buildCityLayers } = await (cityMesh ??= import('./cityMesh'));
-  return buildCityLayers(tasks);
+  return compactLayers(buildCityLayers(tasks));
 }
 
 interface WorkerRun {
@@ -88,11 +88,24 @@ function withFallback(tasks: CityTask[], layers: Promise<CityLayers>) {
   });
 }
 
+/**
+ * Interface U4 (memory): every worker parses its own copy of the map and terrain data, so three
+ * at once take about three times the memory while the city is built. A phone or tablet (a finger
+ * as the main pointer), or a device that reports at most 4 GB, builds in one worker instead:
+ * slower, but it fits.
+ */
+export function limitedMemory(): boolean {
+  if (typeof navigator === 'undefined') return false;
+  const reported = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
+  if (reported !== undefined && reported <= 4) return true;
+  return typeof matchMedia === 'function' && matchMedia('(pointer: coarse)').matches;
+}
+
 function startBuild(): Promise<CityLayers> {
   if (typeof Worker === 'undefined') return buildOnMainThread(ALL_TASKS);
   const cores = typeof navigator === 'undefined' ? 2 : navigator.hardwareConcurrency || 2;
   const data = loadCityData(),
-    plan = planCityTasks(cores),
+    plan = planCityTasks(limitedMemory() ? 1 : cores),
     runs = plan.map((tasks) => spawnWorker(tasks, data));
   const parts = runs.map((run, i) =>
     run.loaded.then((loaded) => {

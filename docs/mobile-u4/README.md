@@ -6,6 +6,86 @@ following steps start from numbers instead of guesses.
 
 Numbers: [evidence/measurements.json](evidence/measurements.json). Open points: [remaining-gaps.md](remaining-gaps.md).
 
+## Step 4a: memory, after the page crashed on the user's iPhone (2026-11-20) — waiting for the user's test
+
+The user opened the published page on an iPhone and got Safari's "Ett problem inträffade flera gånger"
+(the tab was closed again and again). Safari shows that when a page takes more memory than the phone
+allows. Step 1 had not measured memory.
+
+**Cause, measured:** the page took about 3.5 GB while it started and 2.7 GB once it stood still. The city's
+ground, roads and buildings are about 26 million vertices (corner points of triangles). Each was stored as
+44 bytes, 1.1 GB, and held twice: once in the page and once in graphics memory. On top of that, three
+background workers each read their own copy of the map and terrain data while they built the city.
+
+**What changed** (the city looks the same, see "Same picture" below):
+
+| Change | Where | Effect |
+|---|---|---|
+| Compact vertex format: 20 bytes per vertex instead of 44. Positions untouched; the direction of each surface (normal) and its colour are stored as whole numbers 0–255 instead of decimals | `src/lib/cityMeshTransfer.ts` (`compactGeometry`), `src/lib/cityMesh.ts` (`Batch.compact`, used in the worker) | the city's vertices 1 130 → about 520 MB |
+| On phones and tablets the page drops its own copy of a piece of the city once graphics memory has it. On a computer the copy is kept, because the existing tests require the city to survive a lost graphics context there | `releaseAfterUpload`, `src/lib/mapView.ts` | each piece is held once, not twice |
+| Phones and tablets (a finger as main pointer), and devices that report at most 4 GB, build the city in one worker instead of three | `limitedMemory` in `src/lib/cityMeshClient.ts` | lower peak while starting; the start takes longer |
+| On phones and tablets: if the graphics context is lost and comes back, the page reloads (it can no longer refill the city from its own copy) | `src/App.svelte` | needed by the second change |
+
+### Memory, measured (`scripts/mobile-u4/memory.mjs`)
+
+Edge on this computer in iPhone 14 emulation (390 × 664 px, touch). Working set = memory in use, read from
+Windows every 0.3 s, for the page's process (page and workers) and the graphics process together.
+
+| | Published page before | Compact + drop the copy | + one worker | This version, measured again |
+|---|---|---|---|---|
+| Peak while starting (MB) | 3 511 | 3 074 | 2 269 | **2 171** |
+| – page process at its peak | 2 977 | 2 728 | 1 723 | 1 708 |
+| Standing still, 15 s after the map is ready (MB) | 2 699 | 1 975 | 1 709 | **1 618** |
+| – page process | 1 784 | 1 209 | 949 | 941 |
+| – graphics process | 915 | 766 | 760 | 677 |
+| Map ready after (s) | 5.0 | 4.3 | 6.8 | 7.9 |
+
+Files: [30](evidence/30-memory-before-production.json), [31](evidence/31-memory-after-compact.json),
+[32](evidence/32-memory-after-one-worker.json), [33](evidence/33-memory-final.json) (the last one ran while
+the browser tests were running on the same computer). The city's vertices held by the page, summed from the scene
+(`scripts/mobile-u4/geometry-bytes.mjs`, development build): 1 130 MB before, 346 MB after (what is left
+are pieces of the city that have not been in view yet; they move to graphics memory when first drawn).
+
+**How to read this:** the numbers are from a desktop browser, not from Safari on an iPhone. They show that
+the load fell by about a third at its peak and by more than a third standing still, not that it now fits.
+Nobody publishes the limit Safari applies; it depends on the phone. One run per column.
+
+### Same picture (`scripts/mobile-u4/same-picture.mjs`)
+
+Seven views (day and night; the inner city, the whole town, the airport, a street, the river) photographed
+in the version before and in this one, with the simulation paused, and compared pixel by pixel
+([diff.json](evidence/40-same-picture/diff.json); two picture pairs are kept beside it).
+
+| | Result |
+|---|---|
+| The same version photographed twice | identical in six views; in one, 0.001 % of the pixels differ by 1 step of 255 |
+| Before against after | no pixel differs by more than **3 steps of 255**; 1–38 % of the pixels differ by 1–2 steps; at most 0.0004 % by 3 |
+
+So the picture is not bit-for-bit the same (colours are now stored in 256 steps), but the difference is far
+below what an eye can see. Compared on a computer.
+
+### Checks (step 4a)
+
+| Check | Result |
+|---|---|
+| `npm run check` | 0 errors, 0 warnings |
+| `npm run build` | OK |
+| Vitest | 655 of 656; the failure is `police.test.ts` ("outline belongs to the current artwork"), known from earlier phases. New: `src/lib/cityMeshTransfer.test.ts` (6 tests) |
+| Playwright, all 27 files (47 tests) | every test passed with this version, but not in one run. Full run: 32 of 47; the 15 failures were page errors from the test set-up (a second dev server for the before-pictures shared Vite's cache with the first). After that server got its own cache the 15 were run again: 20 of 21, then `air-traffic` alone 4 of 4. The one failure in between was the test process crashing at the start of `air-traffic` (Windows exit code 0xC0000409, also seen in the air-routes phase) |
+| An earlier attempt | dropped the page copy on computers too. It failed the tests that require the city to survive a lost graphics context and one that measures the scene, so it was limited to phones and tablets. No test was changed |
+| Running app | phone emulation in Edge through `memory.mjs`: the map becomes ready, no crash |
+
+Not verified: a real iPhone or iPad (the point of the step, only the user can); Safari; a lost graphics
+context on a phone (the reload); how much slower the start is on a phone with one worker (here 4.3 → 7.9 s).
+
+**Still heavy, not changed here:**
+
+- The city is still 26 million vertices (about 520 MB). Storing shared corner points once (an index) could
+  roughly halve that; a simpler city for phones could cut more. Both change more code than this step.
+- About 270 textures (pictures on surfaces, mostly drawn in the page), an estimated 275 MB in graphics
+  memory, and their source pictures in the page.
+- The graphics process holds about 360 MB before the city arrives.
+
 ## Step 3: camera buttons for touch (2026-11-18) — waiting for the user's test
 
 Done after the user's "yes, the camera". Six buttons on the map, at the right edge, half-way up:

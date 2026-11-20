@@ -5,7 +5,7 @@
  */
 import type { CityTask } from './cityMesh';
 import { provideCityData, type CityDataBytes } from './cityData';
-import { serializeLayers } from './cityMeshTransfer';
+import { compactLayers, serializeLayers } from './cityMeshTransfer';
 
 // Typed locally: the project's tsconfig uses the DOM lib, which conflicts with "webworker".
 const scope = self as unknown as {
@@ -19,9 +19,10 @@ scope.onmessage = async (event) => {
     const started = performance.now();
     provideCityData(event.data.data);
     // Imported only now: the map and terrain modules wait for the data provided above.
-    const { buildCityLayers } = await import('./cityMesh');
+    const { buildCityLayers, Batch } = await import('./cityMesh');
+    Batch.compact = true;
     const parsed = performance.now();
-    const { layers, transfer } = serializeLayers(buildCityLayers(event.data.tasks));
+    const { layers, transfer } = serializeLayers(compactLayers(buildCityLayers(event.data.tasks)));
     scope.postMessage(
       { layers, parseMs: parsed - started, ms: performance.now() - parsed },
       transfer,

@@ -6,6 +6,7 @@
   import Scene from './lib/Scene.svelte';
   import { CITY_VIEWS, cityMap } from './lib/mapModel';
   import { city, FLIGHT_PHASE, MAX_PLANES, VEHICLE_NAMES } from './lib/city.svelte';
+  import { limitedMemory } from './lib/cityMeshClient';
   import { AIRCRAFT_TYPES, typeOf } from './lib/aircraftTypes';
   import { terrain } from './lib/terrain';
   import { formatClock, lightingState, setClock } from './lib/lighting/state.svelte';
@@ -151,6 +152,17 @@
   let fullscreen = $state(false),
     filled = $state(false);
   const mapExpanded = $derived(fullscreen || filled);
+  // Interface U4 (memory): where memory is short (phones, tablets) the city's vertices are kept in
+  // graphics memory only (cityMeshTransfer.ts, releaseAfterUpload), so a graphics context that was
+  // lost and came back cannot be refilled. Start the page again instead. Elsewhere the renderer
+  // refills it as before. The event does not bubble: listen in capture.
+  $effect(() => {
+    const el = panel;
+    if (!el || !limitedMemory()) return;
+    const reload = () => location.reload();
+    el.addEventListener('webglcontextrestored', reload, true);
+    return () => el.removeEventListener('webglcontextrestored', reload, true);
+  });
   async function toggleFullscreen() {
     if (fullscreen) {
       await document.exitFullscreen?.().catch(() => {});

@@ -1,0 +1,134 @@
+{
+  "url": "http://127.0.0.1:5402/",
+  "device": "Edge (Chromium), iPhone 14 emulation (390 × 664 px viewport, touch)",
+  "hardwareConcurrency": 16,
+  "crashed": false,
+  "mapReadySeconds": 4.312,
+  "peak": {
+    "rendererMB": 2728,
+    "gpuMB": 903
+  },
+  "peakTotalMB": 3074,
+  "settled": {
+    "rendererMB": 1209,
+    "gpuMB": 766
+  },
+  "mainThreadJsHeapMB": 873,
+  "samples": [
+    {
+      "t": 0.59,
+      "rendererMB": 132,
+      "gpuMB": 144
+    },
+    {
+      "t": 1.46,
+      "rendererMB": 1410,
+      "gpuMB": 182
+    },
+    {
+      "t": 2.31,
+      "rendererMB": 1825,
+      "gpuMB": 183
+    },
+    {
+      "t": 3.25,
+      "rendererMB": 2728,
+      "gpuMB": 346
+    },
+    {
+      "t": 4.12,
+      "rendererMB": 2238,
+      "gpuMB": 534
+    },
+    {
+      "t": 4.99,
+      "rendererMB": 1589,
+      "gpuMB": 903
+    },
+    {
+      "t": 5.88,
+      "rendererMB": 1587,
+      "gpuMB": 882
+    },
+    {
+      "t": 6.75,
+      "rendererMB": 1588,
+      "gpuMB": 880
+    },
+    {
+      "t": 7.62,
+      "rendererMB": 1589,
+      "gpuMB": 879
+    },
+    {
+      "t": 8.5,
+      "rendererMB": 1590,
+      "gpuMB": 845
+    },
+    {
+      "t": 9.37,
+      "rendererMB": 1578,
+      "gpuMB": 814
+    },
+    {
+      "t": 10.22,
+      "rendererMB": 1579,
+      "gpuMB": 816
+    },
+    {
+      "t": 11.08,
+      "rendererMB": 1580,
+      "gpuMB": 812
+    },
+    {
+      "t": 11.94,
+      "rendererMB": 1582,
+      "gpuMB": 769
+    },
+    {
+      "t": 12.82,
+      "rendererMB": 1583,
+      "gpuMB": 766
+    },
+    {
+      "t": 13.71,
+      "rendererMB": 1193,
+      "gpuMB": 765
+    },
+    {
+      "t": 14.57,
+      "rendererMB": 1201,
+      "gpuMB": 768
+    },
+    {
+      "t": 15.44,
+      "rendererMB": 1203,
+      "gpuMB": 771
+    },
+    {
+      "t": 16.3,
+      "rendererMB": 1205,
+      "gpuMB": 769
+    },
+    {
+      "t": 17.18,
+      "rendererMB": 1205,
+      "gpuMB": 766
+    },
+    {
+      "t": 18.03,
+      "rendererMB": 1206,
+      "gpuMB": 766
+    },
+    {
+      "t": 18.91,
+      "rendererMB": 1208,
+      "gpuMB": 766
+    },
+    {
+      "t": 19.75,
+      "rendererMB": 1209,
+      "gpuMB": 766
+    }
+  ]
+}

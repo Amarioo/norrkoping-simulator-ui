@@ -1,4 +1,20 @@
-# Interface U4 — remaining gaps after step 3, camera buttons (2026-11-18)
+# Interface U4 — remaining gaps after step 4a, memory (2026-11-20)
+
+## Fixed in step 4a
+
+- Memory while starting and standing still is about a third lower (3.5 → 2.2 GB peak, 2.7 → 1.6 GB still,
+  measured in a desktop browser at phone size).
+
+## New in step 4a
+
+- Whether the page now fits on the user's iPhone is unknown until the user tries it.
+- The city is still 26 million vertices (about 520 MB). Next steps if it still crashes: store shared corner
+  points once (an index), then a simpler city for phones.
+- About 270 textures, an estimated 275 MB in graphics memory, plus their source pictures in the page.
+- On a phone a lost graphics context now reloads the page; untested on a device.
+- One geometry worker on phones makes the start slower; not measured on a phone.
+- Colours and surface directions of the city are stored in 256 steps: pictures differ from before by at
+  most 3 steps of 255.
 
 ## Fixed in step 3
 

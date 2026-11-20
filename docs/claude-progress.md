@@ -2,7 +2,36 @@
 
 This file is the recovery checkpoint. Newest status first.
 
-## Air routes and aircraft types (2026-11-19) — approved, committed and pushed; backend not rolled out
+## Interface U4, step 4a: memory, after the page crashed on the user's iPhone (2026-11-20) — pushed for the user's test on the phone
+
+[Report](mobile-u4/README.md). The user opened the published page on an iPhone: Safari closed the tab again
+and again ("Ett problem inträffade flera gånger"). Measured cause: about 3.5 GB of memory while starting.
+The user asked for a push once the tests had passed ("Pusha när testerna är klara så provar jag på
+telefonen"); the push publishes to production. Not yet approved.
+
+- **Changed:** `src/lib/cityMeshTransfer.ts` (`compactGeometry`, `releaseAfterUpload`), `src/lib/cityMesh.ts`
+  (`Batch.compact`), `src/lib/cityMesh.worker.ts`, `src/lib/cityMeshClient.ts` (`limitedMemory`: one worker),
+  `src/lib/mapView.ts`, `src/App.svelte` (reload after a restored graphics context, phones only). New:
+  `src/lib/cityMeshTransfer.test.ts`, `scripts/mobile-u4/` (`memory.mjs`, `geometry-bytes.mjs`, `same-picture.mjs`).
+- **Measured** (Edge at phone size, not an iPhone): peak 3 511 → 2 171 MB, standing still 2 699 → 1 618 MB;
+  the city's vertices 44 → 20 bytes each. Pictures before/after differ by at most 3 steps of 255.
+- **Checks:** type check 0; build OK; Vitest 655/656 (known `police.test.ts`); Playwright all 47 tests passed
+  with this version, over several runs (see the report: a set-up fault of mine, and the known test-process crash).
+- **Not verified:** a real iPhone (only the user can), Safari, the reload after a lost context.
+- **If it still crashes:** index the city's vertices, then a simpler city for phones; textures (about 275 MB).
+- **Tooling note:** two Vite dev servers that share `node_modules/.vite` (a copy of the app with a junction
+  to `node_modules`) break each other's pages ("Cannot read properties of undefined (reading 'call')").
+  Give the copy its own `cacheDir`.
+- The uncommitted `labels = $state(false)` in `src/App.svelte` is still not from this work and is left out of
+  the commit. `.claude/launch.json`: `u4-preview` (5402, the build against the live backend).
+- Board: `U4` stays in *Test*.
+
+## Air routes and aircraft types (2026-11-19) — live: pushed (`aea748b`) and backend rolled out
+
+**Rollout 2026-11-19:** on the user's "Ja, rulla ut", `deployment/simulator` on k3s was set to
+`sha-dafd3bd820a00fb81f2d4267fbf9ba78a6c554e3` (was `sha-af513e6…`); rollout succeeded, one pod running.
+Checked on https://norrkoping-simulator.vercel.app: the Flyg tab lists types and routes ("A321neo · NRK →
+F13 söder om staden"), no connection banner. This note is uncommitted. The status below is older.
 
 **Status 2026-11-19:** the user approved ("Ser bra ut", then "ja pusha båda"). Backend pushed as `dafd3bd`;
 this repository pushed in the commit that carries this line (publishes to Vercel). The k3s rollout of

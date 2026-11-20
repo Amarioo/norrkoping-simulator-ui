@@ -22,7 +22,8 @@ import { createParkTrees } from './mapVegetation';
 import { createLandmarkDetails } from './mapLandmarks';
 import { createCityPlaces, isDetailPlantingClear } from './cityPlaces';
 import { CITY_LAYERS, type CityLayer } from './cityMesh';
-import { requestCityLayers } from './cityMeshClient';
+import { limitedMemory, requestCityLayers } from './cityMeshClient';
+import { releaseAfterUpload } from './cityMeshTransfer';
 import { layeredGround, layeredSurface } from './groundLayers';
 import { createIdrottsparken } from './stadium/idrottsparken';
 import { createRadhuset } from './landmarks/radhuset/radhuset';
@@ -139,6 +140,8 @@ export function createMappedCity() {
     group.add(layerGroups[layer]);
   }
   let disposed = false;
+  // Interface U4 (memory): where memory is short the page keeps no copy of uploaded vertices.
+  const release = limitedMemory();
   const ready = requestCityLayers().then((layers) => {
     for (const layer of CITY_LAYERS)
       for (const geometry of layers[layer] ?? []) {
@@ -146,7 +149,10 @@ export function createMappedCity() {
           geometry.dispose();
           continue;
         }
-        const mesh = new Mesh(own(geometry), materials[layer].material);
+        const mesh = new Mesh(
+          own(release ? releaseAfterUpload(geometry) : geometry),
+          materials[layer].material,
+        );
         mesh.castShadow = materials[layer].shadows;
         mesh.receiveShadow = true;
         layerGroups[layer].add(mesh);
